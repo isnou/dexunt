@@ -1,0 +1,229 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>{% block title %} {% endblock %} | {% block title-info %} {% endblock %} </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<!--fontawesome 4-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'store-manager/images/icons/favicon.png' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/slick/slick.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/MagnificPopup/magnific-popup.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'store-manager/css/main.css' %}">
+<!--===============================================================================================-->
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<script src="https://www.w3schools.com/lib/w3.js"></script>
+<!--===============================================================================================-->
+	<style>
+	discount-price {
+	text-decoration: line-through;
+	color:#75757a;
+	}
+
+	#hidden-element {
+	display: none;
+	}
+	</style>
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	{% block header %} {% endblock %}
+
+	<!-- Side cart -->
+	{% block cart %} {% endblock %}
+
+<!-- Breadcrumb -->
+	{% block breadcrumb %} {% endblock %}
+<!--  -->
+
+<!-- Home -->
+	<!-- Slider -->
+	{% block slider %} {% endblock %}
+	<!-- Banner -->
+	{% block banner %} {% endblock %}
+	<!-- showcases -->
+	{% block showcases %} {% endblock %}
+<!--  -->
+
+<!-- Store Detail -->
+	<!-- Store Detail -->
+	{% block store-detail %} {% endblock %}
+<!--  -->
+
+<!-- Product Detail -->
+	<!-- Product Detail -->
+	{% block product-detail %} {% endblock %}
+	<!-- Related Products -->
+	{% block related-products %} {% endblock %}
+<!--  -->
+
+<!-- Shopping cart -->
+    <!-- shopping-cart -->
+	{% block shopping-cart %}
+	{% endblock %}
+<!--  -->
+
+<!-- Check Out cart -->
+    <!-- check-out -->
+	{% block check-out %}
+	{% endblock %}
+<!--  -->
+
+
+
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
+		{% include "store-manager/includes/footer.html" %}
+	</footer>
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+	<!-- Modal1 -->
+	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+		{% block quick_view %} {% endblock %}
+	</div>
+
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'store-manager/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/select2/select2.min.js' %}"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'store-manager/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/slick/slick.min.js' %}"></script>
+	<script src="{% static 'store-manager/js/slick-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/parallax100/parallax100.js' %}"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/sweetalert/sweetalert.min.js' %}"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().parent().find('.product-name').html();
+			var namePrice = $(this).parent().parent().parent().parent().parent().find('.total').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'store-manager/js/main.js' %}"></script>
+<!--===============================================================================================-->
+    <script>
+    function ShowElement() {
+        var x = document.getElementById("hidden-element");
+        x.style.display = "block";
+        $("#refresh-element").load(" #refresh-element > *");
+        }
+    </script>
+</body>
+</html>
