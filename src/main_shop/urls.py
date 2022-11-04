@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('dexunt/', views.home, name="main-shop-home"),
+    path('', views.main_shop_home, name="main-shop-home"),
 ]
