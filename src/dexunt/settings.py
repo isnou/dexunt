@@ -1,4 +1,3 @@
-
 """
 Django settings for dexunt project.
 
@@ -17,7 +16,6 @@ import os.path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,8 +25,7 @@ SECRET_KEY = 'django-insecure-8w)708#%e+6-xla@tay-v6*#s$yws1q!_td+x_!drm4lvdu)od
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['94.176.238.2' ,'192.168.64.6']
-
+ALLOWED_HOSTS = ['94.176.238.2', '192.168.64.6']
 
 # Application definition
 
@@ -71,7 +68,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dexunt.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -81,11 +77,10 @@ DATABASES = {
         'NAME': 'dexuntdb',
         'USER': 'dexunt',
         'PASSWORD': 'Bouderbala6931',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -105,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -119,7 +113,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -127,7 +120,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'dexunt-root/site/public/static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT= 'dexunt-root/site/public/media'
+MEDIA_ROOT = 'dexunt-root/site/public/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
