@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>{% block title %} {% endblock %} | {% block title-info %} {% endblock %}</title>
+<title>{% block title %} {% endblock %} - {% block title-info %} {% endblock %}</title>
 
 <link rel="icon" type="image/png" href="{% static 'store-manager/images/favicon.png' %}">
 
@@ -52,7 +52,7 @@
 
 
 
-<link rel="stylesheet" href="index.html#" id="colors">
+<link rel="stylesheet" href="{% url 'main-shop-home' %}" id="colors">
 </head>
 <body class="js">
 
@@ -97,7 +97,7 @@
 <div class="top-left">
 <ul class="list-main">
 <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-<li><i class="ti-email"></i> <a href="../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="44373134342b363004372c2b342c31266a272b29">[email&#160;protected]</a></li>
+<li><i class="ti-email"></i> <a href="{% static 'store-manager/cdn-cgi/l/email-protection.html' %}" class="__cf_email__" data-cfemail="44373134342b363004372c2b342c31266a272b29">[email&#160;protected]</a></li>
 </ul>
 </div>
 
@@ -107,7 +107,7 @@
 <div class="right-content">
 <ul class="list-main">
 <li><i class="ti-location-pin"></i> Store location</li>
-<li><i class="ti-alarm-clock"></i> <a href="index.html#">Daily deal</a></li>
+<li><i class="ti-alarm-clock"></i> <a href="{% url 'main-shop-home' %}">Daily deal</a></li>
 <li><i class="ti-user"></i> <a href="index.html#">My account</a></li>
 <li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
 </ul>
@@ -124,7 +124,7 @@
 <div class="col-lg-2 col-md-2 col-12">
 
 <div class="logo">
-<a href="index.html"><img src="images/logo.png" alt="logo"></a>
+<a href="{% url 'main-shop-home' %}"><img src="{% static 'store-manager/images/logo.png' %}" alt="logo"></a>
 </div>
 
 
