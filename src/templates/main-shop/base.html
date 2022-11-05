@@ -85,12 +85,12 @@
     <div class="middle-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-12">
 
+                <!-- mobile search -->
+                <div class="col-lg-2 col-md-2 col-12">
                     <div class="logo">
                         <a href="{% url 'main-shop-home' %}"><img src="{% static 'main-shop/images/logo.png' %}" alt="logo"></a>
                     </div>
-
                     <div class="search-top">
                         <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
                         <div class="search-top">
@@ -100,9 +100,11 @@
                             </form>
                         </div>
                     </div>
-
                     <div class="mobile-nav"></div>
                 </div>
+                <!-- end mobile search -->
+
+                <!-- desk search -->
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
@@ -119,15 +121,19 @@
                         </div>
                     </div>
                 </div>
+                <!-- end desk search -->
+
+                <!-- right top -->
                 <div class="col-lg-2 col-md-3 col-12">
                     <div class="right-bar">
-
                         <div class="sinlge-bar">
                             <a href="index.html#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                         </div>
+                        <!--
                         <div class="sinlge-bar">
                             <a href="index.html#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
+                        -->
                         <div class="sinlge-bar shopping">
                             <a href="index.html#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
                             <!-- side cart -->
@@ -159,10 +165,11 @@
                                 </div>
                             </div>
                             <!-- end side cart -->
-
                         </div>
                     </div>
                 </div>
+                <!-- end right top -->
+
             </div>
         </div>
     </div>
