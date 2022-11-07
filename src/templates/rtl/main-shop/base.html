@@ -1,0 +1,1731 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name='copyright' content=''>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>{% block title %} {% endblock %} - {% block title-info %} {% endblock %}</title>
+
+<link rel="icon" type="image/png" href="{% static 'main-shop/images/favicon.png' %}">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="{% static 'main-shop/css/bootstrap.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/magnific-popup.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/font-awesome.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/jquery.fancybox.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/themify-icons.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/niceselect.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/animate.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/flex-slider.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/owl-carousel.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/slicknav.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'main-shop/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'main-shop/css/responsive.css' %}">
+
+<link rel="stylesheet" href="{% static 'main-shop/css/color/color1.css' %}">
+
+
+<link rel="stylesheet" href="#" id="colors">
+</head>
+
+<body class="js">
+
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+{% block popup %}
+<!-- color plate -->
+<div class="color-plate">
+    <a class="color-plate-icon">
+        <i class="ti-paint-bucket"></i>
+    </a>
+    <h4>Eshop Colors</h4>
+    <p>Here is some awesome color's available on Eshop Template.</p>
+    <span class="color1"></span>
+    <span class="color2"></span>
+    <span class="color3"></span>
+    <span class="color4"></span>
+    <span class="color5"></span>
+    <span class="color6"></span>
+    <span class="color7"></span>
+    <span class="color8"></span>
+    <span class="color9"></span>
+    <span class="color10"></span>
+    <span class="color11"></span>
+    <span class="color12"></span>
+</div>
+<!-- end color plate -->
+{% endblock %}
+
+<!-- header -->
+<header class="header shop">
+    <!-- top bar content -->
+    <div class="topbar">
+        <div class="container">
+            <div class="inner-content">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <!-- left content top bar -->
+                        <div class="top-left">
+                            <ul class="list-main">
+                                <li><i class="ti-headphone-alt"></i> +213 (540) 202-621</li>
+                                <li><i class="ti-email"></i> support@dexunt.com</li>
+                            </ul>
+                        </div>
+                        <!-- end left content top bar -->
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <!-- right content top bar -->
+                        <div class="right-content">
+                            <ul class="list-main">
+                                <li><i class="ti-location-pin"></i> <a href="#">Track my order</a></li>
+                                <li>
+                                    <a href="#">العربية</a>
+                                    <i class="ti-minus"></i>
+                                    <abbr> </abbr>
+                                    <a href="#">Français</a>
+                                    <i class="ti-minus"></i>
+                                    <abbr> </abbr>
+                                    <i>English</i>
+                                </li>
+                                <li><i class="ti-money"></i>
+                                    <a href="#">Points :320</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- end right content top bar -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end top bar content -->
+    <!-- search bar content -->
+    <div class="middle-inner">
+        <div class="container">
+            <div class="row">
+                <!-- mobile search -->
+                <div class="col-lg-2 col-md-2 col-12">
+                    <div class="logo">
+                        <a href="#"><img src="{% static 'main-shop/images/logo.png' %}" alt="logo"></a>
+                    </div>
+                    <div class="search-top">
+                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                        <div class="search-top">
+                            <form class="search-form">
+                                <input type="text" placeholder="Search here..." name="search">
+                                <button value="search" type="submit"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mobile-nav"></div>
+                </div>
+                <!-- end mobile search -->
+                <!-- desk search -->
+                <div class="col-lg-8 col-md-7 col-12">
+                    <div class="search-bar-top">
+                        <div class="search-bar">
+                            <select>
+                                <option selected="selected">All Category</option>
+                                <option>watch</option>
+                                <option>mobile</option>
+                                <option>kid’s item</option>
+                            </select>
+                            <form>
+                                <input name="search" placeholder="Search Products Here....." type="search">
+                                <button class="btnn"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end desk search -->
+                <!-- right top -->
+                <div class="col-lg-2 col-md-3 col-12">
+                    <div class="right-bar">
+                        <div class="sinlge-bar">
+                            <a href="index.html#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div>
+                        <!--
+                        <div class="sinlge-bar">
+                            <a href="index.html#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                        </div>
+                        -->
+                        <div class="sinlge-bar shopping">
+                            <a href="index.html#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                            <!-- side cart -->
+                            <div class="shopping-item">
+                                <div class="dropdown-cart-header">
+                                    <span>2 Items</span>
+                                    <a href="index.html#">View Cart</a>
+                                </div>
+                                <ul class="shopping-list">
+                                    <li>
+                                        <a href="index.html#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="index.html#"><img src="images/product-1.jpg" alt="#"></a>
+                                        <h4><a href="index.html#">Woman Ring</a></h4>
+                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                    </li>
+                                    <li>
+                                        <a href="index.html#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="index.html#"><img src="images/product-2.jpg" alt="#"></a>
+                                        <h4><a href="index.html#">Woman Necklace</a></h4>
+                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                                    </li>
+                                </ul>
+                                <div class="bottom">
+                                    <div class="total">
+                                        <span>Total</span>
+                                        <span class="total-amount">$134.00</span>
+                                    </div>
+                                    <a href="checkout.html" class="btn animate">Checkout</a>
+                                </div>
+                            </div>
+                            <!-- end side cart -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end right top -->
+            </div>
+        </div>
+    </div>
+    <!-- end search bar content -->
+    <!-- menu bar content -->
+    <div class="header-inner">
+        <div class="container">
+            <div class="cat-nav-head">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="all-category">
+                            <!-- side menu -->
+                            <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
+                            <ul class="main-category">
+                                <li><a href="index.html#">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <ul class="sub-category">
+                                        <li><a href="index.html#">accessories</a></li>
+                                        <li><a href="index.html#">best selling</a></li>
+                                        <li><a href="index.html#">top 100 offer</a></li>
+                                        <li><a href="index.html#">sunglass</a></li>
+                                        <li><a href="index.html#">watch</a></li>
+                                        <li><a href="index.html#">man’s product</a></li>
+                                        <li><a href="index.html#">ladies</a></li>
+                                        <li><a href="index.html#">westrn dress</a></li>
+                                        <li><a href="index.html#">denim </a></li>
+                                    </ul>
+                                </li>
+                                <li class="main-mega"><a href="index.html#">best selling <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <ul class="mega-menu">
+                                        <li class="single-menu">
+                                            <a href="index.html#" class="title-link">Shop Kid's</a>
+                                            <div class="image">
+                                                <img src="{% static 'main-shop/images/mega-menu1.jpg' %}" alt="#">
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="index.html#">Kids Toys</a>
+                                                <a href="index.html#">Kids Travel Car</a>
+                                                <a href="index.html#">Kids Color Shape</a>
+                                                <a href="index.html#">Kids Tent</a>
+                                            </div>
+                                        </li>
+                                        <li class="single-menu">
+                                            <a href="index.html#" class="title-link">Shop Men's</a>
+                                            <div class="image">
+                                                <img src="{% static 'main-shop/images/mega-menu2.jpg' %}" alt="#">
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="index.html#">Watch</a>
+                                                <a href="index.html#">T-shirt</a>
+                                                <a href="index.html#">Hoodies</a>
+                                                <a href="index.html#">Formal Pant</a>
+                                            </div>
+                                        </li>
+                                        <li class="single-menu">
+                                            <a href="index.html#" class="title-link">Shop Women's</a>
+                                            <div class="image">
+                                                <img src="{% static 'main-shop/images/mega-menu3.jpg' %}" alt="#">
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="index.html#">Ladies Shirt</a>
+                                                <a href="index.html#">Ladies Frog</a>
+                                                <a href="index.html#">Ladies Sun Glass</a>
+                                                <a href="index.html#">Ladies Watch</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="index.html#">accessories</a></li>
+                                <li><a href="index.html#">top 100 offer</a></li>
+                                <li><a href="index.html#">sunglass</a></li>
+                                <li><a href="index.html#">watch</a></li>
+                                <li><a href="index.html#">man’s product</a></li>
+                                <li><a href="index.html#">ladies</a></li>
+                                <li><a href="index.html#">westrn dress</a></li>
+                                <li><a href="index.html#">denim </a></li>
+                            </ul>
+                            <!-- end side menu -->
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-12">
+                        <div class="menu-area">
+
+                            <!-- top menu -->
+                            <nav class="navbar navbar-expand-lg">
+                                <div class="navbar-collapse">
+                                    <div class="nav-inner">
+                                        <ul class="nav main-menu menu navbar-nav">
+                                            <li class="active"><a href="index.html#">Home<i class="ti-angle-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="index.html">Home Ecommerce V1</a></li>
+                                                    <li><a href="index2.html">Home Ecommerce V2</a></li>
+                                                    <li><a href="index3.html">Home Ecommerce V3</a></li>
+                                                    <li><a href="index4.html">Home Ecommerce V4</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="index.html#">Product</a></li>
+                                            <li><a href="index.html#">Service</a></li>
+                                            <li><a href="index.html#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="shop-grid.html">Shop Grid</a></li>
+                                                    <li><a href="shop-list.html">Shop List</a></li>
+                                                    <li><a href="shop-single.html">shop Single</a></li>
+                                                    <li><a href="cart.html">Cart</a></li>
+                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="index.html#">Pages<i class="ti-angle-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="about-us.html">About Us</a></li>
+                                                    <li><a href="login.html">Login</a></li>
+                                                    <li><a href="register.html">Register</a></li>
+                                                    <li><a href="mail-success.html">Mail Success</a></li>
+                                                    <li><a href="404.html">404</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="index.html#">Blog<i class="ti-angle-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="blog-grid.html">Blog Grid</a></li>
+                                                    <li><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a></li>
+                                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!-- end top menu -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end menu bar content -->
+</header>
+<!-- end header -->
+
+<!-- banner message -->
+<section class="hero-slider">
+    <div class="single-slider">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-9 offset-lg-3 col-12">
+                    <div class="text-inner">
+                        <div class="row">
+                            <div class="col-lg-7 col-12">
+                                <div class="hero-text">
+                                    <h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
+                                    <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>
+                                    <div class="button">
+                                        <a href="index.html#" class="btn">Shop Now!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end banner message -->
+
+<!-- small banner message -->
+<section class="small-banner section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="single-banner">
+                    <img src="{% static 'main-shop/images/mini-banner1.jpg' %}" alt="#">
+                    <div class="content">
+                        <p>Man's Collectons</p>
+                        <h3>Summer travel <br> collection</h3>
+                        <a href="index.html#">Discover Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="single-banner">
+                    <img src="{% static 'main-shop/images/mini-banner2.jpg' %}" alt="#">
+                    <div class="content">
+                        <p>Bag Collectons</p>
+                        <h3>Awesome Bag <br> 2020</h3>
+                        <a href="index.html#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="single-banner tab-height">
+                    <img src="{% static 'main-shop/images/mini-banner3.jpg' %}" alt="#">
+                    <div class="content">
+                        <p>Flash Sale</p>
+                        <h3>Mid Season <br> Up to <span>40%</span> Off</h3>
+                        <a href="index.html#">Discover Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end small banner message -->
+
+<!-- grid showcase -->
+<div class="product-area section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Trending Item</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="product-info">
+                    <div class="nav-main">
+                        <!-- top thumb categories -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="index.html#man" role="tab">Man</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="index.html#women" role="tab">Woman</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="index.html#kids" role="tab">Kids</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="index.html#accessories" role="tab">Accessories</a></li>
+                        </ul>
+                        <!-- end top thumb categories -->
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <!-- showcase man-->
+                        <div class="tab-pane fade show active" id="man" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p1.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p2.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Women Hot Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p3.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p4.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Pink Show</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p5.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p6.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Bags Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p7.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p8.jpg' %}" alt="#">
+                                                    <span class="new">New</span>
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Women Pant Collectons</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p9.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p10.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Bags Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p11.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p12.jpg' %}" alt="#">
+                                                    <span class="price-dec">30% Off</span>
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Cap For Women</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p13.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p14.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Polo Dress For Women</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                    <!-- product -->
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p15.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p16.jpg' %}" alt="#">
+                                                    <span class="out-of-stock">Hot</span>
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Black Sunglass For Women</a></h3>
+                                                <div class="product-price">
+                                                    <span class="old">$60.00</span>
+                                                    <span>$50.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end showcase -->
+                        <!-- showcase women -->
+                        <div class="tab-pane fade" id="women" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p9.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p10.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Bags Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p11.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p12.jpg' %}" alt="#">
+                                                    <span class="price-dec">30% Off</span>
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Cap For Women</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p13.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p14.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Polo Dress For Women</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p15.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p16.jpg' %}" alt="#">
+                                                    <span class="out-of-stock">Hot</span>
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Black Sunglass For Women</a></h3>
+                                                <div class="product-price">
+                                                    <span class="old">$60.00</span>
+                                                    <span>$50.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p1.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p2.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Women Hot Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p3.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p4.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Pink Show</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p5.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p6.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Bags Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p7.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p8.jpg' %}" alt="#">
+                                                    <span class="new">New</span>
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Women Pant Collectons</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end showcase women -->
+                        <!-- showcase kids -->
+                        <div class="tab-pane fade" id="kids" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p5.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p6.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Bags Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p7.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p8.jpg' %}" alt="#">
+                                                    <span class="new">New</span>
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Women Pant Collectons</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end showcase kids -->
+                        <!-- showcase accessories -->
+                        <div class="tab-pane fade" id="accessories" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                                    <img class="default-img" src="{% static 'main-shop/images/products/p5.jpg' %}" alt="#">
+                                                    <img class="hover-img" src="{% static 'main-shop/images/products/p6.jpg' %}" alt="#">
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action">
+                                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                        <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                        <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart" href="index.html#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Bags Collection</a></h3>
+                                                <div class="product-price">
+                                                    <span>$29.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end showcase accessories -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end grid showcase -->
+
+<!-- flash showcases -->
+<section class="midium-banner">
+    <div class="container">
+        <div class="row">
+            <!-- first showcase -->
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="single-banner">
+                    <img src="{% static 'main-shop/images/mid-banner1.jpg' %}" alt="#">
+                    <div class="content">
+                        <p>Man's Collectons</p>
+                        <h3>Man's items <br>Up to<span> 50%</span></h3>
+                        <a href="index.html#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end first showcase -->
+            <!-- second showcase -->
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="single-banner">
+                    <img src="{% static 'main-shop/images/mid-banner2.jpg' %}" alt="#">
+                    <div class="content">
+                        <p>shoes women</p>
+                        <h3>mid season <br> up to <span>70%</span></h3>
+                        <a href="index.html#" class="btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end second showcase -->
+        </div>
+    </div>
+</section>
+<!-- end flash showcases -->
+
+<!-- slide showcase -->
+<div class="product-area most-popular section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Hot Item</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="owl-carousel popular-slider">
+
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                <img class="default-img" src="{% static 'main-shop/images/products/p15.jpg' %}" alt="#">
+                                <img class="hover-img" src="{% static 'main-shop/images/products/p16.jpg' %}" alt="#">
+                                <span class="out-of-stock">Hot</span>
+                            </a>
+                            <div class="button-head">
+                                <div class="product-action">
+                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                    <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                    <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                </div>
+                                <div class="product-action-2">
+                                    <a title="Add to cart" href="index.html#">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-content">
+                            <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Black Sunglass For Women</a></h3>
+                            <div class="product-price">
+                                <span class="old">$60.00</span>
+                                <span>$50.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                <img class="default-img" src="{% static 'main-shop/images/products/p1.jpg' %}" alt="#">
+                                <img class="hover-img" src="{% static 'main-shop/images/products/p2.jpg' %}" alt="#">
+                            </a>
+                            <div class="button-head">
+                                <div class="product-action">
+                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                    <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                    <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                </div>
+                                <div class="product-action-2">
+                                    <a title="Add to cart" href="index.html#">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Women Hot Collection</a></h3>
+                            <div class="product-price">
+                                <span>$50.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                <img class="default-img" src="{% static 'main-shop/images/products/p3.jpg' %}" alt="#">
+                                <img class="hover-img" src="{% static 'main-shop/images/products/p4.jpg' %}" alt="#">
+                                <span class="new">New</span>
+                            </a>
+                            <div class="button-head">
+                                <div class="product-action">
+                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                    <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                    <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                </div>
+                                <div class="product-action-2">
+                                    <a title="Add to cart" href="index.html#">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Pink Show</a></h3>
+                            <div class="product-price">
+                                <span>$50.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="https://wpthemesgrid.com/themes/eshop/product-details.html">
+                                <img class="default-img" src="{% static 'main-shop/images/products/p5.jpg' %}" alt="#">
+                                <img class="hover-img" src="{% static 'main-shop/images/products/p6.jpg' %}" alt="#">
+                            </a>
+                            <div class="button-head">
+                                <div class="product-action">
+                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="index.html#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                    <a title="Wishlist" href="index.html#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                    <a title="Compare" href="index.html#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                </div>
+                                <div class="product-action-2">
+                                    <a title="Add to cart" href="index.html#">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="https://wpthemesgrid.com/themes/eshop/product-details.html">Awesome Bags Collection</a></h3>
+                            <div class="product-price">
+                                <span>$50.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end slide showcase -->
+
+<!-- banner showcase -->
+<section class="shop-home-list section">
+    <div class="container">
+        <div class="row">
+            <!-- on sale showcase -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="shop-section-title">
+                            <h1>On sale</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list1.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h4 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h4>
+                                <p class="price with-discount">$59</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list2.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$44</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list3.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$89</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end on sale showcase-->
+            <!-- bestseller showcase -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="shop-section-title">
+                            <h1>Best Seller</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list4.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$65</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list5.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$33</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list6.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$77</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end bestseller showcase -->
+            <!-- top viewed showcase -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="shop-section-title">
+                            <h1>Top viewed</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list7.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$22</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list8.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$35</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="list-image overlay">
+                                <img src="{% static 'main-shop/images/list/shop-list9.jpg' %}" alt="#">
+                                <a href="index.html#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 no-padding">
+                            <div class="content">
+                                <h5 class="title"><a href="index.html#">Licity jelly leg flat Sandals</a></h5>
+                                <p class="price with-discount">$99</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end top viewed showcase -->
+        </div>
+    </div>
+</section>
+<!-- end banner showcase -->
+
+<!-- deal of the day -->
+<section class="cown-down">
+    <div class="section-inner ">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-12 padding-right">
+                    <div class="image">
+                        <img src="{% static 'main-shop/images/count-down-image.jpg' %}" alt="#">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 padding-left">
+                    <div class="content">
+                        <div class="heading-block">
+                            <p class="small-title">Deal of day</p>
+                            <h3 class="title">Beatutyful dress for women</h3>
+                            <p class="text">Suspendisse massa leo, vestibulum cursus nulla sit amet, frungilla placerat lorem. Cars fermentum, sapien. </p>
+                            <h1 class="price">$1200 <s>$1890</s></h1>
+                            <div class="coming-time">
+                                <div class="clearfix" data-countdown="2023/02/30"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end deal of the day -->
+
+<!-- blog -->
+<section class="shop-blog section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>From Our Blog</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="shop-single-blog">
+                    <img src="{% static 'main-shop/images/blog1.jpg' %}" alt="#">
+                    <div class="content">
+                        <p class="date">22 July , 2020. Monday</p>
+                        <a href="index.html#" class="title">Sed adipiscing ornare.</a>
+                        <a href="index.html#" class="more-btn">Continue Reading</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="shop-single-blog">
+                    <img src="{% static 'main-shop/images/blog2.jpg' %}" alt="#">
+                    <div class="content">
+                        <p class="date">22 July, 2020. Monday</p>
+                        <a href="index.html#" class="title">Man’s Fashion Winter Sale</a>
+                        <a href="index.html#" class="more-btn">Continue Reading</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="shop-single-blog">
+                    <img src="{% static 'main-shop/images/blog3.jpg' %}" alt="#">
+                    <div class="content">
+                        <p class="date">22 July, 2020. Monday</p>
+                        <a href="index.html#" class="title">Women Fashion Festive</a>
+                        <a href="index.html#" class="more-btn">Continue Reading</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end blog -->
+
+<!-- footer banner -->
+<section class="shop-services section home">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="single-service">
+                    <i class="ti-rocket"></i>
+                    <h4>Free shiping</h4>
+                    <p>Orders over $100</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="single-service">
+                    <i class="ti-reload"></i>
+                    <h4>Free Return</h4>
+                    <p>Within 30 days returns</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="single-service">
+                    <i class="ti-lock"></i>
+                    <h4>Sucure Payment</h4>
+                    <p>100% secure payment</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="single-service">
+                    <i class="ti-tag"></i>
+                    <h4>Best Peice</h4>
+                    <p>Guaranteed price</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end footer banner -->
+
+<!-- newsletter -->
+<section class="shop-newsletter section">
+    <div class="container">
+        <div class="inner-top">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-12">
+                    <div class="inner">
+                        <h4>Newsletter</h4>
+                        <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                        <form action="https://wpthemesgrid.com/themes/eshop/mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                            <input name="EMAIL" placeholder="Your email address" required="" type="email">
+                            <button class="btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end newsletter -->
+
+<!-- quick view -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row no-gutters">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-gallery">
+                            <div class="quickview-slider-active">
+                                <div class="single-slider">
+                                    <img src="{% static 'main-shop/images/modal1.png' %}" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="{% static 'main-shop/images/modal2.png' %}" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="{% static 'main-shop/images/modal3.png' %}" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="{% static 'main-shop/images/modal4.png' %}" alt="#">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="quickview-content">
+                            <h2>Flared Shift Dress</h2>
+                            <div class="quickview-ratting-review">
+                                <div class="quickview-ratting-wrap">
+                                    <div class="quickview-ratting">
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="index.html#"> (1 customer review)</a>
+                                </div>
+                                <div class="quickview-stock">
+                                    <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                </div>
+                            </div>
+                            <h3>$29.00</h3>
+                            <div class="quickview-peragraph">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
+                            </div>
+                            <div class="size">
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <h5 class="title">Size</h5>
+                                        <select>
+                                            <option selected="selected">s</option>
+                                            <option>m</option>
+                                            <option>l</option>
+                                            <option>xl</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <h5 class="title">Color</h5>
+                                        <select>
+                                            <option selected="selected">orange</option>
+                                            <option>purple</option>
+                                            <option>black</option>
+                                            <option>pink</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quantity">
+                                <div class="input-group">
+                                    <div class="button minus">
+                                        <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                            <i class="ti-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
+                                    <div class="button plus">
+                                        <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                                            <i class="ti-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <a href="index.html#" class="btn">Add to cart</a>
+                                <a href="index.html#" class="btn min"><i class="ti-heart"></i></a>
+                                <a href="index.html#" class="btn min"><i class="fa fa-compress"></i></a>
+                            </div>
+                            <div class="default-social">
+                                <h4 class="share-now">Share:</h4>
+                                <ul>
+                                    <li><a class="facebook" href="index.html#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="twitter" href="index.html#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="youtube" href="index.html#"><i class="fa fa-pinterest-p"></i></a></li>
+                                    <li><a class="dribbble" href="index.html#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end quick view -->
+
+<!-- footer -->
+<footer class="footer">
+    <div class="footer-top section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-12">
+                    <div class="single-footer about">
+                        <div class="logo">
+                            <a href="index.html"><img src="{% static 'main-shop/images/logo2.png' %}" alt="#"></a>
+                        </div>
+                        <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+                        <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-12">
+                    <div class="single-footer links">
+                        <h4>Information</h4>
+                        <ul>
+                            <li><a href="index.html#">About Us</a></li>
+                            <li><a href="index.html#">Faq</a></li>
+                            <li><a href="index.html#">Terms & Conditions</a></li>
+                            <li><a href="index.html#">Contact Us</a></li>
+                            <li><a href="index.html#">Help</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-12">
+                    <div class="single-footer links">
+                        <h4>Customer Service</h4>
+                        <ul>
+                            <li><a href="index.html#">Payment Methods</a></li>
+                            <li><a href="index.html#">Money-back</a></li>
+                            <li><a href="index.html#">Returns</a></li>
+                            <li><a href="index.html#">Shipping</a></li>
+                            <li><a href="index.html#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-footer social">
+                        <h4>Get In Tuch</h4>
+                        <div class="contact">
+                            <ul>
+                                <li>NO. 342 - London Oxford Street.</li>
+                                <li>012 United Kingdom.</li>
+                                <li><a href="{% static 'main-shop/cdn-cgi/l/email-protection.html' %}" class="__cf_email__" data-cfemail="452c2b232a0520362d2a356b262a28">[email&#160;protected]</a></li>
+                                <li>+032 3456 7890</li>
+                            </ul>
+                        </div>
+                        <ul>
+                            <li><a href="index.html#"><i class="ti-facebook"></i></a></li>
+                            <li><a href="index.html#"><i class="ti-twitter"></i></a></li>
+                            <li><a href="index.html#"><i class="ti-flickr"></i></a></li>
+                            <li><a href="index.html#"><i class="ti-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="left">
+                            <p>
+                                Copyright Dexunt &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Dexunt Logistics
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="right">
+                            <img src="{% static 'main-shop/images/payments.png' %}" alt="#">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->
+
+<script data-cfasync="false" src="{% static 'main-shop/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+<script src="{% static 'main-shop/js/jquery.min.js' %}"></script>
+<script src="{% static 'main-shop/js/jquery-migrate-3.0.0.js' %}"></script>
+<script src="{% static 'main-shop/js/jquery-ui.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/popper.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/colors.js' %}"></script>
+
+<script src="{% static 'main-shop/js/slicknav.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/owl-carousel.js' %}"></script>
+
+<script src="{% static 'main-shop/js/magnific-popup.js' %}"></script>
+
+<script src="{% static 'main-shop/js/facnybox.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/waypoints.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/finalcountdown.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/nicesellect.js' %}"></script>
+
+<script src="{% static 'main-shop/js/ytplayer.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/flex-slider.js' %}"></script>
+
+<script src="{% static 'main-shop/js/scrollup.js' %}"></script>
+
+<script src="{% static 'main-shop/js/onepage-nav.min.js' %}"></script>
+
+<script src="{% static 'main-shop/js/easing.js' %}"></script>
+
+<script src="{% static 'main-shop/js/active.js' %}"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"7656f91f3ac241eb","version":"2022.11.0","r":1,"token":"3248e93e0d6447329c4d6bcc351d5700","si":100}' crossorigin="anonymous"></script>
+</body>
+
+</html>
