@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/animate.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/animate.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/flex-slider.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/flex-slider.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/magnific-popup.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/magnific-popup.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/niceselect.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/niceselect.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/owl-carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/owl-carousel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/reset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/responsive.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/font-awesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/site/public/static/main-shop/css/rtl/themify-icons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/main-shop/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/main-shop/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
