@@ -188,7 +188,7 @@
   direction: rtl;
 }
 .owl-carousel.owl-rtl .owl-item {
-  float: left;
+  float: right;
 }
 
 /* No Js */
