@@ -1,6 +1,6 @@
 
  /**
- * - Carousel v2.2.1
+ * Owl Carousel v2.2.1
  * Copyright 2013-2017 David Deutsch
  * Licensed under  ()
  */
@@ -130,8 +130,8 @@
   /* fix for flashing background */
   -webkit-transform: translate3d(0px, 0px, 0px);
 }
-.owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel .owl-controls .owl-nav .owl-prev,
+.owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel .owl-controls .owl-dot {
   cursor: pointer;
   cursor: hand;
@@ -157,7 +157,7 @@
 .owl-carousel .owl-item {
   position: relative;
   min-height: 1px;
-  float: left;
+  float: right;
   -webkit-backface-visibility: hidden;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -185,10 +185,10 @@
   cursor: grab;
 }
 .owl-carousel.owl-rtl {
-  direction: rtl;
+  direction: ltr;
 }
 .owl-carousel.owl-rtl .owl-item {
-  float: right;
+  float: left;
 }
 
 /* No Js */
@@ -223,9 +223,9 @@
   position: absolute;
   height: 80px;
   width: 80px;
-  left: 50%;
+  right: 50%;
   top: 50%;
-  margin-left: -40px;
+  margin-right: -40px;
   margin-top: -40px;
   background: url("https://wpthemesgrid.com/themes/eshop/css/owl.video.play.png") no-repeat;
   cursor: pointer;
