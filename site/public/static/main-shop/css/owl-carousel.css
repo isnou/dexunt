@@ -26,7 +26,7 @@
     text-decoration: none; }
 .owl-theme .owl-nav .disabled {
     opacity: 0.5;
-    cursor: default; 
+    cursor: default;
 }
 .owl-theme .owl-nav.disabled + .owl-dots {
 	margin-top: 10px; }
@@ -48,10 +48,10 @@
     transition: opacity 200ms ease;
     border-radius: 30px; }
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-    background: #869791; 
+    background: #869791;
 }
 
-/* 
+/*
  *  Owl Carousel - Animate Plugin
  */
 .owl-carousel .animated {
@@ -90,7 +90,7 @@
   }
 }
 
-/* 
+/*
  * 	Owl Carousel - Auto Height Plugin
  */
 .owl-height {
@@ -101,7 +101,7 @@
   transition: height 500ms ease-in-out;
 }
 
-/* 
+/*
  *  Core Owl Carousel CSS File
  */
 .owl-carousel {
@@ -130,8 +130,8 @@
   /* fix for flashing background */
   -webkit-transform: translate3d(0px, 0px, 0px);
 }
-.owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel .owl-controls .owl-nav .owl-prev,
+.owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel .owl-controls .owl-dot {
   cursor: pointer;
   cursor: hand;
@@ -157,7 +157,7 @@
 .owl-carousel .owl-item {
   position: relative;
   min-height: 1px;
-  float: left;
+  float: right;
   -webkit-backface-visibility: hidden;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -185,10 +185,10 @@
   cursor: grab;
 }
 .owl-carousel.owl-rtl {
-  direction: rtl;
+  direction: ltr;
 }
 .owl-carousel.owl-rtl .owl-item {
-  float: right;
+  float: left;
 }
 
 /* No Js */
@@ -196,7 +196,7 @@
   display: block;
 }
 
-/* 
+/*
  * 	Owl Carousel - Lazy Load Plugin
  */
 .owl-carousel .owl-item .owl-lazy {
@@ -211,7 +211,7 @@
   transform-style: preserve-3d;
 }
 
-/* 
+/*
  * 	Owl Carousel - Video Plugin
  */
 .owl-carousel .owl-video-wrapper {
@@ -223,9 +223,9 @@
   position: absolute;
   height: 80px;
   width: 80px;
-  left: 50%;
+  right: 50%;
   top: 50%;
-  margin-left: -40px;
+  margin-right: -40px;
   margin-top: -40px;
   background: url("https://wpthemesgrid.com/themes/eshop/css/owl.video.play.png") no-repeat;
   cursor: pointer;
