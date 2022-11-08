@@ -3,21 +3,21 @@
 {% load mathfilters %}
 
 {% block title %}
-  {% if lang = 'ar' %}
+  {% if lang == 'ar' %}
     {{ ar.title }}
-  {% elif lang = 'fr' %}
+  {% elif lang == 'fr' %}
     {{ fr.title }}
-  {% elif lang = 'en' %}
+  {% elif lang == 'en' %}
     {{ en.title }}
   {% endif %}
 {% endblock %}
 
 {% block title-info %}
-  {% if lang = 'ar' %}
+  {% if lang == 'ar' %}
     {{ ar.title-info }}
-  {% elif lang = 'fr' %}
+  {% elif lang == 'fr' %}
     {{ fr.title-info }}
-  {% elif lang = 'en' %}
+  {% elif lang == 'en' %}
     {{ en.title-info }}
   {% endif %}
 {% endblock %}
