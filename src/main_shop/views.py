@@ -4,9 +4,9 @@ from .models import Content
 
 def main_shop_home(request, lang):
     content = Content.objects.all()
-    en = content.filter(lang='EN')
-    fr = content.filter(lang='FR')
-    ar = content.filter(lang='AR')
+    en = content.all().filter(lang='EN')
+    fr = content.all().filter(lang='FR')
+    ar = content.all().filter(lang='AR')
 
     if lang == "ar":
         url = "rtl/main-shop/home.html"
