@@ -1,7 +1,7 @@
 from .models import Content
 
 
-def extras(request):
+def main_page_content(request):
     content = Content.objects.all()
     en = content.get(lang='EN')
     fr = content.get(lang='FR')
