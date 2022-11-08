@@ -3,10 +3,13 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Content(models.Model):
+    PAGES = (
+        ('home page', 'home page'),
+    )
     # ------- language
     lang = models.CharField(max_length=20, unique=True)
     # ------- page title
-    page_title = models.CharField(max_length=20, blank=True, unique=True)
+    page_title = models.CharField(max_length=60, choices=PAGES, blank=True, null=True)
     # ------- first banner
     big_banner_small_title = models.CharField(max_length=150, blank=True)
     big_banner_big_title = models.CharField(max_length=150, blank=True)
