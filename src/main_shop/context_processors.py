@@ -1,5 +1,5 @@
 def extras(request):
-    context = {
+    return {
         'en.home_title': "Dexunt Home Page",
         'en.home_title_info': "Online Shopping Gifts & Deco",
         'en.track_my_order': "track my order",
@@ -16,4 +16,3 @@ def extras(request):
         'ar.search_text': "البحث عن المنتجات هنا",
         'ar.all_category': "الكل",
     }
-    return context
