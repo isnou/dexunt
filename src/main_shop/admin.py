@@ -3,7 +3,7 @@ from .models import Content
 
 
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ('lang', 'home_page_title')
+    list_display = 'lang'
 
 
 admin.site.register(Content, ContentAdmin)

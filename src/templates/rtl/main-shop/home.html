@@ -21,3 +21,26 @@
 </div>
 <!-- end popup -->
 {% endblock %}
+
+{% block big_banner %}
+<!-- big banner -->
+<h1>
+    <span>
+        {{ ar.big_banner_small_title }}
+    </span>
+    {{ ar.big_banner_big_title }}
+</h1>
+<p>
+    {{ ar.big_banner_first_line }}
+    <br>
+    {{ ar.big_banner_second_line }}
+    <br>
+    {{ ar.big_banner_third_line }}
+</p>
+<div class="button">
+    <a href="index.html#" class="btn">
+        {{ ar.big_banner_button_title }}
+    </a>
+</div>
+<!-- end banner -->
+{% endblock %}

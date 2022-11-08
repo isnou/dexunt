@@ -25,3 +25,50 @@
 </div>
 <!-- end popup -->
 {% endblock %}
+
+{% block big_banner %}
+<!-- big banner -->
+<h1>
+    <span>
+        {% if lang == 'fr' %}
+        {{ fr.big_banner_small_title }}
+        {% elif lang == 'en' %}
+        {{ en.big_banner_small_title }}
+        {% endif %}
+    </span>
+    {% if lang == 'fr' %}
+    {{ fr.big_banner_big_title }}
+    {% elif lang == 'en' %}
+    {{ en.big_banner_big_title }}
+    {% endif %}
+</h1>
+<p>
+    {% if lang == 'fr' %}
+    {{ fr.big_banner_first_line }}
+    {% elif lang == 'en' %}
+    {{ en.big_banner_first_line }}
+    {% endif %}
+    <br>
+    {% if lang == 'fr' %}
+    {{ fr.big_banner_second_line }}
+    {% elif lang == 'en' %}
+    {{ en.big_banner_second_line }}
+    {% endif %}
+    <br>
+    {% if lang == 'fr' %}
+    {{ fr.big_banner_third_line }}
+    {% elif lang == 'en' %}
+    {{ en.big_banner_third_line }}
+    {% endif %}
+</p>
+<div class="button">
+    <a href="index.html#" class="btn">
+        {% if lang == 'fr' %}
+        {{ fr.big_banner_button_title }}
+        {% elif lang == 'en' %}
+        {{ en.big_banner_button_title }}
+        {% endif %}
+    </a>
+</div>
+<!-- end banner -->
+{% endblock %}
