@@ -7,4 +7,4 @@ def main_shop_home(request, lang):
     else:
         url = "ltr/main-shop/home.html"
 
-    return render(request, url, {'lang': lang})
+    return render(request, url, lang)
