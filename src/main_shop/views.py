@@ -8,7 +8,6 @@ def main_shop_home(request, lang):
         url = "ltr/main-shop/home.html"
     context = {
         'lang': lang,
-        'cart': 'cart',
     }
 
     return render(request, url, context)
