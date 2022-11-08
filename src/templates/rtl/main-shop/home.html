@@ -3,23 +3,11 @@
 {% load mathfilters %}
 
 {% block title %}
-  {% if lang == 'ar' %}
     {{ ar.home_title }}
-  {% elif lang == 'fr' %}
-    {{ fr.home_title }}
-  {% elif lang == 'en' %}
-    {{ en.home_title }}
-  {% endif %}
 {% endblock %}
 
 {% block title-info %}
-  {% if lang == 'ar' %}
     {{ ar.home_title_info }}
-  {% elif lang == 'fr' %}
-    {{ fr.home_title_info }}
-  {% elif lang == 'en' %}
-    {{ en.home_title_info }}
-  {% endif %}
 {% endblock %}
 
 {% block popup %}
