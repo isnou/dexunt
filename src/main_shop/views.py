@@ -6,5 +6,6 @@ def main_shop_home(request, lang):
         url = "rtl/main-shop/home.html"
     else:
         url = "ltr/main-shop/home.html"
-    
-    return render(request, url, lang)
+    context['lang'] = lang
+
+    return render(request, url, context)
