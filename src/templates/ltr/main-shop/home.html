@@ -53,11 +53,15 @@
     <i>English</i>
     {% endif %}
 </li>
+<li><i class="ti-user"></i>
+    {% if lang == 'fr' %}
+    <a href="#">Connexion</a>
+    {% elif lang == 'en' %}
+    <a href="#">Login</a>
+    {% endif %}
+</li>
 <li><i class="ti-money"></i>
     <a href="#">Points :20.00</a>
-</li>
-<li><i class="ti-user"></i>
-    <a href="#">تسجيل</a>
 </li>
 <!-- end right content top bar -->
 {% endblock %}
