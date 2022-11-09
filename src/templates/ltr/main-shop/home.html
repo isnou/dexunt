@@ -60,8 +60,12 @@
     <a href="#">Login</a>
     {% endif %}
 </li>
-<li><i class="ti-money"></i>
-    <a href="#">Points :20.00</a>
+<li><i class="ti-user"></i>
+    {% if lang == 'fr' %}
+    <a href="#">S'inscrire</a>
+    {% elif lang == 'en' %}
+    <a href="#">Register</a>
+    {% endif %}
 </li>
 <!-- end right content top bar -->
 {% endblock %}
