@@ -10,6 +10,40 @@
   {% endif %}
 {% endblock %}
 
+{% block right_content_top_bar %}
+<!-- right content top bar -->
+<li><i class="ti-location-pin"></i>
+    <a href="#">
+        {% if lang == 'fr' %}
+        Suivre ma commande
+        {% elif lang == 'en' %}
+        Track my order
+        {% endif %}
+    </a>
+</li>
+<li>
+    <a href="{% url 'home-page' 'ar' %}">العربية</a>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    {% if lang == 'fr' %}
+    <i>Français</i>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    <a href="{% url 'home-page' 'en' %}">English</a>
+    {% elif lang == 'en' %}
+    <a href="{% url 'home-page' 'fr' %}">Français</a>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    <i>English</i>
+    {% endif %}
+</li>
+<li><i class="ti-money"></i>
+    <a href="#">Points :20.00</a>
+</li>
+<!-- end right content top bar -->
+{% endblock %}
+
+
 {% block popup %}
 <!-- popup -->
 <div class="color-plate">

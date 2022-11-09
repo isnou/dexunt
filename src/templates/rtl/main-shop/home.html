@@ -6,6 +6,28 @@
      الصفحة الرئيسية لـ Dexunt - التسوق عبر الإنترنت هدايا وديكو
 {% endblock %}
 
+{% block right_content_top_bar %}
+<!-- right content top bar -->
+<li><i class="ti-location-pin"></i>
+    <a href="#">
+        تابع طلبي
+    </a>
+</li>
+<li>
+    <i>العربية</i>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    <a href="{% url 'home-page' 'fr' %}">Français</a>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    <a href="{% url 'home-page' 'en' %}">English</a>
+</li>
+<li><i class="ti-money"></i>
+    <a href="#">Points :20.00</a>
+</li>
+<!-- end right content top bar -->
+{% endblock %}
+
 {% block popup %}
 <!-- popup -->
 <div class="color-plate">
