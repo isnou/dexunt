@@ -22,16 +22,16 @@
     </a>
 </li>
 <li>
-    <a href="{% url 'home-page' 'ar' %}">العربية</a>
+    <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
     <i class="ti-minus"></i>
     <abbr> </abbr>
     {% if lang == 'fr' %}
     <i>Français</i>
     <i class="ti-minus"></i>
     <abbr> </abbr>
-    <a href="{% url 'home-page' 'en' %}">English</a>
+    <a href="{% url 'main-shop-home' 'en' %}">English</a>
     {% elif lang == 'en' %}
-    <a href="{% url 'home-page' 'fr' %}">Français</a>
+    <a href="{% url 'main-shop-home' 'fr' %}">Français</a>
     <i class="ti-minus"></i>
     <abbr> </abbr>
     <i>English</i>
