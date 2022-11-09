@@ -6,12 +6,11 @@
 
 
 <!-- title -->
+<!-- english & frensh version -->
 {% block title %}
-<!-- english version -->
 {% if lang == 'en' %}
          Dexunt Home Page - Online Shopping Gifts & Deco
 {% endif %}
-<!-- frensh version -->
 {% if lang == 'fr' %}
          Page d'accueil de Dexunt - Shopping en ligne cadeaux et déco
 {% endif %}
@@ -19,8 +18,8 @@
 <!-- end title -->
 
 <!-- popup -->
+<!-- english & frensh version -->
 {% block popup %}
-<!-- english version -->
 {% if lang == 'en' %}
 <div class="color-plate">
     <a class="color-plate-icon">
@@ -33,16 +32,15 @@
     </div>
     <a href="index.html#" class="title-link">Take your chance</a>
 </div>
-<!-- frensh version -->
 {% elif lang == 'fr' %}
 {% endif %}
 {% endblock %}
 <!-- end popup -->
 
+<!-- left content top bar -->
+<!-- english & frensh version -->
 {% block left_content_top_bar %}
 {% if lang == 'en' %}
-<!-- english version -->
-<!-- left content top bar -->
 <li>
     <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
     <i class="ti-minus"></i>
@@ -59,10 +57,7 @@
         Help
     </a>
 </li>
-<!-- end left content top bar -->
 {% elif lang == 'fr' %}
-<!-- frensh version -->
-<!-- left content top bar -->
 <li>
     <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
     <i class="ti-minus"></i>
@@ -79,58 +74,52 @@
         Aide
     </a>
 </li>
-<!-- end left content top bar -->
 {% endif %}
 {% endblock %}
+<!-- end left content top bar -->
 
+<!-- english & frensh version -->
+<!-- right content top bar -->
 {% block right_content_top_bar %}
 {% if lang == 'en' %}
-<!-- english version -->
-<!-- right content top bar -->
 <li><i class="ti-user"></i>
     <a href="#">Login</a>
 </li>
 <li><i class="ti-announcement"></i>
     <a href="#">Announcement</a>
 </li>
-<!-- end right content top bar -->
 {% elif lang == 'fr' %}
-<!-- frensh version -->
-<!-- right content top bar -->
 <li><i class="ti-user"></i>
     <a href="#">Connexion</a>
 </li>
 <li><i class="ti-announcement"></i>
     <a href="#">Annonce</a>
 </li>
-<!-- end right content top bar -->
 {% endif %}
 {% endblock %}
+<!-- end right content top bar -->
 
+<!-- english & frensh version -->
+<!-- mobile search bar -->
 {% block mobile_search %}
 {% if lang == 'en' %}
-<!-- english version -->
-<!-- mobile search bar -->
 <form class="search-form">
     <input type="text" placeholder="Search here..." name="search">
     <button value="search" type="submit"><i class="ti-search"></i></button>
 </form>
-<!-- end mobile search bar -->
 {% elif lang == 'fr' %}
-<!-- frensh version -->
-<!-- mobile search bar -->
 <form class="search-form">
     <input type="text" placeholder="Recherche ici..." name="search">
     <button value="search" type="submit"><i class="ti-search"></i></button>
 </form>
-<!-- end mobile search bar -->
 {% endif %}
 {% endblock %}
+<!-- end mobile search bar -->
 
+<!-- english & frensh version -->
+<!-- big banner -->
 {% block big_banner %}
 {% if lang == 'en' %}
-<!-- english version -->
-<!-- big banner -->
 <h1>
     <span>
         {{ en.big_banner_small_title }}
@@ -149,10 +138,7 @@
         {{ en.big_banner_button_title }}
     </a>
 </div>
-<!-- end banner -->
 {% elif lang == 'fr' %}
-<!-- frensh version -->
-<!-- big banner -->
 <h1>
     <span>
         {{ fr.big_banner_small_title }}
@@ -171,6 +157,6 @@
         {{ fr.big_banner_button_title }}
     </a>
 </div>
-<!-- end banner -->
 {% endif %}
 {% endblock %}
+<!-- end banner -->
