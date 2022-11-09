@@ -5,24 +5,23 @@
 
 
 
+<!-- title -->
 {% block title %}
-{% if lang == 'en' %}
 <!-- english version -->
-<!-- title -->
+{% if lang == 'en' %}
          Dexunt Home Page - Online Shopping Gifts & Deco
-<!-- end title -->
-{% elif lang == 'fr' %}
+{% endif %}
 <!-- frensh version -->
-<!-- title -->
+{% if lang == 'fr' %}
          Page d'accueil de Dexunt - Shopping en ligne cadeaux et déco
-<!-- end title -->
 {% endif %}
 {% endblock %}
+<!-- end title -->
 
-{% block popup %}
-{% if lang == 'en' %}
-<!-- english version -->
 <!-- popup -->
+{% block popup %}
+<!-- english version -->
+{% if lang == 'en' %}
 <div class="color-plate">
     <a class="color-plate-icon">
         <i class="ti-gift"></i>
@@ -34,11 +33,11 @@
     </div>
     <a href="index.html#" class="title-link">Take your chance</a>
 </div>
-<!-- end popup -->
-{% elif lang == 'fr' %}
 <!-- frensh version -->
+{% elif lang == 'fr' %}
 {% endif %}
 {% endblock %}
+<!-- end popup -->
 
 {% block left_content_top_bar %}
 {% if lang == 'en' %}
