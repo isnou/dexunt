@@ -9,5 +9,4 @@ def main_shop_home(request, lang):
     context = {
         'lang': lang,
     }
-
     return render(request, url, context)
