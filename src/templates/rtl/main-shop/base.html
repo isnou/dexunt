@@ -142,15 +142,15 @@
                     </div>
                     <div class="search-top">
                         {% block mobile_search %}
+                        <!-- mobile search bar -->
                         <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
                         <div class="search-top">
-                            <!-- mobile search bar -->
                             <form class="search-form">
                                 <input type="text" placeholder="Search here..." name="search">
                                 <button value="search" type="submit"><i class="ti-search"></i></button>
                             </form>
-                            <!-- end mobile search bar -->
                         </div>
+                        <!-- end mobile search bar -->
                         {% endblock %}
                     </div>
                     <div class="mobile-nav"></div>
@@ -160,6 +160,8 @@
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
+                            {% block desk_search %}
+                            <!-- desk search bar -->
                             <select>
                                 <option selected="selected">All Category</option>
                                 <option>watch</option>
@@ -170,6 +172,8 @@
                                 <input name="search" placeholder="Search Products Here....." type="search">
                                 <button class="btnn"><i class="ti-search"></i></button>
                             </form>
+                            <!-- end desk search bar -->
+                            {% endblock %}
                         </div>
                     </div>
                 </div>

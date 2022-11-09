@@ -2,9 +2,6 @@
 {% load static %}
 {% load mathfilters %}
 
-
-
-
 <!-- title -->
 <!-- english & frensh version -->
 {% block title %}
@@ -74,8 +71,8 @@
 {% endblock %}
 <!-- end left content top bar -->
 
-<!-- english & frensh version -->
 <!-- right content top bar -->
+<!-- english & frensh version -->
 {% block right_content_top_bar %}
 {% if lang == 'en' %}
 <li><i class="ti-user"></i>
@@ -95,8 +92,8 @@
 {% endblock %}
 <!-- end right content top bar -->
 
-<!-- english & frensh version -->
 <!-- mobile search bar -->
+<!-- english & frensh version -->
 {% block mobile_search %}
 {% if lang == 'en' %}
 <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
@@ -118,8 +115,8 @@
 {% endblock %}
 <!-- end mobile search bar -->
 
-<!-- english & frensh version -->
 <!-- big banner -->
+<!-- english & frensh version -->
 {% block big_banner %}
 {% if lang == 'en' %}
 <h1>
@@ -162,3 +159,30 @@
 {% endif %}
 {% endblock %}
 <!-- end banner -->
+
+<!-- desk search bar -->
+<!-- english & frensh version -->
+{% block desk_search %}
+{% if lang == 'en' %}
+<select>
+    <option selected="selected">All Category</option>
+    <option>watch</option>
+    <option>mobile</option>
+</select>
+<form>
+    <input name="search" placeholder="Search Products Here....." type="search">
+    <button class="btnn"><i class="ti-search"></i></button>
+</form>
+{% elif lang == 'fr' %}
+<select>
+    <option selected="selected">Toutes catégories</option>
+    <option>montre</option>
+    <option>telephone portable</option>
+</select>
+<form>
+    <input name="search" placeholder="Rechercher Des Produits Ici....." type="search">
+    <button class="btnn"><i class="ti-search"></i></button>
+</form>
+{% endif %}
+{% endblock %}
+<!-- end desk search bar -->
