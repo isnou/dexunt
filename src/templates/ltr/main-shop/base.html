@@ -58,29 +58,10 @@
     </div>
 </div>
 
+<!-- popup -->
 {% block popup %}
-<!-- color plate -->
-<div class="color-plate">
-    <a class="color-plate-icon">
-        <i class="ti-paint-bucket"></i>
-    </a>
-    <h4>Eshop Colors</h4>
-    <p>Here is some awesome color's available on Eshop Template.</p>
-    <span class="color1"></span>
-    <span class="color2"></span>
-    <span class="color3"></span>
-    <span class="color4"></span>
-    <span class="color5"></span>
-    <span class="color6"></span>
-    <span class="color7"></span>
-    <span class="color8"></span>
-    <span class="color9"></span>
-    <span class="color10"></span>
-    <span class="color11"></span>
-    <span class="color12"></span>
-</div>
-<!-- end color plate -->
 {% endblock %}
+<!-- end popup -->
 
 <!-- header -->
 <header class="header shop">
@@ -90,47 +71,31 @@
             <div class="inner-content">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
-                        <!-- left content top bar -->
                         <div class="top-left">
                             <ul class="list-main">
-                                {% block left_content_top_bar %}
                                 <!-- left content top bar -->
-                                <li><i class="ti-headphone-alt"></i> +213 (540) 202-621</li>
-                                <li><i class="ti-email"></i> support@dexunt.com</li>
-                                <!-- end left content top bar -->
+                                {% block left_content_top_bar %}
                                 {% endblock %}
+                                <!-- end left content top bar -->
                             </ul>
                         </div>
-                        <!-- end left content top bar -->
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
-                        <!-- right content top bar -->
                         <div class="right-content">
                             <ul class="list-main">
+                                <!-- right content top bar -->
                                 {% block right_content_top_bar %}
-                                <li><i class="ti-location-pin"></i> <a href="#">Track my order</a></li>
-                                <li>
-                                    <a href="#">العربية</a>
-                                    <i class="ti-minus"></i>
-                                    <abbr> </abbr>
-                                    <a href="#">Français</a>
-                                    <i class="ti-minus"></i>
-                                    <abbr> </abbr>
-                                    <i>English</i>
-                                </li>
-                                <li><i class="ti-money"></i>
-                                    <a href="#">Points :320</a>
-                                </li>
                                 {% endblock %}
+                                <!-- end right content top bar -->
                             </ul>
                         </div>
-                        <!-- end right content top bar -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- end top bar content -->
+
     <!-- search bar content -->
     <div class="middle-inner">
         <div class="container">
@@ -141,42 +106,29 @@
                         <a href="#"><img src="{% static 'main-shop/images/logo.png' %}" alt="logo"></a>
                     </div>
                     <div class="search-top">
-                        {% block mobile_search %}
                         <!-- mobile search bar -->
-                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
-                        <div class="search-top">
-                            <form class="search-form">
-                                <input type="text" placeholder="Search here..." name="search">
-                                <button value="search" type="submit"><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                        <!-- end mobile search bar -->
+                        {% block mobile_search %}
                         {% endblock %}
+                        <!-- end mobile search bar -->
                     </div>
                     <div class="mobile-nav"></div>
                 </div>
                 <!-- end mobile search menu -->
+
                 <!-- desk search menu -->
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
-                            {% block desk_search %}
                             <!-- desk search bar -->
-                            <select>
-                                <option selected="selected">All Category</option>
-                                <option>watch</option>
-                                <option>mobile</option>
-                                <option>kid’s item</option>
-                            </select>
-                            <form>
-                                <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn"><i class="ti-search"></i></button>
-                            </form>
-                            <!-- end desk search bar -->
+                            {% block desk_search %}
                             {% endblock %}
+                            <!-- end desk search bar -->
                         </div>
                     </div>
                 </div>
+                <!-- end desk search menu -->
+
+                <!-- right top -->
                 <div class="col-lg-2 col-md-3 col-12">
                     <div class="right-bar">
                         <!-- wishlist icon -->
@@ -184,14 +136,20 @@
                             <a href="index.html#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                         </div>
                         <!-- end wishlist icon -->
+
                         <!-- shopping cart -->
                         <div class="sinlge-bar shopping">
-                            <a href="index.html#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                            <!-- shopping cart icon -->
+                            <a href="index.html#" class="single-icon"><i class="ti-shopping-cart"></i>
+                                <span class="total-count">2</span>
+                            </a>
+                            <!-- end shopping cart icon -->
+
                             <!-- side cart -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
                                     <span>2 Items</span>
-                                    <a href="index.html#">View Cart</a>
+                                    <a href="index.html#">{{ fr.big_banner_small_title }}</a>
                                 </div>
                                 <ul class="shopping-list">
                                     <li>
@@ -220,7 +178,7 @@
                         <!-- end shopping cart -->
                     </div>
                 </div>
-                <!-- end desk search menu -->
+                <!-- end right top -->
             </div>
 
         </div>
