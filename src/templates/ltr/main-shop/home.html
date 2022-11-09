@@ -3,14 +3,25 @@
 {% load mathfilters %}
 
 
-{% if lang == 'en' %}
-<!-- english language -->
+
 
 {% block title %}
+{% if lang == 'en' %}
+<!-- english version -->
+<!-- title -->
          Dexunt Home Page - Online Shopping Gifts & Deco
+<!-- end title -->
+{% elif lang == 'fr' %}
+<!-- frensh version -->
+<!-- title -->
+         Page d'accueil de Dexunt - Shopping en ligne cadeaux et déco
+<!-- end title -->
+{% endif %}
 {% endblock %}
 
 {% block popup %}
+{% if lang == 'en' %}
+<!-- english version -->
 <!-- popup -->
 <div class="color-plate">
     <a class="color-plate-icon">
@@ -24,9 +35,14 @@
     <a href="index.html#" class="title-link">Take your chance</a>
 </div>
 <!-- end popup -->
+{% elif lang == 'fr' %}
+<!-- frensh version -->
+{% endif %}
 {% endblock %}
 
 {% block left_content_top_bar %}
+{% if lang == 'en' %}
+<!-- english version -->
 <!-- left content top bar -->
 <li>
     <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
@@ -45,9 +61,32 @@
     </a>
 </li>
 <!-- end left content top bar -->
+{% elif lang == 'fr' %}
+<!-- frensh version -->
+<!-- left content top bar -->
+<li>
+    <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    <i>Français</i>
+    <i class="ti-minus"></i>
+    <abbr> </abbr>
+    <a href="{% url 'main-shop-home' 'en' %}">English</a>
+</li>
+<li><i class="ti-headphone-alt"></i>
+    <a href="#">
+        Aide
+    </a>
+</li>
+<!-- end left content top bar -->
+{% endif %}
 {% endblock %}
 
 {% block right_content_top_bar %}
+{% if lang == 'en' %}
+<!-- english version -->
 <!-- right content top bar -->
 <li><i class="ti-user"></i>
     <a href="#">Login</a>
@@ -56,18 +95,42 @@
     <a href="#">Announcement</a>
 </li>
 <!-- end right content top bar -->
+{% elif lang == 'fr' %}
+<!-- frensh version -->
+<!-- right content top bar -->
+<li><i class="ti-user"></i>
+    <a href="#">Connexion</a>
+</li>
+<li><i class="ti-announcement"></i>
+    <a href="#">Annonce</a>
+</li>
+<!-- end right content top bar -->
+{% endif %}
 {% endblock %}
 
 {% block mobile_search %}
+{% if lang == 'en' %}
+<!-- english version -->
 <!-- mobile search bar -->
 <form class="search-form">
     <input type="text" placeholder="Search here..." name="search">
     <button value="search" type="submit"><i class="ti-search"></i></button>
 </form>
 <!-- end mobile search bar -->
+{% elif lang == 'fr' %}
+<!-- frensh version -->
+<!-- mobile search bar -->
+<form class="search-form">
+    <input type="text" placeholder="Recherche ici..." name="search">
+    <button value="search" type="submit"><i class="ti-search"></i></button>
+</form>
+<!-- end mobile search bar -->
+{% endif %}
 {% endblock %}
 
 {% block big_banner %}
+{% if lang == 'en' %}
+<!-- english version -->
 <!-- big banner -->
 <h1>
     <span>
@@ -88,75 +151,8 @@
     </a>
 </div>
 <!-- end banner -->
-{% endblock %}
-
-<!-------------------------------------------------------------------------------------->
-
 {% elif lang == 'fr' %}
-<!-- frensh language -->
-
-{% block title %}
-         Page d'accueil de Dexunt - Shopping en ligne cadeaux et déco
-{% endblock %}
-
-{% block popup %}
-<!-- popup -->
-<div class="color-plate">
-    <a class="color-plate-icon">
-        <i class="ti-gift"></i>
-    </a>
-    <h4>Congratulation !</h4>
-    <p>You have been chosen to representing us </p>
-    <div class="image">
-        <img src="{% static 'main-shop/images/mega-menu1.jpg' %}" alt="#">
-    </div>
-    <a href="index.html#" class="title-link">Take your chance</a>
-</div>
-<!-- end popup -->
-{% endblock %}
-
-{% block left_content_top_bar %}
-<!-- left content top bar -->
-<li>
-    <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
-    <i class="ti-minus"></i>
-    <abbr> </abbr>
-    <i class="ti-minus"></i>
-    <abbr> </abbr>
-    <i>Français</i>
-    <i class="ti-minus"></i>
-    <abbr> </abbr>
-    <a href="{% url 'main-shop-home' 'en' %}">English</a>
-</li>
-<li><i class="ti-headphone-alt"></i>
-    <a href="#">
-        Aide
-    </a>
-</li>
-<!-- end left content top bar -->
-{% endblock %}
-
-{% block right_content_top_bar %}
-<!-- right content top bar -->
-<li><i class="ti-user"></i>
-    <a href="#">Connexion</a>
-</li>
-<li><i class="ti-announcement"></i>
-    <a href="#">Annonce</a>
-</li>
-<!-- end right content top bar -->
-{% endblock %}
-
-{% block mobile_search %}
-<!-- mobile search bar -->
-<form class="search-form">
-    <input type="text" placeholder="Recherche ici..." name="search">
-    <button value="search" type="submit"><i class="ti-search"></i></button>
-</form>
-<!-- end mobile search bar -->
-{% endblock %}
-
-{% block big_banner %}
+<!-- frensh version -->
 <!-- big banner -->
 <h1>
     <span>
@@ -177,7 +173,10 @@
     </a>
 </div>
 <!-- end banner -->
+{% endif %}
 {% endblock %}
+
+<!-------------------------------------------------------------------------------------->
 
 <!-------------------------------------------------------------------------------------->
 {% endif %}
