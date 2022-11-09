@@ -99,15 +99,19 @@
 <!-- mobile search bar -->
 {% block mobile_search %}
 {% if lang == 'en' %}
-<form class="search-form">
-    <input type="text" placeholder="Search here..." name="search">
-    <button value="search" type="submit"><i class="ti-search"></i></button>
-</form>
+<div class="search-top">
+    <form class="search-form">
+        <input type="text" placeholder="Search here..." name="search">
+        <button value="search" type="submit"><i class="ti-search"></i></button>
+    </form>
+</div>
 {% elif lang == 'fr' %}
-<form class="search-form">
-    <input type="text" placeholder="Recherche ici..." name="search">
-    <button value="search" type="submit"><i class="ti-search"></i></button>
-</form>
+<div class="search-top">
+    <form class="search-form">
+        <input type="text" placeholder="Recherche ici..." name="search">
+        <button value="search" type="submit"><i class="ti-search"></i></button>
+    </form>
+</div>
 {% endif %}
 {% endblock %}
 <!-- end mobile search bar -->
