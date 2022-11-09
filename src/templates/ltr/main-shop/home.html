@@ -186,3 +186,76 @@
 {% endif %}
 {% endblock %}
 <!------------------------------- end desk search bar -------------------------------------->
+
+<!------------------------------- side menu ------------------------------------------------>
+<!-- english & frensh version -->
+{% block side_menu %}
+{% if lang == 'en' %}
+<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
+<ul class="main-category">
+    <li><a href="index.html#">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <ul class="sub-category">
+                                        <li><a href="index.html#">accessories</a></li>
+                                        <li><a href="index.html#">best selling</a></li>
+                                        <li><a href="index.html#">top 100 offer</a></li>
+                                        <li><a href="index.html#">sunglass</a></li>
+                                        <li><a href="index.html#">watch</a></li>
+                                        <li><a href="index.html#">man’s product</a></li>
+                                        <li><a href="index.html#">ladies</a></li>
+                                        <li><a href="index.html#">westrn dress</a></li>
+                                        <li><a href="index.html#">denim </a></li>
+                                    </ul>
+                                </li>
+    <li class="main-mega"><a href="index.html#">best selling <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <ul class="mega-menu">
+                                        <li class="single-menu">
+                                            <a href="index.html#" class="title-link">Shop Kid's</a>
+                                            <div class="image">
+                                                <img src="{% static 'main-shop/images/mega-menu1.jpg' %}" alt="#">
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="index.html#">Kids Toys</a>
+                                                <a href="index.html#">Kids Travel Car</a>
+                                                <a href="index.html#">Kids Color Shape</a>
+                                                <a href="index.html#">Kids Tent</a>
+                                            </div>
+                                        </li>
+                                        <li class="single-menu">
+                                            <a href="index.html#" class="title-link">Shop Men's</a>
+                                            <div class="image">
+                                                <img src="{% static 'main-shop/images/mega-menu2.jpg' %}" alt="#">
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="index.html#">Watch</a>
+                                                <a href="index.html#">T-shirt</a>
+                                                <a href="index.html#">Hoodies</a>
+                                                <a href="index.html#">Formal Pant</a>
+                                            </div>
+                                        </li>
+                                        <li class="single-menu">
+                                            <a href="index.html#" class="title-link">Shop Women's</a>
+                                            <div class="image">
+                                                <img src="{% static 'main-shop/images/mega-menu3.jpg' %}" alt="#">
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="index.html#">Ladies Shirt</a>
+                                                <a href="index.html#">Ladies Frog</a>
+                                                <a href="index.html#">Ladies Sun Glass</a>
+                                                <a href="index.html#">Ladies Watch</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+    <li><a href="index.html#">accessories</a></li>
+    <li><a href="index.html#">top 100 offer</a></li>
+    <li><a href="index.html#">sunglass</a></li>
+    <li><a href="index.html#">watch</a></li>
+    <li><a href="index.html#">man’s product</a></li>
+    <li><a href="index.html#">ladies</a></li>
+    <li><a href="index.html#">westrn dress</a></li>
+    <li><a href="index.html#">denim </a></li>
+</ul>
+{% elif lang == 'fr' %}
+{% endif %}
+{% endblock %}
+<!------------------------------- end side menu -------------------------------------------->
