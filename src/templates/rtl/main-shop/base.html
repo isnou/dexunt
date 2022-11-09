@@ -135,7 +135,7 @@
     <div class="middle-inner">
         <div class="container">
             <div class="row">
-                <!-- mobile search -->
+                <!-- mobile search menu -->
                 <div class="col-lg-2 col-md-2 col-12">
                     <div class="logo">
                         <a href="#"><img src="{% static 'main-shop/images/logo.png' %}" alt="logo"></a>
@@ -143,16 +143,20 @@
                     <div class="search-top">
                         <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
                         <div class="search-top">
+                            {% block mobile_search %}
+                            <!-- mobile search bar -->
                             <form class="search-form">
                                 <input type="text" placeholder="Search here..." name="search">
                                 <button value="search" type="submit"><i class="ti-search"></i></button>
                             </form>
+                            <!-- end mobile search bar -->
+                            {% endblock %}
                         </div>
                     </div>
                     <div class="mobile-nav"></div>
                 </div>
-                <!-- end mobile search -->
-                <!-- desk search -->
+                <!-- end mobile search menu -->
+                <!-- desk search menu -->
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
@@ -169,7 +173,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- end desk search -->
+                <!-- end desk search menu -->
                 <!-- right top -->
                 <div class="col-lg-2 col-md-3 col-12">
                     <div class="right-bar">
