@@ -149,8 +149,13 @@
                             <!-- side cart -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
+                                    {% if lang == 'en' %}
                                     <span>2 Items</span>
                                     <a href="index.html#">View Cart</a>
+                                    {% elif lang == 'fr' %}
+                                    <span>2 Articles</span>
+                                    <a href="index.html#">Voir Le Panier</a>
+                                    {% endif %}
                                 </div>
                                 <ul class="shopping-list">
                                     <li>
