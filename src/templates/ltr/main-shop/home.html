@@ -26,17 +26,8 @@
 <!-- end popup -->
 {% endblock %}
 
-{% block right_content_top_bar %}
-<!-- right content top bar -->
-<li><i class="ti-location-pin"></i>
-    <a href="#">
-        {% if lang == 'fr' %}
-        Suivre ma commande
-        {% elif lang == 'en' %}
-        Track my order
-        {% endif %}
-    </a>
-</li>
+{% block left_content_top_bar %}
+<!-- left content top bar -->
 <li>
     <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
     <i class="ti-minus"></i>
@@ -53,6 +44,24 @@
     <i>English</i>
     {% endif %}
 </li>
+<li><i class="ti-location-pin"></i>
+    <a href="#">
+        {% if lang == 'fr' %}
+        Suivre ma commande
+        {% elif lang == 'en' %}
+        Track my order
+        {% endif %}
+    </a>
+</li>
+<li><i class="ti-headphone-alt"></i> +213 (540) 202-621
+</li>
+<li><i class="ti-email"></i> support@dexunt.com
+</li>
+<!-- end left content top bar -->
+{% endblock %}
+
+{% block right_content_top_bar %}
+<!-- right content top bar -->
 <li><i class="ti-user"></i>
     {% if lang == 'fr' %}
     <a href="#">Connexion</a>

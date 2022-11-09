@@ -22,13 +22,8 @@
 <!-- end popup -->
 {% endblock %}
 
-{% block right_content_top_bar %}
-<!-- right content top bar -->
-<li><i class="ti-location-pin"></i>
-    <a href="#">
-        تابع طلبي
-    </a>
-</li>
+{% block left_content_top_bar %}
+<!-- left content top bar -->
 <li>
     <i>العربية</i>
     <i class="ti-minus"></i>
@@ -38,6 +33,20 @@
     <abbr> </abbr>
     <a href="{% url 'main-shop-home' 'fr' %}">Français</a>
 </li>
+<li><i class="ti-location-pin"></i>
+    <a href="#">
+        تابع طلبي
+    </a>
+</li>
+<li><i class="ti-headphone-alt"></i> +213 (540) 202-621
+</li>
+<li><i class="ti-email"></i> support@dexunt.com
+</li>
+<!-- end left content top bar -->
+{% endblock %}
+
+{% block right_content_top_bar %}
+<!-- right content top bar -->
 <li><i class="ti-user"></i>
     <a href="#">دخول</a>
 </li>
