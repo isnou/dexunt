@@ -938,6 +938,84 @@
             </div>
         </div>
         <div class="row">
+                <!-- mobile search menu -->
+                <div class="col-lg-2 col-md-2 col-12">
+                    <div class="logo">
+                        <a href="#"><img src="{% static 'main-shop/images/logo.png' %}" alt="logo"></a>
+                    </div>
+                </div>
+                <!-- end mobile search menu -->
+
+                <!-- desk search menu -->
+                <div class="col-lg-8 col-md-7 col-12">
+                    <div class="search-bar-top">
+                        <div class="search-bar">
+                            <!-- desk search bar -->
+                            <!-- end desk search bar -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end desk search menu -->
+
+                <!-- right top -->
+                <div class="col-lg-2 col-md-3 col-12">
+                    <div class="right-bar">
+                        <!-- wishlist icon -->
+                        <div class="sinlge-bar">
+                            <a href="index.html#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div>
+                        <!-- end wishlist icon -->
+
+                        <!-- shopping cart -->
+                        <div class="sinlge-bar shopping">
+                            <!-- shopping cart icon -->
+                            <a href="index.html#" class="single-icon">
+                                <i class="ti-bag"></i>
+                                <span class="total-count">2</span>
+                            </a>
+                            <!-- end shopping cart icon -->
+
+                            <!-- side cart -->
+                            <div class="shopping-item">
+                                <div class="dropdown-cart-header">
+                                    {% if lang == 'en' %}
+                                    <span>2 Items</span>
+                                    <a href="#">Cart</a>
+                                    {% elif lang == 'fr' %}
+                                    <span>2 Articles</span>
+                                    <a href="#">Panier</a>
+                                    {% endif %}
+                                </div>
+                                <ul class="shopping-list">
+                                    <li>
+                                        <a href="index.html#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="index.html#"><img src="{% static 'main-shop/images/product-1.jpg' %}" alt="#"></a>
+                                        <h4><a href="index.html#">Woman Ring</a></h4>
+                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                    </li>
+                                    <li>
+                                        <a href="index.html#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="index.html#"><img src="{% static 'main-shop/images/product-2.jpg' %}" alt="#"></a>
+                                        <h4><a href="index.html#">Woman Necklace</a></h4>
+                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                                    </li>
+                                </ul>
+                                <div class="bottom">
+                                    <div class="total">
+                                        <span>Total</span>
+                                        <span class="total-amount">$134.00</span>
+                                    </div>
+                                    <a href="checkout.html" class="btn animate">Checkout</a>
+                                </div>
+                            </div>
+                            <!-- end side cart -->
+                        </div>
+                        <!-- end shopping cart -->
+                    </div>
+                </div>
+                <!-- end right top -->
+            </div>
+        <div class="row">
             <div class="col-12">
                 <div class="owl-carousel popular-slider">
 
