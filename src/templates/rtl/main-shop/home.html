@@ -109,3 +109,67 @@
 </form>
 {% endblock %}
 <!------------------------------- end desk search bar -------------------------------------->
+
+<!------------------------------- side menu ------------------------------------------------>
+<!-- arabic version -->
+{% block side_menu %}
+<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>التصنيفات</h3>
+<ul class="main-category">
+    <li><a href="index.html#">القادمون الجدد<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <ul class="sub-category">
+            <li><a href="index.html#">ملحقات</a></li>
+            <li><a href="index.html#">أفضل مبيعات</a></li>
+            <li><a href="index.html#">نظارات</a></li>
+        </ul>
+    </li>
+    <li class="main-mega"><a href="index.html#">أفضل مبيعات <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <ul class="mega-menu">
+            <li class="single-menu">
+                <a href="index.html#" class="title-link">متجر الاطفال</a>
+                <div class="image">
+                    <img src="{% static 'main-shop/images/mega-menu1.jpg' %}" alt="#">
+                </div>
+                <div class="inner-link">
+                    <a href="index.html#">لعب الاطفال</a>
+                    <a href="index.html#">سيارة اطفال للسفر</a>
+                    <a href="index.html#">شكل لون الاطفال</a>
+                    <a href="index.html#">خيمة الاطفال</a>
+                </div>
+            </li>
+            <li class="single-menu">
+                <a href="index.html#" class="title-link">متجر الرجال</a>
+                <div class="image">
+                    <img src="{% static 'main-shop/images/mega-menu2.jpg' %}" alt="#">
+                </div>
+                <div class="inner-link">
+                    <a href="index.html#">ساعة</a>
+                    <a href="index.html#">تي شيرت</a>
+                    <a href="index.html#">هوديس</a>
+                    <a href="index.html#">سروال رسمي</a>
+                </div>
+            </li>
+            <li class="single-menu">
+                <a href="index.html#" class="title-link">متجر النساء</a>
+                <div class="image">
+                    <img src="{% static 'main-shop/images/mega-menu3.jpg' %}" alt="#">
+                </div>
+                <div class="inner-link">
+                    <a href="index.html#">قميص نسائي</a>
+                    <a href="index.html#">ضفدع السيدات</a>
+                    <a href="index.html#">عدسة مكبرة</a>
+                    <a href="index.html#">ساعة نسائية</a>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li><a href="index.html#">ملحقات</a></li>
+    <li><a href="index.html#">أفضل عرض</a></li>
+    <li><a href="index.html#">نظارات</a></li>
+    <li><a href="index.html#">ساعة</a></li>
+    <li><a href="index.html#">متجر الرجال</a></li>
+    <li><a href="index.html#">متجر النساء</a></li>
+    <li><a href="index.html#">اللباس الغربي</a></li>
+    <li><a href="index.html#">الدنيم</a></li>
+</ul>
+{% endblock %}
+<!------------------------------- end side menu -------------------------------------------->
