@@ -40,10 +40,10 @@
 {% if lang == 'en' %}
 <li>
     <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
-    <i class="fa fa-ellipsis-v"></i>
+    <i class="fa fa-minus"></i>
     <abbr> </abbr>
     <a href="{% url 'main-shop-home' 'fr' %}">Français</a>
-    <i class="fa fa-ellipsis-v"></i>
+    <i class="fa fa-minus"></i>
     <abbr> </abbr>
     <i>English</i>
 </li>
@@ -55,10 +55,10 @@
 {% elif lang == 'fr' %}
 <li>
     <a href="{% url 'main-shop-home' 'ar' %}">العربية</a>
-    <i class="fa fa-ellipsis-v"></i>
+    <i class="fa fa-minus"></i>
     <abbr> </abbr>
     <i>Français</i>
-    <i class="fa fa-ellipsis-v"></i>
+    <i class="fa fa-minus"></i>
     <abbr> </abbr>
     <a href="{% url 'main-shop-home' 'en' %}">English</a>
 </li>
