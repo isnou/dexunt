@@ -20,7 +20,7 @@ class ProductAlbum(models.Model):
 
 class InventoryProduct(models.Model):
     # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=200, unique=True)
+    sku = models.CharField(max_length=200, unique=True, null=True)
     model = models.CharField(max_length=200, blank=True, null=True)
     product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- product details ----------------------------------------
@@ -48,7 +48,7 @@ class InventoryProduct(models.Model):
 
 class ShopProduct(models.Model):
     # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=200, unique=True, blank=True, null=True)
+    sku = models.CharField(max_length=200, unique=True, null=True)
     product = models.ManyToManyField(InventoryProduct, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     # --------------------------------- showcase information -----------------------------------
