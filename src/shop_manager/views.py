@@ -11,3 +11,13 @@ def inventory_manager(request, lang):
     }
     return render(request, url, context)
 
+
+def dashboard(request, lang):
+    if lang == "ar":
+        url = "rtl/manager/dashboard.html"
+    else:
+        url = "ltr/manager/dashboard.html"
+    context = {
+        'lang': lang,
+    }
+    return render(request, url, context)

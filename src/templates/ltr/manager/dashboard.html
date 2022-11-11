@@ -1,0 +1,17 @@
+{% extends "ltr/manager/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+<!------------------------------- title ---------------------------------------------------->
+<!-- english & frensh version -->
+{% block title %}
+<title>
+{% if lang == 'en' %}
+         Dexunt Dashboard - Inventory & Shop Manager
+{% endif %}
+{% if lang == 'fr' %}
+         Tableau de bord Dexunt - Gestionnaire de Stock et de Magasin
+{% endif %}
+</title>
+{% endblock %}
+<!------------------------------- end title ------------------------------------------------>
