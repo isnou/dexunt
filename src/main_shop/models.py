@@ -3,9 +3,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Content(models.Model):
-    # ------- language
+    # --------------------------------- language -------------------------------------
     lang = models.CharField(max_length=20, unique=True)
-    # ------- first banner
+    # --------------------------------- first banner ---------------------------------
     big_banner_small_title = models.CharField(max_length=150, blank=True)
     big_banner_big_title = models.CharField(max_length=150, blank=True)
     big_banner_first_line = models.CharField(max_length=200, blank=True)
