@@ -38,9 +38,14 @@ class InventoryProduct(models.Model):
     # --------------------------------- inventory information ----------------------------------
     quantity = models.IntegerField(default=0)
     buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
-    features = models.TextField(max_length=800, blank=True)
-    description = models.TextField(max_length=800, blank=True)
+    en_features = models.TextField(max_length=800, blank=True)
+    en_description = models.TextField(max_length=800, blank=True)
     album = models.ManyToManyField(ProductAlbum, blank=True)
+    # --------------------------------- translation --------------------------------------------
+    fr_features = models.TextField(max_length=800, blank=True)
+    fr_description = models.TextField(max_length=800, blank=True)
+    ar_features = models.TextField(max_length=800, blank=True)
+    ar_description = models.TextField(max_length=800, blank=True)
 
     def __str__(self):
         return self.name
@@ -52,9 +57,12 @@ class ShopProduct(models.Model):
     product = models.ManyToManyField(InventoryProduct, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     # --------------------------------- showcase information -----------------------------------
-    title = models.CharField(max_length=200)
+    en_title = models.CharField(max_length=200)
     sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+    # --------------------------------- translation --------------------------------------------
+    fr_title = models.CharField(max_length=200, blank=True)
+    ar_title = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.title
