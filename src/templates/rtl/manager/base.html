@@ -49,55 +49,8 @@
                 </div>
                 <!-- sidebar menu -->
                 <div class="sidebar-menu">
-                    <ul class="menu">
-                        <!-- separation title -->
-                        <li class="sidebar-title">Menu</li>
-                        <!-- end separation title -->
-
-                        <!-- selected simple menu -->
-                        <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <!-- end selected simple menu -->
-
-                        <!-- menu with submenu -->
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <!-- menu with submenu title -->
-                                <i class="bi bi-stack"></i>
-                                <span>Components</span>
-                                <!-- end menu with submenu title -->
-                            </a>
-                            <!-- submenu -->
-                            <ul class="submenu ">
-                                <!-- submenu title -->
-                                <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
-                                </li>
-                                <!-- end submenu title -->
-
-                                <!-- submenu active title -->
-                                <li class="submenu-item active ">
-                                    <a href="component-badge.html">Badge</a>
-                                </li>
-                                <!-- end submenu active title -->
-                            </ul>
-                            <!-- end submenu -->
-                        </li>
-                        <!-- end menu with submenu -->
-
-                        <!-- unselected simple menu -->
-                        <li class="sidebar-item  ">
-                            <a href="form-layout.html" class='sidebar-link'>
-                                <i class="bi bi-file-earmark-medical-fill"></i>
-                                <span>Form Layout</span>
-                            </a>
-                        </li>
-                        <!-- end unselected simple menu -->
-                    </ul>
+                    {% block side_menu %}
+                    {% endblock %}
                 </div>
                 <!-- close sidebar menu -->
             </div>
