@@ -20,11 +20,11 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Vendor Stylesheets(used by this page)-->
-		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{% static 'manager/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css" />
 		<!--end::Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
-		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{% static 'manager/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'manager/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
@@ -53,7 +53,7 @@
 						<!--begin::Logo-->
 						<div class="aside-logo d-none d-lg-flex flex-column align-items-center flex-column-auto pt-10" id="kt_aside_logo">
 							<a href="index.html">
-								<img alt="Logo" src="assets/media/logos/logo-default.svg" class="h-55px" />
+								<img alt="Logo" src="{% static 'manager/media/logos/logo-default.svg' %}" class="h-55px" />
 							</a>
 						</div>
 						<!--end::Logo-->
@@ -8234,19 +8234,19 @@
 		<!--begin::Javascript-->
 		<script>var hostUrl = "/jet-html-pro/assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js"></script>
-		<script src="assets/js/scripts.bundle.js"></script>
+		<script src="{% static 'manager/plugins/global/plugins.bundle.js' %}"></script>
+		<script src="{% static 'manager/js/scripts.bundle.js' %}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Vendors Javascript(used by this page)-->
-		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		<script src="{% static 'manager/plugins/custom/datatables/datatables.bundle.js' %}"></script>
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used by this page)-->
-		<script src="assets/js/widgets.bundle.js"></script>
-		<script src="assets/js/custom/widgets.js"></script>
-		<script src="assets/js/custom/apps/chat/chat.js"></script>
-		<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-app.js"></script>
-		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
+		<script src="{% static 'manager/js/widgets.bundle.js' %}"></script>
+		<script src="{% static 'manager/js/custom/widgets.js' %}"></script>
+		<script src="{% static 'manager/js/custom/apps/chat/chat.js' %}"></script>
+		<script src="{% static 'manager/js/custom/utilities/modals/upgrade-plan.js' %}"></script>
+		<script src="{% static 'manager/js/custom/utilities/modals/create-app.js' %}"></script>
+		<script src="{% static 'manager/js/custom/utilities/modals/users-search.js' %}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
