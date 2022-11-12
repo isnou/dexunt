@@ -29,15 +29,6 @@
                         </div>
                         <!-- end logo -->
 
-                        <!-- black white switch -->
-                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
-                            <div class="form-check form-switch fs-6">
-                                <input class="form-check-input  me-0" type="checkbox" id="toggle-dark" >
-                                <label class="form-check-label" ></label>
-                            </div>
-                        </div>
-                        <!-- end black white switch -->
-
                         <!-- account settings -->
                         <a type="button" class="btn btn-outline-primary block" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                             <i class="bi bi-person-fill"></i>
@@ -53,25 +44,6 @@
                     </div>
                 </div>
 
-                <div class="sidebar-header position-relative">
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <!-- logout -->
-
-                        <!-- end logout -->
-
-                        <!-- black white switch -->
-                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
-                            <div class="form-check form-switch fs-6">
-                            </div>
-                        </div>
-                        <!-- end black white switch -->
-
-                        <!-- close menu button -->
-                        <!-- end close menu button -->
-
-                    </div>
-                </div>
                 <!-- sidebar menu -->
                 <div class="sidebar-menu">
                     {% block side_menu %}
@@ -93,8 +65,8 @@
             <div class="page-content">
                 <section class="row">
                      <div class="card-body">
-                         <!------- logout modal ------->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                         <!------- account settings modal ------->
+                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -113,6 +85,15 @@
                                             </p>
                                         </div>
                                         <div class="modal-footer">
+                                            <!-- black white switch -->
+                                            <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                                                <div class="form-check form-switch fs-6">
+                                                    <input class="form-check-input  me-0" type="checkbox" id="toggle-dark" >
+                                                    <label class="form-check-label" ></label>
+                                                </div>
+                                            </div>
+                                            <!-- end black white switch -->
+                                            
                                             <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
                                                 <i class="bx bx-x d-block d-sm-none"></i>
                                                 <span class="d-none d-sm-block">Close</span>
@@ -125,7 +106,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                     </div>
                 </section>
             </div>
             <footer>
