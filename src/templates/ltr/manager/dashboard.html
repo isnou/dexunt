@@ -22,118 +22,98 @@
 <!-- side menu -->
 <ul class="menu">
     {% if lang == 'en' %}
-    <!-- separation title -->
-    <li class="sidebar-title">Inventory Manager
-    </li>
-    <!-- end separation title -->
 
-    <!-- selected simple menu -->
+    <!-- selected -->
+    <!-- dashboard title -->
     <li class="sidebar-item active ">
         <a href="index.html" class='sidebar-link'>
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
         </a>
     </li>
-    <!-- end selected simple menu -->
+    <!-- end dashboard title -->
 
-    <!-- unselected simple menu -->
+    <!-- change language -->
+    <li class="sidebar-item  has-sub">
+        <a href="#" class='sidebar-link'>
+            <!-- title -->
+            <i class="bi bi-stack"></i>
+            <span>Change Language</span>
+            <!-- title -->
+        </a>
+        <!-- language list -->
+        <ul class="submenu ">
+            <!-- english -->
+            <li class="submenu-item active">
+                <a href="component-alert.html">ENGLISH</a>
+            </li>
+            <!-- end english -->
+
+            <!-- frensh -->
+            <li class="submenu-item ">
+                <a href="component-badge.html">FRENSH</a>
+            </li>
+            <!-- end frensh -->
+
+            <!-- arabic -->
+            <li class="submenu-item ">
+                <a href="component-badge.html">ARABIC</a>
+            </li>
+            <!-- end arabic -->
+        </ul>
+        <!-- end language list -->
+    </li>
+    <!-- end change language -->
+
+    <!-- inventory management separation -->
+    <li class="sidebar-title">Inventory Management
+    </li>
+    <!-- end inventory management separation -->
+
+    <!-- products -->
     <li class="sidebar-item  ">
         <a href="form-layout.html" class='sidebar-link'>
             <i class="bi bi-file-earmark-medical-fill"></i>
-            <span>Add Product</span>
+            <span>Products</span>
         </a>
     </li>
-    <!-- end unselected simple menu -->
+    <!-- end products -->
 
-    <!-- menu with submenu -->
-    <li class="sidebar-item  has-sub">
-        <a href="#" class='sidebar-link'>
-            <!-- menu with submenu title -->
-            <i class="bi bi-stack"></i>
-            <span>Team Management</span>
-            <!-- end menu with submenu title -->
-        </a>
-        <!-- submenu -->
-        <ul class="submenu ">
-            <!-- submenu title -->
-            <li class="submenu-item ">
-                <a href="component-alert.html">Add a Seller</a>
-            </li>
-            <!-- end submenu title -->
-
-            <!-- submenu title -->
-            <li class="submenu-item ">
-                <a href="component-badge.html">Add a Costomer</a>
-            </li>
-            <!-- end submenu title -->
-
-            <!-- submenu active title -->
-            <li class="submenu-item active ">
-                <a href="component-badge.html">Add a Supplier</a>
-            </li>
-            <!-- end submenu active title -->
-        </ul>
-        <!-- end submenu -->
+    <!-- team management title -->
+    <li class="sidebar-title">Team Management
     </li>
-    <!-- end menu with submenu -->
+    <!-- end team management title -->
+
+    <!-- sellers -->
+    <li class="sidebar-item  ">
+        <a href="form-layout.html" class='sidebar-link'>
+            <i class="bi bi-file-earmark-medical-fill"></i>
+            <span>Sellers</span>
+        </a>
+    </li>
+    <!-- end sellers -->
+
+    <!-- customers -->
+    <li class="sidebar-item  ">
+        <a href="form-layout.html" class='sidebar-link'>
+            <i class="bi bi-file-earmark-medical-fill"></i>
+            <span>Customers</span>
+        </a>
+    </li>
+    <!-- end customers -->
+
+    <!-- suppliers -->
+    <li class="sidebar-item  ">
+        <a href="form-layout.html" class='sidebar-link'>
+            <i class="bi bi-file-earmark-medical-fill"></i>
+            <span>Suppliers</span>
+        </a>
+    </li>
+    <!-- end suppliers -->
 
     {% endif %}
 
     {% if lang == 'fr' %}
-    <!-- separation title -->
-    <li class="sidebar-title">Gestion de stock
-    </li>
-    <!-- end separation title -->
-
-    <!-- selected simple menu -->
-    <li class="sidebar-item active ">
-        <a href="index.html" class='sidebar-link'>
-            <i class="bi bi-grid-fill"></i>
-            <span>Tableau de Bord</span>
-        </a>
-    </li>
-    <!-- end selected simple menu -->
-
-    <!-- unselected simple menu -->
-    <li class="sidebar-item  ">
-        <a href="form-layout.html" class='sidebar-link'>
-            <i class="bi bi-file-earmark-medical-fill"></i>
-            <span>Ajouter un Produit</span>
-        </a>
-    </li>
-    <!-- end unselected simple menu -->
-
-    <!-- menu with submenu -->
-    <li class="sidebar-item  has-sub">
-        <a href="#" class='sidebar-link'>
-            <!-- menu with submenu title -->
-            <i class="bi bi-stack"></i>
-            <span>Gestion de l'équipe</span>
-            <!-- end menu with submenu title -->
-        </a>
-        <!-- submenu -->
-        <ul class="submenu ">
-            <!-- submenu title -->
-            <li class="submenu-item ">
-                <a href="component-alert.html">Ajouter un Vendeur</a>
-            </li>
-            <!-- end submenu title -->
-
-            <!-- submenu title -->
-            <li class="submenu-item ">
-                <a href="component-badge.html">Ajouter un Client</a>
-            </li>
-            <!-- end submenu title -->
-
-            <!-- submenu active title -->
-            <li class="submenu-item active ">
-                <a href="component-badge.html">Ajouter un Fournisseur</a>
-            </li>
-            <!-- end submenu active title -->
-        </ul>
-        <!-- end submenu -->
-    </li>
-    <!-- end menu with submenu -->
 
     {% endif %}
 </ul>
