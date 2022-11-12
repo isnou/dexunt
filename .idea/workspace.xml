@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/templates/ltr/shop-manager/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/shop-manager/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/main-shop/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/manager/media/logos/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/manager/media/logos/favicon.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
