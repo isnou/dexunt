@@ -51,7 +51,42 @@
                     <div class="d-flex justify-content-between align-items-center">
 
                         <!-- logo -->
-                        <div class="card-body">
+
+                        <!-- end logo -->
+
+                        <!-- black white switch -->
+                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                            <div class="form-check form-switch fs-6">
+                            </div>
+                        </div>
+                        <!-- end black white switch -->
+
+                        <!-- close menu button -->
+                        <!-- end close menu button -->
+
+                    </div>
+                </div>
+                <!-- sidebar menu -->
+                <div class="sidebar-menu">
+                    {% block side_menu %}
+                    {% endblock %}
+                </div>
+                <!-- close sidebar menu -->
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Profile Statistics</h3>
+            </div>
+            <div class="page-content">
+                <section class="row">
+                     <div class="card-body">
                             <p>
                                 Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically
                                 center the modal.
@@ -93,40 +128,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end logo -->
-
-                        <!-- black white switch -->
-                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
-                            <div class="form-check form-switch fs-6">
-                            </div>
-                        </div>
-                        <!-- end black white switch -->
-
-                        <!-- close menu button -->
-                        <!-- end close menu button -->
-
-                    </div>
-                </div>
-                <!-- sidebar menu -->
-                <div class="sidebar-menu">
-                    {% block side_menu %}
-                    {% endblock %}
-                </div>
-                <!-- close sidebar menu -->
-            </div>
-        </div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-
-            <div class="page-heading">
-                <h3>Profile Statistics</h3>
-            </div>
-            <div class="page-content">
-                <section class="row">
                 </section>
             </div>
             <footer>
