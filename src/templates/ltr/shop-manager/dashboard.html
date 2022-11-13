@@ -15,3 +15,174 @@
 </title>
 {% endblock %}
 <!------------------------------- end title ------------------------------------------------>
+
+
+<!------------------------------- side menu ------------------------------------------------>
+<!-- english & frensh version -->
+{% block side_menu %}
+<div id="kt_aside_menu" class="menu menu-rounded menu-column menu-active-bg menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-arrow-gray-500 fw-semibold fs-6 my-auto" data-kt-menu="true">
+    {% if lang == 'en' %}
+    <!--menu title dashboard-->
+    <div class="menu-item py-2">
+        <a class="menu-link active menu-center" href="{% url 'dashboard' 'en' %}" title="Dashboard" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--dashboard icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-grid" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end dashboard icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title dashboard-->
+
+    <!--menu title user management-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="User Management" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--user management icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-people" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end user management icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title user management-->
+
+    <!--menu title inventory-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="Inventory" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--inventory icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-box-seam" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end inventory icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title inventory-->
+
+    <!--menu title e-shop-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="E-Shop" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--e-shop icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-cart" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end e-shop icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title e-shop-->
+
+    <!--menu title cash management-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="Cash Management" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--cash management icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-cash-stack" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end cash management icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title cash management-->
+    {% endif %}
+
+    {% if lang == 'fr' %}
+    <!--menu title dashboard-->
+    <div class="menu-item py-2">
+        <a class="menu-link active menu-center" href="{% url 'dashboard' 'en' %}" title="Tableau de Bord" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--dashboard icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-grid" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end dashboard icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title dashboard-->
+
+    <!--menu title user management-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="Gestion des utilisateurs" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--user management icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-people" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end user management icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title user management-->
+
+    <!--menu title inventory-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="Inventaire" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--inventory icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-box-seam" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end inventory icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title inventory-->
+
+    <!--menu title e-shop-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="Boutique en Ligne" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--e-shop icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-cart" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end e-shop icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title e-shop-->
+
+    <!--menu title cash management-->
+    <div class="menu-item py-2">
+        <a class="menu-link menu-center" href="{% url 'dashboard' 'en' %}" title="Gestion de la Trésorerie" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+            <span class="menu-icon me-0">
+                <!--cash management icon-->
+                <span class="menu-link menu-center">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-cash-stack" style="font-size: 2rem;"></i>
+                    </span>
+                </span>
+                <!--end cash management icon-->
+            </span>
+        </a>
+    </div>
+    <!--end menu title cash management-->
+    {% endif %}
+</div>
+{% endblock %}
