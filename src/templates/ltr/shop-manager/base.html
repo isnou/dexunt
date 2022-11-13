@@ -64,10 +64,10 @@
 								<div id="kt_aside_menu" class="menu menu-rounded menu-column menu-active-bg menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-arrow-gray-500 fw-semibold fs-6 my-auto" data-kt-menu="true">
 
 									<!--menu title dashboard-->
-									<div data-kt-menu-trigger="{default: 'hover', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item here show py-2" href="{% url 'dashboard' 'en' %}">
+									<div data-kt-menu-trigger="{default: 'hover', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item here show py-2">
 										<!--dashboard icon-->
 										<span class="menu-link menu-center">
-											<span class="menu-icon me-0">
+											<span class="menu-icon me-0" href="{% url 'dashboard' 'en' %}">
 												<i class="bi bi-grid" style="font-size: 2rem;"></i>
 											</span>
 										</span>
