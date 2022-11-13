@@ -38,24 +38,21 @@
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Page-->
 			<div class="page d-flex flex-row flex-column-fluid">
-				<!--begin::Aside-->
-				<div id="kt_aside" class="aside aside-extended" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
-					<!--begin::Primary-->
-					<div class="aside-primary d-flex flex-column align-items-lg-center flex-row-auto">
 
-						<!--begin::Logo-->
+				<!--aside-->
+				<div id="kt_aside" class="aside aside-extended" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
+					<div class="aside-primary d-flex flex-column align-items-lg-center flex-row-auto">
+						<!--company logo-->
 						<div class="aside-logo d-none d-lg-flex flex-column align-items-center flex-column-auto pt-10" id="kt_aside_logo">
 							<a href="index.html">
 								<img alt="Logo" src="{% static 'manager/media/logos/logo-default.svg' %}" class="h-30px" />
 							</a>
 						</div>
-						<!--end::Logo-->
+						<!--end company logo-->
 
-						<!--begin::Nav-->
+						<!--side menu-->
 						<div class="aside-nav d-flex flex-column flex-lg-center flex-column-fluid w-100 py-5 px-3" id="kt_aside_nav">
-							<!--begin::Aside Primary Menu Wrapper-->
 							<div class="w-100 hover-scroll-overlay-y d-flex" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside, #kt_aside_nav, #kt_aside_menu_wrapper" data-kt-scroll-offset="5px">
-								<!--begin::Primary menu-->
 								<div id="kt_aside_menu" class="menu menu-rounded menu-column menu-active-bg menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-arrow-gray-500 fw-semibold fs-6 my-auto" data-kt-menu="true">
 
 									<!--menu title dashboard-->
@@ -369,96 +366,87 @@
 									</div>
 									<!--end menu title cash management-->
 								</div>
-								<!--end::Primary menu-->
 							</div>
-							<!--ebd::Aside Primary Menu Wrapper-->
 						</div>
-						<!--end::Nav-->
-						<!--begin::Footer-->
+						<!--end side menu-->
+
+						<!--menu footer-->
 						<div class="aside-footer d-flex flex-column align-items-center flex-column-auto" id="kt_aside_footer">
-							<!--begin::Menu-->
 							<div class="mb-7">
 								<button type="button" class="btn btm-sm btn-icon btn-color-gray-400 btn-active-color-primary btn-active-light" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-overflow="true" data-kt-menu-placement="top-start">
 									<!--settings icon-->
 									<i class="bi bi-gear" style="font-size: 2rem;"></i>
 									<!--end settings icon-->
 								</button>
-								<!--begin::Menu 2-->
+								<!--quick actions menu-->
 								<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px" data-kt-menu="true">
-									<!--begin::Menu item-->
+									<!--quick actions title-->
 									<div class="menu-item px-3">
 										<div class="menu-content fs-6 text-dark fw-bold px-3 py-4">Quick Actions</div>
 									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu separator-->
+									<!--end quick actions title-->
+
+									<!--separator-->
 									<div class="separator mb-3 opacity-75"></div>
-									<!--end::Menu separator-->
-									<!--begin::Menu item-->
+									<!--end separator-->
+
+									<!--new ticket title-->
 									<div class="menu-item px-3">
 										<a href="index.html#" class="menu-link px-3">New Ticket</a>
 									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
+									<!--end new ticket title-->
+
+									<!--new customer-->
 									<div class="menu-item px-3">
 										<a href="index.html#" class="menu-link px-3">New Customer</a>
 									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
+									<!--end new customer-->
+
+									<!--e-shop-->
 									<div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start">
-										<!--begin::Menu item-->
 										<a href="index.html#" class="menu-link px-3">
-											<span class="menu-title">New Group</span>
+											<span class="menu-title">E-Shop</span>
 											<span class="menu-arrow"></span>
 										</a>
-										<!--end::Menu item-->
-										<!--begin::Menu sub-->
+
+										<!--e-shop subtitle-->
 										<div class="menu-sub menu-sub-dropdown w-175px py-4">
-											<!--begin::Menu item-->
+											<!--view website-->
 											<div class="menu-item px-3">
-												<a href="index.html#" class="menu-link px-3">Admin Group</a>
+												<a href="index.html#" class="menu-link px-3">View Website</a>
 											</div>
-											<!--end::Menu item-->
-											<!--begin::Menu item-->
+											<!--end view website-->
+
+											<!--view orders-->
 											<div class="menu-item px-3">
-												<a href="index.html#" class="menu-link px-3">Staff Group</a>
+												<a href="index.html#" class="menu-link px-3">View Orders</a>
 											</div>
-											<!--end::Menu item-->
-											<!--begin::Menu item-->
-											<div class="menu-item px-3">
-												<a href="index.html#" class="menu-link px-3">Member Group</a>
-											</div>
-											<!--end::Menu item-->
+											<!--end view orders-->
 										</div>
-										<!--end::Menu sub-->
+										<!--end e-shop subtitle-->
 									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
-									<div class="menu-item px-3">
-										<a href="index.html#" class="menu-link px-3">New Contact</a>
-									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu separator-->
+									<!--end e-shop-->
+
+									<!--separator-->
 									<div class="separator mt-3 opacity-75"></div>
-									<!--end::Menu separator-->
-									<!--begin::Menu item-->
+									<!--end separator-->
+
+									<!--generate reports-->
 									<div class="menu-item px-3">
 										<div class="menu-content px-3 py-3">
 											<a class="btn btn-primary btn-sm px-4" href="index.html#">Generate Reports</a>
 										</div>
 									</div>
-									<!--end::Menu item-->
+									<!--end generate reports-->
 								</div>
-								<!--end::Menu 2-->
+								<!--end quick actions title-->
 							</div>
-							<!--end::Menu-->
 						</div>
-						<!--end::Footer-->
+						<!--end menu footer-->
 					</div>
-					<!--end::Primary-->
-					<!--begin::Action-->
-					<!--end::Action-->
 				</div>
-				<!--end::Aside-->
+				<!--end aside-->
+				
 				<!--begin::Wrapper-->
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 					<!--begin::Header-->
