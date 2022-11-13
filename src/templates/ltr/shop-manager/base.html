@@ -236,14 +236,8 @@
 								<small class="text-muted fs-6 fw-normal ms-1"></small></h1>
 								<!--end heading-->
 
-								<!--breadcrumb-->
-								<ul class="breadcrumb fw-semibold fs-base my-1">
-									<li class="breadcrumb-item text-muted">
-										<a href="{% url 'dashboard' 'en' %}" class="text-muted">Home</a>
-									</li>
-									<li class="breadcrumb-item text-muted">Dashboard</li>
-								</ul>
-								<!--end breadcrumb-->
+								{% block breadcrumb %}
+								{% endblock %}
 							</div>
 							<!--end page title=-->
 

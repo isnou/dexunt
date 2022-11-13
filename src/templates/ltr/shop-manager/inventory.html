@@ -16,7 +16,6 @@
 {% endblock %}
 <!------------------------------- end title ------------------------------------------------>
 
-
 <!------------------------------- side menu ------------------------------------------------>
 <!-- english & frensh version -->
 {% block side_menu %}
@@ -187,3 +186,26 @@
 </div>
 {% endblock %}
 <!------------------------------- end side menu -------------------------------------------->
+
+<!------------------------------- breadcrumb ----------------------------------------------->
+<!-- english & frensh version -->
+{% block breadcrumb %}
+<!--breadcrumb-->
+<ul class="breadcrumb fw-semibold fs-base my-1">
+    {% if lang == 'en' %}
+    <li class="breadcrumb-item text-muted">
+        <a href="{% url 'dashboard' 'en' %}" class="text-muted">Home</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Inventory</li>
+    {% endif %}
+
+    {% if lang == 'fr' %}
+    <li class="breadcrumb-item text-muted">
+        <a href="{% url 'dashboard' 'fr' %}" class="text-muted">Home</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Inventory</li>
+    {% endif %}
+</ul>
+<!--end breadcrumb-->
+{% endblock %}
+<!------------------------------- end breadcrumb ------------------------------------------->
