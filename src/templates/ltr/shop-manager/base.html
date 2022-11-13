@@ -2,41 +2,49 @@
 <!DOCTYPE html>
 
 <html lang="en">
-	<!--begin::Head-->
+	<!--head-->
 	<head>
 		<title>Dexunt Shop Management - Base Template</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" href="{% static 'manager/media/logos/favicon.png' %}" type="image/x-icon"/>
-		<!--begin::Fonts-->
+
+		<!--fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-		<!--end::Fonts-->
-		<!--begin::Vendor Stylesheets(used by this page)-->
+		<!--end fonts-->
+
+		<!--vendor stylesheets(used by this page)-->
 		<link href="{% static 'manager/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css" />
-		<!--end::Vendor Stylesheets-->
-		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<!--end vendor stylesheets-->
+
+		<!--global stylesheets bundle(used by all pages)-->
 		<link href="{% static 'manager/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'manager/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
-		<!--end::Global Stylesheets Bundle-->
-		<!--Begin::Google Tag Manager -->
+		<!--end global stylesheets bundle-->
+
+		<!--Google tag manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
-		<!--End::Google Tag Manager -->
+		<!--end Google tag manager -->
 	</head>
-	<!--end::Head-->
-	<!--begin::Body-->
+	<!--end head-->
+
+	<!--body-->
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled">
-		<!--begin::Theme mode setup on page load-->
+
+		<!--theme mode setup-->
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-theme-mode")) { themeMode = document.documentElement.getAttribute("data-theme-mode"); } else { if ( localStorage.getItem("data-theme") !== null ) { themeMode = localStorage.getItem("data-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-theme", themeMode); }</script>
-		<!--end::Theme mode setup on page load-->
-		<!--Begin::Google Tag Manager (noscript) -->
+		<!--end theme mode setup-->
+
+		<!--Google tag manager-->
 		<noscript>
 			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0" style="display:none;visibility:hidden"></iframe>
 		</noscript>
-		<!--End::Google Tag Manager (noscript) -->
+		<!--end Google tag manager-->
+
 		<!--begin::Main-->
-		<!--begin::Root-->
+
+		<!--base headers-->
 		<div class="d-flex flex-column flex-root">
-			<!--begin::Page-->
 			<div class="page d-flex flex-row flex-column-fluid">
 
 				<!--aside-->
@@ -447,29 +455,29 @@
 				</div>
 				<!--end aside-->
 
-				<!--begin::Wrapper-->
+				<!--wrapper-->
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-					<!--begin::Header-->
+					<!--header-->
 					<div id="kt_header" class="header" data-kt-sticky="true" data-kt-sticky-name="header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
-						<!--begin::Container-->
 						<div class="container-fluid d-flex align-items-stretch justify-content-between" id="kt_header_container">
-							<!--begin::Page title-->
+							<!--page title-->
 							<div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-2 pb-2 pb-lg-0" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
-								<!--begin::Heading-->
-								<h1 class="text-dark fw-bold my-1 fs-2">Welcome to Jet 
+								<!--heading-->
+								<h1 class="text-dark fw-bold my-1 fs-2">Welcome to dexunt inventory manager
 								<small class="text-muted fs-6 fw-normal ms-1"></small></h1>
-								<!--end::Heading-->
-								<!--begin::Breadcrumb-->
+								<!--end heading-->
+
+								<!--breadcrumb-->
 								<ul class="breadcrumb fw-semibold fs-base my-1">
 									<li class="breadcrumb-item text-muted">
-										<a href="index.html" class="text-muted">Home</a>
+										<a href="{% url 'dashboard' 'en' %}" class="text-muted">Home</a>
 									</li>
-									<li class="breadcrumb-item text-muted">Dashboards</li>
-									<li class="breadcrumb-item text-dark">Multipurpose</li>
+									<li class="breadcrumb-item text-muted">Dashboard</li>
 								</ul>
-								<!--end::Breadcrumb-->
+								<!--end breadcrumb-->
 							</div>
-							<!--end::Page title=-->
+							<!--end page title=-->
+
 							<!--begin::Wrapper-->
 							<div class="d-flex d-lg-none align-items-center ms-n2 me-2">
 								<!--begin::Aside mobile toggle-->
@@ -491,6 +499,7 @@
 								<!--end::Logo-->
 							</div>
 							<!--end::Wrapper-->
+
 							<!--begin::Toolbar wrapper-->
 							<div class="d-flex align-items-center flex-shrink-0">
 								<!--begin::Search-->
@@ -2176,10 +2185,10 @@
 							</div>
 							<!--end::Toolbar wrapper-->
 						</div>
-						<!--end::Container-->
 					</div>
-					<!--end::Header-->
-					<!--begin::Content-->
+					<!--end header-->
+
+					<!--content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 						<!--begin::Container-->
 						<div class="container-xxl" id="kt_content_container">
@@ -3066,8 +3075,9 @@
 						</div>
 						<!--end::Container-->
 					</div>
-					<!--end::Content-->
-					<!--begin::Footer-->
+					<!--end content-->
+
+					<!--footer-->
 					<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
 						<!--begin::Container-->
 						<div class="container-fluid d-flex flex-column flex-md-row flex-stack">
@@ -3093,13 +3103,13 @@
 						</div>
 						<!--end::Container-->
 					</div>
-					<!--end::Footer-->
+					<!--end footer-->
 				</div>
-				<!--end::Wrapper-->
+				<!--end wrapper-->
 			</div>
-			<!--end::Page-->
 		</div>
-		<!--end::Root-->
+		<!--end base headers-->
+
 		<!--begin::Drawers-->
 		<!--begin::Activities drawer-->
 		<div id="kt_activities" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="activities" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'lg': '900px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_activities_toggle" data-kt-drawer-close="#kt_activities_close">
@@ -4090,6 +4100,8 @@
 		<!--end::Chat drawer-->
 		<!--end::Drawers-->
 		<!--end::Main-->
+
+
 		<!--begin::Engage drawers-->
 		<!--begin::Exolore drawer-->
 		<div id="kt_explore" class="explore bg-body" data-kt-drawer="true" data-kt-drawer-name="explore" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'lg': '440px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_explore_toggle" data-kt-drawer-close="#kt_explore_close">
@@ -7117,5 +7129,5 @@
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
-	<!--end::Body-->
+	<!--end body-->
 </html>
