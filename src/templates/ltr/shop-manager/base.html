@@ -79,28 +79,6 @@
 									</div>
 									<!--end menu title dashboard-->
 
-									<!--menu title authentication-->
-									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
-										<!--authentication icon-->
-										<span class="menu-link menu-center">
-											<span class="menu-icon me-0">
-												<i class="bi bi-fingerprint" style="font-size: 2rem;"></i>
-											</span>
-										</span>
-										<!--end authentication icon-->
-
-										<!--authentication title-->
-										<div class="menu-sub menu-sub-indention menu-sub-dropdown menu-sub-dropdown w-225px px-2 py-4">
-											<div class="menu-item">
-												<div class="menu-content">
-													<span class="menu-section fs-5 fw-bold ps-1 py-1">Authentication</span>
-												</div>
-											</div>
-										</div>
-										<!--end authentication title-->
-									</div>
-									<!--end menu title authentication-->
-
 									<!--menu title user management-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
 										<!--user management icon-->
@@ -186,6 +164,19 @@
 											<!--end others title-->
 										</div>
 										<!--end user management title-->
+									</div>
+									<div class="menu-item py-2">
+										<a class="menu-link active menu-center" href="{% url 'dashboard' 'en' %}" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right" aria-label="User-Management" data-kt-initialized="1">
+											<span class="menu-icon me-0">
+												<!--user management icon-->
+												<span class="menu-link menu-center">
+													<span class="menu-icon me-0">
+														<i class="bi bi-fingerprint" style="font-size: 2rem;"></i>
+													</span>
+												</span>
+												<!--end user management icon-->
+											</span>
+										</a>
 									</div>
 									<!--end menu title user management-->
 
