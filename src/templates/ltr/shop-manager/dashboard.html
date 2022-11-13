@@ -1,0 +1,17 @@
+{% extends "ltr/shop-manager/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+<!------------------------------- title ---------------------------------------------------->
+<!-- english & frensh version -->
+{% block title %}
+<title>
+{% if lang == 'en' %}
+         Dashboard - Dexunt Shop Management
+{% endif %}
+{% if lang == 'fr' %}
+         Tableau de bord - Dexunt Gestion de Magasin
+{% endif %}
+</title>
+{% endblock %}
+<!------------------------------- end title ------------------------------------------------>
