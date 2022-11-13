@@ -35414,15 +35414,6 @@ html:not([data-theme=dark]) .theme-light-bg-body {
 .btn-check:checked + .btn.btn-light-linkedin.dropdown-toggle:after, .btn-check:active + .btn.btn-light-linkedin.dropdown-toggle:after, .btn.btn-light-linkedin:focus:not(.btn-active).dropdown-toggle:after, .btn.btn-light-linkedin:hover:not(.btn-active).dropdown-toggle:after, .btn.btn-light-linkedin:active:not(.btn-active).dropdown-toggle:after, .btn.btn-light-linkedin.active.dropdown-toggle:after, .btn.btn-light-linkedin.show.dropdown-toggle:after, .show > .btn.btn-light-linkedin.dropdown-toggle:after {
   color: #ffffff;
 }
-.count {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
-}
 
 code:not([class*=language-]) {
   font-weight: 400;
