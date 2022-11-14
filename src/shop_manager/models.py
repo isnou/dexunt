@@ -77,6 +77,12 @@ class InventoryProduct(models.Model):
     # --------------------------------- product details ----------------------------------------
     features = models.ManyToManyField(InventoryProductFeatures, blank=True)
 
+    def get_album(self):
+        return "\n".join([p.file_name for p in self.album.all()])
+
+    def get_features(self):
+        return "\n".join([p.value for p in self.features.all()])
+
     def __str__(self):
         return self.product_name
 
@@ -92,6 +98,12 @@ class ShopProduct(models.Model):
     sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     features = models.ManyToManyField(ShopProductFeatures, blank=True)
+
+    def get_products(self):
+        return "\n".join([p.product_name for p in self.products.all()])
+
+    def get_features(self):
+        return "\n".join([p.value for p in self.features.all()])
 
     def __str__(self):
         return self.product_name
