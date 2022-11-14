@@ -4,58 +4,94 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class ProductAlbum(models.Model):
     # --------------------------------- picture types ------------------------------------------
-    PictureType = (
+    Type = (
         ('Thumb', 'Thumb'),
-        ('ZoomThumb', 'ZoomThumb'),
         ('Album', 'Album'),
     )
-    picture_type = models.CharField(max_length=50, choices=PictureType, blank=True, null=True)
+    type = models.CharField(max_length=50, choices=Type, blank=True, null=True)
     file_name = models.CharField(max_length=500, blank=True, default='product-image')
-    # --------------------------------- picture location ----------------------------------------
-    picture = models.ImageField(upload_to='shop-manager/product/image/')
+    # --------------------------------- picture location ---------------------------------------
+    picture = models.ImageField(upload_to='shop-manager/product/image/%Y/%m/%d/')
 
     def __str__(self):
         return self.file_name
 
 
+class InventoryProductFeatures(models.Model):
+    # --------------------------------- feature types ------------------------------------------
+    Type = (
+        ('Model', 'Model'),
+        ('Brand', 'Brand'),
+        ('Color', 'Color'),
+        ('Dimensions', 'Dimensions'),
+        ('Size', 'Size'),
+        ('Weight', 'Weight'),
+    )
+    type = models.CharField(max_length=50, choices=Type, blank=True, null=True)
+    # --------------------------------- feature language ---------------------------------------
+    Language = (
+        ('English', 'English'),
+        ('French', 'French'),
+        ('Arabic', 'Arabic'),
+    )
+    language = models.CharField(max_length=50, choices=Language, blank=True, null=True)
+    # --------------------------------- technical details --------------------------------------
+    sku = models.CharField(max_length=3, unique=True, null=True)
+    # --------------------------------- feature value ------------------------------------------
+    value = models.CharField(max_length=100, unique=True, null=True)
+
+    def __str__(self):
+        return self.value
+
+
+class ShopProductFeatures(models.Model):
+    # --------------------------------- feature types ------------------------------------------
+    Type = (
+        ('Description', 'Description'),
+        ('EShopTitle', 'EShopTitle'),
+    )
+    type = models.CharField(max_length=50, choices=Type, blank=True, null=True)
+    # --------------------------------- feature language ---------------------------------------
+    Language = (
+        ('English', 'English'),
+        ('French', 'French'),
+        ('Arabic', 'Arabic'),
+    )
+    language = models.CharField(max_length=50, choices=Language, blank=True, null=True)
+    # --------------------------------- feature value ------------------------------------------
+    value = models.TextField(max_length=1000, null=True)
+
+    def __str__(self):
+        return self.value
+
+
 class InventoryProduct(models.Model):
+    # --------------------------------- product identification ---------------------------------
+    product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     album = models.ManyToManyField(ProductAlbum, blank=True)
     # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=200, unique=True, null=True)
-    product_name = models.CharField(max_length=200, blank=True, null=True)
+    sku = models.CharField(max_length=8, unique=True, null=True)
     quantity = models.IntegerField(default=0)
     buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     # --------------------------------- product details ----------------------------------------
-    model = models.CharField(max_length=200, blank=True, null=True)
-    brand = models.CharField(max_length=150, blank=True, null=True)
-    color = models.CharField(max_length=60, blank=True, null=True)
-    dimensions = models.CharField(max_length=60, blank=True, null=True)
-    weight = models.IntegerField(default=0)
-    # --------------------------------- inventory information ----------------------------------
-    en_features = models.TextField(max_length=800, blank=True)
-    en_description = models.TextField(max_length=800, blank=True)
-    # --------------------------------- translation --------------------------------------------
-    fr_features = models.TextField(max_length=800, blank=True)
-    fr_description = models.TextField(max_length=800, blank=True)
-    ar_features = models.TextField(max_length=800, blank=True)
-    ar_description = models.TextField(max_length=800, blank=True)
+    features = models.ManyToManyField(InventoryProductFeatures, blank=True)
 
     def __str__(self):
         return self.product_name
 
 
 class ShopProduct(models.Model):
+    # --------------------------------- product identification ---------------------------------
+    product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    product = models.ManyToManyField(InventoryProduct, blank=True)
+    sku = models.CharField(max_length=20, unique=True, null=True)
+    products = models.ManyToManyField(InventoryProduct, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     # --------------------------------- showcase information -----------------------------------
-    en_title = models.CharField(max_length=200)
     sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
-    # --------------------------------- translation --------------------------------------------
-    fr_title = models.CharField(max_length=200, blank=True)
-    ar_title = models.CharField(max_length=200, blank=True)
+    features = models.ManyToManyField(ShopProductFeatures, blank=True)
 
     def __str__(self):
-        return self.en_title
+        return self.product_name
