@@ -265,23 +265,21 @@
 
                                                         <!--product quantity & price input-->
                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
-															<!--label-->
-															<label class="required form-label">Quantity</label>
-															<!--end label-->
-
-															<!--input-->
 															<div class="d-flex gap-3">
-																<input type="number" name="quantity" class="form-control" placeholder="put the product quantity" value="">
+                                                                <div class="input-group mb-5">
+                                                                    <!--label-->
+                                                                    <label class="required form-label">Quantity</label>
+                                                                    <!--end label-->
+                                                                    <input type="number" name="quantity" class="form-control" placeholder="default quantity : 0" value="">
+                                                                    <!--description-->
+                                                                    <div class="text-muted fs-7">Enter the product quantity.</div>
+                                                                    <!--end description-->
+                                                                </div>
 																<div class="input-group mb-5">
                                                                     <input type="number" name="buy_price" class="form-control" aria-label="Amount (to the nearest dollar)">
                                                                     <span class="input-group-text">Dinars</span>
                                                                 </div>
 															</div>
-															<!--end input-->
-
-															<!--begin::Description-->
-															<div class="text-muted fs-7">Enter the product quantity.</div>
-															<!--end::Description-->
 														<div class="fv-plugins-message-container invalid-feedback"></div></div>
                                                         <!--end product quantity & price input-->
 													</div>
