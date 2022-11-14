@@ -226,9 +226,7 @@
     <!--add product form-->
     <form action="#" name="add_product_form" id="add_product_form" method="post" class="form d-flex flex-column flex-lg-row">
         {% csrf_token %}
-
-        <div class="tab-content">
-            <!--begin::Tab pane-->
+        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
             <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general">
                 <div class="d-flex flex-column gap-7 gap-lg-10">
                     <!--product general inputs-->
@@ -409,8 +407,8 @@
                 </div>
             </div>
         </div>
-        
-        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+
+        <div class="tab-content">
             <!--thumbnail input-->
             <div class="card card-flush py-4">
                 <!--thumbnail title-->
@@ -521,7 +519,6 @@
             </div>
             <!--end second thumbnail input-->
         </div>
-
     </form>
     <!--end add product form-->
 
