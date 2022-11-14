@@ -28,7 +28,7 @@ def add_product(request, lang):
     if lang == "ar":
         url = "rtl/shop-manager/add-product.html"
     elif lang == 'save_general_product_information':
-        url = "rtl/shop-manager/inventory.html"
+        url = "ltr/shop-manager/inventory.html"
         lang = "en"
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
