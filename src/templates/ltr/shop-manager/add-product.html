@@ -228,22 +228,22 @@
     <form action="#" name="add_product_form" id="add_product_form" method="post" class="form d-flex flex-column flex-lg-row">
         {% csrf_token %}
         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-            <!--begin::Thumbnail settings-->
+            <!--thumbnail input-->
             <div class="card card-flush py-4">
-                <!--begin::Card header-->
+                <!--thumbnail title-->
                 <div class="card-header">
-                    <!--begin::Card title-->
                     <div class="card-title">
                         <h2>Thumbnail</h2>
                     </div>
-                    <!--end::Card title-->
                 </div>
-                <!--end::Card header-->
+                <!--end thumbnail title-->
+
                 <!--begin::Card body-->
                 <div class="card-body text-center pt-0">
                     <!--begin::Image input-->
                     <!--begin::Image input placeholder-->
-                    <style>.image-input-placeholder { background-image: url('../../../assets/media/svg/files/blank-image.svg'); } [data-theme="dark"] .image-input-placeholder { background-image: url('../../../assets/media/svg/files/blank-image-dark.svg'); }</style>
+                    <style>.image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image.svg' %}; } [data-theme="dark"]
+                    .image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image-dark.svg' %}; }</style>
                     <!--end::Image input placeholder-->
                     <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
                         <!--begin::Preview existing avatar-->
@@ -278,7 +278,7 @@
                 </div>
                 <!--end::Card body-->
             </div>
-            <!--end::Thumbnail settings-->
+            <!--end thumbnail input-->
         </div>
     </form>
     <!--end add product form-->
