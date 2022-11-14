@@ -31,7 +31,7 @@ class InventoryProduct(models.Model):
     brand = models.CharField(max_length=150, blank=True, null=True)
     color = models.CharField(max_length=60, blank=True, null=True)
     dimensions = models.CharField(max_length=60, blank=True, null=True)
-    weight = models.CharField(max_length=60, blank=True, null=True)
+    weight = models.IntegerField(default=0)
     # --------------------------------- inventory information ----------------------------------
     en_features = models.TextField(max_length=800, blank=True)
     en_description = models.TextField(max_length=800, blank=True)
