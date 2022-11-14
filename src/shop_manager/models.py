@@ -28,13 +28,6 @@ class InventoryProduct(models.Model):
     color = models.CharField(max_length=60, blank=True, null=True)
     dimensions = models.CharField(max_length=60, blank=True, null=True)
     weight = models.CharField(max_length=60, blank=True, null=True)
-    ProductLabel = (
-        ('Customisable', 'Customisable'),
-        ('Limited', 'Limited'),
-        ('HandMade', 'HandMade'),
-        ('Used', 'Used'),
-    )
-    product_label = models.CharField(max_length=50, choices=ProductLabel, blank=True, null=True)
     # --------------------------------- inventory information ----------------------------------
     quantity = models.IntegerField(default=0)
     buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
@@ -53,7 +46,6 @@ class InventoryProduct(models.Model):
 
 class ShopProduct(models.Model):
     # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=200, unique=True, null=True)
     product = models.ManyToManyField(InventoryProduct, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     # --------------------------------- showcase information -----------------------------------

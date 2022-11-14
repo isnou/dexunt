@@ -1780,7 +1780,7 @@
 
 					<!--content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-						<!--begin::Container-->
+						{% block content %}
 						<div class="container-xxl" id="kt_content_container">
 							<!--begin::Products-->
 							<div class="card card-flush">
@@ -8166,7 +8166,7 @@
 							</div>
 							<!--end::Products-->
 						</div>
-						<!--end::Container-->
+						{% endblock %}
 					</div>
 					<!--end content-->
 
