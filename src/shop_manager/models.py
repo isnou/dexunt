@@ -20,7 +20,6 @@ class ProductAlbum(models.Model):
 
 class InventoryProduct(models.Model):
     # --------------------------------- media --------------------------------------------------
-    thumbnail = models.ImageField(upload_to='shop-manager/product/image/')
     album = models.ManyToManyField(ProductAlbum, blank=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=200, unique=True, null=True)
