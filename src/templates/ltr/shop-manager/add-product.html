@@ -258,6 +258,7 @@
                             </div>
                             <!--end product name input-->
 
+                            <!--price & quantity input-->
                             <div class="d-flex flex-column flex-md-row gap-5">
                                 <!--product price input-->
                                 <div class="fv-row flex-row-fluid fv-plugins-icon-container">
@@ -291,6 +292,7 @@
                                 </div>
                                 <!--end product quantity input-->
                             </div>
+                            <!--end price & quantity input-->
 
                         </div>
                         <!--end product general inputs body-->
@@ -341,50 +343,54 @@
                             </div>
                             <!--end color input-->
 
-                            <!--dimensions input-->
-                            <div class="mb-10 fv-row">
-                                <!--Label-->
-                                <label class="form-label">Dimensions</label>
-                                <!--end label-->
+                            <!--dimensions & weight input-->
+                            <div class="d-flex flex-column flex-md-row gap-5">
+                                <!--product weight input-->
+                                <div class="fv-row flex-row-fluid fv-plugins-icon-container">
+                                    <!--label-->
+                                    <label class="form-label">Weight</label>
+                                    <!--end label-->
+                                    <!--input-->
+                                    <div class="input-group mb-5">
+                                        <input type="number" name="weight" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">Kg</span>
+                                    </div>
+                                    <!--end input-->
+                                    <!--description-->
+                                    <div class="text-muted fs-7">Enter the product weight.</div>
+                                    <!--end description-->
+                                </div>
+                                <!--end product weight input-->
 
-                                <!--input-->
-                                <input type="text" name="dimensions" class="form-control mb-2" placeholder="dimensions" value="" />
-                                <!--end input-->
-
-                                <!--description-->
-                                <div class="text-muted fs-7">Dimensions can be a shoe size or clothing size .</div>
-                                <!--end description-->
+                                <!--product dimensions input-->
+                                <div class="fv-row flex-row-fluid fv-plugins-icon-container">
+                                    <!--label-->
+                                    <label class="form-label">Dimensions</label>
+                                    <!--end label-->
+                                    <!--input-->
+                                    <input type="text" name="dimensions" class="form-control mb-2" placeholder="dimensions" value="" />
+                                    <!--end input-->
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    <!--description-->
+                                    <div class="text-muted fs-7">Dimensions can be a shoe size or clothing size .</div>
+                                    <!--end description-->
+                                </div>
+                                <!--end product dimensions input-->
                             </div>
-                            <!--end dimensions input-->
-
-                            <!--product weight input-->
-                            <div class="mb-10 fv-row">
-                                <!--Label-->
-                                <label class="form-label">Weight</label>
-                                <!--end label-->
-
-                                <!--input-->
-                                <input type="number" name="weight" class="form-control mb-2" placeholder="Weight" value="">
-                                <!--end input-->
-
-                                <!--description-->
-                                <div class="text-muted fs-7">Enter the product weight.</div>
-                                <!--end description-->
-                            </div>
-                            <!--end product weight input-->
+                            <!--dimensions & weight input-->
 
                             <!--product english features input-->
                             <div class="mb-10 fv-row">
                                 <!--Label-->
-                                <label class="form-label">English Features</label>
+                                <label class="form-label">Features</label>
                                 <!--end label-->
 
                                 <!--input-->
-                                <textarea class="form-control" name="en_description" placeholder="english features" aria-label="With textarea"></textarea>
+                                <textarea class="form-control" name="en_features" placeholder="english features" aria-label="With textarea"></textarea>
                                 <!--end input-->
 
                                 <!--description-->
-                                <div class="text-muted fs-7">Set description in english for the product .</div>
+                                <div class="text-muted fs-7">Write product's features in english .</div>
                                 <!--end description-->
                             </div>
                             <!--end product english features input-->
@@ -392,7 +398,7 @@
                             <!--product english description input-->
                             <div class="mb-10 fv-row">
                                 <!--Label-->
-                                <label class="form-label">English Description</label>
+                                <label class="form-label">Description</label>
                                 <!--end label-->
 
                                 <!--input-->
@@ -400,7 +406,7 @@
                                 <!--end input-->
 
                                 <!--description-->
-                                <div class="text-muted fs-7">Set description in english for the product .</div>
+                                <div class="text-muted fs-7">Write a description in english for the product.</div>
                                 <!--end description-->
                             </div>
                             <!--end product english description input-->
