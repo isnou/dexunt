@@ -226,7 +226,119 @@
     <!--add product form-->
     <form action="#" name="add_product_form" id="add_product_form" method="post" class="form d-flex flex-column flex-lg-row">
         {% csrf_token %}
-        <div class="tab-content" style="margin-left: 15px; margin-right: -80px;">
+        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+            <!--thumbnail input-->
+            <div class="card card-flush py-4">
+                <!--thumbnail title-->
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Thumbnail</h2>
+                    </div>
+                </div>
+                <!--end thumbnail title-->
+
+                <!--thumbnail body-->
+                <div class="card-body text-center pt-0">
+
+                    <!--thumbnail placeholder-->
+                    <style>.image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image.svg' %}; } [data-theme="dark"]
+                    .image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image-dark.svg' %}; }</style>
+                    <!--end thumbnail placeholder-->
+
+                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
+                        <!--preview existing avatar-->
+                        <div class="image-input-wrapper w-150px h-150px"></div>
+                        <!--end preview existing avatar-->
+
+                        <!--label-->
+                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                            <i class="bi bi-pencil-fill fs-7"></i>
+                            <!--inputs-->
+                            <input type="file" name="thumbnail" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="thumbnail_remove" />
+                            <!--end inputs-->
+                        </label>
+                        <!--end label-->
+
+                        <!--cancel-->
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                            <i class="bi bi-x fs-2"></i>
+                        </span>
+                        <!--end cancel-->
+
+                        <!--remove-->
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                            <i class="bi bi-x fs-2"></i>
+                        </span>
+                        <!--end remove-->
+                    </div>
+                    <!--end::Image input-->
+
+                    <!--description-->
+                    <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                    <!--end description-->
+                </div>
+                <!--end thumbnail body-->
+            </div>
+            <!--end thumbnail input-->
+
+            <!--second thumbnail input-->
+            <div class="card card-flush py-4">
+                <!--second thumbnail title-->
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Second Thumbnail</h2>
+                    </div>
+                </div>
+                <!--end second thumbnail title-->
+
+                <!--second thumbnail body-->
+                <div class="card-body text-center pt-0">
+
+                    <!--thumbnail placeholder-->
+                    <style>.image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image.svg' %}; } [data-theme="dark"]
+                    .image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image-dark.svg' %}; }</style>
+                    <!--end thumbnail placeholder-->
+
+                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
+                        <!--preview existing avatar-->
+                        <div class="image-input-wrapper w-150px h-150px"></div>
+                        <!--end preview existing avatar-->
+
+                        <!--label-->
+                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                            <i class="bi bi-pencil-fill fs-7"></i>
+                            <!--inputs-->
+                            <input type="file" name="second_thumbnail" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="second_thumbnail_remove" />
+                            <!--end inputs-->
+                        </label>
+                        <!--end label-->
+
+                        <!--cancel-->
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                            <i class="bi bi-x fs-2"></i>
+                        </span>
+                        <!--end cancel-->
+
+                        <!--remove-->
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                            <i class="bi bi-x fs-2"></i>
+                        </span>
+                        <!--end remove-->
+                    </div>
+                    <!--end::Image input-->
+
+                    <!--description-->
+                    <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                    <!--end description-->
+                </div>
+                <!--end second thumbnail body-->
+            </div>
+            <!--end second thumbnail input-->
+        </div>
+
+        <div class="tab-content">
 
             <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general">
                 <div class="d-flex flex-column gap-7 gap-lg-10">
@@ -408,117 +520,6 @@
                 </div>
             </div>
 
-        </div>
-        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10" style="margin-left: 155px;">
-            <!--thumbnail input-->
-            <div class="card card-flush py-4">
-                <!--thumbnail title-->
-                <div class="card-header">
-                    <div class="card-title">
-                        <h2>Thumbnail</h2>
-                    </div>
-                </div>
-                <!--end thumbnail title-->
-
-                <!--thumbnail body-->
-                <div class="card-body text-center pt-0">
-
-                    <!--thumbnail placeholder-->
-                    <style>.image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image.svg' %}; } [data-theme="dark"]
-                    .image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image-dark.svg' %}; }</style>
-                    <!--end thumbnail placeholder-->
-
-                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
-                        <!--preview existing avatar-->
-                        <div class="image-input-wrapper w-150px h-150px"></div>
-                        <!--end preview existing avatar-->
-
-                        <!--label-->
-                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                            <i class="bi bi-pencil-fill fs-7"></i>
-                            <!--inputs-->
-                            <input type="file" name="thumbnail" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="thumbnail_remove" />
-                            <!--end inputs-->
-                        </label>
-                        <!--end label-->
-
-                        <!--cancel-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end cancel-->
-
-                        <!--remove-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end remove-->
-                    </div>
-                    <!--end::Image input-->
-
-                    <!--description-->
-                    <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
-                    <!--end description-->
-                </div>
-                <!--end thumbnail body-->
-            </div>
-            <!--end thumbnail input-->
-
-            <!--second thumbnail input-->
-            <div class="card card-flush py-4">
-                <!--second thumbnail title-->
-                <div class="card-header">
-                    <div class="card-title">
-                        <h2>Second Thumbnail</h2>
-                    </div>
-                </div>
-                <!--end second thumbnail title-->
-
-                <!--second thumbnail body-->
-                <div class="card-body text-center pt-0">
-
-                    <!--thumbnail placeholder-->
-                    <style>.image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image.svg' %}; } [data-theme="dark"]
-                    .image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image-dark.svg' %}; }</style>
-                    <!--end thumbnail placeholder-->
-
-                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
-                        <!--preview existing avatar-->
-                        <div class="image-input-wrapper w-150px h-150px"></div>
-                        <!--end preview existing avatar-->
-
-                        <!--label-->
-                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                            <i class="bi bi-pencil-fill fs-7"></i>
-                            <!--inputs-->
-                            <input type="file" name="second_thumbnail" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="second_thumbnail_remove" />
-                            <!--end inputs-->
-                        </label>
-                        <!--end label-->
-
-                        <!--cancel-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end cancel-->
-
-                        <!--remove-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end remove-->
-                    </div>
-                    <!--end::Image input-->
-
-                    <!--description-->
-                    <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
-                    <!--end description-->
-                </div>
-                <!--end second thumbnail body-->
-            </div>
-            <!--end second thumbnail input-->
         </div>
     </form>
     <!--end add product form-->
