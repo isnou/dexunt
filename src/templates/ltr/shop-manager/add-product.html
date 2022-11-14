@@ -494,21 +494,25 @@
                         <!--end product details inputs body-->
                     </div>
                     <!--end translation inputs-->
+                </div>
+            </div>
 
-					<!--thumbnail inputs-->
-                    <div class="card card-flush py-4">
+        </div>
 
-                        <!--dimensions & weight input-->
-                            <div class="d-flex flex-column flex-md-row gap-5">
-                                <!--thumbnail title-->
-                                <div class="card-header">
+        <!--media input-->
+        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+            <!--main thumbnail input-->
+            <div class="card card-flush py-4">
+                <!--thumbnail title-->
+                <div class="card-header">
                     <div class="card-title">
-                        <h2>Thumbnail</h2>
+                        <h2>Main Thumbnail</h2>
                     </div>
                 </div>
-                        <!--end thumbnail title-->
-                        <!--thumbnail body-->
-                        <div class="card-body text-center pt-0">
+                <!--end thumbnail title-->
+
+                <!--thumbnail body-->
+                <div class="card-body text-center pt-0">
 
                     <!--thumbnail placeholder-->
                     <style>.image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image.svg' %}; } [data-theme="dark"]
@@ -524,8 +528,8 @@
                         <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                             <i class="bi bi-pencil-fill fs-7"></i>
                             <!--inputs-->
-                            <input type="file" name="thumbnail" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="thumbnail_remove" />
+                            <input type="file" name="main_thumbnail" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="main_thumbnail_remove" />
                             <!--end inputs-->
                         </label>
                         <!--end label-->
@@ -548,18 +552,22 @@
                     <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
                     <!--end description-->
                 </div>
-                        <!--end thumbnail body-->
+                <!--end thumbnail body-->
+            </div>
+            <!--end main thumbnail input-->
 
+            <!--second thumbnail input-->
+            <div class="card card-flush py-4">
+                <!--second thumbnail title-->
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Second Thumbnail</h2>
+                    </div>
+                </div>
+                <!--end second thumbnail title-->
 
-                        <!--second thumbnail title-->
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2>Second Thumbnail</h2>
-                            </div>
-                        </div>
-                        <!--end second thumbnail title-->
-                        <!--second thumbnail body-->
-                        <div class="card-body text-center pt-0">
+                <!--second thumbnail body-->
+                <div class="card-body text-center pt-0">
 
                     <!--thumbnail placeholder-->
                     <style>.image-input-placeholder { background-image: url={% static 'manager/media/svg/files/blank-image.svg' %}; } [data-theme="dark"]
@@ -599,25 +607,9 @@
                     <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
                     <!--end description-->
                 </div>
-                        <!--end second thumbnail body-->
-
-
-
-                            </div>
-                            <!--dimensions & weight input-->
-
-                    </div>
-                    <!--end thumbnail inputs-->
-                </div>
+                <!--end second thumbnail body-->
             </div>
-
-        </div>
-
-        <!--media input-->
-        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-
-
-
+            <!--end second thumbnail input-->
 
             <!--album image 1 input-->
             <div class="card card-flush py-4">
