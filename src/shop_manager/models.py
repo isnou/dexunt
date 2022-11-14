@@ -41,7 +41,7 @@ class InventoryProduct(models.Model):
     ar_description = models.TextField(max_length=800, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.product_name
 
 
 class ShopProduct(models.Model):
@@ -57,4 +57,4 @@ class ShopProduct(models.Model):
     ar_title = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.en_title
