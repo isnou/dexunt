@@ -287,34 +287,59 @@
         <div class="tab-content">
             <!--begin::Tab pane-->
             <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
-											<div class="d-flex flex-column gap-7 gap-lg-10">
-												<!--begin::General options-->
-												<div class="card card-flush py-4">
-													<!--begin::Card header-->
-													<div class="card-header">
-														<div class="card-title">
-															<h2>General</h2>
-														</div>
-													</div>
-													<!--end::Card header-->
-													<!--begin::Card body-->
-													<div class="card-body pt-0">
-														<!--begin::Input group-->
-														<div class="mb-10 fv-row">
-															<!--begin::Label-->
-															<label class="required form-label">Product Name</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="product_name" class="form-control mb-2" placeholder="Product name" value="" />
-															<!--end::Input-->
-															<!--begin::Description-->
-															<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
-															<!--end::Description-->
-														</div>
-														<!--end::Input group-->
-														<!--begin::Input group-->
-														<div>
-															<!--begin::Label-->
+                <div class="d-flex flex-column gap-7 gap-lg-10">
+                    <!--begin::General options-->
+                    <div class="card card-flush py-4">
+                        <!--begin::Card header-->
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>General</h2>
+                            </div>
+                        </div>
+                        <!--end::Card header-->
+
+                        <!--begin::Card body-->
+                        <div class="card-body pt-0">
+                            <!--product name input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="required form-label">Product Name</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <input type="text" name="product_name" class="form-control mb-2" placeholder="Product name" value="" />
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
+                                <!--end description-->
+                            </div>
+                            <!--end product name input-->
+
+                            <!--product english description input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="required form-label">English Description</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <textarea class="form-control" name="english_description" placeholder="english description" aria-label="With textarea"></textarea>
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">Set description in english for the product .</div>
+                                <!--end description-->
+                            </div>
+                            <!--end product english description input-->
+
+
+
+
+
+
+                            <!--begin::Input group-->
+                            <div>
+                                <!--begin::Label-->
 															<label class="form-label">Description</label>
 															<!--end::Label-->
 															<!--begin::Editor-->
@@ -324,22 +349,22 @@
 															<div class="text-muted fs-7">Set a description to the product for better visibility.</div>
 															<!--end::Description-->
 														</div>
-														<!--end::Input group-->
-													</div>
-													<!--end::Card header-->
-												</div>
-												<!--end::General options-->
-												<!--begin::Media-->
-												<div class="card card-flush py-4">
-													<!--begin::Card header-->
-													<div class="card-header">
-														<div class="card-title">
-															<h2>Media</h2>
-														</div>
-													</div>
-													<!--end::Card header-->
-													<!--begin::Card body-->
-													<div class="card-body pt-0">
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Card header-->
+                    </div>
+                    <!--end::General options-->
+                    <!--begin::Media-->
+                    <div class="card card-flush py-4">
+                        <!--begin::Card header-->
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Media</h2>
+                            </div>
+                        </div>
+                        <!--end::Card header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-0">
 														<!--begin::Input group-->
 														<div class="fv-row mb-2">
 															<!--begin::Dropzone-->
