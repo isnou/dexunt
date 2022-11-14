@@ -227,88 +227,85 @@
 
     <form action="{% url 'add-product' 'en_save_general_product_information' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
         {% csrf_token %}
-								<!--begin::Aside column-->
+        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+            <!--add product form card-->
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="kt_ecommerce_add_product_general">
+                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                        <!--add product general information-->
+                        <div class="card card-flush py-4">
+                            <!--block title-->
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>General Product Information</h2>
+                                </div>
+                            </div>
+                            <!--end block title-->
 
-								<!--end::Aside column-->
-								<!--begin::Main column-->
-								<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-									<!--add product form card-->
-									<div class="tab-content">
-										<div class="tab-pane fade active show" id="kt_ecommerce_add_product_general">
-											<div class="d-flex flex-column gap-7 gap-lg-10">
-												<!--add product general information-->
-												<div class="card card-flush py-4">
-													<!--block title-->
-													<div class="card-header">
-														<div class="card-title">
-															<h2>General Product Information</h2>
-														</div>
-													</div>
-													<!--end block title-->
+                            <!--block body-->
+                            <div class="card-body pt-0">
+                                <!--product name input-->
+                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                    <!--label-->
+                                    <label class="required form-label">Product Name</label>
+                                    <!--end label-->
 
-													<!--block body-->
-													<div class="card-body pt-0">
-														<!--product name input-->
-														<div class="mb-10 fv-row fv-plugins-icon-container">
-															<!--label-->
-															<label class="required form-label">Product Name</label>
-															<!--end label-->
+                                    <!--input-->
+                                    <input type="text" name="product_name" class="required form-control mb-2" placeholder="Product name" value="">
+                                    <!--end input-->
 
-															<!--input-->
-															<input type="text" name="product_name" class="form-control mb-2" placeholder="Product name" value="">
-															<!--end input-->
+                                    <!--description-->
+                                    <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
+                                    <!--end description-->
+                                    <div class="fv-plugins-message-container invalid-feedback">
+                                        please complete form
+                                    </div>
+                                </div>
+                                <!--end product name input-->
 
-															<!--description-->
-															<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
-															<!--end description-->
-														<div class="fv-plugins-message-container invalid-feedback"></div></div>
-														<!--end product name input-->
+                                <!--product quantity & price input-->
+                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                    <div class="d-flex gap-3">
+                                        <!--input-->
+                                        <input type="number" name="quantity" class="form-control" placeholder="put the product quantity" value="">
+                                        <!--end input-->
 
-                                                        <!--product quantity & price input-->
-                                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                        <!--input-->
+                                        <div class="input-group">
+                                            <input type="number" name="buy_price" class="form-control" placeholder="put the product coast">
+                                            <span class="input-group-text">Dinars</span>
+                                        </div>
+                                        <!--end input-->
+                                    </div>
+                                    <div class="fv-plugins-message-container invalid-feedback">
 
-                                                            <div class="d-flex gap-3">
-                                                                <!--input-->
-                                                                <input type="number" name="quantity" class="form-control" placeholder="put the product quantity" value="">
-                                                                <!--end input-->
+                                    </div>
+                                </div>
+                                <!--end product quantity & price input-->
+                            </div>
+                            <!--end block body-->
+                        </div>
+                        <!--end add product general information-->
+                    </div>
+                </div>
+            </div>
+            <!--end add product form card-->
 
-                                                                <!--input-->
-                                                                <div class="input-group">
-                                                                    <input type="number" name="buy_price" class="form-control" placeholder="put the product coast">
-                                                                    <span class="input-group-text">Dinars</span>
-                                                                </div>
-                                                                <!--end input-->
-                                                            </div>
+            <!--add product buttons card-->
+            <div class="d-flex justify-content-end">
+                <!--cancel button-->
+                <a href="products.html" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                <!--end cancel button-->
 
-														<div class="fv-plugins-message-container invalid-feedback"></div></div>
-                                                        <!--end product quantity & price input-->
-													</div>
-													<!--end block body-->
-												</div>
-												<!--end add product general information-->
-											</div>
-										</div>
-									</div>
-									<!--end add product form card-->
-
-									<!--add product buttons card-->
-									<div class="d-flex justify-content-end">
-										<!--cancel button-->
-										<a href="products.html" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
-										<!--end cancel button-->
-
-										<!--save button-->
-										<button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-											<span class="indicator-label">Save Changes</span>
-											<span class="indicator-progress">Please wait...
-											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-										</button>
-										<!--end save button-->
-									</div>
-									<!--end add product buttons card-->
-								</div>
-								<!--end::Main column-->
-							</form>
+                <!--save button-->
+                <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                    <span class="indicator-label">Save Changes</span>
+                </button>
+                <!--end save button-->
+            </div>
+            <!--end add product buttons card-->
+        </div>
+    </form>
     <!--end add product form-->
 
     {% endif %}
