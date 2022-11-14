@@ -21,3 +21,14 @@ def inventory(request, lang):
         'lang': lang,
     }
     return render(request, url, context)
+
+
+def add_product(request, lang):
+    if lang == "ar":
+        url = "rtl/shop-manager/add-product.html"
+    else:
+        url = "ltr/shop-manager/add-product.html"
+    context = {
+        'lang': lang,
+    }
+    return render(request, url, context)
