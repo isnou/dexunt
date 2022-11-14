@@ -24,12 +24,12 @@ def inventory(request, lang):
     return render(request, url, context)
 
 
-def add_product(request, lang):
-    if lang == "ar":
+def add_product(request, action):
+    if action == "ar":
         url = "rtl/shop-manager/add-product.html"
-    elif lang == 'save_general_product_information':
+    elif action == 'save_general_product_information':
         url = "ltr/shop-manager/inventory.html"
-        lang = "en"
+        action = "en"
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
             buy_price = request.POST.get('buy_price', False)
@@ -43,6 +43,6 @@ def add_product(request, lang):
         url = "ltr/shop-manager/add-product.html"
 
     context = {
-        'lang': lang,
+        'lang': action,
     }
     return render(request, url, context)
