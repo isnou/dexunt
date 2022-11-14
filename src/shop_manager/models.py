@@ -19,21 +19,23 @@ class ProductAlbum(models.Model):
 
 
 class InventoryProduct(models.Model):
+    # --------------------------------- media --------------------------------------------------
+    thumbnail = models.ImageField(upload_to='shop-manager/product/image/')
+    album = models.ManyToManyField(ProductAlbum, blank=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=200, unique=True, null=True)
-    model = models.CharField(max_length=200, blank=True, null=True)
     product_name = models.CharField(max_length=200, blank=True, null=True)
+    quantity = models.IntegerField(default=0)
+    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     # --------------------------------- product details ----------------------------------------
+    model = models.CharField(max_length=200, blank=True, null=True)
     brand = models.CharField(max_length=150, blank=True, null=True)
     color = models.CharField(max_length=60, blank=True, null=True)
     dimensions = models.CharField(max_length=60, blank=True, null=True)
     weight = models.CharField(max_length=60, blank=True, null=True)
     # --------------------------------- inventory information ----------------------------------
-    quantity = models.IntegerField(default=0)
-    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     en_features = models.TextField(max_length=800, blank=True)
     en_description = models.TextField(max_length=800, blank=True)
-    album = models.ManyToManyField(ProductAlbum, blank=True)
     # --------------------------------- translation --------------------------------------------
     fr_features = models.TextField(max_length=800, blank=True)
     fr_description = models.TextField(max_length=800, blank=True)

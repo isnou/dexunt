@@ -219,8 +219,7 @@
 <!------------------------------- add product ---------------------------------------------->
 <!-- english & frensh version -->
 
-<!--product_name brand color dimensions weight quantity buy_price en_features en_description
-    album fr_features fr_description ar_features ar_description-->
+
 {% block content %}
 <div class="container-xxl" id="kt_content_container">
     {% if lang == 'en' %}
@@ -297,6 +296,7 @@
                             </div>
                         </div>
                         <!--end product general inputs title-->
+
                         <!--product general inputs body-->
                         <div class="card-body pt-0">
                             <!--product name input-->
@@ -314,6 +314,157 @@
                                 <!--end description-->
                             </div>
                             <!--end product name input-->
+
+                            <!--product quantity input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="required form-label">Quantity</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <input type="number" name="quantity" class="form-control mb-2" placeholder="Quantity" value="">
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">Enter the product quantity.</div>
+                                <!--end description-->
+                            </div>
+                            <!--end product quantity input-->
+
+                            <!--product price input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="required form-label">Buy Price</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <input type="number" name="buy_price" class="form-control mb-2" placeholder="Buy Price" value="">
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">Enter the buy price.</div>
+                                <!--end description-->
+                            </div>
+                            <!--end product price input-->
+                        </div>
+                        <!--end product general inputs body-->
+                    </div>
+                    <!--end product general inputs-->
+
+					<!--media inputs-->
+                    <div class="card card-flush py-4">
+						<!--begin::Card header-->
+						<div class="card-header">
+							<div class="card-title">
+								<h2>Media</h2>
+							</div>
+						</div>
+						<!--end::Card header-->
+						<!--begin::Card body-->
+						<div class="card-body pt-0">
+							<!--begin::Input group-->
+							<div class="fv-row mb-2">
+								<!--begin::Dropzone-->
+								<div class="dropzone" id="kt_ecommerce_add_product_media">
+									<!--begin::Message-->
+									<div class="dz-message needsclick">
+										<!--begin::Icon-->
+										<i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
+										<!--end::Icon-->
+										<!--begin::Info-->
+										<div class="ms-4">
+											<h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or click to upload.</h3>
+											<span class="fs-7 fw-semibold text-gray-400">Upload up to 10 files</span>
+										</div>
+										<!--end::Info-->
+									</div>
+								</div>
+								<!--end::Dropzone-->
+							</div>
+							<!--end::Input group-->
+							<!--begin::Description-->
+							<div class="text-muted fs-7">Set the product media gallery.</div>
+							<!--end::Description-->
+						</div>
+						<!--end::Card header-->
+					</div>
+					<!--end media inputs-->
+
+					<!--product details inputs-->
+                    <div class="card card-flush py-4">
+                        <!--product general inputs title-->
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>General</h2>
+                            </div>
+                        </div>
+                        <!--end product general inputs title-->
+
+                        <!--product general inputs body-->
+                        <div class="card-body pt-0">
+                            <!--brand input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="form-label">Brand</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <input type="text" name="brand" class="form-control mb-2" placeholder="brand" value="" />
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">Product brand.</div>
+                                <!--end description-->
+                            </div>
+                            <!--end brand input-->
+
+                            <!--color input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="form-label">Color</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <input type="text" name="color" class="form-control mb-2" placeholder="color" value="" />
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">Product color.</div>
+                                <!--end description-->
+                            </div>
+                            <!--end color input-->
+
+                            <!--dimensions input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="form-label">Dimensions</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <input type="text" name="dimensions" class="form-control mb-2" placeholder="dimensions" value="" />
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">Dimensions can be a shoe size or clothing size .</div>
+                                <!--end description-->
+                            </div>
+                            <!--end dimensions input-->
+
+                            <!--product weight input-->
+                            <div class="mb-10 fv-row">
+                                <!--Label-->
+                                <label class="form-label">Weight</label>
+                                <!--end label-->
+
+                                <!--input-->
+                                <input type="number" name="weight" class="form-control mb-2" placeholder="Weight" value="">
+                                <!--end input-->
+
+                                <!--description-->
+                                <div class="text-muted fs-7">Enter the product weight.</div>
+                                <!--end description-->
+                            </div>
+                            <!--end product weight input-->
 
                             <!--product english description input-->
                             <div class="mb-10 fv-row">
@@ -333,47 +484,16 @@
                         </div>
                         <!--end product general inputs body-->
                     </div>
-                    <!--end product general inputs-->
+                    <!--end product details inputs-->
 
-                    <!--begin::Media-->
-                    <div class="card card-flush py-4">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2>Media</h2>
-                            </div>
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pt-0">
-														<!--begin::Input group-->
-														<div class="fv-row mb-2">
-															<!--begin::Dropzone-->
-															<div class="dropzone" id="kt_ecommerce_add_product_media">
-																<!--begin::Message-->
-																<div class="dz-message needsclick">
-																	<!--begin::Icon-->
-																	<i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
-																	<!--end::Icon-->
-																	<!--begin::Info-->
-																	<div class="ms-4">
-																		<h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or click to upload.</h3>
-																		<span class="fs-7 fw-semibold text-gray-400">Upload up to 10 files</span>
-																	</div>
-																	<!--end::Info-->
-																</div>
-															</div>
-															<!--end::Dropzone-->
-														</div>
-														<!--end::Input group-->
-														<!--begin::Description-->
-														<div class="text-muted fs-7">Set the product media gallery.</div>
-														<!--end::Description-->
-													</div>
-													<!--end::Card header-->
-												</div>
-												<!--end::Media-->
-												<!--begin::Pricing-->
+
+                    <!--(product_name) (quantity) (buy_price)
+                    (brand) (color) (dimensions) (weight) en_features en_description
+                    fr_features fr_description ar_features ar_description-->
+
+
+
+					<!--begin::Pricing-->
 												<div class="card card-flush py-4">
 													<!--begin::Card header-->
 													<div class="card-header">
