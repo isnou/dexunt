@@ -27,7 +27,7 @@ def inventory(request, lang):
 def add_product(request, action):
     if action == "ar":
         url = "rtl/shop-manager/add-product.html"
-    elif action == 'save_general_product_information':
+    elif action == 'en_save_general_product_information':
         url = "ltr/shop-manager/inventory.html"
         action = "en"
         if request.method == 'POST':
