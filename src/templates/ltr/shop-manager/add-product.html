@@ -515,7 +515,75 @@
                             </div>
                         </div>
                         <div class="card-body pt-0">
-                            
+                            <div class="fv-row mb-10">
+                                <label class="fs-6 fw-semibold mb-2">Discount Type
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Select a discount type that will be applied to this product"></i></label>
+                                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
+                                    <div class="col">
+                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary active d-flex text-start p-6" data-kt-button="true">
+                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                <input class="form-check-input" type="radio" name="discount_option" value="1" checked="checked" />
+                                            </span>
+                                            <span class="ms-5">
+                                                <span class="fs-4 fw-bold text-gray-800 d-block">No Discount</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="col">
+                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex text-start p-6" data-kt-button="true">
+                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                <input class="form-check-input" type="radio" name="discount_option" value="2" />
+                                            </span>
+                                            <span class="ms-5">
+                                                <span class="fs-4 fw-bold text-gray-800 d-block">Percentage %</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="col">
+                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex text-start p-6" data-kt-button="true">
+                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                <input class="form-check-input" type="radio" name="discount_option" value="3" />
+                                            </span>
+                                            <span class="ms-5">
+                                                <span class="fs-4 fw-bold text-gray-800 d-block">Fixed Price</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-none mb-10 fv-row" id="kt_ecommerce_add_product_discount_percentage">
+                                <label class="form-label">Set Discount Percentage</label>
+                                <div class="d-flex flex-column text-center mb-5">
+                                    <div class="d-flex align-items-start justify-content-center mb-7">
+                                        <span class="fw-bold fs-3x" id="kt_ecommerce_add_product_discount_label">0</span>
+                                        <span class="fw-bold fs-4 mt-1 ms-2">%</span>
+                                    </div>
+                                    <div id="kt_ecommerce_add_product_discount_slider" class="noUi-sm"></div>
+                                </div>
+                                <div class="text-muted fs-7">Set a percentage discount to be applied on this product.</div>
+                            </div>
+                            <div class="d-none mb-10 fv-row" id="kt_ecommerce_add_product_discount_fixed">
+                                <label class="form-label">Fixed Discounted Price</label>
+                                <input type="text" name="dicsounted_price" class="form-control mb-2" placeholder="Discounted price" />
+                                <div class="text-muted fs-7">Set the discounted product price. The product will be reduced at the determined fixed price</div>
+                            </div>
+                            <div class="d-flex flex-wrap gap-5">
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Tax Class</label>
+                                    <select class="form-select mb-2" name="tax" data-control="select2" data-hide-search="true" data-placeholder="Select an option">
+                                        <option></option>
+                                        <option value="0">Tax Free</option>
+                                        <option value="1">Taxable Goods</option>
+                                        <option value="2">Downloadable Product</option>
+                                    </select>
+                                    <div class="text-muted fs-7">Set the product tax class.</div>
+                                </div>
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="form-label">VAT Amount (%)</label>
+                                    <input type="text" class="form-control mb-2" value="" />
+                                    <div class="text-muted fs-7">Set the product VAT about.</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
