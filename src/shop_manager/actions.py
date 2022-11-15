@@ -8,11 +8,18 @@ def add_new_product(request, action):
     elif action == 'en_save_general_product_information':
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
+        prog = 0
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
             buy_price = request.POST.get('buy_price', False)
+            if buy_price:
+                prog += 1
             quantity = request.POST.get('quantity', False)
+            if quantity:
+                prog += 1
             thumb = request.FILES.get('thumb', False)
+            if thumb:
+                prog += 1
             upc = request.POST.get('upc', False)
             if upc != 'NOBARCODE':
                 new_product = InventoryProduct(product_name=product_name,
@@ -21,6 +28,7 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
+                new_product.profile += prog + 1
                 new_product.save()
             else:
                 new_product = InventoryProduct(product_name=product_name,
@@ -28,6 +36,7 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
+                new_product.profile += prog
                 new_product.save()
     else:
         url = "ltr/shop-manager/add-product.html"
