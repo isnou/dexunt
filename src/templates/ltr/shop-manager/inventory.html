@@ -303,22 +303,16 @@
                     <!--profile-->
                     <td class="text-end pe-0">
                         <div class="d-flex flex-column w-80 me-2 mt-2">
-
-
-
                             <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                                 {% if product.profile < 5 %}
-                                <span class="fw-semibold fs-6 text-gray-400">add more information </span>
+                                <span class="fw-semibold fs-6 text-gray-400">need more information </span>
                                 {% elif product.profile < 10 %}
-                                <span class="fw-semibold fs-6 text-gray-400">add features </span>
+                                <span class="fw-semibold fs-6 text-gray-400">need features </span>
                                 {% elif product.profile == 10 %}
                                 <span class="fw-semibold fs-6 text-gray-400">profile complete </span>
                                 {% endif %}
-
                                 <span class="fw-bold fs-6">{{product.profile|mul:10}}%</span>
                             </div>
-
-
                             <div class="progress bg-light-warning w-100 h-5px">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: {{product.profile|mul:10}}%"></div>
                             </div>
