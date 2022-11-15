@@ -6,7 +6,7 @@ class ProductAlbum(models.Model):
     # --------------------------------- picture types ------------------------------------------
     file_name = models.CharField(max_length=500, blank=True, default='product-image')
     # --------------------------------- picture location ---------------------------------------
-    picture = models.ImageField(upload_to='shop-manager/product/image')
+    picture = models.ImageField(upload_to='shop-manager/product/album')
 
     def __str__(self):
         return self.file_name
@@ -64,6 +64,7 @@ class InventoryProduct(models.Model):
     # --------------------------------- product identification ---------------------------------
     product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
+    thumb = models.ImageField(upload_to='shop-manager/product/thumb')
     album = models.ManyToManyField(ProductAlbum, blank=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
@@ -86,6 +87,8 @@ class InventoryProduct(models.Model):
 class ShopProduct(models.Model):
     # --------------------------------- product identification ---------------------------------
     product_name = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- media --------------------------------------------------
+    thumb = models.ImageField(upload_to='shop-manager/product/thumb')
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
     products = models.ManyToManyField(InventoryProduct, blank=True)
