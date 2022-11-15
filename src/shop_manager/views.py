@@ -7,7 +7,7 @@ def manager_dashboard(request, action):
         lang = "ar"
         url = "rtl/shop-manager/dashboard.html"
     else:
-        lang = "ar"
+        lang = "en"
         url = "ltr/shop-manager/dashboard.html"
     context = {
         'lang': lang,
