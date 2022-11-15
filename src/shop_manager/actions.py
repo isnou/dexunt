@@ -26,6 +26,7 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
+                new_product.sku = serial_number_generator(4).upper()
                 new_product.profile += prog + 1
                 new_product.save()
             else:
@@ -34,6 +35,7 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
+                new_product.sku = serial_number_generator(4).upper()
                 new_product.profile += prog
                 new_product.save()
     else:
@@ -44,3 +46,9 @@ def add_new_product(request, action):
         'lang': lang,
     }
     return result
+
+
+def serial_number_generator(length):
+    letters_and_digits = string.ascii_letters + string.digits
+    result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
+    return result_str
