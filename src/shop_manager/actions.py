@@ -60,8 +60,8 @@ def edit(request, action, sku):
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
         prog = 0
-        product_to_edit.delete()
         if request.method == 'POST':
+            product_to_edit.delete()
             product_name = request.POST.get('product_name', False)
             buy_price = int(request.POST.get('buy_price', False))
             if buy_price > 0:
