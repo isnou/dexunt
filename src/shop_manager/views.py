@@ -39,6 +39,17 @@ def add_product(request, action):
     return render(request, url, context)
 
 
+def edit_product(request, action, sku):
+    result = actions.edit(request, action, sku)
+    lang = result.get('lang')
+    url = result.get('url')
+
+    context = {
+        'lang': lang,
+    }
+    return render(request, url, context)
+
+
 def delete_product(request, action, sku):
     result = actions.delete(request, action, sku)
     lang = result.get('lang')

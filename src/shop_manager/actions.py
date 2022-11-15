@@ -50,6 +50,26 @@ def add_new_product(request, action):
     return result
 
 
+def edit(request, action, sku):
+    all_products = InventoryProduct.objects.all()
+    product_to_edit = all_products.get(sku=sku)
+    if action == "en_product_edit":
+        url = "ltr/shop-manager/edit-product.html"
+        lang = "en"
+    elif action == 'en_save_product_edit':
+        url = "ltr/shop-manager/inventory.html"
+        lang = "en"
+    else:
+        url = "ltr/shop-manager/inventory.html"
+        lang = "en"
+    result = {
+        'url': url,
+        'lang': lang,
+        'product_to_edit': product_to_edit
+    }
+    return result
+
+
 def delete(request, action, sku):
     if action == "ar_product_delete":
         url = "rtl/shop-manager/inventory.html"
