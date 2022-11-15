@@ -250,6 +250,7 @@
         <div class="card-body pt-0">
             <!--table-->
             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_products_table">
+                {% if inventory_product_count > 0 %}
                 <!--table head-->
                 <thead>
                 <!--table row-->
@@ -385,6 +386,23 @@
                 {% endfor %}
                 </tbody>
                 <!--end table body-->
+                {% else %}
+                <!--table head-->
+                <thead>
+                <!--table row-->
+                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                    To start click on add products
+                </tr>
+                <!--end table row-->
+                </thead>
+                <!--end table head-->
+
+                <!--begin table body-->
+                <tbody class="fw-semibold text-gray-600">
+                    No registered product
+                </tbody>
+                <!--end table body-->
+                {% endif %}
             </table>
             <!--end table-->
         </div>
