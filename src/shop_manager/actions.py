@@ -11,11 +11,11 @@ def add_new_product(request, action):
         prog = 0
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
-            buy_price = request.POST.get('buy_price', False)
-            if int(buy_price) > 0:
+            buy_price = int(request.POST.get('buy_price', False))
+            if buy_price > 0:
                 prog += 1
-            quantity = request.POST.get('quantity', False)
-            if int(quantity) > 0:
+            quantity = int(request.POST.get('quantity', False))
+            if quantity > 0:
                 prog += 1
             thumb = request.FILES.get('thumb', False)
             if thumb:
