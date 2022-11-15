@@ -64,7 +64,7 @@ def edit(request, action, sku):
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
             buy_price = request.POST.get('buy_price', False)
-            if buy_price > 0:
+            if int(buy_price) > 0:
                 prog += 1
             quantity = int(request.POST.get('quantity', False))
             thumb = request.FILES.get('thumb', False)
@@ -74,7 +74,7 @@ def edit(request, action, sku):
             if upc != 'NOBARCODE':
                 new_product = InventoryProduct(product_name=product_name,
                                                upc=upc,
-                                               buy_price=buy_price,
+                                               buy_price=int(buy_price),
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
