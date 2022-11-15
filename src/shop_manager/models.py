@@ -4,17 +4,12 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class ProductAlbum(models.Model):
     # --------------------------------- picture types ------------------------------------------
-    Type = (
-        ('Thumb', 'Thumb'),
-        ('Album', 'Album'),
-    )
-    type = models.CharField(max_length=50, choices=Type, blank=True, null=True)
     file_name = models.CharField(max_length=500, blank=True, default='product-image')
     # --------------------------------- picture location ---------------------------------------
     picture = models.ImageField(upload_to='shop-manager/product/image')
 
     def __str__(self):
-        return self.type
+        return self.file_name
 
 
 class InventoryProductFeatures(models.Model):
