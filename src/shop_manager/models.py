@@ -14,7 +14,7 @@ class ProductAlbum(models.Model):
     picture = models.ImageField(upload_to='shop-manager/product/image/%Y/%m/%d/')
 
     def __str__(self):
-        return self.picture
+        return self.type
 
 
 class InventoryProductFeatures(models.Model):
