@@ -25,8 +25,9 @@ def inventory(request, lang):
 
 
 def add_product(request, action):
-    url = add_product_actions(request, action).get('url')
-    lang = add_product_actions(request, action).get('lang')
+    result = add_product_actions(request, action)
+    lang = result.get('lang')
+    url = result.get('url')
 
     context = {
         'lang': lang,
@@ -53,7 +54,8 @@ def add_product_actions(request, action):
     else:
         url = "ltr/shop-manager/add-product.html"
         lang = "en"
-    return {
+    result = {
         'url': url,
         'lang': lang,
     }
+    return result
