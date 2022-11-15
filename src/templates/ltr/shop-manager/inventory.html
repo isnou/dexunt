@@ -286,9 +286,7 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Thumbnail-->
                             <a href="edit-product.html" class="symbol symbol-50px">
-                                <span class="symbol-label" style="background-image:url({% static 'manager/media/stock/ecommerce/1.gif' %});"></span>
-                                
-                                <img src="http://94.176.238.2/media/{{ product.thumb }}" alt="IMG-PRODUCT">
+                                <span class="symbol-label" style="background-image:url({% static 'manager/media/stock/ecommerce/{{product.sku}}.gif' %});"></span>
                             </a>
                             <!--end::Thumbnail-->
                             <div class="ms-5">
