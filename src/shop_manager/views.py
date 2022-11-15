@@ -43,9 +43,11 @@ def edit_product(request, action, sku):
     result = actions.edit(request, action, sku)
     lang = result.get('lang')
     url = result.get('url')
+    product_to_edit = result.get('product_to_edit')
 
     context = {
         'lang': lang,
+        'product_to_edit': product_to_edit,
     }
     return render(request, url, context)
 
