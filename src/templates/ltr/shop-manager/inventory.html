@@ -309,7 +309,7 @@
                     <!--rate-->
                     <td class="text-end pe-0">
                         <div class="rating justify-content-end">
-                            {% set stars=5 %}
+                            {% with stars=5 %}
                             {% for fill in stars %}
                             {% if fill < product.rate %}
                             <div class="rating-label checked">
