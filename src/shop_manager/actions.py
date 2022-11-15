@@ -1,4 +1,5 @@
 from .models import InventoryProduct
+import string
 
 
 def add_new_product(request, action):
