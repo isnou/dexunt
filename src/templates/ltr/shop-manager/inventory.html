@@ -234,6 +234,10 @@
                     <input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Product" />
                 </div>
                 <!--end search-->
+                {% else %}
+                <div class="d-flex align-items-center position-relative my-1">
+                    No registered products ,to start click on add products
+                </div>
                 {% endif %}
             </div>
             <!--end header left-->
@@ -388,10 +392,6 @@
                 {% endfor %}
                 </tbody>
                 <!--end table body-->
-                {% else %}
-                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                    No registered products ,to start click on add products
-                </tr>
                 {% endif %}
             </table>
             <!--end table-->
