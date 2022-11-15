@@ -2,5 +2,10 @@ from .models import InventoryProduct
 
 
 def shop_manager_content(request):
-    products = InventoryProduct.objects.all()
-    return products
+    try:
+        products = InventoryProduct.objects.all()
+    except InventoryProduct.DoesNotExist:
+        raise Http404("No products")
+    return {
+        'products': products,
+    }
