@@ -54,7 +54,7 @@ def edit(request, action, sku):
     all_products = InventoryProduct.objects.all()
     product_to_edit = all_products.get(sku=sku)
     if action == "en_product_edit":
-        url = "ltr/shop-manager/edit-product.html"
+        url = "ltr/shop-manager/inventory.html"
         lang = "en"
     elif action == 'en_save_product_edit':
         url = "ltr/shop-manager/inventory.html"
