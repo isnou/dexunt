@@ -4,9 +4,9 @@ from .models import InventoryProduct
 
 
 def add_new_product(request, action):
-    if action == "ar_save_general_product_information":
-        url = "rtl/shop-manager/inventory.html"
-        lang = "ar"
+    if action == "en_add_new_product":
+        url = "ltr/shop-manager/add-product.html"
+        lang = "en"
     elif action == 'en_save_general_product_information':
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
