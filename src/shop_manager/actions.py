@@ -15,8 +15,6 @@ def add_new_product(request, action):
             if buy_price > 0:
                 prog += 1
             quantity = int(request.POST.get('quantity', False))
-            if quantity > 0:
-                prog += 1
             thumb = request.FILES.get('thumb', False)
             if thumb:
                 prog += 1
