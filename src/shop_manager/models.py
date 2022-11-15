@@ -71,6 +71,20 @@ class InventoryProduct(models.Model):
     upc = models.CharField(max_length=20, unique=True, null=True)
     quantity = models.IntegerField(default=0)
     buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+    rate = models.IntegerField(
+        default=10,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ]
+    )
+    profile = models.IntegerField(
+        default=10,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ]
+    )
     # --------------------------------- product details ----------------------------------------
     features = models.ManyToManyField(InventoryProductFeatures, blank=True)
 
@@ -93,6 +107,20 @@ class ShopProduct(models.Model):
     sku = models.CharField(max_length=20, unique=True, null=True)
     products = models.ManyToManyField(InventoryProduct, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
+    rate = models.IntegerField(
+        default=10,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ]
+    )
+    profile = models.IntegerField(
+        default=10,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ]
+    )
     # --------------------------------- showcase information -----------------------------------
     sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
