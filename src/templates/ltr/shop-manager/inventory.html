@@ -308,16 +308,17 @@
 
                             <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                                 {% if product.profile < 5 %}
-                                <span class="fw-semibold fs-6 text-gray-400">>add more information </span>
+                                <span class="fw-semibold fs-6 text-gray-400">add more information </span>
                                 {% elif product.profile < 10 %}
                                 <span class="fw-semibold fs-6 text-gray-400">add features </span>
                                 {% elif product.profile == 10 %}
                                 <span class="fw-semibold fs-6 text-gray-400">profile complete </span>
+                                {% endif %}
 
-                                <span class="fw-bold fs-6">{{product.profile|mul:10}}%%</span>
+                                <span class="fw-bold fs-6">{{product.profile|mul:10}}%</span>
                             </div>
 
-                            {% endif %}
+
                             <div class="progress bg-light-warning w-100 h-5px">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: {{product.profile|mul:10}}%"></div>
                             </div>
