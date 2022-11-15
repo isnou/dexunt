@@ -25,9 +25,9 @@ def inventory(request, lang):
 
 
 def add_product(request, action):
-    result = actions.add_product_actions(request, action).result
-    lang = result.lang
-    url = result.url
+    result = actions.add_product_actions(request, action)
+    lang = result.get('lang')
+    url = result.get('url')
 
     context = {
         'lang': lang,
