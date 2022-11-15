@@ -72,7 +72,7 @@ class InventoryProduct(models.Model):
     quantity = models.IntegerField(default=0)
     buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     rate = models.IntegerField(
-        default=10,
+        default=5,
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
@@ -108,7 +108,7 @@ class ShopProduct(models.Model):
     products = models.ManyToManyField(InventoryProduct, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     rate = models.IntegerField(
-        default=10,
+        default=5,
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
