@@ -64,7 +64,7 @@ class InventoryProduct(models.Model):
     # --------------------------------- product identification ---------------------------------
     product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/product/thumb')
+    thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     album = models.ManyToManyField(ProductAlbum, blank=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
@@ -88,7 +88,7 @@ class ShopProduct(models.Model):
     # --------------------------------- product identification ---------------------------------
     product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/product/thumb')
+    thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
     products = models.ManyToManyField(InventoryProduct, blank=True)
