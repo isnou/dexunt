@@ -260,9 +260,9 @@
                         </div>
                     </th>
                     <th class="min-w-200px">Product</th>
+                    <th class="text-end min-w-180px">Profile Progress</th>
                     <th class="text-end min-w-100px">SKU</th>
                     <th class="text-end min-w-180px">Rate</th>
-                    <th class="text-end min-w-180px">Profile Progress</th>
                     <th class="text-end min-w-70px">Qty</th>
                     <th class="text-end min-w-100px">Buy Price</th>
                 </tr>
@@ -300,6 +300,17 @@
                     </td>
                     <!--end product-->
 
+                    <!--profile-->
+                    <td class="text-end pe-0">
+                        <div class="d-flex flex-column w-100 me-2 mt-2">
+                            <span class="text-gray-400 me-2 fw-bolder mb-2">{{product.profile}}%</span>
+                            <div class="progress bg-light-warning w-100 h-5px">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{product.profile}}%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <!--end profile-->
+
                     <!--SKU-->
                     <td class="text-end pe-0">
                         <span class="fw-bold">{{product.sku}}</span>
@@ -331,17 +342,6 @@
                         </div>
                     </td>
                     <!--end rate-->
-
-                    <!--profile-->
-                    <td class="text-end pe-0">
-                        <div class="d-flex flex-column w-100 me-2 mt-2">
-                            <span class="text-gray-400 me-2 fw-bolder mb-2">{{product.profile}}%</span>
-                            <div class="progress bg-light-warning w-100 h-5px">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%"></div>
-                            </div>
-                        </div>
-                    </td>
-                    <!--end profile-->
 
                     <!--quantity-->
                     <td class="text-end pe-0" data-order="46">
