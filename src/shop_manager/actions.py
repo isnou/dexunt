@@ -10,7 +10,6 @@ def add_new_product(request, action):
         lang = "en"
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
-
             buy_price = request.POST.get('buy_price', False)
             quantity = request.POST.get('quantity', False)
             thumb = request.FILES.get('thumb', False)
