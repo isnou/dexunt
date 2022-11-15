@@ -36,7 +36,7 @@ class InventoryProductFeatures(models.Model):
     )
     language = models.CharField(max_length=50, choices=Language, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=3, unique=True, null=True)
+    sku = models.CharField(max_length=20, unique=True, null=True)
     # --------------------------------- feature value ------------------------------------------
     value = models.CharField(max_length=100, unique=True, null=True)
 
@@ -71,7 +71,8 @@ class InventoryProduct(models.Model):
     # --------------------------------- media --------------------------------------------------
     album = models.ManyToManyField(ProductAlbum, blank=True)
     # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=8, unique=True, null=True)
+    sku = models.CharField(max_length=20, unique=True, null=True)
+    upc = models.CharField(max_length=20, unique=True, null=True)
     quantity = models.IntegerField(default=0)
     buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     # --------------------------------- product details ----------------------------------------
