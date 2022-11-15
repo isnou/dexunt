@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .models import InventoryProduct
 from .actions import *
 
 

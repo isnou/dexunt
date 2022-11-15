@@ -1,3 +1,4 @@
+from .models import InventoryProduct
 
 
 def add_product_actions(request, action):
