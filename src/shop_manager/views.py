@@ -24,6 +24,7 @@ def inventory(request, action):
         url = "ltr/shop-manager/inventory.html"
     context = {
         'lang': lang,
+        'fool': 5,
     }
     return render(request, url, context)
 

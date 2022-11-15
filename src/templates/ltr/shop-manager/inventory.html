@@ -309,8 +309,7 @@
                     <!--rate-->
                     <td class="text-end pe-0">
                         <div class="rating justify-content-end">
-                            {% with stars=5 %}
-                            {% for fill in stars %}
+                            {% for fill in fool %}
                             {% if fill < product.rate %}
                             <div class="rating-label checked">
                                 <span class="svg-icon svg-icon-2">
@@ -329,7 +328,6 @@
                             </div>
                             {% endif %}
                             {% endfor %}
-                            {% endwith %}
                         </div>
                     </td>
                     <!--end rate-->
