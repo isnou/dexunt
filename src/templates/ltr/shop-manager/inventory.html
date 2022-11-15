@@ -334,7 +334,12 @@
 
                     <!--profile-->
                     <td class="text-end pe-0">
-                        <span class="fw-bold"></span>
+                        <div class="d-flex flex-column w-100 me-2 mt-2">
+                            <span class="text-gray-400 me-2 fw-bolder mb-2">{{product.profile}}%</span>
+                            <div class="progress bg-light-warning w-100 h-5px">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
                     </td>
                     <!--end profile-->
 
