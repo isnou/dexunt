@@ -260,9 +260,9 @@
                         </div>
                     </th>
                     <th class="min-w-200px">Product</th>
-                    <th class="min-w-200px">Rate</th>
-                    <th class="min-w-200px">Profile</th>
                     <th class="text-end min-w-100px">SKU</th>
+                    <th class="text-end min-w-180px">Rate</th>
+                    <th class="text-end min-w-180px">Profile</th>
                     <th class="text-end min-w-70px">Qty</th>
                     <th class="text-end min-w-100px">Buy Price</th>
                 </tr>
@@ -300,23 +300,39 @@
                     </td>
                     <!--end product-->
 
-                    <!--rate-->
-                    <td class="text-end pe-0">
-                        <span class="fw-bold">{{product.sku}}</span>
-                    </td>
-                    <!--end rate-->
-
-                    <!--profile-->
-                    <td class="text-end pe-0">
-                        <span class="fw-bold">{{product.sku}}</span>
-                    </td>
-                    <!--end profile-->
-
                     <!--SKU-->
                     <td class="text-end pe-0">
                         <span class="fw-bold">{{product.sku}}</span>
                     </td>
                     <!--end SKU-->
+
+                    <!--rate-->
+                    <td class="text-end pe-0">
+                        <div class="rating">
+                            <div class="rating-label checked">
+                                <span class="svg-icon"><svg>....</svg></span>
+                            </div>
+                            <div class="rating-label checked">
+                                <span class="svg-icon"><svg>....</svg></span>
+                            </div>
+                            <div class="rating-label checked">
+                                <span class="svg-icon"><svg>....</svg></span>
+                            </div>
+                            <div class="rating-label">
+                                <span class="svg-icon"><svg>....</svg></span>
+                            </div>
+                            <div class="rating-label">
+                                <span class="svg-icon"><svg>....</svg></span>
+                            </div>
+                        </div>
+                    </td>
+                    <!--end rate-->
+
+                    <!--profile-->
+                    <td class="text-end pe-0">
+                        <span class="fw-bold"></span>
+                    </td>
+                    <!--end profile-->
 
                     <!--quantity-->
                     <td class="text-end pe-0" data-order="46">
