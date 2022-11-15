@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .actions import *
+from . import actions
 
 
 def manager_dashboard(request, lang):
@@ -25,7 +25,7 @@ def inventory(request, lang):
 
 
 def add_product(request, action):
-    result = add_product_actions(request, action)
+    result = actions.add_product_actions(request, action)
     lang = result.lang
     url = result.url
 
