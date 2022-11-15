@@ -4,8 +4,8 @@ from .models import InventoryProduct
 
 
 def add_new_product(request, action):
-    if action == "ar":
-        url = "rtl/shop-manager/add-product.html"
+    if action == "ar_save_general_product_information":
+        url = "rtl/shop-manager/inventory.html"
         lang = "ar"
     elif action == 'en_save_general_product_information':
         url = "ltr/shop-manager/inventory.html"
@@ -28,7 +28,7 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
-                new_product.sku = serial_number_generator(4).upper()
+                new_product.sku = serial_number_generator(9).upper()
                 new_product.profile += prog + 1
                 new_product.save()
             else:
@@ -37,11 +37,31 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
-                new_product.sku = serial_number_generator(4).upper()
+                new_product.sku = serial_number_generator(9).upper()
                 new_product.profile += prog
                 new_product.save()
     else:
-        url = "ltr/shop-manager/add-product.html"
+        url = "ltr/shop-manager/inventory.html"
+        lang = "en"
+    result = {
+        'url': url,
+        'lang': lang,
+    }
+    return result
+
+
+def delete(request, action, sku):
+    if action == "ar_product_delete":
+        url = "rtl/shop-manager/inventory.html"
+        lang = "ar"
+    elif action == 'en_product_delete':
+        url = "ltr/shop-manager/inventory.html"
+        lang = "en"
+        all_products = InventoryProduct.objects.all()
+        selected_product = all_products.get(sku=sku)
+        selected_product.delete()
+    else:
+        url = "ltr/shop-manager/inventory.html"
         lang = "en"
     result = {
         'url': url,

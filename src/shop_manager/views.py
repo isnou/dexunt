@@ -3,7 +3,7 @@ from . import actions
 
 
 def manager_dashboard(request, action):
-    if action == "ar":
+    if action == "ar_dashboard":
         lang = "ar"
         url = "rtl/shop-manager/dashboard.html"
     else:
@@ -16,7 +16,7 @@ def manager_dashboard(request, action):
 
 
 def inventory(request, action):
-    if action == "ar":
+    if action == "ar_product_list_show":
         lang = "ar"
         url = "rtl/shop-manager/inventory.html"
     else:
@@ -30,6 +30,17 @@ def inventory(request, action):
 
 def add_product(request, action):
     result = actions.add_new_product(request, action)
+    lang = result.get('lang')
+    url = result.get('url')
+
+    context = {
+        'lang': lang,
+    }
+    return render(request, url, context)
+
+
+def delete_product(request, action, sku):
+    result = actions.delete(request, action, sku)
     lang = result.get('lang')
     url = result.get('url')
 
