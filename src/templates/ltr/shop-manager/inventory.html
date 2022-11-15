@@ -304,13 +304,12 @@
                     <td class="text-end pe-0">
                         <div class="d-flex flex-column w-80 me-2 mt-2">
                             {% if product.profile < 5 %}
-                            <span class="text-gray-400 me-2 fw-bolder mb-2">add more information</span>
+                            <span class="text-gray-400 me-2 fw-bolder mb-2">add more information {{product.profile|mul:10}}%</span>
                             {% elif product.profile < 10%}
-                            <span class="text-gray-400 me-2 fw-bolder mb-2">add features</span>
+                            <span class="text-gray-400 me-2 fw-bolder mb-2">add features {{product.profile|mul:10}}%</span>
                             {% elif product.profile == 10%}
-                            <span class="text-gray-400 me-2 fw-bolder mb-2">profile complete</span>
+                            <span class="text-gray-400 me-2 fw-bolder mb-2">profile complete {{product.profile|mul:10}}%</span>
                             {% endif %}
-                            <span class="text-gray-400 me-2 fw-bolder mb-2">{{product.profile|mul:10}}%</span>
                             <div class="progress bg-light-warning w-100 h-5px">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: {{product.profile|mul:10}}%"></div>
                             </div>
