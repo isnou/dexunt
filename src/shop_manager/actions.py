@@ -28,7 +28,7 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
-                new_product.sku = serial_number_generator(4) + 'BRET'.upper()
+                new_product.sku = serial_number_generator(4).upper()
                 new_product.profile += prog + 1
                 new_product.save()
             else:
@@ -37,7 +37,7 @@ def add_new_product(request, action):
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
-                new_product.sku = serial_number_generator(4) + 'BRET'.upper()
+                new_product.sku = serial_number_generator(4).upper()
                 new_product.profile += prog
                 new_product.save()
     else:
