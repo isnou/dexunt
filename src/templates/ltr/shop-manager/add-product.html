@@ -236,11 +236,28 @@
                             <!--block title-->
                             <div class="card-header">
                                 <div class="card-title">
-                                    <!--label-->
-                                    <label class="required form-label">Thumbnail</label>
-                                    <!--end label-->
-                                    <!--begin::Image input-->
-                                    <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+
+
+
+                          
+
+
+
+                                    <div class="card card-flush py-4">
+										<!--begin::Card header-->
+										<div class="card-header">
+											<!--begin::Card title-->
+											<div class="card-title">
+												<h2>Product Thumbnail</h2>
+											</div>
+											<!--end::Card title-->
+										</div>
+										<!--end::Card header-->
+
+										<!--begin::Card body-->
+										<div class="card-body text-center pt-0">
+											<!--begin::Image input-->
+                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
      <!--begin::Image preview wrapper-->
      <div class="image-input-wrapper w-125px h-125px"></div>
      <!--end::Image preview wrapper-->
@@ -280,7 +297,16 @@
      </span>
      <!--end::Remove button-->
  </div>
-                                    <!--end::Image input-->
+											<!--end::Image input-->
+											<!--begin::Description-->
+											<div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+											<!--end::Description-->
+										</div>
+										<!--end::Card body-->
+									</div>
+
+
+
                                 </div>
 
                                 <div class="card-title">
