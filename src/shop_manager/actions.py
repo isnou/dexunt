@@ -15,7 +15,7 @@ def add_product_actions(request, action):
             quantity = request.POST.get('quantity', False)
             thumb = request.FILES.get('thumb', False)
             upc = request.POST.get('upc', False)
-            if upc != 'FF':
+            if upc != 'NOBARCODE':
                 new_product = InventoryProduct(product_name=product_name,
                                                upc=upc,
                                                buy_price=buy_price,
