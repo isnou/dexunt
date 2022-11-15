@@ -323,15 +323,10 @@
                 </div>
                 <!--end add product form inputs-->
 
-                <div class="tab-pane fade active show">
-                    <div class="py-5">
-
-
-
-
-
-                        <!--begin::Image input-->
- <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                <!--add product buttons-->
+                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                    <!--begin::Image input-->
+                    <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
      <!--begin::Image preview wrapper-->
      <div class="image-input-wrapper w-125px h-125px"></div>
      <!--end::Image preview wrapper-->
@@ -371,20 +366,9 @@
      </span>
      <!--end::Remove button-->
  </div>
- <!--end::Image input-->
+                    <!--end::Image input-->
 
 
-
-
-
-
-
-
-                    </div>
-                </div>
-
-                <!--add product buttons-->
-                <div class="d-flex justify-content-end" style="padding-top: 50px;">
                     <!--cancel button-->
                     <a href="{% url 'inventory' 'en' %}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
                     <!--end cancel button-->
