@@ -273,6 +273,7 @@
 
                 <!--begin table body-->
                 <tbody class="fw-semibold text-gray-600">
+                {% for product in products %}
                 <!--begin table row-->
                 <tr>
                     <!--checkbox-->
@@ -282,7 +283,7 @@
                         </div>
                     </td>
                     <!--end checkbox-->
-                    <!--begin::Category=-->
+                    <!--category-->
                     <td>
                         <div class="d-flex align-items-center">
                             <!--begin::Thumbnail-->
@@ -292,12 +293,12 @@
                             <!--end::Thumbnail-->
                             <div class="ms-5">
                                 <!--begin::Title-->
-                                <a href="edit-product.html" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">Product 1</a>
+                                <a href="edit-product.html" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{product.product_name}}</a>
                                 <!--end::Title-->
                             </div>
                         </div>
                     </td>
-                    <!--end::Category=-->
+                    <!--end category-->
                     <!--begin::SKU=-->
                     <td class="text-end pe-0">
                         <span class="fw-bold">03751001</span>
@@ -400,6 +401,7 @@
                     <!--end::Action=-->
                 </tr>
                 <!--end::Table row-->
+                {% endfor %}
                 </tbody>
                 <!--end table body-->
             </table>
