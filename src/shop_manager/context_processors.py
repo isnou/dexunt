@@ -8,4 +8,5 @@ def shop_manager_content(request):
         raise Http404("No products")
     return {
         'products': products,
+        'fool': [0, 1, 2, 3, 4],
     }
