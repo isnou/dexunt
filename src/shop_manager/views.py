@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from . import actions
 
 
-def manager_dashboard(request, lang):
-    if lang == "ar":
+def manager_dashboard(request, action):
+    if action == "ar":
+        lang = "ar"
         url = "rtl/shop-manager/dashboard.html"
     else:
+        lang = "ar"
         url = "ltr/shop-manager/dashboard.html"
     context = {
         'lang': lang,
@@ -13,10 +15,12 @@ def manager_dashboard(request, lang):
     return render(request, url, context)
 
 
-def inventory(request, lang):
-    if lang == "ar":
+def inventory(request, action):
+    if action == "ar":
+        lang = "ar"
         url = "rtl/shop-manager/inventory.html"
     else:
+        lang = "en"
         url = "ltr/shop-manager/inventory.html"
     context = {
         'lang': lang,
@@ -25,7 +29,7 @@ def inventory(request, lang):
 
 
 def add_product(request, action):
-    result = actions.add_product_actions(request, action)
+    result = actions.add_new_product(request, action)
     lang = result.get('lang')
     url = result.get('url')
 

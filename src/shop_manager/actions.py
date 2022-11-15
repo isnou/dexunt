@@ -1,7 +1,7 @@
 from .models import InventoryProduct
 
 
-def add_product_actions(request, action):
+def add_new_product(request, action):
     if action == "ar":
         url = "rtl/shop-manager/add-product.html"
         lang = "ar"
