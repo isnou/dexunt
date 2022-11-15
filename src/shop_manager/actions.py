@@ -14,17 +14,22 @@ def add_product_actions(request, action):
             buy_price = request.POST.get('buy_price', False)
             quantity = request.POST.get('quantity', False)
             thumb = request.FILES.get('thumb', False)
-            if request.POST.get('upc', False) != 0:
-                upc = request.POST.get('upc', False)
+            upc = request.POST.get('upc', False)
+            if upc != 0:
+                new_product = InventoryProduct(product_name=product_name,
+                                               upc=upc,
+                                               buy_price=buy_price,
+                                               quantity=quantity,
+                                               thumb=thumb,
+                                               )
+                new_product.save()
             else:
-                upc = None
-            new_product = InventoryProduct(product_name=product_name,
-                                           upc=upc,
-                                           buy_price=buy_price,
-                                           quantity=quantity,
-                                           thumb=thumb,
-                                           )
-            new_product.save()
+                new_product = InventoryProduct(product_name=product_name,
+                                               buy_price=buy_price,
+                                               quantity=quantity,
+                                               thumb=thumb,
+                                               )
+                new_product.save()
     else:
         url = "ltr/shop-manager/add-product.html"
         lang = "en"
