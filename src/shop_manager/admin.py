@@ -3,7 +3,7 @@ from .models import ProductAlbum, InventoryProductFeatures, ShopProductFeatures,
 
 
 class InventoryProductAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'get_album', 'sku', 'quantity', 'buy_price', 'get_features')
+    list_display = ('product_name', 'get_album', 'sku', 'upc', 'quantity', 'buy_price', 'get_features')
 
 
 class ShopProductAdmin(admin.ModelAdmin):
