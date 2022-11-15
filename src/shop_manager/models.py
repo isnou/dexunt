@@ -79,7 +79,7 @@ class InventoryProduct(models.Model):
         ]
     )
     profile = models.IntegerField(
-        default=10,
+        default=1,
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
@@ -115,7 +115,7 @@ class ShopProduct(models.Model):
         ]
     )
     profile = models.IntegerField(
-        default=10,
+        default=1,
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
