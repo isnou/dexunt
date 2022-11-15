@@ -1,5 +1,6 @@
-from .models import InventoryProduct
+import random
 import string
+from .models import InventoryProduct
 
 
 def add_new_product(request, action):
