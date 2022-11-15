@@ -220,6 +220,7 @@
         <div class="card-header align-items-center py-5 gap-2 gap-md-5">
             <!--header left-->
             <div class="card-title">
+                {% if inventory_product_count > 0 %}
                 <!--search-->
                 <div class="d-flex align-items-center position-relative my-1">
                     <!--search logo-->
@@ -233,6 +234,7 @@
                     <input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Product" />
                 </div>
                 <!--end search-->
+                {% endif %}
             </div>
             <!--end header left-->
 
@@ -387,21 +389,9 @@
                 </tbody>
                 <!--end table body-->
                 {% else %}
-                <!--table head-->
-                <thead>
-                <!--table row-->
                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                    To start click on add products
+                    No registered products ,to start click on add products
                 </tr>
-                <!--end table row-->
-                </thead>
-                <!--end table head-->
-
-                <!--begin table body-->
-                <tbody class="fw-semibold text-gray-600">
-                    No registered product
-                </tbody>
-                <!--end table body-->
                 {% endif %}
             </table>
             <!--end table-->
