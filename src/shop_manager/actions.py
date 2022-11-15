@@ -56,9 +56,40 @@ def edit(request, action, sku):
     if action == "en_product_edit":
         url = "ltr/shop-manager/edit-product.html"
         lang = "en"
-    elif action == 'en_save_product_edit':
+    elif action == 'en_product_save':
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
+        prog = 0
+        product_to_edit.delete()
+        if request.method == 'POST':
+            product_name = request.POST.get('product_name', False)
+            buy_price = int(request.POST.get('buy_price', False))
+            if buy_price > 0:
+                prog += 1
+            quantity = int(request.POST.get('quantity', False))
+            thumb = request.FILES.get('thumb', False)
+            if thumb:
+                prog += 1
+            upc = request.POST.get('upc', False)
+            if upc != 'NOBARCODE':
+                new_product = InventoryProduct(product_name=product_name,
+                                               upc=upc,
+                                               buy_price=buy_price,
+                                               quantity=quantity,
+                                               thumb=thumb,
+                                               )
+                new_product.sku = sku
+                new_product.profile += prog + 1
+                new_product.save()
+            else:
+                new_product = InventoryProduct(product_name=product_name,
+                                               buy_price=buy_price,
+                                               quantity=quantity,
+                                               thumb=thumb,
+                                               )
+                new_product.sku = serial_number_generator(9).upper()
+                new_product.profile += prog
+                new_product.save()
     else:
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
