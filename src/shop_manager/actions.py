@@ -13,6 +13,7 @@ def add_product_actions(request, action):
             buy_price = request.POST.get('buy_price', False)
             quantity = request.POST.get('quantity', False)
             new_product = InventoryProduct(product_name=product_name,
+                                           upc=upc,
                                            buy_price=buy_price,
                                            quantity=quantity,
                                            )
