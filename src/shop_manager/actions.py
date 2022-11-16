@@ -25,6 +25,13 @@ def add_new_product(request, action):
                                            )
             if upc:
                 new_product.upc = upc
+            new_product.profile = 1
+            if new_product.upc:
+                new_product.profile += 1
+            if new_product.thumb:
+                new_product.profile += 1
+            if new_product.buy_price > 0:
+                new_product.profile += 1
             new_product.sku = serial_number_generator(9).upper()
             new_product.save()
     else:
@@ -62,6 +69,13 @@ def edit(request, action, sku):
             upc = request.POST.get('upc', False)
             if upc:
                 product_to_edit.upc = upc
+            product_to_edit.profile = 1
+            if product_to_edit.upc:
+                product_to_edit.profile += 1
+            if product_to_edit.thumb:
+                product_to_edit.profile += 1
+            if product_to_edit.buy_price > 0:
+                product_to_edit.profile += 1
         product_to_edit.save()
     else:
         url = "ltr/shop-manager/inventory.html"
