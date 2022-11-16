@@ -378,16 +378,13 @@
                                     {% for feature in features %}
                                     <div class="row mb-7">
                                         <!--begin::Label-->
-										<label class="col-lg-4 fw-semibold text-muted">{{ feature.type }}</label>
+										<label class="col-lg-4 fw-semibold text-muted">{{ feature.language }} : {{ feature.type }}</label>
 										<!--end::Label-->
 										<!--begin::Col-->
 										<div class="col-lg-8">
 											<span class="fw-bold fs-6 text-gray-800">{{ feature.value }}</span>
 										</div>
 										<!--end::Col-->
-                                        <!--begin::Label-->
-										<label class="col-lg-4 fw-semibold text-muted">{{ feature.language }}</label>
-										<!--end::Label-->
                                     </div>
                                     {% endfor %}
 
