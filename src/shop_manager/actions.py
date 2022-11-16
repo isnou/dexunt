@@ -10,38 +10,20 @@ def add_new_product(request, action):
     elif action == 'en_save_general_product_information':
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
-        prog = 0
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
             buy_price = request.POST.get('buy_price', False)
-            if buy_price:
-                prog += 1
-            else:
-                buy_price = 0
             quantity = int(request.POST.get('quantity', False))
             thumb = request.FILES.get('thumb', False)
-            if thumb:
-                prog += 1
             upc = request.POST.get('upc', False)
-            if upc:
-                new_product = InventoryProduct(product_name=product_name,
-                                               upc=upc,
-                                               buy_price=int(buy_price),
-                                               quantity=quantity,
-                                               thumb=thumb,
-                                               )
-                new_product.sku = serial_number_generator(9).upper()
-                new_product.profile += prog + 1
-                new_product.save()
-            else:
-                new_product = InventoryProduct(product_name=product_name,
-                                               buy_price=int(buy_price),
-                                               quantity=quantity,
-                                               thumb=thumb,
-                                               )
-                new_product.sku = serial_number_generator(9).upper()
-                new_product.profile += prog
-                new_product.save()
+            new_product = InventoryProduct(product_name=product_name,
+                                           upc=upc,
+                                           buy_price=int(buy_price),
+                                           quantity=quantity,
+                                           thumb=thumb,
+                                           )
+            new_product.sku = serial_number_generator(9).upper()
+            new_product.save()
     else:
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
@@ -61,21 +43,18 @@ def edit(request, action, sku):
     elif action == 'en_product_save':
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
-        prog = 0
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
             if product_name:
                 product_to_edit.product_name = product_name
             buy_price = request.POST.get('buy_price', False)
             if buy_price:
-                prog += 1
                 product_to_edit.buy_price = int(buy_price)
             quantity = request.POST.get('quantity', False)
             if quantity:
                 product_to_edit.quantity = int(quantity)
             thumb = request.FILES.get('thumb', False)
             if thumb:
-                prog += 1
                 product_to_edit.thumb = thumb
             upc = request.POST.get('upc', False)
             if upc:
