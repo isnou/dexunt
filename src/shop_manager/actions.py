@@ -19,11 +19,12 @@ def add_new_product(request, action):
             thumb = request.FILES.get('thumb', False)
             upc = request.POST.get('upc', False)
             new_product = InventoryProduct(product_name=product_name,
-                                           upc=upc,
                                            buy_price=int(buy_price),
                                            quantity=quantity,
                                            thumb=thumb,
                                            )
+            if upc:
+                new_product.upc = upc
             new_product.sku = serial_number_generator(9).upper()
             new_product.save()
     else:
