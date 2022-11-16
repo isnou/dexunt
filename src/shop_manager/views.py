@@ -39,7 +39,7 @@ def add_product(request, action):
     return render(request, url, context)
 
 
-def show_product(request, action, sku):
+def view_product(request, action, sku):
     result = actions.show(request, action, sku)
     lang = result.get('lang')
     url = result.get('url')
@@ -47,7 +47,7 @@ def show_product(request, action, sku):
 
     context = {
         'lang': lang,
-        'product_to_show': product_to_show,
+        'product_to_view': product_to_show,
     }
     return render(request, url, context)
 
