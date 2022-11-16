@@ -13,7 +13,7 @@ def add_new_product(request, action):
         prog = 0
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
-            buy_price = int(request.POST.get('buy_price', False))
+            buy_price = request.POST.get('buy_price', False)
             if buy_price:
                 prog += 1
             quantity = int(request.POST.get('quantity', False))
