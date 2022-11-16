@@ -63,27 +63,24 @@ def edit(request, action, sku):
         lang = "en"
         prog = 0
         if request.method == 'POST':
-            product_to_edit.product_name = request.POST.get('product_name', False)
-            product_to_edit.buy_price = int(request.POST.get('buy_price', False))
-            if buy_price > 0:
+            product_name = request.POST.get('product_name', False)
+            if product_name:
+                product_to_edit.product_name = product_name
+            buy_price = request.POST.get('buy_price', False)
+            if buy_price:
                 prog += 1
-            product_to_edit.quantity = int(request.POST.get('quantity', False))
-            product_to_edit.thumb = request.FILES.get('thumb', False)
+                product_to_edit.buy_price = buy_price
+            quantity = int(request.POST.get('quantity', False))
+            if quantity:
+                product_to_edit.quantity = quantity
+            thumb = request.FILES.get('thumb', False)
             if thumb:
                 prog += 1
-            product_to_edit.upc = request.POST.get('upc', False)
-            if upc != 'NOBARCODE':
-                new_product.profile += prog + 1
-                new_product.save()
-            else:
-                new_product = InventoryProduct(product_name=product_name,
-                                               buy_price=buy_price,
-                                               quantity=quantity,
-                                               thumb=thumb,
-                                               )
-                new_product.sku = serial_number_generator(9).upper()
-                new_product.profile += prog
-                new_product.save()
+                product_to_edit.thumb = thumb
+            upc = request.POST.get('upc', False)
+            if upc:
+                product_to_edit.upc = upc
+        product_to_edit.save()
     else:
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
