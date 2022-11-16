@@ -26,7 +26,7 @@ def add_new_product(request, action):
             if upc:
                 new_product = InventoryProduct(product_name=product_name,
                                                upc=upc,
-                                               buy_price=buy_price,
+                                               buy_price=int(buy_price),
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
@@ -35,7 +35,7 @@ def add_new_product(request, action):
                 new_product.save()
             else:
                 new_product = InventoryProduct(product_name=product_name,
-                                               buy_price=buy_price,
+                                               buy_price=int(buy_price),
                                                quantity=quantity,
                                                thumb=thumb,
                                                )
@@ -69,10 +69,10 @@ def edit(request, action, sku):
             buy_price = request.POST.get('buy_price', False)
             if buy_price:
                 prog += 1
-                product_to_edit.buy_price = buy_price
-            quantity = int(request.POST.get('quantity', False))
+                product_to_edit.buy_price = int(buy_price)
+            quantity = request.POST.get('quantity', False)
             if quantity:
-                product_to_edit.quantity = quantity
+                product_to_edit.quantity = int(quantity)
             thumb = request.FILES.get('thumb', False)
             if thumb:
                 prog += 1
