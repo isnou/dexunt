@@ -45,6 +45,8 @@ def view_product(request, action, sku):
     url = result.get('url')
     features = result.get('features')
     photos = result.get('photos')
+    features_count = result.get('features_count')
+    photos_count = result.get('photos_count')
 
     product_to_view = result.get('product_to_view')
 
@@ -53,6 +55,8 @@ def view_product(request, action, sku):
         'product_to_view': product_to_view,
         'features': features,
         'photos': photos,
+        'features_count': features_count,
+        'photos_count': photos_count,
     }
     return render(request, url, context)
 

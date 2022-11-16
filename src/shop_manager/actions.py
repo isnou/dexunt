@@ -48,7 +48,9 @@ def view(request, action, sku):
     all_products = InventoryProduct.objects.all()
     product_to_view = all_products.get(sku=sku)
     features = product_to_view.features.all()
+    features_count = features.count()
     photos = product_to_view.album.all()
+    photos_count = photos.count()
     if action == "en_product_view":
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
@@ -60,7 +62,9 @@ def view(request, action, sku):
         'lang': lang,
         'features': features,
         'photos': photos,
-        'product_to_view': product_to_view
+        'features_count': features_count,
+        'photos_count': photos_count,
+        'product_to_view': product_to_view,
     }
     return result
 
