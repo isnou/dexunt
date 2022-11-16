@@ -13,6 +13,8 @@ def add_new_product(request, action):
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
             buy_price = request.POST.get('buy_price', False)
+            if not buy_price:
+                buy_price = 0
             quantity = int(request.POST.get('quantity', False))
             thumb = request.FILES.get('thumb', False)
             upc = request.POST.get('upc', False)
