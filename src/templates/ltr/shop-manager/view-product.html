@@ -388,11 +388,13 @@
         <div class="text-center px-5 py-5">
             <img src="{% get_media_prefix %}{{photo.picture}}" class="card-rounded shadow mw-100" alt="" />
 
-                                                <!--begin::Remove button-->
-                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" >
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </span>
-                                                <!--end::Remove button-->
+                     
+            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
+                     <i class="bi bi-pencil-square"></i>
+                 </a>
+                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                     <i class="bi bi-trash"></i>
+                 </a>
 
 
         </div>
@@ -422,38 +424,30 @@
 								</div>
 								<!--end::Card body-->
 							</div>
-
-
-
     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
-								<!--begin::Card header-->
-								<div class="card-header cursor-pointer">
-									<!--begin::Card title-->
+
+        <div class="card-header cursor-pointer">
 									<div class="card-title m-0">
 										<h3 class="fw-bold m-0">Product Details</h3>
 									</div>
-									<!--end::Card title-->
 								</div>
-								<!--begin::Card header-->
-								<!--begin::Card body-->
-								<div class="card-body p-9">
-									<!--begin::Row-->
-									<div class="py-5">
- <div class="table-responsive">
-     <table class="table table-row-dashed table-row-gray-300 gy-7">
-         <thead>
-         <tr class="fw-bold fs-6 text-gray-800">
-             <th>Features</th>
-             <th>Language</th>
-             <th>SKU</th>
-             <th>Value</th>
-             <th></th>
-         </tr>
-         </thead>
-         <tbody>
-         {% for feature in features %}
-         <tr>
-             <td>{{ feature.type }}</td>
+        <div class="card-body p-9">
+            <div class="py-5">
+                <div class="table-responsive">
+                    <table class="table table-row-dashed table-row-gray-300 gy-7">
+                        <thead>
+                        <tr class="fw-bold fs-6 text-gray-800">
+                            <th>Features</th>
+                            <th>Language</th>
+                            <th>SKU</th>
+                            <th>Value</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for feature in features %}
+                        <tr>
+                            <td>{{ feature.type }}</td>
              <td>{{ feature.language }}</td>
              <td>{{ feature.sku }}</td>
              <td>{{ feature.value }}</td>
