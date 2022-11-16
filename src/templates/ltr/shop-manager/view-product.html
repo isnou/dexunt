@@ -271,7 +271,7 @@
 													<!--begin::Menu-->
 													<div class="me-0">
 														<button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                            <i class="bi bi-clipboard-plus" style="margin-right: 5px;font-size: 3rem;"></i>
+                                                            <i class="bi bi-clipboard-plus "style="margin-right: 5px;font-size: 3rem;"></i>
 														</button>
 														<!--begin::Menu 3-->
 														<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
@@ -437,31 +437,55 @@
 								<!--begin::Card header-->
 								<!--begin::Card body-->
 								<div class="card-body p-9">
-									<!--features table-->
+									<!--begin::Row-->
 									<div class="py-5">
  <div class="table-responsive">
   <table class="table table-row-dashed table-row-gray-300 gy-7">
    <thead>
     <tr class="fw-bold fs-6 text-gray-800">
-     <th>Features</th>
-     <th>Language</th>
-     <th>SKU</th>
-     <th>Value</th>
+     <th>Name</th>
+     <th>Position</th>
+     <th>Office</th>
+     <th>Age</th>
+     <th>Start date</th>
+     <th>Salary</th>
     </tr>
    </thead>
    <tbody>
     <tr>
-        {% for feature in features %}
-     <td>{{ feature.type }}</td>
-     <td>{{ feature.language }}</td>
-     <td>{{ feature.sku }}</td>
-     <td>{{ feature.value }}</td>
-        {% endfor %}
+     <td>Tiger Nixon</td>
+     <td>System Architect</td>
+     <td>Edinburgh</td>
+     <td>61</td>
+     <td>2011/04/25</td>
+     <td>$320,800</td>
+    </tr>
+    <tr>
+     <td>Garrett Winters</td>
+     <td>Accountant</td>
+     <td>Tokyo</td>
+     <td>63</td>
+     <td>2011/07/25</td>
+     <td>$170,750</td>
     </tr>
    </tbody>
   </table>
  </div>
 </div>
+
+
+                                    {% for feature in features %}
+                                    <div class="row mb-7">
+                                        <!--begin::Label-->
+										<label class="col-lg-4 fw-semibold text-muted">{{ feature.language }} : {{ feature.type }}</label>
+										<!--end::Label-->
+										<!--begin::Col-->
+										<div class="col-lg-8">
+											<span class="fw-bold fs-6 text-gray-800">{{ feature.value }}</span>
+										</div>
+										<!--end::Col-->
+                                    </div>
+                                    {% endfor %}
 
 
 
