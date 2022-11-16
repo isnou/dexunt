@@ -44,6 +44,23 @@ def add_new_product(request, action):
     return result
 
 
+def show(request, action, sku):
+    all_products = InventoryProduct.objects.all()
+    product_to_show = all_products.get(sku=sku)
+    if action == "en_product_show":
+        url = "ltr/shop-manager/show-product.html"
+        lang = "en"
+    else:
+        url = "ltr/shop-manager/inventory.html"
+        lang = "en"
+    result = {
+        'url': url,
+        'lang': lang,
+        'product_to_show': product_to_show
+    }
+    return result
+
+
 def edit(request, action, sku):
     all_products = InventoryProduct.objects.all()
     product_to_edit = all_products.get(sku=sku)
