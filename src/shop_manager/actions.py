@@ -46,7 +46,7 @@ def add_new_product(request, action):
 
 def view(request, action, sku):
     all_products = InventoryProduct.objects.all()
-    product_to_show = all_products.get(sku=sku)
+    product_to_view = all_products.get(sku=sku)
     if action == "en_product_view":
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
@@ -56,7 +56,7 @@ def view(request, action, sku):
     result = {
         'url': url,
         'lang': lang,
-        'product_to_view': product_to_show
+        'product_to_view': product_to_view
     }
     return result
 
