@@ -440,52 +440,31 @@
 									<!--begin::Row-->
 									<div class="py-5">
  <div class="table-responsive">
-  <table class="table table-row-dashed table-row-gray-300 gy-7">
-   <thead>
-    <tr class="fw-bold fs-6 text-gray-800">
-     <th>Name</th>
-     <th>Position</th>
-     <th>Office</th>
-     <th>Age</th>
-     <th>Start date</th>
-     <th>Salary</th>
-    </tr>
-   </thead>
-   <tbody>
-    <tr>
-     <td>Tiger Nixon</td>
-     <td>System Architect</td>
-     <td>Edinburgh</td>
-     <td>61</td>
-     <td>2011/04/25</td>
-     <td>$320,800</td>
-    </tr>
-    <tr>
-     <td>Garrett Winters</td>
-     <td>Accountant</td>
-     <td>Tokyo</td>
-     <td>63</td>
-     <td>2011/07/25</td>
-     <td>$170,750</td>
-    </tr>
-   </tbody>
-  </table>
+     <table class="table table-row-dashed table-row-gray-300 gy-7">
+         <thead>
+         <tr class="fw-bold fs-6 text-gray-800">
+             <th>Features</th>
+             <th>Language</th>
+             <th>SKU</th>
+             <th>Value</th>
+             <th>edit & delete</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for feature in features %}
+         <tr>
+             <td>{{ feature.type }}</td>
+             <td>{{ feature.language }}</td>
+             <td>{{ feature.sku }}</td>
+             <td>{{ feature.value }}</td>
+             <td>edit & delete</td>
+         </tr>
+         {% endfor %}
+
+         </tbody>
+     </table>
  </div>
 </div>
-
-
-                                    {% for feature in features %}
-                                    <div class="row mb-7">
-                                        <!--begin::Label-->
-										<label class="col-lg-4 fw-semibold text-muted">{{ feature.language }} : {{ feature.type }}</label>
-										<!--end::Label-->
-										<!--begin::Col-->
-										<div class="col-lg-8">
-											<span class="fw-bold fs-6 text-gray-800">{{ feature.value }}</span>
-										</div>
-										<!--end::Col-->
-                                    </div>
-                                    {% endfor %}
 
 
 
