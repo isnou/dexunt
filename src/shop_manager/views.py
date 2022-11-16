@@ -40,7 +40,7 @@ def add_product(request, action):
 
 
 def view_product(request, action, sku):
-    result = actions.show(request, action, sku)
+    result = actions.view(request, action, sku)
     lang = result.get('lang')
     url = result.get('url')
     product_to_show = result.get('product_to_show')
