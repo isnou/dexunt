@@ -372,6 +372,19 @@
 											<span class="fw-bold fs-6 text-gray-800">{{ product_to_view.product_name }}</span>
 										</div>
 										<!--end::Col-->
+                                        {% for feature in features %}
+                                        <!--begin::Label-->
+										<label class="col-lg-4 fw-semibold text-muted">{{ feature.type }}</label>
+										<!--end::Label-->
+                                        <!--begin::Label-->
+										<label class="col-lg-4 fw-semibold text-muted">{{ feature.language }}</label>
+										<!--end::Label-->
+										<!--begin::Col-->
+										<div class="col-lg-8">
+											<span class="fw-bold fs-6 text-gray-800">{{ feature.value }}</span>
+										</div>
+										<!--end::Col-->
+                                        {% endfor %}
 									</div>
 									<!--end::Row-->
 									<!--begin::Notice-->

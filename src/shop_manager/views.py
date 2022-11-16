@@ -43,11 +43,16 @@ def view_product(request, action, sku):
     result = actions.view(request, action, sku)
     lang = result.get('lang')
     url = result.get('url')
+    features = result.get('features')
+    photos = result.get('photos')
+
     product_to_view = result.get('product_to_view')
 
     context = {
         'lang': lang,
         'product_to_view': product_to_view,
+        'features': features,
+        'photos': photos,
     }
     return render(request, url, context)
 
