@@ -271,7 +271,7 @@
 													<!--begin::Menu-->
 													<div class="me-0">
 														<button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                            <i class="bi bi-clipboard-plus "style="margin-right: 5px;font-size: 3rem;"></i>
+                                                            <i class="bi bi-clipboard-plus" style="margin-right: 5px;font-size: 3rem;"></i>
 														</button>
 														<!--begin::Menu 3-->
 														<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
@@ -437,31 +437,42 @@
 								<!--begin::Card header-->
 								<!--begin::Card body-->
 								<div class="card-body p-9">
-									<!--begin::Row-->
-									<div class="row mb-7">
-										<!--begin::Label-->
-										<label class="col-lg-4 fw-semibold text-muted">Product Name</label>
-										<!--end::Label-->
-										<!--begin::Col-->
-										<div class="col-lg-8">
-											<span class="fw-bold fs-6 text-gray-800">{{ product_to_view.product_name }}</span>
-										</div>
-										<!--end::Col-->
-									</div>
+									<!--features table-->
+									<div class="py-5">
+ <div class="table-responsive">
+  <table class="table table-row-dashed table-row-gray-300 gy-7">
+   <thead>
+    <tr class="fw-bold fs-6 text-gray-800">
+     <th>Features</th>
+     <th>Language</th>
+     <th>SKU</th>
+     <th>Value</th>
+        <th></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+        {% for feature in features %}
+     <td>{{ feature.type }}</td>
+     <td>{{ feature.language }}</td>
+     <td>{{ feature.sku }}</td>
+     <td>{{ feature.value }}</td>
+     <td>
+         <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="view product card">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+         <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="view product card">
+                            <i class="bi bi-trash3"></i>
+                        </a>
 
 
-                                    {% for feature in features %}
-                                    <div class="row mb-7">
-                                        <!--begin::Label-->
-										<label class="col-lg-4 fw-semibold text-muted">{{ feature.language }} : {{ feature.type }}</label>
-										<!--end::Label-->
-										<!--begin::Col-->
-										<div class="col-lg-8">
-											<span class="fw-bold fs-6 text-gray-800">{{ feature.value }}</span>
-										</div>
-										<!--end::Col-->
-                                    </div>
-                                    {% endfor %}
+     </td>
+        {% endfor %}
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</div>
 
 
 
@@ -497,40 +508,7 @@
 
 
 
-<div class="py-5">
- <div class="table-responsive">
-  <table class="table table-row-dashed table-row-gray-300 gy-7">
-   <thead>
-    <tr class="fw-bold fs-6 text-gray-800">
-     <th>Name</th>
-     <th>Position</th>
-     <th>Office</th>
-     <th>Age</th>
-     <th>Start date</th>
-     <th>Salary</th>
-    </tr>
-   </thead>
-   <tbody>
-    <tr>
-     <td>Tiger Nixon</td>
-     <td>System Architect</td>
-     <td>Edinburgh</td>
-     <td>61</td>
-     <td>2011/04/25</td>
-     <td>$320,800</td>
-    </tr>
-    <tr>
-     <td>Garrett Winters</td>
-     <td>Accountant</td>
-     <td>Tokyo</td>
-     <td>63</td>
-     <td>2011/07/25</td>
-     <td>$170,750</td>
-    </tr>
-   </tbody>
-  </table>
- </div>
-</div>
+
 
 
 
