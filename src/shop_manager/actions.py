@@ -14,14 +14,14 @@ def add_new_product(request, action):
         if request.method == 'POST':
             product_name = request.POST.get('product_name', False)
             buy_price = int(request.POST.get('buy_price', False))
-            if buy_price > 0:
+            if buy_price:
                 prog += 1
             quantity = int(request.POST.get('quantity', False))
             thumb = request.FILES.get('thumb', False)
             if thumb:
                 prog += 1
             upc = request.POST.get('upc', False)
-            if upc != 'NOBARCODE':
+            if upc:
                 new_product = InventoryProduct(product_name=product_name,
                                                upc=upc,
                                                buy_price=buy_price,
@@ -61,24 +61,16 @@ def edit(request, action, sku):
         lang = "en"
         prog = 0
         if request.method == 'POST':
-            product_to_edit.delete()
-            product_name = request.POST.get('product_name', False)
-            buy_price = int(request.POST.get('buy_price', False))
+            product_to_edit.product_name = request.POST.get('product_name', False)
+            product_to_edit.buy_price = int(request.POST.get('buy_price', False))
             if buy_price > 0:
                 prog += 1
-            quantity = int(request.POST.get('quantity', False))
-            thumb = request.FILES.get('thumb', False)
+            product_to_edit.quantity = int(request.POST.get('quantity', False))
+            product_to_edit.thumb = request.FILES.get('thumb', False)
             if thumb:
                 prog += 1
-            upc = request.POST.get('upc', False)
+            product_to_edit.upc = request.POST.get('upc', False)
             if upc != 'NOBARCODE':
-                new_product = InventoryProduct(product_name=product_name,
-                                               upc=upc,
-                                               buy_price=buy_price,
-                                               quantity=quantity,
-                                               thumb=thumb,
-                                               )
-                new_product.sku = sku
                 new_product.profile += prog + 1
                 new_product.save()
             else:
