@@ -447,7 +447,7 @@
              <th>Language</th>
              <th>SKU</th>
              <th>Value</th>
-             <th>edit & delete</th>
+             <th></th>
          </tr>
          </thead>
          <tbody>
@@ -457,7 +457,14 @@
              <td>{{ feature.language }}</td>
              <td>{{ feature.sku }}</td>
              <td>{{ feature.value }}</td>
-             <td>edit & delete</td>
+             <td>
+                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
+                     <i class="bi bi-pencil-square"></i>
+                 </a>
+                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                     <i class="bi bi-trash"></i>
+                 </a>
+             </td>
          </tr>
          {% endfor %}
 
