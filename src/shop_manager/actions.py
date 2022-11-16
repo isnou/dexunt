@@ -87,6 +87,8 @@ def edit(request, action, sku):
             thumb = request.FILES.get('thumb', False)
             if thumb:
                 product_to_edit.thumb = thumb
+            else:
+                product_to_edit.delete(thumb)
             upc = request.POST.get('upc', False)
             if upc:
                 product_to_edit.upc = upc
