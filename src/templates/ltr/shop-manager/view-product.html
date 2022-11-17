@@ -368,7 +368,7 @@
                                     <div class="modal-body">
 
                                         <!--description-->
-                                        <div class="text-muted fs-7">Make sure than the entry you are creating doe,nt exist.</div>
+                                        <div class="text-muted fs-7">Make sure than the entry you are creating doesn't exist.</div>
                                         <!--end description-->
 
 
@@ -491,7 +491,7 @@
 
     {% if features_count > 0 %}
     <!--products features table-->
-    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
+    <div class="card mb-5 mb-xl-10">
         <div class="card-header cursor-pointer">
             <div class="card-title m-0">
                 <h3 class="fw-bold m-0">Product Details</h3>
@@ -505,7 +505,6 @@
                         <tr class="fw-bold fs-6 text-gray-800">
                             <th>Features</th>
                             <th>Language</th>
-                            <th>SKU</th>
                             <th>Value</th>
                             <th></th>
                         </tr>
@@ -515,12 +514,8 @@
                         <tr>
                             <td>{{ feature.type }}</td>
                             <td>{{ feature.language }}</td>
-                            <td>{{ feature.sku }}</td>
                             <td>{{ feature.value }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
                                     <i class="bi bi-trash"></i>
                                 </a>
