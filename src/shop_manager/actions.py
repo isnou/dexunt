@@ -98,13 +98,13 @@ def view(request, action, sku):
             if model:
                 new_features.type = 'size'
                 new_features.value = size
-                product_to_view.features.get(type='size').delete()
+                product_to_view.features.all().get(type='size').delete()
                 product_to_view.features.add(new_features)
             weight = request.POST.get('weight', False)
             if model:
                 new_features.type = 'weight'
                 new_features.value = weight
-                product_to_view.features.get(type='weight').delete()
+                product_to_view.features.all().get(type='weight').delete()
                 product_to_view.features.add(new_features)
         product_to_view.save()
     else:
