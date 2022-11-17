@@ -98,6 +98,9 @@ def view(request, action, sku):
             if size:
                 new_features.type = 'size'
                 new_features.value = size
+                if product_to_view.features.all().filter(type='size').exists():
+                    product_to_view.features.all().filter(type='size').delete()
+                new_features.save()
                 product_to_view.features.add(new_features)
             weight = request.POST.get('weight', False)
             if weight:
