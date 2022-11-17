@@ -381,8 +381,9 @@
                                             <!--input-->
                                             <select class="form-select-lg form-select-solid" data-control="select2" data-placeholder="Select a language" data-hide-search="true" required>
                                                 <option></option>
-                                                <option value="1">Option 1</option>
-                                                <option value="2" >Option 2</option>
+                                                {% for feature in features %}
+                                                <option value="1">{{ feature.language }}</option>
+                                                {% endfor %}
                                             </select>
                                             <!--end input-->
                                         </div>
@@ -397,8 +398,9 @@
                                             <!--input-->
                                             <select class="form-select-lg form-select-solid" data-control="select2" data-placeholder="Select feature" data-hide-search="true" required>
                                                 <option></option>
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
+                                                {% for feature in features %}
+                                                <option value="1">{{ feature.type }}</option>
+                                                {% endfor %}
                                             </select>
                                             <!--end input-->
                                         </div>
