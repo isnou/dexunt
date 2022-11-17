@@ -380,14 +380,41 @@
                                     {% csrf_token %}
                                     <div class="modal-body">
 
-                                        <!--description-->
-                                        <div class="text-muted fs-7">Make sure than the entry you are creating doesn't exist.</div>
-                                        <!--end description-->
 
-
-                                        <label class="form-label">Put the value of the feature</label>
-                                        <input type="text" class="form-control" id="kt_docs_maxlength_threshold" maxlength="60" required/>
-                                        <span class="fs-6 text-muted">Set threshold value to show there are 60 chars or less left</span>
+                                        <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                            <thead>
+                                            <tr class="fw-bold fs-6 text-gray-800">
+                                                <th>Features</th>
+                                                <th>Value</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Model :</td>
+                                                <td><input type="text" class="form-control" name="Model" id="Model" maxlength="60"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brand :</td>
+                                                <td><input type="text" class="form-control" name="Brand" id="Brand" maxlength="60"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Color :</td>
+                                                <td><input type="text" class="form-control" name="Color" id="Color" maxlength="60"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dimensions :</td>
+                                                <td><input type="text" class="form-control" name="Dimensions" id="Dimensions" maxlength="60"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Size :</td>
+                                                <td><input type="text" class="form-control" name="Size" id="Size" maxlength="60"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Weight :</td>
+                                                <td><input type="text" class="form-control" name="Weight" id="Weight" maxlength="60"/></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
 
 
 
