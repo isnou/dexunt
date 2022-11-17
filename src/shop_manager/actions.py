@@ -71,34 +71,42 @@ def view(request, action, sku):
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
         if request.method == 'POST':
-            new_features = InventoryProductFeatures()
-            new_features.language = 'english'
             model = request.POST.get('model', False)
             if model:
-                new_features.type = 'model'
-                new_features.value = model
+                product_to_view.features.type = 'model'
+                product_to_view.features.value = model
+                product_to_view.features.language = 'english'
+                product_to_view.features.save()
             brand = request.POST.get('brand', False)
             if model:
                 new_features.type = 'brand'
                 new_features.value = brand
+                product_to_view.features.language = 'english'
+                product_to_view.features.save()
             color = request.POST.get('color', False)
             if model:
                 new_features.type = 'color'
                 new_features.value = color
+                product_to_view.features.language = 'english'
+                product_to_view.features.save()
             dimensions = request.POST.get('dimensions', False)
             if model:
                 new_features.type = 'dimensions'
                 new_features.value = dimensions
+                product_to_view.features.language = 'english'
+                product_to_view.features.save()
             size = request.POST.get('size', False)
             if model:
                 new_features.type = 'size'
                 new_features.value = size
+                product_to_view.features.language = 'english'
+                product_to_view.features.save()
             weight = request.POST.get('weight', False)
             if model:
                 new_features.type = 'weight'
                 new_features.value = weight
-            new_features.save()
-            product_to_view.features = new_features
+                product_to_view.features.language = 'english'
+                product_to_view.features.save()
         product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
