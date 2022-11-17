@@ -71,31 +71,39 @@ def view(request, action, sku):
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
         if request.method == 'POST':
-            new_features = InventoryProductFeatures()
-            new_features.language = 'english'
             model = request.POST.get('model', False)
             if model:
+                new_features = InventoryProductFeatures()
+                new_features.language = 'english'
                 new_features.type = 'model'
                 new_features.value = model
                 new_features.save()
                 product_to_view.features.add(new_features)
             brand = request.POST.get('brand', False)
             if brand:
+                new_features = InventoryProductFeatures()
+                new_features.language = 'english'
                 new_features.type = 'brand'
                 new_features.value = brand
                 product_to_view.features.add(new_features)
             color = request.POST.get('color', False)
             if color:
+                new_features = InventoryProductFeatures()
+                new_features.language = 'english'
                 new_features.type = 'color'
                 new_features.value = color
                 product_to_view.features.add(new_features)
             dimensions = request.POST.get('dimensions', False)
             if dimensions:
+                new_features = InventoryProductFeatures()
+                new_features.language = 'english'
                 new_features.type = 'dimensions'
                 new_features.value = dimensions
                 product_to_view.features.add(new_features)
             size = request.POST.get('size', False)
             if size:
+                new_features = InventoryProductFeatures()
+                new_features.language = 'english'
                 new_features.type = 'size'
                 new_features.value = size
                 if product_to_view.features.all().filter(type='size').exists():
@@ -104,6 +112,8 @@ def view(request, action, sku):
                 product_to_view.features.add(new_features)
             weight = request.POST.get('weight', False)
             if weight:
+                new_features = InventoryProductFeatures()
+                new_features.language = 'english'
                 new_features.type = 'weight'
                 new_features.value = weight
                 if product_to_view.features.all().filter(type='weight').exists():
