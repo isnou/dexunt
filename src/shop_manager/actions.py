@@ -61,6 +61,7 @@ def view(request, action, sku):
             image_to_add = request.FILES.get('image_to_add', False)
             if image_to_add:
                 new_photo = ProductAlbum(
+                    file_name='new_image',
                     picture=image_to_add,
                 )
                 product_to_view.album.add(new_photo)
