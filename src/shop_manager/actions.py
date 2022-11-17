@@ -74,6 +74,9 @@ def view(request, action, sku):
                 new_features.type = 'model'
                 new_features.value = model
                 new_features.save()
+                if product_to_view.features.all().filter(type='model').exists():
+                    product_to_view.features.all().filter(type='model').delete()
+                new_features.save()
                 product_to_view.features.add(new_features)
             brand = request.POST.get('brand', False)
             if brand:
@@ -81,6 +84,9 @@ def view(request, action, sku):
                 new_features.language = 'english'
                 new_features.type = 'brand'
                 new_features.value = brand
+                if product_to_view.features.all().filter(type='brand').exists():
+                    product_to_view.features.all().filter(type='brand').delete()
+                new_features.save()
                 product_to_view.features.add(new_features)
             color = request.POST.get('color', False)
             if color:
@@ -88,6 +94,9 @@ def view(request, action, sku):
                 new_features.language = 'english'
                 new_features.type = 'color'
                 new_features.value = color
+                if product_to_view.features.all().filter(type='color').exists():
+                    product_to_view.features.all().filter(type='color').delete()
+                new_features.save()
                 product_to_view.features.add(new_features)
             dimensions = request.POST.get('dimensions', False)
             if dimensions:
@@ -95,6 +104,9 @@ def view(request, action, sku):
                 new_features.language = 'english'
                 new_features.type = 'dimensions'
                 new_features.value = dimensions
+                if product_to_view.features.all().filter(type='dimensions').exists():
+                    product_to_view.features.all().filter(type='dimensions').delete()
+                new_features.save()
                 product_to_view.features.add(new_features)
             size = request.POST.get('size', False)
             if size:
