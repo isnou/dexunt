@@ -80,27 +80,27 @@ def view(request, action, sku):
                 new_features.save()
                 product_to_view.features.add(new_features)
             brand = request.POST.get('brand', False)
-            if model:
+            if brand:
                 new_features.type = 'brand'
                 new_features.value = brand
                 product_to_view.features.add(new_features)
             color = request.POST.get('color', False)
-            if model:
+            if color:
                 new_features.type = 'color'
                 new_features.value = color
                 product_to_view.features.add(new_features)
             dimensions = request.POST.get('dimensions', False)
-            if model:
+            if dimensions:
                 new_features.type = 'dimensions'
                 new_features.value = dimensions
                 product_to_view.features.add(new_features)
             size = request.POST.get('size', False)
-            if model:
+            if size:
                 new_features.type = 'size'
                 new_features.value = size
                 product_to_view.features.add(new_features)
             weight = request.POST.get('weight', False)
-            if model:
+            if weight:
                 new_features.type = 'weight'
                 new_features.value = weight
                 if product_to_view.features.all().filter(type='weight').exists():
