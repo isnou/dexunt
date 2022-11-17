@@ -88,8 +88,18 @@ def delete_option(request, action, sku, ident):
     result = actions.option_delete(request, action, sku, ident)
     lang = result.get('lang')
     url = result.get('url')
+    features = result.get('features')
+    photos = result.get('photos')
+    features_count = result.get('features_count')
+    photos_count = result.get('photos_count')
+    product_to_view = result.get('product_to_view')
 
     context = {
         'lang': lang,
+        'product_to_view': product_to_view,
+        'features': features,
+        'photos': photos,
+        'features_count': features_count,
+        'photos_count': photos_count,
     }
     return render(request, url, context)
