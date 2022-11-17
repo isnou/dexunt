@@ -96,16 +96,17 @@ def view(request, action, sku):
                 product_to_view.features.add(new_features)
             size = request.POST.get('size', False)
             if model:
-                product_to_view.features.all().get(type='size').delete()
                 new_features.type = 'size'
                 new_features.value = size
                 product_to_view.features.add(new_features)
             weight = request.POST.get('weight', False)
             if model:
-                product_to_view.features.all().get(type='weight').delete()
                 new_features.type = 'weight'
                 new_features.value = weight
-                product_to_view.features.add(new_features)
+                if product_to_view.features.all().filter(type='weight').exists():
+                    product_to_view.features.all().filter(type='weight').value = weight
+                else:
+                    product_to_view.features.add(new_features)
         product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
