@@ -18,7 +18,7 @@ class InventoryProductFeatures(models.Model):
     # --------------------------------- feature language ---------------------------------------
     language = models.CharField(max_length=15, blank=True, default='english')
     # --------------------------------- feature value ------------------------------------------
-    value = models.CharField(max_length=100, unique=True, null=True)
+    value = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.value
