@@ -283,34 +283,11 @@
                                         <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Add Features</div>
                                     </div>
                                     <!--end actions menu title-->
-
                                     <!--actions menu item photo-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_photo">
                                         <a href="#" class="menu-link px-3">Photo</a>
                                     </div>
                                     <!--end actions menu item photo-->
-
-
-     <!--actions menu item photo-->
-     
-
-
-         <div class="menu-item px-3" data-kt-image-input-action="change"
-        data-bs-toggle="tooltip"
-        data-bs-dismiss="click"
-        title="Change avatar">
-                                        <a href="#" class="menu-link px-3">Add photo</a>
-
-
-         <!--begin::Inputs-->
-         <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-         <input type="hidden" name="avatar_remove" />
-         <!--end::Inputs-->
-     </div>
-     <!--end actions menu item photo-->
-
-
-
                                     <!--actions menu item model-->
                                     <div class="menu-item px-3">
                                         <a href="overview.html#" class="menu-link px-3">Model</a>
@@ -351,6 +328,43 @@
 
 
 
+
+     <!--begin::Edit button-->
+     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+        data-kt-image-input-action="change"
+        data-bs-toggle="tooltip"
+        data-bs-dismiss="click"
+        title="Change avatar">
+         <i class="bi bi-pencil-fill fs-7"></i>
+
+         <!--begin::Inputs-->
+         <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+         <input type="hidden" name="avatar_remove" />
+         <!--end::Inputs-->
+     </label>
+     <!--end::Edit button-->
+
+     <!--begin::Cancel button-->
+     <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+        data-kt-image-input-action="cancel"
+        data-bs-toggle="tooltip"
+        data-bs-dismiss="click"
+        title="Cancel avatar">
+         <i class="bi bi-x fs-2"></i>
+     </span>
+     <!--end::Cancel button-->
+
+     <!--begin::Remove button-->
+     <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+        data-kt-image-input-action="remove"
+        data-bs-toggle="tooltip"
+        data-bs-dismiss="click"
+        title="Remove avatar">
+         <i class="bi bi-x fs-2"></i>
+     </span>
+     <!--end::Remove button-->
+ </div>
+ <!--end::Image input-->
 
 
 
