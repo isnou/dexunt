@@ -361,7 +361,7 @@
                     </div>
                     <!--end add new photo modal-->
 
-                    <!--details modal-->
+                    <!--en details modal-->
                     <div class="modal fade" tabindex="-1" id="kt_modal_en_details">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -374,13 +374,10 @@
                                     </div>
                                 </div>
                                 <!-- modal title -->
-
                                 <!--add new image form-->
                                 <form action="{% url 'view-product' 'en_product_detail_add' product_to_view.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="modal-body">
-
-
                                         <table class="table table-row-dashed table-row-gray-300 gy-7">
                                             <thead>
                                             <tr class="fw-bold fs-6 text-gray-800">
@@ -415,9 +412,6 @@
                                             </tr>
                                             </tbody>
                                         </table>
-
-
-
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -425,11 +419,136 @@
                                     </div>
                                 </form>
                                 <!--end add new image form-->
-
                             </div>
                         </div>
                     </div>
-                    <!--end details modal-->
+                    <!--end en details modal-->
+
+                    <!--fr details modal-->
+                    <div class="modal fade" tabindex="-1" id="kt_modal_fr_details">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- modal title -->
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add new detail</h3>
+                                    <div class="text-muted fs-7">The details need to be written in Frensh.</div>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+                                </div>
+                                <!-- modal title -->
+                                <!--add new image form-->
+                                <form action="{% url 'view-product' 'en_product_detail_add' product_to_view.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+                                        <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                            <thead>
+                                            <tr class="fw-bold fs-6 text-gray-800">
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Model :</td>
+                                                <td><input type="text" class="form-control" name="model" placeholder="model"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brand :</td>
+                                                <td><input type="text" class="form-control" name="brand" placeholder="brand"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Color :</td>
+                                                <td><input type="text" class="form-control" name="color" placeholder="color"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dimensions :</td>
+                                                <td><input type="text" class="form-control" name="dimensions" placeholder="dimensions"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Size :</td>
+                                                <td><input type="text" class="form-control" name="size" placeholder="size"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Weight :</td>
+                                                <td><input type="text" class="form-control" name="weight" placeholder="weight"/></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save detail</button>
+                                    </div>
+                                </form>
+                                <!--end add new image form-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--end fr details modal-->
+
+                    <!--fr details modal-->
+                    <div class="modal fade" tabindex="-1" id="kt_modal_ar_details">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- modal title -->
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add new detail</h3>
+                                    <div class="text-muted fs-7">The details need to be written in Arabic.</div>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+                                </div>
+                                <!-- modal title -->
+                                <!--add new image form-->
+                                <form action="{% url 'view-product' 'en_product_detail_add' product_to_view.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+                                        <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                            <thead>
+                                            <tr class="fw-bold fs-6 text-gray-800">
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Model :</td>
+                                                <td><input type="text" class="form-control" name="model" placeholder="model"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brand :</td>
+                                                <td><input type="text" class="form-control" name="brand" placeholder="brand"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Color :</td>
+                                                <td><input type="text" class="form-control" name="color" placeholder="color"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dimensions :</td>
+                                                <td><input type="text" class="form-control" name="dimensions" placeholder="dimensions"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Size :</td>
+                                                <td><input type="text" class="form-control" name="size" placeholder="size"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Weight :</td>
+                                                <td><input type="text" class="form-control" name="weight" placeholder="weight"/></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save detail</button>
+                                    </div>
+                                </form>
+                                <!--end add new image form-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--end fr details modal-->
 
                     <!--actions profile completion-->
                     <div class="d-flex flex-wrap flex-stack">
