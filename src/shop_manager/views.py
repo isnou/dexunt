@@ -47,7 +47,6 @@ def view_product(request, action, sku):
     photos = result.get('photos')
     features_count = result.get('features_count')
     photos_count = result.get('photos_count')
-
     product_to_view = result.get('product_to_view')
 
     context = {
