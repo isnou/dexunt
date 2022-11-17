@@ -381,9 +381,9 @@
                                             <!--input-->
                                             <select class="form-select-lg form-select-solid" data-control="select2" data-placeholder="Select a language" data-hide-search="true" required>
                                                 <option></option>
-                                                {% for feature in features %}
-                                                <option value="1">{{ feature.language }}</option>
-                                                {% endfor %}
+                                                <option value="English">English</option>
+                                                <option value="French">French</option>
+                                                <option value="Arabic">Arabic</option>
                                             </select>
                                             <!--end input-->
                                         </div>
@@ -398,9 +398,12 @@
                                             <!--input-->
                                             <select class="form-select-lg form-select-solid" data-control="select2" data-placeholder="Select feature" data-hide-search="true" required>
                                                 <option></option>
-                                                {% for feature in features %}
-                                                <option value="1">{{ feature.type }}</option>
-                                                {% endfor %}
+                                                <option value="Model">Model</option>
+                                                <option value="Brand">Brand</option>
+                                                <option value="Color">Color</option>
+                                                <option value="Dimensions">Dimensions</option>
+                                                <option value="Size">Size</option>
+                                                <option value="Weight">Weight</option>
                                             </select>
                                             <!--end input-->
                                         </div>
