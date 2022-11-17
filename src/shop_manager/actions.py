@@ -106,6 +106,7 @@ def view(request, action, sku):
                 if product_to_view.features.all().filter(type='weight').exists():
                     product_to_view.features.all().filter(type='weight').value = weight
                 else:
+                    new_features.save()
                     product_to_view.features.add(new_features)
         product_to_view.save()
     else:
