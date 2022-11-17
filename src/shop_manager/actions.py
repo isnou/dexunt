@@ -146,7 +146,7 @@ def delete(request, action, sku):
     return result
 
 
-def delete_option(request, action, sku, ident):
+def option_delete(request, action, sku, ident):
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     features = selected_product.features.all()
