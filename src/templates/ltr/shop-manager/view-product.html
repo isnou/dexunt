@@ -286,41 +286,18 @@
                                         <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Add Features</div>
                                     </div>
                                     <!--end actions menu title-->
+
                                     <!--actions menu item photo-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_photo">
                                         <a href="#" class="menu-link px-3">Photo</a>
                                     </div>
                                     <!--end actions menu item photo-->
-                                    <!--actions menu item model-->
-                                    <div class="menu-item px-3">
-                                        <a href="overview.html#" class="menu-link px-3">Model</a>
+
+                                    <!--actions menu item details-->
+                                    <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_details">>
+                                        <a href="overview.html#" class="menu-link px-3">Details</a>
                                     </div>
-                                    <!--end actions menu item model-->
-                                    <!--actions menu item brand-->
-                                    <div class="menu-item px-3">
-                                        <a href="overview.html#" class="menu-link px-3">Brand</a>
-                                    </div>
-                                    <!--end actions menu item brand-->
-                                    <!--actions menu item color-->
-                                    <div class="menu-item px-3">
-                                        <a href="overview.html#" class="menu-link px-3">Color</a>
-                                    </div>
-                                    <!--end actions menu item color-->
-                                    <!--actions menu item dimensions-->
-                                    <div class="menu-item px-3">
-                                        <a href="overview.html#" class="menu-link px-3">Dimensions</a>
-                                    </div>
-                                    <!--end actions menu item dimensions-->
-                                    <!--actions menu item size-->
-                                    <div class="menu-item px-3">
-                                        <a href="overview.html#" class="menu-link px-3">Size</a>
-                                    </div>
-                                    <!--end actions menu item size-->
-                                    <!--actions menu item weight-->
-                                    <div class="menu-item px-3">
-                                        <a href="overview.html#" class="menu-link px-3">Weight</a>
-                                    </div>
-                                    <!--end actions menu item weight-->
+                                    <!--end actions menu item details-->
                                 </div>
                                 <!--end action buttons-->
                             </div>
@@ -371,6 +348,39 @@
                         </div>
                     </div>
                     <!--end add new photo modal-->
+
+                    <!--details modal-->
+                    <div class="modal fade" tabindex="-1" id="kt_modal_details">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- modal title -->
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add new detail</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <i class="bi bi-x-lg"></i>
+                                    </div>
+                                </div>
+                                <!-- modal title -->
+
+                                <!--add new image form-->
+                                <form action="{% url 'view-product' 'en_product_detail_add' product_to_view.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save image</button>
+                                    </div>
+                                </form>
+                                <!--end add new image form-->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--end details modal-->
 
                     <!--actions profile completion-->
                     <div class="d-flex flex-wrap flex-stack">
