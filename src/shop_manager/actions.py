@@ -105,10 +105,8 @@ def view(request, action, sku):
                 new_features.value = weight
                 if product_to_view.features.all().filter(type='weight').exists():
                     product_to_view.features.all().filter(type='weight').delete()
-                    product_to_view.features.add(new_features)
-                else:
-                    new_features.save()
-                    product_to_view.features.add(new_features)
+                new_features.save()
+                product_to_view.features.add(new_features)
         product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
