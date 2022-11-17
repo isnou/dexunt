@@ -1,6 +1,6 @@
 import random
 import string
-from .models import InventoryProduct, ProductAlbum
+from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
 
 
 def add_new_product(request, action):
@@ -66,6 +66,39 @@ def view(request, action, sku):
                 )
                 new_photo.save()
                 product_to_view.album.add(new_photo)
+        product_to_view.save()
+    elif action == 'en_product_detail_add':
+        url = "ltr/shop-manager/view-product.html"
+        lang = "en"
+        if request.method == 'POST':
+            new_features = InventoryProductFeatures()
+            new_features.language = 'english'
+            model = request.POST.get('model', False)
+            if model:
+                new_features.type = 'model'
+                new_features.value = model
+            brand = request.POST.get('brand', False)
+            if model:
+                new_features.type = 'brand'
+                new_features.value = brand
+            color = request.POST.get('color', False)
+            if model:
+                new_features.type = 'color'
+                new_features.value = color
+            dimensions = request.POST.get('dimensions', False)
+            if model:
+                new_features.type = 'dimensions'
+                new_features.value = dimensions
+            size = request.POST.get('size', False)
+            if model:
+                new_features.type = 'size'
+                new_features.value = size
+            weight = request.POST.get('weight', False)
+            if model:
+                new_features.type = 'weight'
+                new_features.value = weight
+            new_features.save()
+            product_to_view.features = new_features
         product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
