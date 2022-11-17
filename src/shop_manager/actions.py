@@ -54,6 +54,14 @@ def view(request, action, sku):
     if action == "en_product_view":
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
+    elif action == 'en_product_image_add':
+        url = "ltr/shop-manager/view-product.html"
+        lang = "en"
+        if request.method == 'POST':
+            image_to_add = request.FILES.get('image_to_add', False)
+            if image_to_add:
+                product_to_view.album.add(image_to_add)
+        product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
