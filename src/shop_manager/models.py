@@ -14,22 +14,9 @@ class ProductAlbum(models.Model):
 
 class InventoryProductFeatures(models.Model):
     # --------------------------------- feature types ------------------------------------------
-    Type = (
-        ('Model', 'Model'),
-        ('Brand', 'Brand'),
-        ('Color', 'Color'),
-        ('Dimensions', 'Dimensions'),
-        ('Size', 'Size'),
-        ('Weight', 'Weight'),
-    )
-    type = models.CharField(max_length=50, choices=Type, blank=True, null=True)
+    type = models.CharField(max_length=15, blank=True, null=True)
     # --------------------------------- feature language ---------------------------------------
-    Language = (
-        ('English', 'English'),
-        ('French', 'French'),
-        ('Arabic', 'Arabic'),
-    )
-    language = models.CharField(max_length=50, choices=Language, blank=True, null=True)
+    language = models.CharField(max_length=15, blank=True, default='english')
     # --------------------------------- feature value ------------------------------------------
     value = models.CharField(max_length=100, unique=True, null=True)
 
@@ -39,18 +26,9 @@ class InventoryProductFeatures(models.Model):
 
 class ShopProductFeatures(models.Model):
     # --------------------------------- feature types ------------------------------------------
-    Type = (
-        ('Description', 'Description'),
-        ('EShopTitle', 'EShopTitle'),
-    )
-    type = models.CharField(max_length=50, choices=Type, blank=True, null=True)
+    type = models.CharField(max_length=15, blank=True, null=True)
     # --------------------------------- feature language ---------------------------------------
-    Language = (
-        ('English', 'English'),
-        ('French', 'French'),
-        ('Arabic', 'Arabic'),
-    )
-    language = models.CharField(max_length=50, choices=Language, blank=True, null=True)
+    language = models.CharField(max_length=15, blank=True, default='english')
     # --------------------------------- feature value ------------------------------------------
     value = models.TextField(max_length=1000, null=True)
 
