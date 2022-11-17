@@ -367,51 +367,47 @@
                                     {% csrf_token %}
                                     <div class="modal-body">
 
+                                        <!--description-->
+                                        <div class="text-muted fs-7">Make sure than the entry you are creating doe,nt exist.</div>
+                                        <!--end description-->
+
 
                                         <!--quantity input-->
                                         <div class="fv-row w-100 flex-md-root">
                                             <!--label-->
-                                            <label class="form-label">Product Quantity</label>
+                                            <label class="form-label">Language</label>
                                             <!--end label-->
 
                                             <!--input-->
-                                            <select class="form-select form-select-solid" data-control="select2" data-placeholder="Select an option">
-    <option></option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-</select>
+                                            <select class="form-select form-select-solid" data-control="select2" data-placeholder="Select a language">
+                                                <option></option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                            </select>
                                             <!--end input-->
-
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Put product quantity.</div>
-                                            <!--end description-->
                                         </div>
                                         <!--end quantity input-->
 
                                         <!--price input-->
                                         <div class="fv-row w-100 flex-md-root">
                                             <!--label-->
-                                            <label class="form-label">Product Buy Price</label>
+                                            <label class="form-label">Feature</label>
                                             <!--end label-->
 
                                             <!--input-->
-                                            <select class="form-select form-select-solid" data-control="select2" data-placeholder="Select an option">
-    <option></option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-</select>
+                                            <select class="form-select form-select-solid" data-control="select2" data-placeholder="Select an feature">
+                                                <option></option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                            </select>
                                             <!--end input-->
-
-                                            <!--description-->
-                                            <div class="text-muted fs-7">put buy price in algerian dinar currency.</div>
-                                            <!--end description-->
                                         </div>
                                         <!--end price input-->
 
 
-                                        <label class="form-label">Threshold example</label>
-                                        <input type="text" class="form-control" id="kt_docs_maxlength_threshold" maxlength="25" />
-                                        <span class="fs-6 text-muted">Set threshold value to show there are 20 chars or less left</span>
+                                        <label class="form-label">Put the value of the feature</label>
+                                        <input type="text" class="form-control" id="kt_docs_maxlength_threshold" maxlength="60" />
+                                        <span class="fs-6 text-muted">Set threshold value to show there are 60 chars or less left</span>
 
 
 
