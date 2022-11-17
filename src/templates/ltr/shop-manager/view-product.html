@@ -227,13 +227,13 @@
     <div class="card mb-5 mb-xl-10">
         <div class="card-body pt-9 pb-0">
             <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-                <!--product photo-->
+                <!--product thumbnail-->
                 <div class="me-7 mb-4">
                     <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
                         <img src="{% get_media_prefix %}{{product_to_view.thumb}}" />
                     </div>
                 </div>
-                <!--end product photo-->
+                <!--end product thumbnail-->
 
                 <div class="flex-grow-1">
                     <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
@@ -267,16 +267,19 @@
                                 </a>
                                 <!--end product buy price-->
                             </div>
+                            <!--end product general information-->
                         </div>
 
                         <div class="d-flex my-4">
                             <!--actions menu-->
                             <div class="me-0">
-                                <!--actions menu button-->
+                                <!--action buttons menu-->
                                 <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     <i class="bi bi-clipboard-plus" style="margin-right: 5px;font-size: 3rem;"></i>
                                 </button>
-                                <!--end actions menu button-->
+                                <!--end action buttons menu-->
+
+                                <!--action buttons-->
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
                                     <!--actions menu title-->
                                     <div class="menu-item px-3">
@@ -319,32 +322,26 @@
                                     </div>
                                     <!--end actions menu item weight-->
                                 </div>
+                                <!--end action buttons-->
                             </div>
                             <!--end actions menu-->
                         </div>
                     </div>
 
-
-
-
-
-
-
-
                     <!--add new photo modal-->
                     <div class="modal fade" tabindex="-1" id="kt_modal_add_photo">
                         <div class="modal-dialog">
                             <div class="modal-content">
+                                <!-- modal title -->
                                 <div class="modal-header">
-                                    <!-- modal title -->
                                     <h3 class="modal-title">Add new photo</h3>
-
                                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="bi bi-x-lg"></i>
                                     </div>
-                                    <!-- modal title -->
                                 </div>
+                                <!-- modal title -->
 
+                                <!--add new image form-->
                                 <form action="{% url 'view-product' 'en_product_image_add' product_to_view.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="modal-body">
@@ -368,17 +365,16 @@
                                         <button type="submit" class="btn btn-primary">Save image</button>
                                     </div>
                                 </form>
+                                <!--end add new image form-->
 
                             </div>
                         </div>
                     </div>
                     <!--end add new photo modal-->
 
-
-
+                    <!--actions profile completion-->
                     <div class="d-flex flex-wrap flex-stack">
                         <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                            <!--actions profile completion-->
                             <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                                 <span class="fw-semibold fs-6 text-gray-400">Profile Completion</span>
                                 <span class="fw-bold fs-6">{{product_to_view.profile|mul:10}}%</span>
@@ -386,9 +382,9 @@
                             <div class="h-5px mx-3 w-100 bg-light mb-3">
                                 <div class="bg-success rounded h-5px" role="progressbar" style="width: {{product_to_view.profile|mul:10}}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <!--end actions profile completion-->
                         </div>
                     </div>
+                    <!--end actions profile completion-->
                 </div>
             </div>
         </div>
@@ -412,13 +408,8 @@
                         <img src="{% get_media_prefix %}{{photo.picture}}" class="card-rounded shadow mw-100" style="margin-bottom: 20px;" />
                         <!--end product photos-->
 
-                        <!--edit photo icon-->
-                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <!--end edit photo icon-->
                         <!--delete photo icon-->
-                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                        <a href="{% url 'delete-option' 'en_product_image_delete' photo.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
                             <i class="bi bi-trash"></i>
                         </a>
                         <!--end delete photo icon-->

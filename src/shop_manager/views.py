@@ -82,3 +82,14 @@ def delete_product(request, action, sku):
         'lang': lang,
     }
     return render(request, url, context)
+
+
+def delete_option(request, action, sku, ident):
+    result = actions.option_delete(request, action, sku, ident)
+    lang = result.get('lang')
+    url = result.get('url')
+
+    context = {
+        'lang': lang,
+    }
+    return render(request, url, context)

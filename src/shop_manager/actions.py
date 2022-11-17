@@ -127,14 +127,14 @@ def edit(request, action, sku):
 
 
 def delete(request, action, sku):
+    all_products = InventoryProduct.objects.all()
+    selected_product = all_products.get(sku=sku)
     if action == "ar_product_delete":
         url = "rtl/shop-manager/inventory.html"
         lang = "ar"
     elif action == 'en_product_delete':
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
-        all_products = InventoryProduct.objects.all()
-        selected_product = all_products.get(sku=sku)
         selected_product.delete()
     else:
         url = "ltr/shop-manager/inventory.html"
@@ -142,6 +142,37 @@ def delete(request, action, sku):
     result = {
         'url': url,
         'lang': lang,
+    }
+    return result
+
+
+def delete_option(request, action, sku, ident):
+    all_products = InventoryProduct.objects.all()
+    selected_product = all_products.get(sku=sku)
+    features = selected_product.features.all()
+    features_count = features.count()
+    photos = selected_product.album.all()
+    photos_count = photos.count()
+    selected_photo = photos.get(id=ident)
+    if action == "ar_product_image_delete":
+        url = "rtl/shop-manager/inventory.html"
+        lang = "ar"
+    elif action == 'en_product_image_delete':
+        url = "ltr/shop-manager/view-product.html"
+        lang = "en"
+        selected_photo.delete()
+    else:
+        url = "ltr/shop-manager/inventory.html"
+        lang = "en"
+
+    result = {
+        'url': url,
+        'lang': lang,
+        'features': features,
+        'photos': photos,
+        'features_count': features_count,
+        'photos_count': photos_count,
+        'product_to_view': selected_product,
     }
     return result
 
