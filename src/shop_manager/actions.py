@@ -71,36 +71,39 @@ def view(request, action, sku):
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
         if request.method == 'POST':
+            new_features = InventoryProductFeatures()
+            new_features.language = 'english'
             model = request.POST.get('model', False)
             if model:
-                product_to_view.features.type = 'model'
-                product_to_view.features.value = model
-                product_to_view.features.language = 'english'
+                new_features.type = 'model'
+                new_features.value = model
+                new_features.save()
+                product_to_view.features.add(new_features)
             brand = request.POST.get('brand', False)
             if model:
-                product_to_view.features.type = 'brand'
-                product_to_view.features.value = brand
-                product_to_view.features.language = 'english'
+                new_features.type = 'brand'
+                new_features.value = brand
+                product_to_view.features.add(new_features)
             color = request.POST.get('color', False)
             if model:
-                product_to_view.features.type = 'color'
-                product_to_view.features.value = color
-                product_to_view.features.language = 'english'
+                new_features.type = 'color'
+                new_features.value = color
+                product_to_view.features.add(new_features)
             dimensions = request.POST.get('dimensions', False)
             if model:
-                product_to_view.features.type = 'dimensions'
-                product_to_view.features.value = dimensions
-                product_to_view.features.language = 'english'
+                new_features.type = 'dimensions'
+                new_features.value = dimensions
+                product_to_view.features.add(new_features)
             size = request.POST.get('size', False)
             if model:
-                product_to_view.features.type = 'size'
-                product_to_view.features.value = size
-                product_to_view.features.language = 'english'
+                new_features.type = 'size'
+                new_features.value = size
+                product_to_view.features.add(new_features)
             weight = request.POST.get('weight', False)
             if model:
-                product_to_view.features.type = 'weight'
-                product_to_view.features.value = weight
-                product_to_view.features.language = 'english'
+                new_features.type = 'weight'
+                new_features.value = weight
+                product_to_view.features.add(new_features)
         product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
