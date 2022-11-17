@@ -30,8 +30,6 @@ class InventoryProductFeatures(models.Model):
         ('Arabic', 'Arabic'),
     )
     language = models.CharField(max_length=50, choices=Language, blank=True, null=True)
-    # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=20, unique=True, null=True)
     # --------------------------------- feature value ------------------------------------------
     value = models.CharField(max_length=100, unique=True, null=True)
 
