@@ -1,6 +1,6 @@
 import random
 import string
-from .models import InventoryProduct
+from .models import InventoryProduct, ProductAlbum
 
 
 def add_new_product(request, action):
@@ -60,7 +60,10 @@ def view(request, action, sku):
         if request.method == 'POST':
             image_to_add = request.FILES.get('image_to_add', False)
             if image_to_add:
-                product_to_view.album.add().picture = image_to_add
+                new_photo = ProductAlbum(
+                    picture=image_to_add,
+                )
+                product_to_view.album.add(new_photo)
         product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
