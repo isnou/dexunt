@@ -60,7 +60,7 @@ def view(request, action, sku):
         if request.method == 'POST':
             image_to_add = request.FILES.get('image_to_add', False)
             if image_to_add:
-                photos.add().picture = image_to_add
+                product_to_view.album.add().picture = image_to_add
         product_to_view.save()
     else:
         url = "ltr/shop-manager/inventory.html"
