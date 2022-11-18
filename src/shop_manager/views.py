@@ -20,8 +20,7 @@ def inventory(request, action):
     lang = "en"
     url = "ltr/shop-manager/inventory.html"
     if action == "add_new_product":
-        result = inventory_actions.add_new_product(request)
-        url = result.get('url')
+        url = inventory_actions.add_new_product(request).get('url')
     if action == "edit_product":
         url = inventory_actions.edit_product(request).get('url')
 

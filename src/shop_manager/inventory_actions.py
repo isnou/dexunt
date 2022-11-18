@@ -5,6 +5,7 @@ from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
 
 
 def add_new_product(request):
+    url = "ltr/shop-manager/inventory.html"
     if request.method == 'POST':
         product_name = request.POST.get('product_name', False)
         buy_price = request.POST.get('buy_price', False)
