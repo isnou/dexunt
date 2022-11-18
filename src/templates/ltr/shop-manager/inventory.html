@@ -152,7 +152,7 @@
                 </div>
                 {% endif %}
             <div class="card-toolbar">
-                <button type="button" class="btn btn-light">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_new_product">
                     add new product
                 </button>
             </div>
@@ -302,6 +302,37 @@
         <!--end principle card footer-->
     </div>
     <!--end principle card-->
+
+    <!--modals-->
+    <!--add new product modal-->
+    <div class="modal bg-white fade" tabindex="-1" id="kt_modal_add_new_product">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content shadow-none">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="svg-icon svg-icon-2x"></span>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end add new product modal-->
+    <!--end modals-->
+
+
     {% endif %}
     <!-------------------end english-------------->
 </div>
