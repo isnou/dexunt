@@ -671,7 +671,7 @@
                         <!--end product photos-->
 
                         <!--delete photo icon-->
-                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete image">
+                        <a href="{% url 'inventory-product' 'delete_photo' selected_product.sku photo.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete image">
                             <i class="bi bi-trash"></i>
                         </a>
                         <!--end delete photo icon-->

@@ -40,6 +40,9 @@ def inventory_product(request, action, sku, identity):
         url = direction + inventory_actions.edit(request, lang, sku).get('url')
     if action == 'add_photo':
         url = direction + inventory_actions.add_new_photo(request, lang, sku).get('url')
+    if action == 'delete_photo':
+        selected_product = InventoryProduct.objects.all()
+        selected_product.album.all().get(id=identity).delete()
     if action == 'add_en_features':
         url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
     if action == 'add_fr_features':
@@ -66,82 +69,5 @@ def inventory_product(request, action, sku, identity):
         'features_count': features_count,
         'photos_count': photos_count,
         'selected_product': selected_product,
-    }
-    return render(request, url, context)
-
-
-def add_product(request, action):
-    result = actions.add_new_product(request, action)
-    lang = result.get('lang')
-    url = result.get('url')
-
-    context = {
-        'lang': lang,
-    }
-    return render(request, url, context)
-
-
-def view_product(request, action, sku):
-    result = actions.view(request, action, sku)
-    lang = result.get('lang')
-    url = result.get('url')
-    product_to_view = result.get('product_to_view')
-    features = result.get('features')
-    photos = result.get('photos')
-    features_count = features.count()
-    photos_count = photos.count()
-
-    context = {
-        'lang': lang,
-        'product_to_view': product_to_view,
-        'features': features,
-        'photos': photos,
-        'features_count': features_count,
-        'photos_count': photos_count,
-    }
-    return render(request, url, context)
-
-
-def edit_product(request, action, sku):
-    result = actions.edit(request, action, sku)
-    lang = result.get('lang')
-    url = result.get('url')
-    product_to_edit = result.get('product_to_edit')
-
-    context = {
-        'lang': lang,
-        'product_to_edit': product_to_edit,
-    }
-    return render(request, url, context)
-
-
-def delete_product(request, action, sku):
-    result = actions.delete(request, action, sku)
-    lang = result.get('lang')
-    url = result.get('url')
-
-    context = {
-        'lang': lang,
-    }
-    return render(request, url, context)
-
-
-def delete_option(request, action, sku, ident):
-    result = actions.option_delete(request, action, sku, ident)
-    lang = result.get('lang')
-    url = result.get('url')
-    product_to_view = result.get('product_to_view')
-    features = result.get('features')
-    photos = result.get('photos')
-    features_count = features.count()
-    photos_count = photos.count()
-
-    context = {
-        'lang': lang,
-        'product_to_view': product_to_view,
-        'features': features,
-        'photos': photos,
-        'features_count': features_count,
-        'photos_count': photos_count,
     }
     return render(request, url, context)
