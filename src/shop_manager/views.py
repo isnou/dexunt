@@ -16,12 +16,18 @@ def manager_dashboard(request, action):
 
 
 def inventory(request, action):
-    if action == "ar_product_list_show":
-        lang = "ar"
-        url = "rtl/shop-manager/inventory.html"
-    else:
+    if action == "en_product_list_show":
         lang = "en"
         url = "ltr/shop-manager/inventory.html"
+    elif action == "fr_product_list_show":
+        lang = "fr"
+        url = "#"
+    elif action == "ar_product_list_show":
+        lang = "ar"
+        url = "#"
+    else:
+        lang = "en"
+        url = "#"
     context = {
         'lang': lang,
     }

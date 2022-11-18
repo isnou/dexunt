@@ -10,7 +10,6 @@
          Dashboard - Dexunt Shop Management
 {% endif %}
 {% if lang == 'fr' %}
-         Tableau de bord - Dexunt Gestion de Magasin
 {% endif %}
 </title>
 {% endblock %}
@@ -56,7 +55,7 @@
 
     <!--menu title inventory-->
     <div class="menu-item py-2">
-        <a class="menu-link menu-center" href="{% url 'inventory' 'en' %}" title="Inventory" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+        <a class="menu-link menu-center" href="{% url 'inventory' 'en_product_list_show' %}" title="Inventory" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
             <span class="menu-icon me-0">
                 <!--inventory icon-->
                 <span class="menu-link menu-center">
@@ -201,10 +200,6 @@
     {% endif %}
 
     {% if lang == 'fr' %}
-    <li class="breadcrumb-item text-muted">
-        <a href="{% url 'dashboard' 'fr' %}" class="text-muted">Home</a>
-    </li>
-    <li class="breadcrumb-item text-muted">Dashboard</li>
     {% endif %}
 </ul>
 <!--end breadcrumb-->
