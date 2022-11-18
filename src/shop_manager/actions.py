@@ -175,8 +175,6 @@ def view(request, action, sku):
     product_to_view.save()
     features = product_to_view.features.all()
     photos = product_to_view.album.all()
-    features_count = features.count()
-    photos_count = photos.count()
     result = {
         'url': url,
         'lang': lang,

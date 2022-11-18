@@ -43,11 +43,11 @@ def view_product(request, action, sku):
     result = actions.view(request, action, sku)
     lang = result.get('lang')
     url = result.get('url')
+    product_to_view = result.get('product_to_view')
     features = result.get('features')
     photos = result.get('photos')
-    features_count = result.get('features_count')
-    photos_count = result.get('photos_count')
-    product_to_view = result.get('product_to_view')
+    features_count = features.count()
+    photos_count = photos.count()
 
     context = {
         'lang': lang,
@@ -88,11 +88,11 @@ def delete_option(request, action, sku, ident):
     result = actions.option_delete(request, action, sku, ident)
     lang = result.get('lang')
     url = result.get('url')
+    product_to_view = result.get('product_to_view')
     features = result.get('features')
     photos = result.get('photos')
-    features_count = result.get('features_count')
-    photos_count = result.get('photos_count')
-    product_to_view = result.get('product_to_view')
+    features_count = features.count()
+    photos_count = photos.count()
 
     context = {
         'lang': lang,
