@@ -44,6 +44,7 @@ def inventory_product(request, action, sku, identity):
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     features = selected_product.features.all()
+    english_features = features.filter(language='english')
     photos = selected_product.album.all()
     features_count = features.count()
     photos_count = photos.count()
