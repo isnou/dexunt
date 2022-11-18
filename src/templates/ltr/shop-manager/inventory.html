@@ -287,10 +287,9 @@
 
                         <!--delete product action-->
                         <td class="text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                            <a href="{% url 'delete-product' 'en_product_delete' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
                                 <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete_product_modal"></i>
                             </a>
-
                         </td>
                         <!--end delete product action-->
                     </tr>
@@ -358,7 +357,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                <button href="{% url 'delete-product' 'en_product_delete' product.sku %}" type="button" class="btn btn-primary">Yes</button>
+                <button href="" type="button" class="btn btn-primary">Yes</button>
             </div>
         </div>
     </div>
