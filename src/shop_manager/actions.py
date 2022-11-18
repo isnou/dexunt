@@ -72,12 +72,14 @@ def view(request, action, sku):
             if model:
                 if product_to_view.features.all().filter(type='model').exists():
                     product_to_view.features.all().filter(type='model').delete()
-                product_to_view.features.add(new_feature_save('model', model, 'english'))
+                new_feature = feature_save('model', model, 'english')
+                product_to_view.features.add(new_feature)
             brand = request.POST.get('brand', False)
             if brand:
                 if product_to_view.features.all().filter(type='brand').exists():
                     product_to_view.features.all().filter(type='brand').delete()
-                product_to_view.features.add(new_feature_save('brand', brand, 'english'))
+                new_feature = feature_save('brand', brand, 'english')
+                product_to_view.features.add(new_feature)
             color = request.POST.get('color', False)
             if color:
                 new_features = InventoryProductFeatures()
@@ -241,10 +243,10 @@ def serial_number_generator(length):
     return result_str
 
 
-def new_feature_save(feature_name, feature_value, language):
-    new_feature = InventoryProductFeatures()
-    new_features.language = language
-    new_features.type = feature_name
-    new_features.value = feature_value
-    new_features.save()
-    return new_feature
+def feature_save(feature_name, feature_value, language):
+    feature = InventoryProductFeatures()
+    features.language = language
+    features.type = feature_name
+    features.value = feature_value
+    features.save()
+    return feature
