@@ -3,7 +3,7 @@ import string
 from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
 
 
-def add_new_product(request, lang):
+def add_new_product(request):
     url = "shop-manager/inventory.html"
     if request.method == 'POST':
         product_name = request.POST.get('product_name', False)
@@ -33,7 +33,7 @@ def add_new_product(request, lang):
     return result
 
 
-def add_new_photo(request, lang, sku):
+def add_new_photo(request, sku):
     url = "shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
@@ -95,7 +95,7 @@ def add_features(request, language, sku):
     return result
 
 
-def edit(request, lang, sku):
+def edit(request, sku):
     url = "shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
@@ -127,7 +127,7 @@ def edit(request, lang, sku):
     return result
 
 
-def delete_product(request, lang, sku):
+def delete_product(sku):
     url = "shop-manager/inventory.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)

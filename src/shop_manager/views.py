@@ -22,9 +22,10 @@ def inventory(request, action, sku):
     direction = request.session.get('direction')
     url = direction + "shop-manager/inventory.html"
     if action == "add_new_product":
-        url = direction + inventory_actions.add_new_product(request, lang).get('url')
+        url = direction + inventory_actions.add_new_product(request).get('url')
     if action == "delete_product":
-        url = direction + inventory_actions.delete_product(request, lang, sku).get('url')
+        InventoryProduct.objects.all().get(sku=sku).delete()
+        url = direction + inventory_actions.delete_product(sku).get('url')
 
     context = {
         'lang': lang,
@@ -37,9 +38,9 @@ def inventory_product(request, action, sku, identity):
     direction = request.session.get('direction')
     url = direction + "shop-manager/inventory-product.html"
     if action == 'edit':
-        url = direction + inventory_actions.edit(request, lang, sku).get('url')
+        url = direction + inventory_actions.edit(request, sku).get('url')
     if action == 'add_photo':
-        url = direction + inventory_actions.add_new_photo(request, lang, sku).get('url')
+        url = direction + inventory_actions.add_new_photo(request, sku).get('url')
     if action == 'delete_photo':
         InventoryProduct.objects.all().get(sku=sku).album.all().get(id=identity).delete()
     if action == 'add_en_features':
