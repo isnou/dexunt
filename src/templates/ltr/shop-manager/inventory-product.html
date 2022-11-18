@@ -196,7 +196,7 @@
                                         <a href="#" class="menu-link px-3">Edit General Information</a>
                                     </div>
                                     <!--end actions menu item photo-->
-
+                                    {% if selected_product.profile >= 2 %}
                                     <!--actions menu item photo-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_new_photo">
                                         <a href="#" class="menu-link px-3">Add New Photo</a>
@@ -220,6 +220,7 @@
                                         <a href="#" class="menu-link px-3">Add Arabic Features</a>
                                     </div>
                                     <!--end actions menu item details in arabic-->
+                                    {% endif %}
                                 </div>
                                 <!--end action buttons-->
                             </div>
@@ -399,7 +400,7 @@
                         </div>
                     </div>
                     <!--end edit general information-->
-                    {% if selected_product.profile == 2 %}
+
                     <!--add new photo modal-->
                     <div class="modal fade" tabindex="-1" id="add_new_photo">
                         <div class="modal-dialog">
@@ -632,7 +633,6 @@
                         </div>
                     </div>
                     <!--end ar details modal-->
-                    {% endif %}
 
                     <!--actions profile completion-->
                     <div class="d-flex flex-wrap flex-stack">
