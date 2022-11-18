@@ -45,13 +45,17 @@ def inventory_product(request, action, sku, identity):
     selected_product = all_products.get(sku=sku)
     features = selected_product.features.all()
     english_features = features.filter(language='english')
+    french_features = features.filter(language='french')
+    arabic_features = features.filter(language='arabic')
     photos = selected_product.album.all()
     features_count = features.count()
     photos_count = photos.count()
 
     context = {
         'lang': lang,
-        'features': features,
+        'english_features': english_features,
+        'french_features': french_features,
+        'arabic_features': arabic_features,
         'photos': photos,
         'features_count': features_count,
         'photos_count': photos_count,
