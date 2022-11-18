@@ -264,6 +264,10 @@ def option_delete(request, action, sku, ident):
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
         selected_photo.delete()
+    elif action == 'en_product_feature_delete':
+        url = "ltr/shop-manager/view-product.html"
+        lang = "en"
+        selected_feature.delete()
     else:
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
