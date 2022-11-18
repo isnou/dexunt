@@ -20,7 +20,7 @@ def inventory(request, action):
     lang = "en"
     url = "ltr/shop-manager/inventory.html"
     if action == "add_new_product":
-        inventory_actions.add_new_product()
+        url = inventory_actions.add_new_product().get('url')
 
     context = {
         'lang': lang,

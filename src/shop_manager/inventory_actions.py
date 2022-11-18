@@ -29,6 +29,11 @@ def add_new_product():
             new_product.profile += 1
         new_product.sku = serial_number_generator(9).upper()
         new_product.save()
+    result = {
+        'url': url,
+        'lang': lang,
+    }
+    return result
 
 
 def serial_number_generator(length):
