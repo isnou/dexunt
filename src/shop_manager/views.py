@@ -21,11 +21,22 @@ def inventory(request, action):
     url = "ltr/shop-manager/inventory.html"
     if action == "add_new_product":
         url = inventory_actions.add_new_product(request, lang).get('url')
-    if action == "edit_product":
-        url = inventory_actions.edit_product(request, lang).get('url')
 
     context = {
         'lang': lang,
+    }
+    return render(request, url, context)
+
+
+def inventory_product(request, action, sku, identity):
+    lang = "en"
+    url = "ltr/shop-manager/view-product.html"
+    all_products = InventoryProduct.objects.all()
+    selected_product = all_products.get(sku=sku)
+
+    context = {
+        'lang': lang,
+        'selected_product': selected_product,
     }
     return render(request, url, context)
 

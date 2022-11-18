@@ -173,14 +173,13 @@
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
                         <th class="min-w-300px">Product</th>
+                        <th class="text-end min-w-30px"></th>
+                        <th class="text-end min-w-30px"></th>
                         <th class="min-w-300px">Profile Progress</th>
                         <th class="text-center min-w-300px">SKU</th>
                         <th class="text-center min-w-200px">Rate</th>
                         <th class="text-center min-w-200px">Qty</th>
                         <th class="text-center min-w-200px">Buy Price</th>
-                        <th class="text-end min-w-30px"></th>
-                        <th class="text-end min-w-30px"></th>
-                        <th class="text-end min-w-30px"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -202,6 +201,23 @@
                             </div>
                         </td>
                         <!--end product-->
+
+                        <!--edit product action-->
+                        <td class="text-end">
+                            <a href="{% url 'inventory-product' 'edit_product' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </td>
+                        <!--end edit product action-->
+
+                        <!--delete product action-->
+                        <td class="text-end">
+                            <a href="{% url 'delete-product' 'en_product_delete' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete_product_modal"></i>
+                            </a>
+
+                        </td>
+                        <!--end delete product action-->
 
                         <!--profile-->
                         <td class="text-end pe-0">
@@ -266,33 +282,6 @@
                             <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} AD</span>
                         </td>
                         <!--end buy price-->
-
-                        <!--upgrade action-->
-                        <td class="text-end">
-                            {% if product.profile > 3 %}
-                            <a href="{% url 'view-product' 'en_product_view' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="upgrade product">
-                                <i class="bi bi-arrow-90deg-up"></i>
-                            </a>
-                            {% endif %}
-                        </td>
-                        <!--end upgrade action-->
-
-                        <!--edit product action-->
-                        <td class="text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                        </td>
-                        <!--end edit product action-->
-
-                        <!--delete product action-->
-                        <td class="text-end">
-                            <a href="{% url 'delete-product' 'en_product_delete' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete_product_modal"></i>
-                            </a>
-
-                        </td>
-                        <!--end delete product action-->
                     </tr>
                     {% endfor %}
                     </tbody>
