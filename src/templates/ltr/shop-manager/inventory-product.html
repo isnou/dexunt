@@ -205,19 +205,19 @@
 
                                     <!--actions menu item details in english-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_en_features">
-                                        <a href="{% url 'inventory-product' 'add_en_features' selected_product.sku 0 %}" class="menu-link px-3">Add English Features</a>
+                                        <a href="#" class="menu-link px-3">Add English Features</a>
                                     </div>
                                     <!--end actions menu item details in english-->
 
                                     <!--actions menu item details in frensh-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_fr_features">
-                                        <a href="{% url 'inventory-product' 'add_fr_features' selected_product.sku 0 %}" class="menu-link px-3">Add Frensh Features</a>
+                                        <a href="#" class="menu-link px-3">Add Frensh Features</a>
                                     </div>
                                     <!--end actions menu item details in frensh-->
 
                                     <!--actions menu item details in arabic-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_ar_features">
-                                        <a href="{% url 'inventory-product' 'add_ar_features' selected_product.sku 0 %}" class="menu-link px-3">Add Arabic Features</a>
+                                        <a href="#" class="menu-link px-3">Add Arabic Features</a>
                                     </div>
                                     <!--end actions menu item details in arabic-->
                                 </div>
@@ -458,7 +458,7 @@
                                 </div>
                                 <!-- modal title -->
                                 <!--add new features form-->
-                                <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                <form action="{% url 'inventory-product' 'add_en_features' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="modal-body">
                                         <table class="table table-row-dashed table-row-gray-300 gy-7">
@@ -521,7 +521,7 @@
                                 </div>
                                 <!-- modal title -->
                                 <!--add new features form-->
-                                <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                <form action="{% url 'inventory-product' 'add_fr_features' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="modal-body">
                                         <table class="table table-row-dashed table-row-gray-300 gy-7">
@@ -570,7 +570,7 @@
                     </div>
                     <!--end fr details modal-->
 
-                    <!--fr details modal-->
+                    <!--ar details modal-->
                     <div class="modal fade" tabindex="-1" id="add_ar_features">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -584,7 +584,7 @@
                                 </div>
                                 <!-- modal title -->
                                 <!--add new features form-->
-                                <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                <form action="{% url 'inventory-product' 'add_ar_features' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="modal-body">
                                         <table class="table table-row-dashed table-row-gray-300 gy-7">
@@ -631,7 +631,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--end fr details modal-->
+                    <!--end ar details modal-->
 
                     <!--actions profile completion-->
                     <div class="d-flex flex-wrap flex-stack">
