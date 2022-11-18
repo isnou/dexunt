@@ -31,7 +31,7 @@ def inventory(request, action):
 
 def inventory_product(request, action, sku, identity):
     lang = "en"
-    url = "ltr/shop-manager/view-product.html"
+    url = "ltr/shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
 
