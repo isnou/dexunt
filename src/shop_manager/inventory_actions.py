@@ -35,7 +35,7 @@ def add_new_product(request, lang):
     return result
 
 
-def add_new_product_photo(request, lang):
+def add_new_photo(request, lang, sku):
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     if request.method == 'POST':

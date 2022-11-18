@@ -34,6 +34,8 @@ def inventory_product(request, action, sku, identity):
     url = "ltr/shop-manager/inventory-product.html"
     if action == 'edit':
         inventory_actions.edit(request, lang, sku)
+    if action == 'add_photo':
+        inventory_actions.add_new_photo(request, lang, sku)
 
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
