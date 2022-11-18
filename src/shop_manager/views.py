@@ -48,6 +48,8 @@ def inventory_product(request, action, sku, identity):
         url = direction + inventory_actions.add_features(request, 'french', sku).get('url')
     if action == 'add_ar_features':
         url = direction + inventory_actions.add_features(request, 'arabic', sku).get('url')
+    if action == 'delete_feature':
+        InventoryProduct.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
