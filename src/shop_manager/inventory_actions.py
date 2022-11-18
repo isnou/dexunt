@@ -20,14 +20,12 @@ def add_new_product(request, lang):
                                        )
         if upc:
             new_product.upc = upc
+        new_product.sku = serial_number_generator(9).upper()
         new_product.profile = 1
         if new_product.upc:
             new_product.profile += 1
-        if new_product.thumb:
-            new_product.profile += 1
         if new_product.buy_price > 0:
             new_product.profile += 1
-        new_product.sku = serial_number_generator(9).upper()
         new_product.save()
     result = {
         'url': url,
@@ -78,11 +76,9 @@ def edit(request, lang, sku):
         selected_product.profile = 1
         if selected_product.upc:
             selected_product.profile += 1
-        if selected_product.thumb:
-            selected_product.profile += 1
         if selected_product.buy_price > 0:
             selected_product.profile += 1
-    selected_product.save()
+        selected_product.save()
     result = {
         'url': url,
     }
