@@ -71,7 +71,7 @@ class InventoryProduct(models.Model):
         return "\n".join([p.value for p in self.features.all()])
 
     def __str__(self):
-        return self.product_name
+        return str(self.product_name)
 
 
 class ShopProduct(models.Model):
