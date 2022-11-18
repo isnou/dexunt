@@ -180,8 +180,6 @@ def view(request, action, sku):
         'lang': lang,
         'features': features,
         'photos': photos,
-        'features_count': features_count,
-        'photos_count': photos_count,
         'product_to_view': product_to_view,
     }
     return result
@@ -275,8 +273,6 @@ def option_delete(request, action, sku, ident):
         'lang': lang,
         'features': features,
         'photos': photos,
-        'features_count': features_count,
-        'photos_count': photos_count,
         'product_to_view': selected_product,
     }
     return result
