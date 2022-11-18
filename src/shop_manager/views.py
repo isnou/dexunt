@@ -42,9 +42,9 @@ def inventory_product(request, action, sku, identity):
         url = direction + inventory_actions.add_new_photo(request, lang, sku).get('url')
     if action == 'add_en_features':
         url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
-    if action == 'add_en_features':
+    if action == 'add_fr_features':
         url = direction + inventory_actions.add_features(request, 'french', sku).get('url')
-    if action == 'add_en_features':
+    if action == 'add_ar_features':
         url = direction + inventory_actions.add_features(request, 'arabic', sku).get('url')
 
     all_products = InventoryProduct.objects.all()
