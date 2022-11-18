@@ -97,8 +97,7 @@ def add_features(request, language, sku):
 
 def edit(request, sku):
     url = "shop-manager/inventory-product.html"
-    all_products = InventoryProduct.objects.all()
-    selected_product = all_products.get(sku=sku)
+    selected_product = InventoryProduct.objects.all().all_products.get(sku=sku)
     if request.method == 'POST':
         product_name = request.POST.get('product_name', False)
         if product_name:
@@ -121,17 +120,6 @@ def edit(request, sku):
         if selected_product.buy_price > 0:
             selected_product.profile += 1
         selected_product.save()
-    result = {
-        'url': url,
-    }
-    return result
-
-
-def delete_product(sku):
-    url = "shop-manager/inventory.html"
-    all_products = InventoryProduct.objects.all()
-    selected_product = all_products.get(sku=sku)
-    selected_product.delete()
     result = {
         'url': url,
     }
