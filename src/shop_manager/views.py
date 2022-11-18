@@ -34,9 +34,17 @@ def inventory_product(request, action, sku, identity):
     url = "ltr/shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
+    features = selected_product.features.all()
+    photos = selected_product.album.all()
+    features_count = features.count()
+    photos_count = photos.count()
 
     context = {
         'lang': lang,
+        'features': features,
+        'photos': photos,
+        'features_count': features_count,
+        'photos_count': photos_count,
         'selected_product': selected_product,
     }
     return render(request, url, context)
