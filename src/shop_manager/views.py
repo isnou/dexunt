@@ -41,9 +41,7 @@ def inventory_product(request, action, sku, identity):
     if action == 'add_photo':
         url = direction + inventory_actions.add_new_photo(request, lang, sku).get('url')
     if action == 'delete_photo':
-        selected_product = InventoryProduct.objects.all()
-        selected_photos = selected_product.album.all()
-        selected_photos.get(id=identity).delete()
+        InventoryProduct.objects.all().get(sku=sku).album.all().get(id=identity).delete()
     if action == 'add_en_features':
         url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
     if action == 'add_fr_features':
