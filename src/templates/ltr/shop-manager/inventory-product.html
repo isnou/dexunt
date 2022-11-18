@@ -52,7 +52,7 @@
 
     <!--menu title inventory-->
     <div class="menu-item py-2">
-        <a class="menu-link active menu-center" href="{% url 'inventory' 'intro' %}" title="Inventory" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+        <a class="menu-link active menu-center" href="{% url 'inventory' '#' %}" title="Inventory" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
             <span class="menu-icon me-0">
                 <!--inventory icon-->
                 <span class="menu-link menu-center">
@@ -112,7 +112,7 @@
         <a href="{% url 'dashboard' 'en_dashboard' %}" class="text-muted">Home</a>
     </li>
     <li class="breadcrumb-item text-muted">
-        <a href="{% url 'inventory' 'intro' %}" class="text-muted">Inventory</a>
+        <a href="{% url 'inventory' '#' %}" class="text-muted">Inventory</a>
     </li>
     <li class="breadcrumb-item text-muted">View Product</li>
     {% endif %}
