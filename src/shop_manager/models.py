@@ -21,7 +21,7 @@ class InventoryProductFeatures(models.Model):
     value = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return str(self.value)
+        return self.value
 
 
 class ShopProductFeatures(models.Model):
