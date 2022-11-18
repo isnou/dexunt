@@ -704,31 +704,111 @@
         </div>
         <div class="card-body p-9">
             <div class="py-5">
-                <div class="table-responsive">
-                    <table class="table table-row-dashed table-row-gray-300 gy-7">
-                        <thead>
-                        <tr class="fw-bold fs-6 text-gray-800">
-                            <th>Features</th>
-                            <th>Language</th>
-                            <th>Value</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for feature in french_features %}
-                        <tr>
-                            <td>{{ feature.type }}</td>
-                            <td>{{ feature.language }}</td>
-                            <td>{{ feature.value }}</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                <div class="card ">
+                    <div class="card-header card-header-stretch">
+                        <h3 class="card-title">Choose features language tab</h3>
+                        <div class="card-toolbar">
+                            <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#english_features">English</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#french_features">French</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#arabic_features">Arabic</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <!--english features tab-->
+                            <div class="tab-pane fade show active" id="english_features" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                        <thead>
+                                        <tr class="fw-bold fs-6 text-gray-800">
+                                            <th>Features</th>
+                                            <th>Value</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for feature in english_features %}
+                                        <tr>
+                                            <td>{{ feature.type }}</td>
+                                            <td>{{ feature.value }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end english features tab-->
+                            <!--french features tab-->
+                            <div class="tab-pane fade" id="french_features" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                        <thead>
+                                        <tr class="fw-bold fs-6 text-gray-800">
+                                            <th>Features</th>
+                                            <th>Value</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for feature in french_features %}
+                                        <tr>
+                                            <td>{{ feature.type }}</td>
+                                            <td>{{ feature.value }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end french features tab-->
+                            <!--arabic features tab-->
+                            <div class="tab-pane fade" id="arabic_features" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-row-dashed table-row-gray-300 gy-7">
+                                        <thead>
+                                        <tr class="fw-bold fs-6 text-gray-800">
+                                            <th>Features</th>
+                                            <th>Value</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for feature in arabic_features %}
+                                        <tr>
+                                            <td>{{ feature.type }}</td>
+                                            <td>{{ feature.value }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end arabic features tab-->
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
