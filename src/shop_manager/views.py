@@ -6,7 +6,7 @@ from .models import InventoryProduct
 
 def manager_dashboard(request, action):
     if not request.session.get('language', None):
-        request.session['lang'] = 'en'
+        request.session['language'] = 'en'
         request.session['direction'] = 'ltr/'
     lang = request.session.get('language')
     direction = request.session.get('direction')
