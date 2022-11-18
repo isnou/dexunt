@@ -33,7 +33,7 @@ def inventory_product(request, action, sku, identity):
     lang = "en"
     url = "ltr/shop-manager/inventory-product.html"
     if action == 'edit':
-        inventory_actions.edit(request, sku)
+        inventory_actions.edit(request, lang, sku)
 
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)

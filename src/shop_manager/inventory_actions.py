@@ -35,7 +35,22 @@ def add_new_product(request, lang):
     return result
 
 
-def edit(request, sku):
+def add_new_product_photo(request, lang):
+    all_products = InventoryProduct.objects.all()
+    selected_product = all_products.get(sku=sku)
+    if request.method == 'POST':
+        image_to_add = request.FILES.get('image_to_add', False)
+        if image_to_add:
+            photo = ProductAlbum(
+                file_name=selected_product.product_name,
+                picture=image_to_add,
+            )
+            photo.save()
+            selected_product.album.add(photo)
+    selected_product.save()
+
+
+def edit(request, lang, sku):
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     if request.method == 'POST':
