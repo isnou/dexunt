@@ -35,6 +35,35 @@ def add_new_product(request, lang):
     return result
 
 
+def edit(request, sku):
+    all_products = InventoryProduct.objects.all()
+    selected_product = all_products.get(sku=sku)
+    if request.method == 'POST':
+        product_name = request.POST.get('product_name', False)
+        if product_name:
+            selected_product.product_name = product_name
+        buy_price = request.POST.get('buy_price', False)
+        if buy_price:
+            selected_product.buy_price = int(buy_price)
+        quantity = request.POST.get('quantity', False)
+        if quantity:
+            selected_product.quantity = int(quantity)
+        thumb = request.FILES.get('thumb', False)
+        if thumb:
+            selected_product.thumb = thumb
+        upc = request.POST.get('upc', False)
+        if upc:
+            selected_product.upc = upc
+        selected_product.profile = 1
+        if selected_product.upc:
+            selected_product.profile += 1
+        if selected_product.thumb:
+            selected_product.profile += 1
+        if selected_product.buy_price > 0:
+            selected_product.profile += 1
+    selected_product.save()
+
+
 def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits
     result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
