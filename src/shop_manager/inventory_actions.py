@@ -21,7 +21,7 @@ def add_new_product(request):
         if upc:
             new_product.upc = upc
         new_product.sku = serial_number_generator(9).upper()
-        new_product.profile = 1
+        new_product.profile = 0.5
         if new_product.upc:
             new_product.profile += 1
         if new_product.buy_price > 0:
@@ -35,8 +35,7 @@ def add_new_product(request):
 
 def add_new_photo(request, sku):
     url = "shop-manager/inventory-product.html"
-    all_products = InventoryProduct.objects.all()
-    selected_product = all_products.get(sku=sku)
+    selected_product = InventoryProduct.objects.all().get(sku=sku)
     if request.method == 'POST':
         image_to_add = request.FILES.get('image_to_add', False)
         if image_to_add:
@@ -55,8 +54,7 @@ def add_new_photo(request, sku):
 
 def add_features(request, language, sku):
     url = "shop-manager/inventory-product.html"
-    all_products = InventoryProduct.objects.all()
-    selected_product = all_products.get(sku=sku)
+    selected_product = InventoryProduct.objects.all().get(sku=sku)
     if request.method == 'POST':
         model = request.POST.get('model', False)
         if model:
