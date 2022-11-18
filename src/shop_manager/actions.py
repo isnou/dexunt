@@ -270,8 +270,6 @@ def option_delete(request, action, sku, ident):
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
 
-    features_count = features.count()
-    photos_count = photos.count()
     result = {
         'url': url,
         'lang': lang,
