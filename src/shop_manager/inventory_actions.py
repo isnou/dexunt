@@ -4,7 +4,7 @@ from django.db import models
 from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
 
 
-def add_new_product():
+def add_new_product(request):
     if request.method == 'POST':
         product_name = request.POST.get('product_name', False)
         buy_price = request.POST.get('buy_price', False)
