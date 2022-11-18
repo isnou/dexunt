@@ -25,7 +25,6 @@ def inventory(request, action, sku):
         url = direction + inventory_actions.add_new_product(request).get('url')
     if action == "delete_product":
         InventoryProduct.objects.all().get(sku=sku).delete()
-        url = direction + inventory_actions.delete_product(sku).get('url')
 
     context = {
         'lang': lang,
