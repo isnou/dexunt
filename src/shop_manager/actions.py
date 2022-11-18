@@ -71,33 +71,39 @@ def view(request, action, sku):
         if request.method == 'POST':
             model = request.POST.get('model', False)
             if model:
-                if product_to_view.features.all().filter(type='model').exists():
-                    product_to_view.features.all().filter(type='model').delete()
+                if product_to_view.features.all().filter(language=language).exists():
+                    if product_to_view.features.all().filter(type='model').exists():
+                        product_to_view.features.all().filter(type='model').delete()
                 product_to_view.features.add(new_feature('model', model, language))
             brand = request.POST.get('brand', False)
             if brand:
-                if product_to_view.features.all().filter(type='brand').exists():
-                    product_to_view.features.all().filter(type='brand').delete()
+                if product_to_view.features.all().filter(language=language).exists():
+                    if product_to_view.features.all().filter(type='brand').exists():
+                        product_to_view.features.all().filter(type='brand').delete()
                 product_to_view.features.add(new_feature('brand', brand, language))
             color = request.POST.get('color', False)
             if color:
-                if product_to_view.features.all().filter(type='color').exists():
-                    product_to_view.features.all().filter(type='color').delete()
+                if product_to_view.features.all().filter(language=language).exists():
+                    if product_to_view.features.all().filter(type='color').exists():
+                        product_to_view.features.all().filter(type='color').delete()
                 product_to_view.features.add(new_feature('color', color, language))
             dimensions = request.POST.get('dimensions', False)
             if dimensions:
-                if product_to_view.features.all().filter(type='dimensions').exists():
-                    product_to_view.features.all().filter(type='dimensions').delete()
+                if product_to_view.features.all().filter(language=language).exists():
+                    if product_to_view.features.all().filter(type='dimensions').exists():
+                        product_to_view.features.all().filter(type='dimensions').delete()
                 product_to_view.features.add(new_feature('dimensions', dimensions, language))
             size = request.POST.get('size', False)
             if size:
-                if product_to_view.features.all().filter(type='size').exists():
-                    product_to_view.features.all().filter(type='size').delete()
+                if product_to_view.features.all().filter(language=language).exists():
+                    if product_to_view.features.all().filter(type='size').exists():
+                        product_to_view.features.all().filter(type='size').delete()
                 product_to_view.features.add(new_feature('size', size, language))
             weight = request.POST.get('weight', False)
             if weight:
-                if product_to_view.features.all().filter(type='weight').exists():
-                    product_to_view.features.all().filter(type='weight').delete()
+                if product_to_view.features.all().filter(language=language).exists():
+                    if product_to_view.features.all().filter(type='weight').exists():
+                        product_to_view.features.all().filter(type='weight').delete()
                 product_to_view.features.add(new_feature('weight', weight, language))
     elif action == 'en_product_detail_add_fr':
         url = "ltr/shop-manager/view-product.html"
