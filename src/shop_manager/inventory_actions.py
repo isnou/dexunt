@@ -134,7 +134,7 @@ def progress_counter(sku, photos_count, features_count):
         features_progress = features_count
     else:
         features_progress = 4
-    selected_product = 2 + photos_progress + features_progress
+    selected_product.profile = 2 + photos_progress + features_progress
     selected_product.save()
 
 
