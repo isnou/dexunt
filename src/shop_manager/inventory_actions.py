@@ -124,6 +124,20 @@ def edit(request, sku):
     return result
 
 
+def progress_counter(sku, photos_count, features_count):
+    selected_product = InventoryProduct.objects.all().get(sku=sku)
+    if photos_count < 4:
+        photos_progress = photos_count
+    else:
+        photos_progress = 4
+    if features_count < 4:
+        features_progress = features_count
+    else:
+        features_progress = 4
+    selected_product = 2 + photos_progress + features_progress
+    selected_product.save()
+
+
 def new_feature(feature_name, feature_value, language):
     feature = InventoryProductFeatures()
     feature.language = language
