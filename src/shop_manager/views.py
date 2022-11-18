@@ -6,7 +6,8 @@ from .models import InventoryProduct
 
 def manager_dashboard(request, action):
     lang = "en"
-    url = "ltr/shop-manager/dashboard.html"
+    direction = 'ltr/'
+    url = direction + "shop-manager/dashboard.html"
     context = {
         'lang': lang,
     }
