@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import actions
+from . import inventory_actions
 
 
 def manager_dashboard(request, action):
@@ -18,9 +19,8 @@ def manager_dashboard(request, action):
 def inventory(request, action):
     lang = "en"
     url = "ltr/shop-manager/inventory.html"
-    if action == "en_product_list_show":
-        lang = "en"
-        url = "ltr/shop-manager/inventory.html"
+    if action == "add_new_product":
+        inventory_actions.add_new_product()
 
     context = {
         'lang': lang,
