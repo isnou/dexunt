@@ -4,7 +4,7 @@ from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
 
 
 def add_new_product(request, lang):
-    url = "ltr/shop-manager/inventory.html"
+    url = "shop-manager/inventory.html"
     if request.method == 'POST':
         product_name = request.POST.get('product_name', False)
         buy_price = request.POST.get('buy_price', False)
@@ -36,7 +36,7 @@ def add_new_product(request, lang):
 
 
 def add_new_photo(request, lang, sku):
-    url = "ltr/shop-manager/inventory-product.html"
+    url = "shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     if request.method == 'POST':
@@ -56,7 +56,7 @@ def add_new_photo(request, lang, sku):
 
 
 def edit(request, lang, sku):
-    url = "ltr/shop-manager/inventory-product.html"
+    url = "shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     if request.method == 'POST':
@@ -90,7 +90,7 @@ def edit(request, lang, sku):
 
 
 def delete_product(request, lang, sku):
-    url = "ltr/shop-manager/inventory.html"
+    url = "shop-manager/inventory.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     selected_product.delete()

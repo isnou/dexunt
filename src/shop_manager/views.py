@@ -5,8 +5,11 @@ from .models import InventoryProduct
 
 
 def manager_dashboard(request, action):
-    lang = "en"
-    direction = 'ltr/'
+    if not request.session.get('language', None):
+        request.session['lang'] = 'en'
+        request.session['direction'] = 'ltr/'
+    lang = request.session.get('language')
+    direction = request.session.get('direction')
     url = direction + "shop-manager/dashboard.html"
     context = {
         'lang': lang,
@@ -15,12 +18,13 @@ def manager_dashboard(request, action):
 
 
 def inventory(request, action, sku):
-    lang = "en"
-    url = "ltr/shop-manager/inventory.html"
+    lang = request.session.get('language')
+    direction = request.session.get('direction')
+    url = direction + "shop-manager/inventory.html"
     if action == "add_new_product":
-        url = inventory_actions.add_new_product(request, lang).get('url')
+        url = direction + inventory_actions.add_new_product(request, lang).get('url')
     if action == "delete_product":
-        url = inventory_actions.delete_product(request, lang, sku).get('url')
+        url = direction + inventory_actions.delete_product(request, lang, sku).get('url')
 
     context = {
         'lang': lang,
@@ -29,12 +33,13 @@ def inventory(request, action, sku):
 
 
 def inventory_product(request, action, sku, identity):
-    lang = "en"
-    url = "ltr/shop-manager/inventory-product.html"
+    lang = request.session.get('language')
+    direction = request.session.get('direction')
+    url = direction + "shop-manager/inventory-product.html"
     if action == 'edit':
-        url = inventory_actions.edit(request, lang, sku).get('url')
+        url = direction + inventory_actions.edit(request, lang, sku).get('url')
     if action == 'add_photo':
-        url = inventory_actions.add_new_photo(request, lang, sku).get('url')
+        url = direction + inventory_actions.add_new_photo(request, lang, sku).get('url')
 
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
