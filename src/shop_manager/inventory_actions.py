@@ -1,6 +1,5 @@
 import random
 import string
-from django.db import models
 from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
 
 

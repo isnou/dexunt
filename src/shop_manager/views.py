@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from . import actions
 from . import inventory_actions
+from .models import InventoryProduct
 
 
 def manager_dashboard(request, action):
