@@ -103,7 +103,7 @@ def view(request, action, sku):
             if weight:
                 if product_to_view.features.all().filter(language=language).exists():
                     if product_to_view.features.all().filter(type='weight').exists():
-                        product_to_view.features.all().filter(type='weight').delete()
+                        product_to_view.features.all().filter(type='weight', language=language).delete()
                 product_to_view.features.add(new_feature('weight', weight, language))
     elif action == 'en_product_detail_add_fr':
         url = "ltr/shop-manager/view-product.html"
