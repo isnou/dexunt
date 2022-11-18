@@ -133,29 +133,35 @@
         <!--principle card header-->
         <div class="card-header">
             {% if inventory_product_count > 0 %}
-                <!--search-->
-                <div class="d-flex align-items-center position-relative my-1">
-                    <!--search logo-->
-                    <span class="svg-icon svg-icon-1 position-absolute ms-4">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-                            <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-                        </svg>
-                    </span>
-                    <!--end search logo-->
-                    <input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Product" />
-                </div>
-                <!--end search-->
-                {% else %}
-                <div class="d-flex align-items-center position-relative my-1">
-                    No registered products ,to start click on add products
-                </div>
-                {% endif %}
+            <!--search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <!--search logo-->
+                <span class="svg-icon svg-icon-1 position-absolute ms-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                    </svg>
+                </span>
+                <!--end search logo-->
+                <!--search input-->
+                <input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Product" />
+                <!--end search input-->
+            </div>
+            <!--end search-->
+            {% else %}
+            <!--no products message-->
+            <div class="d-flex align-items-center position-relative my-1">
+                No registered products ,to start click on add products
+            </div>
+            <!--end no products message-->
+            {% endif %}
+            <!--toolbar-->
             <div class="card-toolbar">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_new_product">
                     add new product
                 </button>
             </div>
+            <!--end toolbar-->
         </div>
         <!--end principle card header-->
         <!--principle card body-->
@@ -281,9 +287,10 @@
 
                         <!--delete product action-->
                         <td class="text-end">
-                            <a href="{% url 'delete-product' 'en_product_delete' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-trash"></i>
+                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete_product_modal"></i>
                             </a>
+
                         </td>
                         <!--end delete product action-->
                     </tr>
@@ -330,6 +337,33 @@
         </div>
     </div>
     <!--end add new product modal-->
+
+
+    <div class="modal fade" tabindex="-1" id="delete_product_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Modal title</h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-1"></span>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button href="{% url 'delete-product' 'en_product_delete' product.sku %}" type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!--end modals-->
 
 
