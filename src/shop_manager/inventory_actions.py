@@ -97,7 +97,7 @@ def add_features(request, language, sku):
 
 def edit(request, sku):
     url = "shop-manager/inventory-product.html"
-    selected_product = InventoryProduct.objects.all().all_products.get(sku=sku)
+    selected_product = InventoryProduct.objects.all().get(sku=sku)
     if request.method == 'POST':
         product_name = request.POST.get('product_name', False)
         if product_name:
