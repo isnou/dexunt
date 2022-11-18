@@ -399,7 +399,7 @@
                         </div>
                     </div>
                     <!--end edit general information-->
-
+                    {% if selected_product.profile == 2 %}
                     <!--add new photo modal-->
                     <div class="modal fade" tabindex="-1" id="add_new_photo">
                         <div class="modal-dialog">
@@ -632,6 +632,7 @@
                         </div>
                     </div>
                     <!--end ar details modal-->
+                    {% endif %}
 
                     <!--actions profile completion-->
                     <div class="d-flex flex-wrap flex-stack">
