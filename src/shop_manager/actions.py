@@ -1,5 +1,6 @@
 import random
 import string
+from django.db import models
 from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
 
 
@@ -69,25 +70,14 @@ def view(request, action, sku):
         if request.method == 'POST':
             model = request.POST.get('model', False)
             if model:
-                new_features = InventoryProductFeatures()
-                new_features.language = 'english'
-                new_features.type = 'model'
-                new_features.value = model
-                new_features.save()
                 if product_to_view.features.all().filter(type='model').exists():
                     product_to_view.features.all().filter(type='model').delete()
-                new_features.save()
-                product_to_view.features.add(new_features)
+                product_to_view.features.add(new_feature_save('model', model, 'english'))
             brand = request.POST.get('brand', False)
             if brand:
-                new_features = InventoryProductFeatures()
-                new_features.language = 'english'
-                new_features.type = 'brand'
-                new_features.value = brand
                 if product_to_view.features.all().filter(type='brand').exists():
                     product_to_view.features.all().filter(type='brand').delete()
-                new_features.save()
-                product_to_view.features.add(new_features)
+                product_to_view.features.add(new_feature_save('brand', brand, 'english'))
             color = request.POST.get('color', False)
             if color:
                 new_features = InventoryProductFeatures()
@@ -216,10 +206,10 @@ def option_delete(request, action, sku, ident):
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     features = selected_product.features.all()
-    features_count = features.count()
     photos = selected_product.album.all()
-    photos_count = photos.count()
+
     selected_photo = photos.get(id=ident)
+    selected_feature = features.get(id=ident)
     if action == "ar_product_image_delete":
         url = "rtl/shop-manager/inventory.html"
         lang = "ar"
@@ -231,6 +221,8 @@ def option_delete(request, action, sku, ident):
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
 
+    features_count = features.count()
+    photos_count = photos.count()
     result = {
         'url': url,
         'lang': lang,
@@ -247,3 +239,12 @@ def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits
     result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
     return result_str
+
+
+def new_feature_save(feature_name, feature_value, language):
+    new_feature = InventoryProductFeatures()
+    new_features.language = language
+    new_features.type = feature_name
+    new_features.value = feature_value
+    new_features.save()
+    return new_feature
