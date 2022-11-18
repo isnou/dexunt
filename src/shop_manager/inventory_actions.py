@@ -53,6 +53,48 @@ def add_new_photo(request, lang, sku):
     return result
 
 
+def add_features(request, language, sku):
+    url = "shop-manager/inventory-product.html"
+    all_products = InventoryProduct.objects.all()
+    selected_product = all_products.get(sku=sku)
+    if request.method == 'POST':
+        model = request.POST.get('model', False)
+        if model:
+            if selected_product.features.all().filter(type='model').exists():
+                selected_product.features.all().filter(type='model', language=language).delete()
+            selected_product.features.add(new_feature('model', model, language))
+        brand = request.POST.get('brand', False)
+        if brand:
+            if selected_product.features.all().filter(type='brand').exists():
+                selected_product.features.all().filter(type='brand', language=language).delete()
+            selected_product.features.add(new_feature('brand', brand, language))
+        color = request.POST.get('color', False)
+        if color:
+            if selected_product.features.all().filter(type='color').exists():
+                selected_product.features.all().filter(type='color', language=language).delete()
+            selected_product.features.add(new_feature('color', color, language))
+        dimensions = request.POST.get('dimensions', False)
+        if dimensions:
+            if selected_product.features.all().filter(type='dimensions').exists():
+                selected_product.features.all().filter(type='dimensions', language=language).delete()
+            selected_product.features.add(new_feature('dimensions', dimensions, language))
+        size = request.POST.get('size', False)
+        if size:
+            if selected_product.features.all().filter(type='size').exists():
+                selected_product.features.all().filter(type='size', language=language).delete()
+            selected_product.features.add(new_feature('size', size, language))
+        weight = request.POST.get('weight', False)
+        if weight:
+            if selected_product.features.all().filter(type='weight').exists():
+                selected_product.features.all().filter(type='weight', language=language).delete()
+            selected_product.features.add(new_feature('weight', weight, language))
+    selected_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
 def edit(request, lang, sku):
     url = "shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
@@ -94,6 +136,15 @@ def delete_product(request, lang, sku):
         'url': url,
     }
     return result
+
+
+def new_feature(feature_name, feature_value, language):
+    feature = InventoryProductFeatures()
+    feature.language = language
+    feature.type = feature_name
+    feature.value = feature_value
+    feature.save()
+    return feature
 
 
 def serial_number_generator(length):
