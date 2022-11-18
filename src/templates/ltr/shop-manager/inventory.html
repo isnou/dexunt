@@ -166,12 +166,12 @@
                 <table class="table table-row-bordered gy-7 gs-7">
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-                        <th class="min-w-200px">Product</th>
-                        <th class="text-end min-w-280px">Profile Progress</th>
-                        <th class="text-end min-w-200px">SKU</th>
-                        <th class="text-end min-w-200px">Rate</th>
-                        <th class="text-end min-w-100px">Qty</th>
-                        <th class="text-end min-w-100px">Buy Price</th>
+                        <th class="min-w-300px">Product</th>
+                        <th class="min-w-300px">Profile Progress</th>
+                        <th class="text-end min-w-300px">SKU</th>
+                        <th class="text-center min-w-200px">Rate</th>
+                        <th class="text-center min-w-200px">Qty</th>
+                        <th class="text-center min-w-200px">Buy Price</th>
                         <th class="text-end min-w-30px"></th>
                         <th class="text-end min-w-30px"></th>
                         <th class="text-end min-w-30px"></th>
@@ -218,7 +218,7 @@
                         <!--end profile-->
 
                         <!--SKU-->
-                        <td class="text-end pe-0">
+                        <td class="text-center">
                             <span class="fw-bold">{{product.sku}}</span>
                         </td>
                         <!--end SKU-->
@@ -250,13 +250,13 @@
                         <!--end rate-->
 
                         <!--quantity-->
-                        <td class="text-end pe-0" data-order="46">
+                        <td class="text-center" data-order="46">
                             <span class="fw-bold ms-3">{{product.quantity}}</span>
                         </td>
                         <!--end quantity-->
 
                         <!--buy price-->
-                        <td class="text-end pe-0">
+                        <td class="text-center">
                             <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} AD</span>
                         </td>
                         <!--end buy price-->
