@@ -69,55 +69,36 @@ def view(request, action, sku):
         lang = "en"
         if request.method == 'POST':
             model = request.POST.get('model', False)
+            language = 'english'
             if model:
                 if product_to_view.features.all().filter(type='model').exists():
                     product_to_view.features.all().filter(type='model').delete()
-                product_to_view.features.add(new_feature('model', model, 'english'))
+                product_to_view.features.add(new_feature('model', model, language))
             brand = request.POST.get('brand', False)
             if brand:
                 if product_to_view.features.all().filter(type='brand').exists():
                     product_to_view.features.all().filter(type='brand').delete()
-                product_to_view.features.add(new_feature('brand', brand, 'english'))
+                product_to_view.features.add(new_feature('brand', brand, language))
             color = request.POST.get('color', False)
             if color:
-                new_features = InventoryProductFeatures()
-                new_features.language = 'english'
-                new_features.type = 'color'
-                new_features.value = color
                 if product_to_view.features.all().filter(type='color').exists():
                     product_to_view.features.all().filter(type='color').delete()
-                new_features.save()
-                product_to_view.features.add(new_features)
+                product_to_view.features.add(new_feature('color', color, language))
             dimensions = request.POST.get('dimensions', False)
             if dimensions:
-                new_features = InventoryProductFeatures()
-                new_features.language = 'english'
-                new_features.type = 'dimensions'
-                new_features.value = dimensions
                 if product_to_view.features.all().filter(type='dimensions').exists():
                     product_to_view.features.all().filter(type='dimensions').delete()
-                new_features.save()
-                product_to_view.features.add(new_features)
+                product_to_view.features.add(new_feature('dimensions', dimensions, language))
             size = request.POST.get('size', False)
             if size:
-                new_features = InventoryProductFeatures()
-                new_features.language = 'english'
-                new_features.type = 'size'
-                new_features.value = size
                 if product_to_view.features.all().filter(type='size').exists():
                     product_to_view.features.all().filter(type='size').delete()
-                new_features.save()
-                product_to_view.features.add(new_features)
+                product_to_view.features.add(new_feature('size', size, language))
             weight = request.POST.get('weight', False)
             if weight:
-                new_features = InventoryProductFeatures()
-                new_features.language = 'english'
-                new_features.type = 'weight'
-                new_features.value = weight
                 if product_to_view.features.all().filter(type='weight').exists():
                     product_to_view.features.all().filter(type='weight').delete()
-                new_features.save()
-                product_to_view.features.add(new_features)
+                product_to_view.features.add(new_feature('weight', weight, language))
     else:
         url = "ltr/shop-manager/inventory.html"
         lang = "en"
