@@ -325,10 +325,11 @@
                     <!--end clos-->
                 </div>
 
-                <div class="modal-body">
-                    <!--add product general information form-->
+                <!--add product general information form-->
                     <form action="{% url 'add-product' 'en_save_general_product_information' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
+                <div class="modal-body">
+
                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                             <div class="tab-content">
                                 <!--add product form inputs-->
@@ -483,31 +484,20 @@
                     </div>
                 </div>
                 <!--end add product form inputs-->
-
-                <!--add product buttons-->
-                <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                    <!--cancel button-->
-                    <a href="{% url 'inventory' 'en' %}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
-                    <!--end cancel button-->
-
-                    <!--save button-->
-                    <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                        <span class="indicator-label">Save Changes</span>
-                    </button>
-                    <!--end save button-->
-                </div>
-                <!--end add product buttons-->
             </div>
         </div>
-    </form>
+
                     <!--end add product general information form-->
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">Save changes</button>
+                    
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+
 
                 </div>
+                        </form>
             </div>
         </div>
     </div>
