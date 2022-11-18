@@ -5,12 +5,8 @@ from .models import InventoryProduct
 
 
 def manager_dashboard(request, action):
-    if action == "ar_dashboard":
-        lang = "ar"
-        url = "rtl/shop-manager/dashboard.html"
-    else:
-        lang = "en"
-        url = "ltr/shop-manager/dashboard.html"
+    lang = "en"
+    url = "ltr/shop-manager/dashboard.html"
     context = {
         'lang': lang,
     }
@@ -22,6 +18,8 @@ def inventory(request, action, sku):
     url = "ltr/shop-manager/inventory.html"
     if action == "add_new_product":
         url = inventory_actions.add_new_product(request, lang).get('url')
+    if action == "delete_product":
+        url = inventory_actions.delete_product(request, lang, sku).get('url')
 
     context = {
         'lang': lang,
@@ -33,9 +31,9 @@ def inventory_product(request, action, sku, identity):
     lang = "en"
     url = "ltr/shop-manager/inventory-product.html"
     if action == 'edit':
-        inventory_actions.edit(request, lang, sku)
+        url = inventory_actions.edit(request, lang, sku).get('url')
     if action == 'add_photo':
-        inventory_actions.add_new_photo(request, lang, sku)
+        url = inventory_actions.add_new_photo(request, lang, sku).get('url')
 
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)

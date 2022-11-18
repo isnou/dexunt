@@ -36,6 +36,7 @@ def add_new_product(request, lang):
 
 
 def add_new_photo(request, lang, sku):
+    url = "ltr/shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     if request.method == 'POST':
@@ -48,9 +49,14 @@ def add_new_photo(request, lang, sku):
             photo.save()
             selected_product.album.add(photo)
     selected_product.save()
+    result = {
+        'url': url,
+    }
+    return result
 
 
 def edit(request, lang, sku):
+    url = "ltr/shop-manager/inventory-product.html"
     all_products = InventoryProduct.objects.all()
     selected_product = all_products.get(sku=sku)
     if request.method == 'POST':
@@ -77,6 +83,21 @@ def edit(request, lang, sku):
         if selected_product.buy_price > 0:
             selected_product.profile += 1
     selected_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
+def delete_product(request, lang, sku):
+    url = "ltr/shop-manager/inventory.html"
+    all_products = InventoryProduct.objects.all()
+    selected_product = all_products.get(sku=sku)
+    selected_product.delete()
+    result = {
+        'url': url,
+    }
+    return result
 
 
 def serial_number_generator(length):
