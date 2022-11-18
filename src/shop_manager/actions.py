@@ -255,18 +255,18 @@ def option_delete(request, action, sku, ident):
     features = selected_product.features.all()
     photos = selected_product.album.all()
 
-    selected_photo = photos.get(id=ident)
-    selected_feature = features.get(id=ident)
     if action == "ar_product_image_delete":
         url = "rtl/shop-manager/inventory.html"
         lang = "ar"
     elif action == 'en_product_image_delete':
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
+        selected_photo = photos.get(id=ident)
         selected_photo.delete()
     elif action == 'en_product_feature_delete':
         url = "ltr/shop-manager/view-product.html"
         lang = "en"
+        selected_feature = features.get(id=ident)
         selected_feature.delete()
     else:
         url = "ltr/shop-manager/inventory.html"
