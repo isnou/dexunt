@@ -205,19 +205,19 @@
 
                                     <!--actions menu item details in english-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_en_features">
-                                        <a href="#" class="menu-link px-3">Add English Features</a>
+                                        <a href="{% url 'inventory-product' 'add_en_features' selected_product.sku 0 %}" class="menu-link px-3">Add English Features</a>
                                     </div>
                                     <!--end actions menu item details in english-->
 
                                     <!--actions menu item details in frensh-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_fr_features">
-                                        <a href="#" class="menu-link px-3">Add Frensh Features</a>
+                                        <a href="{% url 'inventory-product' 'add_fr_features' selected_product.sku 0 %}" class="menu-link px-3">Add Frensh Features</a>
                                     </div>
                                     <!--end actions menu item details in frensh-->
 
                                     <!--actions menu item details in arabic-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_ar_features">
-                                        <a href="#" class="menu-link px-3">Add Arabic Features</a>
+                                        <a href="{% url 'inventory-product' 'add_ar_features' selected_product.sku 0 %}" class="menu-link px-3">Add Arabic Features</a>
                                     </div>
                                     <!--end actions menu item details in arabic-->
                                 </div>
