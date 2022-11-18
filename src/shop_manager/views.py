@@ -17,7 +17,7 @@ def manager_dashboard(request, action):
     return render(request, url, context)
 
 
-def inventory(request, action):
+def inventory(request, action, sku):
     lang = "en"
     url = "ltr/shop-manager/inventory.html"
     if action == "add_new_product":
