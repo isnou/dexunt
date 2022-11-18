@@ -21,7 +21,7 @@ def add_new_product(request):
         if upc:
             new_product.upc = upc
         new_product.sku = serial_number_generator(9).upper()
-        new_product.profile = 0.5
+        new_product.profile = 0
         if new_product.upc:
             new_product.profile += 1
         if new_product.buy_price > 0:
@@ -112,7 +112,7 @@ def edit(request, sku):
         upc = request.POST.get('upc', False)
         if upc:
             selected_product.upc = upc
-        selected_product.profile = 1
+        selected_product.profile = 0
         if selected_product.upc:
             selected_product.profile += 1
         if selected_product.buy_price > 0:

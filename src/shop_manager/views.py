@@ -51,8 +51,7 @@ def inventory_product(request, action, sku, identity):
     if action == 'delete_feature':
         InventoryProduct.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
-    all_products = InventoryProduct.objects.all()
-    selected_product = all_products.get(sku=sku)
+    selected_product = InventoryProduct.objects.all().get(sku=sku)
     features = selected_product.features.all()
     english_features = features.filter(language='english').order_by('type')
     french_features = features.filter(language='french').order_by('type')
