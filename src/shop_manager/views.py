@@ -59,7 +59,8 @@ def inventory_product(request, action, sku, identity):
     photos = selected_product.album.all()
     features_count = features.count()
     photos_count = photos.count()
-    selected_product = inventory_actions.progress_counter(sku, photos_count, features_count)
+    if selected_product.profile >= 2:
+        selected_product = inventory_actions.progress_counter(sku, photos_count, features_count)
 
     context = {
         'lang': lang,
