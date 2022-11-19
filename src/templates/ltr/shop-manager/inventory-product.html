@@ -461,7 +461,8 @@
                                 <!--add new features form-->
                                 <form action="{% url 'inventory-product' 'add_en_features' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="modal-body">
                                         <table class="table table-row-dashed table-row-gray-300 gy-7">
                                             <thead>
                                             <tr class="fw-bold fs-6 text-gray-800">
@@ -497,9 +498,11 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="separator my-10"></div>
-                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save detail</button>
+                                    </div>
+                                    <div class="form-group mt-10">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save detail</button>
+                                    </div>
                                 </form>
                                 <div class="modal-footer">
 
