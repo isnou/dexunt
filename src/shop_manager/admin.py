@@ -6,7 +6,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('product_name', 'get_album', 'sku', 'upc', 'quantity', 'buy_price', 'get_features')
 
 
-class ShopProductAdmin(admin.ModelAdmin):
+class CollectionAdmin(admin.ModelAdmin):
     list_display = ('product_name', 'sku', 'get_products', 'tag', 'sel_price', 'discount_price', 'get_features')
 
 
