@@ -248,7 +248,7 @@
           </div>
         </div>
         <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
-        <div class="navbar-sticky bg-light">
+        <div class="bg-light">
           <div class="navbar navbar-expand-lg navbar-light">
             <div class="container">
               <!--desktop logo-->
@@ -261,7 +261,7 @@
                 <img src="{% static 'main-shop/logos/favicon-45x27.png' %}" width="40" alt="Dexunt">
               </a>
               <!--end mobile logo-->
-              <!--search-->
+              <!--desktop search-->
               <div class="input-group d-none d-lg-flex flex-nowrap mx-4"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                 <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
                 <!--category select-->
@@ -280,7 +280,7 @@
                 </select>
                 <!--end category select-->
               </div>
-              <!--end search-->
+              <!--end desktop search-->
               <!--toolbar-->
               <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
                 <!--signin & signup-->
@@ -347,10 +347,11 @@
           <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
             <div class="container">
               <div class="collapse navbar-collapse" id="navbarCollapse">
-                <!-- Search-->
+                <!--mobile search-->
                 <div class="input-group d-lg-none my-3"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                  <input class="form-control rounded-start" type="text" placeholder="mobile Search for products">
+                  <input class="form-control rounded-start" type="text" placeholder="Search for products">
                 </div>
+                <!--end mobile search-->
                 <!-- Departments menu-->
                 <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
                   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-lg-0" href="home-electronics-store.html#" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ci-menu align-middle mt-n1 me-2"></i>Departments</a>
