@@ -224,6 +224,7 @@
                 <a class="topbar-link" href="tel:00331697720">(00) 33 169 7720</a>
               </div>
             </div>
+            <!--mobile toolbar-->
             <div class="topbar-text dropdown d-md-none ms-auto">
               <a class="topbar-link" href="home-electronics-store.html#" data-bs-toggle="dropdown">
                 <i class="ci-menu-circle text-muted me-2"></i>
@@ -233,6 +234,8 @@
                 <li><a class="dropdown-item" href="order-tracking.html"><i class="ci-location text-muted me-2"></i>Order tracking</a></li>
               </ul>
             </div>
+            <!--end mobile toolbar-->
+            <!--desktop toolbar-->
             <div class="d-none d-md-block ms-3 text-nowrap">
               <a class="topbar-link d-none d-md-inline-block" href="account-wishlist.html">
                 <i class="ci-heart mt-n1"></i>Wishlist (3)
@@ -241,21 +244,27 @@
                 <i class="ci-location mt-n1"></i>Order tracking
               </a>
             </div>
+            <!--end desktop toolbar-->
           </div>
         </div>
         <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
         <div class="navbar-sticky bg-light">
           <div class="navbar navbar-expand-lg navbar-light">
             <div class="container">
+              <!--desktop logo-->
               <a class="navbar-brand d-none d-sm-block me-3 flex-shrink-0" href="{% url 'main-shop-home' 'en' %}">
                 <img src="{% static 'main-shop/logos/favicon-60x36.png' %}" width="50" alt="Dexunt">
               </a>
+              <!--end desktop logo-->
+              <!--mobile logo-->
               <a class="navbar-brand d-sm-none me-2" href="index.html">
                 <img src="{% static 'main-shop/logos/favicon-45x27.png' %}" width="40" alt="Dexunt">
               </a>
-              <!-- Search-->
+              <!--end mobile logo-->
+              <!--search-->
               <div class="input-group d-none d-lg-flex flex-nowrap mx-4"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                 <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
+                <!--category select-->
                 <select class="form-select flex-shrink-0" style="width: 10.5rem;">
                   <option>All categories</option>
                   <option>Computers</option>
@@ -269,15 +278,20 @@
                   <option>Home Music</option>
                   <option>Data Storage</option>
                 </select>
+                <!--end category select-->
               </div>
-              <!-- Toolbar-->
+              <!--end search-->
+              <!--toolbar-->
               <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+                <!--signin & signup-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool navbar-stuck-toggler" href="home-electronics-store.html#"><span class="navbar-tool-tooltip">Toggle menu</span>
-                  <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="home-electronics-store.html#signin-modal" data-bs-toggle="modal">
-                  <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
-                  <div class="navbar-tool-text ms-n3"><small>Hello, Sign in</small>My Account</div></a>
+                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="home-electronics-store.html#signin-modal" data-bs-toggle="modal">
+                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                <div class="navbar-tool-text ms-n3"><small>Hello, Sign in</small>My Account</div></a>
+                <!--end signin & signup-->
+                <!--cart-->
                 <div class="navbar-tool dropdown ms-3"><a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="shop-cart.html"><span class="navbar-tool-label">4</span><i class="navbar-tool-icon ci-cart"></i></a><a class="navbar-tool-text" href="shop-cart.html"><small>My Cart</small>$1,247.00</a>
-                  <!-- Cart dropdown-->
+                  <!--cart dropdown-->
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
                       <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
@@ -323,8 +337,11 @@
                       </div><a class="btn btn-primary btn-sm d-block w-100" href="checkout-details.html"><i class="ci-card me-2 fs-base align-middle"></i>Checkout</a>
                     </div>
                   </div>
+                  <!--end cart dropdown-->
                 </div>
+                <!--end cart-->
               </div>
+              <!--end toolbar-->
             </div>
           </div>
           <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
@@ -332,7 +349,7 @@
               <div class="collapse navbar-collapse" id="navbarCollapse">
                 <!-- Search-->
                 <div class="input-group d-lg-none my-3"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                  <input class="form-control rounded-start" type="text" placeholder="Search for products">
+                  <input class="form-control rounded-start" type="text" placeholder="mobile Search for products">
                 </div>
                 <!-- Departments menu-->
                 <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
