@@ -1,6 +1,6 @@
 import random
 import string
-from .models import InventoryProduct, ProductAlbum, InventoryProductFeatures
+from .models import Product, ProductAlbum, ProductFeatures
 
 
 def add_new_product(request):
@@ -13,7 +13,7 @@ def add_new_product(request):
         quantity = int(request.POST.get('quantity', False))
         thumb = request.FILES.get('thumb', False)
         upc = request.POST.get('upc', False)
-        new_product = InventoryProduct(product_name=product_name,
+        new_product = Product(product_name=product_name,
                                        buy_price=int(buy_price),
                                        quantity=quantity,
                                        thumb=thumb,
@@ -36,7 +36,7 @@ def add_new_product(request):
 
 def add_new_photo(request, sku):
     url = "shop-manager/inventory-product.html"
-    selected_product = InventoryProduct.objects.all().get(sku=sku)
+    selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         image_to_add = request.FILES.get('image_to_add', False)
         if image_to_add:
@@ -55,7 +55,7 @@ def add_new_photo(request, sku):
 
 def add_features(request, language, sku):
     url = "shop-manager/inventory-product.html"
-    selected_product = InventoryProduct.objects.all().get(sku=sku)
+    selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         model = request.POST.get('model', False)
         if model:
@@ -96,7 +96,7 @@ def add_features(request, language, sku):
 
 def edit(request, sku):
     url = "shop-manager/inventory-product.html"
-    selected_product = InventoryProduct.objects.all().get(sku=sku)
+    selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         product_name = request.POST.get('product_name', False)
         if product_name:
@@ -127,7 +127,7 @@ def edit(request, sku):
 
 
 def progress_counter(sku, photos_count, features_count):
-    selected_product = InventoryProduct.objects.all().get(sku=sku)
+    selected_product = Product.objects.all().get(sku=sku)
     if photos_count < 4:
         photos_progress = photos_count
     else:
@@ -142,7 +142,7 @@ def progress_counter(sku, photos_count, features_count):
 
 
 def new_feature(feature_name, feature_value, language):
-    feature = InventoryProductFeatures()
+    feature = ProductFeatures()
     feature.language = language
     feature.type = feature_name
     feature.value = feature_value

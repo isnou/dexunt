@@ -12,7 +12,7 @@ class ProductAlbum(models.Model):
         return self.file_name
 
 
-class InventoryProductFeatures(models.Model):
+class ProductFeatures(models.Model):
     # --------------------------------- feature types ------------------------------------------
     type = models.CharField(max_length=15, blank=True, null=True)
     # --------------------------------- feature language ---------------------------------------
@@ -24,7 +24,7 @@ class InventoryProductFeatures(models.Model):
         return self.value
 
 
-class ShopProductFeatures(models.Model):
+class CollectionFeatures(models.Model):
     # --------------------------------- feature types ------------------------------------------
     type = models.CharField(max_length=15, blank=True, null=True)
     # --------------------------------- feature language ---------------------------------------
@@ -36,7 +36,7 @@ class ShopProductFeatures(models.Model):
         return self.value
 
 
-class InventoryProduct(models.Model):
+class Product(models.Model):
     # --------------------------------- product identification ---------------------------------
     product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
@@ -62,7 +62,7 @@ class InventoryProduct(models.Model):
         ]
     )
     # --------------------------------- product details ----------------------------------------
-    features = models.ManyToManyField(InventoryProductFeatures, blank=True)
+    features = models.ManyToManyField(ProductFeatures, blank=True)
 
     def get_album(self):
         return "\n".join([p.file_name for p in self.album.all()])
@@ -74,14 +74,14 @@ class InventoryProduct(models.Model):
         return self.product_name
 
 
-class ShopProduct(models.Model):
+class Collection(models.Model):
     # --------------------------------- product identification ---------------------------------
     product_name = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
-    products = models.ManyToManyField(InventoryProduct, blank=True)
+    products = models.ManyToManyField(Product, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     rate = models.IntegerField(
         default=5,
@@ -100,7 +100,7 @@ class ShopProduct(models.Model):
     # --------------------------------- showcase information -----------------------------------
     sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
-    features = models.ManyToManyField(ShopProductFeatures, blank=True)
+    features = models.ManyToManyField(CollectionFeatures, blank=True)
 
     def get_products(self):
         return "\n".join([p.product_name for p in self.products.all()])
