@@ -1,9 +1,9 @@
-from .models import InventoryProduct
+from .models import Product
 
 
 def shop_manager_content(request):
     try:
-        products = InventoryProduct.objects.all()
+        products = Product.objects.all()
     except InventoryProduct.DoesNotExist:
         raise Http404("No products")
     inventory_product_count = products.count()

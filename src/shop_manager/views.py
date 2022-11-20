@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import actions
 from . import inventory_actions
-from .models import InventoryProduct
+from .models import Product
 
 
 def manager_dashboard(request, action):
@@ -24,7 +24,7 @@ def inventory(request, action, sku):
     if action == "add_new_product":
         url = direction + inventory_actions.add_new_product(request).get('url')
     if action == "delete_product":
-        InventoryProduct.objects.all().get(sku=sku).delete()
+        Product.objects.all().get(sku=sku).delete()
 
     context = {
         'lang': lang,
@@ -41,7 +41,7 @@ def inventory_product(request, action, sku, identity):
     if action == 'add_photo':
         url = direction + inventory_actions.add_new_photo(request, sku).get('url')
     if action == 'delete_photo':
-        InventoryProduct.objects.all().get(sku=sku).album.all().get(id=identity).delete()
+        Product.objects.all().get(sku=sku).album.all().get(id=identity).delete()
     if action == 'add_en_features':
         url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
     if action == 'add_fr_features':
@@ -49,9 +49,9 @@ def inventory_product(request, action, sku, identity):
     if action == 'add_ar_features':
         url = direction + inventory_actions.add_features(request, 'arabic', sku).get('url')
     if action == 'delete_feature':
-        InventoryProduct.objects.all().get(sku=sku).features.all().get(id=identity).delete()
+        Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
-    selected_product = InventoryProduct.objects.all().get(sku=sku)
+    selected_product = Product.objects.all().get(sku=sku)
     features = selected_product.features.all()
     english_features = features.filter(language='english').order_by('type')
     french_features = features.filter(language='french').order_by('type')
