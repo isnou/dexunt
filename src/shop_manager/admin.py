@@ -15,7 +15,7 @@ class ProductFeaturesAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ProductAlbum)
-admin.site.register(InventoryProductFeatures, InventoryProductFeaturesAdmin)
-admin.site.register(ShopProductFeatures)
+admin.site.register(ProductFeatures, ProductFeaturesAdmin)
+admin.site.register(CollectionFeatures)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Collection, CollectionAdmin)
