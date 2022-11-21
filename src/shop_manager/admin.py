@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Album, Feature, Product
+from .models import Feature, Product
 
 
 class ProductAdmin(admin.ModelAdmin):
