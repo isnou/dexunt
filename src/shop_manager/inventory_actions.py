@@ -6,27 +6,52 @@ from .models import Product, Feature
 def add_new_product(request):
     url = "shop-manager/inventory.html"
     if request.method == 'POST':
-        product_name = request.POST.get('product_name', False)
+        en_product_title = request.POST.get('en_product_title', False)
+        en_variant = request.POST.get('en_variant', False)
+
+        fr_product_title = request.POST.get('fr_product_title', False)
+        fr_variant = request.POST.get('fr_variant', False)
+
+        ar_product_title = request.POST.get('ar_product_title', False)
+        ar_variant = request.POST.get('ar_variant', False)
+
+        brand = request.POST.get('brand', False)
+        model = request.POST.get('model', False)
+        upc = request.POST.get('upc', False)
+        if not upc:
+            upc = serial_number_generator(12).upper()
+        tag = request.POST.get('tag', False)
+        quantity = int(request.POST.get('quantity', False))
         buy_price = request.POST.get('buy_price', False)
         if not buy_price:
             buy_price = 0
-        quantity = int(request.POST.get('quantity', False))
+        sell_price = request.POST.get('sell_price', False)
+        if not sell_price:
+            sell_price = 0
+        discount_price = request.POST.get('discount_price', False)
+        if not discount_price:
+            discount_price = 0
         thumb = request.FILES.get('thumb', False)
-        upc = request.POST.get('upc', False)
-        new_product = Product(product_name=product_name,
-                                       buy_price=int(buy_price),
-                                       quantity=quantity,
-                                       thumb=thumb,
-                                       )
+        new_product = Product(en_product_title=en_product_title,
+                              en_variant=en_variant,
+                              fr_product_title=fr_product_title,
+                              fr_variant=fr_variant,
+                              ar_product_title=ar_product_title,
+                              ar_variant=ar_variant,
+                              brand=brand,
+                              model=model,
+                              upc=upc,
+                              tag=tag,
+                              quantity=quantity,
+                              buy_price=int(buy_price),
+                              sell_price=int(sell_price),
+                              discount_price=int(discount_price),
+                              thumb=thumb,
+                              )
         if upc:
             new_product.upc = upc
         new_product.sku = serial_number_generator(9).upper()
-        if new_product.profile < 3:
-            new_product.profile = 0
-            if new_product.upc:
-                new_product.profile += 1
-            if new_product.buy_price > 0:
-                new_product.profile += 1
+        new_product.type = 'main'
         new_product.save()
     result = {
         'url': url,
