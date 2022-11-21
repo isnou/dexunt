@@ -3,10 +3,11 @@ from .models import Product
 
 def shop_manager_content(request):
     try:
-        products = Product.objects.all()
+        raw_products_list = Product.objects.all()
     except InventoryProduct.DoesNotExist:
         raise Http404("No products")
-    inventory_product_count = products.count()
+    products = raw_products.order_by('en_product_title')
+    inventory_product_count = raw_products_list.count()
     return {
         'products': products,
         'inventory_product_count': inventory_product_count,

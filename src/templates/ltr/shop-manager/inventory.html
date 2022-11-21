@@ -175,11 +175,11 @@
                         <th class="min-w-300px">Product</th>
                         <th class="text-end min-w-30px"></th>
                         <th class="text-end min-w-30px"></th>
-                        <th class="min-w-300px">Profile Progress</th>
-                        <th class="text-center min-w-300px">SKU</th>
-                        <th class="text-center min-w-200px">Rate</th>
-                        <th class="text-center min-w-200px">Qty</th>
+                        <th class="text-center min-w-300px">Qty</th>
+                        <th class="text-center min-w-200px">Sell Rate</th>
                         <th class="text-center min-w-200px">Buy Price</th>
+                        <th class="text-center min-w-200px">Sell Price</th>
+                        <th class="text-center min-w-200px">Discount</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -195,7 +195,8 @@
                                 <!--end product thumbnail-->
                                 <div class="ms-5">
                                     <!--begin::Title-->
-                                    <a href="edit-product.html" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{product.product_name}}</a>
+                                    <a href="edit-product.html" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_product_title}}">{{product.en_product_title}}</a>
+                                    <a href="edit-product.html" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_variant}}">{{product.en_variant}}</a>
                                     <!--end::Title-->
                                 </div>
                             </div>
@@ -219,37 +220,17 @@
                         </td>
                         <!--end delete product action-->
 
-                        <!--profile-->
-                        <td class="text-end pe-0">
-                            <div class="d-flex flex-column w-80 me-2 mt-2">
-                                <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                    {% if product.profile < 4 %}
-                                    <span class="fw-semibold fs-6 text-gray-400">need more information </span>
-                                    {% elif product.profile < 10 %}
-                                    <span class="fw-semibold fs-6 text-gray-400">need features </span>
-                                    {% elif product.profile == 10 %}
-                                    <span class="fw-semibold fs-6 text-gray-400">profile complete </span>
-                                    {% endif %}
-                                    <span class="fw-bold fs-6">{{product.profile|mul:10}}%</span>
-                                </div>
-                                <div class="progress bg-light-warning w-100 h-5px">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{product.profile|mul:10}}%"></div>
-                                </div>
-                            </div>
-                        </td>
-                        <!--end profile-->
-
-                        <!--SKU-->
+                        <!--qty-->
                         <td class="text-center">
-                            <span class="fw-bold">{{product.sku}}</span>
+                            <span class="fw-bold">{{product.quantity}}</span>
                         </td>
-                        <!--end SKU-->
+                        <!--end qty-->
 
-                        <!--rate-->
+                        <!--sell rate-->
                         <td class="text-end pe-0">
                             <div class="rating justify-content-center">
                                 {% for fill in fool %}
-                                {% if fill < product.rate %}
+                                {% if fill < product.sell_rate %}
                                 <div class="rating-label checked">
                                     <span class="svg-icon svg-icon-2">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -269,19 +250,25 @@
                                 {% endfor %}
                             </div>
                         </td>
-                        <!--end rate-->
-
-                        <!--quantity-->
-                        <td class="text-center" data-order="46">
-                            <span class="fw-bold ms-3">{{product.quantity}}</span>
-                        </td>
-                        <!--end quantity-->
+                        <!--end sell rate-->
 
                         <!--buy price-->
                         <td class="text-center">
                             <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} AD</span>
                         </td>
                         <!--end buy price-->
+
+                        <!--sell price-->
+                        <td class="text-center">
+                            <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} AD</span>
+                        </td>
+                        <!--end sell price-->
+
+                        <!--discount price-->
+                        <td class="text-center">
+                            <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} AD</span>
+                        </td>
+                        <!--end discount price-->
                     </tr>
                     {% endfor %}
                     </tbody>
