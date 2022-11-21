@@ -3,11 +3,11 @@ from .models import Album, Feature, Product, Collection
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'get_album', 'sku', 'upc', 'quantity', 'buy_price', 'get_features')
+    list_display = ('en_product_name', 'en_variant_name', 'en_variant_value', 'sku', 'upc', 'quantity', 'buy_price')
 
 
 class CollectionAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'sku', 'get_products', 'tag', 'sel_price', 'discount_price', 'get_features')
+    list_display = ('en_product_name', 'sku', 'get_products', 'tag', 'sel_price', 'discount_price', 'get_features')
 
 
 class FeatureAdmin(admin.ModelAdmin):
