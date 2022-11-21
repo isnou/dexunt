@@ -27,16 +27,12 @@ class Feature(models.Model):
 class Product(models.Model):
     # --------------------------------- product identification en ------------------------------
     en_product_name = models.CharField(max_length=200, blank=True, null=True)
-    en_product_variant_title = models.CharField(max_length=40, blank=True, null=True)
-    en_product_variant_value = models.CharField(max_length=40, blank=True, null=True)
     # --------------------------------- product identification fr ------------------------------
     fr_product_name = models.CharField(max_length=200, blank=True, null=True)
-    fr_product_variant_title = models.CharField(max_length=40, blank=True, null=True)
-    fr_product_variant_value = models.CharField(max_length=40, blank=True, null=True)
     # --------------------------------- product identification ar ------------------------------
     ar_product_name = models.CharField(max_length=200, blank=True, null=True)
-    ar_product_variant_title = models.CharField(max_length=40, blank=True, null=True)
-    ar_product_variant_value = models.CharField(max_length=40, blank=True, null=True)
+    # --------------------------------- additional option --------------------------------------
+    option = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     album = models.ManyToManyField(Album, blank=True)
@@ -77,6 +73,8 @@ class Collection(models.Model):
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
+    brand = models.CharField(max_length=200, blank=True, null=True)
+    model = models.CharField(max_length=200, blank=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
     products = models.ManyToManyField(Product, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')

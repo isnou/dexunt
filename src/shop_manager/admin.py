@@ -3,7 +3,8 @@ from .models import Album, Feature, Product, Collection
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('en_product_name', 'en_product_variant_title', 'en_product_variant_value', 'sku', 'upc', 'quantity', 'buy_price')
+    list_display = ('en_product_name', 'en_product_variant_title', 'en_product_variant_value', 'sku', 'upc', 'quantity',
+                    'buy_price')
 
 
 class CollectionAdmin(admin.ModelAdmin):
