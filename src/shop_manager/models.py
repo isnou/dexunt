@@ -2,16 +2,6 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-class Album(models.Model):
-    # --------------------------------- picture types ------------------------------------------
-    file_name = models.CharField(max_length=500, blank=True, default='product-image')
-    # --------------------------------- picture location ---------------------------------------
-    picture = models.ImageField(upload_to='shop-manager/product/album')
-
-    def __str__(self):
-        return self.file_name
-
-
 class Feature(models.Model):
     # --------------------------------- feature types ------------------------------------------
     type = models.CharField(max_length=15, blank=True, null=True)
@@ -36,22 +26,21 @@ class Product(models.Model):
     value = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
-    album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
     brand = models.CharField(max_length=200, blank=True, null=True)
     model = models.CharField(max_length=200, blank=True, null=True)
     upc = models.CharField(max_length=20, unique=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
-    rate = models.IntegerField(
+    review_rate = models.IntegerField(
         default=5,
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
         ]
     )
-    profile = models.IntegerField(
-        default=1,
+    sell_rate = models.IntegerField(
+        default=5,
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
