@@ -17,16 +17,17 @@ class Feature(models.Model):
 class Product(models.Model):
     # --------------------------------- product identification en ------------------------------
     en_product_title = models.CharField(max_length=200, blank=True, null=True)
+    en_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- product identification fr ------------------------------
     fr_product_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- product identification ar ------------------------------
     ar_product_title = models.CharField(max_length=200, blank=True, null=True)
-    # --------------------------------- variant identification ---------------------------------
-    type = models.CharField(max_length=200, blank=True, null=True)
-    value = models.CharField(max_length=200, blank=True, null=True)
+    ar_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
+    type = models.CharField(max_length=200, blank=True, null=True)
     brand = models.CharField(max_length=200, blank=True, null=True)
     model = models.CharField(max_length=200, blank=True, null=True)
     upc = models.CharField(max_length=20, unique=True, null=True)
