@@ -24,33 +24,6 @@ class Feature(models.Model):
         return self.value
 
 
-class Variant(models.Model):
-    # --------------------------------- variant identification ---------------------------------
-    type = models.CharField(max_length=200, blank=True, null=True)
-    value = models.CharField(max_length=200, blank=True, null=True)
-    # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
-    album = models.ManyToManyField(Album, blank=True)
-    # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=20, unique=True, null=True)
-    upc = models.CharField(max_length=20, unique=True, null=True)
-    quantity = models.IntegerField(default=0)
-    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    rate = models.IntegerField(
-        default=0,
-        validators=[
-            MaxValueValidator(10),
-            MinValueValidator(0)
-        ]
-    )
-
-    def get_album(self):
-        return "\n".join([p.file_name for p in self.album.all()])
-
-    def __str__(self):
-        return self.value
-
-
 class Product(models.Model):
     # --------------------------------- product identification en ------------------------------
     en_product_title = models.CharField(max_length=200, blank=True, null=True)
@@ -58,13 +31,17 @@ class Product(models.Model):
     fr_product_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- product identification ar ------------------------------
     ar_product_title = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- variant identification ---------------------------------
+    type = models.CharField(max_length=200, blank=True, null=True)
+    value = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
+    album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
     brand = models.CharField(max_length=200, blank=True, null=True)
     model = models.CharField(max_length=200, blank=True, null=True)
+    upc = models.CharField(max_length=20, unique=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
-    variants = models.ManyToManyField(Variant, blank=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     rate = models.IntegerField(
         default=5,
@@ -81,7 +58,9 @@ class Product(models.Model):
         ]
     )
     # --------------------------------- showcase information -----------------------------------
-    sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    quantity = models.IntegerField(default=0)
+    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    sell_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     features = models.ManyToManyField(Feature, blank=True)
 
