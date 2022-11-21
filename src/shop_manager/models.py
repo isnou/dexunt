@@ -48,7 +48,7 @@ class Variant(models.Model):
         return "\n".join([p.file_name for p in self.album.all()])
 
     def __str__(self):
-        return self.type
+        return self.value
 
 
 class Product(models.Model):
