@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import Album, Feature, Product, Collection
+from .models import Album, Feature, Product, Variant
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('en_product_name', 'en_product_variant_title', 'en_product_variant_value', 'sku', 'upc', 'quantity',
-                    'buy_price')
+    list_display = ('en_product_title', 'fr_product_title', 'ar_product_title', 'thumb', 'brand', 'model', 'sku',
+                    'get_variants', 'tag', 'rate', 'profile', 'sel_price', 'discount_price', 'get_features')
 
 
-class CollectionAdmin(admin.ModelAdmin):
-    list_display = ('en_product_name', 'sku', 'get_products', 'tag', 'sel_price', 'discount_price', 'get_features')
+class VariantAdmin(admin.ModelAdmin):
+    list_display = ('type', 'value', 'thumb', 'get_album', 'sku', 'upc', 'quantity', 'buy_price', 'rate')
 
 
 class FeatureAdmin(admin.ModelAdmin):
@@ -17,5 +17,11 @@ class FeatureAdmin(admin.ModelAdmin):
 
 admin.site.register(Album)
 admin.site.register(Feature, FeatureAdmin)
+admin.site.register(Variant, VariantAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Collection, CollectionAdmin)
+
+
+
+
+
+
