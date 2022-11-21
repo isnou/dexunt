@@ -1,6 +1,6 @@
 import random
 import string
-from .models import Product, Album, Feature
+from .models import Product, Feature
 
 
 def add_new_product(request):
