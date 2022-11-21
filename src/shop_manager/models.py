@@ -35,7 +35,7 @@ class Variant(models.Model):
     sku = models.CharField(max_length=20, unique=True, null=True)
     upc = models.CharField(max_length=20, unique=True, null=True)
     quantity = models.IntegerField(default=0)
-    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     rate = models.IntegerField(
         default=0,
         validators=[
@@ -81,8 +81,8 @@ class Product(models.Model):
         ]
     )
     # --------------------------------- showcase information -----------------------------------
-    sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
-    discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+    sel_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     features = models.ManyToManyField(Feature, blank=True)
 
     def get_variants(self):
