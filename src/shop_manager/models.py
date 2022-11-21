@@ -64,9 +64,6 @@ class Product(models.Model):
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     features = models.ManyToManyField(Feature, blank=True)
 
-    def get_variants(self):
-        return "\n".join([p.value for p in self.variants.all()])
-
     def get_features(self):
         return "\n".join([p.value for p in self.features.all()])
 
