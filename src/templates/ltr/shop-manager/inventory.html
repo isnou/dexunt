@@ -174,8 +174,8 @@
                     <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
                         <th class="min-w-600px">Product</th>
                         <th class="text-end min-w-20px"></th>
-                        <th class="text-end min-w-90px"></th>
                         <th class="text-end min-w-20px"></th>
+                        <th class="text-end min-w-90px"></th>
                         <th class="text-center min-w-150px">Qty</th>
                         <th class="text-center min-w-200px">Sell Rate</th>
                         <th class="text-center min-w-200px">Buy Price</th>
@@ -214,6 +214,14 @@
                         </td>
                         <!--end view product action-->
 
+                        <!--delete product action-->
+                        <td class="text-end">
+                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete_product_modal"></i>
+                            </a>
+                        </td>
+                        <!--end delete product action-->
+
                         <!--edit product action-->
                         <td class="text-end">
                             <!--edit title-->
@@ -240,14 +248,6 @@
                             <!--end edit sub menu-->
                         </td>
                         <!--end edit product action-->
-
-                        <!--delete product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete_product_modal"></i>
-                            </a>
-                        </td>
-                        <!--end delete product action-->
 
                         <!--qty-->
                         <td class="text-center">
