@@ -407,6 +407,9 @@
 
                         <!--edit product action-->
                         <td class="text-end">
+                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product"></a>
+                                <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#edit_product_modal></i>
+                            </a>
                         </td>
                         <!--end edit product action-->
 
@@ -545,6 +548,7 @@
                                         {% csrf_token %}
                                         <div class="card-title">
                                             <div class="card card-flush py-4">
+                                                <!--english size-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--label-->
                                                     <label class="form-label">Size In English</label>
@@ -553,7 +557,9 @@
                                                     <input type="text" name="en_variant" class="form-control mb-2">
                                                     <!--end input-->
                                                 </div>
+                                                <!--end english size-->
 
+                                                <!--french size-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--label-->
                                                     <label class="form-label">Size In French</label>
@@ -562,7 +568,9 @@
                                                     <input type="text" name="fr_variant" class="form-control mb-2">
                                                     <!--end input-->
                                                 </div>
+                                                <!--end french size-->
 
+                                                <!--arabic size-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--label-->
                                                     <label class="form-label">Size In Arabic</label>
@@ -571,6 +579,7 @@
                                                     <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl">
                                                     <!--end input-->
                                                 </div>
+                                                <!--end arabic size-->
 
                                                 <!--upc input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
@@ -659,7 +668,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end product sell price & discount price input-->
-
                                             </div>
                                         </div>
                                         <!--add product buttons-->
