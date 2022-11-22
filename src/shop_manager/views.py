@@ -54,7 +54,7 @@ def inventory_product(request, action, sku, identity):
     english_features = features.filter(language='english').order_by('type')
     french_features = features.filter(language='french').order_by('type')
     arabic_features = features.filter(language='arabic').order_by('type')
-    photos = variants.filter(type='image').thumb.all()
+    photos = variants.filter(type='photo').thumb.all()
     features_count = features.count()
     photos_count = photos.count()
 
