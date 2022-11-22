@@ -185,8 +185,8 @@
                     </thead>
                     <tbody>
                     {% for product in products %}
-                    <tr>
-                        {% if product.type == 'main' %}
+                    {% if product.type == 'main' %}
+                    <tr class="table-hover">
                         <!--product-->
                         <td>
                             <div class="d-flex align-items-center">
@@ -302,9 +302,11 @@
                             <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} AD</span>
                         </td>
                         <!--end discount price-->
-                        {% endif %}
+                    </tr>
+                    {% endif %}
 
-                        {% if product.type == 'photo' %}
+                    {% if product.type == 'photo' %}
+                    <tr class="table-striped">
                         <!--product-->
                         <td>
                             <div class="d-flex align-items-center">
@@ -370,9 +372,11 @@
                             <i class="bi bi-dash-lg"></i>
                         </td>
                         <!--end discount price-->
-                        {% endif %}
+                    </tr>
+                    {% endif %}
 
-                        {% if product.type == 'size' %}
+                    {% if product.type == 'size' %}
+                    <tr class="table-active">
                         <!--product-->
                         <td>
                             <div class="d-flex align-items-center">
@@ -462,8 +466,9 @@
                             <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} AD</span>
                         </td>
                         <!--end discount price-->
-                        {% endif %}
                     </tr>
+                    {% endif %}
+
 
                     <!--add new photo modal-->
                     <div class="modal fade" tabindex="-1" id="add_new_photo">
