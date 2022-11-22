@@ -39,12 +39,6 @@ def inventory_product(request, action, sku, identity):
     lang = request.session.get('language')
     direction = request.session.get('direction')
     url = direction + "shop-manager/inventory-product.html"
-    if action == 'edit':
-        url = direction + inventory_actions.edit(request, sku).get('url')
-    if action == 'add_photo':
-        url = direction + inventory_actions.add_new_photo(request, sku).get('url')
-    if action == 'delete_photo':
-        Product.objects.all().get(sku=sku).album.all().get(id=identity).delete()
     if action == 'add_en_features':
         url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
     if action == 'add_fr_features':
@@ -55,15 +49,14 @@ def inventory_product(request, action, sku, identity):
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
+    variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
     features = selected_product.features.all()
     english_features = features.filter(language='english').order_by('type')
     french_features = features.filter(language='french').order_by('type')
     arabic_features = features.filter(language='arabic').order_by('type')
-    photos = selected_product.album.all()
+    photos = variants.filter(type='image').thumb.all()
     features_count = features.count()
     photos_count = photos.count()
-    if selected_product.profile >= 2:
-        selected_product = inventory_actions.progress_counter(sku, photos_count, features_count)
 
     context = {
         'lang': lang,
