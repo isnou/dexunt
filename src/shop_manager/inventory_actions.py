@@ -60,17 +60,8 @@ def add_new_product(request):
 
 
 def add_new_photo(request, sku):
-    url = "shop-manager/inventory-product.html"
+    url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
-    if request.method == 'POST':
-        image_to_add = request.FILES.get('image_to_add', False)
-        if image_to_add:
-            photo = ProductAlbum(
-                file_name=selected_product.product_name,
-                picture=image_to_add,
-            )
-            photo.save()
-            selected_product.album.add(photo)
     selected_product.save()
     result = {
         'url': url,
