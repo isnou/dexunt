@@ -185,6 +185,7 @@
                     </thead>
                     <tbody>
                     {% for product in products %}
+
                     {% if product.type == 'main' %}
                     <tr>
                         <!--product-->
@@ -304,96 +305,6 @@
                         <!--end discount price-->
                     </tr>
                     {% endif %}
-
-                    {% if product.type == 'photo' %}
-                    <tr class="table-active">
-                        <!--product-->
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <!--product thumbnail-->
-
-
-                                <!--begin::Overlay-->
-<a data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
-    <!--begin::Image-->
-    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
-        style="background-image:url('{% get_media_prefix %}{{product.thumb}}')">
-    </div>
-    <!--end::Image-->
-
-    <!--begin::Action-->
-    <div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
-        <i class="bi bi-eye-fill text-white fs-3x"></i>
-    </div>
-    <!--end::Action-->
-</a>
-<!--end::Overlay-->
-
-
-
-
-
-                                <!--end product thumbnail-->
-                                <div class="ms-5">
-                                    <!--begin::Title-->
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_product_title}}">{{product.en_product_title}}</a>
-                                    <i class="bi bi-dash-lg"></i>
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_variant}}">{{product.en_variant}}</a>
-                                    <!--end::Title-->
-                                </div>
-                            </div>
-                        </td>
-                        <!--end product-->
-
-                        <!--view product action-->
-                        <td class="text-end">
-                        </td>
-                        <!--end view product action-->
-
-                        <!--delete product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete_product_modal"></i>
-                            </a>
-                        </td>
-                        <!--end delete product action-->
-
-                        <!--edit product action-->
-                        <td class="text-end">
-                        </td>
-                        <!--end edit product action-->
-
-                        <!--qty-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end qty-->
-
-                        <!--sell rate-->
-                        <td class="text-end pe-0">
-                        </td>
-                        <!--end sell rate-->
-
-                        <!--buy price-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end buy price-->
-
-                        <!--sell price-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end sell price-->
-
-                        <!--discount price-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end discount price-->
-                    </tr>
-                    {% endif %}
-
                     {% if product.type == 'size' %}
                     <tr class="table-active">
                         <!--product-->
