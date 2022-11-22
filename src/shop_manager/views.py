@@ -50,6 +50,7 @@ def inventory_product(request, action, sku, identity):
 
     selected_product = Product.objects.all().get(sku=sku)
     photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='photo')
+    sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='size')
     features = selected_product.features.all()
     english_features = features.filter(language='english').order_by('type')
     french_features = features.filter(language='french').order_by('type')
@@ -63,6 +64,7 @@ def inventory_product(request, action, sku, identity):
         'french_features': french_features,
         'arabic_features': arabic_features,
         'photos': photos,
+        'sizes': sizes,
         'features_count': features_count,
         'photos_count': photos_count,
         'selected_product': selected_product,
