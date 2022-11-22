@@ -301,22 +301,22 @@
                     </tr>
 
                     <!--add new photo modal-->
-    <div class="modal fade" tabindex="-1" id="add_new_photo">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Add New Photo</h3>
-                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="svg-icon svg-icon-1"></span>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <form action="{% url 'inventory' 'add_new_photo' product.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="card-title">
-                            <div class="card card-flush py-4">
-                                <!--photo input-->
-                                <div class="card-body text-center pt-0">
+                    <div class="modal fade" tabindex="-1" id="add_new_photo">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add New Photo</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'inventory' 'add_new_photo' product.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <!--photo input-->
+                                                <div class="card-body text-center pt-0">
                                 <!--begin::Image input-->
                                 <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
                                     <!--begin::Image preview wrapper-->
@@ -344,21 +344,21 @@
                                 </div>
                                 <!--end::Image input-->
                             </div>
-                                <!--end photo input-->
+                                                <!--end photo input-->
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7">Product image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                    <!--end::Description-->
+                                </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <!--begin::Description-->
-                    <div class="text-muted fs-7">Product image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
-                    <!--end::Description-->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--end add new photo modal-->
+                    </div>
+                    <!--end add new photo modal-->
 
 
 

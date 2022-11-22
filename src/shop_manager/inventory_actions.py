@@ -48,8 +48,6 @@ def add_new_product(request):
                               discount_price=int(discount_price),
                               thumb=thumb,
                               )
-        if upc:
-            new_product.upc = upc
         new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'main'
         new_product.save()
@@ -62,7 +60,14 @@ def add_new_product(request):
 def add_new_photo(request, sku):
     url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
-    selected_product.save()
+    if request.method == 'POST':
+        thumb = request.FILES.get('thumb', False)
+        new_product = Product(en_product_title=selected_product.en_product_title,
+                              en_variant=selected_product.en_variant,
+                              thumb=thumb,
+                              )
+        new_product.type = 'photo'
+        new_product.save()
     result = {
         'url': url,
     }
