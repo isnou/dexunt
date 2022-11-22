@@ -311,16 +311,12 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 <!--product thumbnail-->
-                                <a href="edit-product.html" class="symbol symbol-50px">
-                                    <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.thumb}});"></span>
-                                </a>
-
 
                                 <!--begin::Overlay-->
 <a class="d-block overlay" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
     <!--begin::Image-->
-    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-75px"
-        style="background-image:url({% get_media_prefix %}{{product.thumb}});">
+    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-75px">
+        <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.thumb}});"></span>
     </div>
     <!--end::Image-->
 
