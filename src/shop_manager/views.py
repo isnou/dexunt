@@ -49,12 +49,11 @@ def inventory_product(request, action, sku, identity):
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
-    variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
+    photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='photo')
     features = selected_product.features.all()
     english_features = features.filter(language='english').order_by('type')
     french_features = features.filter(language='french').order_by('type')
     arabic_features = features.filter(language='arabic').order_by('type')
-    photos = variants.filter(type='photo').thumb.all()
     features_count = features.count()
     photos_count = photos.count()
 
