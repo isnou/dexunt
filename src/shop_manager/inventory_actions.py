@@ -66,6 +66,7 @@ def add_new_photo(request, sku):
                               en_variant=selected_product.en_variant,
                               thumb=thumb,
                               )
+        new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'photo'
         new_product.save()
     result = {
