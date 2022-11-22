@@ -75,6 +75,50 @@ def add_new_photo(request, sku):
     return result
 
 
+def add_new_size(request, sku):
+    url = "shop-manager/inventory.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    if request.method == 'POST':
+        en_variant = request.POST.get('en_variant', False)
+        fr_variant = request.POST.get('fr_variant', False)
+        ar_variant = request.POST.get('ar_variant', False)
+        upc = request.POST.get('upc', False)
+        if not upc:
+            upc = serial_number_generator(12).upper()
+        tag = request.POST.get('tag', False)
+        quantity = int(request.POST.get('quantity', False))
+        buy_price = request.POST.get('buy_price', False)
+        if not buy_price:
+            buy_price = 0
+        sell_price = request.POST.get('sell_price', False)
+        if not sell_price:
+            sell_price = 0
+        discount_price = request.POST.get('discount_price', False)
+        if not discount_price:
+            discount_price = 0
+        new_product = Product(en_product_title=selected_product.en_product_title,
+                              en_variant=en_variant,
+                              fr_product_title=selected_product.fr_product_title,
+                              fr_variant=fr_variant,
+                              ar_product_title=selected_product.ar_product_title,
+                              ar_variant=ar_variant,
+                              brand=selected_product.brand,
+                              model=selected_product.model,
+                              upc=upc,
+                              quantity=quantity,
+                              buy_price=int(buy_price),
+                              sell_price=int(sell_price),
+                              discount_price=int(discount_price),
+                              )
+        new_product.sku = serial_number_generator(9).upper()
+        new_product.type = 'size'
+        new_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
 def add_features(request, language, sku):
     url = "shop-manager/inventory-product.html"
     selected_product = Product.objects.all().get(sku=sku)
