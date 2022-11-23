@@ -74,7 +74,7 @@ def add_new_photo(request, sku):
 
 
 def add_new_size(request, sku):
-    url = "shop-manager/inventory.html"
+    url = "shop-manager/inventory-product.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         size = request.POST.get('size', False)
