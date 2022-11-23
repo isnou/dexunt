@@ -39,6 +39,12 @@ def inventory_product(request, action, sku, identity):
     url = direction + "shop-manager/inventory-product.html"
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
+    if action == "add_size_quantity":
+        url = direction + inventory_actions.add_size_quantity(request, sku).get('url')
+    if action == "remove_size_quantity":
+        url = direction + inventory_actions.remove_size_quantity(request, sku).get('url')
+    if action == 'delete_size':
+        Product.objects.all().get(sku=sku).delete()
     if action == 'add_en_features':
         url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
     if action == 'add_fr_features':
