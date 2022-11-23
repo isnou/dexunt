@@ -12,23 +12,17 @@ def add_new_product(request):
         fr_variant = request.POST.get('fr_variant', False)
         ar_product_title = request.POST.get('ar_product_title', False)
         ar_variant = request.POST.get('ar_variant', False)
-        size = request.POST.get('brand', False)
+        size = request.POST.get('size', False)
         brand = request.POST.get('brand', False)
         model = request.POST.get('model', False)
         upc = request.POST.get('upc', False)
         if not upc:
             upc = serial_number_generator(12).upper()
         tag = request.POST.get('tag', False)
-        quantity = int(request.POST.get('quantity', False))
+        quantity = request.POST.get('quantity', False)
         buy_price = request.POST.get('buy_price', False)
-        if not buy_price:
-            buy_price = 0
         sell_price = request.POST.get('sell_price', False)
-        if not sell_price:
-            sell_price = 0
         discount_price = request.POST.get('discount_price', False)
-        if not discount_price:
-            discount_price = 0
         thumb = request.FILES.get('thumb', False)
         new_product = Product(en_product_title=en_product_title,
                               en_variant=en_variant,
@@ -41,7 +35,7 @@ def add_new_product(request):
                               model=model,
                               upc=upc,
                               tag=tag,
-                              quantity=quantity,
+                              quantity=int(quantity),
                               buy_price=int(buy_price),
                               sell_price=int(sell_price),
                               discount_price=int(discount_price),
