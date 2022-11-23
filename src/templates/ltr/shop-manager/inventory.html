@@ -175,7 +175,9 @@
                         <th class="min-w-600px">Product</th>
                         <th class="text-end min-w-20px"></th>
                         <th class="text-end min-w-90px"></th>
+                        <th class="text-end min-w-20px"></th>
                         <th class="text-center min-w-150px">Qty</th>
+                        <th class="text-end min-w-20px"></th>
                         <th class="text-center min-w-200px">Sell Rate</th>
                         <th class="text-center min-w-200px">Buy Price</th>
                         <th class="text-center min-w-200px">Sell Price</th>
@@ -222,11 +224,27 @@
                         </td>
                         <!--end delete product action-->
 
+                        <!--add qty-->
+                        <td>
+                            <a href="{% url 'inventory' 'remove_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove quantity">
+                                <i class="bi bi-dash" style="font-size: 2rem;"></i>
+                            </a>
+                        </td>
+                        <!--end add qty-->
+
                         <!--qty-->
                         <td class="text-center">
                             <span class="fw-bold">{{product.quantity}}</span>
                         </td>
                         <!--end qty-->
+
+                        <!--remove qty-->
+                        <td>
+                            <a href="{% url 'inventory' 'add_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add quantity">
+                                <i class="bi bi-plus" style="font-size: 2rem;"></i>
+                            </a>
+                        </td>
+                        <!--end remove qty-->
 
                         <!--sell rate-->
                         <td class="text-end pe-0">
@@ -310,11 +328,27 @@
                         </td>
                         <!--end delete product action-->
 
+                        <!--add qty-->
+                        <td>
+                            <a href="{% url 'inventory' 'remove_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove quantity">
+                                <i class="bi bi-dash" style="font-size: 2rem;"></i>
+                            </a>
+                        </td>
+                        <!--end add qty-->
+
                         <!--qty-->
                         <td class="text-center">
                             <span class="fw-bold">{{product.quantity}}</span>
                         </td>
                         <!--end qty-->
+
+                        <!--remove qty-->
+                        <td>
+                            <a href="{% url 'inventory' 'add_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add quantity">
+                                <i class="bi bi-plus" style="font-size: 2rem;"></i>
+                            </a>
+                        </td>
+                        <!--end remove qty-->
 
                         <!--sell rate-->
                         <td class="text-end pe-0">
@@ -397,11 +431,27 @@
                         </td>
                         <!--end delete product action-->
 
+                        <!--add qty-->
+                        <td>
+                            <a href="{% url 'inventory' 'remove_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove quantity">
+                                <i class="bi bi-dash" style="font-size: 2rem;"></i>
+                            </a>
+                        </td>
+                        <!--end add qty-->
+
                         <!--qty-->
                         <td class="text-center">
                             <span class="fw-bold">{{product.quantity}}</span>
                         </td>
                         <!--end qty-->
+
+                        <!--remove qty-->
+                        <td>
+                            <a href="{% url 'inventory' 'add_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add quantity">
+                                <i class="bi bi-plus" style="font-size: 2rem;"></i>
+                            </a>
+                        </td>
+                        <!--end remove qty-->
 
                         <!--sell rate-->
                         <td class="text-center">
