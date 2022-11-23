@@ -254,9 +254,6 @@
                                         <td>{{ product.size }}</td>
                                         <td class="text-center">{{ product.quantity }}</td>
                                         <td>
-                                            <a href="{% url 'inventory-product' 'delete_variant' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
-                                                <i class="bi bi-trash"  style="font-size: 2rem;"></i>
-                                            </a>
                                         </td>
                                     </tr>
                                     {% endfor %}
