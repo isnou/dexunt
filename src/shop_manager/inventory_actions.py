@@ -231,7 +231,6 @@ def edit(request, sku):
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
             selected_product.en_variant = en_variant
-            token_variant = en_variant
         fr_product_title = request.POST.get('fr_product_title', False)
         if fr_product_title:
             selected_product.fr_product_title = fr_product_title
