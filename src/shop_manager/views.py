@@ -22,8 +22,8 @@ def inventory(request, action, sku):
     url = direction + "shop-manager/inventory.html"
     if action == "add_new_product":
         url = direction + inventory_actions.add_new_product(request).get('url')
-    if action == "add_new_photo":
-        url = direction + inventory_actions.add_new_photo(request, sku).get('url')
+    if action == "add_new_variant":
+        url = direction + inventory_actions.add_new_variant(request, sku).get('url')
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
     if action == "delete_product":
