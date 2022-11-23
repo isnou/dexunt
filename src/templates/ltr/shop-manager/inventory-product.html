@@ -146,7 +146,7 @@
                             <!--product name & state-->
                             <div class="d-flex align-items-center mb-2">
                                 <h4 class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_product_title }}</h4>
-                                <a href="overview.html#" class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to Pro</a>
+                                <a href="overview.html#" class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#add_photo">Add a photo</a>
                             </div>
                             <!--end product name & state-->
 
@@ -196,7 +196,7 @@
                                         <a href="#" class="menu-link px-3">Edit General Information</a>
                                     </div>
                                     <!--end actions menu item photo-->
-                                    {% if selected_product.profile >= 2 %}
+
                                     <!--actions menu item photo-->
                                     <div class="menu-item px-3" data-bs-toggle="modal" data-bs-target="#add_new_photo">
                                         <a href="#" class="menu-link px-3">Add New Photo</a>
@@ -220,7 +220,7 @@
                                         <a href="#" class="menu-link px-3">Add Arabic Features</a>
                                     </div>
                                     <!--end actions menu item details in arabic-->
-                                    {% endif %}
+
                                 </div>
                                 <!--end action buttons-->
                             </div>
@@ -601,8 +601,8 @@
                     <!--actions profile completion-->
                     <div class="d-flex flex-wrap flex-stack">
                         <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                            {% for size in sizes %}
-                            {{ size.en_variant }}
+                            {% for product in sizes %}
+                            {{ product.size }}
                             {% endfor %}
                         </div>
                     </div>
