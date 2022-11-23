@@ -8,13 +8,11 @@ def add_new_product(request):
     if request.method == 'POST':
         en_product_title = request.POST.get('en_product_title', False)
         en_variant = request.POST.get('en_variant', False)
-
         fr_product_title = request.POST.get('fr_product_title', False)
         fr_variant = request.POST.get('fr_variant', False)
-
         ar_product_title = request.POST.get('ar_product_title', False)
         ar_variant = request.POST.get('ar_variant', False)
-
+        size = request.POST.get('brand', False)
         brand = request.POST.get('brand', False)
         model = request.POST.get('model', False)
         upc = request.POST.get('upc', False)
@@ -38,6 +36,7 @@ def add_new_product(request):
                               fr_variant=fr_variant,
                               ar_product_title=ar_product_title,
                               ar_variant=ar_variant,
+                              size=size,
                               brand=brand,
                               model=model,
                               upc=upc,
@@ -49,7 +48,6 @@ def add_new_product(request):
                               thumb=thumb,
                               )
         new_product.sku = serial_number_generator(9).upper()
-        new_product.type = 'main'
         new_product.save()
     result = {
         'url': url,
@@ -67,7 +65,6 @@ def add_new_photo(request, sku):
                               thumb=thumb,
                               )
         new_product.sku = serial_number_generator(9).upper()
-        new_product.type = 'photo'
         new_product.save()
     result = {
         'url': url,
