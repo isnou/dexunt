@@ -83,16 +83,16 @@ def add_new_size(request, sku):
             upc = serial_number_generator(12).upper()
         quantity = request.POST.get('quantity', False)
         if not quantity:
-            quantity = 0
+            quantity = selected_product.quantity
         buy_price = request.POST.get('buy_price', False)
         if not buy_price:
-            buy_price = 0
+            buy_price = selected_product.buy_price
         sell_price = request.POST.get('sell_price', False)
         if not sell_price:
-            sell_price = 0
+            sell_price = selected_product.sell_price
         discount_price = request.POST.get('discount_price', False)
         if not discount_price:
-            discount_price = 0
+            discount_price = selected_product.discount_price
         new_product = Product(en_product_title=selected_product.en_product_title,
                               en_variant=selected_product.en_variant,
                               upc=upc,
