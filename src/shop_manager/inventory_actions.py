@@ -224,27 +224,51 @@ def edit(request, sku):
     url = "shop-manager/inventory-product.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
-        product_name = request.POST.get('product_name', False)
-        if product_name:
-            selected_product.product_name = product_name
-        buy_price = request.POST.get('buy_price', False)
-        if buy_price:
-            selected_product.buy_price = int(buy_price)
-        quantity = request.POST.get('quantity', False)
-        if quantity:
-            selected_product.quantity = int(quantity)
-        thumb = request.FILES.get('thumb', False)
-        if thumb:
-            selected_product.thumb = thumb
+        en_product_title = request.POST.get('en_product_title', False)
+        if en_product_title:
+            selected_product.en_product_title = en_product_title
+        en_variant = request.POST.get('en_variant', False)
+        if en_variant:
+            selected_product.en_variant = en_variant
+        fr_product_title = request.POST.get('fr_product_title', False)
+        if fr_product_title:
+            selected_product.fr_product_title = fr_product_title
+        fr_variant = request.POST.get('fr_variant', False)
+        if fr_variant:
+            selected_product.fr_variant = fr_variant
+        ar_product_title = request.POST.get('ar_product_title', False)
+        if ar_product_title:
+            selected_product.ar_product_title = ar_product_title
+        ar_variant = request.POST.get('ar_variant', False)
+        if ar_variant:
+            selected_product.ar_variant = ar_variant
+        brand = request.POST.get('brand', False)
+        if brand:
+            selected_product.brand = brand
+        model = request.POST.get('model', False)
+        if model:
+            selected_product.model = model
         upc = request.POST.get('upc', False)
         if upc:
             selected_product.upc = upc
-        if selected_product.profile < 3:
-            selected_product.profile = 0
-            if selected_product.upc:
-                selected_product.profile += 1
-            if selected_product.buy_price > 0:
-                selected_product.profile += 1
+        tag = request.POST.get('tag', False)
+        if tag:
+            selected_product.tag = tag
+        quantity = request.POST.get('quantity', False)
+        if quantity:
+            selected_product.quantity = quantity
+        buy_price = request.POST.get('buy_price', False)
+        if buy_price:
+            selected_product.buy_price = buy_price
+        sell_price = request.POST.get('sell_price', False)
+        if sell_price:
+            selected_product.sell_price = sell_price
+        discount_price = request.POST.get('discount_price', False)
+        if discount_price:
+            selected_product.discount_price = discount_price
+        thumb = request.FILES.get('thumb', False)
+        if thumb:
+            selected_product.thumb = thumb
         selected_product.save()
     result = {
         'url': url,
