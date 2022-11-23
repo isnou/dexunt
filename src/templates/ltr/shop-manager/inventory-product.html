@@ -232,7 +232,9 @@
                     <div class="d-flex flex-wrap flex-stack">
                         <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
                             {% for product in sizes %}
-                            {{ product.size }}
+                            <div class="symbol symbol-50px">
+                                <div class="symbol-label fs-2 fw-semibold text-success">{{ product.size }}</div>
+                            </div>
                             {% endfor %}
                         </div>
                     </div>
