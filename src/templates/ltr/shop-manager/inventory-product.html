@@ -790,17 +790,54 @@
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
-            <!--thumbnail-->
+
             <div class="card-body pt-9 pb-0">
-            <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-            <div class="me-7 mb-4">
-                <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                    <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
+                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                    <!--thumbnail-->
+                    <div class="me-7 mb-4">
+                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
+                        </div>
+                    </div>
+                    <!--end thumbnail-->
+
+                    <!--main information-->
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                            <div class="d-flex flex-column">
+
+                                <div class="d-flex align-items-center mb-2">
+                                    <h4 class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_product_title }}</h4>
+                                    <a href="overview.html#" class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#add_photo">Add a photo</a>
+                                </div>
+
+                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                    <!--product upc-->
+                                    <a class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                        <i class="bi bi-upc" style="margin-right: 5px;font-size: 2rem;"></i>
+                                        {{ selected_product.upc }}
+                                    </a>
+                                    <!--end product upc-->
+                                    <!--product quantity-->
+                                    <a class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                        <i class="bi bi-stack" style="margin-right: 5px;font-size: 2rem;"></i>
+                                        {{ selected_product.quantity }}
+                                    </a>
+                                    <!--end product quantity-->
+                                    <!--product buy price-->
+                                    <a class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
+                                        <i class="bi bi-cash" style="margin-right: 5px;font-size: 2rem;"></i>
+                                        {{ selected_product.buy_price }}
+                                    </a>
+                                    <!--end product buy price-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end main information-->
                 </div>
             </div>
-                </div>
-                </div>
-            <!--end thumbnail-->
+
             <!--toolbar-->
             <div class="card-toolbar">
                 <h3 class="card-title">Toolbar</h3>
