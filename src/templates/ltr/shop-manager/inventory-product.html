@@ -231,8 +231,14 @@
                     <!--size-->
                     <div class="d-flex flex-wrap flex-stack">
                         <div class="d-flex align-items-center w-200px w-sm-300px">
+
+                            <div class="symbol symbol-50px" style="margin-right: 4px;">
+                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add size">
+                                    <i class="bi bi-plus-square"></i>
+                                </a>
+                            </div>
                             {% for product in sizes %}
-                            <div class="symbol symbol-50px mr-2">
+                            <div class="symbol symbol-50px" style="margin-right: 4px;">
                                 <div class="symbol-label fs-2 fw-semibold text-success">{{ product.size }}</div>
                             </div>
                             {% endfor %}
