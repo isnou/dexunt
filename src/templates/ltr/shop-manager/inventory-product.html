@@ -826,74 +826,12 @@
         <!--end header-->
         <!--body-->
         <div class="card-body py-5">
-
-
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2" style="margin-top: 20px;">
-                                    <!--product upc-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            UPC :
-                                            {{ selected_product.upc }}
-                                        </a>
-                                    <!--end product upc-->
-                                    <!--product sku-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            SKU :
-                                            {{ selected_product.sku }}
-                                        </a>
-                                    <!--end product sku-->
-                                    <!--product quantity-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            Quantity :
-                                            {{ selected_product.quantity }}
-                                        </a>
-                                    <!--end product quantity-->
-                                    <!--product buy price-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            Buy Price :
-                                            {{ selected_product.buy_price }}
-                                            AD
-                                        </a>
-                                    <!--end product buy price-->
-                                </div>
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2" style="margin-top: 10px;">
-                                    <!--product tags-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            Tags :
-                                            {{ selected_product.tag }}
-                                        </a>
-                                    <!--end product tags-->
-                                </div>
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2" style="margin-top: 10px;">
-                                    <!--product brand-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            Brand :
-                                            {{ selected_product.brand }}
-                                        </a>
-                                    <!--end product brand-->
-                                    <!--product sell price-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            Sell Price :
-                                            {{ selected_product.sell_price }}
-                                            AD
-                                        </a>
-                                    <!--end product sell price-->
-                                    <!--product discount-->
-                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
-                                            Discount Price:
-                                            {{ selected_product.discount_price }}
-                                            AD
-                                        </a>
-                                    <!--end product discount-->
-                                </div>
-
-
-
             <!--edit product form-->
-                    <form action="{% url 'inventory' 'add_new_product' '#' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                            <div class="tab-content">
-                                <!--add product form inputs-->
+            <form action="{% url 'inventory' 'add_new_product' '#' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                {% csrf_token %}
+                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                    <div class="tab-content">
+                        <!--add product form inputs-->
                                 <div class="tab-pane fade active show">
                                     <div class="d-flex flex-column gap-7 gap-lg-10">
                                         <!--add product information-->
@@ -907,7 +845,7 @@
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Title</span>
+                                                                <span class="input-group-text">English Title</span>
                                                                 <input type="text" name="en_product_title" class="form-control" placeholder="{{ selected_product.en_product_title }}">
                                                             </div>
                                                             <!--end input-->
@@ -918,7 +856,7 @@
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Detail</span>
+                                                                <span class="input-group-text">English Detail</span>
                                                                 <input type="text" name="en_variant" class="form-control" placeholder="{{ selected_product.en_variant }}">
                                                             </div>
                                                             <!--end input-->
@@ -935,7 +873,7 @@
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Fr Title</span>
+                                                                <span class="input-group-text">French Title</span>
                                                                 <input type="text" name="fr_product_title" class="form-control" placeholder="{{ selected_product.fr_product_title }}">
                                                             </div>
                                                             <!--end input-->
@@ -946,7 +884,7 @@
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Fr Detail</span>
+                                                                <span class="input-group-text">French Detail</span>
                                                                 <input type="text" name="fr_variant" class="form-control" placeholder="{{ selected_product.fr_variant }}">
                                                             </div>
                                                             <!--end input-->
@@ -963,7 +901,7 @@
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Ar Name</span>
+                                                                <span class="input-group-text">Arabic Name</span>
                                                                 <input type="text" name="ar_product_title" class="form-control" dir="rtl"  placeholder="{{ selected_product.ar_product_title }}">
                                                             </div>
                                                             <!--end input-->
@@ -974,7 +912,7 @@
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Ar Detail</span>
+                                                                <span class="input-group-text">Arabic Detail</span>
                                                                 <input type="text" name="ar_variant" class="form-control" dir="rtl"  placeholder="{{ selected_product.ar_variant }}">
                                                             </div>
                                                             <!--end input-->
