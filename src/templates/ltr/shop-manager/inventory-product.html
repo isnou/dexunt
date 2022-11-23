@@ -785,6 +785,37 @@
     </div>
     <!--end header menu-->
 
+
+
+    <div class="card card-flush shadow-sm">
+        <!--header-->
+        <div class="card-header">
+            <!--thumbnail-->
+            <div class="me-7 mb-4">
+                <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                    <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
+                </div>
+            </div>
+            <!--end thumbnail-->
+            <!--toolbar-->
+            <div class="card-toolbar">
+                <h3 class="card-title">Toolbar</h3>
+            </div>
+            <!--end toolbar-->
+        </div>
+        <!--end header-->
+        <!--body-->
+        <div class="card-body py-5">
+            Lorem Ipsum is simply dummy text...
+        </div>
+        <!--end body-->
+        <!--footer-->
+        <div class="card-footer">
+            Footer
+        </div>
+        <!--end footer-->
+    </div>
+
     {% if photos_count > 0 %}
     <!--photos list-->
     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
