@@ -255,18 +255,18 @@
                                     <tr>
                                         <td>{{ product.size }}</td>
                                         <td>
-                                            <a href="{% url 'inventory-product' 'remove_size_quantity' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove quantity">
+                                            <a href="{% url 'inventory-product' 'remove_size_quantity' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove quantity">
                                                 <i class="bi bi-dash" style="font-size: 2rem;"></i>
                                             </a>
                                         </td>
                                         <td class="text-center">{{ product.quantity }}</td>
                                         <td>
-                                            <a href="{% url 'inventory-product' 'add_size_quantity' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add quantity">
+                                            <a href="{% url 'inventory-product' 'add_size_quantity' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add quantity">
                                                 <i class="bi bi-plus" style="font-size: 2rem;"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{% url 'inventory-product' 'delete_size' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
+                                            <a href="{% url 'inventory-product' 'delete_variant' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
                                                 <i class="bi bi-trash"  style="font-size: 2rem;"></i>
                                             </a>
                                         </td>
