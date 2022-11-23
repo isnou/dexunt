@@ -812,7 +812,7 @@
                                     <a class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_variant }}</a>
                                 </div>
 
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2" style="margin-top: 40px;">
+                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2" style="margin-top: 20px;">
                                     <!--product upc-->
                                         <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
                                             UPC :
@@ -835,6 +835,33 @@
                                         <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
                                             Buy Price :
                                             {{ selected_product.buy_price }}
+                                            AD
+                                        </a>
+                                    <!--end product buy price-->
+                                </div>
+                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2" style="margin-top: 10px;">
+                                    <!--product upc-->
+                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
+                                            UPC :
+                                            {{ selected_product.tag }}
+                                        </a>
+                                    <!--end product upc-->
+                                    <!--product sku-->
+                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
+                                            SKU :
+                                            {{ selected_product.brand }}
+                                        </a>
+                                    <!--end product sku-->
+                                    <!--product quantity-->
+                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
+                                            Quantity :
+                                            {{ selected_product.sell_price }}
+                                        </a>
+                                    <!--end product quantity-->
+                                    <!--product buy price-->
+                                        <a class="d-flex align-items-center text-gray-400 text-hover-primary" style="margin-right: 15px;margin-left: 15px;margin-top: 5px;margin-bottom: 5px;">
+                                            Buy Price :
+                                            {{ selected_product.discount_price }}
                                             AD
                                         </a>
                                     <!--end product buy price-->
