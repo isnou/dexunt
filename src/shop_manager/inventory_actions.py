@@ -134,7 +134,7 @@ def add_new_variant(request, sku):
             discount_price = selected_product.discount_price
         thumb = request.FILES.get('thumb', False)
         new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=selected_product.en_variant,
+                              en_variant=en_variant,
                               fr_variant=fr_variant,
                               ar_variant=ar_variant,
                               upc=upc,
