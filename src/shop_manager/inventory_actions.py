@@ -126,7 +126,7 @@ def remove_size_quantity(request, sku):
     url = "shop-manager/inventory-product.html"
     selected_product = Product.objects.all().get(sku=sku)
     if selected_product.quantity > 0:
-        selected_product.quantity += 1
+        selected_product.quantity -= 1
     else:
         selected_product.quantity = 0
     selected_product.save()
