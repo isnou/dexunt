@@ -223,6 +223,7 @@ def add_features(request, language, sku):
 def edit(request, sku):
     url = "shop-manager/inventory-product.html"
     selected_product = Product.objects.all().get(sku=sku)
+    token_variant = selected_product.en_variant
     if request.method == 'POST':
         en_product_title = request.POST.get('en_product_title', False)
         if en_product_title:
@@ -230,6 +231,7 @@ def edit(request, sku):
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
             selected_product.en_variant = en_variant
+            token_variant = en_variant
         fr_product_title = request.POST.get('fr_product_title', False)
         if fr_product_title:
             selected_product.fr_product_title = fr_product_title
@@ -271,7 +273,7 @@ def edit(request, sku):
             selected_product.thumb = thumb
     selected_product.save()
     sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
-        .filter(en_variant=selected_product.en_variant).filter(type='size')
+        .filter(en_variant=token_variant).filter(type='size')
     for product in sizes:
         product.en_variant = selected_product.en_variant
         product.save()
