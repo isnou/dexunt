@@ -898,60 +898,6 @@
                                     <div class="d-flex flex-column gap-7 gap-lg-10">
                                         <!--add product information-->
                                         <div class="card card-flush py-4">
-                                            <!--block title-->
-                                            <div class="card-header">
-                                                <div class="card-title">
-                                                    <div class="card card-flush py-4">
-                                                        <!--thumbnail input-->
-                                                        <div class="card-header">
-                                                            <!--begin::Card title-->
-                                                            <div class="card-title">
-                                                                <h2>Product Thumbnail</h2>
-                                                            </div>
-                                                            <!--end::Card title-->
-                                                        </div>
-                                                        <!--end::Card header-->
-                                                        <!--begin::Card body-->
-                                                        <div class="card-body text-center pt-0">
-                                                            <!--begin::Image input-->
-                                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                                <!--begin::Image preview wrapper-->
-                                                                <div class="image-input-wrapper w-125px h-125px"></div>
-                                                                <!--end::Image preview wrapper-->
-                                                                <!--begin::Edit button-->
-                                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
-                                                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                                                    <!--begin::Inputs-->
-                                                                    <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                                    <input type="hidden" name="thumb_remove" />
-                                                                    <!--end::Inputs-->
-                                                                </label>
-                                                                <!--end::Edit button-->
-                                                                <!--begin::Cancel button-->
-                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
-                                                                    <i class="bi bi-x fs-2"></i>
-                                                                </span>
-                                                                <!--end::Cancel button-->
-                                                                <!--begin::Remove button-->
-                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
-                                                                    <i class="bi bi-x fs-2"></i>
-                                                                </span>
-                                                                <!--end::Remove button-->
-                                                            </div>
-                                                            <!--end::Image input-->
-                                                            <!--begin::Description-->
-                                                            <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
-                                                            <!--end::Description-->
-                                                        </div>
-                                                        <!--end thumbnail input-->
-                                                    </div>
-                                                </div>
-                                                <div class="card-title">
-                                                    <h2>Product Information</h2>
-                                                </div>
-                                            </div>
-                                            <!--end block title-->
-
                                             <!--block body-->
                                             <div class="card-body pt-0">
                                                 <!--product name-->
@@ -959,25 +905,16 @@
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="required form-label">Product Title</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="en_product_title" class="form-control mb-2" required>
+                                                            <input type="text" name="en_product_title" class="form-control mb-2" placeholder="{{ selected_product.en_product_title }}">
                                                             <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">A product title is required and recommended to be unique.</div>
-                                                            <!--end description-->
                                                         </div>
                                                         <!--end product name input-->
 
                                                         <!--product detail input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Detail</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="en_variant" class="form-control mb-2">
+                                                            <input type="text" name="en_variant" class="form-control mb-2" placeholder="{{ selected_product.en_variant }}">
                                                             <!--end input-->
                                                         </div>
                                                         <!--end product detail input-->
@@ -990,25 +927,16 @@
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--french product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Title Translated To French</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="fr_product_title" class="form-control mb-2">
+                                                            <input type="text" name="fr_product_title" class="form-control mb-2" placeholder="{{ selected_product.fr_product_title }}">
                                                             <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Translate the product name to french.</div>
-                                                            <!--end description-->
                                                         </div>
                                                         <!--end french product name input-->
 
                                                         <!--french product detail input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Detail Translated To French</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="fr_variant" class="form-control mb-2">
+                                                            <input type="text" name="fr_variant" class="form-control mb-2" placeholder="{{ selected_product.fr_variant }}">
                                                             <!--end input-->
                                                         </div>
                                                         <!--end french product detail input-->
@@ -1021,25 +949,16 @@
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--french product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Title Translated To Arabic</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="ar_product_title" class="form-control mb-2" dir="rtl">
+                                                            <input type="text" name="ar_product_title" class="form-control mb-2" dir="rtl"  placeholder="{{ selected_product.ar_product_title }}">
                                                             <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Translate the product name to arabic.</div>
-                                                            <!--end description-->
                                                         </div>
                                                         <!--end french product name input-->
 
                                                         <!--arabic product detail input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Detail Translated To Arabic</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl">
+                                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl"  placeholder="{{ selected_product.ar_variant }}">
                                                             <!--end input-->
                                                         </div>
                                                         <!--end arabic product detail input-->
@@ -1052,22 +971,16 @@
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--brand input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Brand</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="brand" class="form-control mb-2" placeholder="product brand">
+                                                            <input type="text" name="brand" class="form-control mb-2"  placeholder="{{ selected_product.brand }}">
                                                             <!--end input-->
                                                         </div>
                                                         <!--end brand input-->
 
                                                         <!--model input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Model</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="text" name="model" class="form-control mb-2" placeholder="product model">
+                                                            <input type="text" name="model" class="form-control mb-2" placeholder="{{ selected_product.model }}">
                                                             <!--end input-->
                                                         </div>
                                                         <!--end model input-->
@@ -1077,29 +990,17 @@
 
                                                 <!--upc input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                    <!--label-->
-                                                    <label class="form-label">Barcode</label>
-                                                    <!--end label-->
                                                     <!--input-->
-                                                    <input type="text" name="upc" class="form-control mb-2">
+                                                    <input type="text" name="upc" class="form-control mb-2" placeholder="{{ selected_product.upc }}">
                                                     <!--end input-->
-                                                    <!--description-->
-                                                    <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
-                                                    <!--end description-->
                                                 </div>
                                                 <!--end upc input-->
 
                                                 <!--tag input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                    <!--label-->
-                                                    <label class="form-label">Tag</label>
-                                                    <!--end label-->
                                                     <!--input-->
-                                                    <input type="text" name="tag" class="form-control mb-2" placeholder="Separate the tags by a space">
+                                                    <input type="text" name="tag" class="form-control mb-2" placeholder="{{ selected_product.tag }}">
                                                     <!--end input-->
-                                                    <!--description-->
-                                                    <div class="text-muted fs-7">Tags are needed to increase search accuracy</div>
-                                                    <!--end description-->
                                                 </div>
                                                 <!--end tag input-->
 
@@ -1108,32 +1009,20 @@
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--quantity input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Quantity</label>
-                                                            <!--end label-->
                                                             <!--input-->
-                                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
+                                                            <input type="number" name="quantity" class="form-control" placeholder="{{ selected_product.quantity }}">
                                                             <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Put product quantity.</div>
-                                                            <!--end description-->
                                                         </div>
                                                         <!--end quantity input-->
 
                                                         <!--price input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Buy Price</label>
-                                                            <!--end label-->
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="{{ selected_product.buy_price }}">
                                                                 <span class="input-group-text">AD</span>
                                                             </div>
                                                             <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
-                                                            <!--end description-->
                                                         </div>
                                                         <!--end price input-->
                                                     </div>
@@ -1145,29 +1034,20 @@
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--sell price input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Sell Price</label>
-                                                            <!--end label-->
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
+                                                                <input type="number" name="sell_price" class="form-control" placeholder="{{ selected_product.sell_price }}">
                                                                 <span class="input-group-text">AD</span>
                                                             </div>
                                                             <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
-                                                            <!--end description-->
                                                         </div>
                                                         <!--end sell price input-->
 
                                                         <!--discount price input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Discount Price</label>
-                                                            <!--end label-->
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
+                                                                <input type="number" name="discount_price" class="form-control" placeholder="{{ selected_product.discount_price }}">
                                                                 <span class="input-group-text">AD</span>
                                                             </div>
                                                             <!--end input-->
