@@ -174,7 +174,6 @@
                     <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
                         <th class="min-w-600px">Product</th>
                         <th class="text-end min-w-20px"></th>
-                        <th class="text-end min-w-20px"></th>
                         <th class="text-end min-w-90px"></th>
                         <th class="text-center min-w-150px">Qty</th>
                         <th class="text-center min-w-200px">Sell Rate</th>
@@ -207,10 +206,13 @@
                         </td>
                         <!--end product-->
 
-                        <!--view product action-->
+                        <!--edit product action-->
                         <td class="text-end">
+                            <a href="{% url 'inventory-product' 'view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
                         </td>
-                        <!--end view product action-->
+                        <!--end edit product action-->
 
                         <!--delete product action-->
                         <td class="text-end">
@@ -219,14 +221,6 @@
                             </a>
                         </td>
                         <!--end delete product action-->
-
-                        <!--edit product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory-product' 'view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                        </td>
-                        <!--end edit product action-->
 
                         <!--qty-->
                         <td class="text-center">
@@ -300,10 +294,13 @@
                         </td>
                         <!--end product-->
 
-                        <!--view product action-->
+                        <!--edit product action-->
                         <td class="text-end">
+                            <a href="{% url 'inventory-product' 'view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
                         </td>
-                        <!--end view product action-->
+                        <!--end edit product action-->
 
                         <!--delete product action-->
                         <td class="text-end">
@@ -312,14 +309,6 @@
                             </a>
                         </td>
                         <!--end delete product action-->
-
-                        <!--edit product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory-product' 'view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                        </td>
-                        <!--end edit product action-->
 
                         <!--qty-->
                         <td class="text-center">
@@ -395,10 +384,10 @@
                         </td>
                         <!--end product-->
 
-                        <!--view product action-->
+                        <!--edit product action-->
                         <td class="text-end">
                         </td>
-                        <!--end view product action-->
+                        <!--end edit product action-->
 
                         <!--delete product action-->
                         <td class="text-end">
@@ -407,11 +396,6 @@
                             </a>
                         </td>
                         <!--end delete product action-->
-
-                        <!--edit product action-->
-                        <td class="text-end">
-                        </td>
-                        <!--end edit product action-->
 
                         <!--qty-->
                         <td class="text-center">
