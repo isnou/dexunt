@@ -269,7 +269,12 @@ def edit(request, sku):
         thumb = request.FILES.get('thumb', False)
         if thumb:
             selected_product.thumb = thumb
-        selected_product.save()
+    selected_product.save()
+    sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
+        .filter(en_variant=selected_product.en_variant).filter(type='size')
+    for product in sizes:
+        product.en_variant = selected_product.en_variant
+        product.save()
     result = {
         'url': url,
     }
