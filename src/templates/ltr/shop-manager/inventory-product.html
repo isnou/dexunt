@@ -228,6 +228,16 @@
                         </div>
                     </div>
 
+                    <!--size-->
+                    <div class="d-flex flex-wrap flex-stack">
+                        <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
+                            {% for product in sizes %}
+                            {{ product.size }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!--end size-->
+
                     <!--modals-->
                     <!--edit general information-->
                     <div class="modal bg-white fade" tabindex="-1" id="edit_general_information">
@@ -598,15 +608,6 @@
                     </div>
                     <!--end ar details modal-->
 
-                    <!--actions profile completion-->
-                    <div class="d-flex flex-wrap flex-stack">
-                        <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                            {% for product in sizes %}
-                            {{ product.size }}
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <!--end actions profile completion-->
                     <!--end modals-->
                 </div>
             </div>
