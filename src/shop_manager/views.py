@@ -43,7 +43,7 @@ def inventory_product(request, action, sku, identity):
         url = direction + inventory_actions.add_size_quantity(request, sku).get('url')
     if action == "remove_size_quantity":
         url = direction + inventory_actions.remove_size_quantity(request, sku).get('url')
-    if action == 'delete_size':
+    if action == 'delete_variant':
         Product.objects.all().get(sku=sku).delete()
     if action == 'add_en_features':
         url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
