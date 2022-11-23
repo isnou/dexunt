@@ -906,7 +906,10 @@
                                                         <!--product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <input type="text" name="en_product_title" class="form-control mb-2" placeholder="{{ selected_product.en_product_title }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Title</span>
+                                                                <input type="text" name="en_product_title" class="form-control mb-2" placeholder="{{ selected_product.en_product_title }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end product name input-->
@@ -914,7 +917,10 @@
                                                         <!--product detail input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <input type="text" name="en_variant" class="form-control mb-2" placeholder="{{ selected_product.en_variant }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Detail</span>
+                                                                <input type="text" name="en_variant" class="form-control mb-2" placeholder="{{ selected_product.en_variant }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end product detail input-->
@@ -928,7 +934,10 @@
                                                         <!--french product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <input type="text" name="fr_product_title" class="form-control mb-2" placeholder="{{ selected_product.fr_product_title }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Fr Title</span>
+                                                                <input type="text" name="fr_product_title" class="form-control mb-2" placeholder="{{ selected_product.fr_product_title }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end french product name input-->
@@ -936,7 +945,10 @@
                                                         <!--french product detail input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <input type="text" name="fr_variant" class="form-control mb-2" placeholder="{{ selected_product.fr_variant }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Fr Detail</span>
+                                                                <input type="text" name="fr_variant" class="form-control mb-2" placeholder="{{ selected_product.fr_variant }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end french product detail input-->
@@ -950,7 +962,10 @@
                                                         <!--french product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <input type="text" name="ar_product_title" class="form-control mb-2" dir="rtl"  placeholder="{{ selected_product.ar_product_title }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Ar Name</span>
+                                                                <input type="text" name="ar_product_title" class="form-control mb-2" dir="rtl"  placeholder="{{ selected_product.ar_product_title }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end french product name input-->
@@ -958,7 +973,10 @@
                                                         <!--arabic product detail input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl"  placeholder="{{ selected_product.ar_variant }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Ar Detail</span>
+                                                                <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl"  placeholder="{{ selected_product.ar_variant }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end arabic product detail input-->
@@ -972,8 +990,10 @@
                                                         <!--brand input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <span class="input-group-text">Brand</span>
-                                                            <input type="text" name="brand" class="form-control mb-2"  placeholder="{{ selected_product.brand }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Brand</span>
+                                                                <input type="text" name="brand" class="form-control mb-2"  placeholder="{{ selected_product.brand }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end brand input-->
@@ -981,8 +1001,10 @@
                                                         <!--model input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <span class="input-group-text">Model</span>
-                                                            <input type="text" name="model" class="form-control mb-2" placeholder="{{ selected_product.model }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Model</span>
+                                                                <input type="text" name="model" class="form-control mb-2" placeholder="{{ selected_product.model }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end model input-->
@@ -993,8 +1015,10 @@
                                                 <!--upc input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--input-->
-                                                    <span class="input-group-text">Barcode</span>
-                                                    <input type="text" name="upc" class="form-control mb-2" placeholder="{{ selected_product.upc }}">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">Barcode</span>
+                                                        <input type="text" name="upc" class="form-control mb-2" placeholder="{{ selected_product.upc }}">
+                                                    </div>
                                                     <!--end input-->
                                                 </div>
                                                 <!--end upc input-->
@@ -1002,8 +1026,10 @@
                                                 <!--tag input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--input-->
-                                                    <span class="input-group-text">Tag</span>
-                                                    <input type="text" name="tag" class="form-control mb-2" placeholder="{{ selected_product.tag }}">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">Tag</span>
+                                                        <input type="text" name="tag" class="form-control mb-2" placeholder="{{ selected_product.tag }}">
+                                                    </div>
                                                     <!--end input-->
                                                 </div>
                                                 <!--end tag input-->
@@ -1014,8 +1040,10 @@
                                                         <!--quantity input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
-                                                            <span class="input-group-text">Quantity</span>
-                                                            <input type="number" name="quantity" class="form-control" placeholder="{{ selected_product.quantity }}">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Quantity</span>
+                                                                <input type="number" name="quantity" class="form-control" placeholder="{{ selected_product.quantity }}">
+                                                            </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end quantity input-->
