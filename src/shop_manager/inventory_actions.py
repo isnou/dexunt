@@ -115,6 +115,7 @@ def add_new_variant(request, sku):
     url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
+        en_variant = request.POST.get('en_variant', False)
         fr_variant = request.POST.get('fr_variant', False)
         ar_variant = request.POST.get('ar_variant', False)
         upc = request.POST.get('upc', False)
