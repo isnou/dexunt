@@ -7,11 +7,8 @@ def add_new_product(request):
     url = "shop-manager/inventory.html"
     if request.method == 'POST':
         en_product_title = request.POST.get('en_product_title', False)
-        en_variant = request.POST.get('en_variant', False)
         fr_product_title = request.POST.get('fr_product_title', False)
-        fr_variant = request.POST.get('fr_variant', False)
         ar_product_title = request.POST.get('ar_product_title', False)
-        ar_variant = request.POST.get('ar_variant', False)
         brand = request.POST.get('brand', False)
         model = request.POST.get('model', False)
         upc = request.POST.get('upc', False)
@@ -32,11 +29,9 @@ def add_new_product(request):
             discount_price = 0
         thumb = request.FILES.get('thumb', False)
         new_product = Product(en_product_title=en_product_title,
-                              en_variant=en_variant,
+                              en_variant='main',
                               fr_product_title=fr_product_title,
-                              fr_variant=fr_variant,
                               ar_product_title=ar_product_title,
-                              ar_variant=ar_variant,
                               brand=brand,
                               model=model,
                               upc=upc,
