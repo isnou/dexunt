@@ -132,6 +132,7 @@ def add_new_variant(request, sku):
         discount_price = request.POST.get('discount_price', False)
         if not discount_price:
             discount_price = selected_product.discount_price
+        thumb = request.FILES.get('thumb', False)
         new_product = Product(en_product_title=selected_product.en_product_title,
                               en_variant=selected_product.en_variant,
                               fr_variant=fr_variant,
@@ -141,6 +142,7 @@ def add_new_variant(request, sku):
                               buy_price=int(buy_price),
                               sell_price=int(sell_price),
                               discount_price=int(discount_price),
+                              thumb=thumb,
                               )
         new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'variant'
