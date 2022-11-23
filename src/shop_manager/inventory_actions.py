@@ -224,13 +224,23 @@ def edit(request, sku):
     url = "shop-manager/inventory-product.html"
     selected_product = Product.objects.all().get(sku=sku)
     token_variant = selected_product.en_variant
+    token_en_product_title = selected_product.en_product_title
     if request.method == 'POST':
         en_product_title = request.POST.get('en_product_title', False)
         if en_product_title:
             selected_product.en_product_title = en_product_title
+            products = Product.objects.all().filter(en_product_title=token_en_product_title)
+            for product in products:
+                product.en_product_title = selected_product.en_product_title
+                product.save()
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
             selected_product.en_variant = en_variant
+            sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
+                .filter(en_variant=token_variant).filter(type='size')
+            for product in sizes:
+                product.en_variant = selected_product.en_variant
+                product.save()
         fr_product_title = request.POST.get('fr_product_title', False)
         if fr_product_title:
             selected_product.fr_product_title = fr_product_title
@@ -271,11 +281,7 @@ def edit(request, sku):
         if thumb:
             selected_product.thumb = thumb
     selected_product.save()
-    sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
-        .filter(en_variant=token_variant).filter(type='size')
-    for product in sizes:
-        product.en_variant = selected_product.en_variant
-        product.save()
+
     result = {
         'url': url,
     }
