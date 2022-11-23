@@ -12,7 +12,6 @@ def add_new_product(request):
         fr_variant = request.POST.get('fr_variant', False)
         ar_product_title = request.POST.get('ar_product_title', False)
         ar_variant = request.POST.get('ar_variant', False)
-        size = request.POST.get('size', False)
         brand = request.POST.get('brand', False)
         model = request.POST.get('model', False)
         upc = request.POST.get('upc', False)
@@ -30,7 +29,6 @@ def add_new_product(request):
                               fr_variant=fr_variant,
                               ar_product_title=ar_product_title,
                               ar_variant=ar_variant,
-                              size=size,
                               brand=brand,
                               model=model,
                               upc=upc,
