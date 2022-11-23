@@ -111,8 +111,8 @@ def add_new_size(request, sku):
     return result
 
 
-def add_size_quantity(request, sku):
-    url = "shop-manager/inventory-product.html"
+def add_quantity(request, sku):
+    url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     selected_product.quantity += 1
     selected_product.save()
@@ -122,8 +122,8 @@ def add_size_quantity(request, sku):
     return result
 
 
-def remove_size_quantity(request, sku):
-    url = "shop-manager/inventory-product.html"
+def remove_quantity(request, sku):
+    url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     if selected_product.quantity > 0:
         selected_product.quantity -= 1
