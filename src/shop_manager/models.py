@@ -45,6 +45,7 @@ class Product(models.Model):
         ]
     )
     # --------------------------------- showcase information -----------------------------------
+    type = models.CharField(max_length=80, blank=True, null=True)
     size = models.CharField(max_length=80, blank=True, null=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
     model = models.CharField(max_length=80, blank=True, null=True)
