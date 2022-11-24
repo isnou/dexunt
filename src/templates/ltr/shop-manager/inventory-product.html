@@ -127,7 +127,7 @@
 {% block content %}
 <div class="container-xxl">
     {% if lang == 'en' %}
-    
+
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
@@ -174,7 +174,7 @@
         <div class="card-body py-5">
             <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#information">Product Info</a>
+                    <a class="nav-link active" data-bs-toggle="tab" href="#photos">Product Photos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#edit_general_informations">Edit General Informations</a>
@@ -184,7 +184,43 @@
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="information" role="tabpanel">
+                <div class="tab-pane fade show active" id="photos" role="tabpanel">
+
+
+                    <div class="card-body p-9">
+            <div class="tns tns-default">
+                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="3" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev1" data-tns-next-button="#kt_team_slider_next1">
+                    {% for photo in photos %}
+                    <div class="text-center px-5 py-5">
+                        <!--product photos-->
+                        <img src="{% get_media_prefix %}{{photo.thumb}}" class="card-rounded shadow mw-100" style="margin-bottom: 20px;" />
+                        <!--end product photos-->
+
+                        <!--delete photo icon-->
+                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete image">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                        <!--end delete photo icon-->
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if photos_count > 3 %}
+                <!--slider buttons-->
+                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev1">
+                    <i class="bi bi-chevron-compact-left" style="font-size: 2rem;"></i>
+                </button>
+                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next1">
+                    <i class="bi bi-chevron-compact-right" style="font-size: 2rem;"></i>
+                </button>
+                <!--end slider buttons-->
+                {% endif %}
+            </div>
+        </div>
+
+
+
+
+
                 </div>
                 <div class="tab-pane fade" id="edit_general_informations" role="tabpanel">
                     <!--edit product form-->
@@ -416,7 +452,6 @@
                     <!--size-->
                     <div class="flex-wrap flex-stack">
                         <div class="align-items-center">
-
                             {% if sizes_count > 0 %}
                             <div class="table-responsive">
                                 <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
@@ -460,9 +495,6 @@
                         </div>
                     </div>
                     <!--end size-->
-
-                    <!--modals-->
-
                     <!--new size modal-->
                     <div class="modal fade" tabindex="-1" id="new_size">
                         <div class="modal-dialog modal-dialog-scrollable">
@@ -600,11 +632,6 @@
                     <!--end new size modal-->
                 </div>
             </div>
-
-
-
-
-
         </div>
         <!--end edit product tab content-->
         <!--footer-->
