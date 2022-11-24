@@ -32569,10 +32569,6 @@ i[class^=fonticon-]:before, i[class*=" fonticon-"]:before {
   font-size: 1rem !important;
 }
 
-.fslightbox-slide-btn {
-  border-radius: 0.475rem;
-}
-
 .fslightbox-toolbar {
   border-bottom-left-radius: 0.475rem;
 }
