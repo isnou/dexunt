@@ -735,7 +735,7 @@
     </div>
 
     {% for selected_product in variants %}
-    <div class="card card-flush shadow-sm">
+    <div class="card card-flush shadow-sm" style="margin-top: 30px;">
         <!--header-->
         <div class="card-header">
 
@@ -778,20 +778,20 @@
             <!--actions-->
             <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#photos">Product Photos</a>
+                    <a class="nav-link active" data-bs-toggle="tab" href="#variant_photos">Product Photos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#edit_general_informations">Edit General Informations</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#edit_variant_general_informations">Edit General Informations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#sizes">Sizes</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#variant_sizes">Sizes</a>
                 </li>
             </ul>
             <!--end actions-->
             <!--contents-->
             <div class="tab-content">
                 <!--photos tab-->
-                <div class="tab-pane fade show active" id="photos" role="tabpanel">
+                <div class="tab-pane fade show active" id="variant_photos" role="tabpanel">
                     <div class="card-body p-9">
                         <div class="tns tns-default" style="margin-bottom: 20px;text-align: center;">
                             <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add new photo">
@@ -917,7 +917,7 @@
                 </div>
                 <!--end photos tab-->
                 <!--edit product tab-->
-                <div class="tab-pane fade" id="edit_general_informations" role="tabpanel">
+                <div class="tab-pane fade" id="edit_variant_general_informations" role="tabpanel">
                     <!--edit product form-->
                     <form action="{% url 'inventory-product' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                         {% csrf_token %}
@@ -1145,7 +1145,7 @@
                 </div>
                 <!--end edit product tab-->
                 <!--sizes tab-->
-                <div class="tab-pane fade" id="sizes" role="tabpanel">
+                <div class="tab-pane fade" id="variant_sizes" role="tabpanel">
                     <!--size-->
                     <div class="flex-wrap flex-stack">
                         <div class="align-items-center">
