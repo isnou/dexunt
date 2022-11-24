@@ -59,8 +59,7 @@ def inventory_product(request, action, sku, identity):
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
-    variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
-        .filter(en_variant=selected_product.en_variant).filter(type='variant')
+    variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='variant')
     photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
         .filter(en_variant=selected_product.en_variant+' photo').filter(type='photo')
     sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
