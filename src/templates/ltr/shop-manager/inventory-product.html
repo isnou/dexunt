@@ -734,6 +734,7 @@
         <!--end footer-->
     </div>
 
+    {% for selected_product in variants %}
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
@@ -1339,6 +1340,7 @@
         </div>
         <!--end footer-->
     </div>
+    {% endfor %}
 
 
     {% if features_count > 0 %}
