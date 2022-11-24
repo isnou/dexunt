@@ -136,9 +136,36 @@
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                     <!--thumbnail-->
                     <div class="me-7 mb-4">
-                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
-                        </div>
+
+
+
+
+
+                        
+
+
+                        <!--begin::Overlay-->
+                                <a class="d-block overlay" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.thumb}}">
+                                    <!--begin::Image-->
+                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-200px"
+                                         style="background-image:url({% get_media_prefix %}{{selected_product.thumb}})">
+                                    </div>
+                                    <!--end::Image-->
+
+                                    <!--begin::Action-->
+                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
+                                        <i class="bi bi-eye-fill text-white fs-3x"></i>
+                                    </div>
+                                    <!--end::Action-->
+                                </a>
+                                <!--end::Overlay-->
+
+
+
+
+
+
+
                     </div>
                     <!--end thumbnail-->
 
