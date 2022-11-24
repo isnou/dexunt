@@ -143,11 +143,19 @@
 
 
 
+                        
 
-                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
-                        </div>
-         
+
+                        <!--begin::Overlay-->
+                                <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.thumb}}">
+                                    <!--begin::Image-->
+                                    <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-200px"
+                                         style="background-image:url({% get_media_prefix %}{{selected_product.thumb}})">
+                                    </div>
+                                    <!--end::Image-->
+                                </a>
+                                <!--end::Overlay-->
+
 
 
 
