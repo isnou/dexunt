@@ -198,20 +198,26 @@
                                 </div>
 
                                 {% for photo in photos %}
-                                <div class="text-center px-5 py-5">
-                                    <!--product photos-->
-                                    <img src="{% get_media_prefix %}{{photo.thumb}}" class="card-rounded shadow mw-100" style="margin-bottom: 20px;" />
-                                    <!--end product photos-->
-                                    <!--delete photo icon-->
-                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete image">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                    <!--end delete photo icon-->
-                                </div>
+                                <!--begin::Overlay-->
+                                <a class="d-block overlay" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.thumb}}">
+                                    <!--begin::Image-->
+                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
+                                         style="background-image:url({% get_media_prefix %}{{photo.thumb}})">
+                                    </div>
+                                    <!--end::Image-->
+
+                                    <!--begin::Action-->
+                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
+                                        <i class="bi bi-eye-fill text-white fs-3x"></i>
+                                    </div>
+                                    <!--end::Action-->
+                                </a>
+                                <!--end::Overlay-->
+
+
+
+
                                 {% endfor %}
-
-
-
                             </div>
                             {% if photos_count > 3 %}
                             <!--slider buttons-->
