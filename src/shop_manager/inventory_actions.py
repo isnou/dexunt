@@ -62,7 +62,7 @@ def add_new_photo(request, sku):
     if request.method == 'POST':
         photo = request.FILES.get('photo', False)
         new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=selected_product.en_variant,
+                              en_variant=selected_product.en_variant+' photo',
                               thumb=photo,
                               )
         new_product.sku = serial_number_generator(9).upper()
