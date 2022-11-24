@@ -132,7 +132,6 @@
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
-
             <div class="card-body pt-9 pb-0">
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                     <!--thumbnail-->
@@ -142,7 +141,6 @@
                         </a>
                     </div>
                     <!--end thumbnail-->
-
                     <!--main information-->
                     <div class="flex-grow-1">
                         <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
@@ -158,7 +156,6 @@
                     <!--end main information-->
                 </div>
             </div>
-
             <!--toolbar-->
             <div class="card-toolbar">
                 <h3 class="card-title">Toolbar</h3>
@@ -730,7 +727,148 @@
 
         <!--footer-->
         <div class="card-footer">
-            Footer
+            <div class="tns tns-default" style="margin-bottom: 20px;text-align: center;">
+                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add new variant">
+                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_variant"></i>
+                </a>
+            </div>
+
+
+                    <!--new variant modal-->
+                    <div class="modal fade" tabindex="-1" id="new_variant">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add New Size</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'inventory-product' 'add_new_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                        {% csrf_token %}
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <!--english size-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--label-->
+                                                    <label class="form-label">Size</label>
+                                                    <!--end label-->
+                                                    <!--input-->
+                                                    <input type="text" name="size" class="form-control mb-2">
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end english size-->
+
+                                                <!--upc input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--label-->
+                                                    <label class="form-label">Barcode</label>
+                                                    <!--end label-->
+                                                    <!--input-->
+                                                    <input type="text" name="upc" class="form-control mb-2">
+                                                    <!--end input-->
+                                                    <!--description-->
+                                                    <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
+                                                    <!--end description-->
+                                                </div>
+                                                <!--end upc input-->
+
+                                                <!--product quantity & buy price input-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--quantity input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Quantity</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">Put product quantity.</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end quantity input-->
+
+                                                        <!--price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Buy Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
+                                                                <span class="input-group-text">AD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end price input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product quantity & buy price input-->
+
+                                                <!--product sell price & discount price input-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--sell price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Sell Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
+                                                                <span class="input-group-text">AD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end sell price input-->
+
+                                                        <!--discount price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Discount Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
+                                                                <span class="input-group-text">AD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end discount price input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product sell price & discount price input-->
+                                            </div>
+                                            <!--add product buttons-->
+                                        <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                            <!--submit button-->
+                                            <button type="submit" class="btn btn-primary">
+                                                <span class="indicator-label">Save Changes</span>
+                                            </button>
+                                            <!--end submit button-->
+                                        </div>
+                                        <!--end add product buttons-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7"></div>
+                                    <!--end::Description-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end new variant modal-->
         </div>
         <!--end footer-->
     </div>
