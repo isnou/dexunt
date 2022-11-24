@@ -823,7 +823,12 @@
             </div>
             <!--end toolbar-->
 
-            <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+        </div>
+        <!--end header-->
+
+
+
+        <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
                 <li class="nav-item">
                     <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Link 1</a>
                 </li>
@@ -834,11 +839,8 @@
                     <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Link 3</a>
                 </li>
             </ul>
-
-        </div>
-        <!--end header-->
         <!--edit product tab content-->
-        <div class="card-body py-5 tab-content" id="edit_product_tab">
+        <div class="tab-content" id="edit_product_tab">
             <!--edit product form-->
                     <form action="{% url 'inventory-product' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                         {% csrf_token %}
