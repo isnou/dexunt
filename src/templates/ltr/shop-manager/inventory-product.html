@@ -199,7 +199,7 @@
                             <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="3" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev1" data-tns-next-button="#kt_team_slider_next1">
                                 {% for photo in photos %}
                                 <!--begin::Overlay-->
-                                <a class="d-block overlay" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.thumb}}">
+                                <a class="d-block overlay" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.thumb}}"  style="margin-left: 1px;margin-right: 1px;">
                                     <!--begin::Image-->
                                     <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-200px"
                                          style="background-image:url({% get_media_prefix %}{{photo.thumb}})">
