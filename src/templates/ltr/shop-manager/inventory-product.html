@@ -184,44 +184,82 @@
                 </li>
             </ul>
             <div class="tab-content">
+                <!--photos tab-->
                 <div class="tab-pane fade show active" id="photos" role="tabpanel">
 
 
                     <div class="card-body p-9">
-            <div class="tns tns-default">
-                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="3" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev1" data-tns-next-button="#kt_team_slider_next1">
-                    {% for photo in photos %}
-                    <div class="text-center px-5 py-5">
-                        <!--product photos-->
-                        <img src="{% get_media_prefix %}{{photo.thumb}}" class="card-rounded shadow mw-100" style="margin-bottom: 20px;" />
-                        <!--end product photos-->
+                        <div class="tns tns-default">
+                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="3" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev1" data-tns-next-button="#kt_team_slider_next1">
+                                <div class="symbol symbol-50px" style="margin-right: 10px;">
+                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add new photo">
+                                        <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_photo"></i>
+                                    </a>
+                                </div>
 
-                        <!--delete photo icon-->
-                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete image">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                        <!--end delete photo icon-->
+                                {% for photo in photos %}
+                                <div class="text-center px-5 py-5">
+                                    <!--product photos-->
+                                    <img src="{% get_media_prefix %}{{photo.thumb}}" class="card-rounded shadow mw-100" style="margin-bottom: 20px;" />
+                                    <!--end product photos-->
+                                    <!--delete photo icon-->
+                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete image">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                    <!--end delete photo icon-->
+                                </div>
+                                {% endfor %}
+
+
+
+                            </div>
+                            {% if photos_count > 3 %}
+                            <!--slider buttons-->
+                            <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev1">
+                                <i class="bi bi-chevron-compact-left" style="font-size: 2rem;"></i>
+                            </button>
+                            <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next1">
+                                <i class="bi bi-chevron-compact-right" style="font-size: 2rem;"></i>
+                            </button>
+                            <!--end slider buttons-->
+                            {% endif %}
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
-                {% if photos_count > 3 %}
-                <!--slider buttons-->
-                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev1">
-                    <i class="bi bi-chevron-compact-left" style="font-size: 2rem;"></i>
-                </button>
-                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next1">
-                    <i class="bi bi-chevron-compact-right" style="font-size: 2rem;"></i>
-                </button>
-                <!--end slider buttons-->
-                {% endif %}
-            </div>
-        </div>
+
+
+
+                    <!--new photo modal-->
+                    <div class="modal fade" tabindex="-1" id="new_photo">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add New Photo</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'inventory-product' 'add_new_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7"></div>
+                                    <!--end::Description-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end new photo modal-->
 
 
 
 
 
                 </div>
+                <!--end photos tab-->
+                <!--edit product tab-->
                 <div class="tab-pane fade" id="edit_general_informations" role="tabpanel">
                     <!--edit product form-->
                     <form action="{% url 'inventory-product' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
@@ -448,6 +486,8 @@
                     </form>
                     <!--end edit product form-->
                 </div>
+                <!--end edit product tab-->
+                <!--sizes tab-->
                 <div class="tab-pane fade" id="sizes" role="tabpanel">
                     <!--size-->
                     <div class="flex-wrap flex-stack">
@@ -631,6 +671,7 @@
                     </div>
                     <!--end new size modal-->
                 </div>
+                <!--end sizes tab-->
             </div>
         </div>
         <!--end edit product tab content-->
