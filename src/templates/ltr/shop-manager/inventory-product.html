@@ -239,8 +239,55 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{% url 'inventory-product' 'add_new_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                    <form action="{% url 'inventory-product' 'add_new_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                         {% csrf_token %}
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <div class="card-title">
+                                                    <div class="card card-flush py-4">
+                                                        <!--photo input-->
+                                                        <div class="card-body text-center pt-0">
+                                                            <!--begin::Image input-->
+                                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                                <!--begin::Image preview wrapper-->
+                                                                <div class="image-input-wrapper w-125px h-125px"></div>
+                                                                <!--end::Image preview wrapper-->
+                                                                <!--begin::Edit button-->
+                                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                                    <!--begin::Inputs-->
+                                                                    <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
+                                                                    <input type="hidden" name="photo_remove" />
+                                                                    <!--end::Inputs-->
+                                                                </label>
+                                                                <!--end::Edit button-->
+                                                                <!--begin::Cancel button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Cancel button-->
+                                                                <!--begin::Remove button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Remove button-->
+                                                            </div>
+                                                            <!--end::Image input-->
+                                                        </div>
+                                                        <!--end photo input-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--add photo buttons-->
+                                            <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                                <!--submit button-->
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="indicator-label">Save Photo</span>
+                                                </button>
+                                                <!--end submit button-->
+                                            </div>
+                                            <!--end add photo buttons-->
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
