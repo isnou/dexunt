@@ -57,15 +57,16 @@ def add_new_product(request):
 
 
 def add_new_photo(request, sku):
-    url = "shop-manager/inventory.html"
+    url = "shop-manager/inventory-product.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
-        thumb = request.FILES.get('thumb', False)
+        photo = request.FILES.get('photo', False)
         new_product = Product(en_product_title=selected_product.en_product_title,
                               en_variant=selected_product.en_variant,
-                              thumb=thumb,
+                              thumb=photo,
                               )
         new_product.sku = serial_number_generator(9).upper()
+        new_product.type = 'photo'
         new_product.save()
     result = {
         'url': url,
