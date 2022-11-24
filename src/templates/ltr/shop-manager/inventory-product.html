@@ -1083,6 +1083,9 @@
                                     <tr class="fw-bold fs-6 text-gray-800">
                                         <th>Size</th>
                                         <th>Quantity</th>
+                                        <th>Buy Price</th>
+                                        <th>Sell Price</th>
+                                        <th>Discount</th>
                                         <th>
                                             <div class="symbol symbol-50px" style="margin-right: 10px;">
                                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add size">
@@ -1097,8 +1100,10 @@
                                     <tr>
                                         <td>{{ product.size }}</td>
                                         <td class="text-center">{{ product.quantity }}</td>
-                                        <td>
-                                        </td>
+                                        <td class="text-center">{{ product.buy_price }}</td>
+                                        <td class="text-center">{{ product.sell_price }}</td>
+                                        <td class="text-end">{{ product.discount_price }}</td>
+                                        <td></td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>
