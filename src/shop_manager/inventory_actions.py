@@ -112,6 +112,54 @@ def add_new_size(request, sku):
     return result
 
 
+def add_a_set(request, sku):
+    url = "shop-manager/inventory-product.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    if request.method == 'POST':
+        en_variant = request.POST.get('en_variant', False)
+        fr_variant = request.POST.get('fr_variant', False)
+        ar_variant = request.POST.get('ar_variant', False)
+        upc = request.POST.get('upc', False)
+        if not upc:
+            upc = serial_number_generator(12).upper()
+        quantity = request.POST.get('quantity', False)
+        if not quantity:
+            quantity = 0
+        buy_price = request.POST.get('buy_price', False)
+        if not buy_price:
+            buy_price = 0
+        sell_price = request.POST.get('sell_price', False)
+        if not sell_price:
+            sell_price = 0
+        discount_price = request.POST.get('discount_price', False)
+        if not discount_price:
+            discount_price = 0
+        thumb = request.FILES.get('thumb', False)
+        new_product = Product(en_product_title=selected_product.en_product_title,
+                              en_variant=en_variant + ' set',
+                              fr_product_title=fr_product_title.en_product_title,
+                              fr_variant=fr_variant,
+                              ar_product_title=ar_product_title.en_product_title,
+                              ar_variant=ar_variant,
+                              brand=brand.en_product_title,
+                              model=model.en_product_title,
+                              upc=upc,
+                              tag=tag.en_product_title,
+                              quantity=int(quantity),
+                              buy_price=int(buy_price),
+                              sell_price=int(sell_price),
+                              discount_price=int(discount_price),
+                              thumb=thumb,
+                              )
+        new_product.sku = serial_number_generator(9).upper()
+        new_product.type = 'set'
+        new_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
 def add_quantity(request, sku):
     url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)

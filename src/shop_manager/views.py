@@ -43,10 +43,12 @@ def inventory_product(request, action, sku, identity):
     url = direction + "shop-manager/inventory-product.html"
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
-    if action == "edit_product":
-        url = direction + inventory_actions.edit(request, sku).get('url')
     if action == "add_new_photo":
         url = direction + inventory_actions.add_new_photo(request, sku).get('url')
+    if action == "add_a_set":
+        url = direction + inventory_actions.add_a_set(request, sku).get('url')
+    if action == "edit_product":
+        url = direction + inventory_actions.edit(request, sku).get('url')
     if action == 'delete_variant':
         Product.objects.all().get(sku=sku).delete()
     if action == 'add_en_features':

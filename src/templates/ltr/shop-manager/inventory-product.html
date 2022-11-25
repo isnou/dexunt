@@ -221,9 +221,6 @@
                             {% endif %}
                         </div>
                     </div>
-
-
-
                     <!--new photo modal-->
                     <div class="modal fade" tabindex="-1" id="new_photo">
                         <div class="modal-dialog">
@@ -300,11 +297,6 @@
                         </div>
                     </div>
                     <!--end new photo modal-->
-
-
-
-
-
                 </div>
                 <!--end photos tab-->
                 <!--edit product tab-->
@@ -729,39 +721,91 @@
         <div class="card-footer">
             <div class="tns tns-default" style="margin-bottom: 20px;text-align: center;">
                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add new variant">
-                    <i class="bi bi-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_variant"></i>
+                    <i class="bi bi-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#add_a_set"></i>
                 </a>
             </div>
 
+            <!--new set modal-->
+            <div class="modal fade" tabindex="-1" id="add_a_set">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Add A Set</h3>
+                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                <span class="svg-icon svg-icon-1"></span>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'inventory-product' 'add_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="card-title">
+                                    <div class="card card-flush py-4">
+                                        <!--photo input-->
+                                        <div class="card-body text-center pt-0">
+                                            <!--begin::Image input-->
+                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                <!--begin::Image preview wrapper-->
+                                                <div class="image-input-wrapper w-125px h-125px"></div>
+                                                <!--end::Image preview wrapper-->
+                                                <!--begin::Edit button-->
+                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                    <!--begin::Inputs-->
+                                                    <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                    <input type="hidden" name="thumb_remove" />
+                                                    <!--end::Inputs-->
+                                                </label>
+                                                <!--end::Edit button-->
+                                                <!--begin::Cancel button-->
+                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                    <i class="bi bi-x fs-2"></i>
+                                                </span>
+                                                <!--end::Cancel button-->
+                                                <!--begin::Remove button-->
+                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                    <i class="bi bi-x fs-2"></i>
+                                                </span>
+                                                <!--end::Remove button-->
+                                            </div>
+                                            <!--end::Image input-->
+                                        </div>
+                                        <!--end photo input-->
 
-                    <!--new variant modal-->
-                    <div class="modal fade" tabindex="-1" id="new_variant">
-                        <div class="modal-dialog modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title">Add New Size</h3>
-                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                        <span class="svg-icon svg-icon-1"></span>
-                                    </div>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{% url 'inventory-product' 'add_new_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                                        {% csrf_token %}
-                                        <div class="card-title">
-                                            <div class="card card-flush py-4">
-                                                <!--english size-->
-                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                    <!--label-->
-                                                    <label class="form-label">Size</label>
-                                                    <!--end label-->
-                                                    <!--input-->
-                                                    <input type="text" name="size" class="form-control mb-2">
-                                                    <!--end input-->
-                                                </div>
-                                                <!--end english size-->
+                                        <!--english set's title'-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class=" required form-label">English set's title</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="text" name="en_variant" class="form-control mb-2" required>
+                                            <!--end input-->
+                                        </div>
+                                        <!--end english set's title-->
 
-                                                <!--upc input-->
-                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                        <!--french set's title'-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">French set's title</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="text" name="fr_variant" class="form-control mb-2">
+                                            <!--end input-->
+                                        </div>
+                                        <!--end french set's title-->
+
+                                        <!--arabic set's title'-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">Arabic set's title</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl">
+                                            <!--end input-->
+                                        </div>
+                                        <!--end arabic set's title-->
+
+                                        <!--upc input-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--label-->
                                                     <label class="form-label">Barcode</label>
                                                     <!--end label-->
@@ -772,10 +816,10 @@
                                                     <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
                                                     <!--end description-->
                                                 </div>
-                                                <!--end upc input-->
+                                        <!--end upc input-->
 
-                                                <!--product quantity & buy price input-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                        <!--product quantity & buy price input-->
+                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--quantity input-->
                                                         <div class="fv-row w-100 flex-md-root">
@@ -809,10 +853,10 @@
                                                         <!--end price input-->
                                                     </div>
                                                 </div>
-                                                <!--end product quantity & buy price input-->
+                                        <!--end product quantity & buy price input-->
 
-                                                <!--product sell price & discount price input-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                        <!--product sell price & discount price input-->
+                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <!--sell price input-->
                                                         <div class="fv-row w-100 flex-md-root">
@@ -846,32 +890,68 @@
                                                         <!--end discount price input-->
                                                     </div>
                                                 </div>
-                                                <!--end product sell price & discount price input-->
-                                            </div>
-                                            <!--add product buttons-->
-                                        <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                                            <!--submit button-->
-                                            <button type="submit" class="btn btn-primary">
-                                                <span class="indicator-label">Save Changes</span>
-                                            </button>
-                                            <!--end submit button-->
-                                        </div>
-                                        <!--end add product buttons-->
-                                        </div>
-                                    </form>
+                                        <!--end product sell price & discount price input-->
+                                    </div>
+                                    <!--add product buttons-->
+                                    <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                        <!--submit button-->
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="indicator-label">Create The New Set</span>
+                                        </button>
+                                        <!--end submit button-->
+                                    </div>
+                                    <!--end add product buttons-->
                                 </div>
-                                <div class="modal-footer">
-                                    <!--begin::Description-->
-                                    <div class="text-muted fs-7"></div>
-                                    <!--end::Description-->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <!--begin::Description-->
+                            <div class="text-muted fs-7"></div>
+                            <!--end::Description-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end new set modal-->
+        </div>
+        <!--end footer-->
+    </div>
+
+    {% for selected_product in sets %}
+    <div class="card card-flush shadow-sm" style="margin-top: 30px;">
+        <!--header-->
+        <div class="card-header">
+
+            <div class="card-body pt-9 pb-0">
+                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                    <!--thumbnail-->
+                    <div class="me-7 mb-4">
+                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.thumb}}">
+                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
+                        </a>
+                    </div>
+                    <!--end thumbnail-->
+
+                    <!--main information-->
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <a class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_product_title }}</a>
+                                    <i class="bi bi-dash-lg" style="margin-right: 4px;"></i>
+                                    <a class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_variant }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--end new variant modal-->
+                    <!--end main information-->
+                </div>
+            </div>
+
         </div>
-        <!--end footer-->
+        <!--end header-->
     </div>
+    {% endfor %}
 
     {% for selected_product in variants %}
     <div class="card card-flush shadow-sm" style="margin-top: 30px;">
