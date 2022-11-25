@@ -4,14 +4,16 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Feature(models.Model):
     # --------------------------------- feature types ------------------------------------------
-    type = models.CharField(max_length=15, blank=True, null=True)
-    # --------------------------------- feature language ---------------------------------------
-    language = models.CharField(max_length=15, blank=True, default='english')
+    en_title = models.CharField(max_length=15, blank=True, null=True)
+    fr_title = models.CharField(max_length=15, blank=True, null=True)
+    ar_title = models.CharField(max_length=15, blank=True, null=True)
     # --------------------------------- feature value ------------------------------------------
-    value = models.TextField(max_length=1000, null=True)
+    en_value = models.TextField(max_length=1000, null=True)
+    fr_value = models.TextField(max_length=1000, null=True)
+    ar_value = models.TextField(max_length=1000, null=True)
 
     def __str__(self):
-        return self.value
+        return self.en_title
 
 
 class Product(models.Model):
@@ -56,7 +58,7 @@ class Product(models.Model):
     features = models.ManyToManyField(Feature, blank=True)
 
     def get_features(self):
-        return "\n".join([p.value for p in self.features.all()])
+        return "\n".join([p.en_title for p in self.features.all()])
 
     def __str__(self):
         return self.en_product_title
