@@ -119,6 +119,26 @@ def add_a_set(request, sku):
         en_variant = request.POST.get('en_variant', False)
         fr_variant = request.POST.get('fr_variant', False)
         ar_variant = request.POST.get('ar_variant', False)
+        if selected_product.fr_product_title:
+            fr_product_title = selected_product.fr_product_title
+        else:
+            fr_product_title = None
+        if selected_product.ar_product_title:
+            ar_product_title = selected_product.ar_product_title
+        else:
+            ar_product_title = None
+        if selected_product.brand:
+            brand = selected_product.brand
+        else:
+            brand = None
+        if selected_product.model:
+            model = selected_product.model
+        else:
+            model = None
+        if selected_product.tag:
+            tag = selected_product.tag
+        else:
+            tag = None
         upc = request.POST.get('upc', False)
         if not upc:
             upc = serial_number_generator(12).upper()
