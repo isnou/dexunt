@@ -854,43 +854,69 @@
                     <!--size-->
                     <div class="flex-wrap flex-stack">
                         <div class="align-items-center">
-                            {% if sizes_count > 0 %}
+                            {% if features_count > 0 %}
+                            {% for feature in features %}
                             <div class="table-responsive">
-                                <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
-                                    <thead>
-                                    <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-                                        <th class="text-center">Size</th>
-                                        <th class="text-center">Quantity</th>
-                                        <th class="text-center">Buy Price</th>
-                                        <th class="text-center">Sell Price</th>
-                                        <th class="text-center">Discount</th>
-                                        <th>
-                                            <div class="symbol symbol-50px">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add size">
-                                                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_size"></i>
-                                                </a>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for product in sizes %}
-                                    <tr>
-                                        <td class="text-center">{{ product.size }}</td>
-                                        <td class="text-center">{{ product.quantity }}</td>
-                                        <td class="text-center">{{ product.buy_price }}</td>
-                                        <td class="text-center">{{ product.sell_price }}</td>
-                                        <td class="text-center">{{ product.discount_price }}</td>
-                                        <td></td>
-                                    </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
+                                <div class="card card-dashed">
+                                    <div class="card-header">
+                                        <h3 class="card-title">{{ feature.en_title }}</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="{% url 'inventory-product' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                            {% csrf_token %}
+
+                                                <!--english feature title & value-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--title input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">English Title</span>
+                                                                <input type="text" name="en_title" class="form-control"  placeholder="{{ feature.en_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end title input-->
+
+                                                        <!--value input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">English Value</span>
+                                                                <input type="text" name="en_value" class="form-control" placeholder="{{ feature.en_value }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end value input-->
+                                                    </div>
+                                                </div>
+                                                <!--end english feature title & value-->
+
+
+                                            <!--add product buttons-->
+                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                    <!--submit button-->
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save Modifications</span>
+                                    </button>
+                                    <!--end submit button-->
+                                </div>
+                                <!--end add product buttons-->
+
+
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        Footer
+                                    </div>
+                                </div>
                             </div>
+                            {% endfor %}
                             {% else %}
                             <div class="symbol symbol-50px" style="margin-right: 10px;">
                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add size">
-                                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_size"></i>
+                                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_feature"></i>
                                 </a>
                             </div>
                             {% endif %}
@@ -898,11 +924,11 @@
                     </div>
                     <!--end size-->
                     <!--new size modal-->
-                    <div class="modal fade" tabindex="-1" id="new_size">
+                    <div class="modal fade" tabindex="-1" id="new_feature">
                         <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 class="modal-title">Add New Size</h3>
+                                    <h3 class="modal-title">Add New Feature</h3>
                                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                         <span class="svg-icon svg-icon-1"></span>
                                     </div>
@@ -2463,142 +2489,6 @@
         </div>
         <!--end footer-->
     </div>
-    {% endif %}
-
-
-    {% if features_count > 0 %}
-    <!--products features table-->
-    <div class="card mb-5 mb-xl-10">
-        <div class="card-header cursor-pointer">
-            <div class="card-title m-0">
-                <h3 class="fw-bold m-0">Product Details</h3>
-            </div>
-        </div>
-        <div class="card-body p-9">
-            <div class="py-5">
-                <div class="card ">
-                    <div class="nav nav-tabs nav-line-tabs mb-5 fs-6">
-                        <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#english_features">English</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#french_features">French</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#arabic_features">Arabic</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <!--english features tab-->
-                            <div class="tab-pane fade show active" id="english_features" role="tabpanel">
-                                <div class="table-responsive">
-                                    <table class="table table-row-dashed table-row-gray-300 gy-7">
-                                        <thead>
-                                        <tr class="fw-bold fs-6 text-gray-800">
-                                            <th>Features</th>
-                                            <th>Value</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for feature in english_features %}
-                                        <tr>
-                                            <td>{{ feature.type }}</td>
-                                            <td>{{ feature.value }}</td>
-                                            <td>
-                                                <a href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                                    <i class="bi bi-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!--end english features tab-->
-                            <!--french features tab-->
-                            <div class="tab-pane fade" id="french_features" role="tabpanel">
-                                <div class="table-responsive">
-                                    <table class="table table-row-dashed table-row-gray-300 gy-7">
-                                        <thead>
-                                        <tr class="fw-bold fs-6 text-gray-800">
-                                            <th>Features</th>
-                                            <th>Value</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for feature in french_features %}
-                                        <tr>
-                                            <td>{{ feature.type }}</td>
-                                            <td>{{ feature.value }}</td>
-                                            <td>
-                                                <a href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                                    <i class="bi bi-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!--end french features tab-->
-                            <!--arabic features tab-->
-                            <div class="tab-pane fade" id="arabic_features" role="tabpanel">
-                                <div class="table-responsive">
-                                    <table class="table table-row-dashed table-row-gray-300 gy-7">
-                                        <thead>
-                                        <tr class="fw-bold fs-6 text-gray-800">
-                                            <th>Features</th>
-                                            <th>Value</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for feature in arabic_features %}
-                                        <tr>
-                                            <td>{{ feature.type }}</td>
-                                            <td>{{ feature.value }}</td>
-                                            <td>
-                                                <a href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                                    <i class="bi bi-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!--end arabic features tab-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
-                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
-                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor" />
-                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor" />
-                    </svg>
-                </span>
-                <div class="d-flex flex-stack flex-grow-1">
-                    <div class="fw-semibold">
-                        <h4 class="text-gray-900 fw-bold">We need your attention!</h4>
-                        <div class="fs-6 text-gray-700">Your payment was declined. To start using tools, please
-                            <a class="fw-bold" href="billing.html">Add Payment Method</a>.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--end products features table-->
     {% endif %}
 
     {% endif %}
