@@ -176,6 +176,70 @@ def add_a_set(request, sku):
     return result
 
 
+def add_a_variant(request, sku):
+    url = "shop-manager/inventory-product.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    if request.method == 'POST':
+        en_variant = request.POST.get('en_variant', False)
+        fr_variant = request.POST.get('fr_variant', False)
+        ar_variant = request.POST.get('ar_variant', False)
+        if selected_product.fr_product_title:
+            fr_product_title = selected_product.fr_product_title
+        else:
+            fr_product_title = None
+        if selected_product.ar_product_title:
+            ar_product_title = selected_product.ar_product_title
+        else:
+            ar_product_title = None
+        if selected_product.brand:
+            brand = selected_product.brand
+        else:
+            brand = None
+        if selected_product.model:
+            model = selected_product.model
+        else:
+            model = None
+        upc = request.POST.get('upc', False)
+        if not upc:
+            upc = serial_number_generator(12).upper()
+        quantity = request.POST.get('quantity', False)
+        if not quantity:
+            quantity = 0
+        buy_price = request.POST.get('buy_price', False)
+        if not buy_price:
+            buy_price = 0
+        sell_price = request.POST.get('sell_price', False)
+        if not sell_price:
+            sell_price = 0
+        discount_price = request.POST.get('discount_price', False)
+        if not discount_price:
+            discount_price = 0
+        thumb = request.FILES.get('thumb', False)
+        new_product = Product(en_product_title=selected_product.en_product_title,
+                              en_variant=en_variant + ' variant',
+                              fr_product_title=fr_product_title,
+                              fr_variant=fr_variant,
+                              ar_product_title=ar_product_title,
+                              ar_variant=ar_variant,
+                              brand=brand,
+                              model=model,
+                              upc=upc,
+                              tag=selected_product.tag,
+                              quantity=int(quantity),
+                              buy_price=int(buy_price),
+                              sell_price=int(sell_price),
+                              discount_price=int(discount_price),
+                              thumb=thumb,
+                              )
+        new_product.sku = serial_number_generator(9).upper()
+        new_product.type = 'variant'
+        new_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
 def add_quantity(request, sku):
     url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -263,49 +327,6 @@ def edit(request, sku):
             selected_product.thumb = thumb
     selected_product.save()
 
-    result = {
-        'url': url,
-    }
-    return result
-
-
-def add_new_variant(request, sku):
-    url = "shop-manager/inventory.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    if request.method == 'POST':
-        en_variant = request.POST.get('en_variant', False)
-        fr_variant = request.POST.get('fr_variant', False)
-        ar_variant = request.POST.get('ar_variant', False)
-        upc = request.POST.get('upc', False)
-        if not upc:
-            upc = serial_number_generator(12).upper()
-        quantity = request.POST.get('quantity', False)
-        if not quantity:
-            quantity = selected_product.quantity
-        buy_price = request.POST.get('buy_price', False)
-        if not buy_price:
-            buy_price = selected_product.buy_price
-        sell_price = request.POST.get('sell_price', False)
-        if not sell_price:
-            sell_price = selected_product.sell_price
-        discount_price = request.POST.get('discount_price', False)
-        if not discount_price:
-            discount_price = selected_product.discount_price
-        thumb = request.FILES.get('thumb', False)
-        new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=en_variant,
-                              fr_variant=fr_variant,
-                              ar_variant=ar_variant,
-                              upc=upc,
-                              quantity=int(quantity),
-                              buy_price=int(buy_price),
-                              sell_price=int(sell_price),
-                              discount_price=int(discount_price),
-                              thumb=thumb,
-                              )
-        new_product.sku = serial_number_generator(9).upper()
-        new_product.type = 'variant'
-        new_product.save()
     result = {
         'url': url,
     }
