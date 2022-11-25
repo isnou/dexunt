@@ -84,6 +84,7 @@ def inventory_product(request, action, sku, identity):
         'arabic_features': arabic_features,
         'variants': variants,
         'photos': photos,
+        'sets': sets,
         'sizes': sizes,
         'sizes_count': sizes_count,
         'features_count': features_count,
