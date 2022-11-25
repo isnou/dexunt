@@ -303,11 +303,9 @@
                                 <!--end product thumbnail-->
                                 <div class="ms-5">
                                     <!--begin::Title-->
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_product_title}}">{{product.en_product_title}}</a>
+                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold">Size</a>
                                     <i class="bi bi-dash-lg"></i>
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.size}}">{{product.en_variant}}</a>
-                                    <i class="bi bi-dash-lg"></i>
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.size}}">{{product.size}}</a>
+                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold">{{product.size}}</a>
                                     <!--end::Title-->
                                 </div>
                             </div>
@@ -378,7 +376,7 @@
                     <tr class="table-active">
                         <!--product-->
                         <td>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center" style="padding-left: 70px;">
                                 <!--product thumbnail-->
                                 <a class="symbol symbol-50px"  data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
                                     <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.thumb}});"></span>
