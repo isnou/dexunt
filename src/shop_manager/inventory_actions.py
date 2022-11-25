@@ -135,10 +135,6 @@ def add_a_set(request, sku):
             model = selected_product.model
         else:
             model = None
-        if selected_product.tag:
-            tag = selected_product.tag
-        else:
-            tag = None
         upc = request.POST.get('upc', False)
         if not upc:
             upc = serial_number_generator(12).upper()
@@ -164,7 +160,7 @@ def add_a_set(request, sku):
                               brand=brand,
                               model=model,
                               upc=upc,
-                              tag=tag,
+                              tag=selected_product.tag,
                               quantity=int(quantity),
                               buy_price=int(buy_price),
                               sell_price=int(sell_price),
