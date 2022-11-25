@@ -78,9 +78,6 @@ def inventory_product(request, action, sku, identity):
     sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
         .filter(en_variant=selected_product.en_variant+' size').filter(type='size')
     features = selected_product.features.all()
-    english_features = features.filter(language='english').order_by('type')
-    french_features = features.filter(language='french').order_by('type')
-    arabic_features = features.filter(language='arabic').order_by('type')
     features_count = features.count()
     photos_count = photos.count()
     sizes_count = sizes.count()
@@ -88,17 +85,21 @@ def inventory_product(request, action, sku, identity):
 
     context = {
         'lang': lang,
-        'english_features': english_features,
-        'french_features': french_features,
-        'arabic_features': arabic_features,
+
         'variants': variants,
+        'variants_count': variants_count,
+
         'photos': photos,
+        'photos_count': photos_count,
+
         'sets': sets,
+
         'sizes': sizes,
         'sizes_count': sizes_count,
+
+        'features': features,
         'features_count': features_count,
-        'photos_count': photos_count,
-        'variants_count': variants_count,
+
         'selected_product': selected_product,
     }
     return render(request, url, context)
