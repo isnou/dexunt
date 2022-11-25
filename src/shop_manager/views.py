@@ -23,7 +23,11 @@ def inventory(request, action, sku):
     if action == "add_new_product":
         url = direction + inventory_actions.add_new_product(request).get('url')
     if action == "delete_product":
-        Product.objects.all().get(sku=sku).delete()
+        selected_product = Product.objects.all().get(sku=sku)
+        if selected_product.type == 'main':
+            Product.objects.all().filter(en_product_title=selected_product.en_product_title).delete()
+        else:
+            selected_product.delete()
     if action == "add_quantity":
         url = direction + inventory_actions.add_quantity(request, sku).get('url')
     if action == "remove_quantity":
