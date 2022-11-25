@@ -242,7 +242,7 @@ def add_a_set(request, sku):
 
 
 def edit_a_set(request, sku):
-    url = "shop-manager/inventory-product.html"
+    url = "shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
