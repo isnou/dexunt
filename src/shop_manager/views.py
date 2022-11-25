@@ -48,7 +48,7 @@ def inventory_product(request, action, sku, identity):
     if action == "add_a_set":
         url = direction + inventory_actions.add_a_set(request, sku).get('url')
     if action == "add_a_variant":
-        url = direction + inventory_actions.add_a_set(request, sku).get('url')
+        url = direction + inventory_actions.add_a_variant(request, sku).get('url')
     if action == "edit_product":
         url = direction + inventory_actions.edit(request, sku).get('url')
     if action == 'delete_variant':
