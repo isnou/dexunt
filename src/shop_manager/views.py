@@ -60,10 +60,12 @@ def inventory_product(request, action, sku, identity):
 
     selected_product = Product.objects.all().get(sku=sku)
     variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='variant')
+    sets = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
+        .filter(en_variant=selected_product.en_variant + ' set').filter(type='set')
     photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
         .filter(en_variant=selected_product.en_variant+' photo').filter(type='photo')
     sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
-        .filter(en_variant=selected_product.en_variant).filter(type='size')
+        .filter(en_variant=selected_product.en_variant+' size').filter(type='size')
     features = selected_product.features.all()
     english_features = features.filter(language='english').order_by('type')
     french_features = features.filter(language='french').order_by('type')
