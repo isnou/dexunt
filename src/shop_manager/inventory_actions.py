@@ -247,7 +247,7 @@ def edit_a_set(request, sku):
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
-            selected_product.en_variant = en_variant + ' variant'
+            selected_product.en_variant = en_variant + ' set'
         fr_variant = request.POST.get('fr_variant', False)
         if fr_variant:
             selected_product.fr_variant = fr_variant
