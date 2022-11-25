@@ -928,7 +928,7 @@
                             </div>
                         </div>
                         <div class="modal-body">
-                            <form action="{% url 'inventory-product' 'add_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'inventory-product' 'add_a_variant' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="card-title">
                                     <div class="card card-flush py-4">
