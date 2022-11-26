@@ -858,12 +858,12 @@
                             {% for feature in features %}
                             <div class="table-responsive">
                                 <div class="card card-dashed">
+                                        <form action="{% url 'inventory-product' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                            {% csrf_token %}
                                     <div class="card-header">
                                         <h3 class="card-title">{{ feature.en_title }}</h3>
                                     </div>
                                     <div class="card-body">
-                                        <form action="{% url 'inventory-product' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                                            {% csrf_token %}
 
                                                 <!--english feature title & value-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
@@ -892,9 +892,16 @@
                                                     </div>
                                                 </div>
                                                 <!--end english feature title & value-->
+                                </div>
+                                                    </div>
+                                            </div>
+                                <!--end add product buttons-->
 
 
-                                            <!--add product buttons-->
+
+                                    </div>
+                                    <div class="card-footer">
+                                        <!--add product buttons-->
                                             <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
                                 <div class="d-flex justify-content-end" style="padding-top: 50px;">
@@ -903,17 +910,8 @@
                                         <span class="indicator-label">Save Modifications</span>
                                     </button>
                                     <!--end submit button-->
-                                </div>
-                                                    </div>
-                                            </div>
-                                <!--end add product buttons-->
-
-
-                                        </form>
                                     </div>
-                                    <div class="card-footer">
-                                        Footer
-                                    </div>
+                                            </form>
                                 </div>
                             </div>
                             {% endfor %}
