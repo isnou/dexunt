@@ -63,6 +63,8 @@ def inventory_product(request, action, sku, identity):
         Product.objects.all().get(sku=sku).delete()
     if action == 'add_new_feature':
         url = direction + inventory_actions.add_new_feature(request, sku).get('url')
+    if action == 'edit_feature':
+        url = direction + inventory_actions.edit_feature(request, identity).get('url')
     if action == 'delete_feature':
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
     if action == 'add_fr_features':
