@@ -83,16 +83,19 @@ def inventory_product(request, action, sku, identity):
         selected_product.type = 'main'
     else:
         selected_product.type = 'proto'
+        selected_product.quantity = 0
     variants_count = variants.count()
     if variants_count == 0:
         selected_product.type = 'main'
     else:
         selected_product.type = 'proto'
+        selected_product.quantity = 0
     sets_count = sets.count()
     if sets_count == 0:
         selected_product.type = 'main'
     else:
         selected_product.type = 'proto'
+        selected_product.quantity = 0
     selected_product.save()
 
     context = {
