@@ -82,7 +82,7 @@ def inventory_product(request, action, sku, identity):
     sizes_count = sizes.count()
     variants_count = variants.count()
     sets_count = sets.count()
-    
+
     if sets_count > 0 or variants_count > 0 or sizes_count > 0:
         selected_product.type = 'proto'
         selected_product.quantity = 0
