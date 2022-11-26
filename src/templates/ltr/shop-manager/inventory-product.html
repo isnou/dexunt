@@ -870,7 +870,7 @@
                                         <!--main information-->
                                         <div class="row mb-7">
                                             <div class="col-lg-8">
-                                                <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit feature" style="margin-left: 10px;">
+                                                <a type="submit" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit feature" style="margin-left: 10px;">
                                                     <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#edit_feature"></i>
                                                 </a>
                                             </div>
@@ -884,10 +884,10 @@
                                         <div class="row mb-7">
                                             <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English :</label>
                                             <div class="col-lg-4">
-                                                <span class="fw-bold fs-6 text-gray-800">{{ feature.en_title }}</span>
+                                                <input type="text" name="en_feature_title" class="fw-bold fs-6 text-gray-800" placeholder="{{ feature.en_title }}">
                                             </div>
                                             <div class="col-lg-4">
-                                                <span class="fw-bold fs-6 text-muted">{{ feature.en_value }}</span>
+                                                <input type="text" name="en_feature_value" class="fw-bold fs-6 text-muted" placeholder="{{ feature.en_value }}">
                                             </div>
                                         </div>
 
