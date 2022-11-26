@@ -872,11 +872,10 @@
                                                 <button type="submit" class="btn btn-primary" style="margin-left: 10px;">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </button>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <a href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete feature" style="margin-left: 10px;">
+
+                                                <button href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-primary" style="margin-left: 10px;">
                                                     <i class="bi bi-trash3"></i>
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
 
