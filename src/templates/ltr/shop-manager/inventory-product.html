@@ -866,12 +866,11 @@
                             <form action="{% url 'inventory-product' 'edit_feature' selected_product.sku feature.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                     <div class="card-body p-9">
-
                                         <!--main information-->
                                         <div class="row mb-7">
                                             <div class="col-lg-8">
                                                 <a type="submit" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit feature" style="margin-left: 10px;">
-                                                    <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#edit_feature"></i>
+                                                    <i class="bi bi-pencil-square"></i>
                                                 </a>
                                             </div>
                                             <div class="col-lg-8">
