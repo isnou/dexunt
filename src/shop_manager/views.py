@@ -67,21 +67,32 @@ def inventory_product(request, action, sku, identity):
         url = direction + inventory_actions.edit_feature(request, identity).get('url')
     if action == 'delete_feature':
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
-    if action == 'add_fr_features':
-        url = direction + inventory_actions.add_features(request, 'french', sku).get('url')
 
     selected_product = Product.objects.all().get(sku=sku)
     variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='variant')
     sets = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='set')
-    photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
-        .filter(en_variant=selected_product.en_variant+' photo').filter(type='photo')
-    sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title)\
-        .filter(en_variant=selected_product.en_variant+' size').filter(type='size')
+    photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
+        .filter(en_variant=selected_product.en_variant + ' photo').filter(type='photo')
+    sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
+        .filter(en_variant=selected_product.en_variant + ' size').filter(type='size')
     features = selected_product.features.all()
     features_count = features.count()
     photos_count = photos.count()
     sizes_count = sizes.count()
+    if sizes_count == 0:
+        selected_product.type = 'main'
+    else:
+        selected_product.type = 'proto'
     variants_count = variants.count()
+    if variants_count == 0:
+        selected_product.type = 'main'
+    else:
+        selected_product.type = 'proto'
+    sets_count = sets.count()
+    if sets_count == 0:
+        selected_product.type = 'main'
+    else:
+        selected_product.type = 'proto'
 
     context = {
         'lang': lang,
