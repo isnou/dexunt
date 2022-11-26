@@ -871,27 +871,17 @@
 
                                             <div class="row mb-7">
                                                 <div class="col-lg-8">
-                                                    <button type="submit" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit feature" style="margin-left: 10px;">
+                                                    <a type="submit" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit feature" style="margin-left: 10px;">
                                                         <i class="bi bi-pencil-square"></i>
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             </div>
 
                                             <div class="row mb-7">
                                                 <div class="col-lg-8">
-                                                    <button href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete feature" style="margin-left: 10px;">
+                                                    <a href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete feature" style="margin-left: 10px;">
                                                         <i class="bi bi-trash3"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-7">
-                                                <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English :</label>
-                                                <div class="col-lg-4">
-                                                    <input type="text" name="en_feature_title" class="form-control" placeholder="{{ feature.en_title }}">
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <input type="text" name="en_feature_value" class="form-control" placeholder="{{ feature.en_value }}">
+                                                    </a>
                                                 </div>
                                             </div>
 
