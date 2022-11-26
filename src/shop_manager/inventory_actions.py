@@ -368,7 +368,8 @@ def add_new_feature(request, sku):
                           fr_value=fr_value,
                           ar_title=ar_title,
                           ar_value=ar_value,
-                          ).save()
+                          )
+        feature.save()
         selected_product.features.add(feature)
         selected_product.save()
         
