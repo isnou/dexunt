@@ -867,6 +867,18 @@
                                 {% csrf_token %}
                                     <div class="card-body p-9">
                                         <!--main information-->
+                                        <div class="row mb-7">
+                                            <div class="col-lg-8">
+                                                <button type="submit" class="btn btn-primary" style="margin-left: 10px;">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <a href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete feature" style="margin-left: 10px;">
+                                                    <i class="bi bi-trash3"></i>
+                                                </a>
+                                            </div>
+                                        </div>
 
                                         <div class="row mb-7">
                                             <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English </label>
@@ -895,19 +907,6 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <input type="text" name="ar_feature_title" class="form-control" placeholder="{{ feature.ar_title }}" dir="rtl">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row mb-7">
-                                            <div class="col-lg-8">
-                                                <a type="submit" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit feature" style="margin-left: 10px;">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <a href="{% url 'inventory-product' 'delete_feature' selected_product.sku feature.id %}" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete feature" style="margin-left: 10px;">
-                                                    <i class="bi bi-trash3"></i>
-                                                </a>
                                             </div>
                                         </div>
 
