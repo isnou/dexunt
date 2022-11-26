@@ -133,10 +133,10 @@ def add_new_photo(request, sku):
         new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'photo'
         new_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 def edit_photo(request, sku):
@@ -146,10 +146,9 @@ def edit_photo(request, sku):
         photo = request.FILES.get('photo', False)
         selected_product.thumb = photo
         selected_product.save()
-    result = {
+    return {
         'url': url,
     }
-    return result
 
 
 def add_new_size(request, sku):
@@ -284,10 +283,9 @@ def edit_a_set(request, sku):
             selected_product.discount_price = discount_price
     selected_product.save()
 
-    result = {
+    return {
         'url': url,
     }
-    return result
 
 
 def add_a_variant(request, sku):
@@ -348,10 +346,34 @@ def add_a_variant(request, sku):
         new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'variant'
         new_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
+
+
+def add_new_feature(request, sku):
+    url = "shop-manager/inventory-product.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    if request.method == 'POST':
+        en_title = request.POST.get('en_feature_title', False)
+        en_value = request.POST.get('en_feature_value', False)
+        fr_title = request.POST.get('fr_feature_title', False)
+        fr_value = request.POST.get('fr_feature_value', False)
+        ar_title = request.POST.get('ar_feature_title', False)
+        ar_value = request.POST.get('ar_feature_value', False)
+        feature = Feature(en_title=en_title,
+                          en_value=en_value,
+                          fr_title=fr_title,
+                          fr_value=fr_value,
+                          ar_title=ar_title,
+                          ar_value=ar_value,
+                          ).save()
+        selected_product.features.add(feature).save()
+        
+    return {
+        'url': url,
+    }
 
 
 def add_quantity(request, sku):
@@ -377,71 +399,6 @@ def remove_quantity(request, sku):
         'url': url,
     }
     return result
-
-
-def add_features(request, language, sku):
-    url = "shop-manager/inventory-product.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    if request.method == 'POST':
-        model = request.POST.get('model', False)
-        if model:
-            if selected_product.features.all().filter(type='model').exists():
-                selected_product.features.all().filter(type='model', language=language).delete()
-            selected_product.features.add(new_feature('model', model, language))
-        brand = request.POST.get('brand', False)
-        if brand:
-            if selected_product.features.all().filter(type='brand').exists():
-                selected_product.features.all().filter(type='brand', language=language).delete()
-            selected_product.features.add(new_feature('brand', brand, language))
-        color = request.POST.get('color', False)
-        if color:
-            if selected_product.features.all().filter(type='color').exists():
-                selected_product.features.all().filter(type='color', language=language).delete()
-            selected_product.features.add(new_feature('color', color, language))
-        dimensions = request.POST.get('dimensions', False)
-        if dimensions:
-            if selected_product.features.all().filter(type='dimensions').exists():
-                selected_product.features.all().filter(type='dimensions', language=language).delete()
-            selected_product.features.add(new_feature('dimensions', dimensions, language))
-        size = request.POST.get('size', False)
-        if size:
-            if selected_product.features.all().filter(type='size').exists():
-                selected_product.features.all().filter(type='size', language=language).delete()
-            selected_product.features.add(new_feature('size', size, language))
-        weight = request.POST.get('weight', False)
-        if weight:
-            if selected_product.features.all().filter(type='weight').exists():
-                selected_product.features.all().filter(type='weight', language=language).delete()
-            selected_product.features.add(new_feature('weight', weight, language))
-    selected_product.save()
-    result = {
-        'url': url,
-    }
-    return result
-
-
-def progress_counter(sku, photos_count, features_count):
-    selected_product = Product.objects.all().get(sku=sku)
-    if photos_count < 4:
-        photos_progress = photos_count
-    else:
-        photos_progress = 4
-    if features_count < 4:
-        features_progress = features_count
-    else:
-        features_progress = 4
-    selected_product.profile = 2 + photos_progress + features_progress
-    selected_product.save()
-    return selected_product
-
-
-def new_feature(feature_name, feature_value, language):
-    feature = ProductFeatures()
-    feature.language = language
-    feature.type = feature_name
-    feature.value = feature_value
-    feature.save()
-    return feature
 
 
 def serial_number_generator(length):

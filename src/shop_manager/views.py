@@ -61,12 +61,10 @@ def inventory_product(request, action, sku, identity):
         url = direction + inventory_actions.edit_a_set(request, sku).get('url')
     if action == 'delete_variant':
         Product.objects.all().get(sku=sku).delete()
-    if action == 'add_en_features':
-        url = direction + inventory_actions.add_features(request, 'english', sku).get('url')
+    if action == 'add_new_feature':
+        url = direction + inventory_actions.add_new_feature(request, sku).get('url')
     if action == 'add_fr_features':
         url = direction + inventory_actions.add_features(request, 'french', sku).get('url')
-    if action == 'add_ar_features':
-        url = direction + inventory_actions.add_features(request, 'arabic', sku).get('url')
     if action == 'delete_feature':
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
