@@ -50,10 +50,10 @@ def add_new_product(request):
         new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'main'
         new_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 def edit(request, sku):
@@ -115,10 +115,9 @@ def edit(request, sku):
             selected_product.discount_price = discount_price
     selected_product.save()
 
-    result = {
+    return {
         'url': url,
     }
-    return result
 
 
 def add_new_photo(request, sku):
@@ -183,10 +182,10 @@ def add_new_size(request, sku):
         new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'size'
         new_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 def add_a_set(request, sku):
@@ -247,10 +246,10 @@ def add_a_set(request, sku):
         new_product.sku = serial_number_generator(9).upper()
         new_product.type = 'set'
         new_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 def edit_a_set(request, sku):
