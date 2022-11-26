@@ -63,10 +63,10 @@ def inventory_product(request, action, sku, identity):
         Product.objects.all().get(sku=sku).delete()
     if action == 'add_new_feature':
         url = direction + inventory_actions.add_new_feature(request, sku).get('url')
-    if action == 'add_fr_features':
-        url = direction + inventory_actions.add_features(request, 'french', sku).get('url')
     if action == 'delete_feature':
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
+    if action == 'add_fr_features':
+        url = direction + inventory_actions.add_features(request, 'french', sku).get('url')
 
     selected_product = Product.objects.all().get(sku=sku)
     variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='variant')
