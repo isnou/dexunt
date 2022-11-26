@@ -93,6 +93,7 @@ def inventory_product(request, action, sku, identity):
         selected_product.type = 'main'
     else:
         selected_product.type = 'proto'
+    selected_product.save()
 
     context = {
         'lang': lang,
