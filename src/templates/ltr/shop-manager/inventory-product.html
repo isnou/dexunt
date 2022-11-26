@@ -863,9 +863,9 @@
                             {% for feature in features %}
                             <div class="table-responsive mb-10">
                                 <div class="card card-dashed">
-                                    <div class="card-body p-9">
                             <form action="{% url 'inventory' 'add_new_product' '#' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
+                                    <div class="card-body p-9">
 
                                         <!--main information-->
                                         <div class="row mb-7">
@@ -912,8 +912,8 @@
                                         </div>
 
                                         <!--end main information-->
-                                </form>
                                     </div>
+                                </form>
                                 </div>
                             </div>
 
