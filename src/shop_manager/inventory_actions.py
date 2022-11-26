@@ -369,7 +369,8 @@ def add_new_feature(request, sku):
                           ar_title=ar_title,
                           ar_value=ar_value,
                           ).save()
-        selected_product.features.add(feature).save()
+        selected_product.features.add(feature)
+        selected_product.save()
         
     return {
         'url': url,
