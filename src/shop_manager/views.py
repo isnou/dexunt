@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions
 from .models import Product
+from main_shop.models import Layout
 
 
 def manager_dashboard(request, action):
@@ -100,5 +101,30 @@ def inventory_product(request, action, sku, identity):
         'features_count': features_count,
 
         'selected_product': selected_product,
+    }
+    return render(request, url, context)
+
+
+def e_shop(request, action, sku, identity):
+    lang = request.session.get('language')
+    direction = request.session.get('direction')
+    url = direction + "shop-manager/e-shop.html"
+    if action == "add_new_product":
+        url = direction + inventory_actions.add_new_product(request).get('url')
+    if action == "delete_product":
+        selected_product = Product.objects.all().get(sku=sku)
+        if selected_product.type == 'main':
+            Product.objects.all().filter(en_product_title=selected_product.en_product_title).delete()
+        else:
+            selected_product.delete()
+    if action == "add_quantity":
+        url = direction + inventory_actions.add_quantity(request, sku).get('url')
+    if action == "remove_quantity":
+        url = direction + inventory_actions.remove_quantity(request, sku).get('url')
+    if action == "add_new_variant":
+        url = direction + inventory_actions.add_new_variant(request, sku).get('url')
+
+    context = {
+        'lang': lang,
     }
     return render(request, url, context)
