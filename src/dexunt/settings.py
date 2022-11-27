@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'shop_manager.context_processors.shop_manager_content',
+                'main_shop.context_processors.main_shop_content',
             ],
         },
     },
