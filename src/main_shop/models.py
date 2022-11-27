@@ -26,6 +26,7 @@ class Layout(models.Model):
     link = models.TextField(max_length=500, blank=True, null=True)
     thumb = models.ImageField(upload_to='main-shop/e-shop/thumb', blank=True, null=True)
     products = models.ManyToManyField(Product, blank=True)
+    rank = models.IntegerField(blank=True, null=True)
     # --------------------------------- expiration ---------------------------------------------
     day = models.IntegerField(blank=True, null=True)
     month = models.IntegerField(blank=True, null=True)
