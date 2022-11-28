@@ -327,6 +327,11 @@
                             </a>
                         </div>
                         <div class="tns tns-default">
+                            <div class="d-flex flex-wrap flex-stack">
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column flex-grow-1 pe-8">
+                                <!--begin::Stats-->
+                                <div class="d-flex flex-wrap">
                                 {% for photo in photos %}
                             <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                 <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.thumb}}">
@@ -335,6 +340,9 @@
                             </div>
 
                                 {% endfor %}
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     </div>
                     <!--new photo modal-->
