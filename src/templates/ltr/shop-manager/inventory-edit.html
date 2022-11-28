@@ -331,20 +331,21 @@
                             <!--begin::Wrapper-->
                                 <div class="d-flex flex-column flex-grow-1 pe-8">
                                     <!--begin::Stats-->
+                                    {% for photo in photos %}
                                     <div class="d-flex flex-wrap">
-                                        {% for photo in photos %}
                                         <div class="py-3 px-4 me-6 mb-3">
                                             <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.thumb}}">
                                                 <img src="{% get_media_prefix %}{{photo.thumb}}" />
                                             </a>
                                         </div>
-                                        <div class="py-3 px-4 me-6 mb-3">
+                                    </div>
+
+                                        <div class="d-flex flex-wrap">
                                             <a href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </div>
-                                        {% endfor %}
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
