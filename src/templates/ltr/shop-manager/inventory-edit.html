@@ -342,13 +342,13 @@
                                         <i class="bi bi-eye-fill text-white fs-3x"></i>
                                     </div>
                                     <!--end::Action-->
-
-                                    <a href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-
                                 </a>
                                 <!--end::Overlay-->
+                                
+                                <a href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+
                                 {% endfor %}
                             </div>
                             {% if photos_count > 3 %}
