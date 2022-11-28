@@ -54,8 +54,6 @@ def inventory_edit(request, action, sku, identity):
         url = direction + inventory_actions.edit_photo(request, sku).get('url')
     if action == "add_a_set":
         url = direction + inventory_actions.add_a_set(request, sku).get('url')
-    if action == "add_a_variant":
-        url = direction + inventory_actions.add_a_variant(request, sku).get('url')
     if action == "edit_product":
         url = direction + inventory_actions.edit(request, sku).get('url')
     if action == "edit_a_set":
@@ -70,24 +68,19 @@ def inventory_edit(request, action, sku, identity):
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
-    variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='variant')
     sets = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='set')
     photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
         .filter(en_variant=selected_product.en_variant + ' photo').filter(type='photo')
     sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
         .filter(en_variant=selected_product.en_variant + ' size').filter(type='size')
     features = selected_product.features.all()
+
     features_count = features.count()
     photos_count = photos.count()
-
     sizes_count = sizes.count()
-    variants_count = variants.count()
 
     context = {
         'lang': lang,
-
-        'variants': variants,
-        'variants_count': variants_count,
 
         'photos': photos,
         'photos_count': photos_count,
