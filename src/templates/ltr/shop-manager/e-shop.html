@@ -286,198 +286,36 @@
                                         <div class="card card-flush py-4">
                                             <!--block body-->
                                             <div class="card-body pt-0">
-                                                <!--product name-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--product name input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">English Title</span>
-                                                                <input type="text" name="en_product_title" class="form-control" placeholder="{{ selected_product.en_product_title }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end product name input-->
-
-                                                        <!--product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">English Detail</span>
-                                                                <input type="text" name="en_variant" class="form-control" placeholder="{{ selected_product.en_variant }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end product detail input-->
-                                                    </div>
-                                                </div>
-                                                <!--end product name-->
-
-                                                <!--french product name-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--french product name input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">French Title</span>
-                                                                <input type="text" name="fr_product_title" class="form-control" placeholder="{{ selected_product.fr_product_title }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end french product name input-->
-
-                                                        <!--french product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">French Detail</span>
-                                                                <input type="text" name="fr_variant" class="form-control" placeholder="{{ selected_product.fr_variant }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end french product detail input-->
-                                                    </div>
-                                                </div>
-                                                <!--end french product name-->
-
-                                                <!--arabic product name-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--french product name input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Arabic Name</span>
-                                                                <input type="text" name="ar_product_title" class="form-control" dir="rtl"  placeholder="{{ selected_product.ar_product_title }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end french product name input-->
-
-                                                        <!--arabic product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Arabic Detail</span>
-                                                                <input type="text" name="ar_variant" class="form-control" dir="rtl"  placeholder="{{ selected_product.ar_variant }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end arabic product detail input-->
-                                                    </div>
-                                                </div>
-                                                <!--end arabic product name-->
-
-                                                <!--brand & model-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--brand input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Brand</span>
-                                                                <input type="text" name="brand" class="form-control"  placeholder="{{ selected_product.brand }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end brand input-->
-
-                                                        <!--model input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Model</span>
-                                                                <input type="text" name="model" class="form-control" placeholder="{{ selected_product.model }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end model input-->
-                                                    </div>
-                                                </div>
-                                                <!--end brand & model-->
-
-                                                <!--upc input-->
+                                                <!--english first input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--input-->
                                                     <div class="input-group">
-                                                        <span class="input-group-text">Barcode</span>
-                                                        <input type="text" name="upc" class="form-control" placeholder="{{ selected_product.upc }}">
+                                                        <span class="input-group-text">English First</span>
+                                                        <input type="text" name="en_first_title" class="form-control" placeholder="{{ first_main_banner.en_first_title }}">
                                                     </div>
                                                     <!--end input-->
                                                 </div>
-                                                <!--end upc input-->
-
-                                                <!--tag input-->
+                                                <!--end english first input-->
+                                                <!--english second input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--input-->
                                                     <div class="input-group">
-                                                        <span class="input-group-text">Tag</span>
-                                                        <input type="text" name="tag" class="form-control" placeholder="{{ selected_product.tag }}">
+                                                        <span class="input-group-text">English Second</span>
+                                                        <input type="text" name="en_second_title" class="form-control" placeholder="{{ first_main_banner.en_second_title }}">
                                                     </div>
                                                     <!--end input-->
                                                 </div>
-                                                <!--end tag input-->
-
-                                                <!--product quantity & buy price input-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--quantity input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Quantity</span>
-                                                                <input type="number" name="quantity" class="form-control" placeholder="{{ selected_product.quantity }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end quantity input-->
-
-                                                        <!--price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Buy Price</span>
-                                                                <input type="number" name="buy_price" class="form-control" placeholder="{{ selected_product.buy_price }}">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end price input-->
+                                                <!--end english second input-->
+                                                <!--english third input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">English Third</span>
+                                                        <input type="text" name="en_third_title" class="form-control" placeholder="{{ first_main_banner.en_third_title }}">
                                                     </div>
+                                                    <!--end input-->
                                                 </div>
-                                                <!--end product quantity & buy price input-->
-
-                                                <!--product sell price & discount price input-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--sell price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Sell Price</span>
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="{{ selected_product.sell_price }}">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end sell price input-->
-
-                                                        <!--discount price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Discount</span>
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="{{ selected_product.discount_price }}">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end discount price input-->
-                                                    </div>
-                                                </div>
-                                                <!--end product sell price & discount price input-->
+                                                <!--end english third input-->
                                             </div>
                                             <!--end block body-->
                                         </div>
