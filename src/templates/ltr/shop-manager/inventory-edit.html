@@ -342,6 +342,11 @@
                                         <i class="bi bi-eye-fill text-white fs-3x"></i>
                                     </div>
                                     <!--end::Action-->
+
+                                    <a href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+
                                 </a>
                                 <!--end::Overlay-->
                                 {% endfor %}
@@ -696,7 +701,11 @@
                                         <td class="text-center">{{ product.buy_price }}</td>
                                         <td class="text-center">{{ product.sell_price }}</td>
                                         <td class="text-center">{{ product.discount_price }}</td>
-                                        <td></td>
+                                        <td>
+                                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>
@@ -1243,7 +1252,7 @@
                                 </div>
 
                                 <div class="d-flex align-items-center mb-2">
-                                <a href="{% url 'inventory-edit' 'product_view' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit set" style="margin-right: 10px;">
+                                    <a href="{% url 'inventory-edit' 'product_view' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit set" style="margin-right: 10px;">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <a href="{% url 'inventory' 'delete_product' selected_product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
