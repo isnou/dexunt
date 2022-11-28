@@ -341,15 +341,17 @@
                                     <div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
                                         <i class="bi bi-eye-fill text-white fs-3x"></i>
                                     </div>
-
                                     <!--end::Action-->
-                                </a>
-                                <!--end::Overlay-->
-                                <div class="tns tns-default" style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
-                <div href="{% url 'inventory' 'delete_product' photo.sku %}" class="position-absolute translate-middle bottom-0 start-50 border-body h-20px w-20px">
+
+
+                                        <div href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow">
                                         <i class="bi bi-trash text-white fs-3x"></i>
                                     </div>
-            </div>
+                                                                        
+
+
+                                </a>
+                                <!--end::Overlay-->
 
 
 
