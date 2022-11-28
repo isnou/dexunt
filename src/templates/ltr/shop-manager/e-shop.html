@@ -281,12 +281,74 @@
                             <div class="tab-content">
                                 <!--add product form inputs-->
                                 <div class="tab-pane fade active show">
+
+
+
+                                    <!--block title-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <div class="card card-flush py-4">
+                                                        <!--thumbnail input-->
+                                                        <div class="card-header">
+                                                            <!--begin::Card title-->
+                                                            <div class="card-title">
+                                                                <h2>Product Thumbnail</h2>
+                                                            </div>
+                                                            <!--end::Card title-->
+                                                        </div>
+                                                        <!--end::Card header-->
+                                                        <!--begin::Card body-->
+                                                        <div class="card-body text-center pt-0">
+                                                            <!--begin::Image input-->
+                                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                                <!--begin::Image preview wrapper-->
+                                                                <div class="image-input-wrapper w-125px h-125px"></div>
+                                                                <!--end::Image preview wrapper-->
+                                                                <!--begin::Edit button-->
+                                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                                    <!--begin::Inputs-->
+                                                                    <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                                    <input type="hidden" name="thumb_remove" />
+                                                                    <!--end::Inputs-->
+                                                                </label>
+                                                                <!--end::Edit button-->
+                                                                <!--begin::Cancel button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Cancel button-->
+                                                                <!--begin::Remove button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Remove button-->
+                                                            </div>
+                                                            <!--end::Image input-->
+                                                            <!--begin::Description-->
+                                                            <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                                            <!--end::Description-->
+                                                        </div>
+                                                        <!--end thumbnail input-->
+                                                    </div>
+                                                </div>
+                                                <div class="card-title">
+                                                    <h2>Product Information</h2>
+                                                </div>
+                                            </div>
+                                            <!--end block title-->
+
+
+
+
+
+
+
                                     <div class="d-flex flex-column gap-7 gap-lg-10">
                                         <!--add product information-->
                                         <div class="card card-flush py-4">
                                             <!--block body-->
                                             <div class="card-body pt-0">
-
                                                 <!--english inputs-->
                                                 <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
                                                     <div class="fv-row w-100 flex-md-root text-center">
@@ -336,7 +398,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end english inputs-->
-
                                                 <!--french inputs-->
                                                 <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
                                                     <div class="fv-row w-100 flex-md-root text-center">
@@ -386,7 +447,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end french inputs-->
-
                                                 <!--arabic inputs-->
                                                 <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
                                                     <div class="fv-row w-100 flex-md-root text-center">
@@ -436,7 +496,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end arab inputs-->
-
                                                 <!--link input-->
                                                 <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
                                                     <div class="fv-row w-100 flex-md-root text-center">
@@ -456,7 +515,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end link input-->
-
                                             </div>
                                             <!--end block body-->
                                         </div>
