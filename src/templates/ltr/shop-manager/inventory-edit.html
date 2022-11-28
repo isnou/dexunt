@@ -342,21 +342,11 @@
                                         <i class="bi bi-eye-fill text-white fs-3x"></i>
                                     </div>
                                     <!--end::Action-->
-
-
-                                        <div href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow">
-                                        <i class="bi bi-trash text-white fs-3x"></i>
-                                    </div>
-                                                                        
-
-
                                 </a>
                                 <!--end::Overlay-->
-
-
-
-
-
+                                <div href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow">
+                                    <i class="bi bi-trash text-white fs-3x"></i>
+                                </div>
 
                                 {% endfor %}
                             </div>
