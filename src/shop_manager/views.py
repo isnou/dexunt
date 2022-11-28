@@ -42,10 +42,10 @@ def inventory(request, action, sku):
     return render(request, url, context)
 
 
-def inventory_product(request, action, sku, identity):
+def inventory_edit(request, action, sku, identity):
     lang = request.session.get('language')
     direction = request.session.get('direction')
-    url = direction + "shop-manager/inventory-product.html"
+    url = direction + "shop-manager/inventory-edit.html"
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
     if action == "add_new_photo":
