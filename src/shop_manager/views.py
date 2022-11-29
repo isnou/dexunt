@@ -103,7 +103,7 @@ def e_shop(request, action, sku, identity):
     direction = request.session.get('direction')
     url = direction + "shop-manager/e-shop.html"
     if action == "edit_main_banner":
-        url = direction + e_shop_actions.main_banner(request, action).get('url')
+        url = direction + e_shop_actions.main_banner(request, sku).get('url')
     if action == "delete_product":
         selected_product = Product.objects.all().get(sku=sku)
         if selected_product.type == 'main':
