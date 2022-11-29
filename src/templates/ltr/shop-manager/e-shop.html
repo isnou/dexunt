@@ -1816,9 +1816,40 @@
                                                         <!--link input-->
                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                                             <!--input-->
-                                                            <div class="mb-0">
-                                                                <input class="form-control" placeholder="Pick a date" id="kt_datepicker_1"/>
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--year input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">year</span>
+                                                                <input type="number" name="year" class="form-control" placeholder="{{ timer_banner.year }}">
                                                             </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end year input-->
+
+                                                        <!--day input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">day</span>
+                                                                <input type="number" name="day" class="form-control" placeholder="{{ timer_banner.day }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end day input-->
+
+                                                        <!--month input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">month</span>
+                                                                <input type="number" name="month" class="form-control" placeholder="{{ timer_banner.month }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end month input-->
+                                                    </div>
                                                             <!--end input-->
                                                         </div>
                                                         <!--end link input-->
