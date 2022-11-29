@@ -4,10 +4,9 @@ from django.shortcuts import render, redirect
 def main_shop_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
-        request.session['direction'] = 'ltr/'
+        request.session['url'] = 'ltr/main-shop/base.html'
     lang = request.session.get('language')
-    direction = request.session.get('direction')
-    url = direction + "main-shop/base.html"
+    url = request.session.get('url')
     context = {
         'lang': lang,
     }
