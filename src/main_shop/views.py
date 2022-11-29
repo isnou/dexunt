@@ -6,7 +6,7 @@ def main_shop_home(request, action):
         request.session['language'] = 'en'
         request.session['url'] = 'ltr/main-shop/base.html'
     lang = request.session.get('language')
-    url = request.session.get('url')
+    url = str(request.session.get('url'))
     context = {
         'lang': lang,
     }
