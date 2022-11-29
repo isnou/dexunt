@@ -7,9 +7,9 @@ def main_shop_content(request):
     except InventoryProduct.DoesNotExist:
         raise Http404("No products")
     if layouts.filter(type='timer_banner').exists():
-        expiration_date = layouts.get(type='timer_banner')
+        timer_banner = layouts.get(type='timer_banner')
     else:
-        expiration_date = Layout()
+        timer_banner = Layout()
 
     if layouts.filter(type='first_main_banner').exists():
         first_main_banner = layouts.get(type='first_main_banner')
@@ -37,7 +37,7 @@ def main_shop_content(request):
     else:
         third_thumb_banner = Layout()
     return {
-        'expiration_date': expiration_date,
+        'timer_banner': timer_banner,
 
         'first_main_banner': first_main_banner,
         'second_main_banner': second_main_banner,

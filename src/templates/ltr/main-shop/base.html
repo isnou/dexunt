@@ -694,7 +694,7 @@
                 <h3 class="mt-4 mb-1 text-body fw-light">All new</h3>
                 <h2 class="mb-1">Last Gen iPad Pro</h2>
                 <p class="h5 text-body fw-light">at discounted price. Hurry up!</p>
-                <div class="countdown py-2 h4" data-countdown="{{ expiration_date.month }}/{{ expiration_date.day }}/{{ expiration_date.year }} 07:00:00 PM">
+                <div class="countdown py-2 h4" data-countdown="{{ timer_banner.month }}/{{ timer_banner.day }}/{{ timer_banner.year }} 07:00:00 PM">
                   <div class="countdown-days"><span class="countdown-value"></span><span class="countdown-label text-muted">d</span></div>
                   <div class="countdown-hours"><span class="countdown-value"></span><span class="countdown-label text-muted">h</span></div>
                   <div class="countdown-minutes"><span class="countdown-value"></span><span class="countdown-label text-muted">m</span></div>
@@ -702,7 +702,7 @@
                 </div><a class="btn btn-accent" href="home-electronics-store.html#">View offers<i class="ci-arrow-right fs-ms ms-1"></i></a>
               </div>
             </div>
-            <div class="col-md-7"><img src="img/home/banners/offer.jpg" alt="iPad Pro Offer"></div>
+            <div class="col-md-7"><img src="{% get_media_prefix %}{{timer_banner.thumb}}" alt="iPad Pro Offer"></div>
           </div>
         </div>
       </section>
