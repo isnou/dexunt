@@ -4,17 +4,17 @@ from main_shop.models import Layout
 from .models import Product, Feature
 
 
-def edit_first_main_banner(request):
+def main_banner(request, action):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
     except InventoryProduct.DoesNotExist:
         raise Http404("No products")
 
-    if layouts.filter(type='first_main_banner').exists():
-        layout = layouts.get(type='first_main_banner')
+    if layouts.filter(type=action).exists():
+        layout = layouts.get(type=action)
     else:
-        layout = Layout(type='first_main_banner')
+        layout = Layout(type=action)
 
     if request.method == 'POST':
         en_first_title = request.POST.get('en_first_title', False)

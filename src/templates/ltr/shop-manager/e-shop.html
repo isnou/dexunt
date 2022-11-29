@@ -275,7 +275,7 @@
                 <!--first main banner tab-->
                 <div class="tab-pane fade show active" id="first_main_banner" role="tabpanel">
                     <!--first main banner form-->
-                    <form action="{% url 'e-shop' 'edit_first_main_banner' '#' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'e-shop' 'edit_main_banner' 'first_main_banner' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                             <div class="tab-content">
@@ -523,10 +523,500 @@
                 <!--end first main banner tab-->
                 <!--second main banner tab-->
                 <div class="tab-pane fade" id="second_main_banner" role="tabpanel">
+                    <!--second main banner form-->
+                    <form action="{% url 'e-shop' 'edit_main_banner' 'second_main_banner' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                            <div class="tab-content">
+                                <!--add product form inputs-->
+                                <div class="tab-pane fade active show">
+
+                                    <!--block title-->
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <!--thumbnail input-->
+                                                <div class="card-header">
+                                                    <!--begin::Card title-->
+                                                    <div class="card-title">
+                                                        <h2>First Main Banner Photo</h2>
+                                                    </div>
+                                                    <!--end::Card title-->
+                                                </div>
+                                                <!--end::Card header-->
+                                                <!--begin::Card body-->
+                                                <div class="card-body text-center pt-0">
+                                                    <!--begin::Image input-->
+                                                    <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                        <!--begin::Image preview wrapper-->
+                                                        <div class="image-input-wrapper w-800px h-350px"></div>
+                                                        <!--end::Image preview wrapper-->
+                                                        <!--begin::Edit button-->
+                                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                            <!--begin::Inputs-->
+                                                            <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                            <input type="hidden" name="thumb_remove" />
+                                                            <!--end::Inputs-->
+                                                        </label>
+                                                        <!--end::Edit button-->
+                                                        <!--begin::Cancel button-->
+                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                            <i class="bi bi-x fs-2"></i>
+                                                        </span>
+                                                        <!--end::Cancel button-->
+                                                    </div>
+                                                    <!--end::Image input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end thumbnail input-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end block title-->
+
+                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                        <!--add product information-->
+                                        <div class="card card-flush py-4">
+                                            <!--block body-->
+                                            <div class="card-body pt-0">
+                                                <!--english inputs-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">English</label>
+                                                        <!--end label-->
+                                                        <!--first input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 34px;"> First</span>
+                                                                <input type="text" name="en_first_title" class="form-control" placeholder="{{ first_main_banner.en_first_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end first input-->
+                                                        <!--second input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"> Second</span>
+                                                                <input type="text" name="en_second_title" class="form-control" placeholder="{{ first_main_banner.en_second_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end second input-->
+                                                        <!--third input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 26px;"> Third</span>
+                                                                <input type="text" name="en_third_title" class="form-control" placeholder="{{ first_main_banner.en_third_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end third input-->
+                                                        <!--button input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 16px;"> button</span>
+                                                                <input type="text" name="en_button" class="form-control" placeholder="{{ first_main_banner.en_button }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end button input-->
+                                                    </div>
+                                                </div>
+                                                <!--end english inputs-->
+                                                <!--french inputs-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">French</label>
+                                                        <!--end label-->
+                                                        <!--first input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 34px;"> First</span>
+                                                                <input type="text" name="fr_first_title" class="form-control" placeholder="{{ first_main_banner.fr_first_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end first input-->
+                                                        <!--second input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"> Second</span>
+                                                                <input type="text" name="fr_second_title" class="form-control" placeholder="{{ first_main_banner.fr_second_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end second input-->
+                                                        <!--third input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 26px;"> Third</span>
+                                                                <input type="text" name="fr_third_title" class="form-control" placeholder="{{ first_main_banner.fr_third_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end third input-->
+                                                        <!--button input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 16px;"> button</span>
+                                                                <input type="text" name="fr_button" class="form-control" placeholder="{{ first_main_banner.fr_button }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end button input-->
+                                                    </div>
+                                                </div>
+                                                <!--end french inputs-->
+                                                <!--arabic inputs-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">Arabic</label>
+                                                        <!--end label-->
+                                                        <!--first input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 34px;"> First</span>
+                                                                <input type="text" name="ar_first_title" class="form-control" placeholder="{{ first_main_banner.ar_first_title }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end first input-->
+                                                        <!--second input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"> Second</span>
+                                                                <input type="text" name="ar_second_title" class="form-control" placeholder="{{ first_main_banner.ar_second_title }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end second input-->
+                                                        <!--third input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 26px;"> Third</span>
+                                                                <input type="text" name="ar_third_title" class="form-control" placeholder="{{ first_main_banner.ar_third_title }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end third input-->
+                                                        <!--button input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 16px;"> button</span>
+                                                                <input type="text" name="ar_button" class="form-control" placeholder="{{ first_main_banner.ar_button }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end button input-->
+                                                    </div>
+                                                </div>
+                                                <!--end arab inputs-->
+                                                <!--link input-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">Link</label>
+                                                        <!--end label-->
+                                                        <!--link input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 42px;"> url</span>
+                                                                <input type="url" name="link" class="form-control" placeholder="{{ first_main_banner.link }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end link input-->
+                                                    </div>
+                                                </div>
+                                                <!--end link input-->
+                                            </div>
+                                            <!--end block body-->
+                                        </div>
+                                        <!--end add product information-->
+                                    </div>
+                                </div>
+                                <!--end add product form inputs-->
+                                <!--add product buttons-->
+                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                    <!--submit button-->
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save Modifications</span>
+                                    </button>
+                                    <!--end submit button-->
+                                </div>
+                                <!--end add product buttons-->
+                            </div>
+                        </div>
+                    </form>
+                    <!--end second main banner form-->
                 </div>
                 <!--end second main banner tab-->
                 <!--third main banner tab-->
                 <div class="tab-pane fade" id="third_main_banner" role="tabpanel">
+                    <!--third main banner form-->
+                    <form action="{% url 'e-shop' 'edit_main_banner' 'third_main_banner' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                            <div class="tab-content">
+                                <!--add product form inputs-->
+                                <div class="tab-pane fade active show">
+
+                                    <!--block title-->
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <!--thumbnail input-->
+                                                <div class="card-header">
+                                                    <!--begin::Card title-->
+                                                    <div class="card-title">
+                                                        <h2>First Main Banner Photo</h2>
+                                                    </div>
+                                                    <!--end::Card title-->
+                                                </div>
+                                                <!--end::Card header-->
+                                                <!--begin::Card body-->
+                                                <div class="card-body text-center pt-0">
+                                                    <!--begin::Image input-->
+                                                    <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                        <!--begin::Image preview wrapper-->
+                                                        <div class="image-input-wrapper w-800px h-350px"></div>
+                                                        <!--end::Image preview wrapper-->
+                                                        <!--begin::Edit button-->
+                                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                            <!--begin::Inputs-->
+                                                            <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                            <input type="hidden" name="thumb_remove" />
+                                                            <!--end::Inputs-->
+                                                        </label>
+                                                        <!--end::Edit button-->
+                                                        <!--begin::Cancel button-->
+                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                            <i class="bi bi-x fs-2"></i>
+                                                        </span>
+                                                        <!--end::Cancel button-->
+                                                    </div>
+                                                    <!--end::Image input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end thumbnail input-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end block title-->
+
+                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                        <!--add product information-->
+                                        <div class="card card-flush py-4">
+                                            <!--block body-->
+                                            <div class="card-body pt-0">
+                                                <!--english inputs-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">English</label>
+                                                        <!--end label-->
+                                                        <!--first input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 34px;"> First</span>
+                                                                <input type="text" name="en_first_title" class="form-control" placeholder="{{ first_main_banner.en_first_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end first input-->
+                                                        <!--second input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"> Second</span>
+                                                                <input type="text" name="en_second_title" class="form-control" placeholder="{{ first_main_banner.en_second_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end second input-->
+                                                        <!--third input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 26px;"> Third</span>
+                                                                <input type="text" name="en_third_title" class="form-control" placeholder="{{ first_main_banner.en_third_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end third input-->
+                                                        <!--button input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 16px;"> button</span>
+                                                                <input type="text" name="en_button" class="form-control" placeholder="{{ first_main_banner.en_button }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end button input-->
+                                                    </div>
+                                                </div>
+                                                <!--end english inputs-->
+                                                <!--french inputs-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">French</label>
+                                                        <!--end label-->
+                                                        <!--first input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 34px;"> First</span>
+                                                                <input type="text" name="fr_first_title" class="form-control" placeholder="{{ first_main_banner.fr_first_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end first input-->
+                                                        <!--second input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"> Second</span>
+                                                                <input type="text" name="fr_second_title" class="form-control" placeholder="{{ first_main_banner.fr_second_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end second input-->
+                                                        <!--third input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 26px;"> Third</span>
+                                                                <input type="text" name="fr_third_title" class="form-control" placeholder="{{ first_main_banner.fr_third_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end third input-->
+                                                        <!--button input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 16px;"> button</span>
+                                                                <input type="text" name="fr_button" class="form-control" placeholder="{{ first_main_banner.fr_button }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end button input-->
+                                                    </div>
+                                                </div>
+                                                <!--end french inputs-->
+                                                <!--arabic inputs-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">Arabic</label>
+                                                        <!--end label-->
+                                                        <!--first input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 34px;"> First</span>
+                                                                <input type="text" name="ar_first_title" class="form-control" placeholder="{{ first_main_banner.ar_first_title }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end first input-->
+                                                        <!--second input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"> Second</span>
+                                                                <input type="text" name="ar_second_title" class="form-control" placeholder="{{ first_main_banner.ar_second_title }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end second input-->
+                                                        <!--third input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 26px;"> Third</span>
+                                                                <input type="text" name="ar_third_title" class="form-control" placeholder="{{ first_main_banner.ar_third_title }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end third input-->
+                                                        <!--button input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 16px;"> button</span>
+                                                                <input type="text" name="ar_button" class="form-control" placeholder="{{ first_main_banner.ar_button }}" dir="rtl">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end button input-->
+                                                    </div>
+                                                </div>
+                                                <!--end arab inputs-->
+                                                <!--link input-->
+                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <!--label-->
+                                                        <label class="form-label mb-10">Link</label>
+                                                        <!--end label-->
+                                                        <!--link input-->
+                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 42px;"> url</span>
+                                                                <input type="url" name="link" class="form-control" placeholder="{{ first_main_banner.link }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end link input-->
+                                                    </div>
+                                                </div>
+                                                <!--end link input-->
+                                            </div>
+                                            <!--end block body-->
+                                        </div>
+                                        <!--end add product information-->
+                                    </div>
+                                </div>
+                                <!--end add product form inputs-->
+                                <!--add product buttons-->
+                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                    <!--submit button-->
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save Modifications</span>
+                                    </button>
+                                    <!--end submit button-->
+                                </div>
+                                <!--end add product buttons-->
+                            </div>
+                        </div>
+                    </form>
+                    <!--end third main banner form-->
                 </div>
                 <!--end third main banner tab-->
                 <!--first thumb banner tab-->

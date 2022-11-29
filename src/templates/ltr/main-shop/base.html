@@ -447,23 +447,23 @@
                   </div>
                   <div>
                     <div class="row align-items-center">
-                      <div class="col-md-6 order-md-2"><img class="d-block mx-auto" src="{% static 'main-shop/img/home/hero-slider/04.jpg' %}" alt="VR Collection"></div>
+                      <div class="col-md-6 order-md-2"><img class="d-block mx-auto" src="{% get_media_prefix %}{{ second_main_banner.thumb }}" alt="{{ second_main_banner.type }}"></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
-                        <h2 class="fw-light pb-1 from-start">Explore the best</h2>
-                        <h1 class="display-4 from-start delay-1">VR Collection</h1>
-                        <h5 class="fw-light pb-3 from-start delay-2">on the market</h5>
-                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="shop-grid-ls.html">Shop Now<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
+                        <h2 class="fw-light pb-1 from-bottom">{{ second_main_banner.en_first_title }}</h2>
+                        <h1 class="display-4 from-bottom delay-1">{{ second_main_banner.en_second_title }}</h1>
+                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ second_main_banner.en_third_title }}</h5>
+                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ second_main_banner.link }}">{{ second_main_banner.en_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
                       </div>
                     </div>
                   </div>
                   <div>
                     <div class="row align-items-center">
-                      <div class="col-md-6 order-md-2"><img class="d-block mx-auto" src="{% static 'main-shop/img/home/hero-slider/06.jpg' %}" alt="VR Collection"></div>
+                      <div class="col-md-6 order-md-2"><img class="d-block mx-auto" src="{% get_media_prefix %}{{ third_main_banner.thumb }}" alt="{{ third_main_banner.type }}"></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
-                        <h2 class="fw-light pb-1 scale-up">Check our huge</h2>
-                        <h1 class="display-4 scale-up delay-1">Smartphones</h1>
-                        <h5 class="fw-light pb-3 scale-up delay-2">&amp; Accessories collection</h5>
-                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="shop-grid-ls.html">Shop Now<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
+                        <h2 class="fw-light pb-1 from-bottom">{{ third_main_banner.en_first_title }}</h2>
+                        <h1 class="display-4 from-bottom delay-1">{{ third_main_banner.en_second_title }}</h1>
+                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ third_main_banner.en_third_title }}</h5>
+                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ third_main_banner.link }}">{{ third_main_banner.en_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
                       </div>
                     </div>
                   </div>
