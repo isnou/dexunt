@@ -10,6 +10,7 @@ def main_shop_content(request):
         expiration_date = layouts.get(type='timer_banner')
     else:
         expiration_date = Layout()
+
     if layouts.filter(type='first_main_banner').exists():
         first_main_banner = layouts.get(type='first_main_banner')
     else:
@@ -22,9 +23,27 @@ def main_shop_content(request):
         third_main_banner = layouts.get(type='third_main_banner')
     else:
         third_main_banner = Layout()
+
+    if layouts.filter(type='first_thumb_banner').exists():
+        first_thumb_banner = layouts.get(type='first_thumb_banner')
+    else:
+        first_thumb_banner = Layout()
+    if layouts.filter(type='second_thumb_banner').exists():
+        second_thumb_banner = layouts.get(type='second_thumb_banner')
+    else:
+        second_thumb_banner = Layout()
+    if layouts.filter(type='third_thumb_banner').exists():
+        third_thumb_banner = layouts.get(type='third_thumb_banner')
+    else:
+        third_thumb_banner = Layout()
     return {
         'expiration_date': expiration_date,
+
         'first_main_banner': first_main_banner,
         'second_main_banner': second_main_banner,
         'third_main_banner': third_main_banner,
+
+        'first_thumb_banner': first_thumb_banner,
+        'second_thumb_banner': second_thumb_banner,
+        'third_thumb_banner': third_thumb_banner,
     }
