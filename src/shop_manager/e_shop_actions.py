@@ -162,7 +162,7 @@ def thumb_banner(request, action):
     }
 
 
-def time_banner(request, action):
+def timer_banner(request, action):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()

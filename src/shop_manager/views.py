@@ -106,8 +106,8 @@ def e_shop(request, action, sku, identity):
         url = direction + e_shop_actions.main_banner(request, sku).get('url')
     if action == "edit_thumb_banner":
         url = direction + e_shop_actions.thumb_banner(request, sku).get('url')
-    if action == "edit_time_banner":
-        url = direction + e_shop_actions.time_banner(request, sku).get('url')
+    if action == "edit_timer_banner":
+        url = direction + e_shop_actions.timer_banner(request, sku).get('url')
     if action == "delete_product":
         selected_product = Product.objects.all().get(sku=sku)
         if selected_product.type == 'main':
