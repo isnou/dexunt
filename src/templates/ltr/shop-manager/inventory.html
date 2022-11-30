@@ -285,7 +285,11 @@
 
                         <!--discount price-->
                         <td class="text-center">
-                            <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            <span class="fw-bold text-dark">
+                            {% for feature in product.features %}
+                            {{ feature.en_title }}
+                            {% endfor %}
+                            </span>
                         </td>
                         <!--end discount price-->
                     </tr>
