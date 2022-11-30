@@ -286,8 +286,10 @@
                         <!--discount price-->
                         <td class="text-center">
                             <span class="fw-bold text-dark">
-                            {% for feature in product.features %}
+                            {% for feature in product.features.all %}
                             {{ feature.en_title }}
+                                {% empty %}
+                                empty list!
                             {% endfor %}
                             </span>
                         </td>
