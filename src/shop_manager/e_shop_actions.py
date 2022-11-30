@@ -8,7 +8,7 @@ def main_banner(request, action):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
-    except InventoryProduct.DoesNotExist:
+    except Product.DoesNotExist:
         raise Http404("No products")
 
     if layouts.filter(type=action).exists():
@@ -93,7 +93,7 @@ def thumb_banner(request, action):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
-    except InventoryProduct.DoesNotExist:
+    except Product.DoesNotExist:
         raise Http404("No products")
 
     if layouts.filter(type=action).exists():
@@ -166,7 +166,7 @@ def timer_banner(request, action):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
-    except InventoryProduct.DoesNotExist:
+    except Product.DoesNotExist:
         raise Http404("No products")
 
     if layouts.filter(type=action).exists():
