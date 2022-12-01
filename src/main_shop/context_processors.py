@@ -38,7 +38,7 @@ def main_shop_content(request):
         third_thumb_banner = Layout()
 
     if layouts.filter(type='showcase').exists():
-        showcases = layouts.filter(type='showcase').order_by('-rank')
+        showcases = layouts.filter(type='showcase').order_by('rank')
     else:
         showcases = Layout()
     return {
