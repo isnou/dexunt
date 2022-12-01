@@ -259,3 +259,30 @@ def timer_banner(request, action):
     return {
         'url': url,
     }
+
+
+def add_showcase(request):
+    url = "shop-manager/e-shop.html"
+    rank = Layout.objects.all().filter(type='showcase').count() + 1
+
+    if request.method == 'POST':
+        layout.en_second_title = request.POST.get('selected_type', False)
+
+        layout.en_first_title = request.POST.get('en_title', False)
+        layout.en_button = request.POST.get('en_button', False)
+
+        layout.fr_first_title = request.POST.get('fr_title', False)
+        layout.fr_button = request.POST.get('fr_button', False)
+
+        layout.ar_first_title = request.POST.get('ar_title', False)
+        layout.ar_button = request.POST.get('ar_button', False)
+
+        layout.link = request.POST.get('link', False)
+        layout.type = 'showcase'
+        layout.rank = rank
+
+        layout.save()
+
+    return {
+        'url': url,
+    }
