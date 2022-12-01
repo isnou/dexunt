@@ -287,11 +287,37 @@
                     {% if showcase.en_second_title == 'grid_showcase' %}
                     <div class="separator separator-dashed separator-content border-primary my-15">
                         <span class="w-200px">
-                         Grid Showcase
+                         Coming Soon Showcase
                         </span>
                     </div>
-                    {{ showcase.en_first_title }}
-
+                    {% endif %}
+                    {% if showcase.en_second_title == 'column_showcase' %}
+                    <div class="separator separator-dashed separator-content border-primary my-15">
+                        <span class="w-200px">
+                         Column Showcase
+                        </span>
+                    </div>
+                    {% endif %}
+                    {% if showcase.en_second_title == 'brand_showcase' %}
+                    <div class="separator separator-dashed separator-content border-primary my-15">
+                        <span class="w-200px">
+                         Brand Showcase
+                        </span>
+                    </div>
+                    {% endif %}
+                    {% if showcase.en_second_title == 'timer_banner' %}
+                    <div class="separator separator-dashed separator-content border-primary my-15">
+                        <span class="w-200px">
+                         Timer Showcase
+                        </span>
+                    </div>
+                    {% endif %}
+                    {% if showcase.en_second_title == 'coming_soon_banner' %}
+                    <div class="separator separator-dashed separator-content border-primary my-15">
+                        <span class="w-200px">
+                         Coming Soon Showcase
+                        </span>
+                    </div>
                     {% endif %}
                     {% endfor %}
 
