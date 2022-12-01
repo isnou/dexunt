@@ -702,11 +702,16 @@
               <div class="product-card-actions d-flex align-items-center"><a class="btn-action nav-link-style me-2" href="home-electronics-store.html#"><i class="ci-compare me-1"></i>Compare</a>
                 <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button>
               </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
-              <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{product.en_product_title}}</a>
+              <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
                 <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h3>
                 <div class="d-flex justify-content-between">
                   <div class="product-price"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
-                  <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
+                  <div class="star-rating">
+                    <i class="star-rating-icon ci-star-filled active"></i>
+                    <i class="star-rating-icon ci-star-filled active"></i>
+                    <i class="star-rating-icon ci-star-filled active"></i>
+                    <i class="star-rating-icon ci-star-filled active"></i>
+                    <i class="star-rating-icon ci-star-filled active"></i>
                   </div>
                 </div>
               </div>
