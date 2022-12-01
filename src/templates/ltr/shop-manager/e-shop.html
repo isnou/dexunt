@@ -250,6 +250,9 @@
             <!--actions-->
             <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
                 <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#showcases">Showcases</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" data-bs-toggle="tab" href="#first_main_banner">Main Banner A</a>
                 </li>
                 <li class="nav-item">
@@ -277,6 +280,191 @@
             <!--end actions-->
             <!--contents-->
             <div class="tab-content">
+                <!--showcases tab-->
+                <div class="tab-pane fade show active" id="showcases" role="tabpanel">
+                    <div class="tns tns-default" style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
+                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add grid - slider - list - brand showcase">
+                            <i class="bi bi-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#add_a_showcase"></i>
+                        </a>
+                    </div>
+                    <!--add a showcase modal-->
+                    <div class="modal fade" tabindex="-1" id="add_a_showcase">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">add a showcase</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'e-shop' 'add_showcase' '#' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                        {% csrf_token %}
+                                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                                            <div class="tab-content">
+                                                <!--form inputs-->
+                                                <div class="tab-pane fade active show">
+
+                                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                                        <!--add product information-->
+                                                        <div class="card card-flush py-4">
+                                                            <!--block body-->
+                                                            <div class="card-body pt-10">
+                                                                <!--choice inputs-->
+                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                                        <!--label-->
+                                                                <label class="form-label mb-10">Choose a Type</label>
+                                                                <!--end label-->
+                                                                <!--option input-->
+                                                                <select class="form-select" data-control="select2" data-hide-search="true" name="selected_type">
+                                                                    <option value="grid_showcase" selected >Grid Showcase</option>
+                                                                    <option value="column_showcase">Column Showcase</option>
+                                                                    <option value="brand_showcase">Brand Showcase</option>
+                                                                    <option value="timer_banner">Timer Banner</option>
+                                                                    <option value="coming_soon_banner">Coming Soon Banner</option>
+                                                                </select>
+                                                                <!--end option input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end choice inputs-->
+                                                        <!--english inputs-->
+                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                                <!--label-->
+                                                                <label class="form-label mb-10">English</label>
+                                                                <!--end label-->
+                                                                <!--title input-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--input-->
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                                        <input type="text" name="en_title" class="form-control" placeholder="showcase title">
+                                                                    </div>
+                                                                    <!--end input-->
+                                                                </div>
+                                                                <!--end title input-->
+                                                                <!--button input-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--input-->
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                                        <input type="text" name="en_button" class="form-control" placeholder="button title">
+                                                                    </div>
+                                                                    <!--end input-->
+                                                                </div>
+                                                                <!--end button input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end english inputs-->
+                                                        <!--french inputs-->
+                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                                <!--label-->
+                                                                <label class="form-label mb-10">French</label>
+                                                                <!--end label-->
+                                                                <!--title input-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--input-->
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                                        <input type="text" name="fr_title" class="form-control" placeholder="showcase title">
+                                                                    </div>
+                                                                    <!--end input-->
+                                                                </div>
+                                                                <!--end title input-->
+                                                                <!--button input-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--input-->
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                                        <input type="text" name="fr_button" class="form-control" placeholder="button title">
+                                                                    </div>
+                                                                    <!--end input-->
+                                                                </div>
+                                                                <!--end button input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end french inputs-->
+                                                        <!--arabic inputs-->
+                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                                <!--label-->
+                                                                <label class="form-label mb-10">Arabic</label>
+                                                                <!--end label-->
+                                                                <!--title input-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--input-->
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                                        <input type="text" name="ar_title" class="form-control" placeholder="showcase title" dir="rtl">
+                                                                    </div>
+                                                                    <!--end input-->
+                                                                </div>
+                                                                <!--end title input-->
+                                                                <!--button input-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--input-->
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                                        <input type="text" name="ar_button" class="form-control" placeholder="button title" dir="rtl">
+                                                                    </div>
+                                                                    <!--end input-->
+                                                                </div>
+                                                                <!--end button input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end arabic inputs-->
+                                                        <!--link inputs-->
+                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                                <!--label-->
+                                                                <label class="form-label mb-10">Link</label>
+                                                                <!--end label-->
+                                                                <!--link input-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--input-->
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text" style="padding-right: 34px;"> URL</span>
+                                                                        <input type="text" name="link" class="form-control" placeholder="put your showcase link here">
+                                                                    </div>
+                                                                    <!--end input-->
+                                                                </div>
+                                                                <!--end link input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end link inputs-->
+                                                    </div>
+                                                    <!--end block body-->
+                                                </div>
+                                                <!--end add product information-->
+                                            </div>
+                                        </div>
+                                        <!--end form inputs-->
+                                        <!--buttons-->
+                                        <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                            <!--submit button-->
+                                            <button type="submit" class="btn btn-primary">
+                                                <span class="indicator-label">Save Showcase</span>
+                                            </button>
+                                            <!--end submit button-->
+                                        </div>
+                                        <!--end buttons-->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <!--begin::Description-->
+                            <div class="text-muted fs-7"></div>
+                            <!--end::Description-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end add a showcase modal-->
+                </div>
+                <!--end showcases tab-->
                 <!--first main banner tab-->
                 <div class="tab-pane fade show active" id="first_main_banner" role="tabpanel">
                     <!--first main banner form-->
@@ -1936,197 +2124,14 @@
         <!--end tabs-->
         <!--footer-->
         <div class="card-footer">
-            <div class="tns tns-default" style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
-                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add grid - slider - list - brand showcase">
-                    <i class="bi bi-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#add_a_showcase"></i>
-                </a>
-            </div>
-
-            <!--add a showcase modal-->
-            <div class="modal fade" tabindex="-1" id="add_a_showcase">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">add a showcase</h3>
-                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                <span class="svg-icon svg-icon-1"></span>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{% url 'e-shop' 'add_showcase' '#' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                                {% csrf_token %}
-                                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                                    <div class="tab-content">
-                                        <!--form inputs-->
-                                        <div class="tab-pane fade active show">
-
-                                            <div class="d-flex flex-column gap-7 gap-lg-10">
-                                                <!--add product information-->
-                                                <div class="card card-flush py-4">
-                                                    <!--block body-->
-                                                    <div class="card-body pt-10">
-                                                        <!--choice inputs-->
-                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                            <div class="fv-row w-100 flex-md-root text-center">
-                                                                <!--label-->
-                                                                <label class="form-label mb-10">Choose a Type</label>
-                                                                <!--end label-->
-                                                                <!--option input-->
-                                                                <select class="form-select" data-control="select2" data-hide-search="true" name="selected_type">
-                                                                    <option value="grid_showcase" selected >Grid Showcase</option>
-                                                                    <option value="column_showcase">Column Showcase</option>
-                                                                    <option value="brand_showcase">Brand Showcase</option>
-                                                                    <option value="timer_banner">Timer Banner</option>
-                                                                    <option value="coming_soon_banner">Coming Soon Banner</option>
-                                                                </select>
-                                                                <!--end option input-->
-                                                            </div>
-                                                        </div>
-                                                        <!--end choice inputs-->
-                                                        <!--english inputs-->
-                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                            <div class="fv-row w-100 flex-md-root text-center">
-                                                                <!--label-->
-                                                                <label class="form-label mb-10">English</label>
-                                                                <!--end label-->
-                                                                <!--title input-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--input-->
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                        <input type="text" name="en_title" class="form-control" placeholder="showcase title">
-                                                                    </div>
-                                                                    <!--end input-->
-                                                                </div>
-                                                                <!--end title input-->
-                                                                <!--button input-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--input-->
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
-                                                                        <input type="text" name="en_button" class="form-control" placeholder="button title">
-                                                                    </div>
-                                                                    <!--end input-->
-                                                                </div>
-                                                                <!--end button input-->
-                                                            </div>
-                                                        </div>
-                                                        <!--end english inputs-->
-                                                        <!--french inputs-->
-                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                            <div class="fv-row w-100 flex-md-root text-center">
-                                                                <!--label-->
-                                                                <label class="form-label mb-10">French</label>
-                                                                <!--end label-->
-                                                                <!--title input-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--input-->
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                        <input type="text" name="fr_title" class="form-control" placeholder="showcase title">
-                                                                    </div>
-                                                                    <!--end input-->
-                                                                </div>
-                                                                <!--end title input-->
-                                                                <!--button input-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--input-->
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
-                                                                        <input type="text" name="fr_button" class="form-control" placeholder="button title">
-                                                                    </div>
-                                                                    <!--end input-->
-                                                                </div>
-                                                                <!--end button input-->
-                                                            </div>
-                                                        </div>
-                                                        <!--end french inputs-->
-                                                        <!--arabic inputs-->
-                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                            <div class="fv-row w-100 flex-md-root text-center">
-                                                                <!--label-->
-                                                                <label class="form-label mb-10">Arabic</label>
-                                                                <!--end label-->
-                                                                <!--title input-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--input-->
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                        <input type="text" name="ar_title" class="form-control" placeholder="showcase title" dir="rtl">
-                                                                    </div>
-                                                                    <!--end input-->
-                                                                </div>
-                                                                <!--end title input-->
-                                                                <!--button input-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--input-->
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
-                                                                        <input type="text" name="ar_button" class="form-control" placeholder="button title" dir="rtl">
-                                                                    </div>
-                                                                    <!--end input-->
-                                                                </div>
-                                                                <!--end button input-->
-                                                            </div>
-                                                        </div>
-                                                        <!--end arabic inputs-->
-                                                        <!--link inputs-->
-                                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                            <div class="fv-row w-100 flex-md-root text-center">
-                                                                <!--label-->
-                                                                <label class="form-label mb-10">Link</label>
-                                                                <!--end label-->
-                                                                <!--link input-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--input-->
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-text" style="padding-right: 34px;"> URL</span>
-                                                                        <input type="text" name="link" class="form-control" placeholder="put your showcase link here">
-                                                                    </div>
-                                                                    <!--end input-->
-                                                                </div>
-                                                                <!--end link input-->
-                                                            </div>
-                                                        </div>
-                                                        <!--end link inputs-->
-                                                    </div>
-                                                    <!--end block body-->
-                                                </div>
-                                                <!--end add product information-->
-                                            </div>
-                                        </div>
-                                        <!--end form inputs-->
-                                        <!--buttons-->
-                                        <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                                            <!--submit button-->
-                                            <button type="submit" class="btn btn-primary">
-                                                <span class="indicator-label">Save Showcase</span>
-                                            </button>
-                                            <!--end submit button-->
-                                        </div>
-                                        <!--end buttons-->
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <!--begin::Description-->
-                            <div class="text-muted fs-7"></div>
-                            <!--end::Description-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end add a showcase modal-->
-
         </div>
         <!--end footer-->
     </div>
 
 
 
-      {% for showcase in showcases %}
-      {% if showcase.en_second_title == 'grid_showcase' %}
+    {% for showcase in showcases %}
+    {% if showcase.en_second_title == 'grid_showcase' %}
       <section class="container pt-5">
         <!-- Heading-->
         <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
@@ -2166,8 +2171,8 @@
           {% endfor %}
         </div>
       </section>
-      {% endif %}
-      {% endfor %}
+    {% endif %}
+    {% endfor %}
     {% endif %}
     <!-------------------end english-------------->
 </div>
