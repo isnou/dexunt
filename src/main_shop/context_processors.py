@@ -53,5 +53,4 @@ def main_shop_content(request):
         'third_thumb_banner': third_thumb_banner,
 
         'showcases': showcases,
-        'showcases_count': showcases_count,
     }
