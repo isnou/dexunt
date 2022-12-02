@@ -41,6 +41,7 @@ def main_shop_content(request):
         showcases = layouts.filter(type='showcase').order_by('rank')
     else:
         showcases = Layout()
+    showcases_count = showcases.count()
     return {
         'timer_banner': timer_banner,
 
@@ -53,4 +54,5 @@ def main_shop_content(request):
         'third_thumb_banner': third_thumb_banner,
 
         'showcases': showcases,
+        'showcases_count': showcases_count,
     }
