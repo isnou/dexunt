@@ -55,4 +55,5 @@ def main_shop_content(request):
         'third_thumb_banner': third_thumb_banner,
 
         'showcases_exists': showcases_exists,
+        'showcases': showcases,
     }
