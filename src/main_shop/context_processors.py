@@ -40,8 +40,7 @@ def main_shop_content(request):
     if layouts.filter(type='showcase').exists():
         showcases = layouts.filter(type='showcase').order_by('rank')
     else:
-        showcases = Layout()
-    showcases_count = showcases.count()
+        showcases = False
     return {
         'timer_banner': timer_banner,
 
