@@ -282,7 +282,7 @@
             <div class="tab-content">
                 <!--showcases tab-->
                 <div class="tab-pane fade show active" id="showcases" role="tabpanel">
-
+                    {% if showcase_count > 0 %}
                     {% for showcase in showcases %}
                     {% if showcase.en_second_title == 'grid_showcase' %}
                     <div class="separator separator-dashed separator-content border-primary my-15">
@@ -320,9 +320,7 @@
                     </div>
                     {% endif %}
                     {% endfor %}
-
-
-
+                    {% endif %}
 
                     <!--add a showcase button-->
                     <div class="tns tns-default" style="margin-top: 40px;margin-bottom: 20px;text-align: center;">
