@@ -282,7 +282,7 @@
             <div class="tab-content">
                 <!--showcases tab-->
                 <div class="tab-pane fade show active" id="showcases" role="tabpanel">
-                    {% if showcase %}
+                    {% if showcase != False %}
                     {% for showcase in showcases %}
                     {% if showcase.en_second_title == 'grid_showcase' %}
                     <div class="separator separator-dashed separator-content border-primary my-15">
