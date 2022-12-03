@@ -283,9 +283,6 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mb-4">
                         <h2 class="h3 me-0">Grid Showcase | {{ showcase.en_first_title }} | <a href="{{ showcase.link }}">{{ showcase.en_button }}</a></h2>
                         <div class="pt-0">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
-                                <i class="bi bi-pencil-square fs-1x" data-bs-toggle="modal" data-bs-target="#edit_grid_showcase"></i>
-                            </a>
                             <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
                                 <i class="bi bi-arrow-up-square fs-1x"></i>
                             </a>
@@ -296,18 +293,14 @@
                                 <i class="bi bi-trash fs-1x"></i>
                             </a>
                         </div>
-                    </div>
-                    <!--edit showcase modal-->
-                    <div class="modal fade" tabindex="-1" id="edit_grid_showcase">
-                        <div class="modal-dialog modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
+                        <div class="card-content">
+                                <div class="card-header">
                                     <h3 class="modal-title">Edit Showcase</h3>
                                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                         <span class="svg-icon svg-icon-1"></span>
                                     </div>
                                 </div>
-                                <div class="modal-body">
+                                <div class="card-body">
                                     <form action="{% url 'e-shop' 'edit_showcase' '#' showcase.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                         {% csrf_token %}
                                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -461,15 +454,9 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <!--begin::Description-->
-                                    <div class="text-muted fs-7"></div>
-                                    <!--end::Description-->
-                                </div>
                             </div>
-                        </div>
+
                     </div>
-                    <!--end edit showcase modal-->
                     {% endif %}
                     {% if showcase.en_second_title == 'column_showcase' %}
                     <div class="separator border-2 my-10"></div>
