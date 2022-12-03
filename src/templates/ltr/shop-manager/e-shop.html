@@ -279,13 +279,10 @@
                     {% if showcases_exists %}
                     {% for showcase in showcases %}
                     {% if showcase.en_second_title == 'grid_showcase' %}
-                    <div class="separator separator-dashed separator-content border-primary my-15">
-                        <span class="w-800px">
-                         Grid Showcase : {{ showcase.en_first_title }}
-                        </span>
+                    <div class="separator border-2 my-10">
                     </div>
                     <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-4 mb-4">
-                        <h2 class="h3 me-0">Trending products</h2>
+                        <h2 class="h3 me-0">Grid Showcase : {{ showcase.en_first_title }}</h2>
                         <div class="pt-0">
                             <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
                                 <i class="bi bi-arrow-up-square fs-2x"></i>
@@ -329,7 +326,6 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-
                     <!--add a showcase button-->
                     <div class="tns tns-default" style="margin-top: 40px;margin-bottom: 20px;text-align: center;">
                         <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add a showcase">
