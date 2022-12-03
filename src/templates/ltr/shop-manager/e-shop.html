@@ -328,7 +328,7 @@
                             <i class="bi bi-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#add_a_showcase"></i>
                         </a>
                         <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="coming soon or time banner">
-                            <i class="bi bi-hourglass-split" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#coming_soon_time"></i>
+                            <i class="bi bi-hourglass-split" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#movable_banner"></i>
                         </a>
                     </div>
                     <!--end add a showcase button-->
@@ -507,23 +507,63 @@
                         </div>
                     </div>
                     <!--end add a showcase modal-->
-                    <!--add a showcase modal-->
-                    <div class="modal fade" tabindex="-1" id="coming_soon_time">
+                    <!--movable banner modal-->
+                    <div class="modal fade" tabindex="-1" id="movable_banner">
                         <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 class="modal-title">add a showcase</h3>
+                                    <h3 class="modal-title">Movable Banner</h3>
                                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                         <span class="svg-icon svg-icon-1"></span>
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{% url 'e-shop' 'add_showcase' '#' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                    <form action="{% url 'e-shop' 'add_movable_banner' '#' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                                             <div class="tab-content">
                                                 <!--form inputs-->
                                                 <div class="tab-pane fade active show">
+
+                                                    <!--photo input-->
+                                                    <div class="card-header">
+                                                        <div class="fv-row w-100 flex-md-root text-center">
+                                                            <div class="card card-flush py-4">
+                                                                <!--thumbnail input-->
+                                                                <label class="form-label mb-10 mt-10">Photo</label>
+                                                                <!--end::Card header-->
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                    <!--begin::Image input-->
+                                                                    <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                                        <!--begin::Image preview wrapper-->
+                                                                        <div class="image-input-wrapper w-400px h-400px"></div>
+                                                                        <!--end::Image preview wrapper-->
+                                                                        <!--begin::Edit button-->
+                                                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                                            <!--begin::Inputs-->
+                                                                            <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                                            <input type="hidden" name="thumb_remove" />
+                                                                            <!--end::Inputs-->
+                                                                        </label>
+                                                                        <!--end::Edit button-->
+                                                                        <!--begin::Cancel button-->
+                                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                                            <i class="bi bi-x fs-2"></i>
+                                                                        </span>
+                                                                        <!--end::Cancel button-->
+                                                                    </div>
+                                                                    <!--end::Image input-->
+                                                                    <!--begin::Description-->
+                                                                    <div class="text-muted fs-7 mt-5">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                                                    <!--end::Description-->
+                                                                </div>
+                                                                <!--end thumbnail input-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end photo input-->
+
                                                     <div class="d-flex flex-column gap-7 gap-lg-10">
                                                         <!--add product information-->
                                                         <div class="card card-flush py-4">
@@ -537,11 +577,8 @@
                                                                         <!--end label-->
                                                                         <!--option input-->
                                                                         <select class="form-select" data-control="select2" data-hide-search="true" name="selected_type">
-                                                                            <option value="grid_showcase" selected >Grid Showcase</option>
-                                                                            <option value="column_showcase">Column Showcase</option>
-                                                                            <option value="brand_showcase">Brand Showcase</option>
-                                                                            <option value="timer_banner">Timer Banner</option>
-                                                                            <option value="coming_soon_banner">Coming Soon Banner</option>
+                                                                            <option value="timed" selected >Timed Banner</option>
+                                                                            <option value="coming_soon">Coming Soon Banner</option>
                                                                         </select>
                                                                         <!--end option input-->
                                                                     </div>
@@ -558,11 +595,21 @@
                                                                             <!--input-->
                                                                             <div class="input-group">
                                                                                 <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                                <input type="text" name="en_title" class="form-control" placeholder="showcase title">
+                                                                                <input type="text" name="en_title" class="form-control" placeholder="banner title">
                                                                             </div>
                                                                             <!--end input-->
                                                                         </div>
                                                                         <!--end title input-->
+                                                                        <!--message input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Message</span>
+                                                                                <input type="text" name="en_message" class="form-control" placeholder="banner message">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end message input-->
                                                                         <!--button input-->
                                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                                                             <!--input-->
@@ -587,11 +634,21 @@
                                                                             <!--input-->
                                                                             <div class="input-group">
                                                                                 <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                                <input type="text" name="fr_title" class="form-control" placeholder="showcase title">
+                                                                                <input type="text" name="fr_title" class="form-control" placeholder="banner title">
                                                                             </div>
                                                                             <!--end input-->
                                                                         </div>
                                                                         <!--end title input-->
+                                                                        <!--message input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Message</span>
+                                                                                <input type="text" name="fr_message" class="form-control" placeholder="banner message">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end message input-->
                                                                         <!--button input-->
                                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                                                             <!--input-->
@@ -616,11 +673,21 @@
                                                                             <!--input-->
                                                                             <div class="input-group">
                                                                                 <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                                <input type="text" name="ar_title" class="form-control" placeholder="showcase title" dir="rtl">
+                                                                                <input type="text" name="ar_title" class="form-control" placeholder="banner title" dir="rtl">
                                                                             </div>
                                                                             <!--end input-->
                                                                         </div>
                                                                         <!--end title input-->
+                                                                        <!--message input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Message</span>
+                                                                                <input type="text" name="ar_message" class="form-control" placeholder="banner message" dir="rtl">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end message input-->
                                                                         <!--button input-->
                                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                                                             <!--input-->
@@ -681,7 +748,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--end add a showcase modal-->
+                    <!--end movable banner modal-->
                 </div>
                 <!--end showcases tab-->
                 <!--first main banner tab-->
@@ -1836,7 +1903,7 @@
                 <!--end second thumb banner tab-->
                 <!--third thumb banner tab-->
                 <div class="tab-pane fade" id="third_thumb_banner" role="tabpanel">
-                    <!--third thumb form-->
+                    <!--form-->
                     <form action="{% url 'e-shop' 'edit_main_banner' 'third_thumb_banner' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -2043,7 +2110,7 @@
                             </div>
                         </div>
                     </form>
-                    <!--end third thumb form-->
+                    <!--end form-->
                 </div>
                 <!--end third thumb banner tab-->
                 <!--timer banner tab-->
