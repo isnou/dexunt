@@ -114,6 +114,8 @@ def e_shop(request, action, detail, identity):
         Layout.objects.all().get(id=identity).delete()
     if action == "up":
         url = direction + e_shop_actions.up(identity).get('url')
+    if action == "down":
+        url = direction + e_shop_actions.up(identity).get('url')
 
     context = {
         'lang': lang,
