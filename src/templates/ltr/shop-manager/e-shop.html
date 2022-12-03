@@ -284,6 +284,16 @@
                          Grid Showcase : {{ showcase.en_first_title }}
                         </span>
                     </div>
+                    <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-4 mb-4">
+                        <h2 class="h3 mb-0 pt-3 me-2">Trending products</h2>
+                        <div class="pt-3">
+                            <a class="btn btn-outline-accent btn-sm" href="shop-grid-ls.html">
+                                <i class="bi bi-arrow-up-square"></i>
+                                <i class="bi bi-arrow-down-square"></i>
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
                     {% endif %}
                     {% if showcase.en_second_title == 'column_showcase' %}
                     <div class="separator separator-dashed separator-content border-primary my-15">
@@ -302,14 +312,14 @@
                     {% if showcase.en_second_title == 'timed_banner' %}
                     <div class="separator separator-dashed separator-content border-primary my-15">
                         <span class="w-800px">
-                         Timer Showcase : {{ showcase.en_first_title }}
+                         Timed Banner : {{ showcase.en_first_title }}
                         </span>
                     </div>
                     {% endif %}
                     {% if showcase.en_second_title == 'coming_soon_banner' %}
                     <div class="separator separator-dashed separator-content border-primary my-15">
                         <span class="w-800px">
-                         Coming Soon Showcase : {{ showcase.en_first_title }}
+                         Coming Soon Banner : {{ showcase.en_first_title }}
                         </span>
                     </div>
                     {% endif %}
