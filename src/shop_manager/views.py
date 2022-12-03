@@ -111,7 +111,7 @@ def e_shop(request, action, detail, identity):
     if action == "add_showcase":
         url = direction + e_shop_actions.add_showcase(request).get('url')
     if action == "delete":
-        Layout.objects.all().get(id=identity).delete()
+        url = direction + e_shop_actions.delete(identity).get('url')
     if action == "up":
         url = direction + e_shop_actions.up(identity).get('url')
     if action == "down":

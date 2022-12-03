@@ -241,6 +241,21 @@ def add_showcase(request):
     }
 
 
+def delete(identity):
+    url = "shop-manager/e-shop.html"
+    ranked_layouts = Layout.objects.all().filter(type='showcase').order_by('-rank')
+    Layout.objects.all().get(id=identity).delete()
+    rank = 1
+    for selected_layout in ranked_layouts:
+        selected_layout.rank = rank
+        rank += 1
+        selected_layout.save()
+
+    return {
+        'url': url,
+    }
+
+
 def up(identity):
     url = "shop-manager/e-shop.html"
     selected_layouts = Layout.objects.all().filter(type='showcase')
