@@ -4,17 +4,17 @@ from main_shop.models import Layout
 from .models import Product, Feature
 
 
-def main_banner(request, action):
+def main_banner(request, detail):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
     except Product.DoesNotExist:
         raise Http404("No products")
 
-    if layouts.filter(type=action).exists():
-        layout = layouts.get(type=action)
+    if layouts.filter(type=detail).exists():
+        layout = layouts.get(type=detail)
     else:
-        layout = Layout(type=action)
+        layout = Layout(type=detail)
 
     if request.method == 'POST':
         en_first_title = request.POST.get('en_first_title', False)
@@ -89,17 +89,17 @@ def main_banner(request, action):
     }
 
 
-def thumb_banner(request, action):
+def thumb_banner(request, detail):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
     except Product.DoesNotExist:
         raise Http404("No products")
 
-    if layouts.filter(type=action).exists():
-        layout = layouts.get(type=action)
+    if layouts.filter(type=detail).exists():
+        layout = layouts.get(type=detail)
     else:
-        layout = Layout(type=action)
+        layout = Layout(type=detail)
 
     if request.method == 'POST':
         en_first_title = request.POST.get('en_first_title', False)

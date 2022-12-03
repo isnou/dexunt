@@ -98,30 +98,26 @@ def inventory_edit(request, action, sku, identity):
     return render(request, url, context)
 
 
-def e_shop(request, action, sku, identity):
+def e_shop(request, action, detail, identity):
     lang = request.session.get('language')
     direction = request.session.get('direction')
     url = direction + "shop-manager/e-shop.html"
     if action == "edit_main_banner":
-        url = direction + e_shop_actions.main_banner(request, sku).get('url')
+        url = direction + e_shop_actions.main_banner(request, detail).get('url')
     if action == "edit_thumb_banner":
-        url = direction + e_shop_actions.thumb_banner(request, sku).get('url')
+        url = direction + e_shop_actions.thumb_banner(request, detail).get('url')
     if action == "add_movable_banner":
         url = direction + e_shop_actions.add_movable_banner(request).get('url')
     if action == "add_showcase":
         url = direction + e_shop_actions.add_showcase(request).get('url')
-    if action == "delete_product":
-        selected_product = Product.objects.all().get(sku=sku)
-        if selected_product.type == 'main':
-            Product.objects.all().filter(en_product_title=selected_product.en_product_title).delete()
-        else:
-            selected_product.delete()
+    if action == "delete":
+        Product.objects.all().get(id=identity).delete()
     if action == "add_quantity":
-        url = direction + inventory_actions.add_quantity(request, sku).get('url')
+        url = direction + inventory_actions.add_quantity(request, detail).get('url')
     if action == "remove_quantity":
-        url = direction + inventory_actions.remove_quantity(request, sku).get('url')
+        url = direction + inventory_actions.remove_quantity(request, detail).get('url')
     if action == "add_new_variant":
-        url = direction + inventory_actions.add_new_variant(request, sku).get('url')
+        url = direction + inventory_actions.add_new_variant(request, detail).get('url')
 
     context = {
         'lang': lang,
