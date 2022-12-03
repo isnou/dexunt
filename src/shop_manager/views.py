@@ -113,7 +113,7 @@ def e_shop(request, action, detail, identity):
     if action == "delete":
         Layout.objects.all().get(id=identity).delete()
     if action == "up":
-        url = direction + e_shop_actions.up(request, identity).get('url')
+        url = direction + e_shop_actions.up(identity).get('url')
 
     context = {
         'lang': lang,
