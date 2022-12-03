@@ -112,6 +112,8 @@ def e_shop(request, action, detail, identity):
         url = direction + e_shop_actions.add_showcase(request).get('url')
     if action == "delete":
         Layout.objects.all().get(id=identity).delete()
+    if action == "up":
+        url = direction + e_shop_actions.up(request, identity).get('url')
 
     context = {
         'lang': lang,
