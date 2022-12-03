@@ -112,12 +112,6 @@ def e_shop(request, action, detail, identity):
         url = direction + e_shop_actions.add_showcase(request).get('url')
     if action == "delete":
         Layout.objects.all().get(id=identity).delete()
-    if action == "add_quantity":
-        url = direction + inventory_actions.add_quantity(request, detail).get('url')
-    if action == "remove_quantity":
-        url = direction + inventory_actions.remove_quantity(request, detail).get('url')
-    if action == "add_new_variant":
-        url = direction + inventory_actions.add_new_variant(request, detail).get('url')
 
     context = {
         'lang': lang,

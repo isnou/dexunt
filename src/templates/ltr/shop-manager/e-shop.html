@@ -286,10 +286,10 @@
                             <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
                                 <i class="bi bi-pencil-square fs-1x"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
+                            <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
                                 <i class="bi bi-arrow-up-square fs-1x"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="down">
+                            <a href="{% url 'e-shop' 'down' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="down">
                                 <i class="bi bi-arrow-down-square fs-1x"></i>
                             </a>
                             <a href="{% url 'e-shop' 'delete' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete">

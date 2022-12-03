@@ -167,7 +167,6 @@ def add_movable_banner(request):
     rank = Layout.objects.all().filter(type='showcase').count() + 1
 
     if request.method == 'POST':
-
         en_second_title = request.POST.get('selected_type', False)
 
         en_first_title = request.POST.get('en_title', False)
@@ -236,6 +235,25 @@ def add_showcase(request):
                         rank=rank,
                         )
         layout.save()
+
+    return {
+        'url': url,
+    }
+
+
+def up(request, identity):
+    url = "shop-manager/e-shop.html"
+    selected_layouts = Layout.objects.all().filter(type='showcase')
+    max_rank = selected_layouts.count()
+    initial_selected_layout = selected_layouts.get(id=identity)
+    initial_selected_layout_rank = initial_selected_layout.rank
+    if initial_selected_layout.rank < max_rank:
+        next_selected_layout = selected_layouts.get(rank=initial_selected_layout_rank + 1)
+        next_selected_layout_rank = next_selected_layout.rank
+        next_selected_layout.rank = initial_selected_layout_rank
+        next_selected_layout.save()
+        initial_selected_layout.rank = next_selected_layout_rank
+        initial_selected_layout.save()
 
     return {
         'url': url,
