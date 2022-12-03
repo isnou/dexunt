@@ -250,6 +250,7 @@ def up(identity):
     if initial_selected_layout_rank < max_rank:
         next_selected_layout = selected_layouts.get(rank=initial_selected_layout_rank + 1)
         next_selected_layout_rank = next_selected_layout.rank
+
         next_selected_layout.rank = initial_selected_layout_rank
         next_selected_layout.save()
         initial_selected_layout.rank = next_selected_layout_rank
@@ -265,9 +266,10 @@ def down(identity):
     selected_layouts = Layout.objects.all().filter(type='showcase')
     initial_selected_layout = selected_layouts.get(id=identity)
     initial_selected_layout_rank = initial_selected_layout.rank
-    if initial_selected_layout_rank > 0:
+    if initial_selected_layout_rank > 1:
         next_selected_layout = selected_layouts.get(rank=initial_selected_layout_rank - 1)
         next_selected_layout_rank = next_selected_layout.rank
+
         next_selected_layout.rank = initial_selected_layout_rank
         next_selected_layout.save()
         initial_selected_layout.rank = next_selected_layout_rank

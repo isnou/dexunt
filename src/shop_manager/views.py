@@ -115,7 +115,7 @@ def e_shop(request, action, detail, identity):
     if action == "up":
         url = direction + e_shop_actions.up(identity).get('url')
     if action == "down":
-        url = direction + e_shop_actions.up(identity).get('url')
+        url = direction + e_shop_actions.down(identity).get('url')
 
     context = {
         'lang': lang,
