@@ -8,7 +8,7 @@ def main_banner(request, detail):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
-    except Product.DoesNotExist:
+    except Layout.DoesNotExist:
         raise Http404("No products")
 
     if layouts.filter(type=detail).exists():
@@ -93,7 +93,7 @@ def thumb_banner(request, detail):
     url = "shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
-    except Product.DoesNotExist:
+    except Layout.DoesNotExist:
         raise Http404("No products")
 
     if layouts.filter(type=detail).exists():

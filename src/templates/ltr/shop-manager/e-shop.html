@@ -283,7 +283,7 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mb-4">
                         <h2 class="h3 me-0">Grid Showcase | {{ showcase.en_first_title }} | <a href="{{ showcase.link }}">{{ showcase.en_button }}</a></h2>
                         <div class="pt-0">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
+                            <a class="btn btn-sm btn-light btn-active-light-primary" href="#edit_grid_showcase" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
                                 <i class="bi bi-pencil-square fs-1x"></i>
                             </a>
                             <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
@@ -297,6 +297,178 @@
                             </a>
                         </div>
                     </div>
+                    <!--third thumb banner tab-->
+                <div class="tab-pane fade" id="edit_grid_showcase" role="tabpanel">
+                    <!--form-->
+                    <form action="{% url 'e-shop' 'edit_showcase' '#' showcase.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                            <div class="tab-content">
+                                <!--add product form inputs-->
+                                <div class="tab-pane fade active show">
+
+                                    <!--title-->
+                                    <div class="card-header">
+                                        <div class="fv-row w-100 flex-md-root text-center">
+                                            <div class="card card-flush py-4">
+                                                <!--thumbnail input-->
+                                                <label class="form-label mb-10 mt-10">Edit Showcase</label>
+                                                <!--end thumbnail input-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end title-->
+
+                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                        <!--add product information-->
+                                                        <div class="card card-flush py-4">
+                                                            <!--block body-->
+                                                            <div class="card-body pt-10">
+                                                                <!--choice inputs-->
+                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                                        <!--label-->
+                                                                        <label class="form-label mb-10">Choose a Type</label>
+                                                                        <!--end label-->
+                                                                        <!--option input-->
+                                                                        <select class="form-select" data-control="select2" data-hide-search="true" name="selected_type">
+                                                                            <option value="grid_showcase" selected >Grid Showcase</option>
+                                                                            <option value="column_showcase">Column Showcase</option>
+                                                                            <option value="brand_showcase">Brand Showcase</option>
+                                                                        </select>
+                                                                        <!--end option input-->
+                                                                    </div>
+                                                                </div>
+                                                                <!--end choice inputs-->
+                                                                <!--english inputs-->
+                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                                        <!--label-->
+                                                                        <label class="form-label mb-10">English</label>
+                                                                        <!--end label-->
+                                                                        <!--title input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                                                <input type="text" name="en_title" class="form-control" placeholder="{{ showcase.en_first_title }}">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end title input-->
+                                                                        <!--button input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                                                <input type="text" name="en_button" class="form-control" placeholder="{{ showcase.en_button }}">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end button input-->
+                                                                    </div>
+                                                                </div>
+                                                                <!--end english inputs-->
+                                                                <!--french inputs-->
+                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                                        <!--label-->
+                                                                        <label class="form-label mb-10">French</label>
+                                                                        <!--end label-->
+                                                                        <!--title input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                                                <input type="text" name="fr_title" class="form-control" placeholder="{{ showcase.fr_first_title }}">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end title input-->
+                                                                        <!--button input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                                                <input type="text" name="fr_button" class="form-control" placeholder="{{ showcase.fr_button }}">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end button input-->
+                                                                    </div>
+                                                                </div>
+                                                                <!--end french inputs-->
+                                                                <!--arabic inputs-->
+                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                                        <!--label-->
+                                                                        <label class="form-label mb-10">Arabic</label>
+                                                                        <!--end label-->
+                                                                        <!--title input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                                                <input type="text" name="ar_title" class="form-control" placeholder="{{ showcase.ar_first_title }}" dir="rtl">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end title input-->
+                                                                        <!--button input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                                                <input type="text" name="ar_button" class="form-control" placeholder="{{ showcase.ar_button }}" dir="rtl">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end button input-->
+                                                                    </div>
+                                                                </div>
+                                                                <!--end arabic inputs-->
+                                                                <!--link inputs-->
+                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                                        <!--label-->
+                                                                        <label class="form-label mb-10">Link</label>
+                                                                        <!--end label-->
+                                                                        <!--link input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text" style="padding-right: 34px;"> URL</span>
+                                                                                <input type="text" name="link" class="form-control" placeholder="{{ showcase.link }}">
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                        </div>
+                                                                        <!--end link input-->
+                                                                    </div>
+                                                                </div>
+                                                                <!--end link inputs-->
+                                                            </div>
+                                                            <!--end block body-->
+                                                        </div>
+                                                        <!--end add product information-->
+                                        <!--end add product information-->
+                                    </div>
+                                </div>
+                                <!--end add product form inputs-->
+                                <!--add product buttons-->
+                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                    <!--submit button-->
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save Modifications</span>
+                                    </button>
+                                    <!--end submit button-->
+                                </div>
+                                <!--end add product buttons-->
+                            </div>
+                        </div>
+                    </form>
+                    <!--end form-->
+                </div>
+                <!--end third thumb banner tab-->
                     {% endif %}
                     {% if showcase.en_second_title == 'column_showcase' %}
                     <div class="separator border-2 my-10"></div>
