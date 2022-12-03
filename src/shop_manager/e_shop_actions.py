@@ -162,7 +162,7 @@ def thumb_banner(request, action):
     }
 
 
-def add_movable_banner(request, action):
+def add_movable_banner(request):
     url = "shop-manager/e-shop.html"
     rank = Layout.objects.all().filter(type='showcase').count() + 1
 
