@@ -295,9 +295,39 @@ def down(identity):
     }
 
 
-def showcase(detail, identity):
+def showcase(request, identity):
     url = "shop-manager/e-shop-edit.html"
-    selected_layouts = Layout.objects.all().filter(type='showcase')
+    selected_layout = Layout.objects.all().get(id=identity)
+
+    if request.method == 'POST':
+        en_second_title = request.POST.get('selected_type', False)
+        selected_layout.en_second_title = en_second_title
+
+        en_first_title = request.POST.get('en_title', False)
+        if en_first_title:
+            selected_layout.en_first_title = en_first_title
+        en_button = request.POST.get('en_button', False)
+        if en_button:
+            selected_layout.en_button = en_button
+
+        fr_first_title = request.POST.get('fr_title', False)
+        if fr_first_title:
+            selected_layout.fr_first_title = fr_first_title
+        fr_button = request.POST.get('fr_button', False)
+        if fr_button:
+            selected_layout.fr_button = fr_button
+
+        ar_first_title = request.POST.get('ar_title', False)
+        if ar_first_title:
+            selected_layout.ar_first_title = ar_first_title
+        ar_button = request.POST.get('ar_button', False)
+        if ar_button:
+            selected_layout.ar_button = ar_button
+
+        link = request.POST.get('link', False)
+        if link:
+            selected_layout.link = link
+        selected_layout.save()
 
     return {
         'url': url,
