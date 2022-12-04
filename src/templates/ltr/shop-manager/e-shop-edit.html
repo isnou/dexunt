@@ -130,6 +130,7 @@
         {% if selected_layout.type == 'showcase' %}
             {% if selected_layout_type == 'showcase' %}
         <div class="card-header">
+            <div class="col-lg-4">
             <div class="tns tns-default" style="direction: ltr">
                 <!--begin::Slider-->
                 <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="3" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#slider_prev" data-tns-next-button="#slider_next">
@@ -150,7 +151,6 @@
                         <img src="{% static 'manager/media/svg/avatars/blank-dark.svg' %}" class="card-rounded h-90px" alt=""/>
                     </div>
                     <!--end::Item-->
-                    ...
                 </div>
                 <!--end::Slider-->
                 <!--begin::Slider button-->
@@ -168,6 +168,7 @@
                     </span>
                 </button>
                 <!--end::Slider button-->
+            </div>
             </div>
         </div>
         {% endif %}
