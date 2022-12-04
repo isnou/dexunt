@@ -283,7 +283,7 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mb-4">
                         <h2 class="h3 me-0">Grid Showcase | {{ showcase.en_first_title }} | <a href="{{ showcase.link }}">{{ showcase.en_button }}</a></h2>
                         <div class="pt-0">
-                            <a href="{% url 'e-shop-edit' '#' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
+                            <a href="{% url 'e-shop-edit' 'showcase' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
                                 <i class="bi bi-pencil-square fs-1x"></i>
                             </a>
                             <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
@@ -328,7 +328,7 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mb-4">
                         <h2 class="h3 me-0">Column Showcase | {{ showcase.en_first_title }} | <a href="{{ showcase.link }}">{{ showcase.en_button }}</a></h2>
                         <div class="pt-0">
-                            <a href="{% url 'e-shop-edit' '#' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
+                            <a href="{% url 'e-shop-edit' 'showcase' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
                                 <i class="bi bi-pencil-square fs-1x"></i>
                             </a>
                             <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
@@ -348,7 +348,7 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mb-4">
                         <h2 class="h3 me-0">Brand Showcase | {{ showcase.en_first_title }} | <a href="{{ showcase.link }}">{{ showcase.en_button }}</a></h2>
                         <div class="pt-0">
-                            <a href="{% url 'e-shop-edit' '#' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
+                            <a href="{% url 'e-shop-edit' 'showcase' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
                                 <i class="bi bi-pencil-square fs-1x"></i>
                             </a>
                             <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
@@ -368,7 +368,7 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mb-4">
                         <h2 class="h3 me-0">Timed Banner | {{ showcase.en_first_title }} | <a href="{{ showcase.link }}">{{ showcase.en_button }}</a></h2>
                         <div class="pt-0">
-                            <a href="{% url 'e-shop-edit' '#' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
+                            <a href="{% url 'e-shop-edit' 'banner' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
                                 <i class="bi bi-pencil-square fs-1x"></i>
                             </a>
                             <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
@@ -388,7 +388,7 @@
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mb-4">
                         <h2 class="h3 me-0">Coming Soon Banner | {{ showcase.en_first_title }} | <a href="{{ showcase.link }}">{{ showcase.en_button }}</a></h2>
                         <div class="pt-0">
-                            <a href="{% url 'e-shop-edit' '#' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
+                            <a href="{% url 'e-shop-edit' 'banner' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit">
                                 <i class="bi bi-pencil-square fs-1x"></i>
                             </a>
                             <a href="{% url 'e-shop' 'up' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="up">
@@ -787,16 +787,15 @@
                                                                         <!--label-->
                                                                         <label class="form-label mb-10">Date</label>
                                                                         <!--end label-->
-                                                                        <!--link input-->
+                                                                        <!--inputs-->
                                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
                                                                             <div class="d-flex flex-wrap gap-5">
                                                                                 <!--year input-->
                                                                                 <div class="fv-row w-100 flex-md-root">
                                                                                     <!--input-->
                                                                                     <div class="input-group">
                                                                                         <span class="input-group-text">year</span>
-                                                                                        <input type="number" name="year" class="form-control" placeholder="{{ timer_banner.year }}">
+                                                                                        <input type="number" name="year" class="form-control">
                                                                                     </div>
                                                                                     <!--end input-->
                                                                                 </div>
@@ -806,7 +805,7 @@
                                                                                     <!--input-->
                                                                                     <div class="input-group">
                                                                                         <span class="input-group-text">day</span>
-                                                                                        <input type="number" name="day" class="form-control" placeholder="{{ timer_banner.day }}">
+                                                                                        <input type="number" name="day" class="form-control">
                                                                                     </div>
                                                                                     <!--end input-->
                                                                                 </div>
@@ -816,15 +815,14 @@
                                                                                     <!--input-->
                                                                                     <div class="input-group">
                                                                                         <span class="input-group-text">month</span>
-                                                                                        <input type="number" name="month" class="form-control" placeholder="{{ timer_banner.month }}">
+                                                                                        <input type="number" name="month" class="form-control">
                                                                                     </div>
                                                                                     <!--end input-->
                                                                                 </div>
                                                                                 <!--end month input-->
                                                                             </div>
-                                                                            <!--end input-->
                                                                         </div>
-                                                                        <!--end link input-->
+                                                                        <!--end inputs-->
                                                                     </div>
                                                                 </div>
                                                                 <!--end date input-->

@@ -181,6 +181,10 @@ def add_movable_banner(request):
         ar_third_title = request.POST.get('ar_message', False)
         ar_button = request.POST.get('ar_button', False)
 
+        year = request.POST.get('year', False)
+        month = request.POST.get('month', False)
+        day = request.POST.get('day', False)
+
         thumb = request.FILES.get('thumb', False)
 
         link = request.POST.get('link', False)
@@ -194,8 +198,11 @@ def add_movable_banner(request):
                         ar_first_title=ar_first_title,
                         ar_third_title=ar_third_title,
                         ar_button=ar_button,
-                        link=link,
+                        year=year,
+                        day=day,
+                        month=month,
                         thumb=thumb,
+                        link=link,
                         type='showcase',
                         rank=rank,
                         )
