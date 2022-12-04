@@ -131,10 +131,12 @@ def e_shop_edit(request, action, detail, identity):
         url = direction + e_shop_actions.showcase(detail, identity).get('url')
 
     selected_layout = Layout.objects.all().get(id=identity)
+    layout_type = selected_layout.type
 
     context = {
         'lang': lang,
 
         'selected_layout': selected_layout,
+        'layout_type': layout_type,
     }
     return render(request, url, context)
