@@ -133,7 +133,7 @@ def e_shop_edit(request, action, detail, identity):
         url = direction + e_shop_actions.banner(request, identity).get('url')
 
     selected_layout = Layout.objects.all().get(id=identity)
-    selected_layout_type = action
+    selected_layout_type = detail
     context = {
         'lang': lang,
         'selected_layout': selected_layout,
