@@ -134,7 +134,6 @@ def e_shop_edit(request, action, detail, identity):
 
     context = {
         'lang': lang,
-
         'selected_layout': selected_layout,
     }
     return render(request, url, context)
