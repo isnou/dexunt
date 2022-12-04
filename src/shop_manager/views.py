@@ -121,3 +121,28 @@ def e_shop(request, action, detail, identity):
         'lang': lang,
     }
     return render(request, url, context)
+
+
+def e_shop_edit(request, action, detail, identity):
+    lang = request.session.get('language')
+    direction = request.session.get('direction')
+    url = direction + "shop-manager/e-shop-edit.html"
+    if action == "showcase":
+        url = direction + e_shop_actions.showcase(detail, identity).get('url')
+    if action == "edit_thumb_banner":
+        url = direction + e_shop_actions.thumb_banner(request, detail).get('url')
+    if action == "add_movable_banner":
+        url = direction + e_shop_actions.add_movable_banner(request).get('url')
+    if action == "add_showcase":
+        url = direction + e_shop_actions.add_showcase(request).get('url')
+    if action == "delete":
+        url = direction + e_shop_actions.delete(identity).get('url')
+    if action == "up":
+        url = direction + e_shop_actions.up(identity).get('url')
+    if action == "down":
+        url = direction + e_shop_actions.down(identity).get('url')
+
+    context = {
+        'lang': lang,
+    }
+    return render(request, url, context)

@@ -293,3 +293,12 @@ def down(identity):
     return {
         'url': url,
     }
+
+
+def showcase(detail, identity):
+    url = "shop-manager/e-shop-edit.html"
+    selected_layouts = Layout.objects.all().filter(type='showcase')
+
+    return {
+        'url': url,
+    }
