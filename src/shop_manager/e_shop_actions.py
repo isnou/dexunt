@@ -296,7 +296,7 @@ def down(identity):
 
 
 def showcase(request, identity):
-    url = "shop-manager/e-shop-edit.html"
+    url = "shop-manager/e-shop.html"
     selected_layout = Layout.objects.all().get(id=identity)
 
     if request.method == 'POST':
