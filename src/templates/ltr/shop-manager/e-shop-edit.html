@@ -145,6 +145,19 @@
                             <div class="d-flex flex-column gap-7 gap-lg-10">
                                 <!--add product information-->
                                 <div class="card card-flush py-4">
+
+                                    <!--product input-->
+                                    <div class="card-header">
+                                        <div class="fv-row w-100 flex-md-root text-center">
+                                            <div class="d-flex flex-center h-300px">
+                                                <img src="{% static 'manager/media/svg/avatars/blank-dark.svg' %}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end product input-->
+
+
+
                                     <!--block body-->
                                     <div class="card-body pt-10">
                                         <!--choice inputs-->
@@ -374,198 +387,189 @@
                                         </div>
                                         <!--end choice inputs-->
 
-
-
-
-                                                                <!--english inputs-->
-                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                                    <div class="fv-row w-100 flex-md-root text-center">
-                                                                        <!--label-->
-                                                                        <label class="form-label mb-10">English</label>
-                                                                        <!--end label-->
-                                                                        <!--title input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                                <input type="text" name="en_title" class="form-control" placeholder="{{ selected_layout.en_first_title }}">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end title input-->
-                                                                        <!--message input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Message</span>
-                                                                                <input type="text" name="en_message" class="form-control" placeholder="{{ selected_layout.en_third_title }}">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end message input-->
-                                                                        <!--button input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Button</span>
-                                                                                <input type="text" name="en_button" class="form-control" placeholder="{{ selected_layout.en_button }}">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end button input-->
-                                                                    </div>
-                                                                </div>
-                                                                <!--end english inputs-->
-                                                                <!--french inputs-->
-                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                                    <div class="fv-row w-100 flex-md-root text-center">
-                                                                        <!--label-->
-                                                                        <label class="form-label mb-10">French</label>
-                                                                        <!--end label-->
-                                                                        <!--title input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                                <input type="text" name="fr_title" class="form-control" placeholder="{{ selected_layout.fr_first_title }}">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end title input-->
-                                                                        <!--message input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Message</span>
-                                                                                <input type="text" name="fr_message" class="form-control" placeholder="{{ selected_layout.fr_third_title }}">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end message input-->
-                                                                        <!--button input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Button</span>
-                                                                                <input type="text" name="fr_button" class="form-control" placeholder="{{ selected_layout.fr_button }}">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end button input-->
-                                                                    </div>
-                                                                </div>
-                                                                <!--end french inputs-->
-                                                                <!--arabic inputs-->
-                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                                    <div class="fv-row w-100 flex-md-root text-center">
-                                                                        <!--label-->
-                                                                        <label class="form-label mb-10">Arabic</label>
-                                                                        <!--end label-->
-                                                                        <!--title input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Title</span>
-                                                                                <input type="text" name="ar_title" class="form-control" placeholder="{{ selected_layout.ar_first_title }}" dir="rtl">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end title input-->
-                                                                        <!--message input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Message</span>
-                                                                                <input type="text" name="ar_message" class="form-control" placeholder="{{ selected_layout.ar_third_title }}" dir="rtl">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end message input-->
-                                                                        <!--button input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> Button</span>
-                                                                                <input type="text" name="ar_button" class="form-control" placeholder="{{ selected_layout.ar_button }}" dir="rtl">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end button input-->
-                                                                    </div>
-                                                                </div>
-                                                                <!--end arabic inputs-->
-                                                                <!--date input-->
-                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                                    <div class="fv-row w-100 flex-md-root text-center">
-                                                                        <!--label-->
-                                                                        <label class="form-label mb-10">Date</label>
-                                                                        <!--end label-->
-                                                                        <!--link input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="d-flex flex-wrap gap-5">
-                                                                                <!--year input-->
-                                                                                <div class="fv-row w-100 flex-md-root">
-                                                                                    <!--input-->
-                                                                                    <div class="input-group">
-                                                                                        <span class="input-group-text">year</span>
-                                                                                        <input type="number" name="year" class="form-control" placeholder="{{ selected_layout.year }}">
-                                                                                    </div>
-                                                                                    <!--end input-->
-                                                                                </div>
-                                                                                <!--end year input-->
-                                                                                <!--day input-->
-                                                                                <div class="fv-row w-100 flex-md-root">
-                                                                                    <!--input-->
-                                                                                    <div class="input-group">
-                                                                                        <span class="input-group-text">day</span>
-                                                                                        <input type="number" name="day" class="form-control" placeholder="{{ selected_layout.day }}">
-                                                                                    </div>
-                                                                                    <!--end input-->
-                                                                                </div>
-                                                                                <!--end day input-->
-                                                                                <!--month input-->
-                                                                                <div class="fv-row w-100 flex-md-root">
-                                                                                    <!--input-->
-                                                                                    <div class="input-group">
-                                                                                        <span class="input-group-text">month</span>
-                                                                                        <input type="number" name="month" class="form-control" placeholder="{{ selected_layout.month }}">
-                                                                                    </div>
-                                                                                    <!--end input-->
-                                                                                </div>
-                                                                                <!--end month input-->
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end link input-->
-                                                                    </div>
-                                                                </div>
-                                                                <!--end date input-->
-                                                                <!--link inputs-->
-                                                                <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                                                                    <div class="fv-row w-100 flex-md-root text-center">
-                                                                        <!--label-->
-                                                                        <label class="form-label mb-10">Link</label>
-                                                                        <!--end label-->
-                                                                        <!--link input-->
-                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                            <!--input-->
-                                                                            <div class="input-group">
-                                                                                <span class="input-group-text" style="padding-right: 34px;"> URL</span>
-                                                                                <input type="text" name="link" class="form-control" placeholder="{{ selected_layout.link }}">
-                                                                            </div>
-                                                                            <!--end input-->
-                                                                        </div>
-                                                                        <!--end link input-->
-                                                                    </div>
-                                                                </div>
-                                                                <!--end link inputs-->
-
-
-
-
-
-
+                                        <!--english inputs-->
+                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                <!--label-->
+                                                <label class="form-label mb-10">English</label>
+                                                <!--end label-->
+                                                <!--title input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                        <input type="text" name="en_title" class="form-control" placeholder="{{ selected_layout.en_first_title }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end title input-->
+                                                <!--message input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Message</span>
+                                                        <input type="text" name="en_message" class="form-control" placeholder="{{ selected_layout.en_third_title }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end message input-->
+                                                <!--button input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                        <input type="text" name="en_button" class="form-control" placeholder="{{ selected_layout.en_button }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end button input-->
+                                            </div>
+                                        </div>
+                                        <!--end english inputs-->
+                                        <!--french inputs-->
+                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                <!--label-->
+                                                <label class="form-label mb-10">French</label>
+                                                <!--end label-->
+                                                <!--title input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                        <input type="text" name="fr_title" class="form-control" placeholder="{{ selected_layout.fr_first_title }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end title input-->
+                                                <!--message input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Message</span>
+                                                        <input type="text" name="fr_message" class="form-control" placeholder="{{ selected_layout.fr_third_title }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end message input-->
+                                                <!--button input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                        <input type="text" name="fr_button" class="form-control" placeholder="{{ selected_layout.fr_button }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end button input-->
+                                            </div>
+                                        </div>
+                                        <!--end french inputs-->
+                                        <!--arabic inputs-->
+                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                <!--label-->
+                                                <label class="form-label mb-10">Arabic</label>
+                                                <!--end label-->
+                                                <!--title input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Title</span>
+                                                        <input type="text" name="ar_title" class="form-control" placeholder="{{ selected_layout.ar_first_title }}" dir="rtl">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end title input-->
+                                                <!--message input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Message</span>
+                                                        <input type="text" name="ar_message" class="form-control" placeholder="{{ selected_layout.ar_third_title }}" dir="rtl">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end message input-->
+                                                <!--button input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> Button</span>
+                                                        <input type="text" name="ar_button" class="form-control" placeholder="{{ selected_layout.ar_button }}" dir="rtl">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end button input-->
+                                            </div>
+                                        </div>
+                                        <!--end arabic inputs-->
+                                        <!--date input-->
+                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                <!--label-->
+                                                <label class="form-label mb-10">Date</label>
+                                                <!--end label-->
+                                                <!--link input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--year input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">year</span>
+                                                                <input type="number" name="year" class="form-control" placeholder="{{ selected_layout.year }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end year input-->
+                                                        <!--day input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">day</span>
+                                                                <input type="number" name="day" class="form-control" placeholder="{{ selected_layout.day }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end day input-->
+                                                        <!--month input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">month</span>
+                                                                <input type="number" name="month" class="form-control" placeholder="{{ selected_layout.month }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end month input-->
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end link input-->
+                                            </div>
+                                        </div>
+                                        <!--end date input-->
+                                        <!--link inputs-->
+                                        <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                                            <div class="fv-row w-100 flex-md-root text-center">
+                                                <!--label-->
+                                                <label class="form-label mb-10">Link</label>
+                                                <!--end label-->
+                                                <!--link input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" style="padding-right: 34px;"> URL</span>
+                                                        <input type="text" name="link" class="form-control" placeholder="{{ selected_layout.link }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end link input-->
+                                            </div>
+                                        </div>
+                                        <!--end link inputs-->
                                     </div>
                                     <!--end block body-->
                                 </div>
