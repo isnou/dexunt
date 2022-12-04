@@ -129,6 +129,8 @@ def e_shop_edit(request, action, detail, identity):
     url = direction + "shop-manager/e-shop-edit.html"
     if action == "showcase":
         url = direction + e_shop_actions.showcase(request, identity).get('url')
+    if action == "banner":
+        url = direction + e_shop_actions.banner(request, identity).get('url')
 
     selected_layout = Layout.objects.all().get(id=identity)
     selected_layout_type = action

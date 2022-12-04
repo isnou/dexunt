@@ -311,6 +311,45 @@
                             <div class="d-flex flex-column gap-7 gap-lg-10">
                                 <!--add product information-->
                                 <div class="card card-flush py-4">
+                                    <!--photo input-->
+                                    <div class="card-header">
+                                        <div class="fv-row w-100 flex-md-root text-center">
+                                            <div class="card card-flush py-4">
+                                                <!--thumbnail input-->
+                                                <label class="form-label mb-10 mt-10">Photo</label>
+                                                <!--end::Card header-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--begin::Image input-->
+                                                    <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ selected_layout.thumb }})">
+                                                        <!--begin::Image preview wrapper-->
+                                                        <div class="image-input-wrapper w-400px h-400px"></div>
+                                                        <!--end::Image preview wrapper-->
+                                                        <!--begin::Edit button-->
+                                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                            <!--begin::Inputs-->
+                                                            <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                            <input type="hidden" name="thumb_remove" />
+                                                            <!--end::Inputs-->
+                                                        </label>
+                                                        <!--end::Edit button-->
+                                                        <!--begin::Cancel button-->
+                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                            <i class="bi bi-x fs-2"></i>
+                                                        </span>
+                                                        <!--end::Cancel button-->
+                                                    </div>
+                                                    <!--end::Image input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7 mt-5">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end thumbnail input-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end photo input-->
+
                                     <!--block body-->
                                     <div class="card-body pt-10">
                                         <!--choice inputs-->
