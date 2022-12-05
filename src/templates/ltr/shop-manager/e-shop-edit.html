@@ -132,15 +132,15 @@
         <div class="card-header">
             <div class="flex-grow-1 mt-20">
                 <div class="d-flex flex-wrap flex-stack">
-                    <div class="me-7 mb-4">
-                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add a showcase">
-                                <i class="bi bi-plus" data-bs-toggle="modal" data-bs-target="#link_product"></i>
-                            </a>
-                        </div>
-                    </div>
                     <div class="d-flex flex-column flex-grow-1 pe-8">
                         <div class="d-flex flex-wrap">
+                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add a showcase">
+                                        <i class="bi bi-plus" data-bs-toggle="modal" data-bs-target="#link_product"></i>
+                                    </a>
+                                </div>
+                            </div>
                             {% for product in selected_layout.products.all %}
                             <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                 <div class="d-flex align-items-center">
