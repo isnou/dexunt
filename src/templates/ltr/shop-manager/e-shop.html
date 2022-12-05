@@ -306,23 +306,17 @@
                                             <div class="card-body pt-2">
                                                 <!-- showcase products -->
                                                 <div class="d-flex flex-column flex-grow-1 pe-8">
-                                                <div class="d-flex flex-wrap">
-                            {% for product in showcase.products.all %}
-                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% get_media_prefix %}{{ product.thumb }}" class="card-rounded h-90px" alt=""/>
-                                </div>
-                                <div class="text-center mt-5">
-                                    <a href="{% url 'e-shop-edit' 'unlink_product' product.sku showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="remove product">
-                                        <i class="bi bi-trash" ></i>
-                                    </a>
-                                </div>
-                            </div>
-                            {% endfor %}
+                                                    <div class="d-flex flex-wrap">
+                                                        {% for product in showcase.products.all %}
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <img src="{% get_media_prefix %}{{ product.thumb }}" class="card-rounded h-90px" alt=""/>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
                                                     </div>
-                                                    </div>
-                            <!-- end showcase products -->
-
+                                                </div>
+                                                <!-- end showcase products -->
                                             </div>
                                         </div>
                                     </div>
@@ -350,6 +344,33 @@
                             </a>
                         </div>
                     </div>
+                    <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                        <div class="fv-row w-100 flex-md-root text-center">
+                            <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                                <div class="tab-content">
+                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                        <div class="card card-flush py-4">
+                                            <div class="card-body pt-2">
+                                                <!-- showcase products -->
+                                                <div class="d-flex flex-column flex-grow-1 pe-8">
+                                                    <div class="d-flex flex-wrap">
+                                                        {% for product in showcase.products.all %}
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <img src="{% get_media_prefix %}{{ product.thumb }}" class="card-rounded h-90px" alt=""/>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <!-- end showcase products -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {% endif %}
                     {% if showcase.en_second_title == 'brand_showcase' %}
                     <div class="separator border-2 my-10"></div>
@@ -368,6 +389,33 @@
                             <a href="{% url 'e-shop' 'delete' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete">
                                 <i class="bi bi-trash fs-1x"></i>
                             </a>
+                        </div>
+                    </div>
+                    <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
+                        <div class="fv-row w-100 flex-md-root text-center">
+                            <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                                <div class="tab-content">
+                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                        <div class="card card-flush py-4">
+                                            <div class="card-body pt-2">
+                                                <!-- showcase products -->
+                                                <div class="d-flex flex-column flex-grow-1 pe-8">
+                                                    <div class="d-flex flex-wrap">
+                                                        {% for product in showcase.products.all %}
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <img src="{% get_media_prefix %}{{ product.thumb }}" class="card-rounded h-90px" alt=""/>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <!-- end showcase products -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {% endif %}
