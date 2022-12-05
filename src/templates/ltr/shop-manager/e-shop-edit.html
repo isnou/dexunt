@@ -155,6 +155,29 @@
                                 </div>
                             </div>
 
+                            <div class="modal fade" tabindex="-1" id="link_product">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <div class="modal-body">
+                                            <div class="mb-10">
+                                                <label for="" class="form-label">Products To Link</label>
+                                                <select class="form-select form-select-solid" data-control="select2" data-dropdown-parent="#link_product" data-placeholder="Select a product" data-allow-clear="true">
+                                                    <option></option>
+                                                    {% for product in showcase_products %}
+                                                    <option value="{{ product.sku }}" data-kt-rich-content-subcontent="{{ product.en_variant }}" data-kt-rich-content-icon="{% get_media_prefix %}{{ product.thumb }}">{{ product.en_product_title }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Modal-->
+
+
+
 
                         </div>
                     </div>
