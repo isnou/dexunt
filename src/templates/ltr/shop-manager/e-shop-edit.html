@@ -163,8 +163,7 @@
 
 
                                             <div class="form-floating border rounded">
-                                                <select class="form-select form-select-transparent" name="..." data-placeholder="..." id="kt_docs_select2_users">
-                                                    <option></option>
+                                                <select class="form-select form-select-transparent" name="..." data-placeholder="...">
                                                     {% for product in showcase_products %}
                                                     <option value="{{ product.sku }}" data-kt-select2-user="{% get_media_prefix %}{{ product.thumb }}">{{ product.en_product_title }}</option>
                                                     {% endfor %}
