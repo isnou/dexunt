@@ -160,17 +160,15 @@
                                     <div class="modal-content">
 
                                         <div class="modal-body">
-                                            <div class="mb-10">
+                                            <div class="border rounded mb-10">
                                                 <label for="" class="form-label">Products To Link</label>
-                                                <select id="kt_docs_select2_rich_content" class="form-select form-select-transparent" name="..." data-placeholder="...">
+                                                <select id="kt_docs_select2_rich_content" class="form-select form-select-transparent" name="..." data-placeholder="Select a product">
                                                     <option></option>
                                                     {% for product in showcase_products %}
                                                     <option value="{{ product.sku }}" data-kt-rich-content-subcontent="{{ product.en_variant }}" data-kt-rich-content-icon="{% get_media_prefix %}{{ product.thumb }}">{{ product.en_product_title }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
-
-                                            
 
 
                                         </div>
