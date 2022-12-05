@@ -440,10 +440,36 @@
                     </div>
 
                     <div class="col-sm-6 mb-10 mb-sm-0">
-                        <div class="card-rounded min-h-400px min-h-sm-100 h-100"
+                        <div class="bgi-no-repeat bgi-position-center card-rounded min-h-400px min-h-sm-100 h-100"
                              style="background-size: 100% 100%;background-image:url({% get_media_prefix %}{{ showcase.thumb }})">
                         </div>
                     </div>
+
+                    <div class="col-sm-6">
+                        <div class="d-flex flex-column h-100">
+                            <div class="mb-7">
+                                <div class="d-flex align-items-center flex-wrap d-grid gap-2">
+
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="d-flex">
+                                    <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                        <span class="fs-6 text-gray-700 fw-bold">Feb 6, 2021</span>
+                                        <div class="fw-semibold text-gray-400">Due Date</div>
+                                    </div>
+                                    <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
+                                        <span class="fs-6 text-gray-700 fw-bold">
+                                            <span class="ms-n1 counted" data-kt-countup="true" data-kt-countup-value="284,900.00" data-kt-initialized="1">284,900</span></span>
+                                        <div class="fw-semibold text-gray-400">Budget</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     {% endif %}
                     {% if showcase.en_second_title == 'coming_soon_banner' %}
                     <div class="separator border-2 my-10"></div>
