@@ -438,44 +438,38 @@
                             </a>
                         </div>
                     </div>
-
                     <div class="row">
-
-                    <div class="col-sm-6 mb-10 mb-sm-0">
-                        <div class="bgi-no-repeat bgi-position-center card-rounded min-h-400px min-h-sm-100 h-100"
-                             style="background-size: 100% 100%;background-image:url({% get_media_prefix %}{{ showcase.thumb }})">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="d-flex flex-column h-100">
-                            <div class="mb-7">
-                                <div class="d-flex align-items-center flex-wrap d-grid gap-2">
-
-                                </div>
+                        <div class="col-sm-6 mb-10 mb-sm-0">
+                            <div class="bgi-no-repeat bgi-position-center card-rounded min-h-400px min-h-sm-100 h-100"
+                                 style="background-size: 100% 100%;background-image:url({% get_media_prefix %}{{ showcase.thumb }})">
                             </div>
-                            <div class="mb-6">
-                                <div class="d-flex">
-                                    <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
-                                        <span class="fs-6 text-gray-700 fw-bold">Date </span>
-                                        <div class="fw-semibold text-gray-400">{{ showcase.day }}/{{ showcase.month }}/{{ showcase.year }}</div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="d-flex flex-column h-100">
+                                <div class="mb-7">
+                                    <div class="d-flex align-items-center flex-wrap d-grid gap-2">
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <div class="d-flex">
+                                        <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                            <span class="fs-6 text-gray-700 fw-bold">Date </span>
+                                            <div class="fw-semibold text-gray-400">{{ showcase.day }}/{{ showcase.month }}/{{ showcase.year }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <div class="d-flex">
+                                        <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                            <span class="fs-6 text-gray-700 fw-bold">{{ showcase.en_first_title }} </span>
+                                            <div class="fw-semibold text-gray-400">{{ showcase.en_third_title }}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-6">
-                                <div class="d-flex">
-                                    <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
-                                        <span class="fs-6 text-gray-700 fw-bold">{{ showcase.en_first_title }} </span>
-                                        <div class="fw-semibold text-gray-400">{{ showcase.en_third_title }}</div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
-                    </div>
-
-
                     {% endif %}
                     {% if showcase.en_second_title == 'coming_soon_banner' %}
                     <div class="separator border-2 my-10"></div>
@@ -494,6 +488,38 @@
                             <a href="{% url 'e-shop' 'delete' '#' showcase.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete">
                                 <i class="bi bi-trash fs-1x"></i>
                             </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 mb-10 mb-sm-0">
+                            <div class="bgi-no-repeat bgi-position-center card-rounded min-h-400px min-h-sm-100 h-100"
+                                 style="background-size: 100% 100%;background-image:url({% get_media_prefix %}{{ showcase.thumb }})">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="d-flex flex-column h-100">
+                                <div class="mb-7">
+                                    <div class="d-flex align-items-center flex-wrap d-grid gap-2">
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <div class="d-flex">
+                                        <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                            <span class="fs-6 text-gray-700 fw-bold">Date </span>
+                                            <div class="fw-semibold text-gray-400">{{ showcase.day }}/{{ showcase.month }}/{{ showcase.year }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <div class="d-flex">
+                                        <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                            <span class="fs-6 text-gray-700 fw-bold">{{ showcase.en_first_title }} </span>
+                                            <div class="fw-semibold text-gray-400">{{ showcase.en_third_title }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {% endif %}
