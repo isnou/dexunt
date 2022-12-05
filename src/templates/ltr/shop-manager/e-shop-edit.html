@@ -165,11 +165,17 @@
                                                     <option></option>
                                                     {% for product in showcase_products %}
                                                     <option value="{{ product.sku }}">
+                                                        <img src="{% get_media_prefix %}{{ product.thumb }}" class="w-50px ms-n1 me-1" alt="">
                                                         <div class="me-3">
-															<img src="{% get_media_prefix %}{{ product.thumb }}" class="w-50px ms-n1 me-1" alt="">
+
 															<a href="#" class="text-gray-800 text-hover-primary fw-bold">{{ product.en_product_title }}</a>
 														</div>
                                                     </option>
+
+
+
+
+
                                                     {% endfor %}
                                                 </select>
                                             </div>
