@@ -438,24 +438,18 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mt-5 mb-10 fv-row fv-plugins-icon-container">
-                        <div class="fv-row w-100 flex-md-root text-center">
-                            <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+
+
+                    <div class="image-input image-input-empty" style="background-image: url({% get_media_prefix %}{{ showcase.thumb }})">
 
 
 
-                                <div class="col-sm-6 mb-10 mb-sm-0">
+
+                    <div class="col-sm-6 mb-10 mb-sm-0">
                         <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100"
                              style="background-size: 100% 100%;background-image:url({% get_media_prefix %}{{ showcase.thumb }})">
                         </div>
                     </div>
-
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
                     {% endif %}
                     {% if showcase.en_second_title == 'coming_soon_banner' %}
                     <div class="separator border-2 my-10"></div>
