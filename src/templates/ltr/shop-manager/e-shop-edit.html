@@ -134,6 +134,7 @@
                 <div class="d-flex flex-wrap flex-stack">
                     <div class="d-flex flex-column flex-grow-1 pe-8">
                         <div class="d-flex flex-wrap">
+                            <!-- showcase products -->
                             {% for product in selected_layout.products.all %}
                             <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                 <div class="d-flex align-items-center">
@@ -146,7 +147,8 @@
                                 </div>
                             </div>
                             {% endfor %}
-
+                            <!-- end showcase products -->
+                            <!-- link product button -->
                             <div class="py-2 px-2 me-6 mt-8">
                                 <div class="d-flex align-items-center">
                                     <a href="#" class="btn btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="link product">
@@ -154,7 +156,8 @@
                                     </a>
                                 </div>
                             </div>
-
+                            <!-- end link product button -->
+                            <!-- link product modal -->
                             <div class="modal fade" tabindex="-1" id="link_product">
                                 <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -191,7 +194,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- end link product modal -->
                         </div>
                     </div>
                 </div>
@@ -200,7 +203,7 @@
         {% endif %}
         {% endif %}
         <!--end header-->
-        <!--tabs-->
+        <!--forms-->
         <div class="card-body py-5">
             {% if selected_layout.type == 'showcase' %}
             {% if selected_layout_type == 'showcase' %}
@@ -647,7 +650,7 @@
             {% endif %}
             {% endif %}
         </div>
-        <!--end tabs-->
+        <!--end forms-->
         <!--footer-->
         <div class="card-footer">
 
