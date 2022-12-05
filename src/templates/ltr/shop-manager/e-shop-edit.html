@@ -160,8 +160,9 @@
                                     <div class="modal-content">
 
                                         <div class="modal-body">
-
-
+{% for product in showcase_products %}
+                                            <img src="{% get_media_prefix %}{{ product.thumb }}" class="w-50px ms-n1 me-1" alt="">
+{% endfor %}
                                             <div class="form-floating border rounded">
                                                 <select class="form-select form-select-transparent" name="..." data-placeholder="...">
                                                     <option></option>
