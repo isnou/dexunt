@@ -136,36 +136,16 @@
                     <div class="d-flex flex-column flex-grow-1 pe-8">
                         <div class="d-flex flex-wrap">
                             <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                {% for product in selected_layout.product.all %}
                                 <div class="d-flex align-items-center">
-                                    <img src="{% static 'manager/media/logos/logo-default.svg' %}" class="card-rounded h-90px" alt=""/>
+                                    <img src="{% get_media_prefix %}{{product.thumb}}" class="card-rounded h-90px" alt=""/>
                                 </div>
                                 <div class="text-center mt-5">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="remove product">
                                         <i class="bi bi-trash" ></i>
                                     </a>
                                 </div>
-                            </div>
-
-                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% static 'manager/media/svg/avatars/blank-dark.svg' %}" class="card-rounded h-90px" alt=""/>
-                                </div>
-                                <div class="text-center mt-5">
-                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="remove product">
-                                        <i class="bi bi-trash" ></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% static 'manager/media/logos/logo-default.svg' %}" class="card-rounded h-90px" alt=""/>
-                                </div>
-                                <div class="text-center mt-5">
-                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="remove product">
-                                        <i class="bi bi-trash" ></i>
-                                    </a>
-                                </div>
+                                {% endfor %}
                             </div>
 
 
