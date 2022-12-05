@@ -405,7 +405,7 @@ def banner(request, identity):
 
 
 def link(detail, identity):
-    url = "shop-manager/e-shop.html"
+    url = "shop-manager/e-shop-edit.html"
     selected_layout = Layout.objects.all().get(id=identity)
     selected_product = Product.objects.all().get(sku=detail)
     selected_layout.products.add(selected_product)
