@@ -135,10 +135,11 @@
                 <div class="d-flex flex-wrap flex-stack">
                     <div class="d-flex flex-column flex-grow-1 pe-8">
                         <div class="d-flex flex-wrap">
+                            {% for product in selected_layout.products.all %}
                             <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
 
 
-                                {% for product in selected_layout.products.all %}
+
                                 <div class="d-flex align-items-center">
                                     <img src="{% get_media_prefix %}{{ product.thumb }}" class="card-rounded h-90px" alt=""/>
                                 </div>
@@ -147,9 +148,10 @@
                                         <i class="bi bi-trash" ></i>
                                     </a>
                                 </div>
-                                {% endfor %}
+
 
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
