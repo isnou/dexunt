@@ -156,31 +156,34 @@
                             </div>
 
                             <div class="modal fade" tabindex="-1" id="link_product">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
                                     <div class="modal-content">
 
                                         <div class="modal-body">
-                                            <div class="form-floating border rounded">
-                                                <select class="form-select form-select-transparent" name="..." data-placeholder="...">
-                                                    <option></option>
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped gy-7 gs-7">
+                                                    <thead>
+                                                    <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                                                        <th class="min-w-200px"></th>
+                                                        <th class="min-w-400px">Product name</th>
+                                                        <th class="min-w-100px">Quantity</th>
+                                                        <th class="min-w-200px">Sku</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
                                                     {% for product in showcase_products %}
-                                                    <option value="{{ product.sku }}">
-                                                        <img src="{% get_media_prefix %}{{ product.thumb }}" class="w-50px ms-n1 me-1" alt="">
-                                                        <div class="me-3">
-
-															<a href="#" class="text-gray-800 text-hover-primary fw-bold">{{ product.en_product_title }}</a>
-														</div>
-                                                    </option>
-
-
-
-
-
+                                                    <tr>
+                                                        <td><img src="{% get_media_prefix %}{{ product.thumb }}" class="w-50px ms-n1 me-1" alt=""></td>
+                                                        <td>{{ product.en_product_title }}</td>
+                                                        <td>{{ product.quantity }}</td>
+                                                        <td>{{ product.sku }}</td>
+                                                    </tr>
                                                     {% endfor %}
-                                                </select>
+                                                    </tbody>
+                                                </table>
                                             </div>
-
-
+                                            
                                         </div>
 
                                     </div>
