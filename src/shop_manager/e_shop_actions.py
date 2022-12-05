@@ -414,3 +414,15 @@ def link(detail, identity):
     return {
         'url': url,
     }
+
+
+def unlink(detail, identity):
+    url = "shop-manager/e-shop-edit.html"
+    selected_layout = Layout.objects.all().get(id=identity)
+    selected_product = Product.objects.all().get(sku=detail)
+    selected_layout.products.remove(selected_product)
+    selected_layout.save()
+
+    return {
+        'url': url,
+    }

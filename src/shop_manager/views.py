@@ -134,6 +134,9 @@ def e_shop_edit(request, action, detail, identity):
     if action == "link_product":
         url = direction + e_shop_actions.link(detail, identity).get('url')
         detail = 'showcase'
+    if action == "unlink_product":
+        url = direction + e_shop_actions.unlink(detail, identity).get('url')
+        detail = 'showcase'
 
     selected_layout = Layout.objects.all().get(id=identity)
     selected_layout_type = detail
