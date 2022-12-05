@@ -166,7 +166,16 @@
                                                 <select class="form-select form-select-transparent" name="..." data-placeholder="...">
                                                     <option></option>
                                                     {% for product in showcase_products %}
-                                                    <option value="{{ product.sku }}" data-kt-select2-user="{% get_media_prefix %}{{ product.thumb }}">{{ product.en_product_title }}</option>
+                                                    <option value="{{ product.sku }}">
+                                                        <div class="me-3">
+															<!--begin::Icon-->
+															<img src="{% get_media_prefix %}{{ product.thumb }}" class="w-50px ms-n1 me-1" alt="">
+															<!--end::Icon-->
+															<!--begin::Title-->
+															<a href="#" class="text-gray-800 text-hover-primary fw-bold">{{ product.en_product_title }}</a>
+															<!--end::Title-->
+														</div>
+                                                    </option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
