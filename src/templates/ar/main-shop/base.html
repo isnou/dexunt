@@ -421,7 +421,7 @@
                     <img src="{% get_media_prefix %}{{ first_thumb_banner.thumb }}" style="-webkit-transform: scaleX(-1);" width="125" alt="Banner">
                     <div class="py-4 px-2">
                       <h5 class="mb-2"><span class="fw-light">{{ first_thumb_banner.en_first_title }}</span>{{ first_thumb_banner.en_second_title }}</h5>
-                      <div class="text-info fs-sm">{{ first_thumb_banner.en_button }}<i class="ci-arrow-right fs-xs ms-1"></i>
+                      <div class="text-info fs-sm">{{ first_thumb_banner.en_button }}<i class="ci-arrow-left fs-xs ms-1"></i>
                       </div>
                     </div>
                   </a>
@@ -431,7 +431,7 @@
                     <img src="{% get_media_prefix %}{{ second_thumb_banner.thumb }}" style="-webkit-transform: scaleX(-1);" width="125" alt="Banner">
                     <div class="py-4 px-2">
                       <h5 class="mb-2"><span class="fw-light">{{ second_thumb_banner.en_first_title }}</span>{{ second_thumb_banner.en_second_title }}</h5>
-                      <div class="text-warning fs-sm">{{ second_thumb_banner.en_button }}<i class="ci-arrow-right fs-xs ms-1"></i></div>
+                      <div class="text-warning fs-sm">{{ second_thumb_banner.en_button }}<i class="ci-arrow-left fs-xs ms-1"></i></div>
                     </div>
                   </a>
                   <!--end second banner-->
@@ -440,7 +440,7 @@
                     <img src="{% get_media_prefix %}{{ third_thumb_banner.thumb }}" style="-webkit-transform: scaleX(-1);" width="125" alt="Banner">
                     <div class="py-4 px-2">
                       <h5 class="mb-2"><span class="fw-light">{{ third_thumb_banner.en_first_title }}</span>{{ third_thumb_banner.en_second_title }}</h5>
-                      <div class="text-success fs-sm">{{ third_thumb_banner.en_button }}<i class="ci-arrow-right fs-xs ms-1"></i></div>
+                      <div class="text-success fs-sm">{{ third_thumb_banner.en_button }}<i class="ci-arrow-left fs-xs ms-1"></i></div>
                     </div>
                   </a>
                   <!--end third banner-->
@@ -455,11 +455,11 @@
       {% for showcase in showcases %}
       <!-- grid showcase -->
       {% if showcase.en_second_title == 'grid_showcase' %}
-      <section class="container pt-5">
+      <section class="container pt-5" dir="rtl">
         <!-- Heading-->
         <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
           <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.en_first_title }}</h2>
-          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-right ms-1 me-n1"></i></a></div>
+          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-left ms-1 me-n1"></i></a></div>
         </div>
         <!-- Grid-->
         <div class="row pt-2 mx-n2">
@@ -468,8 +468,8 @@
           <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
             <div class="card product-card">
               <div class="product-card-actions d-flex align-items-center"><a class="btn-action nav-link-style me-2" href="home-electronics-store.html#"><i class="ci-compare me-1"></i>Compare</a>
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button>
-              </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
+                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist"><i class="ci-heart"></i></button>
+              </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{product.thumb}}" style="-webkit-transform: scaleX(-1);"  alt="Product"></a>
               <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
                 <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h3>
                 <div class="d-flex justify-content-between">
@@ -504,7 +504,7 @@
         <!-- Heading-->
         <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
           <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.en_first_title }}</h2>
-          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-right ms-1 me-n1"></i></a></div>
+          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-left ms-1 me-n1"></i></a></div>
         </div>
         <!-- Column-->
         <div class="row pt-2 mx-n2">
@@ -514,8 +514,8 @@
               <!-- Product-->
               <div>
                 <div class="card product-card card-static">
-                  <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i>
-                  </button><a class="card-img-top d-block overflow-hidden" href="shop-single-v1.html#"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
+                  <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist"><i class="ci-heart"></i>
+                  </button><a class="card-img-top d-block overflow-hidden" href="shop-single-v1.html#"><img src="{% get_media_prefix %}{{product.thumb}}" style="-webkit-transform: scaleX(-1);"  alt="Product"></a>
                   <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="shop-single-v1.html#">{{ product.brand }}</a>
                     <h3 class="product-title fs-sm"><a href="shop-single-v1.html#">{{ product.en_product_title }}</a></h3>
                     <div class="d-flex justify-content-between">
@@ -544,7 +544,7 @@
       <!-- timed banner -->
       {% if showcase.en_second_title == 'coming_soon_banner' %}
       <!-- Promo banner-->
-      <section class="container mt-4 mb-grid-gutter">
+      <section class="container mt-4 mb-grid-gutter" dir="rtl">
         <div class="bg-faded-info rounded-3 py-4">
           <div class="row align-items-center">
             <div class="col-md-5">
@@ -557,7 +557,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-7"><img src="{% get_media_prefix %}{{showcase.thumb}}" alt="coming soon banner"></div>
+            <div class="col-md-7"><img src="{% get_media_prefix %}{{showcase.thumb}}" style="-webkit-transform: scaleX(-1);"  alt="coming soon banner"></div>
           </div>
         </div>
       </section>
@@ -566,7 +566,7 @@
       <!-- timed banner -->
       {% if showcase.en_second_title == 'timed_banner' %}
       <!-- Promo banner-->
-      <section class="container mt-4 mb-grid-gutter">
+      <section class="container mt-4 mb-grid-gutter" dir="rtl">
         <div class="bg-faded-info rounded-3 py-4">
           <div class="row align-items-center">
             <div class="col-md-5">
@@ -582,7 +582,7 @@
                 </div><a class="btn btn-accent" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-right fs-ms ms-1"></i></a>
               </div>
             </div>
-            <div class="col-md-7"><img src="{% get_media_prefix %}{{showcase.thumb}}" alt="timed banner"></div>
+            <div class="col-md-7"><img src="{% get_media_prefix %}{{showcase.thumb}}" style="-webkit-transform: scaleX(-1);"  alt="timed banner"></div>
           </div>
         </div>
       </section>
@@ -591,7 +591,7 @@
       {% endfor %}
 
       <!-- Product widgets-->
-      <section class="container pb-4 pb-md-5">
+      <section class="container pb-4 pb-md-5" dir="rtl">
         <div class="row">
           <!-- Bestsellers-->
           <div class="col-md-4 col-sm-6 mb-2 py-3">
@@ -600,7 +600,7 @@
               {% for product in best_sellers %}
               <div class="d-flex align-items-center pb-2 border-bottom">
                 <a class="d-block flex-shrink-0" href="shop-single-v2.html">
-                  <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                  <img src="{% get_media_prefix %}{{product.thumb}}" style="-webkit-transform: scaleX(-1);"  width="64" alt="Product">
                 </a>
                 <div class="ps-2">
                   <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
@@ -614,7 +614,7 @@
                 </div>
               </div>
               {% endfor %}
-              <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+              <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-left fs-xs ms-1"></i></a>
             </div>
           </div>
           <!-- New arrivals-->
@@ -624,7 +624,7 @@
               {% for product in new_arrivals %}
               <div class="d-flex align-items-center pb-2 border-bottom">
                 <a class="d-block flex-shrink-0" href="shop-single-v2.html">
-                  <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                  <img src="{% get_media_prefix %}{{product.thumb}}" style="-webkit-transform: scaleX(-1);"  width="64" alt="Product">
                 </a>
                 <div class="ps-2">
                   <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
@@ -638,7 +638,7 @@
                 </div>
               </div>
               {% endfor %}
-              <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+              <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-left fs-xs ms-1"></i></a>
             </div>
           </div>
           <!-- Top rated-->
@@ -648,7 +648,7 @@
               {% for product in top_rated %}
               <div class="d-flex align-items-center pb-2 border-bottom">
                 <a class="d-block flex-shrink-0" href="shop-single-v2.html">
-                  <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                  <img src="{% get_media_prefix %}{{product.thumb}}" style="-webkit-transform: scaleX(-1);"  width="64" alt="Product">
                 </a>
                 <div class="ps-2">
                   <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
@@ -662,7 +662,7 @@
                 </div>
               </div>
               {% endfor %}
-              <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+              <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-left fs-xs ms-1"></i></a>
             </div>
           </div>
         </div>
