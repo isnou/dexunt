@@ -8,7 +8,7 @@ def shop_manager_content(request):
         raise Http404("No products")
     products = raw_products_list.order_by('en_product_title', 'en_variant', '-updated_at')
     inventory_product_count = raw_products_list.count()
-    showcase_products = raw_products_list.filter(type='main')
+    showcase_products = raw_products_list.filter(type='main').order_by('-updated_at')
     return {
         'products': products,
         'inventory_product_count': inventory_product_count,
