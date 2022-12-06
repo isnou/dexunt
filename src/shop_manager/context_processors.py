@@ -9,9 +9,15 @@ def shop_manager_content(request):
     products = raw_products_list.order_by('en_product_title', 'en_variant', '-updated_at')
     inventory_product_count = raw_products_list.count()
     showcase_products = raw_products_list.filter(type='main').order_by('-updated_at')
+    best_sellers = raw_products_list.filter(type='main').order_by('-sell_rate')[:8]
+    top_rated = raw_products_list.filter(type='main').order_by('-review_rate')[:8]
+    new_arrivals = raw_products_list.filter(type='main').order_by('-updated_at')[:8]
     return {
         'products': products,
         'inventory_product_count': inventory_product_count,
         'showcase_products': showcase_products,
+        'best_sellers': best_sellers,
+        'top_rated': top_rated,
+        'new_arrivals': new_arrivals,
         'fool': [0, 1, 2, 3, 4],
     }
