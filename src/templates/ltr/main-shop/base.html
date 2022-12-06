@@ -626,15 +626,23 @@
           <div class="col-md-4 col-sm-6 mb-2 py-3">
             <div class="widget">
               <h3 class="widget-title">New arrivals</h3>
-
-              <div class="d-flex align-items-center pb-2 border-bottom"><a class="d-block flex-shrink-0" href="shop-single-v2.html"><img src="img/shop/widget/06.jpg" width="64" alt="Product"></a>
+              {% for product in new_arrivals %}
+              <div class="d-flex align-items-center pb-2 border-bottom">
+                <a class="d-block flex-shrink-0" href="shop-single-v2.html">
+                  <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                </a>
                 <div class="ps-2">
-                  <h6 class="widget-product-title"><a href="shop-single-v2.html">Monoblock Desktop PC</a></h6>
-                  <div class="widget-product-meta"><span class="text-accent">$1,949.<small>00</small></span></div>
+                  <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
+                  {% if product.discount_price %}
+                  <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                    <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                  </div>
+                  {% else %}
+                  <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
+                  {% endif %}
                 </div>
               </div>
-
-
+              {% endfor %}
               <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
             </div>
           </div>
@@ -642,34 +650,23 @@
           <div class="col-md-4 col-sm-6 mb-2 py-3">
             <div class="widget">
               <h3 class="widget-title">Top rated</h3>
-              <div class="d-flex align-items-center pb-2 border-bottom"><a class="d-block flex-shrink-0" href="shop-single-v2.html"><img src="img/shop/widget/10.jpg" width="64" alt="Product"></a>
+              {% for product in top_rated %}
+              <div class="d-flex align-items-center pb-2 border-bottom">
+                <a class="d-block flex-shrink-0" href="shop-single-v2.html">
+                  <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                </a>
                 <div class="ps-2">
-                  <h6 class="widget-product-title"><a href="shop-single-v2.html">Android Smartphone S9</a></h6>
-                  <div class="widget-product-meta"><span class="text-accent">$749.<small>99</small></span>
-                    <del class="text-muted fs-xs">$859.<small>99</small></del>
+                  <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
+                  {% if product.discount_price %}
+                  <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                    <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
                   </div>
+                  {% else %}
+                  <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
+                  {% endif %}
                 </div>
               </div>
-              <div class="d-flex align-items-center py-2 border-bottom"><a class="d-block flex-shrink-0" href="shop-single-v2.html"><img src="img/shop/widget/11.jpg" width="64" alt="Product"></a>
-                <div class="ps-2">
-                  <h6 class="widget-product-title"><a href="shop-single-v2.html">Wireless Bluetooth Headphones</a></h6>
-                  <div class="widget-product-meta"><span class="text-accent">$428.<small>60</small></span></div>
-                </div>
-              </div>
-              <div class="d-flex align-items-center py-2 border-bottom"><a class="d-block flex-shrink-0" href="shop-single-v2.html"><img src="img/shop/widget/12.jpg" width="64" alt="Product"></a>
-                <div class="ps-2">
-                  <h6 class="widget-product-title"><a href="shop-single-v2.html">360 Degrees Camera</a></h6>
-                  <div class="widget-product-meta"><span class="text-accent">$98.<small>75</small></span></div>
-                </div>
-              </div>
-              <div class="d-flex align-items-center py-2"><a class="d-block flex-shrink-0" href="shop-single-v2.html"><img src="img/shop/widget/13.jpg" width="64" alt="Product"></a>
-                <div class="ps-2">
-                  <h6 class="widget-product-title"><a href="shop-single-v2.html">Digital Camera 40MP</a></h6>
-                  <div class="widget-product-meta"><span class="text-accent">$210.<small>00</small></span>
-                    <del class="text-muted fs-xs">$249.<small>00</small></del>
-                  </div>
-                </div>
-              </div>
+              {% endfor %}
               <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
             </div>
           </div>
