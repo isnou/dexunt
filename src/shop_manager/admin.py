@@ -4,7 +4,8 @@ from .models import Feature, Product
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('en_product_title', 'type', 'thumb', 'brand', 'model', 'upc', 'sku', 'tag', 'review_rate',
-                    'sell_rate', 'quantity', 'buy_price', 'sell_price', 'discount_price', 'get_features')
+                    'sell_rate', 'quantity', 'created_at', 'updated_at', 'buy_price', 'sell_price', 'discount_price',
+                    'get_features')
 
 
 admin.site.register(Feature)
