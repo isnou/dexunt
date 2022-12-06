@@ -5,13 +5,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Feature(models.Model):
     # --------------------------------- feature types ------------------------------------------
-    en_title = models.CharField(max_length=15, blank=True, null=True)
-    fr_title = models.CharField(max_length=15, blank=True, null=True)
-    ar_title = models.CharField(max_length=15, blank=True, null=True)
+    en_title = models.CharField(max_length=500, blank=True, null=True)
+    fr_title = models.CharField(max_length=500, blank=True, null=True)
+    ar_title = models.CharField(max_length=500, blank=True, null=True)
     # --------------------------------- feature value ------------------------------------------
-    en_value = models.TextField(max_length=1000, null=True)
-    fr_value = models.TextField(max_length=1000, null=True)
-    ar_value = models.TextField(max_length=1000, null=True)
+    en_value = models.TextField(max_length=500, null=True)
+    fr_value = models.TextField(max_length=500, null=True)
+    ar_value = models.TextField(max_length=500, null=True)
 
     def __str__(self):
         return self.en_title
