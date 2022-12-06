@@ -1,4 +1,4 @@
-{% extends "ltr/shop-manager/base.html" %}
+{% extends "en/shop-manager/base.html" %}
 {% load static %}
 {% load mathfilters %}
 
@@ -6,19 +6,15 @@
 <!-- english & frensh version -->
 {% block title %}
 <title>
-{% if lang == 'en' %}
-         Inventory - Dexunt E-Shop Management
-{% endif %}
+    Inventory - Dexunt E-Shop Management
 </title>
 {% endblock %}
 <!------------------------------- end title ------------------------------------------------>
 
 <!------------------------------- side menu ------------------------------------------------>
-<!-- english & frensh version -->
+<!-- english version -->
 {% block side_menu %}
 <div id="kt_aside_menu" class="menu menu-rounded menu-column menu-active-bg menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-arrow-gray-500 fw-semibold fs-6 my-auto" data-kt-menu="true">
-    <!-------------------english------------------>
-    {% if lang == 'en' %}
     <!--menu title dashboard-->
     <div class="menu-item py-2">
         <a class="menu-link menu-center" href="{% url 'dashboard' '#' %}" title="Dashboard" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
@@ -98,36 +94,28 @@
         </a>
     </div>
     <!--end menu title cash management-->
-    {% endif %}
-    <!-------------------end english-------------->
 </div>
 {% endblock %}
 <!------------------------------- end side menu -------------------------------------------->
 
 <!------------------------------- breadcrumb ----------------------------------------------->
-<!-- english & frensh version -->
+<!-- english version -->
 {% block breadcrumb %}
 <!--breadcrumb-->
 <ul class="breadcrumb fw-semibold fs-base my-1">
-    <!-------------------english------------------>
-    {% if lang == 'en' %}
     <li class="breadcrumb-item text-muted">
         <a href="{% url 'dashboard' '#' %}" class="text-muted">Home</a>
     </li>
     <li class="breadcrumb-item text-muted">E Shop</li>
-    {% endif %}
-    <!-------------------end english-------------->
 </ul>
 <!--end breadcrumb-->
 {% endblock %}
 <!------------------------------- end breadcrumb ------------------------------------------->
 
 <!------------------------------- products table ------------------------------------------->
-<!-- english & frensh version -->
+<!-- english version -->
 {% block content %}
 <div class="container-xxl">
-    <!-------------------english------------------>
-    {% if lang == 'en' %}
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
@@ -2364,14 +2352,9 @@
         <!--end tabs-->
         <!--footer-->
         <div class="card-footer">
-
-
         </div>
         <!--end footer-->
     </div>
-
-    {% endif %}
-    <!-------------------end english-------------->
 </div>
 {% endblock %}
 <!------------------------------- end products table --------------------------------------->
