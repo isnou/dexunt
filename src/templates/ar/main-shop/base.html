@@ -368,7 +368,7 @@
         <!--end navbar-->
       </header>
       <!-- Hero (Banners + Slider)-->
-      <section class="bg-secondary py-4 pt-md-5" dir="rtl">
+      <section class="bg-secondary py-4 pt-md-5">
         <div class="container py-xl-2">
           <div class="row">
             <!--slider-->
@@ -376,35 +376,35 @@
               <div class="tns-carousel">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;controls&quot;: false, &quot;loop&quot;: false}">
                   <div>
-                    <div class="row align-items-center">
+                    <div class="row align-items-center" dir="rtl">
                       <div class="col-md-6 order-md-2"><img class="d-block mx-auto" style="-webkit-transform: scaleX(-1);" src="{% get_media_prefix %}{{ first_main_banner.thumb }}" alt="{{ first_main_banner.type }} "></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
-                        <h2 class="fw-light pb-1 from-bottom">{{ first_main_banner.en_first_title }}</h2>
-                        <h1 class="display-4 from-bottom delay-1">{{ first_main_banner.en_second_title }}</h1>
-                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ first_main_banner.en_third_title }}</h5>
-                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ first_main_banner.link }}">{{ first_main_banner.en_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
+                        <h2 class="fw-light pb-1 from-bottom">{{ first_main_banner.ar_first_title }}</h2>
+                        <h1 class="display-4 from-bottom delay-1">{{ first_main_banner.ar_second_title }}</h1>
+                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ first_main_banner.ar_third_title }}</h5>
+                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ first_main_banner.link }}">{{ first_main_banner.ar_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <div class="row align-items-center">
+                    <div class="row align-items-center" dir="rtl">
                       <div class="col-md-6 order-md-2"><img class="d-block mx-auto" style="-webkit-transform: scaleX(-1);" src="{% get_media_prefix %}{{ second_main_banner.thumb }}" alt="{{ second_main_banner.type }}"></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
-                        <h2 class="fw-light pb-1 from-bottom">{{ second_main_banner.en_first_title }}</h2>
-                        <h1 class="display-4 from-bottom delay-1">{{ second_main_banner.en_second_title }}</h1>
-                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ second_main_banner.en_third_title }}</h5>
-                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ second_main_banner.link }}">{{ second_main_banner.en_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
+                        <h2 class="fw-light pb-1 from-bottom">{{ second_main_banner.ar_first_title }}</h2>
+                        <h1 class="display-4 from-bottom delay-1">{{ second_main_banner.ar_second_title }}</h1>
+                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ second_main_banner.ar_third_title }}</h5>
+                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ second_main_banner.link }}">{{ second_main_banner.ar_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <div class="row align-items-center">
+                    <div class="row align-items-center" dir="rtl">
                       <div class="col-md-6 order-md-2"><img class="d-block mx-auto" style="-webkit-transform: scaleX(-1);" src="{% get_media_prefix %}{{ third_main_banner.thumb }}" alt="{{ third_main_banner.type }}"></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
-                        <h2 class="fw-light pb-1 from-bottom">{{ third_main_banner.en_first_title }}</h2>
-                        <h1 class="display-4 from-bottom delay-1">{{ third_main_banner.en_second_title }}</h1>
-                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ third_main_banner.en_third_title }}</h5>
-                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ third_main_banner.link }}">{{ third_main_banner.en_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
+                        <h2 class="fw-light pb-1 from-bottom">{{ third_main_banner.ar_first_title }}</h2>
+                        <h1 class="display-4 from-bottom delay-1">{{ third_main_banner.ar_second_title }}</h1>
+                        <h5 class="fw-light pb-3 from-bottom delay-2">{{ third_main_banner.ar_third_title }}</h5>
+                        <div class="d-table scale-up delay-4 mx-auto mx-md-0"><a class="btn btn-primary btn-shadow" href="{{ third_main_banner.link }}">{{ third_main_banner.ar_button }}<i class="ci-arrow-right ms-2 me-n1"></i></a></div>
                       </div>
                     </div>
                   </div>
@@ -420,8 +420,8 @@
                   <a class="d-flex align-items-center bg-faded-info rounded-3 pt-2 ps-2 mb-4 me-4 me-xl-0" href="{{ first_thumb_banner.link }}" style="min-width: 16rem;">
                     <img src="{% get_media_prefix %}{{ first_thumb_banner.thumb }}" style="-webkit-transform: scaleX(-1);" width="125" alt="Banner">
                     <div class="py-4 px-2">
-                      <h5 class="mb-2"><span class="fw-light">{{ first_thumb_banner.en_first_title }}</span>{{ first_thumb_banner.en_second_title }}</h5>
-                      <div class="text-info fs-sm">{{ first_thumb_banner.en_button }}<i class="ci-arrow-left fs-xs ms-1"></i>
+                      <h5 class="mb-2"><span class="fw-light">{{ first_thumb_banner.ar_first_title }}</span>{{ first_thumb_banner.ar_second_title }}</h5>
+                      <div class="text-info fs-sm">{{ first_thumb_banner.ar_button }}<i class="ci-arrow-left fs-xs ms-1"></i>
                       </div>
                     </div>
                   </a>
@@ -430,8 +430,8 @@
                   <a class="d-flex align-items-center bg-faded-warning rounded-3 pt-2 ps-2 mb-4 me-4 me-xl-0" href="{{ second_thumb_banner.link }}" style="min-width: 16rem;">
                     <img src="{% get_media_prefix %}{{ second_thumb_banner.thumb }}" style="-webkit-transform: scaleX(-1);" width="125" alt="Banner">
                     <div class="py-4 px-2">
-                      <h5 class="mb-2"><span class="fw-light">{{ second_thumb_banner.en_first_title }}</span>{{ second_thumb_banner.en_second_title }}</h5>
-                      <div class="text-warning fs-sm">{{ second_thumb_banner.en_button }}<i class="ci-arrow-left fs-xs ms-1"></i></div>
+                      <h5 class="mb-2"><span class="fw-light">{{ second_thumb_banner.ar_first_title }}</span>{{ second_thumb_banner.ar_second_title }}</h5>
+                      <div class="text-warning fs-sm">{{ second_thumb_banner.ar_button }}<i class="ci-arrow-left fs-xs ms-1"></i></div>
                     </div>
                   </a>
                   <!--end second banner-->
@@ -439,8 +439,8 @@
                   <a class="d-flex align-items-center bg-faded-success rounded-3 pt-2 ps-2 mb-4" href="{{ third_thumb_banner.link }}" style="min-width: 16rem;">
                     <img src="{% get_media_prefix %}{{ third_thumb_banner.thumb }}" style="-webkit-transform: scaleX(-1);" width="125" alt="Banner">
                     <div class="py-4 px-2">
-                      <h5 class="mb-2"><span class="fw-light">{{ third_thumb_banner.en_first_title }}</span>{{ third_thumb_banner.en_second_title }}</h5>
-                      <div class="text-success fs-sm">{{ third_thumb_banner.en_button }}<i class="ci-arrow-left fs-xs ms-1"></i></div>
+                      <h5 class="mb-2"><span class="fw-light">{{ third_thumb_banner.ar_first_title }}</span>{{ third_thumb_banner.ar_second_title }}</h5>
+                      <div class="text-success fs-sm">{{ third_thumb_banner.ar_button }}<i class="ci-arrow-left fs-xs ms-1"></i></div>
                     </div>
                   </a>
                   <!--end third banner-->
@@ -458,8 +458,8 @@
       <section class="container pt-5" dir="rtl">
         <!-- Heading-->
         <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
-          <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.en_first_title }}</h2>
-          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-left ms-1 me-n1"></i></a></div>
+          <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.ar_first_title }}</h2>
+          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.ar_button }}<i class="ci-arrow-left ms-1 me-n1"></i></a></div>
         </div>
         <!-- Grid-->
         <div class="row pt-2 mx-n2">
@@ -471,16 +471,16 @@
                 <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist"><i class="ci-heart"></i></button>
               </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{product.thumb}}" style="-webkit-transform: scaleX(-1);"  alt="Product"></a>
               <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
-                <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h3>
+                <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.ar_product_title }}</a></h3>
                 <div class="d-flex justify-content-between">
                   {% if product.discount_price %}
                   <div class="product-price">
-                    <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                    <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                    <del class="fs-sm text-muted" dir="rtl">{{ product.sell_price|floatformat:"2g" }}دج</del>
+                    <span class="text-accent" dir="rtl">{{ product.discount_price|floatformat:"2g" }}دج</span>
                   </div>
                   {% else %}
                   <div class="product-price">
-                    <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                    <span class="text-accent" dir="rtl">{{ product.sell_price|floatformat:"2g" }}دج</span>
                   </div>
                   {% endif %}
                 </div>
@@ -503,8 +503,8 @@
       <section class="container pt-5">
         <!-- Heading-->
         <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4" dir="rtl">
-          <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.en_first_title }}</h2>
-          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-left ms-1 me-n1"></i></a></div>
+          <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.ar_first_title }}</h2>
+          <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{{ showcase.link }}">{{ showcase.ar_button }}<i class="ci-arrow-left ms-1 me-n1"></i></a></div>
         </div>
         <!-- Column-->
         <div class="row pt-2 mx-n2">
@@ -517,16 +517,16 @@
                   <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist"><i class="ci-heart"></i>
                   </button><a class="card-img-top d-block overflow-hidden" href="shop-single-v1.html#"><img src="{% get_media_prefix %}{{product.thumb}}" style="-webkit-transform: scaleX(-1);"  alt="Product"></a>
                   <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="shop-single-v1.html#">{{ product.brand }}</a>
-                    <h3 class="product-title fs-sm"><a href="shop-single-v1.html#">{{ product.en_product_title }}</a></h3>
+                    <h3 class="product-title fs-sm"><a href="shop-single-v1.html#">{{ product.ar_product_title }}</a></h3>
                     <div class="d-flex justify-content-between">
                       {% if product.discount_price %}
                       <div class="product-price">
-                        <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                        <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                        <del class="fs-sm text-muted" dir="rtl">{{ product.sell_price|floatformat:"2g" }}دج</del>
+                        <span class="text-accent" dir="rtl">{{ product.discount_price|floatformat:"2g" }}دج</span>
                       </div>
                       {% else %}
                       <div class="product-price">
-                        <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                        <span class="text-accent" dir="rtl">دج{{ product.sell_price|floatformat:"2g" }}</span>
                       </div>
                       {% endif %}
                     </div>
@@ -668,6 +668,8 @@
         </div>
       </section>
     </main>
+
+
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
