@@ -464,7 +464,14 @@
               <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
                 <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h3>
                 <div class="d-flex justify-content-between">
-                  <div class="product-price"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
+                  <div class="product-price">
+                    {% if product.discount_price %}
+                    <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                    <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                    {% else %}
+                    <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                    {% endif %}
+                  </div>
                   <div class="star-rating">
                     <i class="star-rating-icon ci-star-filled active"></i>
                     <i class="star-rating-icon ci-star-filled active"></i>
