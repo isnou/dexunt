@@ -10,7 +10,6 @@ def manager_dashboard(request, action):
     direction = request.session.get('language')
     url = direction + "/shop-manager/dashboard.html"
     context = {
-        'lang': lang,
     }
     return render(request, url, context)
 
@@ -41,7 +40,6 @@ def inventory(request, action, sku):
         details = request.session['inventory_details'] = False
 
     context = {
-        'lang': lang,
         'details': details,
     }
     return render(request, url, context)
@@ -84,8 +82,6 @@ def inventory_edit(request, action, sku, identity):
     sizes_count = sizes.count()
 
     context = {
-        'lang': lang,
-
         'photos': photos,
         'photos_count': photos_count,
 
@@ -121,7 +117,6 @@ def e_shop(request, action, detail, identity):
         url = direction + e_shop_actions.down(identity).get('url')
 
     context = {
-        'lang': lang,
     }
     return render(request, url, context)
 
@@ -143,7 +138,6 @@ def e_shop_edit(request, action, detail, identity):
     selected_layout = Layout.objects.all().get(id=identity)
     selected_layout_type = detail
     context = {
-        'lang': lang,
         'selected_layout': selected_layout,
         'selected_layout_type': selected_layout_type,
     }
