@@ -39,9 +39,9 @@ def inventory(request, action, sku):
     if action == "add_new_variant":
         url = direction + inventory_actions.add_new_variant(request, sku).get('url')
     if action == "show_details":
-        request.session['inventory_details'] = True
+        details = request.session['inventory_details'] = True
     if action == "hide_details":
-        request.session['inventory_details'] = False
+        details = request.session['inventory_details'] = False
 
     context = {
         'lang': lang,
