@@ -11,7 +11,7 @@ def shop_manager_content(request):
     showcase_products = raw_products_list.filter(type='main').order_by('-updated_at')
     best_sellers = raw_products_list.filter(type='main').order_by('-sell_rate')[:4]
     top_rated = raw_products_list.filter(type='main').order_by('-review_rate')[:4]
-    new_arrivals = raw_products_list.filter(type='main').order_by('-updated_at')[:4]
+    new_arrivals = raw_products_list.filter(type='main').order_by('-created_at')[:4]
     return {
         'products': products,
         'inventory_product_count': inventory_product_count,
