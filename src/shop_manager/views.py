@@ -7,10 +7,8 @@ from main_shop.models import Layout
 def manager_dashboard(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
-        request.session['direction'] = 'ltr/'
-    lang = request.session.get('language')
-    direction = request.session.get('direction')
-    url = direction + "shop-manager/dashboard.html"
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/dashboard.html"
     context = {
         'lang': lang,
     }
@@ -20,9 +18,8 @@ def manager_dashboard(request, action):
 def inventory(request, action, sku):
     if not request.session.get('inventory_details', None):
         request.session['inventory_details'] = False
-    lang = request.session.get('language')
-    direction = request.session.get('direction')
-    url = direction + "shop-manager/inventory.html"
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/inventory.html"
     details = request.session.get('inventory_details')
     if action == "add_new_product":
         url = direction + inventory_actions.add_new_product(request).get('url')
@@ -51,9 +48,8 @@ def inventory(request, action, sku):
 
 
 def inventory_edit(request, action, sku, identity):
-    lang = request.session.get('language')
-    direction = request.session.get('direction')
-    url = direction + "shop-manager/inventory-edit.html"
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/inventory-edit.html"
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
     if action == "add_new_photo":
@@ -107,9 +103,8 @@ def inventory_edit(request, action, sku, identity):
 
 
 def e_shop(request, action, detail, identity):
-    lang = request.session.get('language')
-    direction = request.session.get('direction')
-    url = direction + "shop-manager/e-shop.html"
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/e-shop.html"
     if action == "edit_main_banner":
         url = direction + e_shop_actions.main_banner(request, detail).get('url')
     if action == "edit_thumb_banner":
@@ -132,9 +127,8 @@ def e_shop(request, action, detail, identity):
 
 
 def e_shop_edit(request, action, detail, identity):
-    lang = request.session.get('language')
-    direction = request.session.get('direction')
-    url = direction + "shop-manager/e-shop-edit.html"
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/e-shop-edit.html"
     if action == "showcase":
         url = direction + e_shop_actions.showcase(request, identity).get('url')
     if action == "banner":

@@ -5,7 +5,7 @@ from .models import Product, Feature
 
 
 def main_banner(request, detail):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
     except Layout.DoesNotExist:
@@ -90,7 +90,7 @@ def main_banner(request, detail):
 
 
 def thumb_banner(request, detail):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
     except Layout.DoesNotExist:
@@ -163,7 +163,7 @@ def thumb_banner(request, detail):
 
 
 def add_movable_banner(request):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     rank = Layout.objects.all().filter(type='showcase').count() + 1
 
     if request.method == 'POST':
@@ -214,7 +214,7 @@ def add_movable_banner(request):
 
 
 def add_showcase(request):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     rank = Layout.objects.all().filter(type='showcase').count() + 1
 
     if request.method == 'POST':
@@ -249,7 +249,7 @@ def add_showcase(request):
 
 
 def delete(identity):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     ranked_layouts = Layout.objects.all().filter(type='showcase').order_by('rank')
     Layout.objects.all().get(id=identity).delete()
     rank = 1
@@ -264,7 +264,7 @@ def delete(identity):
 
 
 def up(identity):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     selected_layouts = Layout.objects.all().filter(type='showcase')
     max_rank = selected_layouts.count()
     initial_selected_layout = selected_layouts.get(id=identity)
@@ -284,7 +284,7 @@ def up(identity):
 
 
 def down(identity):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     selected_layouts = Layout.objects.all().filter(type='showcase')
     initial_selected_layout = selected_layouts.get(id=identity)
     initial_selected_layout_rank = initial_selected_layout.rank
@@ -303,7 +303,7 @@ def down(identity):
 
 
 def showcase(request, identity):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     selected_layout = Layout.objects.all().get(id=identity)
 
     if request.method == 'POST':
@@ -342,7 +342,7 @@ def showcase(request, identity):
 
 
 def banner(request, identity):
-    url = "shop-manager/e-shop.html"
+    url = "/shop-manager/e-shop.html"
     selected_layout = Layout.objects.all().get(id=identity)
 
     if request.method == 'POST':
@@ -405,7 +405,7 @@ def banner(request, identity):
 
 
 def link(detail, identity):
-    url = "shop-manager/e-shop-edit.html"
+    url = "/shop-manager/e-shop-edit.html"
     selected_layout = Layout.objects.all().get(id=identity)
     selected_product = Product.objects.all().get(sku=detail)
     selected_layout.products.add(selected_product)
@@ -417,7 +417,7 @@ def link(detail, identity):
 
 
 def unlink(detail, identity):
-    url = "shop-manager/e-shop-edit.html"
+    url = "/shop-manager/e-shop-edit.html"
     selected_layout = Layout.objects.all().get(id=identity)
     selected_product = Product.objects.all().get(sku=detail)
     selected_layout.products.remove(selected_product)

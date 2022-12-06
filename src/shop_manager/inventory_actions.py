@@ -4,7 +4,7 @@ from .models import Product, Feature
 
 
 def add_new_product(request):
-    url = "shop-manager/inventory.html"
+    url = "/shop-manager/inventory.html"
     if request.method == 'POST':
         en_product_title = request.POST.get('en_product_title', False)
         en_variant = request.POST.get('en_variant', False)
@@ -57,7 +57,7 @@ def add_new_product(request):
 
 
 def edit(request, sku):
-    url = "shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     token_variant = selected_product.en_variant
     token_en_product_title = selected_product.en_product_title
@@ -121,7 +121,7 @@ def edit(request, sku):
 
 
 def add_new_photo(request, sku):
-    url = "shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         photo = request.FILES.get('photo', False)
@@ -139,7 +139,7 @@ def add_new_photo(request, sku):
 
 
 def edit_photo(request, sku):
-    url = "shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         photo = request.FILES.get('photo', False)
@@ -151,7 +151,7 @@ def edit_photo(request, sku):
 
 
 def add_new_size(request, sku):
-    url = "shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         size = request.POST.get('size', False)
@@ -189,7 +189,7 @@ def add_new_size(request, sku):
 
 
 def add_a_set(request, sku):
-    url = "shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
@@ -253,7 +253,7 @@ def add_a_set(request, sku):
 
 
 def edit_a_set(request, sku):
-    url = "shop-manager/inventory.html"
+    url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
@@ -288,7 +288,7 @@ def edit_a_set(request, sku):
 
 
 def add_new_feature(request, sku):
-    url = "shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         en_title = request.POST.get('en_feature_title', False)
@@ -314,7 +314,7 @@ def add_new_feature(request, sku):
 
 
 def edit_feature(request, identity):
-    url = "shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_feature = Feature.objects.all().get(id=identity)
     if request.method == 'POST':
         en_title = request.POST.get('en_feature_title', False)
@@ -344,7 +344,7 @@ def edit_feature(request, identity):
 
 
 def add_quantity(request, sku):
-    url = "shop-manager/inventory.html"
+    url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     selected_product.quantity += 1
     selected_product.save()
@@ -355,7 +355,7 @@ def add_quantity(request, sku):
 
 
 def remove_quantity(request, sku):
-    url = "shop-manager/inventory.html"
+    url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     if selected_product.quantity > 0:
         selected_product.quantity -= 1
