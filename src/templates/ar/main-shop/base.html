@@ -372,11 +372,11 @@
         <div class="container py-xl-2">
           <div class="row">
             <!--slider-->
-            <div class="col-xl-9 pt-xl-4 order-xl-2">
+            <div class="col-xl-9 pt-xl-4 order-xl-2" dir="ltr">
               <div class="tns-carousel">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;controls&quot;: false, &quot;loop&quot;: false}">
                   <div>
-                    <div class="row align-items-center" dir="rtl">
+                    <div class="row align-items-center">
                       <div class="col-md-6 order-md-2"><img class="d-block mx-auto" style="-webkit-transform: scaleX(-1);" src="{% get_media_prefix %}{{ first_main_banner.thumb }}" alt="{{ first_main_banner.type }} "></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
                         <h2 class="fw-light pb-1 from-bottom">{{ first_main_banner.ar_first_title }}</h2>
@@ -387,7 +387,7 @@
                     </div>
                   </div>
                   <div>
-                    <div class="row align-items-center" dir="rtl">
+                    <div class="row align-items-center">
                       <div class="col-md-6 order-md-2"><img class="d-block mx-auto" style="-webkit-transform: scaleX(-1);" src="{% get_media_prefix %}{{ second_main_banner.thumb }}" alt="{{ second_main_banner.type }}"></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
                         <h2 class="fw-light pb-1 from-bottom">{{ second_main_banner.ar_first_title }}</h2>
@@ -398,7 +398,7 @@
                     </div>
                   </div>
                   <div>
-                    <div class="row align-items-center" dir="rtl">
+                    <div class="row align-items-center">
                       <div class="col-md-6 order-md-2"><img class="d-block mx-auto" style="-webkit-transform: scaleX(-1);" src="{% get_media_prefix %}{{ third_main_banner.thumb }}" alt="{{ third_main_banner.type }}"></div>
                       <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
                         <h2 class="fw-light pb-1 from-bottom">{{ third_main_banner.ar_first_title }}</h2>
@@ -412,6 +412,8 @@
               </div>
             </div>
             <!--end slider-->
+
+
             <!--intro banners-->
             <div class="col-xl-3 order-xl-1 pt-4 mt-3 mt-xl-0 pt-xl-0">
               <div class="table-responsive" data-simplebar>
