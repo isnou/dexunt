@@ -201,7 +201,7 @@
               </a>
               <!--end desktop logo-->
               <!--mobile logo-->
-              <a class="navbar-brand d-sm-none me-2" href="index.html">
+              <a class="navbar-brand d-sm-none me-2" href="{% url 'main-shop-home' %}">
                 <img src="{% static 'main-shop/logos/favicon-45x27.png' %}" width="40" alt="Dexunt">
               </a>
               <!--end mobile logo-->
@@ -355,10 +355,10 @@
                 <!--end departments menu-->
                 <!--primary menu-->
                 <ul class="navbar-nav">
-                  <a class="nav-link" href="#"><i class="ci-gift mt-n1" style="margin-right: 5px;"></i>Gift Cards</a>
-                  <a class="nav-link" href="#"><i class="ci-money-bag mt-n1" style="margin-right: 5px;"></i>Earn With Us</a>
-                  <a class="nav-link" href="#"><i class="ci-tag mt-n1" style="margin-right: 5px;"></i>Coupons</a>
-                  <a class="nav-link" href="#"><i class="ci-cashier mt-n1" style="margin-right: 5px;"></i>Seller</a>
+                  <a class="nav-link" href="#"><i class="ci-gift mt-n1" style="margin-left: 5px;"></i>Gift Cards</a>
+                  <a class="nav-link" href="#"><i class="ci-money-bag mt-n1" style="margin-left: 5px;"></i>Earn With Us</a>
+                  <a class="nav-link" href="#"><i class="ci-tag mt-n1" style="margin-left: 5px;"></i>Coupons</a>
+                  <a class="nav-link" href="#"><i class="ci-cashier mt-n1" style="margin-left: 5px;"></i>Seller</a>
                 </ul>
                 <!--end primary menu-->
               </div>
@@ -368,7 +368,7 @@
         <!--end navbar-->
       </header>
       <!-- Hero (Banners + Slider)-->
-      <section class="bg-secondary py-4 pt-md-5">
+      <section class="bg-secondary py-4 pt-md-5" dir="rtl">
         <div class="container py-xl-2">
           <div class="row">
             <!--slider-->
