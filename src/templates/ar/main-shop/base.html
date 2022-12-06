@@ -571,15 +571,18 @@
           <div class="row align-items-center">
             <div class="col-md-5">
               <div class="px-4 pe-sm-0 ps-sm-5"><span class="badge bg-danger">limited</span>
-                <h3 class="mt-4 mb-1 text-body fw-light">{{ showcase.en_first_title }}</h3>
-                <h2 class="mb-1">{{ showcase.en_second_title }}</h2>
-                <p class="h5 text-body fw-light">{{ showcase.en_third_title }}</p>
+                <h3 class="mt-4 mb-1 text-body fw-light">{{ showcase.ar_first_title }}</h3>
+                <h2 class="mb-1">{{ showcase.ar_second_title }}</h2>
+                <p class="h5 text-body fw-light">{{ showcase.ar_third_title }}</p>
                 <div class="countdown py-2 h4" data-countdown="{{ showcase.month }}/{{ showcase.day }}/{{ showcase.year }} 07:00:00 PM">
                   <div class="countdown-days"><span class="countdown-value"></span><span class="countdown-label text-muted">d</span></div>
                   <div class="countdown-hours"><span class="countdown-value"></span><span class="countdown-label text-muted">h</span></div>
                   <div class="countdown-minutes"><span class="countdown-value"></span><span class="countdown-label text-muted">m</span></div>
                   <div class="countdown-seconds"><span class="countdown-value"></span><span class="countdown-label text-muted">s</span></div>
-                </div><a class="btn btn-accent" href="{{ showcase.link }}">{{ showcase.en_button }}<i class="ci-arrow-right fs-ms ms-1"></i></a>
+                </div>
+                <a class="btn btn-accent" href="{{ showcase.link }}">{{ showcase.ar_button }}
+                  <i class="ci-arrow-right fs-ms ms-1"></i>
+                </a>
               </div>
             </div>
             <div class="col-md-7"><img src="{% get_media_prefix %}{{showcase.thumb}}" style="-webkit-transform: scaleX(-1);"  alt="timed banner"></div>
