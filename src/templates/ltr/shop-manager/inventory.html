@@ -123,11 +123,10 @@
 <!------------------------------- end breadcrumb ------------------------------------------->
 
 <!------------------------------- products table ------------------------------------------->
-<!-- english & frensh version -->
+<!-- english version -->
 {% block content %}
 <div class="container-xxl">
-    <!-------------------english------------------>
-    {% if lang == 'en' %}
+
     <!--principle card-->
     <div class="card card-bordered">
         <!--principle card header-->
@@ -157,6 +156,9 @@
             {% endif %}
             <!--toolbar-->
             <div class="card-toolbar">
+                <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Show Details" style="margin-left: 10px;">
+                    <i class="bi bi-eyeglasses"></i>
+                </a>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_new_product">
                     add new product
                 </button>
@@ -660,7 +662,6 @@
     </div>
     <!--end principle card-->
 
-
     <!--add new product modal-->
     <div class="modal bg-white fade" tabindex="-1" id="add_new_product">
         <div class="modal-dialog modal-fullscreen">
@@ -993,10 +994,6 @@
         </div>
     </div>
     <!--end add new product modal-->
-
-
-    {% endif %}
-    <!-------------------end english-------------->
 </div>
 {% endblock %}
 <!------------------------------- end products table --------------------------------------->
