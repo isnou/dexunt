@@ -16,7 +16,6 @@
 <!-- english version -->
 {% block side_menu %}
 <div id="kt_aside_menu" class="menu menu-rounded menu-column menu-active-bg menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-arrow-gray-500 fw-semibold fs-6 my-auto" data-kt-menu="true">
-    {% if lang == 'en' %}
     <!--menu title dashboard-->
     <div class="menu-item py-2">
         <a class="menu-link active menu-center" href="{% url 'dashboard' 'en' %}" title="Dashboard" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
@@ -96,7 +95,6 @@
         </a>
     </div>
     <!--end menu title cash management-->
-    {% endif %}
 </div>
 {% endblock %}
 <!------------------------------- end side menu -------------------------------------------->
