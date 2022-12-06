@@ -18,9 +18,12 @@ def manager_dashboard(request, action):
 
 
 def inventory(request, action, sku):
+    if not request.session.get('inventory_details', None):
+        request.session['inventory_details'] = False
     lang = request.session.get('language')
     direction = request.session.get('direction')
     url = direction + "shop-manager/inventory.html"
+    details = request.session.get('inventory_details')
     if action == "add_new_product":
         url = direction + inventory_actions.add_new_product(request).get('url')
     if action == "delete_product":
@@ -35,9 +38,14 @@ def inventory(request, action, sku):
         url = direction + inventory_actions.remove_quantity(request, sku).get('url')
     if action == "add_new_variant":
         url = direction + inventory_actions.add_new_variant(request, sku).get('url')
+    if action == "show_details":
+        request.session['inventory_details'] = True
+    if action == "hide_details":
+        request.session['inventory_details'] = False
 
     context = {
         'lang': lang,
+        'details': details,
     }
     return render(request, url, context)
 
