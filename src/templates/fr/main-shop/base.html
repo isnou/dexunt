@@ -452,6 +452,7 @@
         </div>
       </section>
 
+      {% if showcases_exists %}
       {% for showcase in showcases %}
       <!-- grid showcase -->
       {% if showcase.en_second_title == 'grid_showcase' %}
@@ -589,6 +590,7 @@
       {% endif %}
       <!-- end timed banner -->
       {% endfor %}
+      {% endif %}
 
       <!-- Product widgets-->
       <section class="container pb-4 pb-md-5">
