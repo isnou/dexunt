@@ -5,7 +5,7 @@ def main_shop_home(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
     direction = request.session.get('language')
-    url = direction + "/main-shop/base.html"
+    url = direction + "/main-shop/main-page.html"
     context = {
     }
     return render(request, url, context)
