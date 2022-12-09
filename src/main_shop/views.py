@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .models import Product
 
 
 def main_shop_home(request):
@@ -19,3 +20,13 @@ def change_language(request, language):
     if language == 'ar':
         request.session['language'] = 'ar'
     return redirect('main-shop-home')
+
+
+def product(request, sku):
+    selected_product = Product.objects.all().get(sku=sku)
+    direction = request.session.get('language')
+    url = direction + "/main-shop/product.html"
+    context = {
+        'selected_product': selected_product,
+    }
+    return render(request, url, context)
