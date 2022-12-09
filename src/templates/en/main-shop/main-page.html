@@ -213,32 +213,26 @@
                 {% for product in showcase.products.all %}
                 <!-- Product-->
                 <div>
-                  <div class="card product-card card-static pb-3">
-                    <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="grocery-single.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
-                    <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-grocery-store.html#">{{ product.brand }}</a>
-                      <h3 class="product-title fs-sm text-truncate"><a href="grocery-single.html">{{ product.en_product_title }}</a></h3>
-                      {% if product.discount_price %}
-                                <div class="product-price">
-                                    <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                                    <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                                </div>
-                                {% else %}
-                                <div class="product-price">
-                                    <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
-                                </div>
-                                {% endif %}
+                    <div class="card product-card card-static pb-3">
+                        <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="grocery-single.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
+                        <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-grocery-store.html#">{{ product.brand }}</a>
+                            <h3 class="product-title fs-sm text-truncate"><a href="grocery-single.html">{{ product.en_product_title }}</a></h3>
+                            {% if product.discount_price %}
+                            <div class="product-price">
+                                <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                                <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            </div>
+                            {% else %}
+                            <div class="product-price">
+                                <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body card-body-hidden">
+                            <button class="btn btn-primary btn-shadow btn-sm" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+                        </div>
                     </div>
-                    <div class="product-floating-btn">
-                      <button class="btn btn-primary btn-shadow btn-sm" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
-                    </div>
-                  </div>
                 </div>
-
-
-
-
-
-
                 <!-- Product-->
                 {% endfor %}
             </div>
