@@ -28,12 +28,14 @@ def product(request, sku):
     selected_variants = related_products.filter(type='main').exclude(en_variant=selected_product.en_variant)
 
     album = related_products.filter(en_variant=selected_product.en_variant + ' photo')
+    size_variants = related_products.filter(en_variant=selected_product.en_variant + ' size')
 
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
     context = {
         'selected_product': selected_product,
         'selected_variants': selected_variants,
+        'size_variants': size_variants,
         'album': album,
     }
     return render(request, url, context)
