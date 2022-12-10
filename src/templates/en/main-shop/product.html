@@ -136,7 +136,7 @@
                                 {% else %}
                                 <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
                                 {% endif %}
-                                
+
                                 <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="">{{ selected_product.en_variant }}</span></div>
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in selected_variants %}
@@ -176,9 +176,6 @@
                                 <div class="d-flex mb-4">
                                     <div class="w-100 me-3">
                                         <button class="btn btn-secondary d-block w-100" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
-                                    </div>
-                                    <div class="w-100">
-                                        <button class="btn btn-secondary d-block w-100" type="button"><i class="ci-compare fs-lg me-2"></i>Compare</button>
                                     </div>
                                 </div>
                                 <!-- Product panels-->
