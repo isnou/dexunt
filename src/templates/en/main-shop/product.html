@@ -136,7 +136,7 @@
                                 {% else %}
                                 <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
                                 {% endif %}
-                                <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="colorOption">{{ product.en_variant }}</span></div>
+                                <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="colorOption">{{ selected_product.en_variant }}</span></div>
                                 <div class="position-relative me-n4 mb-3">
                                     <div class="form-check form-option form-check-inline mb-2">
                                         <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="colorOption" value="Dark blue/Orange" checked>
