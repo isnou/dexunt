@@ -155,7 +155,7 @@
                                     {% for selected_variant in size_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
                                         <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="colorOption" value="{{ selected_variant.size }}">
-                                        <label class="form-option-label rounded-circle" for="color1"><span class="form-option-color rounded-circle" style="background-color: #fff;"></span></label>
+                                        <label class="form-option-label rounded-square" for="color1">{{ selected_variant.size }}<span class="form-option-color rounded-square" style="background-color: #fff;"></span></label>
                                     </div>
                                     {% endfor %}
                                 </div>
