@@ -140,7 +140,9 @@
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
-                                        <label class="form-option-label rounded-circle"><span class="form-option-color rounded-circle" style="background-color: #f25540;"></span></label>
+                                        <label class="form-option-label rounded-square">
+                                            <span class="form-option-color rounded-square" style="background-image:url('{% get_media_prefix %}{{selected_product.thumb}}')"></span>
+                                        </label>
                                     </div>
                                     {% endfor %}
                                     {% if selected_product.quantity == 0 %}
