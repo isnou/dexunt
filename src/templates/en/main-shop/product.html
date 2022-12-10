@@ -82,7 +82,7 @@
             </nav>
         </div>
         <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-            <h1 class="h3 text-light mb-2">Smartwatch Youth Edition</h1>
+            <h1 class="h3 text-light mb-2">{{ selected_product.en_product_title }}</h1>
             <div>
                 <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
                 </div><span class="d-inline-block fs-sm text-white opacity-70 align-middle mt-1 ms-1">74 Reviews</span>
@@ -138,22 +138,12 @@
                                 {% endif %}
                                 <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="colorOption">{{ selected_product.en_variant }}</span></div>
                                 <div class="position-relative me-n4 mb-3">
+                                    {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
                                         <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="colorOption" value="Dark blue/Orange" checked>
                                         <label class="form-option-label rounded-circle" for="color1"><span class="form-option-color rounded-circle" style="background-color: #f25540;"></span></label>
                                     </div>
-                                    <div class="form-check form-option form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" name="color" id="color2" data-bs-label="colorOption" value="Dark blue/Green">
-                                        <label class="form-option-label rounded-circle" for="color2"><span class="form-option-color rounded-circle" style="background-color: #65805b;"></span></label>
-                                    </div>
-                                    <div class="form-check form-option form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" name="color" id="color3" data-bs-label="colorOption" value="Dark blue/White">
-                                        <label class="form-option-label rounded-circle" for="color3"><span class="form-option-color rounded-circle" style="background-color: #f5f5f5;"></span></label>
-                                    </div>
-                                    <div class="form-check form-option form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" name="color" id="color4" data-bs-label="colorOption" value="Dark blue/Black">
-                                        <label class="form-option-label rounded-circle" for="color4"><span class="form-option-color rounded-circle" style="background-color: #333;"></span></label>
-                                    </div>
+                                    {% end for %}
                                     {% if selected_product.quantity == 0 %}
                                     <div class="product-badge product-available mt-n1"><i class="ci-security-announcement"></i>Product Unavailable</div>
                                     {% endif %}
