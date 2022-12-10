@@ -27,11 +27,11 @@ def product(request, sku):
     related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
     selected_variants = related_products.filter(type='main').exclude(en_variant=selected_product.en_variant)
 
-    for variant in selected_variants:
-        related_products.exclude(en_variant=variant.en_variant)
+    for selected_variant in selected_variants:
+        related_products.all().exclude(en_variant=selected_variant.en_variant)
 
     album = related_products.filter(type='photo')
-    
+
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
     context = {
