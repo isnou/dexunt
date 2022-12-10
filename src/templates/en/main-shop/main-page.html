@@ -169,10 +169,16 @@
         {% if product.quantity > 0 %}
         <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
             <div class="card product-card">
-                <div class="product-card-actions d-flex align-items-center"><a class="btn-action nav-link-style me-2" href="home-electronics-store.html#"><i class="ci-compare me-1"></i>Compare</a>
-                    <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button>
-                </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
+                <div class="product-card-actions d-flex align-items-center">
+                    <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
+                        <i class="ci-heart"></i>
+                    </button>
+                </div>
+                <a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html">
+                    <img src="{% get_media_prefix %}{{product.thumb}}" alt="Product">
+                </a>
+                <div class="card-body py-2">
+                    <a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
                     <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h3>
                     <div class="d-flex justify-content-between">
                         {% if product.discount_price %}
@@ -188,7 +194,9 @@
                     </div>
                 </div>
                 <div class="card-body card-body-hidden">
-                    <button class="btn btn-primary btn-sm d-block w-100 mb-2" type="button"><i class="ci-cart fs-sm me-1"></i>Add to Cart</button>
+                    <button class="btn btn-primary btn-sm d-block w-100 mb-2" type="button">
+                        <i class="ci-cart fs-sm me-1"></i>Add to Cart
+                    </button>
                 </div>
             </div>
             <hr class="d-sm-none">
@@ -196,13 +204,21 @@
         {% else %}
         <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
             <div class="card product-card">
-                <div class="product-card-actions d-flex align-items-center"><a class="btn-action nav-link-style me-2" href="home-electronics-store.html#"><i class="ci-compare me-1"></i>Compare</a>
-                    <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button>
-                </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
+                <div class="product-card-actions d-flex align-items-center">
+                    <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
+                        <i class="ci-heart"></i>
+                    </button>
+                </div>
+                <a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html">
+                    <img src="{% get_media_prefix %}{{product.thumb}}" alt="Product">
+                </a>
+                <div class="card-body py-2">
+                    <a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
                     <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h3>
                     <div class="d-flex justify-content-between">
-                        <div class="product-price"><span class="text-muted fs-sm">Out of stock</span></div>
+                        <div class="product-price">
+                            <span class="text-muted fs-sm">Out of stock</span>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body card-body-hidden">
@@ -232,6 +248,7 @@
             <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: true, &quot;nav&quot;: false, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;768&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;items&quot;:4, &quot;gutter&quot;: 30}}}">
                 {% for product in showcase.products.all %}
                 <!-- Product-->
+                {% if product.quantity > 0 %}
                 <div>
                     <div class="card product-card card-static pb-3">
                         <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="grocery-single.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
@@ -253,6 +270,22 @@
                         </div>
                     </div>
                 </div>
+                {% else %}
+                <div>
+                    <div class="card product-card card-static pb-3">
+                        <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="grocery-single.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
+                        <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-grocery-store.html#">{{ product.brand }}</a>
+                            <h3 class="product-title fs-sm text-truncate"><a href="grocery-single.html">{{ product.en_product_title }}</a></h3>
+                            <div class="product-price">
+                                <span class="text-muted fs-sm">Out of stock</span>
+                            </div>
+                        </div>
+                        <div class="product-floating-btn" style="position: static;align-self: center;">
+                            <a class="btn btn-secondary btn-sm d-block w-100 mb-2" href="shop-single-v2.html">View details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 <!-- Product-->
                 {% endfor %}
             </div>
