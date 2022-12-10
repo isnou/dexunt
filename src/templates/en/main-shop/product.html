@@ -154,13 +154,13 @@
                                 </div>
                                 <div class="d-flex align-items-center pt-2 pb-4">
 
-
-                                    <label class="form-label me-3" for="quantity2">Quantity</label>
-                <input class="form-control" type="number" id="quantity2" min="1" value="1">
-
-
-
+                                    {% if selected_product.quantity > 0 %}
+                                    <label class="form-label me-2" for="quantity2">Quantity</label>
+                                    <input class="form-control me-2" type="number" id="quantity2" min="1" value="1">
                                     <button class="btn btn-primary btn-shadow d-block w-100" type="button"><i class="ci-cart fs-lg me-2"></i>Add to Cart</button>
+                                    {% else %}
+                                    <button class="btn btn-primary btn-shadow d-block w-100" type="button" disabled><i class="ci-cart fs-lg me-2"></i>Add to Cart</button>
+                                    {% endif %}
                                 </div>
                                 <div class="d-flex mb-4">
                                     <div class="w-100 me-3">
