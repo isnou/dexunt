@@ -166,6 +166,7 @@
     <div class="row pt-2 mx-n2">
         {% for product in showcase.products.all %}
         <!-- Product-->
+        {% if product.quantity > 0 %}
         <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
             <div class="card product-card">
                 <div class="product-card-actions d-flex align-items-center"><a class="btn-action nav-link-style me-2" href="home-electronics-store.html#"><i class="ci-compare me-1"></i>Compare</a>
@@ -192,6 +193,25 @@
             </div>
             <hr class="d-sm-none">
         </div>
+        {% else %}
+        <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
+            <div class="card product-card">
+              <div class="product-card-actions d-flex align-items-center"><a class="btn-action nav-link-style me-2" href="home-electronics-store.html#"><i class="ci-compare me-1"></i>Compare</a>
+                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button>
+              </div><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
+              <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-electronics-store.html#">{{ product.brand }}</a>
+                <h3 class="product-title fs-sm"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h3>
+                <div class="d-flex justify-content-between">
+                  <div class="product-price"><span class="text-muted fs-sm">Out of stock</span></div>
+                </div>
+              </div>
+              <div class="card-body card-body-hidden"><a class="btn btn-secondary btn-sm d-block w-100 mb-2" href="shop-single-v2.html">View details</a>
+                <div class="text-center"><a class="nav-link-style fs-ms" href="home-electronics-store.html#quick-view-electro" data-bs-toggle="modal"><i class="ci-eye align-middle me-1"></i>Quick view</a></div>
+              </div>
+            </div>
+            <hr class="d-sm-none">
+          </div>
+        {% endif %}
         <!-- Product-->
         {% endfor %}
     </div>
