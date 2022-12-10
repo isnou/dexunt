@@ -25,11 +25,13 @@ def change_language(request, language):
 def product(request, sku):
     selected_product = Product.objects.all().get(sku=sku)
     variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
+    selected_variants = variants.filter(type='main')
     album = variants.filter(type='photo')
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
     context = {
         'selected_product': selected_product,
+        'selected_variants': selected_variants,
         'album': album,
     }
     return render(request, url, context)
