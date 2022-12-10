@@ -76,7 +76,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title product-title"><a href="shop-single-v2.html" data-bs-toggle="tooltip" data-bs-placement="right" title="Go to product page">Smartwatch Youth Edition<i class="ci-arrow-right fs-lg ms-2"></i></a></h4>
+                <h4 class="modal-title product-title"><a href="shop-single-v2.html" data-bs-toggle="tooltip" data-bs-placement="right" title="Go to product page">{{ product.en_product_title }}<i class="ci-arrow-right fs-lg ms-2"></i></a></h4>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -321,6 +321,11 @@
               </div>
               <div class="card-body card-body-hidden">
                   <a class="btn btn-secondary btn-sm d-block w-100 mb-2" href="shop-single-v2.html">View details</a>
+                  <div class="text-center">
+                      <a class="nav-link-style fs-ms" href="#{{ product.sku }}" data-bs-toggle="modal">
+                          <i class="ci-eye align-middle me-1"></i>Quick view
+                      </a>
+                  </div>
               </div>
             </div>
             <hr class="d-sm-none">
