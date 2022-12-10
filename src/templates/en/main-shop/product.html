@@ -153,12 +153,6 @@
                                 </div>
                                 {% if size_variants %}
                                 <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="sizeOption">{{ selected_product.en_variant }}</span></div>
-                                <div class="position-relative me-n4 mb-3">
-                                    <div class="form-check form-option form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="sizeOption" value="{{ selected_variant.size }}" checked>
-                                        <label class="form-option-label rounded-square" for="color1">{{ selected_variant.size }}<span class="form-option-color rounded-square" style="background-color: #fff;"></span></label>
-                                    </div>
-                                </div>
 
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in size_variants %}
