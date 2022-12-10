@@ -136,7 +136,7 @@
                                 {% else %}
                                 <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
                                 {% endif %}
-                                <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="colorOption">{{ selected_product.en_variant }}</span></div>
+                                <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="">{{ selected_product.en_variant }}</span></div>
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
@@ -151,14 +151,24 @@
                                     </div>
                                     {% endif %}
                                 </div>
+                                {% if size_variants %}
+                                <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="sizeOption">{{ selected_product.en_variant }}</span></div>
+                                <div class="position-relative me-n4 mb-3">
+                                    <div class="form-check form-option form-check-inline mb-2">
+                                        <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="sizeOption" value="{{ selected_variant.size }}" checked>
+                                        <label class="form-option-label rounded-square" for="color1">{{ selected_variant.size }}<span class="form-option-color rounded-square" style="background-color: #fff;"></span></label>
+                                    </div>
+                                </div>
+
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in size_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="colorOption" value="{{ selected_variant.size }}">
-                                        <label class="form-option-label rounded-square" for="color1">{{ selected_variant.size }}<span class="form-option-color rounded-square" style="background-color: #fff;"></span></label>
+                                        <input class="form-check-input" type="radio" name="color" id="{{ selected_variant.sku }}" data-bs-label="sizeOption" value="{{ selected_variant.size }}">
+                                        <label class="form-option-label rounded-square" for="{{ selected_variant.sku }}">{{ selected_variant.size }}<span class="form-option-color rounded-square" style="background-color: #fff;"></span></label>
                                     </div>
                                     {% endfor %}
                                 </div>
+                                {% endif %}
                                 <div class="d-flex align-items-center pt-2 pb-4">
                                     {% if selected_product.quantity > 0 %}
                                     <label class="form-label me-2" for="quantity2">Quantity</label>
