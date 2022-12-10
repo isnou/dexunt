@@ -250,7 +250,7 @@
                 <!-- Product-->
                 {% if product.quantity > 0 %}
                 <div>
-                    <div class="card product-card card-static pb-3">
+                    <div class="card product-card">
                         <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="grocery-single.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
                         <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-grocery-store.html#">{{ product.brand }}</a>
                             <h3 class="product-title fs-sm text-truncate"><a href="grocery-single.html">{{ product.en_product_title }}</a></h3>
@@ -265,14 +265,14 @@
                             </div>
                             {% endif %}
                         </div>
-                        <div class="product-floating-btn" style="position: static;align-self: center;">
+                        <div class="card-body card-body-hidden">
                             <button class="btn btn-primary btn-sm d-block w-100 mb-2" type="button"><i class="ci-cart fs-sm me-1"></i>Add to Cart</button>
                         </div>
                     </div>
                 </div>
                 {% else %}
                 <div>
-                    <div class="card product-card card-static pb-3">
+                    <div class="card product-card">
                         <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="grocery-single.html"><img src="{% get_media_prefix %}{{product.thumb}}" alt="Product"></a>
                         <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="home-grocery-store.html#">{{ product.brand }}</a>
                             <h3 class="product-title fs-sm text-truncate"><a href="grocery-single.html">{{ product.en_product_title }}</a></h3>
@@ -280,7 +280,7 @@
                                 <span class="text-muted fs-sm">Out of stock</span>
                             </div>
                         </div>
-                        <div class="product-floating-btn" style="position: static;align-self: center;">
+                        <div class="card-body card-body-hidden">
                             <a class="btn btn-secondary btn-sm d-block w-100 mb-2" href="shop-single-v2.html">View details</a>
                         </div>
                     </div>
