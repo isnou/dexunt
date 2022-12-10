@@ -138,6 +138,11 @@
                                 {% endif %}
                                 <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="colorOption">{{ selected_product.en_variant }}</span></div>
                                 <div class="position-relative me-n4 mb-3">
+                                    <div class="form-check form-option form-check-inline mb-2">
+                                        <label class="form-option-label rounded-square active">
+                                            <a class="form-option-color rounded-square" href="#" style="background-image:url('{% get_media_prefix %}{{selected_product.thumb}}')"></a>
+                                        </label>
+                                    </div>
                                     {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
                                         <label class="form-option-label rounded-square">
