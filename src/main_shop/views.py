@@ -25,7 +25,7 @@ def change_language(request, language):
 def product(request, sku):
     selected_product = Product.objects.all().get(sku=sku)
     variants = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
-    selected_variants = variants.filter(type='main')
+    selected_variants = variants.filter(type='main').exclude(en_product_title=selected_product.en_product_title)
     album = variants.filter(type='photo')
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
