@@ -27,8 +27,8 @@ def product(request, sku):
     related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
     selected_variants = related_products.filter(type='main').exclude(en_variant=selected_product.en_variant)
 
-    album = related_products.filter(en_variant=selected_product.en_variant).filter(type='photo')
-    
+    album = related_products.filter(en_variant=selected_product.en_variant + ' photo').filter(type='photo')
+
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
     context = {
