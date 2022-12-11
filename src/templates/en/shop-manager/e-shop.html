@@ -1087,7 +1087,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    {% for product in showcase_products %}
+                                                    {% for product in points_added_products %}
                                                     <tr>
                                                         <td>
                                                             <a href="{% url 'e-shop' 'link_product' product.sku 0 %}" class="btn btn-sm btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="link this product">
@@ -1120,7 +1120,7 @@
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                {% for product in showcase_products %}
+                                                                {% for product in points_products_to_add %}
                                                                 <tr>
                                                                     <td>
                                                                         <a href="{% url 'e-shop' 'link_product' product.sku 0 %}" class="btn btn-sm btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="link this product">
