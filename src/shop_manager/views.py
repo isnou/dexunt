@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . import inventory_actions, e_shop_actions
+from . import inventory_actions, e_shop_actions, clips_actions
 from .models import Product
 from main_shop.models import Layout
 
@@ -115,6 +115,8 @@ def e_shop(request, action, detail, identity):
         url = direction + e_shop_actions.up(identity).get('url')
     if action == "down":
         url = direction + e_shop_actions.down(identity).get('url')
+    if action == "add_points":
+        url = direction + clips_actions.add_points(request).get('url')
 
     context = {
     }
