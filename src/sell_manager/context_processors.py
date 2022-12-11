@@ -18,8 +18,10 @@ def clips_manager(request):
     else:
         points = Clip()
 
-    points_added_products = products.exclude.all()
+    points_added_products = None
     points_products_to_add = products
+    for product in products:
+        points_added_products = products.exclude(sku=product.sku)
 
     if raw_clips.filter(type='points-products').exists():
         all_points = raw_clips.filter(type='points-products')
