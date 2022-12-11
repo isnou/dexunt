@@ -10,7 +10,7 @@ def shop_manager_content(request):
     if raw_clips.filter(type='points').exists():
         points = raw_clips.get(type='points')
     else:
-        points = None
+        points = Clip()
     return {
         'points': points,
     }
