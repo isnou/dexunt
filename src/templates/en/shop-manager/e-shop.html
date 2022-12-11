@@ -1123,7 +1123,7 @@
                                                                 {% for product in showcase_products %}
                                                                 <tr>
                                                                     <td>
-                                                                        <a href="{% url 'e-shop-edit' 'link_product' product.sku selected_layout.id %}" class="btn btn-sm btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="link this product">
+                                                                        <a href="{% url 'e-shop' 'link_product' product.sku 0 %}" class="btn btn-sm btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="link this product">
                                                                             <img src="{% get_media_prefix %}{{ product.thumb }}" class="w-50px ms-n1 me-1" alt="">
                                                                         </a>
                                                                     </td>
