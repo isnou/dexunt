@@ -7,15 +7,15 @@ class Clip(models.Model):
     # --------------------------------- clip technical informations ----------------------------
     sku = models.CharField(max_length=30, unique=True, null=True)
     product_title = models.CharField(max_length=200, blank=True, null=True)
-    type = models.CharField(max_length=50, blank=True, null=True)
+    type = models.TextField(max_length=50, blank=True, null=True)
     # --------------------------------- clip info  ---------------------------------------------
-    en_clip_title = models.CharField(max_length=100, blank=True, null=True)
-    fr_clip_title = models.CharField(max_length=100, blank=True, null=True)
-    ar_clip_title = models.CharField(max_length=100, blank=True, null=True)
+    en_clip_title = models.TextField(max_length=100, blank=True, null=True)
+    fr_clip_title = models.TextField(max_length=100, blank=True, null=True)
+    ar_clip_title = models.TextField(max_length=100, blank=True, null=True)
 
-    en_clip_detail = models.CharField(max_length=100, blank=True, null=True)
-    fr_clip_detail = models.CharField(max_length=100, blank=True, null=True)
-    ar_clip_detail = models.CharField(max_length=100, blank=True, null=True)
+    en_clip_detail = models.TextField(max_length=100, blank=True, null=True)
+    fr_clip_detail = models.TextField(max_length=100, blank=True, null=True)
+    ar_clip_detail = models.TextField(max_length=100, blank=True, null=True)
 
     value = models.IntegerField(
         default=0,
@@ -27,4 +27,4 @@ class Clip(models.Model):
     points = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.product_title
+        return self.type
