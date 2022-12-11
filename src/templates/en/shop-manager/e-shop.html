@@ -1014,7 +1014,188 @@
                     <div class="tab-content">
                         <!--points tab-->
                         <div class="tab-pane fade show active" id="points" role="tabpanel">
+                            <!--points-->
+                            <div class="flex-wrap flex-stack">
+                                <div class="align-items-center">
+                                    {% if point_count > 0 %}
+                                    <div class="symbol symbol-50px" style="margin-bottom: 20px;">
+                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add points">
+                                            <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_points"></i>
+                                        </a>
+                                    </div>
+                                    {% for instance in points %}
+                                    <div class="table-responsive mb-10">
+                                        <div class="card card-dashed">
+                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                {% csrf_token %}
+                                                <div class="card-body p-9">
+                                                    <!--main information-->
+                                                    <div class="row mb-7">
+                                                        <div class="col-lg-8">
+                                                            <button type="submit" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </button>
+                                                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                                <i class="bi bi-trash3"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-7">
+                                                        <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English Title</label>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" name="en_clip_title" class="form-control" placeholder="{{ instance.en_clip_title }}">
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" name="en_clip_detail" class="form-control" placeholder="{{ instance.en_clip_detail }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-7">
+                                                        <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">French </label>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" name="fr_clip_title" class="form-control" placeholder="{{ instance.fr_clip_title }}">
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" name="fr_clip_detail" class="form-control" placeholder="{{ instance.fr_clip_detail }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-7">
+                                                        <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">Arabic </label>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" name="ar_clip_title" class="form-control" placeholder="{{ instance.ar_clip_title }}" dir="rtl">
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" name="ar_clip_detail" class="form-control" placeholder="{{ instance.ar_clip_detail }}" dir="rtl">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-7">
+                                                        <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">Value </label>
+                                                        <div class="col-lg-4">
+                                                            <input type="number" name="points" class="form-control" placeholder="{{ instance.points }}">
+                                                        </div>
+                                                    </div>
+                                                    <!--end main information-->
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                    <div class="symbol symbol-50px" style="margin-right: 10px;">
+                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add points">
+                                            <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_points"></i>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!--end points-->
+                            <!--new points modal-->
+                            <div class="modal fade" tabindex="-1" id="new_points">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title">Add Points</h3>
+                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                <span class="svg-icon svg-icon-1"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                {% csrf_token %}
+                                                <div class="card-title">
+                                                    <div class="card card-flush py-4">
+                                                        <!--english title-->
+                                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                            <div class="d-flex flex-wrap gap-5">
+                                                                <!--clip title input-->
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">English Points Title</span>
+                                                                    <input type="text" name="en_feature_title" class="form-control">
+                                                                </div>
+                                                                <!--end clip title input-->
+                                                                <!--clip detail input-->
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">English Points Detail</span>
+                                                                    <input type="text" name="en_clip_detail" class="form-control">
+                                                                </div>
+                                                                <!--end clip detail input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end english title-->
 
+                                                        <!--french title-->
+                                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                            <div class="d-flex flex-wrap gap-5">
+                                                                <!--clip title input-->
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">French Points Title</span>
+                                                                    <input type="text" name="fr_feature_title" class="form-control">
+                                                                </div>
+                                                                <!--end clip title input-->
+                                                                <!--clip detail input-->
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">French Points Detail</span>
+                                                                    <input type="text" name="fr_clip_detail" class="form-control">
+                                                                </div>
+                                                                <!--end clip detail input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end french title-->
+
+                                                        <!--arabic title-->
+                                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                            <div class="d-flex flex-wrap gap-5">
+                                                                <!--clip title input-->
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">Arabic Points Title</span>
+                                                                    <input type="text" name="ar_feature_title" class="form-control" dir="rtl">
+                                                                </div>
+                                                                <!--end clip title input-->
+                                                                <!--clip detail input-->
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">Arabic Points Detail</span>
+                                                                    <input type="text" name="ar_clip_detail" class="form-control" dir="rtl">
+                                                                </div>
+                                                                <!--end clip detail input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end arabic title-->
+
+                                                        <!--value-->
+                                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                            <div class="d-flex flex-wrap gap-5">
+                                                                <!--clip title input-->
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">Value</span>
+                                                                    <input type="number" name="points" class="form-control">
+                                                                </div>
+                                                                <!--end clip title input-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end value-->
+
+                                                    </div>
+                                                    <!--add product buttons-->
+                                                    <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                                        <!--submit button-->
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <span class="indicator-label">Create</span>
+                                                        </button>
+                                                        <!--end submit button-->
+                                                    </div>
+                                                    <!--end add product buttons-->
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!--begin::Description-->
+                                            <div class="text-muted fs-7"></div>
+                                            <!--end::Description-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end new points modal-->
                         </div>
                         <!--end points tab-->
                         <!--delivery tab-->
