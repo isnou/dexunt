@@ -1122,6 +1122,7 @@
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                {% if points_products_to_add %}
                                                                 {% for product in points_products_to_add %}
                                                                 <tr>
                                                                     <td>
@@ -1135,6 +1136,7 @@
                                                                     <td>{{ product.quantity }}</td>
                                                                 </tr>
                                                                 {% endfor %}
+                                                                {% endif %}
                                                                 </tbody>
                                                             </table>
                                                         </div>
