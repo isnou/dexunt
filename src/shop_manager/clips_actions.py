@@ -50,3 +50,12 @@ def points(request):
     return {
         'url': url,
     }
+
+
+def points_to_product(detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        clips = Clip.objects.all()
+    except Clips.DoesNotExist:
+        raise Http404("No clips")
+    points_clip = clips.get(type='points')

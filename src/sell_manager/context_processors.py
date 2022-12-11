@@ -18,7 +18,7 @@ def clips_manager(request):
     else:
         points = Clip()
 
-    points_added_products = None
+    points_added_products = Product()
     points_products_to_add = products
 
     if raw_clips.filter(type='points-products').exists():
