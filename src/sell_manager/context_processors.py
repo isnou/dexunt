@@ -24,7 +24,7 @@ def clips_manager(request):
     if raw_clips.filter(type='points-products').exists():
         all_points = raw_clips.filter(type='points-products')
         for points in all_points:
-            points_added_products += products.get(sku=points.sku)
+            points_added_products.append(products.get(sku=points.sku))
             points_products_to_add = products.exclude(sku=points.sku)
 
     return {
