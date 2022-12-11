@@ -5,12 +5,12 @@ from .models import Product
 def points(request):
     url = "/shop-manager/e-shop.html"
     try:
-        clip = Clips.objects.all()
+        clips = Clip.objects.all()
     except Clips.DoesNotExist:
         raise Http404("No clips")
 
-    if clip.filter(type='points').exists():
-        points_clip = clip.get(type='points')
+    if clips.filter(type='points').exists():
+        points_clip = clips.get(type='points')
     else:
         points_clip = Clip(type='points')
 
