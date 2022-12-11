@@ -7,8 +7,8 @@ def shop_manager_content(request):
     except Clip.DoesNotExist:
         raise Http404("No clips")
 
-    if raw_clips.filter(type='poi').exists():
-        points = raw_clips.get(type='poi')
+    if Clip.objects.all().filter(type='points').exists():
+        points = raw_clips.get(type='points')
     else:
         points = Clip()
     return {
