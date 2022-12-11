@@ -58,4 +58,22 @@ def points_to_product(detail):
         clips = Clip.objects.all()
     except Clips.DoesNotExist:
         raise Http404("No clips")
-    points_clip = clips.get(type='points')
+    clip_info = clips.get(type='points')
+
+    if not clips.filter(type='points-products').filter(sku=detail).exists():
+        new_clip = Clip(type='points-products',
+                        sku=detail,
+                        en_clip_title=clip_info.en_clip_title,
+                        en_clip_detail=clip_info.en_clip_detail,
+
+                        fr_clip_title=clip_info.fr_clip_title,
+                        fr_clip_detail=clip_info.fr_clip_detail,
+
+                        ar_clip_title=clip_info.ar_clip_title,
+                        ar_clip_detail=clip_info.ar_clip_detail,
+                        )
+        new_clip.save()
+
+    return {
+        'url': url,
+    }
