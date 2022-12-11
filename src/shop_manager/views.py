@@ -115,8 +115,8 @@ def e_shop(request, action, detail, identity):
         url = direction + e_shop_actions.up(identity).get('url')
     if action == "down":
         url = direction + e_shop_actions.down(identity).get('url')
-    if action == "add_points":
-        url = direction + clips_actions.add_points(request).get('url')
+    if action == "refresh_points":
+        url = direction + clips_actions.points(request).get('url')
 
     context = {
     }

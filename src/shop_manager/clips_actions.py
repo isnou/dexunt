@@ -2,34 +2,50 @@ from sell_manager.models import Clip
 from .models import Product
 
 
-def add_points(request):
+def points(request):
     url = "/shop-manager/e-shop.html"
+    try:
+        clip = Clips.objects.all()
+    except Clips.DoesNotExist:
+        raise Http404("No clips")
+
+    if clip.filter(type='points').exists():
+        points_clip = clip.get(type='points')
+    else:
+        points_clip = Clip(type='points')
 
     if request.method == 'POST':
-        en_second_title = request.POST.get('selected_type', False)
+        en_clip_title = request.POST.get('en_clip_title', False)
+        if not en_clip_title:
+            en_clip_title = points_clip.en_clip_title
+        en_clip_detail = request.POST.get('en_clip_detail', False)
+        if not en_clip_detail:
+            en_clip_detail = points_clip.en_clip_detail
 
-        en_first_title = request.POST.get('en_title', False)
-        en_button = request.POST.get('en_button', False)
+        fr_clip_title = request.POST.get('fr_clip_title', False)
+        if not fr_clip_title:
+            fr_clip_title = points_clip.fr_clip_title
+        fr_clip_detail = request.POST.get('fr_clip_detail', False)
+        if not fr_clip_detail:
+            fr_clip_detail = points_clip.fr_clip_detail
 
-        fr_first_title = request.POST.get('fr_title', False)
-        fr_button = request.POST.get('fr_button', False)
+        ar_clip_title = request.POST.get('ar_clip_title', False)
+        if not ar_clip_title:
+            ar_clip_title = points_clip.ar_clip_title
+        ar_clip_detail = request.POST.get('ar_clip_detail', False)
+        if not ar_clip_detail:
+            ar_clip_detail = points_clip.ar_clip_detail
 
-        ar_first_title = request.POST.get('ar_title', False)
-        ar_button = request.POST.get('ar_button', False)
+        points_clip.en_clip_title = en_clip_title
+        points_clip.en_clip_detail = en_clip_detail
 
-        link = request.POST.get('link', False)
-        layout = Layout(en_second_title=en_second_title,
-                        en_first_title=en_first_title,
-                        en_button=en_button,
-                        fr_first_title=fr_first_title,
-                        fr_button=fr_button,
-                        ar_first_title=ar_first_title,
-                        ar_button=ar_button,
-                        link=link,
-                        type='showcase',
-                        rank=rank,
-                        )
-        layout.save()
+        points_clip.fr_clip_title = fr_clip_title
+        points_clip.fr_clip_detail = fr_clip_detail
+
+        points_clip.ar_clip_title = ar_clip_title
+        points_clip.ar_clip_detail = ar_clip_detail
+
+        points_clip.save()
 
     return {
         'url': url,
