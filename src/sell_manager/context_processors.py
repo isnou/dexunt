@@ -1,7 +1,7 @@
 from .models import Clip
 
 
-def shop_manager_content(request):
+def clips_manager(request):
     try:
         raw_clips = Clip.objects.all()
     except Clip.DoesNotExist:
