@@ -77,34 +77,6 @@ def points(request):
 
 def points_to_product(detail):
     url = "/shop-manager/e-shop.html"
-    try:
-        clips = Clip.objects.all()
-    except Clips.DoesNotExist:
-        raise Http404("No clips")
-    clip_info = clips.get(type='points')
-
-    try:
-        products = Product.objects.all()
-    except Product.DoesNotExist:
-        raise Http404("No products")
-    product_info = products.get(sku=detail)
-
-    if not clips.filter(type='points-products').filter(sku=detail).exists():
-        new_clip = Clip(type='points-products',
-                        sku=detail,
-                        product_title=product_info.en_product_title + ' - ' + product_info.en_variant,
-                        thumb=product_info.thumb,
-
-                        en_clip_title=clip_info.en_clip_title,
-                        en_clip_detail=clip_info.en_clip_detail,
-
-                        fr_clip_title=clip_info.fr_clip_title,
-                        fr_clip_detail=clip_info.fr_clip_detail,
-
-                        ar_clip_title=clip_info.ar_clip_title,
-                        ar_clip_detail=clip_info.ar_clip_detail,
-                        )
-        new_clip.save()
 
     return {
         'url': url,
