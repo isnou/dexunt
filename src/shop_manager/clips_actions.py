@@ -221,7 +221,7 @@ def solidarity(request):
     }
 
 
-def point_to_product(request, identity):
+def points_to_product(request, identity):
     url = "/shop-manager/e-shop.html"
     clip = Clip.objects.all().get(id=identity)
     if request.method == 'POST':
