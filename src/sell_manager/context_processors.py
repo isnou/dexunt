@@ -1,5 +1,5 @@
 from .models import Clip
-from shop_manager.models import Product
+# from shop_manager.models import Product
 
 
 def clips_manager(request):
@@ -18,19 +18,12 @@ def clips_manager(request):
     else:
         points = Clip()
 
-    points_added_products = products
-    points_products_to_add = products
-    for product in products:
-        points_added_products.exclude(sku=product.sku)
-
     if raw_clips.filter(type='points-products').exists():
-        all_points = raw_clips.filter(type='points-products')
-        for points in all_points:
-            points_added_products = products.get(sku=points.sku)
-            points_products_to_add = products.exclude(sku=points.sku)
+        points_products = raw_clips.get(type='points-products')
+    else:
+        points_products = Clip()
 
     return {
         'points': points,
-        'points_added_products': points_added_products,
-        'points_products_to_add': points_products_to_add,
+        'points_products': points_products,
     }
