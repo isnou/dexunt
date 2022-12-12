@@ -13,12 +13,6 @@ def clips_manager(request):
     else:
         points = Clip()
 
-    if raw_clips.filter(type='points-products').exists():
-        points_products = raw_clips.filter(type='points-products')
-    else:
-        points_products = Clip()
-
     return {
         'points': points,
-        'points_products': points_products,
     }
