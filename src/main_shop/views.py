@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Product
+from sell_manager.models import Clip
 
 
 def main_shop_home(request):
@@ -23,6 +24,29 @@ def change_language(request, language):
 
 
 def product(request, sku):
+    try:
+        clips = Clip.objects.all()
+    except Clip.DoesNotExist:
+        raise Http404("No clips")
+
+    if clips.filter(sku=sku).exists():
+        if clips.filter(type='points-products').exists():
+            points_products = clips.get(type='points-products')
+        else:
+            points_products = None
+        if clips.filter(type='delivery-products').exists():
+            delivery_products = clips.get(type='delivery-products')
+        else:
+            delivery_products = None
+        if clips.filter(type='solidarity-products').exists():
+            solidarity_products = clips.get(type='solidarity-products')
+        else:
+            solidarity_products = None
+    else:
+        points_products = None
+        delivery_products = None
+        solidarity_products = None
+
     selected_product = Product.objects.all().get(sku=sku)
     related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
     selected_variants = related_products.filter(type='main').exclude(en_variant=selected_product.en_variant)
@@ -37,5 +61,8 @@ def product(request, sku):
         'selected_variants': selected_variants,
         'size_variants': size_variants,
         'album': album,
+        'points_products': points_products,
+        'delivery_products': delivery_products,
+        'solidarity_products': solidarity_products,
     }
     return render(request, url, context)
