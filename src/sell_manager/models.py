@@ -6,8 +6,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Clip(models.Model):
     # --------------------------------- clip technical informations ----------------------------
     sku = models.CharField(max_length=30, unique=True, null=True)
-    product_title = models.CharField(max_length=200, blank=True, null=True)
+    product_title = models.CharField(max_length=400, blank=True, null=True)
     type = models.CharField(max_length=50, blank=True, null=True)
+    # --------------------------------- media --------------------------------------------------
+    thumb = models.ImageField(upload_to='sell-manager/clip/thumb', blank=True, null=True)
     # --------------------------------- clip info  ---------------------------------------------
     en_clip_title = models.CharField(max_length=100, blank=True, null=True)
     fr_clip_title = models.CharField(max_length=100, blank=True, null=True)
