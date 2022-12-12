@@ -1095,9 +1095,9 @@
                                                         <td>
                                                             <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                                 {% csrf_token %}
-                                                                <input type="number" name="points" class="form-control" placeholder="{{ product.points }}">
+                                                                <input type="number" name="points" class="form-control" min="o" placeholder="{{ product.points }}">
                                                                 <button type="submit" class="btn btn-sm btn-active-light-primary">
-                                                                    <i class="bi bi-arrow-clockwise fs-2x"></i>
+                                                                    <i class="bi bi-arrow-clockwise fs-1x"></i>
                                                                 </button>
                                                             </form>
 
