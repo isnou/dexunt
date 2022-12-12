@@ -23,32 +23,18 @@ def points(request):
         en_clip_title = request.POST.get('en_clip_title', False)
         if not en_clip_title:
             en_clip_title = points_clip.en_clip_title
-        en_clip_detail = request.POST.get('en_clip_detail', False)
-        if not en_clip_detail:
-            en_clip_detail = points_clip.en_clip_detail
 
         fr_clip_title = request.POST.get('fr_clip_title', False)
         if not fr_clip_title:
             fr_clip_title = points_clip.fr_clip_title
-        fr_clip_detail = request.POST.get('fr_clip_detail', False)
-        if not fr_clip_detail:
-            fr_clip_detail = points_clip.fr_clip_detail
 
         ar_clip_title = request.POST.get('ar_clip_title', False)
         if not ar_clip_title:
             ar_clip_title = points_clip.ar_clip_title
-        ar_clip_detail = request.POST.get('ar_clip_detail', False)
-        if not ar_clip_detail:
-            ar_clip_detail = points_clip.ar_clip_detail
 
         points_clip.en_clip_title = en_clip_title
-        points_clip.en_clip_detail = en_clip_detail
-
         points_clip.fr_clip_title = fr_clip_title
-        points_clip.fr_clip_detail = fr_clip_detail
-
         points_clip.ar_clip_title = ar_clip_title
-        points_clip.ar_clip_detail = ar_clip_detail
 
         points_clip.save()
 
@@ -60,13 +46,8 @@ def points(request):
                             thumb=product.thumb,
 
                             en_clip_title=points_clip.en_clip_title,
-                            en_clip_detail=points_clip.en_clip_detail,
-
                             fr_clip_title=points_clip.fr_clip_title,
-                            fr_clip_detail=points_clip.fr_clip_detail,
-
                             ar_clip_title=points_clip.ar_clip_title,
-                            ar_clip_detail=points_clip.ar_clip_detail,
                             )
             new_clip.save()
 
@@ -96,32 +77,18 @@ def delivery(request):
         en_clip_title = request.POST.get('en_clip_title', False)
         if not en_clip_title:
             en_clip_title = points_clip.en_clip_title
-        en_clip_detail = request.POST.get('en_clip_detail', False)
-        if not en_clip_detail:
-            en_clip_detail = points_clip.en_clip_detail
 
         fr_clip_title = request.POST.get('fr_clip_title', False)
         if not fr_clip_title:
             fr_clip_title = points_clip.fr_clip_title
-        fr_clip_detail = request.POST.get('fr_clip_detail', False)
-        if not fr_clip_detail:
-            fr_clip_detail = points_clip.fr_clip_detail
 
         ar_clip_title = request.POST.get('ar_clip_title', False)
         if not ar_clip_title:
             ar_clip_title = points_clip.ar_clip_title
-        ar_clip_detail = request.POST.get('ar_clip_detail', False)
-        if not ar_clip_detail:
-            ar_clip_detail = points_clip.ar_clip_detail
 
         points_clip.en_clip_title = en_clip_title
-        points_clip.en_clip_detail = en_clip_detail
-
         points_clip.fr_clip_title = fr_clip_title
-        points_clip.fr_clip_detail = fr_clip_detail
-
         points_clip.ar_clip_title = ar_clip_title
-        points_clip.ar_clip_detail = ar_clip_detail
 
         points_clip.save()
 
@@ -133,13 +100,8 @@ def delivery(request):
                             thumb=product.thumb,
 
                             en_clip_title=points_clip.en_clip_title,
-                            en_clip_detail=points_clip.en_clip_detail,
-
                             fr_clip_title=points_clip.fr_clip_title,
-                            fr_clip_detail=points_clip.fr_clip_detail,
-
                             ar_clip_title=points_clip.ar_clip_title,
-                            ar_clip_detail=points_clip.ar_clip_detail,
                             )
             new_clip.save()
 
@@ -169,32 +131,18 @@ def solidarity(request):
         en_clip_title = request.POST.get('en_clip_title', False)
         if not en_clip_title:
             en_clip_title = points_clip.en_clip_title
-        en_clip_detail = request.POST.get('en_clip_detail', False)
-        if not en_clip_detail:
-            en_clip_detail = points_clip.en_clip_detail
 
         fr_clip_title = request.POST.get('fr_clip_title', False)
         if not fr_clip_title:
             fr_clip_title = points_clip.fr_clip_title
-        fr_clip_detail = request.POST.get('fr_clip_detail', False)
-        if not fr_clip_detail:
-            fr_clip_detail = points_clip.fr_clip_detail
 
         ar_clip_title = request.POST.get('ar_clip_title', False)
         if not ar_clip_title:
             ar_clip_title = points_clip.ar_clip_title
-        ar_clip_detail = request.POST.get('ar_clip_detail', False)
-        if not ar_clip_detail:
-            ar_clip_detail = points_clip.ar_clip_detail
 
         points_clip.en_clip_title = en_clip_title
-        points_clip.en_clip_detail = en_clip_detail
-
         points_clip.fr_clip_title = fr_clip_title
-        points_clip.fr_clip_detail = fr_clip_detail
-
         points_clip.ar_clip_title = ar_clip_title
-        points_clip.ar_clip_detail = ar_clip_detail
 
         points_clip.save()
 
@@ -206,13 +154,8 @@ def solidarity(request):
                             thumb=product.thumb,
 
                             en_clip_title=points_clip.en_clip_title,
-                            en_clip_detail=points_clip.en_clip_detail,
-
                             fr_clip_title=points_clip.fr_clip_title,
-                            fr_clip_detail=points_clip.fr_clip_detail,
-
                             ar_clip_title=points_clip.ar_clip_title,
-                            ar_clip_detail=points_clip.ar_clip_detail,
                             )
             new_clip.save()
 
