@@ -42,13 +42,7 @@ class Product(models.Model):
             MinValueValidator(0)
         ]
     )
-    sell_rate = models.IntegerField(
-        default=5,
-        validators=[
-            MaxValueValidator(10),
-            MinValueValidator(0)
-        ]
-    )
+    sell_rate = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
     type = models.CharField(max_length=80, blank=True, null=True)
     size = models.CharField(max_length=80, blank=True, null=True)
