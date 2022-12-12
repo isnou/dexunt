@@ -38,6 +38,14 @@ def points(request):
 
         points_clip.save()
 
+        if clips.filter(type='points-products').exists():
+            clips_products = clips.filter(type='points-products')
+            for clips_product in clips_products:
+                clips_product.en_clip_title = en_clip_title
+                clips_product.fr_clip_title = fr_clip_title
+                clips_product.ar_clip_title = ar_clip_title
+                clips_product.save()
+
     for product in products:
         if not clips.filter(type='points-products').filter(sku=product.sku).exists():
             new_clip = Clip(type='points-products',
