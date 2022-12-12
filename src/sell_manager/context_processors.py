@@ -20,6 +20,8 @@ def clips_manager(request):
 
     points_added_products = products
     points_products_to_add = products
+    for product in products:
+        points_added_products = products.exclude(sku=product.sku)
 
     return {
         'points': points,
