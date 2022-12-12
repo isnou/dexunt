@@ -30,6 +30,7 @@ def product(request, sku):
         raise Http404("No clips")
 
     if clips.filter(sku=sku).exists():
+        clips = clips.filter(sku=sku)
         if clips.filter(type='points-products').exists():
             points_products = clips.get(type='points-products')
         else:
