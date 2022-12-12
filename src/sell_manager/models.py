@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Clip(models.Model):
     # --------------------------------- clip technical informations ----------------------------
-    sku = models.CharField(max_length=30, unique=True, null=True)
+    sku = models.CharField(max_length=30, blank=True, null=True)
     product_title = models.CharField(max_length=400, blank=True, null=True)
     type = models.CharField(max_length=50, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
