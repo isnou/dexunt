@@ -15,10 +15,6 @@ class Clip(models.Model):
     fr_clip_title = models.CharField(max_length=100, blank=True, null=True)
     ar_clip_title = models.CharField(max_length=100, blank=True, null=True)
 
-    en_clip_detail = models.CharField(max_length=100, blank=True, null=True)
-    fr_clip_detail = models.CharField(max_length=100, blank=True, null=True)
-    ar_clip_detail = models.CharField(max_length=100, blank=True, null=True)
-
     value = models.IntegerField(
         default=0,
         validators=[
