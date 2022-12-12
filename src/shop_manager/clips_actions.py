@@ -75,7 +75,7 @@ def points(request):
     }
 
 
-def points_to_product(detail):
+def points_to_product(request, detail):
     url = "/shop-manager/e-shop.html"
     clip = Clip.objects.all().get(sku=detail)
     if request.method == 'POST':
