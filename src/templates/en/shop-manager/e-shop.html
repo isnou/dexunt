@@ -1190,7 +1190,10 @@
                                                         <td>
                                                             <form action="{% url 'e-shop' 'value_to_product' '#' delivery_product.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                                 {% csrf_token %}
-                                                                <input class="form-control me-1" type="number" name="clip_value" min=0 max=100 placeholder="put a value" value="{{ delivery_product.value }}" required>
+                                                                <div class="input-group">
+                                                                    <input class="form-control me-1" type="number" name="clip_value" min=0 max=100 placeholder="put a value" value="{{ delivery_product.value }}" required>
+                                                                    <span class="input-group-text"> %</span>
+                                                                </div>
                                                                 <button type="submit" class="btn btn-sm btn-active-light-primary">
                                                                     <i class="bi bi-arrow-clockwise fs-1x"></i>
                                                                 </button>
