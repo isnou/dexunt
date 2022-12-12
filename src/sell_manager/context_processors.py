@@ -8,11 +8,6 @@ def clips_manager(request):
     except Clip.DoesNotExist:
         raise Http404("No clips")
 
-    try:
-        products = Product.objects.all().filter(type='main')
-    except Product.DoesNotExist:
-        raise Http404("No products")
-
     if raw_clips.filter(type='points').exists():
         points = raw_clips.get(type='points')
     else:
