@@ -75,11 +75,169 @@ def points(request):
     }
 
 
-def points_to_product(request, identity):
+def delivery(request):
+    url = "/shop-manager/e-shop.html"
+    try:
+        products = Product.objects.all().filter(type='main').order_by('en_product_title')
+    except Product.DoesNotExist:
+        raise Http404("No products")
+
+    try:
+        clips = Clip.objects.all()
+    except Clips.DoesNotExist:
+        raise Http404("No clips")
+
+    if clips.filter(type='delivery').exists():
+        points_clip = clips.get(type='delivery')
+    else:
+        points_clip = Clip(type='delivery')
+
+    if request.method == 'POST':
+        en_clip_title = request.POST.get('en_clip_title', False)
+        if not en_clip_title:
+            en_clip_title = points_clip.en_clip_title
+        en_clip_detail = request.POST.get('en_clip_detail', False)
+        if not en_clip_detail:
+            en_clip_detail = points_clip.en_clip_detail
+
+        fr_clip_title = request.POST.get('fr_clip_title', False)
+        if not fr_clip_title:
+            fr_clip_title = points_clip.fr_clip_title
+        fr_clip_detail = request.POST.get('fr_clip_detail', False)
+        if not fr_clip_detail:
+            fr_clip_detail = points_clip.fr_clip_detail
+
+        ar_clip_title = request.POST.get('ar_clip_title', False)
+        if not ar_clip_title:
+            ar_clip_title = points_clip.ar_clip_title
+        ar_clip_detail = request.POST.get('ar_clip_detail', False)
+        if not ar_clip_detail:
+            ar_clip_detail = points_clip.ar_clip_detail
+
+        points_clip.en_clip_title = en_clip_title
+        points_clip.en_clip_detail = en_clip_detail
+
+        points_clip.fr_clip_title = fr_clip_title
+        points_clip.fr_clip_detail = fr_clip_detail
+
+        points_clip.ar_clip_title = ar_clip_title
+        points_clip.ar_clip_detail = ar_clip_detail
+
+        points_clip.save()
+
+    for product in products:
+        if not clips.filter(type='delivery-products').filter(sku=product.sku).exists():
+            new_clip = Clip(type='delivery-products',
+                            sku=product.sku,
+                            product_title=product.en_product_title + ' - ' + product.en_variant,
+                            thumb=product.thumb,
+
+                            en_clip_title=points_clip.en_clip_title,
+                            en_clip_detail=points_clip.en_clip_detail,
+
+                            fr_clip_title=points_clip.fr_clip_title,
+                            fr_clip_detail=points_clip.fr_clip_detail,
+
+                            ar_clip_title=points_clip.ar_clip_title,
+                            ar_clip_detail=points_clip.ar_clip_detail,
+                            )
+            new_clip.save()
+
+    return {
+        'url': url,
+    }
+
+
+def solidarity(request):
+    url = "/shop-manager/e-shop.html"
+    try:
+        products = Product.objects.all().filter(type='main').order_by('en_product_title')
+    except Product.DoesNotExist:
+        raise Http404("No products")
+
+    try:
+        clips = Clip.objects.all()
+    except Clips.DoesNotExist:
+        raise Http404("No clips")
+
+    if clips.filter(type='solidarity').exists():
+        points_clip = clips.get(type='solidarity')
+    else:
+        points_clip = Clip(type='solidarity')
+
+    if request.method == 'POST':
+        en_clip_title = request.POST.get('en_clip_title', False)
+        if not en_clip_title:
+            en_clip_title = points_clip.en_clip_title
+        en_clip_detail = request.POST.get('en_clip_detail', False)
+        if not en_clip_detail:
+            en_clip_detail = points_clip.en_clip_detail
+
+        fr_clip_title = request.POST.get('fr_clip_title', False)
+        if not fr_clip_title:
+            fr_clip_title = points_clip.fr_clip_title
+        fr_clip_detail = request.POST.get('fr_clip_detail', False)
+        if not fr_clip_detail:
+            fr_clip_detail = points_clip.fr_clip_detail
+
+        ar_clip_title = request.POST.get('ar_clip_title', False)
+        if not ar_clip_title:
+            ar_clip_title = points_clip.ar_clip_title
+        ar_clip_detail = request.POST.get('ar_clip_detail', False)
+        if not ar_clip_detail:
+            ar_clip_detail = points_clip.ar_clip_detail
+
+        points_clip.en_clip_title = en_clip_title
+        points_clip.en_clip_detail = en_clip_detail
+
+        points_clip.fr_clip_title = fr_clip_title
+        points_clip.fr_clip_detail = fr_clip_detail
+
+        points_clip.ar_clip_title = ar_clip_title
+        points_clip.ar_clip_detail = ar_clip_detail
+
+        points_clip.save()
+
+    for product in products:
+        if not clips.filter(type='solidarity-products').filter(sku=product.sku).exists():
+            new_clip = Clip(type='solidarity-products',
+                            sku=product.sku,
+                            product_title=product.en_product_title + ' - ' + product.en_variant,
+                            thumb=product.thumb,
+
+                            en_clip_title=points_clip.en_clip_title,
+                            en_clip_detail=points_clip.en_clip_detail,
+
+                            fr_clip_title=points_clip.fr_clip_title,
+                            fr_clip_detail=points_clip.fr_clip_detail,
+
+                            ar_clip_title=points_clip.ar_clip_title,
+                            ar_clip_detail=points_clip.ar_clip_detail,
+                            )
+            new_clip.save()
+
+    return {
+        'url': url,
+    }
+
+
+def point_to_product(request, identity):
     url = "/shop-manager/e-shop.html"
     clip = Clip.objects.all().get(id=identity)
     if request.method == 'POST':
         clip.points = int(request.POST.get('points_value', False))
+        clip.save()
+
+    return {
+        'url': url,
+    }
+
+
+def value_to_product(request, identity):
+    url = "/shop-manager/e-shop.html"
+    clip = Clip.objects.all().get(id=identity)
+    if request.method == 'POST':
+        clip.value = int(request.POST.get('clip_value', False))
         clip.save()
 
     return {

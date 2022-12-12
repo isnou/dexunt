@@ -1089,7 +1089,7 @@
                                                             {{ points_product.product_title }}
                                                         </td>
                                                         <td>
-                                                            <form action="{% url 'e-shop' 'points_to_product' '#' points_product.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                            <form action="{% url 'e-shop' 'point_to_product' '#' points_product.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                                 {% csrf_token %}
                                                                 <input class="form-control me-1" type="number" name="points_value" min=o placeholder="put a value" value="{{ points_product.points }}" required>
                                                                 <button type="submit" class="btn btn-sm btn-active-light-primary">
@@ -1113,12 +1113,107 @@
                         <!--end points tab-->
                         <!--delivery tab-->
                         <div class="tab-pane fade show" id="delivery" role="tabpanel">
+                            <!--delivery-->
+                            <div class="flex-wrap flex-stack">
+                                <div class="align-items-center">
+                                    <div class="table-responsive mb-1 mt-1">
+                                        <div class="card card-dashed">
+                                            <form action="{% url 'e-shop' 'refresh_delivery' '#' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                {% csrf_token %}
+                                                <div class="card-body p-9">
+                                                    <!--main information-->
+                                                    <div class="row mb-1">
+                                                        <div class="col-lg-8">
+                                                            <button type="submit" class="btn btn-sm btn-active-light-primary">
+                                                                <i class="bi bi-arrow-clockwise fs-2x"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fv-row w-100 flex-md-root text-center">
+                                                        <label class="form-label mb-1">English</label>
+                                                        <div class="input-group mb-1">
+                                                            <span class="input-group-text" style="padding-right: 43px;"> Title</span>
+                                                            <input type="text" name="en_clip_title" class="form-control" placeholder="clip title" value="{{ points.en_clip_title }}">
+                                                        </div>
+                                                        <div class="input-group mb-1">
+                                                            <span class="input-group-text" style="padding-right: 34px;"> Detail</span>
+                                                            <input type="text" name="en_clip_detail" class="form-control" placeholder="detail title" value="{{ points.en_clip_detail }}">
+                                                        </div>
 
+                                                        <label class="form-label mb-1">French</label>
+                                                        <div class="input-group mb-1">
+                                                            <span class="input-group-text" style="padding-right: 43px;"> Title</span>
+                                                            <input type="text" name="fr_clip_title" class="form-control" placeholder="clip title" value="{{ points.fr_clip_title }}">
+                                                        </div>
+                                                        <div class="input-group mb-1">
+                                                            <span class="input-group-text" style="padding-right: 34px;"> Detail</span>
+                                                            <input type="text" name="fr_clip_detail" class="form-control" placeholder="clip detail" value="{{ points.fr_clip_detail }}">
+                                                        </div>
+
+                                                        <label class="form-label mb-1">Arabic</label>
+                                                        <div class="input-group mb-1">
+                                                            <span class="input-group-text" style="padding-right: 43px;"> Title</span>
+                                                            <input type="text" name="ar_clip_title" class="form-control" placeholder="clip title" value="{{ points.ar_clip_title }}" dir="rtl">
+                                                        </div>
+                                                        <div class="input-group mb-1">
+                                                            <span class="input-group-text" style="padding-right: 34px;"> Detail</span>
+                                                            <input type="text" name="ar_clip_detail" class="form-control" placeholder="clip detail" value="{{ points.ar_clip_detail }}" dir="rtl">
+                                                        </div>
+                                                    </div>
+                                                    <!--end main information-->
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        {% if delivery_products %}
+                                        <div class="card card-dashed mt-2">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped gy-7 gs-7">
+                                                    <thead>
+                                                    <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                                                        <th class="min-w-180px"></th>
+                                                        <th class="min-w-400px">Product name</th>
+                                                        <th class="min-w-150px">Points</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for delivery_product in delivery_products %}
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#" class="btn btn-sm btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="link this product">
+                                                                <img src="{% get_media_prefix %}{{ delivery_product.thumb }}" class="w-50px ms-n1 me-1" alt="">
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            {{ delivery_product.product_title }}
+                                                        </td>
+                                                        <td>
+                                                            <form action="{% url 'e-shop' 'value_to_product' '#' delivery_product.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                                {% csrf_token %}
+                                                                <input class="form-control me-1" type="number" name="clip_value" min=o placeholder="put a value" value="{{ delivery_product.points }}" required>
+                                                                <button type="submit" class="btn btn-sm btn-active-light-primary">
+                                                                    <i class="bi bi-arrow-clockwise fs-1x"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end delivery-->
                         </div>
                         <!--end delivery tab-->
                         <!--solidarity tab-->
                         <div class="tab-pane fade show" id="solidarity" role="tabpanel">
-
+                            <!--solidarity-->
+                            <!--end solidarity-->
                         </div>
                         <!--end solidarity tab-->
                     </div>

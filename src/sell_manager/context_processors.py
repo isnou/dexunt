@@ -18,7 +18,19 @@ def clips_manager(request):
     else:
         points_products = None
 
+    if raw_clips.filter(type='delivery-products').exists():
+        delivery_products = raw_clips.filter(type='delivery-products')
+    else:
+        delivery_products = None
+
+    if raw_clips.filter(type='solidarity-products').exists():
+        solidarity_products = raw_clips.filter(type='solidarity-products')
+    else:
+        solidarity_products = None
+
     return {
         'points': points,
         'points_products': points_products,
+        'delivery_products': delivery_products,
+        'solidarity_products': solidarity_products,
     }
