@@ -164,18 +164,6 @@
                                 {% endif %}
 
                                 {% if selected_product.quantity > 0 %}
-                                <!-- informations -->
-                                <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
-                                    <label class="form-label me-2" for="quantity2">Quantity</label>
-                                    <input class="form-control me-2" type="number" id="quantity2" min="1" max="{{ selected_product.quantity }}" value="1">
-                                </div>
-                                <!-- buttons -->
-                                <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
-                                    <button class="btn btn-primary btn-shadow d-block w-100" type="button"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
-                                </div>
-                                <div class="d-flex mb-4">
-                                    <button class="btn btn-secondary d-block w-100" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
-                                </div>
                                 <!-- Product panels-->
                                 <div class="accordion mb-4" id="productPanels">
                                     {% if points_products %}
@@ -236,6 +224,18 @@
                                         </div>
                                     </div>
                                     {% endif %}
+                                </div>
+                                <!-- quantity -->
+                                <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
+                                    <label class="form-label me-2" for="quantity2">Quantity</label>
+                                    <input class="form-control me-2" type="number" id="quantity2" min="1" max="{{ selected_product.quantity }}" value="1">
+                                </div>
+                                <!-- buttons -->
+                                <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
+                                    <button class="btn btn-primary btn-shadow d-block w-100" type="button"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <button class="btn btn-secondary d-block w-100" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
                                 </div>
                                 {% else %}
                                 <!-- disabled buttons -->
