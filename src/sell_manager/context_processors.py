@@ -13,6 +13,16 @@ def clips_manager(request):
     else:
         points = Clip()
 
+    if raw_clips.filter(type='delivery').exists():
+        delivery = raw_clips.get(type='delivery')
+    else:
+        delivery = Clip()
+
+    if raw_clips.filter(type='solidarity').exists():
+        solidarity = raw_clips.get(type='solidarity')
+    else:
+        solidarity = Clip()
+
     if raw_clips.filter(type='points-products').exists():
         points_products = raw_clips.filter(type='points-products')
     else:
@@ -30,6 +40,8 @@ def clips_manager(request):
 
     return {
         'points': points,
+        'delivery': delivery,
+        'solidarity': solidarity,
         'points_products': points_products,
         'delivery_products': delivery_products,
         'solidarity_products': solidarity_products,
