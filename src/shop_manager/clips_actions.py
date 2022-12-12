@@ -5,7 +5,7 @@ from .models import Product
 def points(request):
     url = "/shop-manager/e-shop.html"
     try:
-        products = Product.objects.all()
+        products = Product.objects.all().filter(type='main').order_by('en_product_title')
     except Product.DoesNotExist:
         raise Http404("No products")
 
