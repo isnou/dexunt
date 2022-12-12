@@ -289,27 +289,24 @@
                         </div>
                     </div>
                     <!-- Specs table-->
-                    <div class="card border-0 shadow mb-20">
+                    <div class="card border-0 shadow">
                         <div class="card-body">
                             <h3 class="h6">General specs</h3>
                             <ul class="list-unstyled fs-sm pb-2">
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Model:</span><span>Amazfit Smartwatch</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Gender:</span><span>Unisex</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Smartphone app:</span><span>Amazfit Watch</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">OS campitibility:</span><span>Android / iOS</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Model:</span><span>{{ selected_product.model }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Brand:</span><span>{{ selected_product.brand }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Quantity:</span><span>{{ selected_product.quantity }}</span></li>
                             </ul>
-                            <h3 class="h6">Physical specs</h3>
+                            <h3 class="h6">Technical specs</h3>
                             <ul class="list-unstyled fs-sm pb-2">
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Shape:</span><span>Rectangular</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Body material:</span><span>Plastics / Ceramics</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Band material:</span><span>Silicone</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">SKU:</span><span>{{ selected_product.sku }}{{ selected_product.upc }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Publish Date:</span><span>{{ selected_product.created_at }}</span></li>
                             </ul>
-                            <h3 class="h6">Display</h3>
+                            <h3 class="h6">Features</h3>
                             <ul class="list-unstyled fs-sm pb-2">
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Display type:</span><span>Color</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Display size:</span><span>1.28"</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Screen resolution:</span><span>176 x 176</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Touch screen:</span><span>No</span></li>
+                                {% for feature in selected_product.features.all %}
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">{{ feature.en_title }}:</span><span>{{ feature.en_value }}</span></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
