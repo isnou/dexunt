@@ -100,6 +100,14 @@ def delivery(request):
 
         points_clip.save()
 
+        if clips.filter(type='delivery-products').exists():
+            clips_products = clips.filter(type='delivery-products')
+            for clips_product in clips_products:
+                clips_product.en_clip_title = en_clip_title
+                clips_product.fr_clip_title = fr_clip_title
+                clips_product.ar_clip_title = ar_clip_title
+                clips_product.save()
+
     for product in products:
         if not clips.filter(type='delivery-products').filter(sku=product.sku).exists():
             new_clip = Clip(type='delivery-products',
@@ -153,6 +161,14 @@ def solidarity(request):
         points_clip.ar_clip_title = ar_clip_title
 
         points_clip.save()
+
+        if clips.filter(type='solidarity-products').exists():
+            clips_products = clips.filter(type='solidarity-products')
+            for clips_product in clips_products:
+                clips_product.en_clip_title = en_clip_title
+                clips_product.fr_clip_title = fr_clip_title
+                clips_product.ar_clip_title = ar_clip_title
+                clips_product.save()
 
     for product in products:
         if not clips.filter(type='solidarity-products').filter(sku=product.sku).exists():
