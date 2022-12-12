@@ -14,7 +14,7 @@ def clips_manager(request):
         points = Clip()
 
     if raw_clips.filter(type='points-products').exists():
-        points_products = raw_clips.get(type='points-products')
+        points_products = raw_clips.filter(type='points-products')
     else:
         points_products = Clip()
 
