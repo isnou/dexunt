@@ -32,21 +32,21 @@ def product(request, sku):
     if clips.filter(sku=sku).exists():
         clips = clips.filter(sku=sku)
         if clips.filter(type='points-products').exists():
-            points_products = clips.get(type='points-products')
+            points_product = clips.get(type='points-products')
         else:
-            points_products = None
+            points_product = None
         if clips.filter(type='delivery-products').exists():
-            delivery_products = clips.get(type='delivery-products')
+            delivery_product = clips.get(type='delivery-products')
         else:
-            delivery_products = None
+            delivery_product = None
         if clips.filter(type='solidarity-products').exists():
-            solidarity_products = clips.get(type='solidarity-products')
+            solidarity_product = clips.get(type='solidarity-products')
         else:
-            solidarity_products = None
+            solidarity_product = None
     else:
-        points_products = None
-        delivery_products = None
-        solidarity_products = None
+        points_product = None
+        delivery_product = None
+        solidarity_product = None
 
     selected_product = Product.objects.all().get(sku=sku)
     related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
@@ -62,8 +62,8 @@ def product(request, sku):
         'selected_variants': selected_variants,
         'size_variants': size_variants,
         'album': album,
-        'points_products': points_products,
-        'delivery_products': delivery_products,
-        'solidarity_products': solidarity_products,
+        'points_product': points_product,
+        'delivery_product': delivery_product,
+        'solidarity_product': solidarity_product,
     }
     return render(request, url, context)
