@@ -79,9 +79,7 @@ def points_to_product(request, identity):
     url = "/shop-manager/e-shop.html"
     clip = Clip.objects.all().get(id=identity)
     if request.method == 'POST':
-        points_value = request.POST.get('points_value', False)
-        if not points_value:
-            clip.points = int(points_value)
+        clip.points = int(request.POST.get('points_value', False))
         clip.save()
 
     return {
