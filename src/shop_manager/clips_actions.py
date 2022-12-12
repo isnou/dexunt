@@ -3,7 +3,7 @@ from .models import Product
 
 
 def points(request):
-    url = "/shop-manager/e-shop.html#clips#points"
+    url = "/shop-manager/e-shop.html"
     try:
         products = Product.objects.all().filter(type='main').order_by('en_product_title')
     except Product.DoesNotExist:
