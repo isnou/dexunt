@@ -85,7 +85,7 @@ def grid_shop(request, action, ref):
             products = paginator.page(paginator.num_pages)
         paginate = True
     else:
-        products = all_products.order_by('?').all()[:8]
+        products = all_products.order_by('?').all()[:4]
         paginate = False
 
     direction = request.session.get('language')
