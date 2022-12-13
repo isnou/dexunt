@@ -766,13 +766,13 @@
 
 						{% for i in products.paginator.page_range %}
 						{% if products.number == i %}
-						<li class="page-item">
-							<a class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">{{ i }}</a>
-						</li>
+                      <li class="page-item active d-none d-sm-block" aria-current="page">
+                        <span class="page-link">{{ i }}<span class="visually-hidden">(current)</span></span>
+                      </li>
 						{% else %}
-						<li class="page-item">
-							<a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ i }}">{{ i }}</a>
-						</li>
+                      <li class="page-item d-none d-sm-block">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                      </li>
 						{% endif %}
 						{% endfor %}
 
