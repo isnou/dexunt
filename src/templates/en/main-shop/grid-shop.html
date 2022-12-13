@@ -713,6 +713,12 @@
 
         </div>
         <hr class="my-3">
+
+
+
+
+
+
         <!-- Pagination-->
         <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
           <ul class="pagination">
@@ -730,6 +736,62 @@
             <li class="page-item"><a class="page-link" href="shop-grid-ft.html#" aria-label="Next">Next<i class="ci-arrow-right ms-2"></i></a></li>
           </ul>
         </nav>
+
+
+
+  {% if paginate %}
+					{% if products.has_other_pages %}
+					<ul class="pagination">
+
+						{% if products.has_previous %}
+						<li class="page-item">
+							<a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ products.previous_page_number }}">
+								<i class="fa fa-angle-left"></i>
+							</a>
+						</li>
+						{% endif %}
+
+						{% for i in products.paginator.page_range %}
+						{% if products.number == i %}
+						<li class="page-item">
+							<a class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">{{ i }}</a>
+						</li>
+						{% else %}
+						<li class="page-item">
+							<a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ i }}">{{ i }}</a>
+						</li>
+						{% endif %}
+						{% endfor %}
+
+						{% if products.has_next %}
+						<li class="page-item">
+							<a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ products.next_page_number }}">
+								<i class="fa fa-angle-right"></i>
+							</a>
+						</li>
+						{% endif %}
+
+					</ul>
+					{% endif %}
+				{% else %}
+				<a href="#"  class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+					<i class="fa fa-rotate-right"></i>
+				</a>
+				{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
 
 {% endblock %}
