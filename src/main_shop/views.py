@@ -67,3 +67,11 @@ def product(request, sku):
         'solidarity_product': solidarity_product,
     }
     return render(request, url, context)
+
+
+def grid_shop(request, action, ref):
+    direction = request.session.get('language')
+    url = direction + "/main-shop/grid-shop.html"
+    context = {
+    }
+    return render(request, url, context)
