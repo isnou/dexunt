@@ -72,7 +72,7 @@ def product(request, sku):
 
 def grid_shop(request, action, ref):
     all_showcases = Layout.objects.all().filter(type='showcase')
-    all_products = Produc.objects.all().filter(type='main')
+    all_products = Product.objects.all().filter(type='main')
 
     if action == 'all':
         page = request.GET.get('page', 1)
