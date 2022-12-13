@@ -722,7 +722,12 @@
         <!-- Pagination-->
         <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="shop-grid-ft.html#"><i class="ci-arrow-left me-2"></i>Prev</a></li>
+            <li class="page-item">
+              <a class="page-link" href="shop-grid-ft.html#">
+                <i class="ci-arrow-left me-2">
+
+                </i>Prev</a>
+            </li>
           </ul>
           <ul class="pagination">
             <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
@@ -748,11 +753,15 @@
 					<ul class="pagination">
 
 						{% if products.has_previous %}
-						<li class="page-item">
-							<a class="page-link" href="?page={{ products.previous_page_number }}">Next
-                              <i class="ci-arrow-left ms-2"></i>
-							</a>
-						</li>
+
+                      <li class="page-item">
+              <a class="page-link" href="{{ products.previous_page_number }}">
+                <i class="ci-arrow-left me-2">
+
+                </i>Prev</a>
+            </li>
+
+
 						{% endif %}
 
 						{% for i in products.paginator.page_range %}
