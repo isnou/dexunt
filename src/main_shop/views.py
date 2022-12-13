@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Product
 from sell_manager.models import Clip
+from .models import Layout
 
 
 def main_shop_home(request):
@@ -70,8 +71,27 @@ def product(request, sku):
 
 
 def grid_shop(request, action, ref):
+    all_showcases = Layout.objects.all().filter(type='showcase')
+    all_products = Produc.objects.all().filter(type='main')
+
+    if action == 'all':
+        page = request.GET.get('page', 1)
+        paginator = Paginator(all_products, 4)
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            products = paginator.page(1)
+        except EmptyPage:
+            products = paginator.page(paginator.num_pages)
+        paginate = True
+    else:
+        products = all_products.order_by('?').all()[:8]
+        paginate = False
+
     direction = request.session.get('language')
     url = direction + "/main-shop/grid-shop.html"
     context = {
+        'products': products,
+        'paginate': paginate,
     }
     return render(request, url, context)
