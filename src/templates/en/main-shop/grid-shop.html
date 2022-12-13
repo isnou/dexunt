@@ -92,7 +92,15 @@
         <div class="bg-light shadow-lg rounded-3 p-4 mt-n5 mb-4">
           <div class="d-flex justify-content-between align-items-center">
             <div class="dropdown me-2"><a class="btn btn-outline-secondary dropdown-toggle" href="shop-grid-ft.html#shop-filters" data-bs-toggle="collapse"><i class="ci-filter me-2"></i>Filters</a></div>
-            <div class="d-flex"><a class="nav-link-style me-3" href="shop-grid-ft.html#"><i class="ci-arrow-left"></i></a><span class="fs-md">1 / 5</span><a class="nav-link-style ms-3" href="shop-grid-ft.html#"><i class="ci-arrow-right"></i></a></div>
+            <div class="d-flex">
+              <a class="nav-link-style me-3" href="shop-grid-ft.html#">
+                <i class="ci-arrow-left"></i>
+              </a>
+              <span class="fs-md">1 / 5</span>
+              <a class="nav-link-style ms-3" href="shop-grid-ft.html#">
+                <i class="ci-arrow-right"></i>
+              </a>
+            </div>
             <div class="d-none d-sm-flex"><a class="btn btn-icon nav-link-style bg-primary text-light disabled opacity-100 me-2" href="shop-grid-ft.html#"><i class="ci-view-grid"></i></a><a class="btn btn-icon nav-link-style" href="shop-list-ft.html"><i class="ci-view-list"></i></a></div>
           </div>
           <!-- Toolbar with expandable filters-->
@@ -635,7 +643,6 @@
             </div>
           </div>
         </div>
-  <hr class="my-3">
         <!-- Products grid-->
         <div class="row pt-3 mx-n2">
 
@@ -726,7 +733,6 @@
       </li>
       {% endif %}
     </ul>
-
     <ul class="pagination">
       {% for i in products.paginator.page_range %}
       {% if products.number == i %}
@@ -740,7 +746,6 @@
       {% endif %}
       {% endfor %}
     </ul>
-
     <ul class="pagination">
       {% if products.has_next %}
       <li class="page-item">
@@ -753,9 +758,7 @@
     {% endif %}
 
     {% else %}
-    <a href="#"  class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-      <i class="ci-reload ms-2"></i>
-    </a>
+    <!-- no pagination -->
     {% endif %}
   </nav>
 
