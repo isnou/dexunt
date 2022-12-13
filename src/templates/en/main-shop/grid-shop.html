@@ -635,6 +635,7 @@
             </div>
           </div>
         </div>
+  <hr class="my-3">
         <!-- Products grid-->
         <div class="row pt-3 mx-n2">
 
@@ -709,47 +710,12 @@
 
           {% endfor %}
 
-
-
         </div>
-        <hr class="my-3">
-
-
-
-
-
-
-        <!-- Pagination-->
-        <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="shop-grid-ft.html#">
-                <i class="ci-arrow-left me-2">
-
-                </i>Prev</a>
-            </li>
-          </ul>
-          <ul class="pagination">
-            <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-            <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
-            <li class="page-item d-none d-sm-block"><a class="page-link" href="shop-grid-ft.html#">2</a></li>
-            <li class="page-item d-none d-sm-block"><a class="page-link" href="shop-grid-ft.html#">3</a></li>
-            <li class="page-item d-none d-sm-block"><a class="page-link" href="shop-grid-ft.html#">4</a></li>
-            <li class="page-item d-none d-sm-block"><a class="page-link" href="shop-grid-ft.html#">5</a></li>
-          </ul>
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="shop-grid-ft.html#" aria-label="Next">Next
-                <i class="ci-arrow-right ms-2"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-
+  <hr class="my-3">
+  <!-- Pagination-->
   <nav class="d-flex justify-content-between pt-20" aria-label="Page navigation">
     {% if paginate %}
-    
+
     {% if products.has_other_pages %}
     <ul class="pagination">
       {% if products.has_previous %}
@@ -793,19 +759,6 @@
     {% endif %}
   </nav>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
+</div>
 
 {% endblock %}
