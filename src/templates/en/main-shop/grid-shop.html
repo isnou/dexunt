@@ -777,11 +777,13 @@
 						{% endfor %}
 
 						{% if products.has_next %}
-						<li class="page-item">
-							<a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ products.next_page_number }}">
-								<i class="fa fa-angle-right"></i>
-							</a>
-						</li>
+
+                      <li class="page-item">
+              <a class="page-link" href="?page={{ products.next_page_number }}" aria-label="Next">Next
+                <i class="ci-arrow-right ms-2"></i>
+              </a>
+            </li>
+
 						{% endif %}
 
 					</ul>
