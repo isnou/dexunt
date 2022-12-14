@@ -79,6 +79,7 @@ def grid_shop(request, action, ref):
     else:
         showcase = products
 
+    all_products = None
     if action == 'all':
         page = request.GET.get('page', 1)
         paginator = Paginator(products, 4)
@@ -88,10 +89,6 @@ def grid_shop(request, action, ref):
             all_products = paginator.page(1)
         except EmptyPage:
             all_products = paginator.page(paginator.num_pages)
-        paginate_all = True
-    else:
-        all_products = products.all()[:4]
-        paginate_all = False
 
     if action == 'showcase':
         page = request.GET.get('page', 1)
@@ -111,7 +108,6 @@ def grid_shop(request, action, ref):
     url = direction + "/main-shop/grid-shop.html"
     context = {
         'all_products': all_products,
-        'paginate_all': paginate_all,
         'showcase_products': showcase_products,
         'paginate_showcase': paginate_showcase,
     }
