@@ -144,15 +144,6 @@
             <!--end no products message-->
             {% endif %}
             <div class="d-flex align-items-center position-relative my-1">
-                {% if details %}
-                <a href="{% url 'inventory' 'hide_details' '#' %}" class="d-flex align-items-center text-gray-400 text-hover-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Hide Details" style="margin-left: 10px;">
-                    <i class="bi bi-eye-slash fs-2x"></i>
-                </a>
-                {% else %}
-                <a href="{% url 'inventory' 'show_details' '#' %}" class="d-flex align-items-center text-gray-400 text-hover-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Show Details" style="margin-left: 10px;">
-                    <i class="bi bi-eye fs-2x"></i>
-                </a>
-                {% endif %}
             </div>
             <!--toolbar-->
             <div class="card-toolbar">

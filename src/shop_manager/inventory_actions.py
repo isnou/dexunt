@@ -56,6 +56,23 @@ def add_new_product(request):
     }
 
 
+def delete_product(request):
+    url = "/shop-manager/inventory.html"
+    all_products = Product.objects.all()
+    selected_product = all_products.get(sku=sku)
+
+    if selected_product.type == 'main':
+        main_products = all_products.filter(en_product_title=selected_product.en_product_title)
+        main_products.filter(type='main').delete()
+        main_products.filter(type='main_photo').delete()
+    else:
+        selected_product.delete()
+
+    return {
+        'url': url,
+    }
+
+
 def edit(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
