@@ -124,6 +124,70 @@ def add_new_variant(request, sku):
 
 
 # ------------------ inventory edit
+def edit_product(request, sku):
+    url = "/shop-manager/inventory-edit.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    token_variant = selected_product.en_variant
+    token_en_product_title = selected_product.en_product_title
+    if request.method == 'POST':
+        en_product_title = request.POST.get('en_product_title', False)
+        if en_product_title:
+            selected_product.en_product_title = en_product_title
+            products = Product.objects.all().filter(en_product_title=token_en_product_title)
+            for product in products:
+                product.en_product_title = selected_product.en_product_title
+                product.save()
+        en_variant = request.POST.get('en_variant', False)
+        if en_variant:
+            selected_product.en_variant = en_variant
+            sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
+                .filter(en_variant=token_variant).filter(type='size')
+            for product in sizes:
+                product.en_variant = selected_product.en_variant
+                product.save()
+        fr_product_title = request.POST.get('fr_product_title', False)
+        if fr_product_title:
+            selected_product.fr_product_title = fr_product_title
+        fr_variant = request.POST.get('fr_variant', False)
+        if fr_variant:
+            selected_product.fr_variant = fr_variant
+        ar_product_title = request.POST.get('ar_product_title', False)
+        if ar_product_title:
+            selected_product.ar_product_title = ar_product_title
+        ar_variant = request.POST.get('ar_variant', False)
+        if ar_variant:
+            selected_product.ar_variant = ar_variant
+        brand = request.POST.get('brand', False)
+        if brand:
+            selected_product.brand = brand
+        model = request.POST.get('model', False)
+        if model:
+            selected_product.model = model
+        upc = request.POST.get('upc', False)
+        if upc:
+            selected_product.upc = upc
+        tag = request.POST.get('tag', False)
+        if tag:
+            selected_product.tag = tag
+        quantity = request.POST.get('quantity', False)
+        if quantity:
+            selected_product.quantity = quantity
+        buy_price = request.POST.get('buy_price', False)
+        if buy_price:
+            selected_product.buy_price = buy_price
+        sell_price = request.POST.get('sell_price', False)
+        if sell_price:
+            selected_product.sell_price = sell_price
+        discount_price = request.POST.get('discount_price', False)
+        if discount_price:
+            selected_product.discount_price = discount_price
+    selected_product.save()
+
+    return {
+        'url': url,
+    }
+
+
 def add_new_photo(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -211,70 +275,6 @@ def edit_feature(request, index):
     }
 
 
-def edit(request, sku):
-    url = "/shop-manager/inventory-edit.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    token_variant = selected_product.en_variant
-    token_en_product_title = selected_product.en_product_title
-    if request.method == 'POST':
-        en_product_title = request.POST.get('en_product_title', False)
-        if en_product_title:
-            selected_product.en_product_title = en_product_title
-            products = Product.objects.all().filter(en_product_title=token_en_product_title)
-            for product in products:
-                product.en_product_title = selected_product.en_product_title
-                product.save()
-        en_variant = request.POST.get('en_variant', False)
-        if en_variant:
-            selected_product.en_variant = en_variant
-            sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
-                .filter(en_variant=token_variant).filter(type='size')
-            for product in sizes:
-                product.en_variant = selected_product.en_variant
-                product.save()
-        fr_product_title = request.POST.get('fr_product_title', False)
-        if fr_product_title:
-            selected_product.fr_product_title = fr_product_title
-        fr_variant = request.POST.get('fr_variant', False)
-        if fr_variant:
-            selected_product.fr_variant = fr_variant
-        ar_product_title = request.POST.get('ar_product_title', False)
-        if ar_product_title:
-            selected_product.ar_product_title = ar_product_title
-        ar_variant = request.POST.get('ar_variant', False)
-        if ar_variant:
-            selected_product.ar_variant = ar_variant
-        brand = request.POST.get('brand', False)
-        if brand:
-            selected_product.brand = brand
-        model = request.POST.get('model', False)
-        if model:
-            selected_product.model = model
-        upc = request.POST.get('upc', False)
-        if upc:
-            selected_product.upc = upc
-        tag = request.POST.get('tag', False)
-        if tag:
-            selected_product.tag = tag
-        quantity = request.POST.get('quantity', False)
-        if quantity:
-            selected_product.quantity = quantity
-        buy_price = request.POST.get('buy_price', False)
-        if buy_price:
-            selected_product.buy_price = buy_price
-        sell_price = request.POST.get('sell_price', False)
-        if sell_price:
-            selected_product.sell_price = sell_price
-        discount_price = request.POST.get('discount_price', False)
-        if discount_price:
-            selected_product.discount_price = discount_price
-    selected_product.save()
-
-    return {
-        'url': url,
-    }
-
-
 def add_new_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -296,7 +296,7 @@ def add_new_size(request, sku):
         if not discount_price:
             discount_price = selected_product.discount_price
         new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=selected_product.en_variant + ' size',
+                              en_variant=selected_product.en_variant,
                               upc=upc,
                               size=size,
                               quantity=int(quantity),
@@ -304,9 +304,17 @@ def add_new_size(request, sku):
                               sell_price=int(sell_price),
                               discount_price=int(discount_price),
                               )
-        new_product.sku = serial_number_generator(9).upper()
+        new_product.sku = serial_number_generator(10).upper()
+        new_product.attach = selected_product.attach
         new_product.type = 'size'
         new_product.save()
+
+        if selected_product.type == 'main':
+            selected_product.type = 'proto'
+        if selected_product.type == 'variant':
+            selected_product.type = 'proto_variant'
+        selected_product.quantity += new_product.quantity
+        selected_product.save()
 
     return {
         'url': url,
