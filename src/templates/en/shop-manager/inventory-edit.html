@@ -847,52 +847,51 @@
                             {% for feature in features %}
                             <div class="table-responsive mb-10">
                                 <div class="card card-dashed">
-                            <form action="{% url 'inventory-edit' 'edit_feature' selected_product.sku feature.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                    <div class="card-body p-9">
-                                        <!--main information-->
-                                        <div class="row mb-7">
-                                            <div class="col-lg-8">
-                                                <button type="submit" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
+                                    <form action="{% url 'inventory-edit' 'edit_feature' selected_product.sku feature.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="card-body p-9">
+                                            <!--main information-->
+                                            <div class="row mb-7">
+                                                <div class="col-lg-8">
+                                                    <button type="submit" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </button>
 
-                                                <a href="{% url 'inventory-edit' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
-                                                    <i class="bi bi-trash3"></i>
-                                                </a>
-
+                                                    <a href="{% url 'inventory-edit' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </a>
+                                                </div>
                                             </div>
+                                            <div class="row mb-7">
+                                                <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="en_feature_title" class="form-control" placeholder="title" value="{{ feature.en_title }}">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="en_feature_value" class="form-control" placeholder="value" value="{{ feature.en_value }}">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-7">
+                                                <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">French </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="fr_feature_title" class="form-control" placeholder="title" value="{{ feature.fr_title }}">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="fr_feature_value" class="form-control" placeholder="value" value="{{ feature.fr_value }}">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-7">
+                                                <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">Arabic </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="ar_feature_value" class="form-control" placeholder="value" value="{{ feature.ar_value }}" dir="rtl">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="ar_feature_title" class="form-control" placeholder="title" value="{{ feature.ar_title }}" dir="rtl">
+                                                </div>
+                                            </div>
+                                            <!--end main information-->
                                         </div>
-                                        <div class="row mb-7">
-                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English </label>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="en_feature_title" class="form-control" placeholder="{{ feature.en_title }}">
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="en_feature_value" class="form-control" placeholder="{{ feature.en_value }}">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-7">
-                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">French </label>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="fr_feature_title" class="form-control" placeholder="{{ feature.fr_title }}">
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="fr_feature_value" class="form-control" placeholder="{{ feature.fr_value }}">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-7">
-                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">Arabic </label>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="ar_feature_value" class="form-control" placeholder="{{ feature.ar_value }}" dir="rtl">
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="ar_feature_title" class="form-control" placeholder="{{ feature.ar_title }}" dir="rtl">
-                                            </div>
-                                        </div>
-                                        <!--end main information-->
-                                    </div>
-                                </form>
+                                    </form>
                                 </div>
                             </div>
                             {% endfor %}
@@ -2232,52 +2231,51 @@
                             {% for feature in features %}
                             <div class="table-responsive mb-10">
                                 <div class="card card-dashed">
-                            <form action="{% url 'inventory-edit' 'edit_feature' selected_product.sku feature.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                    <div class="card-body p-9">
-                                        <!--main information-->
-                                        <div class="row mb-7">
-                                            <div class="col-lg-8">
-                                                <button type="submit" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
+                                    <form action="{% url 'inventory-edit' 'edit_feature' selected_product.sku feature.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="card-body p-9">
+                                            <!--main information-->
+                                            <div class="row mb-7">
+                                                <div class="col-lg-8">
+                                                    <button type="submit" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </button>
 
-                                                <a href="{% url 'inventory-edit' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
-                                                    <i class="bi bi-trash3"></i>
-                                                </a>
-
+                                                    <a href="{% url 'inventory-edit' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </a>
+                                                </div>
                                             </div>
+                                            <div class="row mb-7">
+                                                <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="en_feature_title" class="form-control" placeholder="title" value="{{ feature.en_title }}">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="en_feature_value" class="form-control" placeholder="value" value="{{ feature.en_value }}">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-7">
+                                                <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">French </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="fr_feature_title" class="form-control" placeholder="title" value="{{ feature.fr_title }}">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="fr_feature_value" class="form-control" placeholder="value" value="{{ feature.fr_value }}">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-7">
+                                                <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">Arabic </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="ar_feature_value" class="form-control" placeholder="value" value="{{ feature.ar_value }}" dir="rtl">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <input type="text" name="ar_feature_title" class="form-control" placeholder="title" value="{{ feature.ar_title }}" dir="rtl">
+                                                </div>
+                                            </div>
+                                            <!--end main information-->
                                         </div>
-                                        <div class="row mb-7">
-                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English </label>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="en_feature_title" class="form-control" placeholder="{{ feature.en_title }}">
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="en_feature_value" class="form-control" placeholder="{{ feature.en_value }}">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-7">
-                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">French </label>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="fr_feature_title" class="form-control" placeholder="{{ feature.fr_title }}">
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="fr_feature_value" class="form-control" placeholder="{{ feature.fr_value }}">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-7">
-                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">Arabic </label>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="ar_feature_value" class="form-control" placeholder="{{ feature.ar_value }}" dir="rtl">
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="ar_feature_title" class="form-control" placeholder="{{ feature.ar_title }}" dir="rtl">
-                                            </div>
-                                        </div>
-                                        <!--end main information-->
-                                    </div>
-                                </form>
+                                    </form>
                                 </div>
                             </div>
                             {% endfor %}

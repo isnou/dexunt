@@ -155,6 +155,62 @@ def edit_photo(request, sku):
     }
 
 
+def add_new_feature(request, sku):
+    url = "/shop-manager/inventory-edit.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    if request.method == 'POST':
+        en_title = request.POST.get('en_feature_title', False)
+        en_value = request.POST.get('en_feature_value', False)
+        fr_title = request.POST.get('fr_feature_title', False)
+        fr_value = request.POST.get('fr_feature_value', False)
+        ar_title = request.POST.get('ar_feature_title', False)
+        ar_value = request.POST.get('ar_feature_value', False)
+        feature = Feature(en_title=en_title,
+                          en_value=en_value,
+                          fr_title=fr_title,
+                          fr_value=fr_value,
+                          ar_title=ar_title,
+                          ar_value=ar_value,
+                          )
+        feature.save()
+        selected_product.features.add(feature)
+        selected_product.save()
+
+    return {
+        'url': url,
+    }
+
+
+def edit_feature(request, index):
+    url = "/shop-manager/inventory-edit.html"
+    selected_feature = Feature.objects.all().get(id=index)
+    if request.method == 'POST':
+        en_title = request.POST.get('en_feature_title', False)
+        if en_title:
+            selected_feature.en_title = en_title
+        en_value = request.POST.get('en_feature_value', False)
+        if en_value:
+            selected_feature.en_value = en_value
+        fr_title = request.POST.get('fr_feature_title', False)
+        if fr_title:
+            selected_feature.fr_title = fr_title
+        fr_value = request.POST.get('fr_feature_value', False)
+        if fr_value:
+            selected_feature.fr_value = fr_value
+        ar_title = request.POST.get('ar_feature_title', False)
+        if ar_title:
+            selected_feature.ar_title = ar_title
+        ar_value = request.POST.get('ar_feature_value', False)
+        if ar_value:
+            selected_feature.ar_value = ar_value
+
+        selected_feature.save()
+
+    return {
+        'url': url,
+    }
+
+
 def edit(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -350,62 +406,6 @@ def edit_a_set(request, sku):
         if discount_price:
             selected_product.discount_price = discount_price
     selected_product.save()
-
-    return {
-        'url': url,
-    }
-
-
-def add_new_feature(request, sku):
-    url = "/shop-manager/inventory-edit.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    if request.method == 'POST':
-        en_title = request.POST.get('en_feature_title', False)
-        en_value = request.POST.get('en_feature_value', False)
-        fr_title = request.POST.get('fr_feature_title', False)
-        fr_value = request.POST.get('fr_feature_value', False)
-        ar_title = request.POST.get('ar_feature_title', False)
-        ar_value = request.POST.get('ar_feature_value', False)
-        feature = Feature(en_title=en_title,
-                          en_value=en_value,
-                          fr_title=fr_title,
-                          fr_value=fr_value,
-                          ar_title=ar_title,
-                          ar_value=ar_value,
-                          )
-        feature.save()
-        selected_product.features.add(feature)
-        selected_product.save()
-
-    return {
-        'url': url,
-    }
-
-
-def edit_feature(request, identity):
-    url = "/shop-manager/inventory-edit.html"
-    selected_feature = Feature.objects.all().get(id=identity)
-    if request.method == 'POST':
-        en_title = request.POST.get('en_feature_title', False)
-        if en_title:
-            selected_feature.en_title = en_title
-        en_value = request.POST.get('en_feature_value', False)
-        if en_value:
-            selected_feature.en_value = en_value
-        fr_title = request.POST.get('fr_feature_title', False)
-        if fr_title:
-            selected_feature.fr_title = fr_title
-        fr_value = request.POST.get('fr_feature_value', False)
-        if fr_value:
-            selected_feature.fr_value = fr_value
-        ar_title = request.POST.get('ar_feature_title', False)
-        if ar_title:
-            selected_feature.ar_title = ar_title
-        ar_value = request.POST.get('ar_feature_value', False)
-        if ar_value:
-            selected_feature.ar_value = ar_value
-
-        selected_feature.save()
 
     return {
         'url': url,
