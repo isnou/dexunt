@@ -366,12 +366,6 @@ def edit_size(request, sku):
             quantity += attached_product.quantity
         main_product.quantity = quantity
 
-        if quantity == 0:
-            if main_product.type == 'proto':
-                main_product.type = 'main'
-            if main_product.type == 'proto_variant':
-                main_product.type = 'variant'
-
         selected_product.save()
         main_product.save()
 
