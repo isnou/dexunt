@@ -55,9 +55,8 @@ def inventory_edit(request, action, sku, index):
     if action == "edit_a_set":
         url = direction + inventory_actions.edit_a_set(request, sku).get('url')
     if action == 'delete_attached':
-        switch = sku
         url = direction + inventory_actions.delete_attached(sku).get('url')
-        sku = switch
+        sku = inventory_actions.delete_attached(sku).get('sku')
     if action == 'delete_feature':
         Product.objects.all().get(sku=sku).features.all().get(id=index).delete()
 
