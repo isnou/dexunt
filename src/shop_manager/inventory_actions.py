@@ -517,13 +517,14 @@ def delete_attached(sku):
     quantity = 0
     for attached_product in attached_products:
         quantity += attached_product.quantity
-    main_product.quantity = quantity
 
     if quantity == 0:
         if main_product.type == 'proto':
             main_product.type = 'main'
         if main_product.type == 'proto_variant':
             main_product.type = 'variant'
+
+    main_product.quantity = quantity
     main_product.save()
 
     return {
