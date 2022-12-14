@@ -499,6 +499,39 @@ def remove_quantity(request, sku):
     return result
 
 
+def delete_attached(sku):
+    url = "/shop-manager/inventory-edit.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    attached_products = Product.objects.all().filter(attach=selected_product.attach)
+    selected_product.delete()
+
+    if attached_products.filter(type='proto').exists():
+        main_product = attached_products.get(type='proto')
+        attached_products = attached_products.exclude(type='proto')
+    elif attached_products.filter(type='proto_variant').exists():
+        main_product = attached_products.get(type='proto_variant')
+        attached_products = attached_products.exclude(type='proto_variant')
+    else:
+        main_product = None
+
+    quantity = 0
+    for attached_product in attached_products:
+        quantity += attached_product.quantity
+    main_product.quantity = quantity
+
+    if quantity == 0:
+        if main_product.type == 'proto':
+            main_product.type = 'main'
+        if main_product.type == 'proto_variant':
+            main_product.type = 'variant'
+    main_product.save()
+
+    return {
+        'url': url,
+        'sku': main_product.sku,
+    }
+
+
 def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits
     result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
