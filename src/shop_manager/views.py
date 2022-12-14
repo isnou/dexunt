@@ -43,10 +43,10 @@ def inventory_edit(request, action, sku, index):
         url = direction + inventory_actions.add_new_feature(request, sku).get('url')
     if action == 'edit_feature':
         url = direction + inventory_actions.edit_feature(request, index).get('url')
-    if action == "edit_product":
-        url = direction + inventory_actions.edit(request, sku).get('url')
     if action == 'delete_feature':
         Product.objects.all().get(sku=sku).features.all().get(id=index).delete()
+    if action == "edit_product":
+        url = direction + inventory_actions.edit(request, sku).get('url')
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
     if action == "add_a_set":
@@ -56,11 +56,11 @@ def inventory_edit(request, action, sku, index):
 
     selected_product = Product.objects.all().get(sku=sku)
     photos = Product.objects.all().filter(attach=selected_product.attach).filter(type='photo')
+    features = selected_product.features.all()
 
     sets = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='set')
     sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
         .filter(en_variant=selected_product.en_variant + ' size').filter(type='size')
-    features = selected_product.features.all()
 
     features_count = features.count()
     sizes_count = sizes.count()
