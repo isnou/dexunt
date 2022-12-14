@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Product
 from sell_manager.models import Clip
 from .models import Layout
+from . import grid_shop_actions
 
 
 def main_shop_home(request):
@@ -72,6 +73,9 @@ def product(request, sku):
 
 
 def grid_shop(request, action, ref):
+    direction = request.session.get('language')
+    url = direction + "/main-shop/grid-shop.html"
+
     all_showcases = Layout.objects.all().filter(type='showcase')
     products = Product.objects.all().filter(type='main')
     if all_showcases.filter(id=ref).exists():
@@ -79,16 +83,10 @@ def grid_shop(request, action, ref):
     else:
         showcase = products
 
-    all_products = None
+    products = None
     if action == 'all':
-        page = request.GET.get('page', 1)
-        paginator = Paginator(products, 4)
-        try:
-            all_products = paginator.page(page)
-        except PageNotAnInteger:
-            all_products = paginator.page(1)
-        except EmptyPage:
-            all_products = paginator.page(paginator.num_pages)
+        url = direction + grid_shop_actions.all_products(request).get('url')
+        products = grid_shop_actions.all_products(request).get('products_list')
 
     if action == 'showcase':
         page = request.GET.get('page', 1)
@@ -104,10 +102,8 @@ def grid_shop(request, action, ref):
         showcase_products = showcase.all()[:4]
         paginate_showcase = False
 
-    direction = request.session.get('language')
-    url = direction + "/main-shop/grid-shop.html"
     context = {
-        'all_products': all_products,
+        'all_products': products,
         'showcase_products': showcase_products,
         'paginate_showcase': paginate_showcase,
     }
