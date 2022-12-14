@@ -501,7 +501,10 @@ def remove_quantity(request, sku):
 
 def delete_attached(sku):
     url = "/shop-manager/inventory-edit.html"
-    selected_product = Product.objects.all().get(sku=sku)
+    if Product.objects.all().filter(sku=sku).exists():
+        selected_product = Product.objects.all().get(sku=sku)
+    else:
+        selected_product = None
     attached_products = Product.objects.all().filter(attach=selected_product.attach)
     selected_product.delete()
 
