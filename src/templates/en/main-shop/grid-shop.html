@@ -93,13 +93,35 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="dropdown me-2"><a class="btn btn-outline-secondary dropdown-toggle" href="shop-grid-ft.html#shop-filters" data-bs-toggle="collapse"><i class="ci-filter me-2"></i>Filters</a></div>
             <div class="d-flex">
-              <a class="nav-link-style me-3" href="shop-grid-ft.html#">
+
+
+              {% if products.has_other_pages %}
+              {% if products.has_previous %}
+              <a class="nav-link-style me-3" href="?page={{ products.previous_page_number }}">
                 <i class="ci-arrow-left"></i>
               </a>
-              <span class="fs-md">1 / 5</span>
-              <a class="nav-link-style ms-3" href="shop-grid-ft.html#">
+              {% endif %}
+
+              <span class="fs-md">{{ products.number }} / {{ products.paginator.page_range }}</span>
+
+              {% if products.has_next %}
+              <a class="nav-link-style ms-3" href="?page={{ products.next_page_number }}">
                 <i class="ci-arrow-right"></i>
               </a>
+              {% endif %}
+              {% endif %}
+
+              
+
+
+
+
+
+
+
+
+
+
             </div>
             <div class="d-none d-sm-flex"><a class="btn btn-icon nav-link-style bg-primary text-light disabled opacity-100 me-2" href="shop-grid-ft.html#"><i class="ci-view-grid"></i></a><a class="btn btn-icon nav-link-style" href="shop-list-ft.html"><i class="ci-view-list"></i></a></div>
           </div>
@@ -645,7 +667,6 @@
         </div>
         <!-- Products grid-->
         <div class="row pt-3 mx-n2">
-
           {% for product in products %}
           <!-- Product-->
           {% if product.quantity > 0 %}
@@ -715,12 +736,10 @@
           </div>
           {% endif %}
           {% endfor %}
-
         </div>
   <hr class="my-3">
   <!-- Pagination-->
   <nav class="d-flex justify-content-between pt-20" aria-label="Page navigation">
-
     {% if products.has_other_pages %}
     <ul class="pagination">
       {% if products.has_previous %}
@@ -733,7 +752,7 @@
     </ul>
     <ul class="pagination">
       {% for i in products.paginator.page_range %}
-      {% if all_products.number == i %}
+      {% if products.number == i %}
       <li class="page-item active d-none d-sm-block" aria-current="page">
         <span class="page-link">{{ i }}<span class="visually-hidden">(current)</span></span>
       </li>
@@ -754,7 +773,6 @@
       {% endif %}
     </ul>
     {% endif %}
-
   </nav>
 
 </div>
