@@ -499,36 +499,34 @@ def remove_quantity(request, sku):
     return result
 
 
-def delete_attached(sku):
-    url = "/shop-manager/inventory.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    attached_products = Product.objects.all().filter(attach=selected_product.attach)
-    selected_product.delete()
+def delete_attached(sku, index):
+    url = "/shop-manager/inventory-edit.html"
+    all_products = Product.objects.all()
+    if all_products.filter(sku=sku).exists():
+        selected_product = all_products.get(sku=sku)
+        attached_products = all_products.filter(attach=selected_product.attach).exclude(id=index)
+        main_product = all_products.get(id=index)
 
-    if attached_products.filter(type='proto').exists():
-        main_product = attached_products.get(type='proto')
-        attached_products = attached_products.exclude(type='proto')
-    elif attached_products.filter(type='proto_variant').exists():
-        main_product = attached_products.get(type='proto_variant')
-        attached_products = attached_products.exclude(type='proto_variant')
+        selected_product.delete()
+
+        quantity = 0
+        for attached_product in attached_products:
+            quantity += attached_product.quantity
+
+        if attached_products.exclude(type='photo').count() == 0:
+            if main_product.type == 'proto':
+                main_product.type = 'main'
+            if main_product.type == 'proto_variant':
+                main_product.type = 'variant'
+
+        main_product.quantity = quantity
+        main_product.save()
     else:
-        main_product = None
-
-    quantity = 0
-    for attached_product in attached_products:
-        quantity += attached_product.quantity
-
-    if quantity == 0:
-        if main_product.type == 'proto':
-            main_product.type = 'main'
-        if main_product.type == 'proto_variant':
-            main_product.type = 'variant'
-
-    main_product.quantity = quantity
-    main_product.save()
+        main_product = all_products.get(id=index)
 
     return {
         'url': url,
+        'sku': main_product.sku,
     }
 
 
