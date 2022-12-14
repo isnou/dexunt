@@ -583,7 +583,7 @@
                                                             <!--input-->
                                                             <div class="input-group">
                                                                 <span class="input-group-text">Buy Price</span>
-                                                                <input type="number" name="buy_price" class="form-control" placeholder="product price" value="{{ selected_product.buy_price }}">
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="product cost" value="{{ selected_product.buy_price }}">
                                                                 <span class="input-group-text">DZD</span>
                                                             </div>
                                                             <!--end input-->
@@ -601,7 +601,7 @@
                                                             <!--input-->
                                                             <div class="input-group">
                                                                 <span class="input-group-text">Sell Price</span>
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="{{ selected_product.sell_price }}">
+                                                                <input type="number" name="sell_price" class="form-control" placeholder="product regular price" value="{{ selected_product.sell_price }}">
                                                                 <span class="input-group-text">DZD</span>
                                                             </div>
                                                             <!--end input-->
@@ -613,7 +613,7 @@
                                                             <!--input-->
                                                             <div class="input-group">
                                                                 <span class="input-group-text">Discount</span>
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="{{ selected_product.discount_price }}">
+                                                                <input type="number" name="discount_price" class="form-control" placeholder="product discount price" value="{{ selected_product.discount_price }}">
                                                                 <span class="input-group-text">DZD</span>
                                                             </div>
                                                             <!--end input-->
@@ -1391,6 +1391,1199 @@
                 </div>
             </div>
             <!--end new variant modal-->
+        </div>
+        <!--end footer-->
+    </div>
+    {% for selected_product in sets %}
+    <div class="card card-flush shadow-sm" style="margin-top: 30px;">
+        <!--header-->
+        <div class="card-header">
+            <div class="card-body pt-9 pb-0">
+                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                    <!--thumbnail-->
+                    <div class="me-7 mb-4">
+                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.thumb}}">
+                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
+                        </a>
+                    </div>
+                    <!--end thumbnail-->
+                    <!--main information-->
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_product_title }}</a>
+                                    <i class="bi bi-dash-lg" style="margin-right: 4px;"></i>
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_variant }}</a>
+                                </div>
+
+                                <div class="d-flex align-items-center mb-2">
+                                    <a href="{% url 'inventory-edit' 'product_view' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit set" style="margin-right: 10px;">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a href="{% url 'inventory' 'delete_product' selected_product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+
+                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                    </a>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                        {{ selected_product.en_variant }}
+                                    </a>
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.model }}
+                                    </a>
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.brand }}
+                                    </a>
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.quantity }} Available
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap flex-stack">
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column flex-grow-1 pe-8">
+                                <!--begin::Stats-->
+                                <div class="d-flex flex-wrap">
+                                    <!--begin::Stat-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <!--begin::Number-->
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" >Buy :</div>
+                                        </div>
+                                        <!--end::Number-->
+                                        <!--begin::Label-->
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.buy_price|floatformat:"2g" }} DZD</div>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Stat-->
+                                    <!--begin::Stat-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <!--begin::Number-->
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" >Sell :</div>
+                                        </div>
+                                        <!--end::Number-->
+                                        <!--begin::Label-->
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Stat-->
+                                    <!--begin::Stat-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <!--begin::Number-->
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" >Discount :</div>
+                                        </div>
+                                        <!--end::Number-->
+                                        <!--begin::Label-->
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Stat-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    </div>
+                    <!--end main information-->
+                </div>
+            </div>
+
+        </div>
+        <!--end header-->
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if selected_product.type == 'variant' %}
+    <div class="card card-flush shadow-sm">
+        <!--header-->
+        <div class="card-header">
+            <div class="card-body pt-9 pb-0">
+                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                    <!--thumbnail-->
+                    <div class="me-7 mb-4">
+                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.thumb}}">
+                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
+                        </a>
+                    </div>
+                    <!--end thumbnail-->
+                    <!--main information-->
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_product_title }}</a>
+                                </div>
+                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit photo" style="margin-left: 10px;">
+                                        <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#edit_variant_photo"></i>
+                                    </a>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                        {{ selected_product.en_variant }}
+                                    </a>
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.model }}
+                                    </a>
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.brand }}
+                                    </a>
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.quantity }} Available
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap flex-stack">
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column flex-grow-1 pe-8">
+                                <!--begin::Stats-->
+                                <div class="d-flex flex-wrap">
+                                    <!--begin::Stat-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <!--begin::Number-->
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" >Buy :</div>
+                                        </div>
+                                        <!--end::Number-->
+                                        <!--begin::Label-->
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.buy_price|floatformat:"2g" }} DZD</div>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Stat-->
+                                    <!--begin::Stat-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <!--begin::Number-->
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" >Sell :</div>
+                                        </div>
+                                        <!--end::Number-->
+                                        <!--begin::Label-->
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Stat-->
+                                    <!--begin::Stat-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <!--begin::Number-->
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" >Discount :</div>
+                                        </div>
+                                        <!--end::Number-->
+                                        <!--begin::Label-->
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Stat-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+
+                        <!--new photo modal-->
+                        <div class="modal fade" tabindex="-1" id="edit_variant_photo">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="align-items: center;">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Edit Photo</h3>
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-1"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{% url 'inventory-edit' 'edit_photo' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="card-title">
+                                                <div class="card card-flush py-4">
+                                                    <div class="card-title">
+                                                        <div class="card card-flush py-4">
+                                                            <!--photo input-->
+                                                            <div class="card-body text-center pt-0">
+                                                                <!--begin::Image input-->
+                                                                <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                                    <!--begin::Image preview wrapper-->
+                                                                    <div class="image-input-wrapper w-125px h-125px"></div>
+                                                                    <!--end::Image preview wrapper-->
+                                                                    <!--begin::Edit button-->
+                                                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                                        <i class="bi bi-pencil-fill fs-7"></i>
+                                                                        <!--begin::Inputs-->
+                                                                        <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
+                                                                        <input type="hidden" name="photo_remove" />
+                                                                        <!--end::Inputs-->
+                                                                    </label>
+                                                                    <!--end::Edit button-->
+                                                                    <!--begin::Cancel button-->
+                                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                                        <i class="bi bi-x fs-2"></i>
+                                                                    </span>
+                                                                    <!--end::Cancel button-->
+                                                                    <!--begin::Remove button-->
+                                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                                        <i class="bi bi-x fs-2"></i>
+                                                                    </span>
+                                                                    <!--end::Remove button-->
+                                                                </div>
+                                                                <!--end::Image input-->
+                                                            </div>
+                                                            <!--end photo input-->
+                                                        </div>
+                                                    </div>
+                                                    <!--submit button-->
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <span class="indicator-label">Save Photo</span>
+                                                    </button>
+                                                    <!--end submit button-->
+                                                </div>
+                                                <!--add photo buttons-->
+                                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                                </div>
+                                                <!--end add photo buttons-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!--begin::Description-->
+                                        <div class="text-muted fs-7"></div>
+                                        <!--end::Description-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end new photo modal-->
+
+                    </div>
+                    <!--end main information-->
+                </div>
+            </div>
+        </div>
+        <!--end header-->
+        <!--tabs-->
+        <div class="card-body py-5">
+            <!--actions-->
+            <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#variant_photos">Product Photos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#variant_edit_general_informations">Edit General Informations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#variant_sizes">Sizes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#variant_features">Edit Features</a>
+                </li>
+            </ul>
+            <!--end actions-->
+            <!--contents-->
+            <div class="tab-content">
+                <!--photos tab-->
+                <div class="tab-pane fade show active" id="variant_photos" role="tabpanel">
+                    <div class="card-body p-9">
+                        <div class="tns tns-default" style="margin-bottom: 20px;text-align: center;">
+                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add new photo">
+                                <i class="bi bi-node-plus fs-2x" data-bs-toggle="modal" data-bs-target="#new_variant_photo"></i>
+                            </a>
+                        </div>
+                        <div class="tns tns-default">
+                            <div class="d-flex flex-wrap flex-stack">
+                            <!--begin::Wrapper-->
+                                <div class="d-flex flex-column flex-grow-1 pe-8">
+                                    <!--begin::Stats-->
+                                    <div class="d-flex flex-wrap">
+                                        {% for photo in photos %}
+                                        <div class="py-3 px-4 me-6 mb-3">
+                                            <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.thumb}}">
+                                                <img src="{% get_media_prefix %}{{photo.thumb}}" />
+                                            </a>
+
+                                            <a href="{% url 'inventory' 'delete_product' photo.sku %}" class="btn btn-active-color-primary" style="padding-bottom: 175px;padding-left: 0px;">
+                                                <i class="bi bi-x fs-2"></i>
+                                            </a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--new photo modal-->
+                    <div class="modal fade" tabindex="-1" id="new_variant_photo">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="align-items: center;">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add New Photo</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'inventory-edit' 'add_new_photo' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <div class="card-title">
+                                                    <div class="card card-flush py-4">
+                                                        <!--photo input-->
+                                                        <div class="card-body text-center pt-0">
+                                                            <!--begin::Image input-->
+                                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                                <!--begin::Image preview wrapper-->
+                                                                <div class="image-input-wrapper w-125px h-125px"></div>
+                                                                <!--end::Image preview wrapper-->
+                                                                <!--begin::Edit button-->
+                                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                                    <!--begin::Inputs-->
+                                                                    <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
+                                                                    <input type="hidden" name="photo_remove" />
+                                                                    <!--end::Inputs-->
+                                                                </label>
+                                                                <!--end::Edit button-->
+                                                                <!--begin::Cancel button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Cancel button-->
+                                                                <!--begin::Remove button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Remove button-->
+                                                            </div>
+                                                            <!--end::Image input-->
+                                                        </div>
+                                                        <!--end photo input-->
+                                                    </div>
+                                                </div>
+
+                                                <!--submit button-->
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="indicator-label">Save Photo</span>
+                                                </button>
+                                                <!--end submit button-->
+
+
+
+                                            </div>
+                                            <!--add photo buttons-->
+                                            <div class="d-flex justify-content-end" style="padding-top: 50px;">
+
+                                            </div>
+                                            <!--end add photo buttons-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7"></div>
+                                    <!--end::Description-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end new photo modal-->
+                </div>
+                <!--end photos tab-->
+                <!--edit product tab-->
+                <div class="tab-pane fade" id="variant_edit_general_informations" role="tabpanel">
+                    <!--edit product form-->
+                    <form action="{% url 'inventory-edit' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                            <div class="tab-content">
+                                <!--add product form inputs-->
+                                <div class="tab-pane fade active show">
+                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                        <!--add product information-->
+                                        <div class="card card-flush py-4">
+                                            <!--block body-->
+                                            <div class="card-body pt-0">
+                                                <!--product name-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--product name input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">English Title</span>
+                                                                <input type="text" name="en_product_title" class="form-control" placeholder="product title" value="{{ selected_product.en_product_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end product name input-->
+
+                                                        <!--product detail input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">English Detail</span>
+                                                                <input type="text" name="en_variant" class="form-control" placeholder="variant title" value="{{ selected_product.en_variant }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end product detail input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product name-->
+
+                                                <!--french product name-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--french product name input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">French Title</span>
+                                                                <input type="text" name="fr_product_title" class="form-control" placeholder="product title" value="{{ selected_product.fr_product_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end french product name input-->
+
+                                                        <!--french product detail input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">French Detail</span>
+                                                                <input type="text" name="fr_variant" class="form-control" placeholder="variant title" value="{{ selected_product.fr_variant }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end french product detail input-->
+                                                    </div>
+                                                </div>
+                                                <!--end french product name-->
+
+                                                <!--arabic product name-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--french product name input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Arabic Name</span>
+                                                                <input type="text" name="ar_product_title" class="form-control" dir="rtl"  placeholder="product title" value="{{ selected_product.ar_product_title }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end french product name input-->
+
+                                                        <!--arabic product detail input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Arabic Detail</span>
+                                                                <input type="text" name="ar_variant" class="form-control" dir="rtl"  placeholder="variant title" value="{{ selected_product.ar_variant }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end arabic product detail input-->
+                                                    </div>
+                                                </div>
+                                                <!--end arabic product name-->
+
+                                                <!--brand & model-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--brand input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Brand</span>
+                                                                <input type="text" name="brand" class="form-control"  placeholder="product brand" value="{{ selected_product.brand }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end brand input-->
+
+                                                        <!--model input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Model</span>
+                                                                <input type="text" name="model" class="form-control" placeholder="product model" value="{{ selected_product.model }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end model input-->
+                                                    </div>
+                                                </div>
+                                                <!--end brand & model-->
+
+                                                <!--upc input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">Barcode</span>
+                                                        <input type="text" name="upc" class="form-control" placeholder="the bar is required for inventory management" value="{{ selected_product.upc }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end upc input-->
+
+                                                <!--tag input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">Tag</span>
+                                                        <input type="text" name="tag" class="form-control" placeholder="tags must be separated by space" value="{{ selected_product.tag }}">
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end tag input-->
+
+                                                <!--product quantity & buy price input-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--quantity input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Quantity</span>
+                                                                <input type="number" name="quantity" class="form-control" placeholder="product quantity" value="{{ selected_product.quantity }}">
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end quantity input-->
+
+                                                        <!--price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Buy Price</span>
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="product cost" value="{{ selected_product.buy_price }}">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end price input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product quantity & buy price input-->
+
+                                                <!--product sell price & discount price input-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--sell price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Sell Price</span>
+                                                                <input type="number" name="sell_price" class="form-control" placeholder="product regular price" value="{{ selected_product.sell_price }}">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end sell price input-->
+
+                                                        <!--discount price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Discount</span>
+                                                                <input type="number" name="discount_price" class="form-control" placeholder="product discount price" value="{{ selected_product.discount_price }}">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end discount price input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product sell price & discount price input-->
+                                            </div>
+                                            <!--end block body-->
+                                        </div>
+                                        <!--end add product information-->
+                                    </div>
+                                </div>
+                                <!--end add product form inputs-->
+                                <!--add product buttons-->
+                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                    <!--submit button-->
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save Modifications</span>
+                                    </button>
+                                    <!--end submit button-->
+                                </div>
+                                <!--end add product buttons-->
+                            </div>
+                        </div>
+                    </form>
+                    <!--end edit product form-->
+                </div>
+                <!--end edit product tab-->
+                <!--sizes tab-->
+                <div class="tab-pane fade" id="variant_sizes" role="tabpanel">
+                    <!--size-->
+                    <div class="flex-wrap flex-stack">
+                        <div class="align-items-center">
+                            {% if sizes_count > 0 %}
+                            <div class="table-responsive">
+                                <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
+                                    <thead>
+                                    <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                                        <th class="text-center">Size</th>
+                                        <th class="text-center">Quantity</th>
+                                        <th class="text-center">Buy Price</th>
+                                        <th class="text-center">Sell Price</th>
+                                        <th class="text-center">Discount</th>
+                                        <th>
+                                            <div class="symbol symbol-50px">
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add size">
+                                                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_size"></i>
+                                                </a>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for product in sizes %}
+                                    <tr>
+                                        <td class="text-center">{{ product.size }}</td>
+                                        <td class="text-center">{{ product.quantity }}</td>
+                                        <td class="text-center">{{ product.buy_price }}</td>
+                                        <td class="text-center">{{ product.sell_price }}</td>
+                                        <td class="text-center">{{ product.discount_price }}</td>
+                                        <td>
+                                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <div class="symbol symbol-50px" style="margin-right: 10px;">
+                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add size">
+                                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_variant_size"></i>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--end size-->
+                    <!--new size modal-->
+                    <div class="modal fade" tabindex="-1" id="new_variant_size">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add New Size</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'inventory-edit' 'add_new_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                        {% csrf_token %}
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <!--english size-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--label-->
+                                                    <label class="form-label">Size</label>
+                                                    <!--end label-->
+                                                    <!--input-->
+                                                    <input type="text" name="size" class="form-control mb-2">
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end english size-->
+
+                                                <!--upc input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--label-->
+                                                    <label class="form-label">Barcode</label>
+                                                    <!--end label-->
+                                                    <!--input-->
+                                                    <input type="text" name="upc" class="form-control mb-2">
+                                                    <!--end input-->
+                                                    <!--description-->
+                                                    <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
+                                                    <!--end description-->
+                                                </div>
+                                                <!--end upc input-->
+
+                                                <!--product quantity & buy price input-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--quantity input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Quantity</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">Put product quantity.</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end quantity input-->
+
+                                                        <!--price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Buy Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end price input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product quantity & buy price input-->
+
+                                                <!--product sell price & discount price input-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--sell price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Sell Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end sell price input-->
+
+                                                        <!--discount price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Discount Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end discount price input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product sell price & discount price input-->
+                                            </div>
+                                            <!--add product buttons-->
+                                        <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                            <!--submit button-->
+                                            <button type="submit" class="btn btn-primary">
+                                                <span class="indicator-label">Save Changes</span>
+                                            </button>
+                                            <!--end submit button-->
+                                        </div>
+                                        <!--end add product buttons-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7"></div>
+                                    <!--end::Description-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end new size modal-->
+                </div>
+                <!--end sizes tab-->
+                <!--features tab-->
+                <div class="tab-pane fade" id="variant_features" role="tabpanel">
+                    <!--features-->
+                    <div class="flex-wrap flex-stack">
+                        <div class="align-items-center">
+                            {% if features_count > 0 %}
+                            <div class="symbol symbol-50px" style="margin-bottom: 20px;">
+                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add feature">
+                                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_variant_feature"></i>
+                                </a>
+                            </div>
+                            {% for feature in features %}
+                            <div class="table-responsive mb-10">
+                                <div class="card card-dashed">
+                            <form action="{% url 'inventory-edit' 'edit_feature' selected_product.sku feature.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="card-body p-9">
+                                        <!--main information-->
+                                        <div class="row mb-7">
+                                            <div class="col-lg-8">
+                                                <button type="submit" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>
+
+                                                <a href="{% url 'inventory-edit' 'delete_feature' selected_product.sku feature.id %}" class="btn btn-sm btn-light btn-active-light-primary" style="margin-left: 10px;">
+                                                    <i class="bi bi-trash3"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="row mb-7">
+                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">English </label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="en_feature_title" class="form-control" placeholder="{{ feature.en_title }}">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="en_feature_value" class="form-control" placeholder="{{ feature.en_value }}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-7">
+                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">French </label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="fr_feature_title" class="form-control" placeholder="{{ feature.fr_title }}">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="fr_feature_value" class="form-control" placeholder="{{ feature.fr_value }}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-7">
+                                            <label class="col-lg-4 badge py-3 px-4 fs-7 badge-light-primary">Arabic </label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="ar_feature_value" class="form-control" placeholder="{{ feature.ar_value }}" dir="rtl">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="ar_feature_title" class="form-control" placeholder="{{ feature.ar_title }}" dir="rtl">
+                                            </div>
+                                        </div>
+                                        <!--end main information-->
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <div class="symbol symbol-50px" style="margin-right: 10px;">
+                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add size">
+                                    <i class="bi bi-node-plus" style="font-size: 2rem;" data-bs-toggle="modal" data-bs-target="#new_feature"></i>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--end features-->
+                    <!--new feature modal-->
+                    <div class="modal fade" tabindex="-1" id="new_variant_feature">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add New Feature</h3>
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'inventory-edit' 'add_new_feature' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                        {% csrf_token %}
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <!--english feature-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--feature title input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 38px;">English Title</span>
+                                                                <input type="text" name="en_feature_title" class="form-control">
+                                                            </div>
+                                                        <!--end feature title input-->
+                                                        <!--feature content input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">English Content</span>
+                                                                <input type="text" name="en_feature_value" class="form-control">
+                                                            </div>
+                                                        <!--end feature content input-->
+                                                    </div>
+                                                </div>
+                                                <!--end english feature-->
+                                                <!--french feature-->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--feature title input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" style="padding-right: 38px;">French Title</span>
+                                                                <input type="text" name="fr_feature_title" class="form-control">
+                                                            </div>
+                                                        <!--end feature title input-->
+                                                        <!--feature content input-->
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">French Content</span>
+                                                                <input type="text" name="fr_feature_value" class="form-control">
+                                                            </div>
+                                                        <!--end feature content input-->
+                                                    </div>
+                                                </div>
+                                                <!--end french feature-->
+                                                <!--arabic feature-->
+                                                <div class="fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--feature title input-->
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" style="padding-right: 38px;">Arabic Title</span>
+                                                            <input type="text" name="ar_feature_title" class="form-control" dir="rtl">
+                                                        </div>
+                                                        <!--end feature title input-->
+                                                        <!--feature content input-->
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">Arabic Content</span>
+                                                            <input type="text" name="ar_feature_value" class="form-control" dir="rtl">
+                                                        </div>
+                                                        <!--end feature content input-->
+                                                    </div>
+                                                </div>
+                                                <!--end arabic feature-->
+                                            </div>
+                                            <!--add product buttons-->
+                                            <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                            <!--submit button-->
+                                            <button type="submit" class="btn btn-primary">
+                                                <span class="indicator-label">Create</span>
+                                            </button>
+                                            <!--end submit button-->
+                                        </div>
+                                        <!--end add product buttons-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7"></div>
+                                    <!--end::Description-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end new feature modal-->
+                </div>
+                <!--end features tab-->
+            </div>
+            <!--end contents-->
+        </div>
+        <!--end tabs-->
+        <!--footer-->
+        <div class="card-footer">
+            <div class="tns tns-default" style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
+                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="create a set">
+                    <i class="bi bi-columns-gap  fs-2x" data-bs-toggle="modal" data-bs-target="#add_a_variant_set"></i>
+                </a>
+            </div>
+
+            <!--new set modal-->
+            <div class="modal fade" tabindex="-1" id="add_a_variant_set">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Add a Set</h3>
+                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                <span class="svg-icon svg-icon-1"></span>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'inventory-edit' 'add_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="card-title">
+                                    <div class="card card-flush py-4">
+                                        <!--photo input-->
+                                        <div class="card-body text-center pt-0">
+                                            <!--begin::Image input-->
+                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                <!--begin::Image preview wrapper-->
+                                                <div class="image-input-wrapper w-125px h-125px"></div>
+                                                <!--end::Image preview wrapper-->
+                                                <!--begin::Edit button-->
+                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                    <!--begin::Inputs-->
+                                                    <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                    <input type="hidden" name="thumb_remove" />
+                                                    <!--end::Inputs-->
+                                                </label>
+                                                <!--end::Edit button-->
+                                                <!--begin::Cancel button-->
+                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                    <i class="bi bi-x fs-2"></i>
+                                                </span>
+                                                <!--end::Cancel button-->
+                                                <!--begin::Remove button-->
+                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                    <i class="bi bi-x fs-2"></i>
+                                                </span>
+                                                <!--end::Remove button-->
+                                            </div>
+                                            <!--end::Image input-->
+                                        </div>
+                                        <!--end photo input-->
+
+                                        <!--english set's title'-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class=" required form-label">English set's title</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="text" name="en_variant" class="form-control mb-2" required>
+                                            <!--end input-->
+                                        </div>
+                                        <!--end english set's title-->
+
+                                        <!--french set's title'-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">French set's title</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="text" name="fr_variant" class="form-control mb-2">
+                                            <!--end input-->
+                                        </div>
+                                        <!--end french set's title-->
+
+                                        <!--arabic set's title'-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">Arabic set's title</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl">
+                                            <!--end input-->
+                                        </div>
+                                        <!--end arabic set's title-->
+
+                                        <!--upc input-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--label-->
+                                                    <label class="form-label">Barcode</label>
+                                                    <!--end label-->
+                                                    <!--input-->
+                                                    <input type="text" name="upc" class="form-control mb-2">
+                                                    <!--end input-->
+                                                    <!--description-->
+                                                    <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
+                                                    <!--end description-->
+                                                </div>
+                                        <!--end upc input-->
+
+                                        <!--product quantity & buy price input-->
+                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--quantity input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Quantity</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">Put product quantity.</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end quantity input-->
+
+                                                        <!--price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Buy Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end price input-->
+                                                    </div>
+                                                </div>
+                                        <!--end product quantity & buy price input-->
+
+                                        <!--product sell price & discount price input-->
+                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--sell price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Sell Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end sell price input-->
+
+                                                        <!--discount price input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Product Discount Price</label>
+                                                            <!--end label-->
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                        </div>
+                                                        <!--end discount price input-->
+                                                    </div>
+                                                </div>
+                                        <!--end product sell price & discount price input-->
+                                    </div>
+                                    <!--add product buttons-->
+                                    <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                        <!--submit button-->
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="indicator-label">Create The New Set</span>
+                                        </button>
+                                        <!--end submit button-->
+                                    </div>
+                                    <!--end add product buttons-->
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <!--begin::Description-->
+                            <div class="text-muted fs-7"></div>
+                            <!--end::Description-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end new set modal-->
         </div>
         <!--end footer-->
     </div>
