@@ -324,7 +324,7 @@ def add_new_size(request, sku):
                 selected_product.type = 'main'
             if selected_product.type == 'proto_variant':
                 selected_product.type = 'variant'
-        
+
         selected_product.save()
 
     return {

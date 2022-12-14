@@ -670,18 +670,43 @@
                                     </thead>
                                     <tbody>
                                     {% for product in sizes %}
+
                                     <tr>
-                                        <td class="text-center">{{ product.size }}</td>
-                                        <td class="text-center">{{ product.quantity }}</td>
-                                        <td class="text-center">{{ product.buy_price }}</td>
-                                        <td class="text-center">{{ product.sell_price }}</td>
-                                        <td class="text-center">{{ product.discount_price }}</td>
+
+                                        <td class="text-center">
+                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                <input type="text" name="size" class="form-control" placeholder="size" value="{{ product.size }}">
+                                            </form>
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="number" name="quantity" class="form-control" placeholder="quantity" value="{{ product.quantity }}">
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group">
+                                                <input type="number" name="buy_price" class="form-control" placeholder="cost" value="{{ product.buy_price }}">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group">
+                                                <input type="number" name="sell_price" class="form-control" placeholder="price" value="{{ product.sell_price }}">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group">
+                                                <input type="number" name="discount_price" class="form-control" placeholder="discount" value="{{ product.discount_price }}">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                        </td>
                                         <td>
                                             <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
+
                                     </tr>
+
                                     {% endfor %}
                                     </tbody>
                                 </table>
