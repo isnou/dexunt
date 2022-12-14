@@ -685,7 +685,7 @@
                 </div>
             </div>
             <hr class="d-sm-none">
-        </div>
+          </div>
           {% else %}
           <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
             <div class="card product-card">
@@ -713,7 +713,7 @@
                 </div>
             </div>
             <hr class="d-sm-none">
-        </div>
+          </div>
           {% endif %}
           {% endfor %}
           {% endif %}
@@ -794,7 +794,7 @@
   <hr class="my-3">
   <!-- Pagination-->
   <nav class="d-flex justify-content-between pt-20" aria-label="Page navigation">
-    {% if paginate_all %}
+
     {% if all_products.has_other_pages %}
     <ul class="pagination">
       {% if all_products.has_previous %}
@@ -827,9 +827,6 @@
       </li>
       {% endif %}
     </ul>
-    {% endif %}
-    {% else %}
-    <!-- no pagination -->
     {% endif %}
 
     {% if paginate_showcase %}

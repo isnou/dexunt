@@ -81,7 +81,7 @@ def grid_shop(request, action, ref):
 
     all_products = None
     if action == 'all':
-        page = request.GET.get('page')
+        page = request.GET.get('page', 1)
         paginator = Paginator(products, 4)
         try:
             all_products = paginator.page(page)
