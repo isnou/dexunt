@@ -313,7 +313,11 @@ def add_new_size(request, sku):
             selected_product.type = 'proto'
         if selected_product.type == 'variant':
             selected_product.type = 'proto_variant'
-        selected_product.quantity += new_product.quantity
+        quantity = 0
+        attached_products = Product.objects.all().filter(attach=selected_product.attach).exclude(sku=sku)
+        for attached_product in attached_products:
+            quantity += attached_product.quantity
+        selected_product.quantity = quantity
         selected_product.save()
 
     return {
