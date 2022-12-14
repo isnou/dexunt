@@ -91,7 +91,7 @@ def grid_shop(request, action, ref):
             all_products = paginator.page(paginator.num_pages)
         paginate_all = True
     else:
-        all_products = products.order_by('?').all()[:4]
+        all_products = products.all()[:4]
         paginate_all = False
 
     if action == 'showcase':
@@ -105,7 +105,7 @@ def grid_shop(request, action, ref):
             showcase_products = paginator.page(paginator.num_pages)
         paginate_showcase = True
     else:
-        showcase_products = showcase.order_by('?').all()[:4]
+        showcase_products = showcase.all()[:4]
         paginate_showcase = False
 
     direction = request.session.get('language')
