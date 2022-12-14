@@ -47,26 +47,10 @@ def add_new_product(request):
                               discount_price=int(discount_price),
                               thumb=thumb,
                               )
-        new_product.sku = serial_number_generator(9).upper()
+        new_product.sku = serial_number_generator(10).upper()
+        new_product.attach = serial_number_generator(10).upper()
         new_product.type = 'main'
         new_product.save()
-
-    return {
-        'url': url,
-    }
-
-
-def delete_product(request):
-    url = "/shop-manager/inventory.html"
-    all_products = Product.objects.all()
-    selected_product = all_products.get(sku=sku)
-
-    if selected_product.type == 'main':
-        main_products = all_products.filter(en_product_title=selected_product.en_product_title)
-        main_products.filter(type='main').delete()
-        main_products.filter(type='main_photo').delete()
-    else:
-        selected_product.delete()
 
     return {
         'url': url,
