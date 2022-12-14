@@ -309,15 +309,22 @@ def add_new_size(request, sku):
         new_product.type = 'size'
         new_product.save()
 
-        if selected_product.type == 'main':
-            selected_product.type = 'proto'
-        if selected_product.type == 'variant':
-            selected_product.type = 'proto_variant'
         quantity = 0
         attached_products = Product.objects.all().filter(attach=selected_product.attach).exclude(sku=sku)
         for attached_product in attached_products:
             quantity += attached_product.quantity
         selected_product.quantity = quantity
+
+        if selected_product.type == 'main':
+            selected_product.type = 'proto'
+        if selected_product.type == 'variant':
+            selected_product.type = 'proto_variant'
+        if quantity == 0:
+            if selected_product.type == 'proto':
+                selected_product.type = 'main'
+            if selected_product.type == 'proto_variant':
+                selected_product.type = 'variant'
+        
         selected_product.save()
 
     return {
