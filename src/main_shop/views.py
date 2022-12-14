@@ -77,7 +77,7 @@ def grid_shop(request, action, ref):
 
     if all_showcases.filter(id=ref).exists():
         selected_showcase = all_showcases.get(id=ref)
-        showcase = selected_showcase.products
+        showcase = selected_showcase.products.objects.all()
     else:
         showcase = all_showcases
 
