@@ -505,6 +505,7 @@ def delete_attached(sku):
         selected_product = Product.objects.all().get(sku=sku)
     else:
         selected_product = None
+        selected_product.attach = None
     attached_products = Product.objects.all().filter(attach=selected_product.attach)
     selected_product.delete()
 
