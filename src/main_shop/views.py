@@ -78,7 +78,7 @@ def grid_shop(request, action, ref):
     if all_showcases.filter(id=ref).exists():
         showcase = all_showcases.get(id=ref).prudcts.all()
     else:
-        showcase = None
+        showcase = Layout()
 
     if action == 'all':
         page = request.GET.get('page', 1)
