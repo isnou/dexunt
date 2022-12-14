@@ -682,15 +682,17 @@
                                             <input type="number" name="quantity" class="form-control" placeholder="quantity" value="{{ product.quantity }}">
                                         </td>
                                         <td class="text-center">
-                                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                <a type="submit" >
-                                                    <i class="bi bi-arrow-clockwise"></i>
-                                                </a>
-                                                    </span>
-                                                <input type="number" name="buy_price" class="form-control" placeholder="cost" value="{{ product.buy_price }}">
-                                                <span class="input-group-text">DZD</span>
-                                            </div>
+                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">
+                                                    <a type="submit" >
+                                                        <i class="bi bi-arrow-clockwise"></i>
+                                                    </a>
+                                                </span>
+                                                    <input type="number" name="buy_price" class="form-control" placeholder="cost" value="{{ product.buy_price }}">
+                                                    <span class="input-group-text">DZD</span>
+                                                </div>
+                                            </form>
                                         </td>
                                         <td class="text-center">
                                             <div class="input-group">
