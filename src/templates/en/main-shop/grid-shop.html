@@ -646,6 +646,7 @@
         <!-- Products grid-->
         <div class="row pt-3 mx-n2">
 
+          {% if paginate_all %}
           {% for product in all_products %}
           <!-- Product-->
           {% if product.quantity > 0 %}
@@ -714,15 +715,86 @@
             <hr class="d-sm-none">
         </div>
           {% endif %}
-
           {% endfor %}
+          {% endif %}
+
+          {% if paginate_showcase %}
+          {% for product in showcase_products %}
+          <!-- Product-->
+          {% if product.quantity > 0 %}
+          <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
+            <div class="card product-card">
+                <div class="product-card-actions d-flex align-items-center">
+                    <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
+                        <i class="ci-heart"></i>
+                    </button>
+                </div>
+                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku %}">
+                    <img src="{% get_media_prefix %}{{product.thumb}}" alt="Product">
+                </a>
+                <div class="card-body py-2">
+                    <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
+                    <h3 class="product-title fs-sm">
+                        <a href="{% url 'product' product.sku %}">{{ product.en_product_title }}</a>
+                    </h3>
+                    <div class="d-flex justify-content-between">
+                        {% if product.discount_price %}
+                        <div class="product-price">
+                            <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                            <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                        </div>
+                        {% else %}
+                        <div class="product-price">
+                            <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body card-body-hidden">
+                    <button class="btn btn-primary btn-sm d-block w-100 mb-2" type="button">
+                        <i class="ci-cart fs-sm me-1"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+            <hr class="d-sm-none">
+        </div>
+          {% else %}
+          <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
+            <div class="card product-card">
+                <div class="product-card-actions d-flex align-items-center">
+                    <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
+                        <i class="ci-heart"></i>
+                    </button>
+                </div>
+                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku %}">
+                    <img src="{% get_media_prefix %}{{product.thumb}}" alt="Product">
+                </a>
+                <div class="card-body py-2">
+                    <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
+                    <h3 class="product-title fs-sm">
+                        <a href="{% url 'product' product.sku %}">{{ product.en_product_title }}</a>
+                    </h3>
+                    <div class="d-flex justify-content-between">
+                        <div class="product-price">
+                            <span class="text-muted fs-sm">Out of stock</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body card-body-hidden">
+                    <a class="btn btn-secondary btn-sm d-block w-100 mb-2" href="shop-single-v2.html">View details</a>
+                </div>
+            </div>
+            <hr class="d-sm-none">
+        </div>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
 
         </div>
   <hr class="my-3">
   <!-- Pagination-->
   <nav class="d-flex justify-content-between pt-20" aria-label="Page navigation">
     {% if paginate_all %}
-
     {% if all_products.has_other_pages %}
     <ul class="pagination">
       {% if all_products.has_previous %}
@@ -756,7 +828,44 @@
       {% endif %}
     </ul>
     {% endif %}
+    {% else %}
+    <!-- no pagination -->
+    {% endif %}
 
+    {% if paginate_showcase %}
+    {% if showcase_products.has_other_pages %}
+    <ul class="pagination">
+      {% if showcase_products.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ showcase_products.previous_page_number }}">
+          <i class="ci-arrow-left me-2">
+          </i>Prev</a>
+      </li>
+      {% endif %}
+    </ul>
+    <ul class="pagination">
+      {% for j in showcase_products.paginator.page_range %}
+      {% if showcase_products.number == j %}
+      <li class="page-item active d-none d-sm-block" aria-current="page">
+        <span class="page-link">{{ j }}<span class="visually-hidden">(current)</span></span>
+      </li>
+      {% else %}
+      <li class="page-item d-none d-sm-block">
+        <a class="page-link" href="?page={{ j }}">{{ j }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    <ul class="pagination">
+      {% if showcase_products.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ showcase_products.next_page_number }}" aria-label="Next">Next
+          <i class="ci-arrow-right ms-2"></i>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
     {% else %}
     <!-- no pagination -->
     {% endif %}
