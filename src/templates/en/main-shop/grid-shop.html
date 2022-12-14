@@ -102,7 +102,7 @@
               </a>
               {% endif %}
 
-              <span class="fs-md">{{ products.number }} / {{ products.paginator.page_range }}</span>
+              <span class="fs-md">{{ products.number }} / {{ products.num_pages }}</span>
 
               {% if products.has_next %}
               <a class="nav-link-style ms-3" href="?page={{ products.next_page_number }}">
@@ -111,7 +111,7 @@
               {% endif %}
               {% endif %}
 
-              
+
 
 
 
