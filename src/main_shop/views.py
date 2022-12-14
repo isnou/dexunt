@@ -76,35 +76,16 @@ def grid_shop(request, action, ref):
     direction = request.session.get('language')
     url = direction + "/main-shop/grid-shop.html"
 
-    all_showcases = Layout.objects.all().filter(type='showcase')
-    products = Product.objects.all().filter(type='main')
-    if all_showcases.filter(id=ref).exists():
-        showcase = all_showcases.get(id=ref).products.all()
-    else:
-        showcase = products
-
     products = None
+
     if action == 'all':
         url = direction + grid_shop_actions.all_products(request).get('url')
         products = grid_shop_actions.all_products(request).get('products_list')
-
     if action == 'showcase':
-        page = request.GET.get('page', 1)
-        paginator = Paginator(showcase, 4)
-        try:
-            showcase_products = paginator.page(page)
-        except PageNotAnInteger:
-            showcase_products = paginator.page(1)
-        except EmptyPage:
-            showcase_products = paginator.page(paginator.num_pages)
-        paginate_showcase = True
-    else:
-        showcase_products = showcase.all()[:4]
-        paginate_showcase = False
+        url = direction + grid_shop_actions.showcase_products(request, ref).get('url')
+        products = grid_shop_actions.showcase_products(request, ref).get('products_list')
 
     context = {
-        'all_products': products,
-        'showcase_products': showcase_products,
-        'paginate_showcase': paginate_showcase,
+        'products': products,
     }
     return render(request, url, context)
