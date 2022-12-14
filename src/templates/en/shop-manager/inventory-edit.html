@@ -680,9 +680,9 @@
                                             <form action="{% url 'inventory-edit' 'edit_size' product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                 <div class="input-group">
                                                     <span class="input-group-text">
-                                                        <a type="submit" class="btn btn-sm btn-active-light-primary">
+                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
                                                             <i class="bi bi-arrow-clockwise"></i>
-                                                        </a>
+                                                        </button>
                                                     </span>
                                                     <input type="text" name="size" class="form-control" placeholder="size" value="{{ product.size }}">
                                                 </div>
