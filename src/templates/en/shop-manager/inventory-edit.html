@@ -120,7 +120,7 @@
 
 {% block content %}
 <div class="container-xxl">
-    {% if selected_product.type == 'main' %}
+    {% if selected_product.type == 'main' or selected_product.type == 'proto' %}
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
