@@ -646,7 +646,7 @@
         <!-- Products grid-->
         <div class="row pt-3 mx-n2">
 
-          {% if paginate_all %}
+
           {% for product in all_products %}
           <!-- Product-->
           {% if product.quantity > 0 %}
@@ -716,7 +716,6 @@
         </div>
           {% endif %}
           {% endfor %}
-          {% endif %}
 
           {% if paginate_showcase %}
           {% for product in showcase_products %}
