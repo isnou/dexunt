@@ -332,6 +332,54 @@ def add_new_size(request, sku):
     }
 
 
+def edit_size(request, sku):
+    url = "/shop-manager/inventory-edit.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    attached_products = Product.objects.all().filter(attach=selected_product.attach)
+    if attached_products.filter(type='proto').exists():
+        main_product = attached_products.get(type='proto')
+        attached_products = attached_products.exclude(type='proto')
+    elif attached_products.filter(type='proto_variant').exists():
+        main_product = attached_products.get(type='proto_variant')
+        attached_products = attached_products.exclude(type='proto_variant')
+    else:
+        main_product = None
+    if request.method == 'POST':
+        size = request.POST.get('size', False)
+        if size:
+            selected_product.size = size
+        quantity = request.POST.get('quantity', False)
+        if quantity:
+            selected_product.quantity = quantity
+        buy_price = request.POST.get('buy_price', False)
+        if buy_price:
+            selected_product.buy_price = buy_price
+        sell_price = request.POST.get('sell_price', False)
+        if sell_price:
+            selected_product.sell_price = sell_price
+        discount_price = request.POST.get('discount_price', False)
+        if discount_price:
+            selected_product.discount_price = discount_price
+
+        quantity = 0
+        for attached_product in attached_products:
+            quantity += attached_product.quantity
+        main_product.quantity = quantity
+
+        if quantity == 0:
+            if main_product.type == 'proto':
+                main_product.type = 'main'
+            if main_product.type == 'proto_variant':
+                main_product.type = 'variant'
+
+        selected_product.save()
+        main_product.save()
+
+    return {
+        'url': url,
+    }
+
+
 def add_a_set(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)

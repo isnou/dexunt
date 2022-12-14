@@ -670,7 +670,6 @@
                                     </thead>
                                     <tbody>
                                     {% for product in sizes %}
-
                                     <tr>
                                         <td>
                                             <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
@@ -678,7 +677,7 @@
                                             </a>
                                         </td>
                                         <td class="text-center">
-                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                            <form action="{% url 'inventory-edit' 'edit_size' product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                 <div class="input-group">
                                                     <span class="input-group-text">
                                                         <a type="submit" class="btn btn-sm btn-active-light-primary">
