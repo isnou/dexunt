@@ -55,20 +55,18 @@ def inventory_edit(request, action, sku, identity):
         Product.objects.all().get(sku=sku).features.all().get(id=identity).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
+    photos = Product.objects.all().filter(attach=selected_product.attach).filter(type='photo')
+
     sets = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='set')
-    photos = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
-        .filter(en_variant=selected_product.en_variant + ' photo').filter(type='photo')
     sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
         .filter(en_variant=selected_product.en_variant + ' size').filter(type='size')
     features = selected_product.features.all()
 
     features_count = features.count()
-    photos_count = photos.count()
     sizes_count = sizes.count()
 
     context = {
         'photos': photos,
-        'photos_count': photos_count,
 
         'sets': sets,
 
