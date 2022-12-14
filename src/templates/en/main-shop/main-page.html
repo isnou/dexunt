@@ -374,7 +374,7 @@
                         <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku %}">{{ product.en_product_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
@@ -385,7 +385,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'best_sellers' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
             </div>
         </div>
         <!-- New arrivals-->
@@ -398,7 +398,7 @@
                         <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku %}">{{ product.en_product_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
@@ -409,7 +409,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'new_arrivals' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
             </div>
         </div>
         <!-- Top rated-->
@@ -422,7 +422,7 @@
                         <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ product.en_product_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku %}">{{ product.en_product_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
@@ -433,7 +433,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <p class="mb-0">...</p><a class="fs-sm" href="shop-grid-ls.html">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'top_rated' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
             </div>
         </div>
     </div>
