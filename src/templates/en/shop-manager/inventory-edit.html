@@ -703,12 +703,12 @@
                                             </form>
                                         </td>
                                         <td class="text-center">
-                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                            <form action="{% url 'inventory-edit' 'edit_size' product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                 <div class="input-group">
                                                     <span class="input-group-text">
-                                                        <a type="submit" class="btn btn-sm btn-active-light-primary">
+                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
                                                             <i class="bi bi-arrow-clockwise"></i>
-                                                        </a>
+                                                        </button>
                                                     </span>
                                                     <input type="number" name="buy_price" class="form-control" placeholder="cost" value="{{ product.buy_price }}">
                                                     <span class="input-group-text">DZD</span>
@@ -716,12 +716,12 @@
                                             </form>
                                         </td>
                                         <td class="text-center">
-                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                            <form action="{% url 'inventory-edit' 'edit_size' product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                 <div class="input-group">
                                                     <span class="input-group-text">
-                                                        <a type="submit" class="btn btn-sm btn-active-light-primary">
+                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
                                                             <i class="bi bi-arrow-clockwise"></i>
-                                                        </a>
+                                                        </button>
                                                     </span>
                                                     <input type="number" name="sell_price" class="form-control" placeholder="price" value="{{ product.sell_price }}">
                                                     <span class="input-group-text">DZD</span>
@@ -729,12 +729,12 @@
                                             </form>
                                         </td>
                                         <td class="text-center">
-                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                            <form action="{% url 'inventory-edit' 'edit_size' product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                                                 <div class="input-group">
                                                     <span class="input-group-text">
-                                                        <a type="submit" class="btn btn-sm btn-active-light-primary">
+                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
                                                             <i class="bi bi-arrow-clockwise"></i>
-                                                        </a>
+                                                        </button>
                                                     </span>
                                                     <input type="number" name="discount_price" class="form-control" placeholder="discount" value="{{ product.discount_price }}">
                                                     <span class="input-group-text">DZD</span>
