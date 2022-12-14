@@ -56,13 +56,10 @@ def inventory_edit(request, action, sku, index):
 
     selected_product = Product.objects.all().get(sku=sku)
     photos = Product.objects.all().filter(attach=selected_product.attach).filter(type='photo')
+    sizes = Product.objects.all().filter(attach=selected_product.attach).filter(type='size')
     features = selected_product.features.all()
 
     sets = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='set')
-    sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
-        .filter(en_variant=selected_product.en_variant + ' size').filter(type='size')
-
-    sizes_count = sizes.count()
 
     context = {
         'photos': photos,
@@ -70,7 +67,6 @@ def inventory_edit(request, action, sku, index):
         'sets': sets,
 
         'sizes': sizes,
-        'sizes_count': sizes_count,
 
         'features': features,
 

@@ -649,7 +649,7 @@
                     <!--size-->
                     <div class="flex-wrap flex-stack">
                         <div class="align-items-center">
-                            {% if sizes_count > 0 %}
+                            {% if sizes.count > 0 %}
                             <div class="table-responsive">
                                 <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
                                     <thead>
@@ -1504,7 +1504,7 @@
     {% endfor %}
     {% endif %}
 
-    {% if selected_product.type == 'variant' %}
+    {% if selected_product.type == 'variant' or selected_product.type == 'proto_variant' %}
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
@@ -2033,7 +2033,7 @@
                     <!--size-->
                     <div class="flex-wrap flex-stack">
                         <div class="align-items-center">
-                            {% if sizes_count > 0 %}
+                            {% if sizes.count > 0 %}
                             <div class="table-responsive">
                                 <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
                                     <thead>
