@@ -377,7 +377,7 @@ def edit_size(request, sku):
 
     return {
         'url': url,
-        'sku': main_product,
+        'sku': main_product.sku,
     }
 
 
