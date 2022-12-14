@@ -646,7 +646,7 @@
         <!-- Products grid-->
         <div class="row pt-3 mx-n2">
 
-          {% for product in products %}
+          {% for product in all_products %}
           <!-- Product-->
           {% if product.quantity > 0 %}
           <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
@@ -721,21 +721,21 @@
   <hr class="my-3">
   <!-- Pagination-->
   <nav class="d-flex justify-content-between pt-20" aria-label="Page navigation">
-    {% if paginate %}
+    {% if paginate_all %}
 
-    {% if products.has_other_pages %}
+    {% if all_products.has_other_pages %}
     <ul class="pagination">
-      {% if products.has_previous %}
+      {% if all_products.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ products.previous_page_number }}">
+        <a class="page-link" href="?page={{ all_products.previous_page_number }}">
           <i class="ci-arrow-left me-2">
           </i>Prev</a>
       </li>
       {% endif %}
     </ul>
     <ul class="pagination">
-      {% for i in products.paginator.page_range %}
-      {% if products.number == i %}
+      {% for i in all_products.paginator.page_range %}
+      {% if all_products.number == i %}
       <li class="page-item active d-none d-sm-block" aria-current="page">
         <span class="page-link">{{ i }}<span class="visually-hidden">(current)</span></span>
       </li>
@@ -747,9 +747,9 @@
       {% endfor %}
     </ul>
     <ul class="pagination">
-      {% if products.has_next %}
+      {% if all_products.has_next %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ products.next_page_number }}" aria-label="Next">Next
+        <a class="page-link" href="?page={{ all_products.next_page_number }}" aria-label="Next">Next
           <i class="ci-arrow-right ms-2"></i>
         </a>
       </li>

@@ -73,31 +73,47 @@ def product(request, sku):
 
 def grid_shop(request, action, ref):
     all_showcases = Layout.objects.all().filter(type='showcase')
-    all_products = Product.objects.all().filter(type='main').distinct()
+    products = Product.objects.all().filter(type='main')
 
     if all_showcases.filter(id=ref).exists():
-        showcase_products = all_showcases.get(id=ref).prudcts.all()
+        showcase = all_showcases.get(id=ref).prudcts.all()
     else:
-        showcase_products = None
+        showcase = None
 
     if action == 'all':
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_products, 4)
+        paginator = Paginator(products, 4)
         try:
-            products = paginator.page(page)
+            all_products = paginator.page(page)
         except PageNotAnInteger:
-            products = paginator.page(1)
+            all_products = paginator.page(1)
         except EmptyPage:
-            products = paginator.page(paginator.num_pages)
-        paginate = True
+            all_products = paginator.page(paginator.num_pages)
+        paginate_all = True
     else:
-        products = all_products.order_by('?').all()[:4]
-        paginate = False
+        all_products = products.order_by('?').all()[:4]
+        paginate_all = False
+
+    if action == 'showcase':
+        page = request.GET.get('page', 1)
+        paginator = Paginator(showcase, 4)
+        try:
+            showcase_products = paginator.page(page)
+        except PageNotAnInteger:
+            showcase_products = paginator.page(1)
+        except EmptyPage:
+            showcase_products = paginator.page(paginator.num_pages)
+        paginate_showcase = True
+    else:
+        showcase_products = showcase.order_by('?').all()[:4]
+        paginate_showcase = False
 
     direction = request.session.get('language')
     url = direction + "/main-shop/grid-shop.html"
     context = {
-        'products': products,
-        'paginate': paginate,
+        'all_products': all_products,
+        'paginate_all': paginate_all,
+        'showcase_products': showcase_products,
+        'paginate_showcase': paginate_showcase,
     }
     return render(request, url, context)
