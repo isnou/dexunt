@@ -74,12 +74,7 @@ def product(request, sku):
 def grid_shop(request, action, ref):
     all_showcases = Layout.objects.all().filter(type='showcase')
     products = Product.objects.all().filter(type='main')
-
-    if all_showcases.filter(id=ref).exists():
-        selected_showcase = all_showcases.get(id=ref)
-        showcase = selected_showcase.products.objects.all()
-    else:
-        showcase = all_showcases
+    showcase = all_showcases.get(id=ref).products
 
     if action == 'all':
         page = request.GET.get('page', 1)
