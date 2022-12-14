@@ -370,7 +370,7 @@
                 <h3 class="widget-title">Bestsellers</h3>
                 {% for product in best_sellers %}
                 <div class="d-flex align-items-center pb-2 border-bottom">
-                    <a class="d-block flex-shrink-0" href="shop-single-v2.html">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku %}">
                         <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
@@ -394,7 +394,7 @@
                 <h3 class="widget-title">New arrivals</h3>
                 {% for product in new_arrivals %}
                 <div class="d-flex align-items-center pb-2 border-bottom">
-                    <a class="d-block flex-shrink-0" href="shop-single-v2.html">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku %}">
                         <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
@@ -418,7 +418,7 @@
                 <h3 class="widget-title">Top rated</h3>
                 {% for product in top_rated %}
                 <div class="d-flex align-items-center pb-2 border-bottom">
-                    <a class="d-block flex-shrink-0" href="shop-single-v2.html">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku %}">
                         <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
