@@ -393,8 +393,6 @@
                         <!--end discount price-->
                     </tr>
                     {% endif %}
-
-                    {% if details %}
                     {% if product.type == 'variant' %}
                     <tr>
                         <!--product-->
@@ -695,6 +693,84 @@
                         <!--end discount price-->
                     </tr>
                     {% endif %}
+
+                    <!-- show all -->
+                    {% if details %}
+
+                    {% if product.type == 'photo' %}
+                    <tr class="table-active">
+                        <!--product-->
+                        <td>
+                            <div class="d-flex align-items-center" style="padding-left: 140px;">
+                                <!--product thumbnail-->
+                                <a class="symbol symbol-50px"  data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
+                                    <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.thumb}});"></span>
+                                </a>
+                                <!--end product thumbnail-->
+                                <div class="ms-5">
+                                    <!--begin::Title-->
+                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold">Photo</a>
+                                    <!--end::Title-->
+                                </div>
+                            </div>
+                        </td>
+                        <!--end product-->
+
+                        <!--edit product action-->
+                        <td class="text-end">
+                        </td>
+                        <!--end edit product action-->
+
+                        <!--delete product action-->
+                        <td class="text-end">
+                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
+                                <i class="bi bi-trash" data-bs-toggle="modal"></i>
+                            </a>
+                        </td>
+                        <!--end delete product action-->
+
+                        <!--add qty-->
+                        <td>
+                        </td>
+                        <!--end add qty-->
+
+                        <!--qty-->
+                        <td class="text-center">
+                            <i class="bi bi-dash-lg"></i>
+                        </td>
+                        <!--end qty-->
+
+                        <!--remove qty-->
+                        <td>
+                        </td>
+                        <!--end remove qty-->
+
+                        <!--sell rate-->
+                        <td class="text-center">
+                            <i class="bi bi-dash-lg"></i>
+                        </td>
+                        <!--end sell rate-->
+
+                        <!--buy price-->
+                        <td class="text-center">
+                            <i class="bi bi-dash-lg"></i>
+                        </td>
+                        <!--end buy price-->
+
+                        <!--sell price-->
+                        <td class="text-center">
+                            <i class="bi bi-dash-lg"></i>
+                        </td>
+                        <!--end sell price-->
+
+                        <!--discount price-->
+                        <td class="text-center">
+                            <i class="bi bi-dash-lg"></i>
+                        </td>
+                        <!--end discount price-->
+                    </tr>
+                    {% endif %}
+
                     {% if product.type == 'size' %}
                     <tr class="table-active">
                         <!--product-->
@@ -772,79 +848,6 @@
                         <!--discount price-->
                         <td class="text-center">
                             <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                        </td>
-                        <!--end discount price-->
-                    </tr>
-                    {% endif %}
-                    {% if product.type == 'photo' %}
-                    <tr class="table-active">
-                        <!--product-->
-                        <td>
-                            <div class="d-flex align-items-center" style="padding-left: 140px;">
-                                <!--product thumbnail-->
-                                <a class="symbol symbol-50px"  data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
-                                    <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.thumb}});"></span>
-                                </a>
-                                <!--end product thumbnail-->
-                                <div class="ms-5">
-                                    <!--begin::Title-->
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold">Photo</a>
-                                    <!--end::Title-->
-                                </div>
-                            </div>
-                        </td>
-                        <!--end product-->
-
-                        <!--edit product action-->
-                        <td class="text-end">
-                        </td>
-                        <!--end edit product action-->
-
-                        <!--delete product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
-                                <i class="bi bi-trash" data-bs-toggle="modal"></i>
-                            </a>
-                        </td>
-                        <!--end delete product action-->
-
-                        <!--add qty-->
-                        <td>
-                        </td>
-                        <!--end add qty-->
-
-                        <!--qty-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end qty-->
-
-                        <!--remove qty-->
-                        <td>
-                        </td>
-                        <!--end remove qty-->
-
-                        <!--sell rate-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end sell rate-->
-
-                        <!--buy price-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end buy price-->
-
-                        <!--sell price-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
-                        </td>
-                        <!--end sell price-->
-
-                        <!--discount price-->
-                        <td class="text-center">
-                            <i class="bi bi-dash-lg"></i>
                         </td>
                         <!--end discount price-->
                     </tr>
@@ -952,6 +955,7 @@
                         <!--end discount price-->
                     </tr>
                     {% endif %}
+
                     {% endif %}
 
                     {% endfor %}
