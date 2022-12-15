@@ -35,6 +35,7 @@ def inventory(request, action, sku):
 def inventory_edit(request, action, sku, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory-edit.html"
+
     if action == "edit_product":
         url = direction + inventory_actions.edit_product(request, sku).get('url')
     if action == "add_new_photo":
@@ -63,9 +64,8 @@ def inventory_edit(request, action, sku, index):
     selected_product = Product.objects.all().get(sku=sku)
     photos = Product.objects.all().filter(attach=selected_product.attach).filter(type='photo')
     sizes = Product.objects.all().filter(attach=selected_product.attach).filter(type='size')
+    sets = Product.objects.all().filter(attach=selected_product.attach).filter(type='set')
     features = selected_product.features.all()
-
-    sets = Product.objects.all().filter(en_product_title=selected_product.en_product_title).filter(type='set')
 
     context = {
         'photos': photos,
@@ -80,6 +80,7 @@ def inventory_edit(request, action, sku, index):
 def e_shop(request, action, detail, identity):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
+
     if action == "edit_main_banner":
         url = direction + e_shop_actions.main_banner(request, detail).get('url')
     if action == "edit_thumb_banner":
@@ -113,6 +114,7 @@ def e_shop(request, action, detail, identity):
 def e_shop_edit(request, action, detail, identity):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop-edit.html"
+
     if action == "showcase":
         url = direction + e_shop_actions.showcase(request, identity).get('url')
     if action == "banner":
