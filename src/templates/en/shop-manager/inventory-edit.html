@@ -221,7 +221,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{% url 'inventory-edit' 'edit_photo' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        <form action="{% url 'inventory-edit' 'edit_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
                                             <div class="card-title">
                                                 <div class="card card-flush py-4">
@@ -318,7 +318,7 @@
                                                 <!--input-->
                                                 <div class="input-group">
                                                     <span class="input-group-text">English Set's Title</span>
-                                                    <input type="text" name="en_variant" class="form-control" placeholder="{{ selected_product.en_variant }}">
+                                                    <input type="text" name="en_variant" class="form-control" placeholder="put a title" value="{{ selected_product.en_variant }}">
                                                 </div>
                                                 <div class="text-muted text-center fs-7">set title must not finish with 'set'</div>
                                                 <!--end input-->
@@ -330,7 +330,7 @@
                                                 <!--input-->
                                                 <div class="input-group">
                                                     <span class="input-group-text">French Set's Title</span>
-                                                    <input type="text" name="fr_variant" class="form-control" placeholder="{{ selected_product.fr_variant }}">
+                                                    <input type="text" name="fr_variant" class="form-control" placeholder="put a title" value="{{ selected_product.fr_variant }}">
                                                 </div>
                                                 <!--end input-->
                                             </div>
@@ -341,7 +341,7 @@
                                                 <!--input-->
                                                 <div class="input-group">
                                                     <span class="input-group-text">Arabic Set's Title</span>
-                                                    <input type="text" name="ar_variant" class="form-control" placeholder="{{ selected_product.ar_variant }}" dir="rtl">
+                                                    <input type="text" name="ar_variant" class="form-control" placeholder="put a title" value="{{ selected_product.ar_variant }}" dir="rtl">
                                                 </div>
                                                 <!--end input-->
                                             </div>
@@ -352,7 +352,7 @@
                                                 <!--input-->
                                                 <div class="input-group">
                                                     <span class="input-group-text">Barcode</span>
-                                                    <input type="text" name="upc" class="form-control" placeholder="{{ selected_product.upc }}">
+                                                    <input type="text" name="upc" class="form-control" placeholder="UPC" value="{{ selected_product.upc }}">
                                                 </div>
                                                 <!--end input-->
                                             </div>
@@ -366,7 +366,7 @@
                                                         <!--input-->
                                                         <div class="input-group">
                                                             <span class="input-group-text">Quantity</span>
-                                                            <input type="number" name="quantity" class="form-control" placeholder="{{ selected_product.quantity }}">
+                                                            <input type="number" name="quantity" class="form-control" placeholder="quantity" value="{{ selected_product.quantity }}">
                                                         </div>
                                                         <!--end input-->
                                                     </div>
@@ -377,7 +377,7 @@
                                                         <!--input-->
                                                         <div class="input-group">
                                                             <span class="input-group-text">Buy Price</span>
-                                                            <input type="number" name="buy_price" class="form-control" placeholder="{{ selected_product.buy_price }}">
+                                                            <input type="number" name="buy_price" class="form-control" placeholder="cost" value="{{ selected_product.buy_price }}">
                                                             <span class="input-group-text">DZD</span>
                                                         </div>
                                                         <!--end input-->
@@ -395,7 +395,7 @@
                                                         <!--input-->
                                                         <div class="input-group">
                                                             <span class="input-group-text">Sell Price</span>
-                                                            <input type="number" name="sell_price" class="form-control" placeholder="{{ selected_product.sell_price }}">
+                                                            <input type="number" name="sell_price" class="form-control" placeholder="price" value="{{ selected_product.sell_price }}">
                                                             <span class="input-group-text">DZD</span>
                                                         </div>
                                                         <!--end input-->
@@ -407,7 +407,7 @@
                                                         <!--input-->
                                                         <div class="input-group">
                                                             <span class="input-group-text">Discount</span>
-                                                            <input type="number" name="discount_price" class="form-control" placeholder="{{ selected_product.discount_price }}">
+                                                            <input type="number" name="discount_price" class="form-control" placeholder="discount" value="{{ selected_product.discount_price }}">
                                                             <span class="input-group-text">DZD</span>
                                                         </div>
                                                         <!--end input-->
