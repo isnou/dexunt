@@ -1801,7 +1801,7 @@
                                     <a href="{% url 'inventory-edit' 'product_view' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit set" style="margin-right: 10px;">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a href="{% url 'inventory' 'delete_product' selected_product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
+                                    <a href="{% url 'inventory-edit' 'delete_attached' product.sku selected_product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </div>
