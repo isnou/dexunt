@@ -380,7 +380,7 @@ def add_a_set(request, sku):
     url = "/shop-manager/inventory-edit.html"
     all_products = Product.objects.all()
     selected_product = all_products.get(sku=sku)
-    attached_products = all_products.filter(attach=selected_product.attach).exclude(type='photo')
+    attached_products = all_products.filter(attach=selected_product.attach).exclude(type='photo').exclude(sku=sku)
 
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
