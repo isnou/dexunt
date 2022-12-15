@@ -160,7 +160,7 @@
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in size_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
-                                        <input type="radio" class="form-check-input" id="{{ selected_variant.sku }}" name="size" required>
+                                        <input type="radio" class="form-check-input" id="{{ selected_variant.sku }}" name="size">
                                         <label for="{{ selected_variant.sku }}" class="form-option-label">{{ selected_variant.size }}</label>
                                     </div>
                                     {% endfor %}
@@ -172,7 +172,8 @@
                                     {% for set in sets %}
                                     <div class="form-check form-option form-check-inline mb-2">
                                         <input class="form-check-input" type="radio" name="set" id="{{ set.sku }}" required>
-                                        <label class="form-option-label" for="{{ set.sku }}" style="background-image: url({% get_media_prefix %}{{ set.thumb }})">
+                                        <label class="form-option-label rounded-square" for="{{ set.sku }}">
+                                            <span class="form-option-img rounded-square" style="background-image: url({% get_media_prefix %}{{ set.thumb }})"></span>
                                         </label>
                                     </div>
                                     {% endfor %}
