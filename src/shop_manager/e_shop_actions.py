@@ -248,10 +248,10 @@ def add_showcase(request):
     }
 
 
-def delete(identity):
+def delete(index):
     url = "/shop-manager/e-shop.html"
     ranked_layouts = Layout.objects.all().filter(type='showcase').order_by('rank')
-    Layout.objects.all().get(id=identity).delete()
+    Layout.objects.all().get(id=index).delete()
     rank = 1
     for selected_layout in ranked_layouts:
         selected_layout.rank = rank
@@ -263,11 +263,11 @@ def delete(identity):
     }
 
 
-def up(identity):
+def up(index):
     url = "/shop-manager/e-shop.html"
     selected_layouts = Layout.objects.all().filter(type='showcase')
     max_rank = selected_layouts.count()
-    initial_selected_layout = selected_layouts.get(id=identity)
+    initial_selected_layout = selected_layouts.get(id=index)
     initial_selected_layout_rank = initial_selected_layout.rank
     if initial_selected_layout_rank < max_rank:
         next_selected_layout = selected_layouts.get(rank=initial_selected_layout_rank + 1)
@@ -283,10 +283,10 @@ def up(identity):
     }
 
 
-def down(identity):
+def down(index):
     url = "/shop-manager/e-shop.html"
     selected_layouts = Layout.objects.all().filter(type='showcase')
-    initial_selected_layout = selected_layouts.get(id=identity)
+    initial_selected_layout = selected_layouts.get(id=index)
     initial_selected_layout_rank = initial_selected_layout.rank
     if initial_selected_layout_rank > 1:
         next_selected_layout = selected_layouts.get(rank=initial_selected_layout_rank - 1)
@@ -302,9 +302,9 @@ def down(identity):
     }
 
 
-def showcase(request, identity):
+def showcase(request, index):
     url = "/shop-manager/e-shop.html"
-    selected_layout = Layout.objects.all().get(id=identity)
+    selected_layout = Layout.objects.all().get(id=index)
 
     if request.method == 'POST':
         en_second_title = request.POST.get('selected_type', False)
@@ -341,9 +341,9 @@ def showcase(request, identity):
     }
 
 
-def banner(request, identity):
+def banner(request, index):
     url = "/shop-manager/e-shop.html"
-    selected_layout = Layout.objects.all().get(id=identity)
+    selected_layout = Layout.objects.all().get(id=index)
 
     if request.method == 'POST':
         en_second_title = request.POST.get('selected_type', False)
@@ -404,9 +404,9 @@ def banner(request, identity):
     }
 
 
-def link(detail, identity):
+def link(detail, index):
     url = "/shop-manager/e-shop-edit.html"
-    selected_layout = Layout.objects.all().get(id=identity)
+    selected_layout = Layout.objects.all().get(id=index)
     selected_product = Product.objects.all().get(sku=detail)
     selected_layout.products.add(selected_product)
     selected_layout.save()
@@ -416,9 +416,9 @@ def link(detail, identity):
     }
 
 
-def unlink(detail, identity):
+def unlink(detail, index):
     url = "/shop-manager/e-shop-edit.html"
-    selected_layout = Layout.objects.all().get(id=identity)
+    selected_layout = Layout.objects.all().get(id=index)
     selected_product = Product.objects.all().get(sku=detail)
     selected_layout.products.remove(selected_product)
     selected_layout.save()

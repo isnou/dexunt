@@ -78,7 +78,7 @@ def inventory_edit(request, action, sku, index):
     return render(request, url, context)
 
 
-def e_shop(request, action, detail, identity):
+def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
 
@@ -91,11 +91,11 @@ def e_shop(request, action, detail, identity):
     if action == "add_showcase":
         url = direction + e_shop_actions.add_showcase(request).get('url')
     if action == "delete":
-        url = direction + e_shop_actions.delete(identity).get('url')
+        url = direction + e_shop_actions.delete(index).get('url')
     if action == "up":
-        url = direction + e_shop_actions.up(identity).get('url')
+        url = direction + e_shop_actions.up(index).get('url')
     if action == "down":
-        url = direction + e_shop_actions.down(identity).get('url')
+        url = direction + e_shop_actions.down(index).get('url')
     if action == "refresh_points":
         url = direction + clips_actions.points(request).get('url')
     if action == "refresh_delivery":
@@ -103,31 +103,31 @@ def e_shop(request, action, detail, identity):
     if action == "refresh_solidarity":
         url = direction + clips_actions.solidarity(request).get('url')
     if action == "points_to_product":
-        url = direction + clips_actions.points_to_product(request, identity).get('url')
+        url = direction + clips_actions.points_to_product(request, index).get('url')
     if action == "value_to_product":
-        url = direction + clips_actions.value_to_product(request, identity).get('url')
+        url = direction + clips_actions.value_to_product(request, index).get('url')
 
     context = {
     }
     return render(request, url, context)
 
 
-def e_shop_edit(request, action, detail, identity):
+def e_shop_edit(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop-edit.html"
 
     if action == "showcase":
-        url = direction + e_shop_actions.showcase(request, identity).get('url')
+        url = direction + e_shop_actions.showcase(request, index).get('url')
     if action == "banner":
-        url = direction + e_shop_actions.banner(request, identity).get('url')
+        url = direction + e_shop_actions.banner(request, index).get('url')
     if action == "link_product":
-        url = direction + e_shop_actions.link(detail, identity).get('url')
+        url = direction + e_shop_actions.link(detail, index).get('url')
         detail = 'showcase'
     if action == "unlink_product":
-        url = direction + e_shop_actions.unlink(detail, identity).get('url')
+        url = direction + e_shop_actions.unlink(detail, index).get('url')
         detail = 'showcase'
 
-    selected_layout = Layout.objects.all().get(id=identity)
+    selected_layout = Layout.objects.all().get(id=index)
     selected_layout_type = detail
     context = {
         'selected_layout': selected_layout,
