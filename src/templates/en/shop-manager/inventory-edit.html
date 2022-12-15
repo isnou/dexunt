@@ -876,6 +876,7 @@
                                                 </div>
                                                 <!--end tag input-->
 
+                                                {% if selected_product.type == 'main' or selected_product.type == 'variant' %}
                                                 <!--product quantity & buy price input-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
@@ -904,6 +905,19 @@
                                                     </div>
                                                 </div>
                                                 <!--end product quantity & buy price input-->
+                                                {% else %}
+                                                <!--product price input-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--input-->
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">Buy Price</span>
+                                                        <input type="number" name="buy_price" class="form-control" placeholder="product cost" value="{{ selected_product.buy_price }}">
+                                                        <span class="input-group-text">DZD</span>
+                                                    </div>
+                                                    <!--end input-->
+                                                </div>
+                                                <!--end product price input-->
+                                                {% endif %}
 
                                                 <!--product sell price & discount price input-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
