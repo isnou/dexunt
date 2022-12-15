@@ -5,7 +5,8 @@ from .models import Product
 def points(request):
     url = "/shop-manager/e-shop.html"
     try:
-        products = Product.objects.all().filter(type='main').order_by('en_product_title')
+        products = Product.objects.all().exclude(type='variant').exclude(type='proto_variant').exclude(type='set') \
+            .exclude(type='photo').exclude(type='size')
     except Product.DoesNotExist:
         raise Http404("No products")
 
@@ -67,7 +68,8 @@ def points(request):
 def delivery(request):
     url = "/shop-manager/e-shop.html"
     try:
-        products = Product.objects.all().filter(type='main').order_by('en_product_title')
+        products = Product.objects.all().exclude(type='variant').exclude(type='proto_variant').exclude(type='set') \
+            .exclude(type='photo').exclude(type='size')
     except Product.DoesNotExist:
         raise Http404("No products")
 
@@ -129,7 +131,8 @@ def delivery(request):
 def solidarity(request):
     url = "/shop-manager/e-shop.html"
     try:
-        products = Product.objects.all().filter(type='main').order_by('en_product_title')
+        products = Product.objects.all().exclude(type='variant').exclude(type='proto_variant').exclude(type='set') \
+            .exclude(type='photo').exclude(type='size')
     except Product.DoesNotExist:
         raise Http404("No products")
 
