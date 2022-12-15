@@ -443,21 +443,34 @@ def add_a_set(request, sku):
 
 
 def edit_a_set(request, sku):
-    url = "/shop-manager/inventory.html"
+    url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
+    attached_products = Product.objects.all().filter(attach=selected_product.attach)
+    if attached_products.filter(type='proto').exists():
+        main_product = attached_products.get(type='proto')
+        attached_products = attached_products.exclude(type='proto')
+    elif attached_products.filter(type='proto_variant').exists():
+        main_product = attached_products.get(type='proto_variant')
+        attached_products = attached_products.exclude(type='proto_variant')
+    else:
+        main_product = None
+
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
-            selected_product.en_variant = en_variant + ' set'
+            selected_product.en_variant = en_variant
         fr_variant = request.POST.get('fr_variant', False)
         if fr_variant:
             selected_product.fr_variant = fr_variant
         ar_variant = request.POST.get('ar_variant', False)
         if ar_variant:
             selected_product.ar_variant = ar_variant
-        upc = request.POST.get('upc', False)
-        if upc:
-            selected_product.upc = upc
+        thumb = request.FILES.get('thumb', False)
+        if thumb:
+            selected_product.thumb = thumb
+        size = request.POST.get('size', False)
+        if size:
+            selected_product.size = size
         quantity = request.POST.get('quantity', False)
         if quantity:
             selected_product.quantity = quantity
@@ -470,10 +483,18 @@ def edit_a_set(request, sku):
         discount_price = request.POST.get('discount_price', False)
         if discount_price:
             selected_product.discount_price = discount_price
-    selected_product.save()
+
+        quantity = 0
+        for attached_product in attached_products:
+            quantity += attached_product.quantity
+        main_product.quantity = quantity
+
+        selected_product.save()
+        main_product.save()
 
     return {
         'url': url,
+        'sku': main_product.sku,
     }
 
 
