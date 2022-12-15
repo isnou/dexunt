@@ -173,6 +173,7 @@
                                     <div class="form-check form-option form-check-inline mb-2">
                                         <input type="radio" class="form-check-input" id="{{ set.sku }}" name="size">
                                         <label for="{{ set.sku }}" class="form-option-label">{{ set.size }}</label>
+                                        <img src="{% get_media_prefix %}{{ set.thumb }}" alt="Product thumb">
                                     </div>
                                     {% endfor %}
                                 </div>
