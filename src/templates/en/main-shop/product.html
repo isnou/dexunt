@@ -167,6 +167,17 @@
                                 </div>
                                 {% endif %}
 
+                                {% if sets %}
+                                <div class="position-relative me-n4 mb-3">
+                                    {% for set in sets %}
+                                    <div class="form-check form-option form-check-inline mb-2">
+                                        <input type="radio" class="form-check-input" id="{{ set.sku }}" name="size">
+                                        <label for="{{ set.sku }}" class="form-option-label">{{ set.size }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
                                 {% if selected_product.quantity > 0 %}
                                 <!-- Product panels-->
                                 <div class="accordion mb-4" id="productPanels">
