@@ -133,8 +133,8 @@ def edit_product(request, sku):
         thumb = request.FILES.get('thumb', False)
         if thumb:
             selected_product.thumb = thumb
-            if attached_products.exists().exclude(type='photo').exclude(type='size'):
-                for attached_product in attached_products:
+            if attached_products.exists():
+                for attached_product in attached_products.exclude(type='photo').exclude(type='size'):
                     attached_product.thumb = thumb
                     attached_product.save()
 
