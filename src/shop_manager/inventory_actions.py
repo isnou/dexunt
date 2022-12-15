@@ -422,7 +422,6 @@ def add_a_set(request, sku):
         quantity = 0
         for attached_product in attached_products:
             quantity += attached_product.quantity
-        selected_product.quantity = quantity
 
         if attached_products.count():
             if selected_product.type == 'main':
@@ -435,6 +434,7 @@ def add_a_set(request, sku):
             if selected_product.type == 'proto_variant':
                 selected_product.type = 'variant'
 
+        selected_product.quantity = quantity
         selected_product.save()
 
     return {
@@ -507,7 +507,7 @@ def delete_attached(sku, index):
     all_products = Product.objects.all()
     if all_products.filter(sku=sku).exists():
         selected_product = all_products.get(sku=sku)
-        attached_products = all_products.filter(attach=selected_product.attach).exclude(id=index)
+        attached_products = all_products.filter(attach=selected_product.attach).exclude(id=index).exclude(type='photo')
         main_product = all_products.get(id=index)
 
         selected_product.delete()
@@ -516,7 +516,7 @@ def delete_attached(sku, index):
         for attached_product in attached_products:
             quantity += attached_product.quantity
 
-        if attached_products.exclude(type='photo').count() == 0:
+        if not attached_products.count():
             if main_product.type == 'proto':
                 main_product.type = 'main'
             if main_product.type == 'proto_variant':
