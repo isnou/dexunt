@@ -53,10 +53,10 @@ def product(request, sku):
 
     selected_product = Product.objects.all().get(sku=sku)
     related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
-    selected_variants = related_products.filter(type='main').exclude(en_variant=selected_product.en_variant)
+    selected_variants = related_products.filter(type='main').exclude(sku=sku)
 
-    album = related_products.filter(en_variant=selected_product.en_variant + ' photo')
-    size_variants = related_products.filter(en_variant=selected_product.en_variant + ' size')
+    album = selected_product.filter(type='photo').filter(attach=selected_product.attach)
+    size_variants = selected_product.filter(type='size').filter(attach=selected_product.attach)
 
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
