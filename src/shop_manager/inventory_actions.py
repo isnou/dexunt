@@ -422,9 +422,14 @@ def add_a_set(request, sku):
         quantity = 0
         for attached_product in attached_products:
             quantity += attached_product.quantity
-        selected_product.quantity = quantity
+        selected_product.quantity = quantity + new_product.quantity
             
-        if not attached_products.count():
+        if attached_products.count():
+            if selected_product.type == 'main':
+                selected_product.type = 'proto'
+            if selected_product.type == 'variant':
+                selected_product.type = 'proto_variant'
+        else:
             if selected_product.type == 'proto':
                 selected_product.type = 'main'
             if selected_product.type == 'proto_variant':
