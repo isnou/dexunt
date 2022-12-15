@@ -170,12 +170,10 @@
                                 {% if sets %}
                                 <div class="position-relative me-n4 mb-3">
                                     {% for set in sets %}
-                                    <div class="form-check form-option form-check-inline mb-2">
                                         <input class="form-check-input" type="radio" name="set" id="{{ set.sku }}" required>
                                         <label class="form-option-label rounded-square" for="{{ set.sku }}">
-                                            <span class="form-option-color rounded-square" style="background-image: url({% get_media_prefix %}{{ set.thumb }})"></span>
+                                            <span class="img-thumbnail rounded-square" style="background-image: url({% get_media_prefix %}{{ set.thumb }})"></span>
                                         </label>
-                                    </div>
                                     {% endfor %}
                                 </div>
                                 {% endif %}
