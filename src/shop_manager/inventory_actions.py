@@ -133,10 +133,6 @@ def edit_product(request, sku):
         thumb = request.FILES.get('thumb', False)
         if thumb:
             selected_product.thumb = thumb
-            if attached_products.exists():
-                for attached_product in attached_products.exclude(type='photo').exclude(type='size'):
-                    attached_product.thumb = thumb
-                    attached_product.save()
 
         en_product_title = request.POST.get('en_product_title', False)
         if en_product_title:
