@@ -69,13 +69,9 @@ def inventory_edit(request, action, sku, index):
 
     context = {
         'photos': photos,
-
         'sets': sets,
-
         'sizes': sizes,
-
         'features': features,
-
         'selected_product': selected_product,
     }
     return render(request, url, context)
