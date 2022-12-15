@@ -139,11 +139,11 @@
                                     {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
                                         {% if selected_product.sku == selected_variant.sku %}
-                                        <label class="form-option-label rounded-square">
+                                        <label class="form-option-label rounded-square" style="border: double;">
                                             <a class="form-option-color rounded-square" href="{% url 'product' selected_variant.sku %}" style="background-image:url('{% get_media_prefix %}{{selected_variant.thumb}}')"></a>
                                         </label>
                                         {% else %}
-                                        <label class="form-option-label rounded-square" style="border: dashed;">
+                                        <label class="form-option-label rounded-square">
                                             <a class="form-option-color rounded-square" href="{% url 'product' selected_variant.sku %}" style="background-image:url('{% get_media_prefix %}{{selected_variant.thumb}}')"></a>
                                         </label>
                                         {% endif %}
