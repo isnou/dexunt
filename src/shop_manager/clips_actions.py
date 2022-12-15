@@ -188,9 +188,9 @@ def solidarity(request):
     }
 
 
-def points_to_product(request, identity):
+def points_to_product(request, index):
     url = "/shop-manager/e-shop.html"
-    clip = Clip.objects.all().get(id=identity)
+    clip = Clip.objects.all().get(id=index)
     if request.method == 'POST':
         clip.points = int(request.POST.get('points_value', False))
         clip.save()
@@ -200,9 +200,9 @@ def points_to_product(request, identity):
     }
 
 
-def value_to_product(request, identity):
+def value_to_product(request, index):
     url = "/shop-manager/e-shop.html"
-    clip = Clip.objects.all().get(id=identity)
+    clip = Clip.objects.all().get(id=index)
     if request.method == 'POST':
         clip.value = int(request.POST.get('clip_value', False))
         clip.save()
