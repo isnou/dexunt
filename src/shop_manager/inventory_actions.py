@@ -344,6 +344,7 @@ def edit_size(request, sku):
         attached_products = attached_products.exclude(type='proto_variant')
     else:
         main_product = None
+
     if request.method == 'POST':
         size = request.POST.get('size', False)
         if size:
@@ -377,7 +378,10 @@ def edit_size(request, sku):
 
 def add_a_set(request, sku):
     url = "/shop-manager/inventory-edit.html"
-    selected_product = Product.objects.all().get(sku=sku)
+    all_products = Product.objects.all()
+    selected_product = all_products.get(sku=sku)
+    attached_products = all_products.filter(attach=selected_product.attach).exclude(type='photo')
+
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
         fr_variant = request.POST.get('fr_variant', False)
@@ -416,16 +420,11 @@ def add_a_set(request, sku):
         new_product.save()
 
         quantity = 0
-        attached_products = Product.objects.all().filter(attach=selected_product.attach).exclude(sku=sku)
         for attached_product in attached_products:
             quantity += attached_product.quantity
         selected_product.quantity = quantity
-
-        if selected_product.type == 'main':
-            selected_product.type = 'proto'
-        if selected_product.type == 'variant':
-            selected_product.type = 'proto_variant'
-        if quantity == 0:
+            
+        if not attached_products.count():
             if selected_product.type == 'proto':
                 selected_product.type = 'main'
             if selected_product.type == 'proto_variant':
