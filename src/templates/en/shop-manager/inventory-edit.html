@@ -1774,7 +1774,7 @@
         </div>
         <!--end footer-->
     </div>
-    {% for selected_product in sets %}
+    {% for product in sets %}
     <div class="card card-flush shadow-sm" style="margin-top: 30px;">
         <!--header-->
         <div class="card-header">
@@ -1782,8 +1782,8 @@
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                     <!--thumbnail-->
                     <div class="me-7 mb-4">
-                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.thumb}}">
-                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
+                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
+                            <img src="{% get_media_prefix %}{{product.thumb}}" />
                         </a>
                     </div>
                     <!--end thumbnail-->
@@ -1792,13 +1792,13 @@
                         <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                             <div class="d-flex flex-column">
                                 <div class="d-flex align-items-center mb-2">
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_product_title }}</a>
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ product.en_product_title }}</a>
                                     <i class="bi bi-dash-lg" style="margin-right: 4px;"></i>
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_variant }}</a>
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ product.en_variant }}</a>
                                 </div>
 
                                 <div class="d-flex align-items-center mb-2">
-                                    <a href="{% url 'inventory-edit' 'product_view' selected_product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit set" style="margin-right: 10px;">
+                                    <a href="{% url 'inventory-edit' 'product_view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit set" style="margin-right: 10px;">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <a href="{% url 'inventory-edit' 'delete_attached' product.sku selected_product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete set">
@@ -1810,11 +1810,11 @@
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
                                     </a>
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                                        {{ selected_product.en_variant }}
+                                        {{ product.en_variant }}
                                     </a>
                                     <i class="bi bi-dash-lg"></i>
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                        {{ selected_product.quantity }} Available
+                                        {{ product.quantity }} Available
                                     </a>
                                 </div>
                             </div>
@@ -1833,7 +1833,7 @@
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.buy_price|floatformat:"2g" }} DZD</div>
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ product.buy_price|floatformat:"2g" }} DZD</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
@@ -1845,7 +1845,7 @@
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ product.sell_price|floatformat:"2g" }} DZD</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
@@ -1857,7 +1857,7 @@
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ product.discount_price|floatformat:"2g" }} DZD</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
