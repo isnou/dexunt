@@ -382,28 +382,13 @@ def add_a_set(request, sku):
         en_variant = request.POST.get('en_variant', False)
         fr_variant = request.POST.get('fr_variant', False)
         ar_variant = request.POST.get('ar_variant', False)
-        if selected_product.fr_product_title:
-            fr_product_title = selected_product.fr_product_title
-        else:
-            fr_product_title = None
-        if selected_product.ar_product_title:
-            ar_product_title = selected_product.ar_product_title
-        else:
-            ar_product_title = None
-        if selected_product.brand:
-            brand = selected_product.brand
-        else:
-            brand = None
-        if selected_product.model:
-            model = selected_product.model
-        else:
-            model = None
+        thumb = request.FILES.get('thumb', False)
         upc = request.POST.get('upc', False)
         if not upc:
             upc = serial_number_generator(12).upper()
         quantity = request.POST.get('quantity', False)
         if not quantity:
-            quantity = selected_product.quantity
+            quantity = 0
         buy_price = request.POST.get('buy_price', False)
         if not buy_price:
             buy_price = selected_product.buy_price
@@ -413,26 +398,40 @@ def add_a_set(request, sku):
         discount_price = request.POST.get('discount_price', False)
         if not discount_price:
             discount_price = selected_product.discount_price
-        thumb = request.FILES.get('thumb', False)
+
         new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=en_variant + ' set',
-                              fr_product_title=fr_product_title,
+                              en_variant=en_variant,
                               fr_variant=fr_variant,
-                              ar_product_title=ar_product_title,
                               ar_variant=ar_variant,
-                              brand=brand,
-                              model=model,
                               upc=upc,
-                              tag=selected_product.tag,
                               quantity=int(quantity),
                               buy_price=int(buy_price),
                               sell_price=int(sell_price),
                               discount_price=int(discount_price),
                               thumb=thumb,
                               )
-        new_product.sku = serial_number_generator(9).upper()
+        new_product.sku = serial_number_generator(10).upper()
+        new_product.attach = selected_product.attach
         new_product.type = 'set'
         new_product.save()
+
+        quantity = 0
+        attached_products = Product.objects.all().filter(attach=selected_product.attach).exclude(sku=sku)
+        for attached_product in attached_products:
+            quantity += attached_product.quantity
+        selected_product.quantity = quantity
+
+        if selected_product.type == 'main':
+            selected_product.type = 'proto'
+        if selected_product.type == 'variant':
+            selected_product.type = 'proto_variant'
+        if quantity == 0:
+            if selected_product.type == 'proto':
+                selected_product.type = 'main'
+            if selected_product.type == 'proto_variant':
+                selected_product.type = 'variant'
+
+        selected_product.save()
 
     return {
         'url': url,
