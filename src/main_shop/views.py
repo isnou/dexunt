@@ -53,7 +53,7 @@ def product(request, sku):
 
     selected_product = Product.objects.all().get(sku=sku)
     related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
-    selected_variants = related_products.filter(type='variant').exclude(sku=sku)
+    selected_variants = related_products.filter(type='variant')
 
     album = related_products.filter(type='photo').filter(attach=selected_product.attach)
     size_variants = related_products.filter(type='size').filter(attach=selected_product.attach)
