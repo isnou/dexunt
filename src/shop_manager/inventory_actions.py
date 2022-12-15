@@ -127,24 +127,33 @@ def add_new_variant(request, sku):
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
-    token_variant = selected_product.en_variant
-    token_en_product_title = selected_product.en_product_title
+    attached_products = Product.objects.all().filter(attach=selected_product.attach)
+
     if request.method == 'POST':
+        thumb = request.FILES.get('thumb', False)
+        if thumb:
+            selected_product.thumb = thumb
+            if attached_products.exists().exclude(type='photo').exclude(type='size'):
+                for attached_product in attached_products:
+                    attached_product.thumb = thumb
+                    attached_product.save()
+
         en_product_title = request.POST.get('en_product_title', False)
         if en_product_title:
             selected_product.en_product_title = en_product_title
-            products = Product.objects.all().filter(en_product_title=token_en_product_title)
-            for product in products:
-                product.en_product_title = selected_product.en_product_title
-                product.save()
+            if attached_products.exists():
+                for attached_product in attached_products:
+                    attached_product.en_product_title = en_product_title
+                    attached_product.save()
+
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
             selected_product.en_variant = en_variant
-            sizes = Product.objects.all().filter(en_product_title=selected_product.en_product_title) \
-                .filter(en_variant=token_variant).filter(type='size')
-            for product in sizes:
-                product.en_variant = selected_product.en_variant
-                product.save()
+            if attached_products.exists():
+                for attached_product in attached_products:
+                    attached_product.en_variant = en_variant
+                    attached_product.save()
+
         fr_product_title = request.POST.get('fr_product_title', False)
         if fr_product_title:
             selected_product.fr_product_title = fr_product_title

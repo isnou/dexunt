@@ -162,7 +162,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="d-flex flex-wrap flex-stack">
                             <!--begin::Wrapper-->
                             <div class="d-flex flex-column flex-grow-1 pe-8">
@@ -209,7 +208,6 @@
                             </div>
                             <!--end::Wrapper-->
                         </div>
-
                         <!--new photo modal-->
                         <div class="modal fade" tabindex="-1" id="edit_set_photo">
                             <div class="modal-dialog">
@@ -281,9 +279,6 @@
                             </div>
                         </div>
                         <!--end new photo modal-->
-
-
-
                     </div>
                     <!--end main information-->
                 </div>
@@ -301,7 +296,7 @@
             </div>
             <!--edit set-->
             <div class="flex-grow-1">
-                <!--edit product form-->
+                <!--edit form-->
                 <form action="{% url 'inventory-edit' 'edit_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                     {% csrf_token %}
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -435,7 +430,7 @@
                         </div>
                     </div>
                 </form>
-                <!--end edit product form-->
+                <!--end edit form-->
             </div>
             <!--end edit set-->
         </div>
