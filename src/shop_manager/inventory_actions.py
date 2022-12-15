@@ -145,11 +145,6 @@ def edit_product(request, sku):
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
             selected_product.en_variant = en_variant
-            if attached_products.exists():
-                for attached_product in attached_products:
-                    attached_product.en_variant = en_variant
-                    attached_product.save()
-
         fr_product_title = request.POST.get('fr_product_title', False)
         if fr_product_title:
             selected_product.fr_product_title = fr_product_title
