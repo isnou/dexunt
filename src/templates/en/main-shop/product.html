@@ -169,7 +169,7 @@
                                     </div>
                                     {% else %}
                                     <div class="form-check form-option form-check-inline mb-2">
-                                        <a class="form-option-label" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">{{ selected_variant.size }}</a>
+                                        <a class="form-option-label" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">{{ selected_attach.size }}</a>
                                     </div>
                                     {% endif %}
                                     {% endfor %}

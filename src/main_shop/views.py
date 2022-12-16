@@ -61,9 +61,14 @@ def product(request, sku, sku_variant, sku_attach):
 
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
+
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
         sku_attach = sku
+    if sku_attach != 'main':
+        selected_product.sell_price = Product.objects.all().get(sku=sku_attach).sell_price
+        selected_product.discount_price = Product.objects.all().get(sku=sku_attach).discount_price
+
     context = {
         'selected_product': selected_product,
         'selected_variants': selected_variants,
