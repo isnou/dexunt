@@ -193,8 +193,12 @@
 
 
 
-                                        <div class="product-thumb" style="border: double;">
-                                            <span class="gallery-item-caption">{{ selected_attach.en_variant }}</span>
+                                        <div class="product-thumb"  style="border: double;">
+                                            <div class="product-card-actions">
+                                                <a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
+                                                    {{ selected_attach.en_variant }}
+                                                </a>
+                                            </div>
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}"></a>
                                             <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
                                         </div>
@@ -210,7 +214,11 @@
 
                                         {% else %}
                                         <div class="product-thumb">
-                                            <span class="gallery-item-caption">{{ selected_attach.en_variant }}</span>
+                                            <div class="product-card-actions">
+                                                <a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
+                                                    {{ selected_attach.en_variant }}
+                                                </a>
+                                            </div>
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}"></a>
                                             <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
                                         </div>
