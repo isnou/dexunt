@@ -142,13 +142,17 @@
                                     {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
                                         {% if selected_variant.sku == sku_variant %}
-                                        <label class="form-option-label rounded-square" style="border: double;">
-                                            <a class="form-option-color rounded-square" href="#" style="background-image:url('{% get_media_prefix %}{{selected_variant.thumb}}')"></a>
-                                        </label>
+                                        <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;border-radius: 5px;">
+                                            <a class="product-thumb-overlay" href="#">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
+                                            </a>
+                                        </div>
                                         {% else %}
-                                        <label class="form-option-label rounded-square">
-                                            <a class="form-option-color rounded-square" href="{% url 'product' selected_variant.sku selected_variant.sku sku_attach %}" style="background-image:url('{% get_media_prefix %}{{selected_variant.thumb}}')"></a>
-                                        </label>
+                                        <div class="form-check form-option form-check-inline"  style="width: 90px;border-radius: 5px;">
+                                            <a class="product-thumb-overlay" href="{% url 'product' selected_variant.sku selected_variant.sku sku_attach %}">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
+                                            </a>
+                                        </div>
                                         {% endif %}
                                     </div>
                                     {% endfor %}
@@ -178,22 +182,22 @@
 
                                 {% if sets %}
                                 <div class="position-relative me-n4 mb-3">
-                                        {% for selected_attach in sets %}
-                                        {% if selected_attach.sku == sku_attach %}
-                                        <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;border-radius: 5px;">
-                                            <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
-                                            </a>
-                                        </div>
-                                        {% else %}
-                                        <div class="form-check form-option form-check-inline" style="width: 90px;">
-                                            <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
-                                            </a>
-                                        </div>
-                                        {% endif %}
-                                        {% endfor %}
+                                    {% for selected_attach in sets %}
+                                    {% if selected_attach.sku == sku_attach %}
+                                    <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;border-radius: 5px;">
+                                        <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
+                                            <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
+                                        </a>
                                     </div>
+                                    {% else %}
+                                    <div class="form-check form-option form-check-inline" style="width: 90px;">
+                                        <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
+                                            <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
                                 {% endif %}
 
 
