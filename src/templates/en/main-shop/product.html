@@ -187,14 +187,14 @@
                                         {% if selected_attach.sku == sku_attach %}
                                         <div class="form-check form-option form-check-inline mb-2"  style="width: 90px; border: double;">
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;">
                                                 {{ selected_attach.en_variant }}
                                             </a>
                                         </div>
                                         {% else %}
                                         <div class="form-check form-option form-check-inline mb-2" style="width: 90px;">
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;">
                                                 {{ selected_attach.en_variant }}
                                             </a>
                                         </div>
