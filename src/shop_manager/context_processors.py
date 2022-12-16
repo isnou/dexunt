@@ -8,8 +8,7 @@ def shop_manager_content(request):
         raise Http404("No products")
     products = raw_products_list.order_by('en_product_title', 'en_variant', '-updated_at')
     inventory_product_count = raw_products_list.count()
-    collection = raw_products_list.exclude(type='variant').exclude(type='proto_variant').exclude(type='set')\
-        .exclude(type='photo').exclude(type='size')
+    collection = raw_products_list.exclude(type='set').exclude(type='photo').exclude(type='size')
     showcase_products = collection.order_by('-updated_at')
     best_sellers = collection.order_by('-sell_rate')[:4]
     top_rated = collection.order_by('-review_rate')[:4]
