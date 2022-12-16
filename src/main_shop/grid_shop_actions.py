@@ -4,7 +4,8 @@ from .models import Product, Layout
 
 def all_products(request):
     url = "/main-shop/grid-shop.html"
-    products = Product.objects.all().filter(type='main')
+    products = Product.objects.all().exclude(type='variant').exclude(type='proto_variant').exclude(type='set')\
+        .exclude(type='photo').exclude(type='size')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(products, 4)
