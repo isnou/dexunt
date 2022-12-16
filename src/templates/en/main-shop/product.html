@@ -197,7 +197,7 @@
 
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
                                                 <img src="{% get_media_prefix %}{{selected_attach.thumb}}">
-                                                <div class="card-img-overlay">{{ selected_attach.en_variant }}</div>
+                                                {{ selected_attach.en_variant }}
                                             </a>
                                         </div>
 
@@ -206,7 +206,7 @@
                                             {{ selected_attach.en_variant }}
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
                                                 <img src="{% get_media_prefix %}{{selected_attach.thumb}}">
-                                                <div class="card-img-overlay">{{ selected_attach.en_variant }}</div>
+                                                {{ selected_attach.en_variant }}
                                             </a>
                                         </div>
                                         {% endif %}
