@@ -9,6 +9,7 @@ def manager_dashboard(request, action):
         request.session['language'] = 'en'
     direction = request.session.get('language')
     url = direction + "/shop-manager/dashboard.html"
+
     context = {
     }
     return render(request, url, context)
@@ -20,12 +21,12 @@ def inventory(request, action, sku):
 
     if action == "add_new_product":
         url = direction + inventory_actions.add_new_product(request).get('url')
-    if action == "add_quantity":
-        url = direction + inventory_actions.add_quantity(request, sku).get('url')
-    if action == "remove_quantity":
-        url = direction + inventory_actions.remove_quantity(request, sku).get('url')
     if action == "add_new_variant":
         url = direction + inventory_actions.add_new_variant(request, sku).get('url')
+    if action == "add_quantity":
+        url = direction + inventory_actions.add_quantity(sku).get('url')
+    if action == "remove_quantity":
+        url = direction + inventory_actions.remove_quantity(sku).get('url')
     if action == "delete_product":
         Product.objects.all().get(sku=sku).delete()
 
@@ -133,6 +134,7 @@ def e_shop_edit(request, action, detail, index):
 
     selected_layout = Layout.objects.all().get(id=index)
     selected_layout_type = detail
+    
     context = {
         'selected_layout': selected_layout,
         'selected_layout_type': selected_layout_type,

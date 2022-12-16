@@ -123,6 +123,31 @@ def add_new_variant(request, sku):
     }
 
 
+def add_quantity(sku):
+    url = "/shop-manager/inventory.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    selected_product.quantity += 1
+    selected_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
+def remove_quantity(sku):
+    url = "/shop-manager/inventory.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    if selected_product.quantity > 0:
+        selected_product.quantity -= 1
+    else:
+        selected_product.quantity = 0
+    selected_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
 # ------------------ inventory edit
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"
@@ -496,31 +521,6 @@ def edit_a_set(request, sku):
         'url': url,
         'sku': main_product.sku,
     }
-
-
-def add_quantity(request, sku):
-    url = "/shop-manager/inventory.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    selected_product.quantity += 1
-    selected_product.save()
-    result = {
-        'url': url,
-    }
-    return result
-
-
-def remove_quantity(request, sku):
-    url = "/shop-manager/inventory.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    if selected_product.quantity > 0:
-        selected_product.quantity -= 1
-    else:
-        selected_product.quantity = 0
-    selected_product.save()
-    result = {
-        'url': url,
-    }
-    return result
 
 
 def delete_attached(sku, index):
