@@ -185,7 +185,7 @@
                                     </label>
                                     {% else %}
                                     <label class="form-option-label rounded-square">
-                                        <a class="form-option-color rounded-square" href="#" style="background-image:url('{% get_media_prefix %}{{selected_attach.thumb}}')"></a>
+                                        <a class="form-option-color rounded-square" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}" style="background-image:url('{% get_media_prefix %}{{selected_attach.thumb}}')"></a>
                                     </label>
                                     {% endif %}
                                     {% endfor %}
