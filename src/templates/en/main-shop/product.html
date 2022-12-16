@@ -178,17 +178,32 @@
 
                                 {% if sets %}
                                 <div class="position-relative me-n4 mb-3">
-                                    {% for selected_attach in sets %}
-                                    {% if selected_attach.sku == sku_attach %}
-                                    <label class="form-option-label rounded-square" style="border: double;">
-                                        <a class="form-option-color rounded-square" href="#" style="background-image:url('{% get_media_prefix %}{{selected_attach.thumb}}')"></a>
-                                    </label>
-                                    {% else %}
-                                    <label class="form-option-label rounded-square">
-                                        <a class="form-option-color rounded-square" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}" style="background-image:url('{% get_media_prefix %}{{selected_attach.thumb}}')"></a>
-                                    </label>
-                                    {% endif %}
-                                    {% endfor %}
+
+
+
+                                    <div class="row gallery">
+
+                                        {% for selected_attach in sets %}
+                                        {% if selected_attach.sku == sku_attach %}
+                                        <div class="col-xl-4 col-sm-6 mb-grid-gutter">
+                                            <a href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}" class="gallery-item rounded-3" style="border: double;">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Gallery thumbnail">
+                                                <span class="gallery-item-caption">{{ selected_attach.en_variant }}</span>
+                                            </a>
+                                        </div>
+                                        {% else %}
+                                        <div class="col-xl-4 col-sm-6 mb-grid-gutter">
+                                            <a href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}" class="gallery-item rounded-3">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Gallery thumbnail">
+                                                <span class="gallery-item-caption">{{ selected_attach.en_variant }}</span>
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+
+
                                 </div>
                                 {% endif %}
 
