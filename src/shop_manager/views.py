@@ -134,7 +134,7 @@ def e_shop_edit(request, action, detail, index):
 
     selected_layout = Layout.objects.all().get(id=index)
     selected_layout_type = detail
-    
+
     context = {
         'selected_layout': selected_layout,
         'selected_layout_type': selected_layout_type,

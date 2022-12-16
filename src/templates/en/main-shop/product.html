@@ -307,12 +307,14 @@
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">SKU:</span><span>{{ selected_product.sku }}</span></li>
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Published:</span><span>{{ selected_product.created_at }}</span></li>
                             </ul>
+                            {% if selected_product.features %}
                             <h3 class="h6">Features</h3>
                             <ul class="list-unstyled fs-sm pb-2">
                                 {% for feature in selected_product.features.all %}
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">{{ feature.en_title }}:</span><span>{{ feature.en_value }}</span></li>
                                 {% endfor %}
                             </ul>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
