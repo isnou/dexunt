@@ -164,13 +164,15 @@
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in size_variants %}
                                     {% if selected_variant.sku == sku_attach %}
-                                    <label class="form-option-label rounded-square" style="border: double;">
-                                        <a class="form-option-color rounded-square" href="#" >{{ selected_variant.size }}</a>
-                                    </label>
+
+                                    <div class="form-check form-option form-check-inline mb-2" style="border: double;">
+                                        <a class="form-option-label" href="#">{{ selected_variant.size }}</a>
+                                    </div>
+
                                     {% else %}
-                                    <label class="form-option-label rounded-square">
-                                        <a class="form-option-color rounded-square" href="{% url 'product' selected_variant.sku sku_variant selected_variant.sku %}">{{ selected_variant.size }}</a>
-                                    </label>
+                                    <div class="form-check form-option form-check-inline mb-2" style="border: double;">
+                                        <a class="form-option-label" href="{% url 'product' selected_variant.sku sku_variant selected_variant.sku %}">{{ selected_variant.size }}</a>
+                                    </div>
                                     {% endif %}
                                     {% endfor %}
                                 </div>
