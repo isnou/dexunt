@@ -181,7 +181,7 @@
 
 
 
-                                    <div class="row gallery">
+
 
                                         {% for selected_attach in sets %}
                                         {% if selected_attach.sku == sku_attach %}
@@ -193,16 +193,11 @@
 
 
 
-                                        <div class="product-thumb"  style="border: double;">
-                                            <div class="product-card-actions">
-                                                <a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                    {{ selected_attach.en_variant }}
-                                                </a>
-                                            </div>
+                                        <div class="mb-0"  style="border: double;">
+                                            {{ selected_attach.en_variant }}
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
                                                 <img src="{% get_media_prefix %}{{selected_attach.thumb}}">
                                             </a>
-
                                         </div>
 
 
@@ -215,16 +210,11 @@
 
 
                                         {% else %}
-                                        <div class="product-thumb">
-                                            <div class="product-card-actions">
-                                                <a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                    {{ selected_attach.en_variant }}
-                                                </a>
-                                            </div>
+                                        <div class="mb-0">
+                                            {{ selected_attach.en_variant }}
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
                                                 <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
                                             </a>
-
                                         </div>
                                         {% endif %}
                                         {% endfor %}
@@ -232,7 +222,8 @@
 
 
 
-                                </div>
+
+
                                 {% endif %}
 
 
