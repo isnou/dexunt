@@ -180,15 +180,15 @@
                                 <div class="position-relative me-n4 mb-3">
                                         {% for selected_attach in sets %}
                                         {% if selected_attach.sku == sku_attach %}
-                                        <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;">
+                                        <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;border-radius: 5px;">
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
                                             </a>
                                         </div>
                                         {% else %}
                                         <div class="form-check form-option form-check-inline" style="width: 90px;">
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
                                             </a>
                                         </div>
                                         {% endif %}
