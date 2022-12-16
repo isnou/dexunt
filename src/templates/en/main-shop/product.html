@@ -127,6 +127,8 @@
                             </div>
                         </div>
                         <!-- Product details-->
+                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                    {% csrf_token %}
                         <div class="col-lg-5 pt-4 pt-lg-0">
                             <div class="product-details ms-auto pb-3">
                                 {% if selected_product.discount_price %}
@@ -158,8 +160,7 @@
                                     {% endif %}
                                 </div>
 
-                                <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                                    {% csrf_token %}
+
                                 {% if size_variants %}
                                 <div class="position-relative me-n4 mb-3">
                                     {% for selected_variant in size_variants %}
@@ -276,10 +277,10 @@
                                 </div>
                                 {% endif %}
 
-                                </form>
-
                             </div>
                         </div>
+
+                        </form>
                     </div>
                 </div>
                 <!-- Tech specs tab-->
