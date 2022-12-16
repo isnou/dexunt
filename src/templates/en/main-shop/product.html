@@ -199,8 +199,10 @@
                                                     {{ selected_attach.en_variant }}
                                                 </a>
                                             </div>
-                                            <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}"></a>
-                                            <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
+                                            <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
+                                            </a>
+
                                         </div>
 
 
@@ -219,8 +221,10 @@
                                                     {{ selected_attach.en_variant }}
                                                 </a>
                                             </div>
-                                            <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}"></a>
-                                            <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
+                                            <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
+                                            </a>
+
                                         </div>
                                         {% endif %}
                                         {% endfor %}
