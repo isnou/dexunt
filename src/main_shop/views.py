@@ -68,6 +68,7 @@ def product(request, sku, sku_variant, sku_attach):
     if sku_attach != 'main':
         selected_product.sell_price = Product.objects.all().get(sku=sku_attach).sell_price
         selected_product.discount_price = Product.objects.all().get(sku=sku_attach).discount_price
+        selected_product.en_variant = Product.objects.all().get(sku=sku_attach).en_variant
 
     context = {
         'selected_product': selected_product,
