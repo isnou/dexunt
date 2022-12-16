@@ -194,9 +194,10 @@
 
 
                                         <div class="mb-0"  style="border: double;">
-                                            {{ selected_attach.en_variant }}
+
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
                                                 <img src="{% get_media_prefix %}{{selected_attach.thumb}}">
+                                                <div class="overlay">{{ selected_attach.en_variant }}</div>
                                             </a>
                                         </div>
 
@@ -213,7 +214,8 @@
                                         <div class="mb-0">
                                             {{ selected_attach.en_variant }}
                                             <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku sku_variant selected_attach.sku %}">
-                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}" alt="Product">
+                                                <img src="{% get_media_prefix %}{{selected_attach.thumb}}">
+                                                <div class="overlay">{{ selected_attach.en_variant }}</div>
                                             </a>
                                         </div>
                                         {% endif %}
