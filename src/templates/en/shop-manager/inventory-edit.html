@@ -640,7 +640,7 @@
                                             <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.thumb}}">
                                                 <img src="{% get_media_prefix %}{{photo.thumb}}" />
                                             </a>
-                                            <a href="{% url 'inventory-edit' 'delete_photo' 'selected_product.sku' photo.id %}" class="btn btn-active-color-primary" style="padding-bottom: 175px;padding-left: 0px;">
+                                            <a href="{% url 'inventory-edit' 'delete_photo' selected_product.sku photo.id %}" class="btn btn-active-color-primary" style="padding-bottom: 175px;padding-left: 0px;">
                                                 <i class="bi bi-x fs-2"></i>
                                             </a>
                                         </div>
