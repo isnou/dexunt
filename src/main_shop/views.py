@@ -11,6 +11,7 @@ def main_shop_home(request):
         request.session['language'] = 'en'
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
+
     context = {
     }
     return render(request, url, context)
@@ -27,6 +28,9 @@ def change_language(request, language):
 
 
 def product(request, sku, sku_variant, sku_attach):
+    direction = request.session.get('language')
+    url = direction + "/main-shop/product.html"
+
     try:
         clips = Clip.objects.all()
     except Clip.DoesNotExist:
@@ -52,15 +56,12 @@ def product(request, sku, sku_variant, sku_attach):
         solidarity_product = None
 
     selected_product = Product.objects.all().get(sku=sku)
-    related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
+    attached_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
     selected_variants = related_products.exclude(type='photo').exclude(type='size').exclude(type='set')
 
-    album = related_products.filter(type='photo').filter(attach=selected_product.attach)
-    size_variants = related_products.filter(type='size').filter(attach=selected_product.attach)
-    sets = related_products.filter(type='set').filter(attach=selected_product.attach)
-
-    direction = request.session.get('language')
-    url = direction + "/main-shop/product.html"
+    album = attached_products.filter(type='photo').filter(attach=selected_product.attach)
+    size_variants = attached_products.filter(type='size').filter(attach=selected_product.attach)
+    sets = attached_products.filter(type='set').filter(attach=selected_product.attach)
 
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
