@@ -661,13 +661,13 @@
                         <i class="ci-heart"></i>
                     </button>
                 </div>
-                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku %}">
+                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' 'main' %}">
                     <img src="{% get_media_prefix %}{{product.thumb}}" alt="Product">
                 </a>
                 <div class="card-body py-2">
                     <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
                     <h3 class="product-title fs-sm">
-                        <a href="{% url 'product' product.sku %}">{{ product.en_product_title }}</a>
+                        <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a>
                     </h3>
                     <div class="d-flex justify-content-between">
                         {% if product.discount_price %}
@@ -698,13 +698,13 @@
                         <i class="ci-heart"></i>
                     </button>
                 </div>
-                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku %}">
+                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' 'main' %}">
                     <img src="{% get_media_prefix %}{{product.thumb}}" alt="Product">
                 </a>
                 <div class="card-body py-2">
                     <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
                     <h3 class="product-title fs-sm">
-                        <a href="{% url 'product' product.sku %}">{{ product.en_product_title }}</a>
+                        <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a>
                     </h3>
                     <div class="d-flex justify-content-between">
                       <div class="product-price">

@@ -26,7 +26,7 @@ def change_language(request, language):
     return redirect('main-shop-home')
 
 
-def product(request, sku):
+def product(request, sku, sku_variant, sku_attach):
     try:
         clips = Clip.objects.all()
     except Clip.DoesNotExist:
@@ -61,6 +61,9 @@ def product(request, sku):
 
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
+    if sku_variant == 'main' and sku_attach == 'main':
+        sku_variant = sku
+        sku_attach = sku
     context = {
         'selected_product': selected_product,
         'selected_variants': selected_variants,
@@ -70,6 +73,8 @@ def product(request, sku):
         'points_product': points_product,
         'delivery_product': delivery_product,
         'solidarity_product': solidarity_product,
+        'sku_variant': sku_variant,
+        'sku_attach': sku_attach,
     }
     return render(request, url, context)
 
