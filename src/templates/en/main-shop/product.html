@@ -136,6 +136,7 @@
                                 {% endif %}
                                 <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Detail:</span><span class="text-muted" id="">{{ selected_product.en_variant }}</span></div>
                                 <div class="position-relative me-n4 mb-3">
+                                    {% if selected_variants.count > 1 %}
                                     {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
                                         {% if selected_product.sku == selected_variant.sku %}
@@ -149,6 +150,7 @@
                                         {% endif %}
                                     </div>
                                     {% endfor %}
+                                    {% endif %}
                                     {% if selected_product.quantity == 0 %}
                                     <div class="product-badge product-available mt-n5">
                                         <i class="ci-security-announcement"></i>Product Unavailable
