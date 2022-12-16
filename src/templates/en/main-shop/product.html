@@ -98,8 +98,11 @@
         </ul>
         <div class="px-4 pt-lg-3 pb-3 mb-5">
             <div class="tab-content px-lg-3">
+
                 <!-- General info tab-->
                 <div class="tab-pane fade show active" id="general" role="tabpanel">
+                    <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                    {% csrf_token %}
                     <div class="row">
                         <!-- Product gallery-->
                         <div class="col-lg-7 pe-lg-0">
@@ -127,8 +130,7 @@
                             </div>
                         </div>
                         <!-- Product details-->
-                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                                    {% csrf_token %}
+
                         <div class="col-lg-5 pt-4 pt-lg-0">
                             <div class="product-details ms-auto pb-3">
                                 {% if selected_product.discount_price %}
@@ -280,9 +282,11 @@
                             </div>
                         </div>
 
-                        </form>
+
                     </div>
+                    </form>
                 </div>
+
                 <!-- Tech specs tab-->
                 <div class="tab-pane fade" id="specs" role="tabpanel">
                     <div class="d-md-flex justify-content-between align-items-start pb-4 mb-4 border-bottom">
