@@ -105,16 +105,6 @@
                         <!-- Product gallery-->
                         <div class="col-lg-7 pe-lg-0">
                             <div class="product-gallery">
-                                <div class="product-gallery-preview order-sm-2">
-                                    <div class="product-gallery-preview-item active" id="first"><img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.thumb }}" data-zoom="{% get_media_prefix %}{{ selected_product.thumb }}" alt="Product image">
-                                        <div class="image-zoom-pane"></div>
-                                    </div>
-                                    {% for photo in album %}
-                                    <div class="product-gallery-preview-item" id="{{ photo.sku }}"><img class="image-zoom" src="{% get_media_prefix %}{{ photo.thumb }}" data-zoom="{% get_media_prefix %}{{ photo.thumb }}" alt="Product image">
-                                        <div class="image-zoom-pane"></div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
                                 <div class="product-gallery-thumblist order-sm-1">
                                     <a class="product-gallery-thumblist-item active" href="#first">
                                         <img src="{% get_media_prefix %}{{ selected_product.thumb }}" alt="Product thumb">
@@ -125,6 +115,17 @@
                                     </a>
                                     {% endfor %}
                                 </div>
+                                <div class="product-gallery-preview order-sm-2">
+                                    <div class="product-gallery-preview-item active" id="first"><img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.thumb }}" data-zoom="{% get_media_prefix %}{{ selected_product.thumb }}" alt="Product image">
+                                        <div class="image-zoom-pane"></div>
+                                    </div>
+                                    {% for photo in album %}
+                                    <div class="product-gallery-preview-item" id="{{ photo.sku }}"><img class="image-zoom" src="{% get_media_prefix %}{{ photo.thumb }}" data-zoom="{% get_media_prefix %}{{ photo.thumb }}" alt="Product image">
+                                        <div class="image-zoom-pane"></div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
                             </div>
                         </div>
                         <!-- Product details-->
