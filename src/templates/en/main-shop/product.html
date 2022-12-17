@@ -133,15 +133,12 @@
 
 
 
-                        <div class="position-relative bg-size-cover bg-position-center py-5" style="background-image: url(https://www.youtube.com/watch?v=P_mOtUGcq20&ab_channel=LaTroncheenBiais);">
-                            <span class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></span>
-                            <div class="position-relative px-3 py-5 my-sm-5 text-center zindex-5">
-                                <a href="https://www.youtube.com/watch?v=P_mOtUGcq20&ab_channel=LaTroncheenBiais" class="btn-video my-2" data-bs-toggle="video"></a>
-                                <br>
-                                <span class="fs-sm text-light text-shadow">Click me to watch video!</span>
-                            </div>
+                        <div class="gallery" data-video="true">
+                            <a href="https://www.youtube.com/watch?v=P_mOtUGcq20&ab_channel=LaTroncheenBiais" class="gallery-item video-item rounded-3" data-sub-html='<h6 class="fs-sm text-light">Gallery video caption</h6>'>
+                                <img src="{% get_media_prefix %}{{ selected_product.thumb }}">
+                                <span class="gallery-item-caption">Gallery video caption</span>
+                            </a>
                         </div>
-
 
 
                         <div class="col-lg-5 pt-4 pt-lg-0">
