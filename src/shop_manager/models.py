@@ -37,7 +37,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     review_rate = models.IntegerField(
-        default=5,
+        default=0,
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
