@@ -29,7 +29,7 @@ def change_language(request, language):
 def product(request, sku, sku_variant, sku_attach):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
-    
+
     try:
         clips = Clip.objects.all()
     except Clip.DoesNotExist:
