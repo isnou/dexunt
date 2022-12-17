@@ -113,6 +113,7 @@
                                     {% endfor %}
                                 </div>
                                 <div class="product-gallery-thumblist order-sm-1">
+                                    {% for photo in album %}
                                     <a class="product-gallery-thumblist-item" href="#{{ photo.sku }}">
                                         <img src="{% get_media_prefix %}{{ photo.thumb }}" alt="Product thumb">
                                     </a>
