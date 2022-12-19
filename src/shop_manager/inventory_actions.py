@@ -405,7 +405,6 @@ def add_a_set(request, sku):
     url = "/shop-manager/inventory-edit.html"
     all_products = Product.objects.all()
     selected_product = all_products.get(sku=sku)
-    attached_products = all_products.filter(attach=selected_product.attach).exclude(type='photo').exclude(sku=sku)
 
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
@@ -453,12 +452,10 @@ def edit_a_set(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     attached_products = Product.objects.all().filter(attach=selected_product.attach)
-    if attached_products.filter(type='proto').exists():
-        main_product = attached_products.get(type='proto')
-        attached_products = attached_products.exclude(type='proto')
-    elif attached_products.filter(type='proto_variant').exists():
-        main_product = attached_products.get(type='proto_variant')
-        attached_products = attached_products.exclude(type='proto_variant')
+    if attached_products.filter(type='main').exists():
+        main_product = attached_products.get(type='main')
+    elif attached_products.filter(type='variant').exists():
+        main_product = attached_products.get(type='variant')
     else:
         main_product = None
 
