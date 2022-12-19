@@ -59,19 +59,14 @@ def product(request, sku, sku_variant, sku_attach):
     selected_variants = related_products.exclude(type='photo').exclude(type='size').exclude(type='set')
 
     album = related_products.filter(type='photo').filter(attach=selected_product.attach)
-
+    size_variants = related_products.filter(type='size').filter(attach=selected_product.attach)
     sets = related_products.filter(type='set').filter(attach=selected_product.attach)
-
-    if related_products.filter(type='size').filter(attach=selected_product.attach).exists():
-        size_variants = related_products.filter(type='size').filter(attach=selected_product.attach)
-        sku_attach = size_variants[0].sku
-        sku_variant = sku
-    else:
-        size_variants = None
 
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
         sku_attach = sku
+        if size_variants:
+            sku_attach = size_variants[0].sku
     if sku_attach != 'main':
         attached_product = Product.objects.all().get(sku=sku_attach)
         selected_product.sell_price = attached_product.sell_price
