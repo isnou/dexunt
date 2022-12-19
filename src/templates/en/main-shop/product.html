@@ -106,7 +106,7 @@
                         <!-- Product gallery-->
                         <div class="col-lg-7 pe-lg-0">
                             <div class="product-gallery">
-                                {% if sku_attach == 'main' %}
+                                
                                 <div class="product-gallery-preview order-sm-2">
                                     <div class="product-gallery-preview-item active" id="first">
                                         <img class="image-zoom" src="{% get_media_prefix %}{{ thumb }}" style="width: auto;height: 450px;" data-zoom="{% get_media_prefix %}{{ thumb }}">
@@ -129,19 +129,7 @@
                                     </a>
                                     {% endfor %}
                                 </div>
-                                {% else %}
-                                <div class="product-gallery-preview order-sm-2">
-                                    <div class="product-gallery-preview-item active" id="single">
-                                        <img class="image-zoom" src="{% get_media_prefix %}{{ thumb }}" style="width: auto;height: 450px;" data-zoom="{% get_media_prefix %}{{ thumb }}">
-                                        <div class="image-zoom-pane"></div>
-                                    </div>
-                                </div>
-                                <div class="product-gallery-thumblist order-sm-1">
-                                    <a class="product-gallery-thumblist-item active" href="#single">
-                                        <img src="{% get_media_prefix %}{{ thumb }}">
-                                    </a>
-                                </div>
-                                {% endif %}
+
                             </div>
                         </div>
 
