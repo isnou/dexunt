@@ -61,6 +61,7 @@ def product(request, sku, sku_variant, sku_attach):
     album = related_products.filter(type='photo').filter(attach=selected_product.attach)
     size_variants = related_products.filter(type='size').filter(attach=selected_product.attach)
     sets = related_products.filter(type='set').filter(attach=selected_product.attach)
+    thumb = selected_product.thumb
 
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
@@ -73,12 +74,15 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.discount_price = attached_product.discount_price
         selected_product.en_variant = attached_product.en_variant
         selected_product.quantity = attached_product.quantity
+        if sets:
+            thumb = attached_product.thumb
 
     context = {
         'selected_product': selected_product,
         'selected_variants': selected_variants,
         'size_variants': size_variants,
         'sets': sets,
+        'thumb'thumb,
         'album': album,
         'points_product': points_product,
         'delivery_product': delivery_product,
