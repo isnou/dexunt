@@ -82,7 +82,7 @@ def product(request, sku, sku_variant, sku_attach):
         'selected_variants': selected_variants,
         'size_variants': size_variants,
         'sets': sets,
-        'thumb'thumb,
+        'thumb': thumb,
         'album': album,
         'points_product': points_product,
         'delivery_product': delivery_product,
