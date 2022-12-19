@@ -71,8 +71,8 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.discount_price = attached_product.discount_price
         selected_product.en_variant = attached_product.en_variant
         selected_product.quantity = attached_product.quantity
-        if attached_product.type == 'set':
-            selected_product.thumb = selected_product.thumb
+        if attached_product.type == 'size':
+            sku_attach = size_variants.sku[:1]
 
     context = {
         'selected_product': selected_product,
