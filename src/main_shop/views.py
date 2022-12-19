@@ -69,6 +69,8 @@ def product(request, sku, sku_variant, sku_attach):
         sku_attach = sku
         if sizes:
             sku_attach = sizes[0].sku
+        if sets:
+            show_album = False
 
     if sku_attach != 'main':
         attached_product = Product.objects.all().get(sku=sku_attach)
@@ -78,7 +80,6 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.quantity = attached_product.quantity
         if sets:
             thumb = attached_product.thumb
-            show_album = False
 
     context = {
         'selected_product': selected_product,
