@@ -133,19 +133,17 @@
 
                         <!-- Product details-->
                         <div class="col-lg-5 pt-4 pt-lg-0">
-
-                            <div class="product-details ms-auto pb-3">
-
                             <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
+                                {% csrf_token %}
 
-                                {% if selected_product.discount_price %}
-                                <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
-                                {% else %}
-                                <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
-                                {% endif %}
-                                <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted" id="">{{ selected_product.en_variant }}</span></div>
-                                <div class="position-relative me-n4 mb-3">
+                                <div class="product-details ms-auto pb-3">
+                                    {% if selected_product.discount_price %}
+                                    <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
+                                    {% else %}
+                                    <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                    {% endif %}
+                                    <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted" id="">{{ selected_product.en_variant }}</span></div>
+                                    <div class="position-relative me-n4 mb-3">
                                     {% if selected_variants.count > 1 %}
                                     {% for selected_variant in selected_variants %}
                                     <div class="form-check form-option form-check-inline mb-2">
@@ -172,8 +170,8 @@
                                     {% endif %}
                                 </div>
 
-                                {% if size_variants %}
-                                <div class="position-relative me-n4 mb-3">
+                                    {% if size_variants %}
+                                    <div class="position-relative me-n4 mb-3">
                                     {% for selected_attach in size_variants %}
                                     {% if selected_attach.sku == sku_attach %}
                                     <div class="form-check form-option form-check-inline mb-2" style="border: double;">
@@ -186,7 +184,7 @@
                                     {% endif %}
                                     {% endfor %}
                                 </div>
-                                {% endif %}
+                                    {% endif %}
 
                                 {% if sets %}
                                 <div class="position-relative me-n4 mb-3">
@@ -301,10 +299,8 @@
                                     <button class="btn btn-primary d-block w-100 ms-2" type="button" disabled><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
                                 </div>
                                 {% endif %}
-
-                                </form>
                             </div>
-
+                                </form>
                         </div>
                     </div>
                 </div>
