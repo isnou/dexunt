@@ -66,7 +66,7 @@ def product(request, sku, sku_variant, sku_attach):
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
         sku_attach = sku
-        if sizes.count() > 0:
+        if sizes:
             sku_attach = sizes[0].sku
     if sku_attach != 'main':
         attached_product = Product.objects.all().get(sku=sku_attach)
