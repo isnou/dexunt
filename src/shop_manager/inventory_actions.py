@@ -491,11 +491,6 @@ def edit_a_set(request, sku):
         if discount_price:
             selected_product.discount_price = discount_price
 
-        quantity = 0
-        for attached_product in attached_products:
-            quantity += attached_product.quantity
-        main_product.quantity = quantity
-
         selected_product.save()
 
         if main_product.type == 'proto':
