@@ -6,7 +6,7 @@ def shop_manager_content(request):
         raw_products_list = Product.objects.all()
     except InventoryProduct.DoesNotExist:
         raise Http404("No products")
-    products = raw_products_list.order_by('en_product_title', '-updated_at')
+    products = raw_products_list.order_by('en_product_title', 'type', '-updated_at')
     inventory_product_count = raw_products_list.count()
     collection = raw_products_list.exclude(type='set').exclude(type='photo').exclude(type='size')
     showcase_products = collection.order_by('-updated_at')
