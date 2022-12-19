@@ -59,8 +59,14 @@ def product(request, sku, sku_variant, sku_attach):
     selected_variants = related_products.exclude(type='photo').exclude(type='size').exclude(type='set')
 
     album = related_products.filter(type='photo').filter(attach=selected_product.attach)
-    size_variants = related_products.filter(type='size').filter(attach=selected_product.attach)
+
     sets = related_products.filter(type='set').filter(attach=selected_product.attach)
+
+    if related_products.filter(type='size').filter(attach=selected_product.attach).exists():
+        size_variants = related_products.filter(type='size').filter(attach=selected_product.attach)
+        sku_attach = size_variants[0].sku
+    else:
+        size_variants = None
 
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
@@ -71,8 +77,6 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.discount_price = attached_product.discount_price
         selected_product.en_variant = attached_product.en_variant
         selected_product.quantity = attached_product.quantity
-        if attached_product.type == 'size':
-            sku_attach = size_variants[0].sku
 
     context = {
         'selected_product': selected_product,
