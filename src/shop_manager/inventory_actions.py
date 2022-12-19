@@ -493,12 +493,6 @@ def edit_a_set(request, sku):
 
         selected_product.save()
 
-        if main_product.type == 'proto':
-            main_product.type = 'main'
-        if main_product.type == 'proto_variant':
-            main_product.type = 'variant'
-        main_product.save()
-
     return {
         'url': url,
         'sku': main_product.sku,
