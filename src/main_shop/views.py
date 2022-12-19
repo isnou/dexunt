@@ -71,6 +71,7 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.quantity = attached_product.quantity
         if sets:
             thumb = attached_product.thumb
+            sku_attach = 'show'
 
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
@@ -78,7 +79,7 @@ def product(request, sku, sku_variant, sku_attach):
         if sizes:
             sku_attach = sizes[0].sku
         if sets:
-            sku_attach = 'sets'
+            sku_attach = 'show'
 
     context = {
         'selected_product': selected_product,
