@@ -124,16 +124,11 @@
                                     </a>
 
                                     {% if sku_attach == 'main' %}
-
                                     {% for photo in album %}
                                     <a class="product-gallery-thumblist-item" href="#{{ photo.sku }}">
                                         <img src="{% get_media_prefix %}{{ photo.thumb }}">
                                     </a>
                                     {% endfor %}
-
-
-                                    {% else %}
-
                                     {% endif %}
 
                                 </div>
