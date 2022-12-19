@@ -62,6 +62,7 @@ def product(request, sku, sku_variant, sku_attach):
     sizes = related_products.filter(type='size').filter(attach=selected_product.attach)
     sets = related_products.filter(type='set').filter(attach=selected_product.attach)
     thumb = selected_product.thumb
+    switch = True
 
     if sku_variant == 'main' and sku_attach == 'main':
         sku_variant = sku
@@ -77,7 +78,7 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.quantity = attached_product.quantity
         if sets:
             thumb = attached_product.thumb
-            sku_attach = 'main'
+            switch = False
 
     context = {
         'selected_product': selected_product,
@@ -86,6 +87,7 @@ def product(request, sku, sku_variant, sku_attach):
         'sets': sets,
         'thumb': thumb,
         'album': album,
+        'switch': switch,
         'points_product': points_product,
         'delivery_product': delivery_product,
         'solidarity_product': solidarity_product,
