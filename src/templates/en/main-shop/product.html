@@ -205,9 +205,6 @@
 
 
                                 {% if selected_product.quantity > 0 %}
-                                <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-
                                     <!-- Product panels-->
                                     <div class="accordion mb-4" id="productPanels">
                                         {% if points_product.points > 0 %}
@@ -286,7 +283,6 @@
                                         <button class="btn btn-secondary d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
                                         <button class="btn btn-primary d-block w-100 ms-2" type="button"><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
                                     </div>
-                                </form>
                                 {% else %}
                                 <!-- disabled buttons -->
                                 <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">

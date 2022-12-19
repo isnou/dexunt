@@ -35,6 +35,10 @@ class Collection(models.Model):
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='sell-manager/collection/thumb', blank=True, null=True)
     # --------------------------------- info ---------------------------------------------------
-    product_name = models.CharField(max_length=400, blank=True, null=True)
+    product_name = models.CharField(max_length=300, blank=True, null=True)
+    product_option = models.CharField(max_length=300, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.product_name
