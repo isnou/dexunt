@@ -67,7 +67,7 @@ def product(request, sku, sku_variant, sku_attach):
         sku_attach = sku
         if size_variants:
             sku_attach = size_variants[0].sku
-    if sku_attach != 'main' and size_variants:
+    if sku_attach != 'main':
         attached_product = Product.objects.all().get(sku=sku_attach)
         selected_product.sell_price = attached_product.sell_price
         selected_product.discount_price = attached_product.discount_price
