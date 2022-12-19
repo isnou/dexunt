@@ -69,8 +69,6 @@ def product(request, sku, sku_variant, sku_attach):
         sku_attach = sku
         if sizes:
             sku_attach = sizes[0].sku
-        if sets:
-            show_album = False
 
     if sku_attach != 'main':
         attached_product = Product.objects.all().get(sku=sku_attach)
@@ -78,6 +76,8 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.discount_price = attached_product.discount_price
         selected_product.en_variant = attached_product.en_variant
         selected_product.quantity = attached_product.quantity
+        if attached_product.type == 'set':
+            show_album = False
         if sets:
             thumb = attached_product.thumb
 
