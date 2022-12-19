@@ -69,6 +69,7 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.sell_price = Product.objects.all().get(sku=sku_attach).sell_price
         selected_product.discount_price = Product.objects.all().get(sku=sku_attach).discount_price
         selected_product.en_variant = Product.objects.all().get(sku=sku_attach).en_variant
+        selected_product.quantity = Product.objects.all().get(sku=sku_attach).quantity
 
     context = {
         'selected_product': selected_product,
