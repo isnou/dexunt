@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="product-gallery-thumblist order-sm-1">
                                     <a class="product-gallery-thumblist-item active" href="#first">
-                                        <img src="{% get_media_prefix %}{{ selected_product.thumb }}">
+                                        <img src="{% get_media_prefix %}{{ thumb }}">
                                     </a>
                                     {% for photo in album %}
                                     <a class="product-gallery-thumblist-item" href="#{{ photo.sku }}">
