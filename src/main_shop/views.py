@@ -72,7 +72,7 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.en_variant = attached_product.en_variant
         selected_product.quantity = attached_product.quantity
         if attached_product.type == 'size':
-            sku_attach = size_variants.sku[0]
+            sku_attach = size_variants[0].sku
 
     context = {
         'selected_product': selected_product,
