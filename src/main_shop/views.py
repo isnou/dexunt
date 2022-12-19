@@ -63,13 +63,6 @@ def product(request, sku, sku_variant, sku_attach):
     sets = related_products.filter(type='set').filter(attach=selected_product.attach)
     thumb = selected_product.thumb
 
-    if sku_variant == 'main' and sku_attach == 'main':
-        sku_variant = sku
-        sku_attach = sku
-        if sizes:
-            sku_attach = sizes[0].sku
-        if sets:
-            sku_attach = 'sets'
     if sku_attach != 'main':
         attached_product = Product.objects.all().get(sku=sku_attach)
         selected_product.sell_price = attached_product.sell_price
@@ -78,6 +71,14 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.quantity = attached_product.quantity
         if sets:
             thumb = attached_product.thumb
+
+    if sku_variant == 'main' and sku_attach == 'main':
+        sku_variant = sku
+        sku_attach = sku
+        if sizes:
+            sku_attach = sizes[0].sku
+        if sets:
+            sku_attach = 'sets'
 
     context = {
         'selected_product': selected_product,
