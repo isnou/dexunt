@@ -106,7 +106,7 @@
                         <!-- Product gallery-->
                         <div class="col-lg-7 pe-lg-0">
                             <div class="product-gallery">
-                                {% if sku_attach == sku_variant %}
+                                {% if sku_attach == 'main' %}
                                 <div class="product-gallery-preview order-sm-2">
                                     <div class="product-gallery-preview-item active" id="first">
                                         <img class="image-zoom" src="{% get_media_prefix %}{{ thumb }}" style="width: auto;height: 450px;" data-zoom="{% get_media_prefix %}{{ thumb }}">
