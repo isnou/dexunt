@@ -77,7 +77,6 @@ def product(request, sku, sku_variant, sku_attach):
         selected_product.quantity = attached_product.quantity
         if sets:
             thumb = attached_product.thumb
-            sku_attach = 'show'
 
     context = {
         'selected_product': selected_product,
