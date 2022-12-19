@@ -1422,9 +1422,11 @@
         <!--footer-->
         <div class="card-footer">
             <div class="tns tns-default" style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
+                {% if not sizes %}
                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="create a set">
                     <i class="bi bi-columns-gap  fs-2x" data-bs-toggle="modal" data-bs-target="#add_a_set"></i>
                 </a>
+                {% endif %}
                 {% if selected_product.type == 'main' or selected_product.type == 'proto' %}
                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="create a variant">
                     <i class="bi bi-link-45deg  fs-2x" data-bs-toggle="modal" data-bs-target="#create_a_variant"></i>
