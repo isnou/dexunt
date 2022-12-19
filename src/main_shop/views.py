@@ -66,10 +66,13 @@ def product(request, sku, sku_variant, sku_attach):
         sku_variant = sku
         sku_attach = sku
     if sku_attach != 'main':
-        selected_product.sell_price = Product.objects.all().get(sku=sku_attach).sell_price
-        selected_product.discount_price = Product.objects.all().get(sku=sku_attach).discount_price
-        selected_product.en_variant = Product.objects.all().get(sku=sku_attach).en_variant
-        selected_product.quantity = Product.objects.all().get(sku=sku_attach).quantity
+        attached_product = Product.objects.all().get(sku=sku_attach)
+        selected_product.sell_price = attached_product.sell_price
+        selected_product.discount_price = attached_product.discount_price
+        selected_product.en_variant = attached_product.en_variant
+        selected_product.quantity = attached_product.quantity
+        if attached_product.type == 'set':
+            selected_product.thumb = selected_product.thumb
 
     context = {
         'selected_product': selected_product,
