@@ -444,24 +444,6 @@ def add_a_set(request, sku):
         new_product.type = 'set'
         new_product.save()
 
-        quantity = 0
-        for attached_product in attached_products:
-            quantity += attached_product.quantity
-
-        if attached_products.count():
-            if selected_product.type == 'main':
-                selected_product.type = 'proto'
-            if selected_product.type == 'variant':
-                selected_product.type = 'proto_variant'
-        else:
-            if selected_product.type == 'proto':
-                selected_product.type = 'main'
-            if selected_product.type == 'proto_variant':
-                selected_product.type = 'variant'
-
-        selected_product.quantity = quantity
-        selected_product.save()
-
     return {
         'url': url,
     }
@@ -515,6 +497,11 @@ def edit_a_set(request, sku):
         main_product.quantity = quantity
 
         selected_product.save()
+
+        if main_product.type == 'proto':
+            main_product.type = 'main'
+        if main_product.type == 'proto_variant':
+            main_product.type = 'variant'
         main_product.save()
 
     return {
