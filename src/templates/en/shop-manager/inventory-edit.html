@@ -611,9 +611,11 @@
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#edit_general_informations">Edit General Informations</a>
                 </li>
+                {% if not sets %}
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#sizes">Sizes</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#features">Edit Features</a>
                 </li>
