@@ -122,11 +122,17 @@
                                     <a class="product-gallery-thumblist-item active" href="#first">
                                         <img src="{% get_media_prefix %}{{ thumb }}">
                                     </a>
+
+                                    {% if sets and selected_attach.sku != sku_attach %}
+
+
+                                    {% else %}
                                     {% for photo in album %}
                                     <a class="product-gallery-thumblist-item" href="#{{ photo.sku }}">
                                         <img src="{% get_media_prefix %}{{ photo.thumb }}">
                                     </a>
                                     {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
