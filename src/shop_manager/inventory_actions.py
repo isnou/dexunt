@@ -443,6 +443,13 @@ def add_a_set(request, sku):
         new_product.type = 'set'
         new_product.save()
 
+        if selected_product.type == 'main':
+            selected_product.type = 'proto'
+        if selected_product.type == 'variant':
+            selected_product.type = 'proto_variant'
+
+        selected_product.save()
+
     return {
         'url': url,
     }
