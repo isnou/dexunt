@@ -179,9 +179,9 @@
                                         {% endif %}
                                     </div>
 
-                                    {% if size_variants %}
+                                    {% if sizes %}
                                     <div class="position-relative me-n4 mb-3">
-                                        {% for selected_attach in size_variants %}
+                                        {% for selected_attach in sizes %}
                                         {% if selected_attach.sku == sku_attach %}
                                         <div class="form-check form-option form-check-inline mb-2" style="border: double;">
                                             <a class="form-option-label" href="#">{{ selected_attach.size }}</a>
