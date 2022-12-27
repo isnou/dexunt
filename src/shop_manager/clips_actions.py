@@ -50,7 +50,7 @@ def points(request):
         if not clips.filter(type='points-products').filter(sku=product.sku).exists():
             new_clip = Clip(type='points-products',
                             sku=product.sku,
-                            product_title='hi',
+                            product_title=product.en_product_title + ' - ' + product.en_variant,
                             thumb=product.thumb,
                             en_clip_title=points_clip.en_clip_title,
                             fr_clip_title=points_clip.fr_clip_title,
@@ -58,6 +58,8 @@ def points(request):
                             )
             if product.type == 'size':
                 new_clip.product_title = product.en_product_title + ' - ' + product.en_variant + ' - ' + product.size
+            if product.type == 'set':
+                new_clip.product_title = product.en_product_title + ' - product set - ' + product.en_variant
             new_clip.save()
 
     return {
