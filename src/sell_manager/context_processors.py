@@ -20,15 +20,15 @@ def clips_manager(request):
     else:
         solidarity = Clip()
     if raw_clips.filter(type='points-products').exists():
-        points_products = raw_clips.filter(type='points-products')
+        points_products = raw_clips.filter(type='points-products').order_by('en_product_title', 'type')
     else:
         points_products = None
     if raw_clips.filter(type='delivery-products').exists():
-        delivery_products = raw_clips.filter(type='delivery-products')
+        delivery_products = raw_clips.filter(type='delivery-products').order_by('en_product_title', 'type')
     else:
         delivery_products = None
     if raw_clips.filter(type='solidarity-products').exists():
-        solidarity_products = raw_clips.filter(type='solidarity-products')
+        solidarity_products = raw_clips.filter(type='solidarity-products').order_by('en_product_title', 'type')
     else:
         solidarity_products = None
 
