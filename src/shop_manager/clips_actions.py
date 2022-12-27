@@ -52,11 +52,12 @@ def points(request):
                             sku=product.sku,
                             product_title=product.en_product_title + ' - ' + product.en_variant,
                             thumb=product.thumb,
-
                             en_clip_title=points_clip.en_clip_title,
                             fr_clip_title=points_clip.fr_clip_title,
                             ar_clip_title=points_clip.ar_clip_title,
                             )
+            if product.type == 'size':
+                new_clip.product_title = product.en_product_title + ' - ' + product.en_variant + ' - ' + product.size
             new_clip.save()
 
     return {
