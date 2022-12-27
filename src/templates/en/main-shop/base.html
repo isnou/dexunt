@@ -288,8 +288,8 @@
                   <a class="nav-link" href="#"><i class="ci-tag mt-n1" style="margin-right: 5px;"></i>Coupons</a>
                   <a class="nav-link" href="#"><i class="ci-cashier mt-n1" style="margin-right: 5px;"></i>Seller</a>
                   <a class="nav-link" href="#">ip:{{ request.META.HTTP_HOST }}</a>
-                  <a class="nav-link" href="#">device:{{ request.user_agent.device.family }}</a>
-                  <a class="nav-link" href="#">os:{{ request.user_agent.os.family }}</a>
+                  <a class="nav-link" href="#">device:{{ request.user_agent.device.family }}{{ request.user_agent.device.version_string }}</a>
+                  <a class="nav-link" href="#">os:{{ request.user_agent.os.family }}{{ request.user_agent.os.version_string }}</a>
 
 
                 </ul>
