@@ -68,7 +68,7 @@ def points(request):
 def delivery(request):
     url = "/shop-manager/e-shop.html"
     try:
-        products = Product.objects.all().exclude(type='photo').order_by('en_product_title', 'en_variant')
+        products = Product.objects.all().exclude(type='photo')
     except Product.DoesNotExist:
         raise Http404("No products")
 
@@ -120,6 +120,8 @@ def delivery(request):
                             fr_clip_title=points_clip.fr_clip_title,
                             ar_clip_title=points_clip.ar_clip_title,
                             )
+            if product.type == 'size':
+                new_clip.product_title = product.en_product_title + ' - ' + product.en_variant + ' - ' + product.size
             new_clip.save()
 
     return {
@@ -130,7 +132,7 @@ def delivery(request):
 def solidarity(request):
     url = "/shop-manager/e-shop.html"
     try:
-        products = Product.objects.all().exclude(type='photo').order_by('en_product_title', 'en_variant')
+        products = Product.objects.all().exclude(type='photo')
     except Product.DoesNotExist:
         raise Http404("No products")
 
@@ -182,6 +184,8 @@ def solidarity(request):
                             fr_clip_title=points_clip.fr_clip_title,
                             ar_clip_title=points_clip.ar_clip_title,
                             )
+            if product.type == 'size':
+                new_clip.product_title = product.en_product_title + ' - ' + product.en_variant + ' - ' + product.size
             new_clip.save()
 
     return {
