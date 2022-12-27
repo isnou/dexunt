@@ -5,7 +5,7 @@ from .models import Product
 def points(request):
     url = "/shop-manager/e-shop.html"
     try:
-        products = Product.objects.all().exclude(type='photo').order_by('en_product_title', 'en_variant')
+        products = Product.objects.all().exclude(type='photo')
     except Product.DoesNotExist:
         raise Http404("No products")
 
@@ -50,7 +50,7 @@ def points(request):
         if not clips.filter(type='points-products').filter(sku=product.sku).exists():
             new_clip = Clip(type='points-products',
                             sku=product.sku,
-                            product_title=product.en_product_title + ' - ' + product.en_variant,
+                            product_title='hi',
                             thumb=product.thumb,
                             en_clip_title=points_clip.en_clip_title,
                             fr_clip_title=points_clip.fr_clip_title,
