@@ -2,6 +2,9 @@ from .models import Product
 
 
 def shop_manager_content(request):
+    device = request.user_agent.device
+    os = request.user_agent.os
+    ip = request.user_agent.ip
     try:
         raw_products_list = Product.objects.all()
     except InventoryProduct.DoesNotExist:
@@ -21,4 +24,7 @@ def shop_manager_content(request):
         'top_rated': top_rated,
         'new_arrivals': new_arrivals,
         'fool': [0, 1, 2, 3, 4],
+        'device': device,
+        'os': os,
+        'ip': ip,
     }
