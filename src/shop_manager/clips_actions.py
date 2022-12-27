@@ -58,8 +58,6 @@ def points(request):
                             )
             if product.type == 'size':
                 new_clip.product_title = product.en_product_title + ' - ' + product.en_variant + ' - ' + product.size
-            if product.type == 'set':
-                new_clip.product_title = product.en_product_title + ' - product set - ' + product.en_variant
             new_clip.save()
 
     return {
