@@ -60,7 +60,7 @@ def product(request, sku, sku_variant, sku_attach):
             show_album = False
         if sets:
             thumb = attached_product.thumb
-        # get attached product clips
+        # attached product clips
         if clips.filter(sku=sku_attach).exists():
             clips = clips.filter(sku=sku_attach)
             if clips.filter(type='points-products').exists():
@@ -80,7 +80,7 @@ def product(request, sku, sku_variant, sku_attach):
             delivery_product = None
             solidarity_product = None
     else:
-        # get product clips
+        # product clips
         if clips.filter(sku=sku).exists():
             clips = clips.filter(sku=sku)
             if clips.filter(type='points-products').exists():

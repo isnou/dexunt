@@ -59,16 +59,31 @@ class Cart(models.Model):
     ip_address = models.CharField(max_length=200, default='UNDEFINED')
     # --------------------------------- info ---------------------------------------------------
     collections = models.ManyToManyField(Collection, blank=True)
-    client_name = models.CharField(max_length=300, blank=True, null=True)
-    client_phone = PhoneNumberField(blank=True)
+
+    def __str__(self):
+        return self.ref
 
 
 class Order(models.Model):
     # --------------------------------- order technical informations ---------------------------
+    cart_ref = models.CharField(max_length=30, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    cart_ref = models.CharField(max_length=30, blank=True, null=True)
-    # --------------------------------- info ---------------------------------------------------
+    device = models.CharField(max_length=200, default='UNDEFINED')
+    operating_system = models.CharField(max_length=200, default='UNDEFINED')
+    ip_address = models.CharField(max_length=200, default='UNDEFINED')
+    state = models.CharField(max_length=100, default='PENDING')
+    # --------------------------------- client info --------------------------------------------
     collections = models.ManyToManyField(Collection, blank=True)
-    client_name = models.CharField(max_length=300, blank=True, null=True)
-    client_phone = PhoneNumberField(blank=True)
+    name = models.CharField(max_length=300, blank=True, null=True)
+    phone = PhoneNumberField(blank=True)
+    destination = models.CharField(max_length=200, blank=True, null=True)
+    sub_destination = models.CharField(max_length=500, blank=True, null=True)
+    # --------------------------------- order info ---------------------------------------------
+    coupon_title = models.CharField(max_length=30, blank=True, null=True)
+    coupon_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    shipping_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+    def __str__(self):
+        return self.cart_ref
