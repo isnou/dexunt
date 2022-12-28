@@ -35,45 +35,6 @@ def product(request, sku, sku_variant, sku_attach):
     except Clip.DoesNotExist:
         raise Http404("No clips")
 
-    if sku_attach != 'main':
-        if clips.filter(sku=sku_attach).exists():
-            clips = clips.filter(sku=sku_attach)
-            if clips.filter(type='points-products').exists():
-                points_product = clips.get(type='points-products')
-            else:
-                points_product = None
-            if clips.filter(type='delivery-products').exists():
-                delivery_product = clips.get(type='delivery-products')
-            else:
-                delivery_product = None
-            if clips.filter(type='solidarity-products').exists():
-                solidarity_product = clips.get(type='solidarity-products')
-            else:
-                solidarity_product = None
-        else:
-            points_product = None
-            delivery_product = None
-            solidarity_product = None
-    else:
-        if clips.filter(sku=sku).exists():
-            clips = clips.filter(sku=sku)
-            if clips.filter(type='points-products').exists():
-                points_product = clips.get(type='points-products')
-            else:
-                points_product = None
-            if clips.filter(type='delivery-products').exists():
-                delivery_product = clips.get(type='delivery-products')
-            else:
-                delivery_product = None
-            if clips.filter(type='solidarity-products').exists():
-                solidarity_product = clips.get(type='solidarity-products')
-            else:
-                solidarity_product = None
-        else:
-            points_product = None
-            delivery_product = None
-            solidarity_product = None
-
     selected_product = Product.objects.all().get(sku=sku)
     related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
     selected_variants = related_products.exclude(type='photo').exclude(type='size').exclude(type='set')
@@ -99,6 +60,45 @@ def product(request, sku, sku_variant, sku_attach):
             show_album = False
         if sets:
             thumb = attached_product.thumb
+        # get attached product clips
+        if clips.filter(sku=sku_attach).exists():
+            clips = clips.filter(sku=sku_attach)
+            if clips.filter(type='points-products').exists():
+                points_product = clips.get(type='points-products')
+            else:
+                points_product = None
+            if clips.filter(type='delivery-products').exists():
+                delivery_product = clips.get(type='delivery-products')
+            else:
+                delivery_product = None
+            if clips.filter(type='solidarity-products').exists():
+                solidarity_product = clips.get(type='solidarity-products')
+            else:
+                solidarity_product = None
+        else:
+            points_product = None
+            delivery_product = None
+            solidarity_product = None
+    else:
+        # get product clips
+        if clips.filter(sku=sku).exists():
+            clips = clips.filter(sku=sku)
+            if clips.filter(type='points-products').exists():
+                points_product = clips.get(type='points-products')
+            else:
+                points_product = None
+            if clips.filter(type='delivery-products').exists():
+                delivery_product = clips.get(type='delivery-products')
+            else:
+                delivery_product = None
+            if clips.filter(type='solidarity-products').exists():
+                solidarity_product = clips.get(type='solidarity-products')
+            else:
+                solidarity_product = None
+        else:
+            points_product = None
+            delivery_product = None
+            solidarity_product = None
 
     context = {
         'selected_product': selected_product,
