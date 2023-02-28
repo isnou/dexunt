@@ -87,3 +87,10 @@ class Order(models.Model):
 
     def __str__(self):
         return self.cart_ref
+
+
+class Shipping(models.Model):
+    # --------------------------------- shipping details ---------------------------------------
+    destination = models.CharField(max_length=200, blank=True, null=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    product = models.ManyToManyField(Product, blank=True)

@@ -5,9 +5,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Feature(models.Model):
     # --------------------------------- feature types ------------------------------------------
-    en_title = models.CharField(max_length=500, blank=True, null=True)
-    fr_title = models.CharField(max_length=500, blank=True, null=True)
-    ar_title = models.CharField(max_length=500, blank=True, null=True)
+    en_title = models.CharField(max_length=150, blank=True, null=True)
+    fr_title = models.CharField(max_length=150, blank=True, null=True)
+    ar_title = models.CharField(max_length=150, blank=True, null=True)
     # --------------------------------- feature value ------------------------------------------
     en_value = models.TextField(max_length=500, null=True)
     fr_value = models.TextField(max_length=500, null=True)
@@ -15,6 +15,17 @@ class Feature(models.Model):
 
     def __str__(self):
         return self.en_title
+
+
+class Album(models.Model):
+    file_name = models.CharField(max_length=500, blank=True, default='product-image')
+    image = models.ImageField(upload_to='shop-manager/' + self.file_name + '/images/')
+
+    class Meta:
+        verbose_name_plural = "Album"
+
+    def __str__(self):
+        return self.file_name
 
 
 class Product(models.Model):
@@ -28,7 +39,8 @@ class Product(models.Model):
     ar_product_title = models.CharField(max_length=200, blank=True, null=True)
     ar_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
+    thumb = models.ImageField(upload_to='shop-manager/' + self.en_product_title + '/thumb', blank=True, null=True)
+    album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
     upc = models.CharField(max_length=20, unique=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
