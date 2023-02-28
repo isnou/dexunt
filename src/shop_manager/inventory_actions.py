@@ -152,36 +152,32 @@ def remove_quantity(sku):
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
-    attached_products = Product.objects.all().filter(attach=selected_product.attach)
 
     if request.method == 'POST':
         thumb = request.FILES.get('thumb', False)
         if thumb:
             selected_product.thumb = thumb
-
-        en_product_title = request.POST.get('en_product_title', False)
-        if en_product_title:
-            selected_product.en_product_title = en_product_title
-            if attached_products.exists():
-                for attached_product in attached_products:
-                    attached_product.en_product_title = en_product_title
-                    attached_product.save()
-
+        en_title = request.POST.get('en_title', False)
+        if en_title:
+            selected_product.en_title = en_title
         en_variant = request.POST.get('en_variant', False)
         if en_variant:
             selected_product.en_variant = en_variant
-        fr_product_title = request.POST.get('fr_product_title', False)
-        if fr_product_title:
-            selected_product.fr_product_title = fr_product_title
+
+        fr_title = request.POST.get('fr_title', False)
+        if fr_title:
+            selected_product.fr_title = fr_title
         fr_variant = request.POST.get('fr_variant', False)
         if fr_variant:
             selected_product.fr_variant = fr_variant
-        ar_product_title = request.POST.get('ar_product_title', False)
-        if ar_product_title:
-            selected_product.ar_product_title = ar_product_title
+
+        ar_title = request.POST.get('ar_title', False)
+        if ar_title:
+            selected_product.ar_title = ar_title
         ar_variant = request.POST.get('ar_variant', False)
         if ar_variant:
             selected_product.ar_variant = ar_variant
+
         brand = request.POST.get('brand', False)
         if brand:
             selected_product.brand = brand
