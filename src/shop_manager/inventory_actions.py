@@ -49,6 +49,7 @@ def add_new_product(request):
                               thumb=thumb,
                               )
         new_product.sku = serial_number_generator(10).upper()
+        new_product.publish = True
         new_product.type = 'main'
         new_product.save()
 
