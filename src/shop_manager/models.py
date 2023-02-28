@@ -30,34 +30,29 @@ class Album(models.Model):
 
 class Product(models.Model):
     # --------------------------------- product identification en ------------------------------
-    en_product_title = models.CharField(max_length=200, blank=True, null=True)
+    en_title = models.CharField(max_length=200, blank=True, null=True)
     en_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- product identification fr ------------------------------
-    fr_product_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.CharField(max_length=200, blank=True, null=True)
     fr_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- product identification ar ------------------------------
-    ar_product_title = models.CharField(max_length=200, blank=True, null=True)
+    ar_title = models.CharField(max_length=200, blank=True, null=True)
     ar_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
+    publish = models.BooleanField(default=True)
+    type = models.CharField(max_length=80, blank=True, null=True)
     upc = models.CharField(max_length=20, unique=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
     attach = models.CharField(max_length=20, null=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    review_rate = models.IntegerField(
-        default=0,
-        validators=[
-            MaxValueValidator(10),
-            MinValueValidator(0)
-        ]
-    )
+    review_rate = models.IntegerField(default=0)
     sell_rate = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
-    type = models.CharField(max_length=80, blank=True, null=True)
     size = models.CharField(max_length=80, blank=True, null=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
     model = models.CharField(max_length=80, blank=True, null=True)
