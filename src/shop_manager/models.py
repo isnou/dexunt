@@ -65,4 +65,4 @@ class Product(models.Model):
         return "\n".join([p.en_title for p in self.features.all()])
 
     def __str__(self):
-        return self.en_product_title
+        return self.en_title
