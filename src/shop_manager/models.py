@@ -19,7 +19,7 @@ class Feature(models.Model):
 
 class Album(models.Model):
     file_name = models.CharField(max_length=500, blank=True, default='product-image')
-    image = models.ImageField(upload_to='shop-manager/' + self.file_name + '/images/')
+    image = models.ImageField(upload_to='shop-manager/product/images/')
 
     class Meta:
         verbose_name_plural = "Album"
@@ -39,7 +39,7 @@ class Product(models.Model):
     ar_product_title = models.CharField(max_length=200, blank=True, null=True)
     ar_variant = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/' + self.en_product_title + '/thumb', blank=True, null=True)
+    thumb = models.ImageField(upload_to='shop-manager/product/thumb', blank=True, null=True)
     album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
     upc = models.CharField(max_length=20, unique=True, null=True)
