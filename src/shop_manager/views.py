@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
-from .models import Product
+from .models import Product, Collection
 from main_shop.models import Layout
 
 
@@ -70,6 +70,7 @@ def inventory_edit(request, action, sku, index):
         Product.objects.all().get(sku=sku).features.all().get(id=index).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
+    collections = Collection.objects.all().get(attach=selected_product.attach)
     sizes = Product.objects.all().filter(type='size')
     sets = Product.objects.all().filter(type='set')
 
