@@ -71,8 +71,6 @@ class Product(models.Model):
 class Collection(models.Model):
     # --------------------------------- relation informations ----------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
-    fr_title = models.CharField(max_length=200, blank=True, null=True)
-    ar_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- relation types -----------------------------------------
     size = models.ManyToManyField(Product, blank=True)
     set = models.ManyToManyField(Product, blank=True)
