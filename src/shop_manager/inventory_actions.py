@@ -226,19 +226,6 @@ def add_new_photo(request, sku):
     }
 
 
-def edit_photo(request, sku):
-    url = "/shop-manager/inventory-edit.html"
-    selected_product = Product.objects.all().get(sku=sku)
-    if request.method == 'POST':
-        photo = request.FILES.get('photo', False)
-        selected_product.thumb = photo
-        selected_product.save()
-
-    return {
-        'url': url,
-    }
-
-
 def add_new_feature(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)

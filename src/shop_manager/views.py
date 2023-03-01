@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
-from .models import Product
+from .models import Product, Album
 from main_shop.models import Layout
 
 
@@ -43,10 +43,8 @@ def inventory_edit(request, action, sku, index):
         url = direction + inventory_actions.edit_product(request, sku).get('url')
     if action == "add_new_photo":
         url = direction + inventory_actions.add_new_photo(request, sku).get('url')
-    if action == "edit_photo":
-        url = direction + inventory_actions.edit_photo(request, sku).get('url')
     if action == "delete_photo":
-        Product.objects.all().get(id=index).delete()
+        Album.objects.all().get(id=index).delete()
     if action == 'add_new_feature':
         url = direction + inventory_actions.add_new_feature(request, sku).get('url')
     if action == 'edit_feature':
