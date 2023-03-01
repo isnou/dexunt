@@ -54,8 +54,8 @@ def add_new_product(request):
         new_product.save()
         collection = Collection(en_title=new_product.en_title,
                                 )
-        collection.save()
         collection.product.add(new_product)
+        collection.save()
 
     return {
         'url': url,
