@@ -72,13 +72,13 @@ def add_new_variant(request, sku):
         fr_variant = request.POST.get('fr_variant', False)
         ar_variant = request.POST.get('ar_variant', False)
         if selected_product.fr_product_title:
-            fr_product_title = selected_product.fr_product_title
+            fr_title = selected_product.fr_title
         else:
-            fr_product_title = None
+            fr_title = None
         if selected_product.ar_product_title:
-            ar_product_title = selected_product.ar_product_title
+            ar_title = selected_product.ar_title
         else:
-            ar_product_title = None
+            ar_title = None
         if selected_product.brand:
             brand = selected_product.brand
         else:
@@ -103,11 +103,11 @@ def add_new_variant(request, sku):
         if not discount_price:
             discount_price = selected_product.discount_price
         thumb = request.FILES.get('thumb', False)
-        new_product = Product(en_product_title=selected_product.en_product_title,
+        new_product = Product(en_title=selected_product.en_title,
                               en_variant=en_variant,
-                              fr_product_title=fr_product_title,
+                              fr_title=fr_title,
                               fr_variant=fr_variant,
-                              ar_product_title=ar_product_title,
+                              ar_title=ar_title,
                               ar_variant=ar_variant,
                               brand=brand,
                               model=model,
@@ -118,11 +118,12 @@ def add_new_variant(request, sku):
                               sell_price=int(sell_price),
                               discount_price=int(discount_price),
                               thumb=thumb,
+                              attach=selected_product.attach
                               )
         new_product.sku = serial_number_generator(10).upper()
-        new_product.attach = serial_number_generator(10).upper()
         new_product.type = 'variant'
         new_product.save()
+        Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
 
     return {
         'url': url,
