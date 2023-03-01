@@ -126,9 +126,7 @@ def add_new_variant(request, sku):
         new_product.type = 'variant'
         new_product.save()
         Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
-        if selected_product_features.count() == 1:
-            new_product.features.add(selected_product_features)
-        if selected_product_features.count() > 1:
+        if selected_product_features.count():
             for selected_product_feature in selected_product_features:
                 new_product.features.add(selected_product_feature)
 
