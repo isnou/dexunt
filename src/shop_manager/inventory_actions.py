@@ -1,6 +1,6 @@
 import random
 import string
-from .models import Product, Feature, Album
+from .models import Product, Feature, Album, Collection
 
 
 # ------------------ inventory
@@ -52,6 +52,7 @@ def add_new_product(request):
         new_product.publish = True
         new_product.type = 'main'
         new_product.save()
+        Collection(en_title=new_product.en_title,).product.add(new_product).save()
 
     return {
         'url': url,
