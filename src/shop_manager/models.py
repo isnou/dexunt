@@ -46,7 +46,7 @@ class Product(models.Model):
     type = models.CharField(max_length=80, blank=True, null=True)
     upc = models.CharField(max_length=20, unique=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
-    attach = models.CharField(max_length=20, unique=True, null=True)
+    attach = models.CharField(max_length=20, blank=True, null=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
