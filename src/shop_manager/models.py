@@ -72,18 +72,10 @@ class Collection(models.Model):
     # --------------------------------- relation informations ----------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- relation types -----------------------------------------
-    size = models.ManyToManyField(Product, blank=True)
-    set = models.ManyToManyField(Product, blank=True)
-    color = models.ManyToManyField(Product, blank=True)
+    product = models.ManyToManyField(Product, blank=True)
 
-    def sizes(self):
-        return "\n".join([p.en_title for p in self.size.all()])
-
-    def sets(self):
-        return "\n".join([p.en_title for p in self.set.all()])
-
-    def colors(self):
-        return "\n".join([p.en_title for p in self.color.all()])
+    def products(self):
+        return "\n".join([p.en_title for p in self.product.all()])
 
     def __str__(self):
         return self.en_title

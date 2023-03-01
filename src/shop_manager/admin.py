@@ -8,5 +8,10 @@ class ProductAdmin(admin.ModelAdmin):
                     'get_features', 'review_rate', 'sell_rate')
 
 
+class CollectionAdmin(admin.ModelAdmin):
+    list_display = ('en_title', 'products')
+
+
 admin.site.register(Feature)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Collection, CollectionAdmin)
