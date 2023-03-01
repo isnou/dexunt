@@ -51,8 +51,10 @@ def add_new_product(request):
         new_product.sku = serial_number_generator(10).upper()
         new_product.publish = True
         new_product.type = 'main'
+        new_product.attach = serial_number_generator(10).upper()
         new_product.save()
         collection = Collection(en_title=new_product.en_title,
+                                attach=new_product.attach,
                                 )
         collection.save()
         collection.product.add(new_product)

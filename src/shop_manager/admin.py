@@ -9,7 +9,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CollectionAdmin(admin.ModelAdmin):
-    list_display = ('en_title', 'products')
+    list_display = ('en_title', 'attach', 'products')
 
 
 admin.site.register(Feature)
