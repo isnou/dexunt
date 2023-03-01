@@ -71,11 +71,11 @@ def add_new_variant(request, sku):
         en_variant = request.POST.get('en_variant', False)
         fr_variant = request.POST.get('fr_variant', False)
         ar_variant = request.POST.get('ar_variant', False)
-        if selected_product.fr_product_title:
+        if selected_product.fr_title:
             fr_title = selected_product.fr_title
         else:
             fr_title = None
-        if selected_product.ar_product_title:
+        if selected_product.ar_title:
             ar_title = selected_product.ar_title
         else:
             ar_title = None
