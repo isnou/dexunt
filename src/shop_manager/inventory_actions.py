@@ -52,8 +52,9 @@ def add_new_product(request):
         new_product.publish = True
         new_product.type = 'main'
         new_product.save()
-        collection = Collection(en_title=new_product.en_title, )
-        collection.product.add(new_product).save()
+        collection = Collection(en_title=new_product.en_title, ).save()
+        collection.product.add(new_product)
+        collection.save()
 
     return {
         'url': url,
