@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Feature, Product
+from .models import Feature, Product, Collection
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -8,5 +8,10 @@ class ProductAdmin(admin.ModelAdmin):
                     'get_features', 'review_rate', 'sell_rate')
 
 
+class CollectionAdmin(admin.ModelAdmin):
+    list_display = ('en_title', 'sizes', 'colors', 'sets')
+
+
 admin.site.register(Feature)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Collection, CollectionAdmin)
