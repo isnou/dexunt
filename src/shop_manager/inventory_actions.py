@@ -123,7 +123,7 @@ def add_new_variant(request, sku):
                               )
         new_product.sku = serial_number_generator(10).upper()
         new_product.publish = False
-        new_product.type = 'variant'
+        new_product.type = 'main'
         new_product.save()
         Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
         if selected_product_features.count():
