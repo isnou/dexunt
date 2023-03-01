@@ -214,7 +214,7 @@ def add_new_photo(request, sku):
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         photo = request.FILES.get('photo', False)
-        album = Album(file_name=selected_product.en_product_title,
+        album = Album(file_name=selected_product.en_title,
                       image=photo,
                       )
         album.save()
