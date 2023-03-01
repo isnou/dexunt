@@ -236,7 +236,8 @@
                         <!--end remove qty-->
 
                         <!--rates-->
-                        <td class="text-end pe-0">
+                        <td class="text-center">
+                            <!--
                             <div class="rating justify-content-center">
                                 {% for fill in fool %}
                                 {% if fill < product.review_rate %}
@@ -258,6 +259,16 @@
                                 {% endif %}
                                 {% endfor %}
                             </div>
+                            -->
+                            {% if product.publish %}
+                            <a href="#" class="btn btn-sm btn-light btn-active-light-secondary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="un-publish">
+                                UnPublish
+                            </a>
+                            {% else %}
+                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
+                                Publish
+                            </a>
+                            {% endif %}
                         </td>
                         <!--end rates-->
 
