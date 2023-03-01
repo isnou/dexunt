@@ -140,10 +140,10 @@ def add_quantity(sku):
     selected_product = Product.objects.all().get(sku=sku)
     selected_product.quantity += 1
     selected_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 def remove_quantity(sku):
@@ -154,10 +154,10 @@ def remove_quantity(sku):
     else:
         selected_product.quantity = 0
     selected_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 def publish(sku):
@@ -165,10 +165,10 @@ def publish(sku):
     selected_product = Product.objects.all().get(sku=sku)
     selected_product.publish = True
     selected_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 def unpublish(sku):
@@ -176,10 +176,10 @@ def unpublish(sku):
     selected_product = Product.objects.all().get(sku=sku)
     selected_product.publish = False
     selected_product.save()
-    result = {
+
+    return {
         'url': url,
     }
-    return result
 
 
 # ------------------ inventory edit
