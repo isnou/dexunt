@@ -168,7 +168,7 @@
                         <th class="text-end min-w-20px"></th>
                         <th class="text-center min-w-60px">Qty</th>
                         <th class="text-end min-w-20px"></th>
-                        <th class="text-center min-w-200px">Rates</th>
+                        <th class="text-center min-w-200px">Published</th>
                         <th class="text-center min-w-200px">Buy Price</th>
                         <th class="text-center min-w-200px">Sell Price</th>
                         <th class="text-center min-w-200px">Discount</th>
@@ -263,12 +263,10 @@
                             {% if product.publish %}
                             <a href="{% url 'inventory' 'unpublish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
                                 <i class="bi bi-check-lg"></i>
-                                Published
                             </a>
                             {% else %}
                             <a href="{% url 'inventory' 'publish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
                                 <i class="bi bi-x-lg"></i>
-                                Unpublished
                             </a>
                             {% endif %}
                         </td>
