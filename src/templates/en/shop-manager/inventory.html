@@ -237,6 +237,7 @@
 
                         <!--rates-->
                         <td class="text-end pe-0">
+                            <!--
                             <div class="rating justify-content-center">
                                 {% for fill in fool %}
                                 {% if fill < product.review_rate %}
@@ -257,6 +258,10 @@
                                 </div>
                                 {% endif %}
                                 {% endfor %}
+                            </div>
+                            -->
+                            <div class="form-check form-switch form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="" id="flexSwitchChecked" checked="checked" />
                             </div>
                         </td>
                         <!--end rates-->
