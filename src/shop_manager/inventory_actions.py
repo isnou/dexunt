@@ -1,6 +1,6 @@
 import random
 import string
-from .models import Product, Feature
+from .models import Product, Feature, Album
 
 
 # ------------------ inventory
@@ -214,14 +214,12 @@ def add_new_photo(request, sku):
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         photo = request.FILES.get('photo', False)
-        new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=selected_product.en_variant,
-                              thumb=photo,
-                              )
-        new_product.sku = serial_number_generator(10).upper()
-        new_product.attach = selected_product.attach
-        new_product.type = 'photo'
-        new_product.save()
+        album = Album(file_name=selected_product.en_product_title,
+                      image=photo,
+                      )
+        album.save()
+        selected_product.album.add(album)
+        selected_product.save()
 
     return {
         'url': url,
@@ -235,6 +233,7 @@ def edit_photo(request, sku):
         photo = request.FILES.get('photo', False)
         selected_product.thumb = photo
         selected_product.save()
+
     return {
         'url': url,
     }
