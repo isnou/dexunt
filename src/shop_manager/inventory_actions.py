@@ -160,6 +160,28 @@ def remove_quantity(sku):
     return result
 
 
+def publish(sku):
+    url = "/shop-manager/inventory.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    selected_product.publish = True
+    selected_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
+def unpublish(sku):
+    url = "/shop-manager/inventory.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    selected_product.publish = False
+    selected_product.save()
+    result = {
+        'url': url,
+    }
+    return result
+
+
 # ------------------ inventory edit
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"

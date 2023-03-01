@@ -261,12 +261,12 @@
                             </div>
                             -->
                             {% if product.publish %}
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="un-publish">
+                            <a href="{% url 'inventory' 'unpublish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
                                 <i class="bi bi-check-lg"></i>
                                 Published
                             </a>
                             {% else %}
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
+                            <a href="{% url 'inventory' 'publish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
                                 <i class="bi bi-x-lg"></i>
                                 Unpublished
                             </a>

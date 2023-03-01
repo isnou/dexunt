@@ -27,6 +27,10 @@ def inventory(request, action, sku):
         url = direction + inventory_actions.add_quantity(sku).get('url')
     if action == "remove_quantity":
         url = direction + inventory_actions.remove_quantity(sku).get('url')
+    if action == "publish":
+        url = direction + inventory_actions.publish(sku).get('url')
+    if action == "unpublish":
+        url = direction + inventory_actions.unpublish(sku).get('url')
     if action == "delete_product":
         Product.objects.all().get(sku=sku).delete()
 
