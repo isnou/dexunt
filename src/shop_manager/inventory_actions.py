@@ -52,7 +52,8 @@ def add_new_product(request):
         new_product.publish = True
         new_product.type = 'main'
         new_product.save()
-        Collection(en_title=new_product.en_title, ).save().product.add(new_product).save()
+        Collection(en_title=new_product.en_title, ).save()
+        Collection.objects.all().get(en_title=new_product.en_title).product.add(new_product).save()
 
     return {
         'url': url,
