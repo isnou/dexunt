@@ -54,8 +54,8 @@ def add_new_product(request):
         new_product.save()
         collection = Collection(en_title=new_product.en_title,
                                 )
-        collection.product.add(new_product)
         collection.save()
+        collection.product.add(new_product)
 
     return {
         'url': url,
@@ -223,7 +223,6 @@ def add_new_photo(request, sku):
                       )
         album.save()
         selected_product.album.add(album)
-        selected_product.save()
 
     return {
         'url': url,
