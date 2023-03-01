@@ -67,6 +67,7 @@ def add_new_product(request):
 def add_new_variant(request, sku):
     url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
+    features = selected_product.features.all()
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
         fr_variant = request.POST.get('fr_variant', False)
@@ -121,7 +122,9 @@ def add_new_variant(request, sku):
                               attach=selected_product.attach
                               )
         new_product.sku = serial_number_generator(10).upper()
+        new_product.publish = False
         new_product.type = 'variant'
+        new_product.features.add(features)
         new_product.save()
         Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
 
