@@ -68,9 +68,9 @@ def add_new_variant(request, sku):
     url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
     if selected_product.features:
-        features = selected_product.features.all()
+        selected_product_features = selected_product.features.all()
     else:
-        features = None
+        selected_product_features = None
     if request.method == 'POST':
         en_variant = request.POST.get('en_variant', False)
         fr_variant = request.POST.get('fr_variant', False)
@@ -128,7 +128,7 @@ def add_new_variant(request, sku):
         new_product.publish = False
         new_product.type = 'variant'
         new_product.save()
-        new_product.features.add(features)
+        new_product.features.add(selected_product_features)
         Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
 
     return {
