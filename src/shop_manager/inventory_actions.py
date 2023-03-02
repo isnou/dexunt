@@ -358,7 +358,7 @@ def edit_size(request, sku, index):
     }
 
 
-def add_a_set(request, sku):
+def add_thumbed_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
@@ -382,18 +382,18 @@ def add_a_set(request, sku):
         if not discount_price:
             discount_price = selected_product.discount_price
 
-        new_set = Size(value=en_title,
-                       upc=upc,
-                       sku=sku,
-                       quantity=int(quantity),
-                       buy_price=int(buy_price),
-                       sell_price=int(sell_price),
-                       discount_price=int(discount_price),
-                       show_thumb=True,
-                       thumb=thumb,
-                       )
-        new_set.save()
-        selected_product.size.add(new_set)
+        new_thumbed_size = Size(en_title=en_title,
+                                upc=upc,
+                                sku=sku,
+                                quantity=int(quantity),
+                                buy_price=int(buy_price),
+                                sell_price=int(sell_price),
+                                discount_price=int(discount_price),
+                                show_thumb=True,
+                                thumb=thumb,
+                                )
+        new_thumbed_size.save()
+        selected_product.size.add(new_thumbed_size)
 
         quantity = 0
         for selected_product_size in selected_product.size.all():

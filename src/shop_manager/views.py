@@ -60,8 +60,8 @@ def inventory_edit(request, action, sku, index):
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
     if action == "edit_size":
         url = direction + inventory_actions.edit_size(request, sku, index).get('url')
-    if action == "add_a_set":
-        url = direction + inventory_actions.add_a_set(request, sku).get('url')
+    if action == "add_thumbed_size":
+        url = direction + inventory_actions.add_thumbed_size(request, sku).get('url')
     if action == "edit_a_set":
         url = direction + inventory_actions.edit_a_set(request, sku).get('url')
         sku = inventory_actions.edit_a_set(request, sku).get('sku')
@@ -72,12 +72,12 @@ def inventory_edit(request, action, sku, index):
 
     selected_product = Product.objects.all().get(sku=sku)
     sizes = selected_product.size.all().exclude(show_thumb=True)
-    sets = selected_product.size.all().exclude(show_thumb=False)
+    thumbed_sizes = selected_product.size.all().exclude(show_thumb=False)
 
     context = {
         'selected_product': selected_product,
         'sizes': sizes,
-        'sets': sets,
+        'thumbed_sizes': thumbed_sizes,
     }
     return render(request, url, context)
 
