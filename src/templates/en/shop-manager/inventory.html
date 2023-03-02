@@ -176,7 +176,7 @@
                     </thead>
                     <tbody>
                     {% for product in products %}
-                    {% if product.type == 'main' %}
+                    {% if product.size.count %}
                     <tr>
                         <!--product-->
                         <td>
@@ -290,8 +290,7 @@
                         </td>
                         <!--end discount price-->
                     </tr>
-                    {% endif %}
-                    {% if product.type == 'set-proto' or product.type == 'size-proto' %}
+                    {% else %}
                     <tr>
                         <!--product-->
                         <td>
