@@ -393,7 +393,7 @@
     <!--end principle card-->
 
     <!--add new product modal-->
-    <div class="modal bg-white fade" tabindex="-1" id="add_new_product">
+    <div class="modal fade" tabindex="-1" id="add_new_product">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content shadow-none">
                 <div class="modal-header">
@@ -432,7 +432,7 @@
                                                         <!--product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
-                                                            <label class="required form-label">Product Title</label>
+                                                            <label class="required form-label">English Title</label>
                                                             <!--end label-->
                                                             <!--input-->
                                                             <input type="text" name="en_title" class="form-control mb-2" required>
@@ -452,7 +452,7 @@
                                                         <!--french product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
-                                                            <label class="form-label">Product Title Translated To French</label>
+                                                            <label class="form-label">Title Translated To French</label>
                                                             <!--end label-->
                                                             <!--input-->
                                                             <input type="text" name="fr_title" class="form-control mb-2">
@@ -472,7 +472,7 @@
                                                         <!--french product name input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
-                                                            <label class="form-label">Product Title Translated To Arabic</label>
+                                                            <label class="form-label">Title Translated To Arabic</label>
                                                             <!--end label-->
                                                             <!--input-->
                                                             <input type="text" name="ar_title" class="form-control mb-2" dir="rtl">
@@ -541,6 +541,32 @@
                                                     <!--end description-->
                                                 </div>
                                                 <!--end tag input-->
+
+                                                <!--product quantity -->
+                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--quantity input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--label-->
+                                                            <label class="form-label">Quantity</label>
+                                                            <!--end label-->
+                                                        </div>
+                                                        
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <!--input-->
+                                                            <div class="input-group">
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
+                                                                <span class="input-group-text">DZD</span>
+                                                            </div>
+                                                            <!--end input-->
+                                                            <!--description-->
+                                                            <div class="text-muted fs-7">Put product quantity.</div>
+                                                            <!--end description-->
+                                                        </div>
+                                                        <!--end quantity input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product quantity -->
 
                                                 <!--product quantity & buy price input-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
