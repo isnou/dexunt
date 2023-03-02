@@ -354,17 +354,6 @@
                                                             <!--end input-->
                                                         </div>
                                                         <!--end french product name input-->
-
-                                                        <!--french product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">French Detail</span>
-                                                                <input type="text" name="fr_variant" class="form-control" placeholder="variant title" value="{{ selected_product.fr_variant }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end french product detail input-->
                                                     </div>
                                                 </div>
                                                 <!--end french product name-->
@@ -382,48 +371,9 @@
                                                             <!--end input-->
                                                         </div>
                                                         <!--end french product name input-->
-
-                                                        <!--arabic product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Arabic Detail</span>
-                                                                <input type="text" name="ar_variant" class="form-control" dir="rtl"  placeholder="variant title" value="{{ selected_product.ar_variant }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end arabic product detail input-->
                                                     </div>
                                                 </div>
                                                 <!--end arabic product name-->
-
-                                                <!--brand & model-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--brand input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Brand</span>
-                                                                <input type="text" name="brand" class="form-control"  placeholder="product brand" value="{{ selected_product.brand }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end brand input-->
-
-                                                        <!--model input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Model</span>
-                                                                <input type="text" name="model" class="form-control" placeholder="product model" value="{{ selected_product.model }}">
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end model input-->
-                                                    </div>
-                                                </div>
-                                                <!--end brand & model-->
 
                                                 <!--upc input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
@@ -447,7 +397,7 @@
                                                 </div>
                                                 <!--end tag input-->
 
-                                                {% if selected_product.type == 'main' or selected_product.type == 'variant' %}
+                                                {% if not selected_product.size.count %}
                                                 <!--product quantity & buy price input-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
