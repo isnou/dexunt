@@ -382,7 +382,7 @@ def add_a_set(request, sku):
         if not discount_price:
             discount_price = selected_product.discount_price
 
-        new_set = Size(en_title=en_title,
+        new_set = Size(value=en_title,
                        upc=upc,
                        sku=sku,
                        quantity=int(quantity),
