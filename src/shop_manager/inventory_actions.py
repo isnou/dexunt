@@ -169,9 +169,7 @@ def unpublish(sku):
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
-
     if request.method == 'POST':
-
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
         ar_title = request.POST.get('ar_title', False)
