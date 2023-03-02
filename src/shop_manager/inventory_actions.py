@@ -316,6 +316,7 @@ def add_new_size(request, sku):
         for selected_product_size in selected_product.size.all():
             quantity += selected_product_size
         selected_product.quantity = quantity
+        selected_product.save()
 
     return {
         'url': url,
