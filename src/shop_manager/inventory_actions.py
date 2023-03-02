@@ -171,52 +171,33 @@ def edit_product(request, sku):
     selected_product = Product.objects.all().get(sku=sku)
 
     if request.method == 'POST':
-        thumb = request.FILES.get('thumb', False)
-        if thumb:
-            selected_product.thumb = thumb
+
         en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
+        upc = request.POST.get('upc', False)
+        tag = request.POST.get('tag', False)
+        quantity = request.POST.get('quantity', False)
+        buy_price = request.POST.get('buy_price', False)
+        sell_price = request.POST.get('sell_price', False)
+        discount_price = request.POST.get('discount_price', False)
+
         if en_title:
             selected_product.en_title = en_title
-        en_variant = request.POST.get('en_variant', False)
-        if en_variant:
-            selected_product.en_variant = en_variant
-
-        fr_title = request.POST.get('fr_title', False)
         if fr_title:
             selected_product.fr_title = fr_title
-        fr_variant = request.POST.get('fr_variant', False)
-        if fr_variant:
-            selected_product.fr_variant = fr_variant
-
-        ar_title = request.POST.get('ar_title', False)
         if ar_title:
             selected_product.ar_title = ar_title
-        ar_variant = request.POST.get('ar_variant', False)
-        if ar_variant:
-            selected_product.ar_variant = ar_variant
-
-        brand = request.POST.get('brand', False)
-        if brand:
-            selected_product.brand = brand
-        model = request.POST.get('model', False)
-        if model:
-            selected_product.model = model
-        upc = request.POST.get('upc', False)
         if upc:
             selected_product.upc = upc
-        tag = request.POST.get('tag', False)
         if tag:
             selected_product.tag = tag
-        quantity = request.POST.get('quantity', False)
         if quantity:
             selected_product.quantity = quantity
-        buy_price = request.POST.get('buy_price', False)
         if buy_price:
             selected_product.buy_price = buy_price
-        sell_price = request.POST.get('sell_price', False)
         if sell_price:
             selected_product.sell_price = sell_price
-        discount_price = request.POST.get('discount_price', False)
         if discount_price:
             selected_product.discount_price = discount_price
         selected_product.save()
