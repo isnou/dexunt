@@ -550,7 +550,7 @@
                                     {% for size in selected_product.size.all %}
                                     <tr>
                                         <td>
-                                            <a href="{% url 'inventory-edit' 'delete_attached' selected_product.sku size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
+                                            <a href="{% url 'inventory-edit' 'delete_size' selected_product.sku size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>

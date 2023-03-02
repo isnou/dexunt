@@ -326,7 +326,7 @@ def add_new_size(request, sku):
 def edit_size(request, sku, index):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
-    product_size = Size.objects.all().get(id=index)
+    selected_size = Size.objects.all().get(id=index)
     if request.method == 'POST':
         value = request.POST.get('value', False)
         quantity = request.POST.get('quantity', False)
@@ -335,17 +335,17 @@ def edit_size(request, sku, index):
         discount_price = request.POST.get('discount_price', False)
 
         if value:
-            product_size.value = value
+            selected_size.value = value
         if quantity:
-            product_size.quantity = quantity
+            selected_size.quantity = quantity
         if buy_price:
-            product_size.buy_price = buy_price
+            selected_size.buy_price = buy_price
         if sell_price:
-            product_size.sell_price = sell_price
+            selected_size.sell_price = sell_price
         if discount_price:
-            product_size.discount_price = discount_price
+            selected_size.discount_price = discount_price
 
-        product_size.save()
+        selected_size.save()
 
         quantity = 0
         for selected_product_size in selected_product.size.all():
@@ -460,34 +460,20 @@ def edit_a_set(request, sku):
     }
 
 
-def delete_attached(sku, index):
+def delete_size(sku, index):
     url = "/shop-manager/inventory-edit.html"
-    all_products = Product.objects.all()
-    if all_products.filter(sku=sku).exists():
-        selected_product = all_products.get(sku=sku)
-        attached_products = all_products.filter(attach=selected_product.attach).exclude(id=index).exclude(type='photo')
-        main_product = all_products.get(id=index)
+    selected_product = Product.objects.all().get(sku=sku)
+    selected_size = Size.objects.all().get(id=index)
+    selected_size.delete()
 
-        selected_product.delete()
-
-        quantity = 0
-        for attached_product in attached_products:
-            quantity += attached_product.quantity
-
-        if not attached_products.count():
-            if main_product.type == 'proto':
-                main_product.type = 'main'
-            if main_product.type == 'proto_variant':
-                main_product.type = 'variant'
-
-        main_product.quantity = quantity
-        main_product.save()
-    else:
-        main_product = all_products.get(id=index)
+    quantity = 0
+    for selected_product_size in selected_product.size.all():
+        quantity += selected_product_size.quantity
+    selected_product.quantity = quantity
+    selected_product.save()
 
     return {
         'url': url,
-        'sku': main_product.sku,
     }
 
 
