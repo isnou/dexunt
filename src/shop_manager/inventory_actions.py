@@ -360,51 +360,45 @@ def edit_size(request, sku, index):
 
 def add_a_set(request, sku):
     url = "/shop-manager/inventory-edit.html"
-    all_products = Product.objects.all()
-    selected_product = all_products.get(sku=sku)
-
+    selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
-        en_variant = request.POST.get('en_variant', False)
-        fr_variant = request.POST.get('fr_variant', False)
-        ar_variant = request.POST.get('ar_variant', False)
-        thumb = request.FILES.get('thumb', False)
+        en_title = request.POST.get('en_title', False)
         upc = request.POST.get('upc', False)
+        quantity = request.POST.get('quantity', False)
+        buy_price = request.POST.get('buy_price', False)
+        sell_price = request.POST.get('sell_price', False)
+        discount_price = request.POST.get('discount_price', False)
+        thumb = request.FILES.get('thumb', False)
+        sku = serial_number_generator(10).upper()
+
         if not upc:
             upc = serial_number_generator(12).upper()
-        quantity = request.POST.get('quantity', False)
         if not quantity:
-            quantity = 0
-        buy_price = request.POST.get('buy_price', False)
+            quantity = selected_product.quantity
         if not buy_price:
             buy_price = selected_product.buy_price
-        sell_price = request.POST.get('sell_price', False)
         if not sell_price:
             sell_price = selected_product.sell_price
-        discount_price = request.POST.get('discount_price', False)
         if not discount_price:
             discount_price = selected_product.discount_price
 
-        new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=en_variant,
-                              fr_variant=fr_variant,
-                              ar_variant=ar_variant,
-                              upc=upc,
-                              quantity=int(quantity),
-                              buy_price=int(buy_price),
-                              sell_price=int(sell_price),
-                              discount_price=int(discount_price),
-                              thumb=thumb,
-                              )
-        new_product.sku = serial_number_generator(10).upper()
-        new_product.attach = selected_product.attach
-        new_product.type = 'set'
-        new_product.save()
+        new_set = Size(en_title=en_title,
+                       upc=upc,
+                       sku=sku,
+                       quantity=int(quantity),
+                       buy_price=int(buy_price),
+                       sell_price=int(sell_price),
+                       discount_price=int(discount_price),
+                       show_thumb=True,
+                       thumb=thumb,
+                       )
+        new_set.save()
+        selected_product.size.add(new_set)
 
-        if selected_product.type == 'main':
-            selected_product.type = 'proto'
-        if selected_product.type == 'variant':
-            selected_product.type = 'proto_variant'
-
+        quantity = 0
+        for selected_product_size in selected_product.size.all():
+            quantity += selected_product_size.quantity
+        selected_product.quantity = quantity
         selected_product.save()
 
     return {

@@ -951,7 +951,7 @@
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title">Add a Set</h3>
+                            <h3 class="modal-title">Add a Thumbed Variant</h3>
                             <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                 <span class="svg-icon svg-icon-1"></span>
                             </div>
@@ -969,7 +969,7 @@
                                                 <div class="image-input-wrapper w-125px h-125px"></div>
                                                 <!--end::Image preview wrapper-->
                                                 <!--begin::Edit button-->
-                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
                                                     <i class="bi bi-pencil-fill fs-7"></i>
                                                     <!--begin::Inputs-->
                                                     <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
@@ -978,12 +978,12 @@
                                                 </label>
                                                 <!--end::Edit button-->
                                                 <!--begin::Cancel button-->
-                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
                                                     <i class="bi bi-x fs-2"></i>
                                                 </span>
                                                 <!--end::Cancel button-->
                                                 <!--begin::Remove button-->
-                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
                                                     <i class="bi bi-x fs-2"></i>
                                                 </span>
                                                 <!--end::Remove button-->
@@ -992,131 +992,100 @@
                                         </div>
                                         <!--end photo input-->
 
-                                        <!--english set's title'-->
+                                        <!--title-->
                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                             <!--label-->
-                                            <label class=" required form-label">English set's title</label>
+                                            <label class="form-label">Title</label>
                                             <!--end label-->
                                             <!--input-->
-                                            <input type="text" name="en_variant" class="form-control mb-2" required>
+                                            <input type="text" name="en_title" class="form-control mb-2">
                                             <!--end input-->
                                         </div>
-                                        <!--end english set's title-->
-
-                                        <!--french set's title'-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">French set's title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="fr_variant" class="form-control mb-2">
-                                            <!--end input-->
-                                        </div>
-                                        <!--end french set's title-->
-
-                                        <!--arabic set's title'-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Arabic set's title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl">
-                                            <!--end input-->
-                                        </div>
-                                        <!--end arabic set's title-->
+                                        <!--end title-->
 
                                         <!--upc input-->
                                         <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                    <!--label-->
-                                                    <label class="form-label">Barcode</label>
-                                                    <!--end label-->
-                                                    <!--input-->
-                                                    <input type="text" name="upc" class="form-control mb-2">
-                                                    <!--end input-->
-                                                    <!--description-->
-                                                    <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
-                                                    <!--end description-->
-                                                </div>
+                                            <!--label-->
+                                            <label class="form-label">Barcode</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="text" name="upc" class="form-control mb-2">
+                                            <!--end input-->
+                                            <!--description-->
+                                            <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
+                                            <!--end description-->
+                                        </div>
                                         <!--end upc input-->
 
-                                        <!--product quantity & buy price input-->
-                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--quantity input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Quantity</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
-                                                            <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Put product quantity.</div>
-                                                            <!--end description-->
-                                                        </div>
-                                                        <!--end quantity input-->
+                                        <!--quantity-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">Quantity</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
+                                            <!--end input-->
+                                            <!--description-->
+                                            <div class="text-muted fs-7">Put product quantity.</div>
+                                            <!--end description-->
+                                        </div>
+                                        <!--end quantity-->
 
-                                                        <!--price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Buy Price</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
-                                                            <!--end description-->
-                                                        </div>
-                                                        <!--end price input-->
-                                                    </div>
-                                                </div>
-                                        <!--end product quantity & buy price input-->
+                                        <!--buy price-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">Buy Price</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <div class="input-group">
+                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                            <!--end input-->
+                                            <!--description-->
+                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
+                                            <!--end description-->
+                                        </div>
+                                        <!--end buy price-->
 
-                                        <!--product sell price & discount price input-->
-                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--sell price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Sell Price</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
-                                                            <!--end description-->
-                                                        </div>
-                                                        <!--end sell price input-->
+                                        <!--sell price-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">Sell Price</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <div class="input-group">
+                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                            <!--end input-->
+                                            <!--description-->
+                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
+                                            <!--end description-->
+                                        </div>
+                                        <!--end sell price-->
 
-                                                        <!--discount price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Discount Price</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end discount price input-->
-                                                    </div>
-                                                </div>
-                                        <!--end product sell price & discount price input-->
+                                        <!--discount price-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <!--label-->
+                                            <label class="form-label">Discount Price</label>
+                                            <!--end label-->
+                                            <!--input-->
+                                            <div class="input-group">
+                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                            <!--end input-->
+                                            <!--description-->
+                                            <div class="text-muted fs-7">Discount must be lower than sell price</div>
+                                            <!--end description-->
+                                        </div>
+                                        <!--end discount price-->
                                     </div>
                                     <!--add product buttons-->
                                     <div class="d-flex justify-content-end" style="padding-top: 50px;">
                                         <!--submit button-->
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-secondary">
                                             <span class="indicator-label">Create The New Set</span>
                                         </button>
                                         <!--end submit button-->
@@ -1325,7 +1294,8 @@
         </div>
         <!--end footer-->
     </div>
-    {% for product in sets %}
+    {% if sets.count %}
+    {% for set in sets %}
     <div class="card card-flush shadow-sm" style="margin-top: 30px;">
         <!--header-->
         <div class="card-header">
@@ -1333,8 +1303,8 @@
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                     <!--thumbnail-->
                     <div class="me-7 mb-4">
-                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
-                            <img src="{% get_media_prefix %}{{product.thumb}}" />
+                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{set.thumb}}">
+                            <img src="{% get_media_prefix %}{{set.thumb}}" />
                         </a>
                     </div>
                     <!--end thumbnail-->
@@ -1426,6 +1396,7 @@
         <!--end header-->
     </div>
     {% endfor %}
+    {% endif %}
 </div>
 {% endblock %}
 <!------------------------------- end show product ----------------------------------------->
