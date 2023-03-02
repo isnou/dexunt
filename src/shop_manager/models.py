@@ -77,7 +77,7 @@ class Product(models.Model):
         return "\n".join([p.en_title for p in self.feature.all()])
 
     def sizes(self):
-        return "\n".join([p.en_title for p in self.size.all()])
+        return "\n".join([p.value for p in self.size.all()])
 
     def __str__(self):
         return self.en_title
