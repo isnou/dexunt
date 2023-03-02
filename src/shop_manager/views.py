@@ -56,8 +56,7 @@ def inventory_edit(request, action, sku, index):
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
     if action == "edit_size":
-        url = direction + inventory_actions.edit_size(request, sku).get('url')
-        sku = inventory_actions.edit_size(request, sku).get('sku')
+        url = direction + inventory_actions.edit_size(request, sku, index).get('url')
     if action == "add_a_set":
         url = direction + inventory_actions.add_a_set(request, sku).get('url')
     if action == "edit_a_set":
