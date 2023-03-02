@@ -313,7 +313,7 @@ def add_new_size(request, sku):
         selected_product.size.add(new_size)
 
         quantity = 0
-        for selected_product_size in selected_product.size:
+        for selected_product_size in selected_product.size.all():
             quantity += selected_product_size
         selected_product.quantity = quantity
 
