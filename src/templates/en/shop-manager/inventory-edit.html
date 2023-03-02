@@ -1313,9 +1313,7 @@
                         <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                             <div class="d-flex flex-column">
                                 <div class="d-flex align-items-center mb-2">
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ product.en_product_title }}</a>
-                                    <i class="bi bi-dash-lg" style="margin-right: 4px;"></i>
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ product.en_variant }}</a>
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ thumbed_size.en_title }}</a>
                                 </div>
 
                                 <div class="d-flex align-items-center mb-2">
@@ -1331,11 +1329,11 @@
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
                                     </a>
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                                        {{ product.en_variant }}
+                                        {{ thumbed_size.sku }}
                                     </a>
                                     <i class="bi bi-dash-lg"></i>
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                        {{ product.quantity }} Available
+                                        {{ thumbed_size.quantity }} Available
                                     </a>
                                 </div>
                             </div>
@@ -1354,7 +1352,7 @@
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ product.buy_price|floatformat:"2g" }} DZD</div>
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ thumbed_size.buy_price|floatformat:"2g" }} DZD</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
@@ -1366,7 +1364,7 @@
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ product.sell_price|floatformat:"2g" }} DZD</div>
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ thumbed_size.sell_price|floatformat:"2g" }} DZD</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
@@ -1378,7 +1376,7 @@
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ product.discount_price|floatformat:"2g" }} DZD</div>
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ thumbed_size.discount_price|floatformat:"2g" }} DZD</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
