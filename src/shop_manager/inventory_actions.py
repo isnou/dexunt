@@ -318,6 +318,7 @@ def edit_feature(request, index):
 def add_new_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
+    selected_product_features = selected_product.features.all()
     if request.method == 'POST':
         size = request.POST.get('size', False)
         upc = request.POST.get('upc', False)
@@ -343,11 +344,16 @@ def add_new_size(request, sku):
                               buy_price=int(buy_price),
                               sell_price=int(sell_price),
                               discount_price=int(discount_price),
+                              attach=selected_product.attach
                               )
         new_product.sku = serial_number_generator(10).upper()
-        new_product.attach = selected_product.attach
+        new_product.publish = False
         new_product.type = 'size'
         new_product.save()
+        Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
+        if selected_product_features.count():
+            for selected_product_feature in selected_product_features:
+                new_product.features.add(selected_product_feature)
 
         quantity = 0
         attached_products = Product.objects.all().filter(attach=selected_product.attach).exclude(sku=sku)
