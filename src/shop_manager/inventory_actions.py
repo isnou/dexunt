@@ -1,6 +1,6 @@
 import random
 import string
-from .models import Product, Feature, Album
+from .models import Product, Feature, Album, Size
 
 
 # ------------------ inventory
@@ -280,60 +280,42 @@ def edit_feature(request, index):
 def add_new_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
-    selected_product_features = selected_product.features.all()
     if request.method == 'POST':
         size = request.POST.get('size', False)
         upc = request.POST.get('upc', False)
+        quantity = request.POST.get('quantity', False)
+        buy_price = request.POST.get('buy_price', False)
+        sell_price = request.POST.get('sell_price', False)
+        discount_price = request.POST.get('discount_price', False)
+        sku = serial_number_generator(10).upper()
+
         if not upc:
             upc = serial_number_generator(12).upper()
-        quantity = request.POST.get('quantity', False)
         if not quantity:
             quantity = selected_product.quantity
-        buy_price = request.POST.get('buy_price', False)
         if not buy_price:
             buy_price = selected_product.buy_price
-        sell_price = request.POST.get('sell_price', False)
         if not sell_price:
             sell_price = selected_product.sell_price
-        discount_price = request.POST.get('discount_price', False)
         if not discount_price:
             discount_price = selected_product.discount_price
-        new_product = Product(en_product_title=selected_product.en_product_title,
-                              en_variant=selected_product.en_variant,
-                              upc=upc,
-                              size=size,
-                              quantity=int(quantity),
-                              buy_price=int(buy_price),
-                              sell_price=int(sell_price),
-                              discount_price=int(discount_price),
-                              attach=selected_product.attach
-                              )
-        new_product.sku = serial_number_generator(10).upper()
-        new_product.publish = False
-        new_product.type = 'size'
-        new_product.save()
-        Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
-        if selected_product_features.count():
-            for selected_product_feature in selected_product_features:
-                new_product.features.add(selected_product_feature)
+
+        new_size = Size(size=size,
+                        upc=upc,
+                        sku=sku,
+                        quantity=int(quantity),
+                        buy_price=int(buy_price),
+                        sell_price=int(sell_price),
+                        discount_price=int(discount_price),
+                        show_thumb=False,
+                        )
+        new_size.save()
+        selected_product.size.add(new_size)
 
         quantity = 0
-        attached_products = Product.objects.all().filter(attach=selected_product.attach).exclude(sku=sku)
-        for attached_product in attached_products:
-            quantity += attached_product.quantity
+        for selected_product_size in selected_product.size:
+            quantity += selected_product_size
         selected_product.quantity = quantity
-
-        if selected_product.type == 'main':
-            selected_product.type = 'proto'
-        if selected_product.type == 'variant':
-            selected_product.type = 'proto_variant'
-        if quantity == 0:
-            if selected_product.type == 'proto':
-                selected_product.type = 'main'
-            if selected_product.type == 'proto_variant':
-                selected_product.type = 'variant'
-
-        selected_product.save()
 
     return {
         'url': url,
