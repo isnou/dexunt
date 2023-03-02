@@ -68,9 +68,13 @@ def inventory_edit(request, action, sku, index):
         Product.objects.all().get(sku=sku).features.all().get(id=index).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
+    sizes = selected_product.size.all().exclude(show_thumb=True)
+    thumbed_sizes = selected_product.size.all().exclude(show_thumb=True)
 
     context = {
         'selected_product': selected_product,
+        'sizes': sizes,
+        'thumbed_sizes': thumbed_sizes,
     }
     return render(request, url, context)
 

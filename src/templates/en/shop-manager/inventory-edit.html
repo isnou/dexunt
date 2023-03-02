@@ -526,7 +526,7 @@
                     <!--size-->
                     <div class="flex-wrap flex-stack">
                         <div class="align-items-center">
-                            {% if selected_product.size.count %}
+                            {% if sizes.count %}
                             <div class="table-responsive">
                                 <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
                                     <thead>
@@ -547,7 +547,7 @@
                                     </thead>
 
                                     <tbody>
-                                    {% for size in selected_product.size.all %}
+                                    {% for size in sizes %}
                                     <tr>
                                         <td>
                                             <a href="{% url 'inventory-edit' 'delete_size' selected_product.sku size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
