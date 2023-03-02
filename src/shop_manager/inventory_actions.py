@@ -13,37 +13,38 @@ def add_new_product(request):
         brand = request.POST.get('brand', False)
         model = request.POST.get('model', False)
         upc = request.POST.get('upc', False)
-        if not upc:
-            upc = serial_number_generator(12).upper()
         tag = request.POST.get('tag', False)
         quantity = request.POST.get('quantity', False)
+        buy_price = request.POST.get('buy_price', False)
+        sell_price = request.POST.get('sell_price', False)
+        discount_price = request.POST.get('discount_price', False)
+        sku = serial_number_generator(10).upper()
+
+        if not upc:
+            upc = serial_number_generator(12).upper()
         if not quantity:
             quantity = 0
-        buy_price = request.POST.get('buy_price', False)
         if not buy_price:
             buy_price = 0
-        sell_price = request.POST.get('sell_price', False)
         if not sell_price:
             sell_price = 0
-        discount_price = request.POST.get('discount_price', False)
         if not discount_price:
             discount_price = 0
-        new_product = Product(en_title=en_title,
-                              fr_title=fr_title,
-                              ar_title=ar_title,
-                              brand=brand,
-                              model=model,
-                              upc=upc,
-                              tag=tag,
-                              quantity=int(quantity),
-                              buy_price=int(buy_price),
-                              sell_price=int(sell_price),
-                              discount_price=int(discount_price),
-                              )
-        new_product.sku = serial_number_generator(10).upper()
-        new_product.attach = serial_number_generator(10).upper()
-        new_product.publish = True
-        new_product.save()
+
+        Product(en_title=en_title,
+                fr_title=fr_title,
+                ar_title=ar_title,
+                brand=brand,
+                model=model,
+                upc=upc,
+                tag=tag,
+                quantity=int(quantity),
+                buy_price=int(buy_price),
+                sell_price=int(sell_price),
+                discount_price=int(discount_price),
+                publish=True,
+                sku=sku,
+                ).save()
 
     return {
         'url': url,
