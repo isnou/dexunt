@@ -526,7 +526,7 @@
                     <!--size-->
                     <div class="flex-wrap flex-stack">
                         <div class="align-items-center">
-                            {% if sizes.count > 0 %}
+                            {% if selected_product.size.count %}
                             <div class="table-responsive">
                                 <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
                                     <thead>
@@ -683,7 +683,7 @@
                                                         <!--quantity input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
-                                                            <label class="form-label">Product Quantity</label>
+                                                            <label class="form-label">Quantity</label>
                                                             <!--end label-->
                                                             <!--input-->
                                                             <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
@@ -697,7 +697,7 @@
                                                         <!--price input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
-                                                            <label class="form-label">Product Buy Price</label>
+                                                            <label class="form-label">Buy Price</label>
                                                             <!--end label-->
                                                             <!--input-->
                                                             <div class="input-group">
@@ -720,7 +720,7 @@
                                                         <!--sell price input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
-                                                            <label class="form-label">Product Sell Price</label>
+                                                            <label class="form-label">Sell Price</label>
                                                             <!--end label-->
                                                             <!--input-->
                                                             <div class="input-group">
@@ -737,7 +737,7 @@
                                                         <!--discount price input-->
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
-                                                            <label class="form-label">Product Discount Price</label>
+                                                            <label class="form-label">Discount Price</label>
                                                             <!--end label-->
                                                             <!--input-->
                                                             <div class="input-group">
@@ -754,8 +754,8 @@
                                             <!--add product buttons-->
                                         <div class="d-flex justify-content-end" style="padding-top: 50px;">
                                             <!--submit button-->
-                                            <button type="submit" class="btn btn-primary">
-                                                <span class="indicator-label">Save Changes</span>
+                                            <button type="submit" class="btn btn-secondary">
+                                                <span class="indicator-label">Save</span>
                                             </button>
                                             <!--end submit button-->
                                         </div>
