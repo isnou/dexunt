@@ -383,7 +383,6 @@ def add_a_set(request, sku):
             discount_price = selected_product.discount_price
 
         new_set = Size(en_title=en_title,
-                       value='0',
                        upc=upc,
                        sku=sku,
                        quantity=int(quantity),
