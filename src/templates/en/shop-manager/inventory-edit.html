@@ -946,18 +946,18 @@
                     <i class="bi bi-link-45deg  fs-2x" data-bs-toggle="modal" data-bs-target="#create_a_variant"></i>
                 </a>
             </div>
-            <!--new set modal-->
+            <!--new thumbed size modal-->
             <div class="modal fade" tabindex="-1" id="add_a_set">
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title">Add a Thumbed Variant</h3>
+                            <h3 class="modal-title">Add a Thumbed Size</h3>
                             <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                 <span class="svg-icon svg-icon-1"></span>
                             </div>
                         </div>
                         <div class="modal-body">
-                            <form action="{% url 'inventory-edit' 'add_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'inventory-edit' 'add_thumbed_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="card-title">
                                     <div class="card card-flush py-4">
@@ -1102,7 +1102,7 @@
                     </div>
                 </div>
             </div>
-            <!--end new set modal-->
+            <!--end new thumbed size modal-->
             <!--new variant modal-->
             <div class="modal fade" tabindex="-1" id="create_a_variant">
                 <div class="modal-dialog modal-dialog-scrollable">
@@ -1294,8 +1294,8 @@
         </div>
         <!--end footer-->
     </div>
-    {% if sets.count %}
-    {% for set in sets %}
+    {% if thumbed_sizes.count %}
+    {% for thumbed_size in thumbed_sizes %}
     <div class="card card-flush shadow-sm" style="margin-top: 30px;">
         <!--header-->
         <div class="card-header">
@@ -1303,8 +1303,8 @@
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                     <!--thumbnail-->
                     <div class="me-7 mb-4">
-                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{set.thumb}}">
-                            <img src="{% get_media_prefix %}{{set.thumb}}" />
+                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{thumbed_size.thumb}}">
+                            <img src="{% get_media_prefix %}{{thumbed_size.thumb}}" />
                         </a>
                     </div>
                     <!--end thumbnail-->
