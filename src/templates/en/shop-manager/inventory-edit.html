@@ -220,7 +220,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#edit_general_informations">Edit General Informations</a>
                 </li>
-                {% if not selected_product.type == 'set-proto' %}
+                {% if not thumbed_sizes.count %}
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#sizes">Sizes</a>
                 </li>
