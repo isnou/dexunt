@@ -281,7 +281,7 @@ def add_new_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
-        size = request.POST.get('size', False)
+        value = request.POST.get('value', False)
         upc = request.POST.get('upc', False)
         quantity = request.POST.get('quantity', False)
         buy_price = request.POST.get('buy_price', False)
@@ -300,7 +300,7 @@ def add_new_size(request, sku):
         if not discount_price:
             discount_price = selected_product.discount_price
 
-        new_size = Size(size=size,
+        new_size = Size(value=value,
                         upc=upc,
                         sku=sku,
                         quantity=int(quantity),
