@@ -70,10 +70,8 @@ def inventory_edit(request, action, sku, index):
         Product.objects.all().get(sku=sku).features.all().get(id=index).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
-    sizes = Product.objects.all().filter(sku=sku)
 
     context = {
-        'sizes': sizes,
         'selected_product': selected_product,
     }
     return render(request, url, context)

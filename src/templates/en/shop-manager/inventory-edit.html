@@ -120,323 +120,6 @@
 
 {% block content %}
 <div class="container-xxl">
-    {% if selected_product.type == 'set' %}
-    <div class="card card-flush shadow-sm">
-        <!--header-->
-        <div class="card-header">
-            <div class="card-body pt-9 pb-0">
-                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-                    <!--thumbnail-->
-                    <div class="me-7 mb-4">
-                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.thumb}}">
-                            <img src="{% get_media_prefix %}{{selected_product.thumb}}" />
-                        </a>
-                    </div>
-                    <!--end thumbnail-->
-                    <!--main information-->
-                    <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center mb-2">
-                                    <a class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ selected_product.en_product_title }}</a>
-                                </div>
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit photo" style="margin-left: 10px;">
-                                        <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#edit_set_photo"></i>
-                                    </a>
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                                        {{ selected_product.en_variant }}
-                                    </a>
-                                    <i class="bi bi-dash-lg"></i>
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                        {{ selected_product.model }}
-                                    </a>
-                                    <i class="bi bi-dash-lg"></i>
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                        {{ selected_product.brand }}
-                                    </a>
-                                    <i class="bi bi-dash-lg"></i>
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                        {{ selected_product.quantity }} Available
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-wrap flex-stack">
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <!--begin::Stats-->
-                                <div class="d-flex flex-wrap">
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Buy :</div>
-                                        </div>
-                                        <!--end::Number-->
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.buy_price|floatformat:"2g" }} DZD</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Sell :</div>
-                                        </div>
-                                        <!--end::Number-->
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Discount :</div>
-                                        </div>
-                                        <!--end::Number-->
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-                                </div>
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                        <!--new photo modal-->
-                        <div class="modal fade" tabindex="-1" id="edit_set_photo">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="align-items: center;">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title">Edit Photo</h3>
-                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                            <span class="svg-icon svg-icon-1"></span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{% url 'inventory-edit' 'edit_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                            <div class="card-title">
-                                                <div class="card card-flush py-4">
-                                                    <div class="card-title">
-                                                        <div class="card card-flush py-4">
-                                                            <!--photo input-->
-                                                            <div class="card-body text-center pt-0">
-                                                                <!--begin::Image input-->
-                                                                <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                                    <!--begin::Image preview wrapper-->
-                                                                    <div class="image-input-wrapper w-125px h-125px"></div>
-                                                                    <!--end::Image preview wrapper-->
-                                                                    <!--begin::Edit button-->
-                                                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
-                                                                        <i class="bi bi-pencil-fill fs-7"></i>
-                                                                        <!--begin::Inputs-->
-                                                                        <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                                        <input type="hidden" name="thumb_remove" />
-                                                                        <!--end::Inputs-->
-                                                                    </label>
-                                                                    <!--end::Edit button-->
-                                                                    <!--begin::Cancel button-->
-                                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
-                                                                        <i class="bi bi-x fs-2"></i>
-                                                                    </span>
-                                                                    <!--end::Cancel button-->
-                                                                    <!--begin::Remove button-->
-                                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
-                                                                        <i class="bi bi-x fs-2"></i>
-                                                                    </span>
-                                                                    <!--end::Remove button-->
-                                                                </div>
-                                                                <!--end::Image input-->
-                                                            </div>
-                                                            <!--end photo input-->
-                                                        </div>
-                                                    </div>
-                                                    <!--submit button-->
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <span class="indicator-label">Save Photo</span>
-                                                    </button>
-                                                    <!--end submit button-->
-                                                </div>
-                                                <!--add photo buttons-->
-                                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                                                </div>
-                                                <!--end add photo buttons-->
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7"></div>
-                                        <!--end::Description-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end new photo modal-->
-                    </div>
-                    <!--end main information-->
-                </div>
-            </div>
-        </div>
-        <!--end header-->
-        <!--form-->
-        <div class="card-body py-5">
-            <div class="flex-grow-1">
-                <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                    <h3 class="d-flex flex-column text-center">
-                        Edit Set Informations
-                    </h3>
-                </div>
-            </div>
-            <!--edit set-->
-            <div class="flex-grow-1">
-                <!--edit form-->
-                <form action="{% url 'inventory-edit' 'edit_a_set' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                    {% csrf_token %}
-                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                        <div class="tab-content">
-                            <!--add product form inputs-->
-                            <div class="tab-pane fade active show">
-                                <div class="d-flex flex-column gap-7 gap-lg-10">
-                                    <!--add product information-->
-                                    <div class="card card-flush py-4">
-                                        <!--block body-->
-                                        <div class="card-body pt-0">
-                                            <!--set name-->
-                                            <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                <!--input-->
-                                                <div class="input-group">
-                                                    <span class="input-group-text">English Set's Title</span>
-                                                    <input type="text" name="en_variant" class="form-control" placeholder="put a title" value="{{ selected_product.en_variant }}">
-                                                </div>
-                                                <div class="text-muted text-center fs-7">set title must not finish with 'set'</div>
-                                                <!--end input-->
-                                            </div>
-                                            <!--end set name-->
-
-                                            <!--french set name-->
-                                            <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                <!--input-->
-                                                <div class="input-group">
-                                                    <span class="input-group-text">French Set's Title</span>
-                                                    <input type="text" name="fr_variant" class="form-control" placeholder="put a title" value="{{ selected_product.fr_variant }}">
-                                                </div>
-                                                <!--end input-->
-                                            </div>
-                                            <!--end french set name-->
-
-                                            <!--arabic set name-->
-                                            <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                <!--input-->
-                                                <div class="input-group">
-                                                    <span class="input-group-text">Arabic Set's Title</span>
-                                                    <input type="text" name="ar_variant" class="form-control" placeholder="put a title" value="{{ selected_product.ar_variant }}" dir="rtl">
-                                                </div>
-                                                <!--end input-->
-                                            </div>
-                                            <!--end arabic set name-->
-
-                                            <!--upc input-->
-                                            <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                <!--input-->
-                                                <div class="input-group">
-                                                    <span class="input-group-text">Barcode</span>
-                                                    <input type="text" name="upc" class="form-control" placeholder="UPC" value="{{ selected_product.upc }}">
-                                                </div>
-                                                <!--end input-->
-                                            </div>
-                                            <!--end upc input-->
-
-                                            <!--product quantity & buy price input-->
-                                            <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                <div class="d-flex flex-wrap gap-5">
-                                                    <!--quantity input-->
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <!--input-->
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">Quantity</span>
-                                                            <input type="number" name="quantity" class="form-control" placeholder="quantity" value="{{ selected_product.quantity }}">
-                                                        </div>
-                                                        <!--end input-->
-                                                    </div>
-                                                    <!--end quantity input-->
-
-                                                    <!--price input-->
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <!--input-->
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">Buy Price</span>
-                                                            <input type="number" name="buy_price" class="form-control" placeholder="cost" value="{{ selected_product.buy_price }}">
-                                                            <span class="input-group-text">DZD</span>
-                                                        </div>
-                                                        <!--end input-->
-                                                    </div>
-                                                    <!--end price input-->
-                                                </div>
-                                            </div>
-                                            <!--end product quantity & buy price input-->
-
-                                            <!--product sell price & discount price input-->
-                                            <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                <div class="d-flex flex-wrap gap-5">
-                                                    <!--sell price input-->
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <!--input-->
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">Sell Price</span>
-                                                            <input type="number" name="sell_price" class="form-control" placeholder="price" value="{{ selected_product.sell_price }}">
-                                                            <span class="input-group-text">DZD</span>
-                                                        </div>
-                                                        <!--end input-->
-                                                    </div>
-                                                    <!--end sell price input-->
-
-                                                    <!--discount price input-->
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <!--input-->
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">Discount</span>
-                                                            <input type="number" name="discount_price" class="form-control" placeholder="discount" value="{{ selected_product.discount_price }}">
-                                                            <span class="input-group-text">DZD</span>
-                                                        </div>
-                                                        <!--end input-->
-                                                    </div>
-                                                    <!--end discount price input-->
-                                                </div>
-                                            </div>
-                                            <!--end product sell price & discount price input-->
-                                        </div>
-                                        <!--end block body-->
-                                    </div>
-                                    <!--end add product information-->
-                                </div>
-                            </div>
-                            <!--end add product form inputs-->
-                            <!--add product buttons-->
-                            <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                                <!--submit button-->
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="indicator-label">Save Modifications</span>
-                                </button>
-                                <!--end submit button-->
-                            </div>
-                            <!--end add product buttons-->
-                        </div>
-                    </div>
-                </form>
-                <!--end edit form-->
-            </div>
-            <!--end edit set-->
-        </div>
-        <!--end form-->
-    </div>
-    {% else %}
     <div class="card card-flush shadow-sm">
         <!--header-->
         <div class="card-header">
@@ -647,6 +330,59 @@
                                             </a>
                                         </div>
                                         {% endfor %}
+                                        <div class="py-3 px-4 me-6 mb-3">
+                                            <form action="{% url 'inventory-edit' 'add_new_photo' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="card-title">
+                                            <div class="card card-flush py-4">
+                                                <div class="card-title">
+                                                    <div class="card card-flush py-4">
+                                                        <!--photo input-->
+                                                        <div class="card-body text-center pt-0">
+                                                            <!--begin::Image input-->
+                                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
+                                                                <!--begin::Image preview wrapper-->
+                                                                <div class="image-input-wrapper w-125px h-125px"></div>
+                                                                <!--end::Image preview wrapper-->
+                                                                <!--begin::Edit button-->
+                                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                                    <!--begin::Inputs-->
+                                                                    <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
+                                                                    <input type="hidden" name="photo_remove" />
+                                                                    <!--end::Inputs-->
+                                                                </label>
+                                                                <!--end::Edit button-->
+                                                                <!--begin::Cancel button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Cancel button-->
+                                                                <!--begin::Remove button-->
+                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Remove button-->
+                                                            </div>
+                                                            <!--end::Image input-->
+                                                        </div>
+                                                        <!--end photo input-->
+                                                    </div>
+                                                </div>
+                                                <!--submit button-->
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="indicator-label">Save Photo</span>
+                                                </button>
+                                                <!--end submit button-->
+                                            </div>
+                                            <!--add photo buttons-->
+                                            <div class="d-flex justify-content-end" style="padding-top: 50px;">
+
+                                            </div>
+                                            <!--end add photo buttons-->
+                                        </div>
+                                    </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1912,7 +1648,6 @@
         <!--end header-->
     </div>
     {% endfor %}
-    {% endif %}
 </div>
 {% endblock %}
 <!------------------------------- end show product ----------------------------------------->
