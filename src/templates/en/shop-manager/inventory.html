@@ -181,11 +181,17 @@
                         <!--product-->
                         <td>
                             <div class="d-flex align-items-center">
+                                {% if not product.album.count %}
+                                <!--product missed thumbnail-->
+                                <i class="bi bi-x-square"></i>
+                                <!--end product missed thumbnail-->
+                                {% else %}
                                 <!--product thumbnail-->
                                 <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
                                     <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.thumb}});"></span>
                                 </a>
                                 <!--end product thumbnail-->
+                                {% endif %}
                                 <div class="ms-5">
                                     <!--begin::Title-->
                                     <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}}</a>
