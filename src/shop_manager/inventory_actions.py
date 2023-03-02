@@ -1,6 +1,6 @@
 import random
 import string
-from .models import Product, Feature, Album, Collection
+from .models import Product, Feature, Album
 
 
 # ------------------ inventory
