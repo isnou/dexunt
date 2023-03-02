@@ -9,9 +9,6 @@ def manager_dashboard(request, action):
         request.session['language'] = 'en'
     direction = request.session.get('language')
     url = direction + "/shop-manager/dashboard.html"
-    sizes = Size.objects.all()
-    for size in sizes:
-        size.delete()
 
     context = {
     }
