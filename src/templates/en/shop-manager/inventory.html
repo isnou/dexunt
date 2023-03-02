@@ -176,7 +176,7 @@
                     </thead>
                     <tbody>
                     {% for product in products %}
-                    {% if product.size.count %}
+                    {% if not product.size.count %}
                     <tr>
                         <!--product title-->
                         <td>
