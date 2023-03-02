@@ -29,6 +29,10 @@ class Album(models.Model):
 
 
 class Size(models.Model):
+    # --------------------------------- product identification ---------------------------------
+    en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.CharField(max_length=200, blank=True, null=True)
+    ar_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/size/', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
