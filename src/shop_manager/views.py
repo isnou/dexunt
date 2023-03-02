@@ -70,9 +70,8 @@ def inventory_edit(request, action, sku, index):
         Product.objects.all().get(sku=sku).features.all().get(id=index).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
-    attached_products = Collection.objects.all().get(attach=selected_product.attach)
-    sizes = Product.objects.all().filter(type='size')
-    sets = Product.objects.all().filter(type='set')
+    sizes = Product.objects.all().filter(sku=sku)
+    sets = Product.objects.all().filter(sku=sku)
 
     context = {
         'sets': sets,
