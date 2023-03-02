@@ -314,7 +314,7 @@ def add_new_size(request, sku):
 
         quantity = 0
         for selected_product_size in selected_product.size.all():
-            quantity += int(selected_product_size.value)
+            quantity += selected_product_size.quantity
         selected_product.quantity = quantity
         selected_product.save()
 
