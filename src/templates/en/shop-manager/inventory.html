@@ -394,11 +394,10 @@
 
     <!--add new product modal-->
     <div class="modal bg-white fade" tabindex="-1" id="add_new_product">
-        <div class="modal-dialog modal-fullscreen">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content shadow-none">
                 <div class="modal-header">
                     <h5 class="modal-title">Add new product</h5>
-
                     <!--close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                         <span class="svg-icon svg-icon-2x"></span>
@@ -419,52 +418,6 @@
                                         <div class="card card-flush py-4">
                                             <!--block title-->
                                             <div class="card-header">
-                                                <div class="card-title">
-                                                    <div class="card card-flush py-4">
-                                                        <!--thumbnail input-->
-                                                        <div class="card-header">
-                                                            <!--begin::Card title-->
-                                                            <div class="card-title">
-                                                                <h2>Product Thumbnail</h2>
-                                                            </div>
-                                                            <!--end::Card title-->
-                                                        </div>
-                                                        <!--end::Card header-->
-                                                        <!--begin::Card body-->
-                                                        <div class="card-body text-center pt-0">
-                                                            <!--begin::Image input-->
-                                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                                <!--begin::Image preview wrapper-->
-                                                                <div class="image-input-wrapper w-125px h-125px"></div>
-                                                                <!--end::Image preview wrapper-->
-                                                                <!--begin::Edit button-->
-                                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
-                                                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                                                    <!--begin::Inputs-->
-                                                                    <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                                    <input type="hidden" name="thumb_remove" />
-                                                                    <!--end::Inputs-->
-                                                                </label>
-                                                                <!--end::Edit button-->
-                                                                <!--begin::Cancel button-->
-                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
-                                                                    <i class="bi bi-x fs-2"></i>
-                                                                </span>
-                                                                <!--end::Cancel button-->
-                                                                <!--begin::Remove button-->
-                                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
-                                                                    <i class="bi bi-x fs-2"></i>
-                                                                </span>
-                                                                <!--end::Remove button-->
-                                                            </div>
-                                                            <!--end::Image input-->
-                                                            <!--begin::Description-->
-                                                            <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
-                                                            <!--end::Description-->
-                                                        </div>
-                                                        <!--end thumbnail input-->
-                                                    </div>
-                                                </div>
                                                 <div class="card-title">
                                                     <h2>Product Information</h2>
                                                 </div>
@@ -489,17 +442,6 @@
                                                             <!--end description-->
                                                         </div>
                                                         <!--end product name input-->
-
-                                                        <!--product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Detail</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <input type="text" name="en_variant" class="form-control mb-2">
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end product detail input-->
                                                     </div>
                                                 </div>
                                                 <!--end product name-->
@@ -520,17 +462,6 @@
                                                             <!--end description-->
                                                         </div>
                                                         <!--end french product name input-->
-
-                                                        <!--french product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Detail Translated To French</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <input type="text" name="fr_variant" class="form-control mb-2">
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end french product detail input-->
                                                     </div>
                                                 </div>
                                                 <!--end french product name-->
@@ -551,17 +482,6 @@
                                                             <!--end description-->
                                                         </div>
                                                         <!--end french product name input-->
-
-                                                        <!--arabic product detail input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Detail Translated To Arabic</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl">
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end arabic product detail input-->
                                                     </div>
                                                 </div>
                                                 <!--end arabic product name-->
