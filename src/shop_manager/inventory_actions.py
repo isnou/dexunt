@@ -8,11 +8,8 @@ def add_new_product(request):
     url = "/shop-manager/inventory.html"
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
-        en_variant = request.POST.get('en_variant', False)
         fr_title = request.POST.get('fr_title', False)
-        fr_variant = request.POST.get('fr_variant', False)
         ar_title = request.POST.get('ar_title', False)
-        ar_variant = request.POST.get('ar_variant', False)
         brand = request.POST.get('brand', False)
         model = request.POST.get('model', False)
         upc = request.POST.get('upc', False)
@@ -31,13 +28,9 @@ def add_new_product(request):
         discount_price = request.POST.get('discount_price', False)
         if not discount_price:
             discount_price = 0
-        thumb = request.FILES.get('thumb', False)
         new_product = Product(en_title=en_title,
-                              en_variant=en_variant,
                               fr_title=fr_title,
-                              fr_variant=fr_variant,
                               ar_title=ar_title,
-                              ar_variant=ar_variant,
                               brand=brand,
                               model=model,
                               upc=upc,
@@ -46,18 +39,11 @@ def add_new_product(request):
                               buy_price=int(buy_price),
                               sell_price=int(sell_price),
                               discount_price=int(discount_price),
-                              thumb=thumb,
                               )
         new_product.sku = serial_number_generator(10).upper()
-        new_product.publish = True
-        new_product.type = 'main'
         new_product.attach = serial_number_generator(10).upper()
+        new_product.publish = True
         new_product.save()
-        collection = Collection(en_title=new_product.en_title,
-                                attach=new_product.attach,
-                                )
-        collection.save()
-        collection.product.add(new_product)
 
     return {
         'url': url,
