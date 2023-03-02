@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
-from .models import Product
+from .models import Product, Size
 from main_shop.models import Layout
 
 
@@ -9,6 +9,9 @@ def manager_dashboard(request, action):
         request.session['language'] = 'en'
     direction = request.session.get('language')
     url = direction + "/shop-manager/dashboard.html"
+    sizes = Size.objects.all()
+    for size in sizes:
+        size.delete()
 
     context = {
     }
