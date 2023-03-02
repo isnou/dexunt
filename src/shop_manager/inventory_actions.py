@@ -10,8 +10,6 @@ def add_new_product(request):
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
         ar_title = request.POST.get('ar_title', False)
-        brand = request.POST.get('brand', False)
-        model = request.POST.get('model', False)
         upc = request.POST.get('upc', False)
         tag = request.POST.get('tag', False)
         quantity = request.POST.get('quantity', False)
@@ -34,8 +32,6 @@ def add_new_product(request):
         Product(en_title=en_title,
                 fr_title=fr_title,
                 ar_title=ar_title,
-                brand=brand,
-                model=model,
                 upc=upc,
                 tag=tag,
                 quantity=int(quantity),
