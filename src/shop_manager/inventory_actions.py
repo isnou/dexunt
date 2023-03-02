@@ -219,7 +219,7 @@ def edit_product(request, sku):
         discount_price = request.POST.get('discount_price', False)
         if discount_price:
             selected_product.discount_price = discount_price
-    selected_product.save()
+        selected_product.save()
 
     return {
         'url': url,

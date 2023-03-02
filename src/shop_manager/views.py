@@ -71,10 +71,8 @@ def inventory_edit(request, action, sku, index):
 
     selected_product = Product.objects.all().get(sku=sku)
     sizes = Product.objects.all().filter(sku=sku)
-    sets = Product.objects.all().filter(sku=sku)
 
     context = {
-        'sets': sets,
         'sizes': sizes,
         'selected_product': selected_product,
     }
