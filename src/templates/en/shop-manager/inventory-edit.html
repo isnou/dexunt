@@ -547,7 +547,7 @@
                                     </thead>
 
                                     <tbody>
-                                    {% for product in sizes %}
+                                    {% for product in selected_product.size.all %}
                                     <tr>
                                         <td>
                                             <a href="{% url 'inventory-edit' 'delete_attached' product.sku selected_product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
@@ -563,7 +563,7 @@
                                                             <i class="bi bi-arrow-clockwise"></i>
                                                         </button>
                                                     </span>
-                                                    <input type="text" name="size" class="form-control" placeholder="size" value="{{ product.size }}">
+                                                    <input type="text" name="value" class="form-control" placeholder="value" value="{{ product.value }}">
                                                 </div>
                                             </form>
                                         </td>
