@@ -205,17 +205,23 @@ def edit_product(request, sku):
             selected_product.upc = upc
         if tag:
             selected_product.tag = tag
+        else:
+            selected_product.tag = None
         if quantity:
             selected_product.quantity = quantity
         if buy_price:
             selected_product.buy_price = buy_price
+        else:
+            selected_product.buy_price = 0
         if sell_price:
             selected_product.sell_price = sell_price
+        else:
+            selected_product.sell_price = 0
         if discount_price:
             selected_product.discount_price = discount_price
         else:
-            selected_product.discount_price = False
-            
+            selected_product.discount_price = 0
+
         selected_product.save()
 
     return {
