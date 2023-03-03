@@ -1218,7 +1218,7 @@
                                                     <!--description-->
                                                     <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
                                                     <!--end description-->
-                                                </div>
+                                        </div>
                                         <!--end upc input-->
 
                                         <!--product quantity & buy price input-->
@@ -1331,14 +1331,14 @@
                         <thead>
                         <tr>
                             <th class="text-center min-w-200px"></th>
-                            <th class="text-center min-w-400px">Title</th>
-                            <th class="text-center min-w-400px">French Title</th>
-                            <th class="text-center min-w-400px">Arabic Title</th>
-                            <th class="text-center min-w-300px">Barcode</th>
-                            <th class="text-center min-w-200px">Quantity</th>
-                            <th class="text-center min-w-200px">Buy price</th>
-                            <th class="text-center min-w-200px">Sell price</th>
-                            <th class="text-center min-w-200px">Discount</th>
+                            <th class="text-center min-w-400px"></th>
+                            <th class="text-center min-w-400px"></th>
+                            <th class="text-center min-w-400px"></th>
+                            <th class="text-center min-w-300px"></th>
+                            <th class="text-center min-w-200px"></th>
+                            <th class="text-center min-w-200px"></th>
+                            <th class="text-center min-w-200px"></th>
+                            <th class="text-center min-w-200px"></th>
                             <th class="text-center min-w-20px"></th>
                             <th class="text-center min-w-20px"></th>
                         </tr>
@@ -1381,30 +1381,35 @@
                                 <!-- title  -->
                                 <td class="text-center">
                                     <input type="text" name="en_title" class="form-control mb-2"  placeholder='size value' value="{{thumbnail_size.en_title}}">
+                                    <div class="text-muted fs-7">Title</div>
                                 </td>
                                 <!--end title  -->
 
                                 <!-- french title -->
                                 <td class="text-center">
                                     <input type="text" name="fr_title" class="form-control mb-2"  placeholder='french size value' value="{{thumbnail_size.fr_title}}">
+                                    <div class="text-muted fs-7">French Title</div>
                                 </td>
                                 <!--end french title  -->
 
                                 <!-- arabic title -->
                                 <td class="text-center">
                                     <input type="text" name="ar_title" class="form-control mb-2" dir="rtl"  placeholder='arabic size value' value="{{thumbnail_size.ar_title}}">
+                                    <div class="text-muted fs-7">Arabic Title</div>
                                 </td>
                                 <!--end arabic title -->
 
                                 <!-- barcode -->
                                 <td class="text-center">
                                     <input type="text" name="upc" class="form-control mb-2" placeholder='barre code' value="{{thumbnail_size.upc}}">
+                                    <div class="text-muted fs-7">Barcode</div>
                                 </td>
                                 <!--end barcode -->
 
                                 <!-- quantity -->
                                 <td class="text-center">
                                     <input type="number" name="quantity" class="form-control" placeholder='quantity' value="{{thumbnail_size.quantity}}">
+                                    <div class="text-muted fs-7">Quantity</div>
                                 </td>
                                 <!--end quantity -->
 
@@ -1414,6 +1419,7 @@
                                         <input type="number" name="buy_price" class="form-control" placeholder='buy price' value="{{thumbnail_size.buy_price}}">
                                         <span class="input-group-text">DZD</span>
                                     </div>
+                                    <div class="text-muted fs-7">Buy price</div>
                                 </td>
                                 <!--end buy price -->
 
@@ -1423,6 +1429,7 @@
                                         <input type="number" name="sell_price" class="form-control" placeholder='sell price' value="{{thumbnail_size.sell_price}}">
                                         <span class="input-group-text">DZD</span>
                                     </div>
+                                    <div class="text-muted fs-7">Sell price</div>
                                 </td>
                                 <!--end sell price -->
 
@@ -1432,6 +1439,7 @@
                                         <input type="number" name="discount_price" class="form-control" placeholder='discount' value="{{thumbnail_size.discount_price}}">
                                         <span class="input-group-text">DZD</span>
                                     </div>
+                                    <div class="text-muted fs-7">Discount price</div>
                                 </td>
                                 <!--end discount -->
 
