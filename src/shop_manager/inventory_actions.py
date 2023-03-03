@@ -205,8 +205,6 @@ def edit_product(request, sku):
             selected_product.upc = upc
         if tag:
             selected_product.tag = tag
-        else:
-            selected_product.tag = None
         if quantity:
             selected_product.quantity = quantity
         if buy_price:
