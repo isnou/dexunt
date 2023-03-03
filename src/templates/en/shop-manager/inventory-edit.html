@@ -1379,42 +1379,42 @@
                                 <!--end thumbnail-->
 
                                 <!-- title  -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <input type="text" name="en_title" class="form-control mb-2"  placeholder='size value' value="{{thumbnail_size.en_title}}">
                                     <div class="text-muted fs-7">Title</div>
                                 </td>
                                 <!--end title  -->
 
                                 <!-- french title -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <input type="text" name="fr_title" class="form-control mb-2"  placeholder='french size value' value="{{thumbnail_size.fr_title}}">
                                     <div class="text-muted fs-7">French Title</div>
                                 </td>
                                 <!--end french title  -->
 
                                 <!-- arabic title -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <input type="text" name="ar_title" class="form-control mb-2" dir="rtl"  placeholder='arabic size value' value="{{thumbnail_size.ar_title}}">
                                     <div class="text-muted fs-7">Arabic Title</div>
                                 </td>
                                 <!--end arabic title -->
 
                                 <!-- barcode -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <input type="text" name="upc" class="form-control mb-2" placeholder='barre code' value="{{thumbnail_size.upc}}">
                                     <div class="text-muted fs-7">Barcode</div>
                                 </td>
                                 <!--end barcode -->
 
                                 <!-- quantity -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <input type="number" name="quantity" class="form-control" placeholder='quantity' value="{{thumbnail_size.quantity}}">
                                     <div class="text-muted fs-7">Quantity</div>
                                 </td>
                                 <!--end quantity -->
 
                                 <!-- buy price -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <div class="input-group">
                                         <input type="number" name="buy_price" class="form-control" placeholder='buy price' value="{{thumbnail_size.buy_price}}">
                                         <span class="input-group-text">DZD</span>
@@ -1424,7 +1424,7 @@
                                 <!--end buy price -->
 
                                 <!-- sell price -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <div class="input-group">
                                         <input type="number" name="sell_price" class="form-control" placeholder='sell price' value="{{thumbnail_size.sell_price}}">
                                         <span class="input-group-text">DZD</span>
@@ -1434,7 +1434,7 @@
                                 <!--end sell price -->
 
                                 <!-- discount -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <div class="input-group">
                                         <input type="number" name="discount_price" class="form-control" placeholder='discount' value="{{thumbnail_size.discount_price}}">
                                         <span class="input-group-text">DZD</span>
@@ -1444,7 +1444,7 @@
                                 <!--end discount -->
 
                                 <!-- refresh -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <button type="submit" class="btn btn-secondary">
                                         <i class="bi bi-arrow-clockwise"></i>
                                     </button>
@@ -1452,7 +1452,7 @@
                                 <!--end refresh -->
 
                                 <!-- delete -->
-                                <td class="text-center">
+                                <td class="text-center" style="padding-top: 50px;">
                                     <a href="{% url 'inventory-edit' 'delete_size' selected_product.sku thumbnail_size.id %}" class="btn btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete thumbnail size">
                                         <i class="bi bi-trash"></i>
                                     </a>
