@@ -528,8 +528,7 @@
                         <div class="align-items-center">
                             {% if sizes.count %}
                             <div class="table-responsive">
-                                <form action="{% url 'inventory-edit' 'edit_size' selected_product.sku size.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                                                {% csrf_token %}
+
 
                                 <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
 
@@ -555,11 +554,20 @@
 
                                     <tbody>
                                     {% for size in sizes %}
+                                    <form action="{% url 'inventory-edit' 'edit_size' selected_product.sku size.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                    {% csrf_token %}
+                                        
                                     <tr>
                                         <td>
                                             <a href="{% url 'inventory-edit' 'delete_size' selected_product.sku size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete size">
                                                 <i class="bi bi-trash"></i>
                                             </a>
+
+
+                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
+                                                            <i class="bi bi-arrow-clockwise"></i>
+                                                        </button>
+
                                         </td>
                                         <td class="text-center">
                                                 <div class="input-group">
@@ -573,73 +581,45 @@
                                         </td>
                                         <td class="text-center">
                                                 <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
-                                                            <i class="bi bi-arrow-clockwise"></i>
-                                                        </button>
-                                                    </span>
                                                     <input type="text" name="value" class="form-control" placeholder="value" value="{{ size.fr_title }}">
                                                 </div>
                                         </td>
                                         <td class="text-center">
                                                 <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
-                                                            <i class="bi bi-arrow-clockwise"></i>
-                                                        </button>
-                                                    </span>
                                                     <input type="text" name="value" class="form-control" placeholder="value" dir="rtl" value="{{ size.ar_title }}">
                                                 </div>
                                         </td>
                                         <td class="text-center">
                                                 <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
-                                                            <i class="bi bi-arrow-clockwise"></i>
-                                                        </button>
-                                                    </span>
                                                     <input type="number" name="quantity" class="form-control" placeholder="quantity" value="{{ size.quantity }}">
                                                 </div>
                                         </td>
                                         <td class="text-center">
                                                 <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
-                                                            <i class="bi bi-arrow-clockwise"></i>
-                                                        </button>
-                                                    </span>
                                                     <input type="number" name="buy_price" class="form-control" placeholder="cost" value="{{ size.buy_price }}">
                                                     <span class="input-group-text">DZD</span>
                                                 </div>
                                         </td>
                                         <td class="text-center">
                                                 <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
-                                                            <i class="bi bi-arrow-clockwise"></i>
-                                                        </button>
-                                                    </span>
                                                     <input type="number" name="sell_price" class="form-control" placeholder="price" value="{{ size.sell_price }}">
                                                     <span class="input-group-text">DZD</span>
                                                 </div>
                                         </td>
                                         <td class="text-center">
                                                 <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <button type="submit" class="btn btn-sm btn-active-light-primary">
-                                                            <i class="bi bi-arrow-clockwise"></i>
-                                                        </button>
-                                                    </span>
                                                     <input type="number" name="discount_price" class="form-control" placeholder="discount" value="{{ size.discount_price }}">
                                                     <span class="input-group-text">DZD</span>
                                                 </div>
                                         </td>
                                     </tr>
+                                        </form>
                                     {% endfor %}
+
                                     </tbody>
-                                    
+
                                 </table>
-                                </form>
+
                             </div>
                             {% else %}
                             <div class="symbol symbol-50px" style="margin-right: 10px;">
