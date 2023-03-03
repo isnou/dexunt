@@ -538,7 +538,9 @@
                                                 </a>
                                             </div>
                                         </th>
-                                        <th class="text-center min-w-400px">Size</th>
+                                        <th class="text-center min-w-400px">English value</th>
+                                        <th class="text-center min-w-400px">French value</th>
+                                        <th class="text-center min-w-400px">Arabic value</th>
                                         <th class="text-center min-w-200px">Quantity</th>
                                         <th class="text-center min-w-300px">Buy Price</th>
                                         <th class="text-center min-w-300px">Sell Price</th>
@@ -1518,8 +1520,6 @@
                         </div>
                         <!--end discount price-->
 
-
-
                         <!--submit button-->
                         <button type="submit" class="btn btn-secondary">
                             <i class="bi bi-arrow-clockwise"></i>
@@ -1527,12 +1527,10 @@
                         <!--end submit button-->
 
                         <!--delete button-->
-                        <a href="{% url 'inventory-edit' 'delete_size' selected_product.sku thumbed_size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete thumbnail size">
+                        <button href="{% url 'inventory-edit' 'delete_size' selected_product.sku thumbed_size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete thumbnail size">
                             <i class="bi bi-trash"></i>
-                        </a>
+                        </button>
                         <!--end delete button-->
-
-
 
                     </form>
                 </div>
