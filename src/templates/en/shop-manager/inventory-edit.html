@@ -1326,6 +1326,8 @@
         <div class="card-header">
             <div class="card-body pt-9 pb-0">
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                    <div class="table-responsive">
+
 
                     <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
                         <thead>
@@ -1349,9 +1351,7 @@
                             <th class="text-center min-w-20px"></th>
                         </tr>
                         </thead>
-
                         <tbody>
-
                         <form action="{% url 'inventory-edit' 'edit_thumbnail_size' selected_product.sku thumbnail_size.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <tr>
@@ -1460,20 +1460,9 @@
                                 <!--end delete -->
                             </tr>
                         </form>
-
                         </tbody>
                     </table>
-
-
-
-
-
-
-
-
-
-
-
+                    </div>
                 </div>
             </div>
         </div>
