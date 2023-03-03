@@ -324,35 +324,34 @@
                                         <div class="card card-flush py-4">
                                             <!--block body-->
                                             <div class="card-body pt-0">
-                                                <!--product name-->
+                                                
+                                                <!--product name & spec-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
+                                                        <!--product name-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
                                                             <div class="input-group">
                                                                 <span class="input-group-text">English Title</span>
-                                                                <input type="text" name="en_title" class="form-control" placeholder="product title" value="{{ selected_product.en_title }}">
+                                                                <input type="number" name="en_title" class="form-control" placeholder="product title" value="{{ selected_product.en_title }}">
                                                             </div>
-                                                            <!--end input-->
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <!--end product name-->
+                                                        <!--end product name-->
 
-                                                <!--product spec-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--discount price input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">English Spec</span>
-                                                                <input type="text" name="en_spec" class="form-control" placeholder="product spec" value="{{ selected_product.en_spec }}">
+                                                                <span class="input-group-text">Spec</span>
+                                                                <input type="number" name="en_spec" class="form-control" placeholder="product spec" value="{{ selected_product.en_spec }}">
                                                             </div>
-                                                            <!--end input-->
                                                         </div>
+                                                        <!--end discount price input-->
                                                     </div>
                                                 </div>
-                                                <!--end product spec-->
+                                                <!--end product name & spec-->
+
+
+
+
 
                                                 <!--french product name-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
