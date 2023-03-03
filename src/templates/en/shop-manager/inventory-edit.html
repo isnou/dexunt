@@ -1307,8 +1307,38 @@
                             <tr>
                                 <!--thumbnail-->
                                 <td class="text-center" style="padding-left: 50px;">
+
                                     <div class="me-7 mb-4">
-                                        
+                                        <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.album.all.0.image}}">
+                                            <img src="{% get_media_prefix %}{{selected_product.album.all.0.image}}" />
+
+                                            <!--begin::Image preview wrapper-->
+                                                                        <div class="image-input-wrapper w-125px h-125px"></div>
+                                                                        <!--end::Image preview wrapper-->
+                                                                        <!--begin::Edit button-->
+                                                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                                            <!--begin::Inputs-->
+                                                                            <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
+                                                                            <input type="hidden" name="photo_remove" />
+                                                                            <!--end::Inputs-->
+                                                                        </label>
+                                                                        <!--end::Edit button-->
+                                                                        <!--begin::Cancel button-->
+                                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                                            <i class="bi bi-x fs-2"></i>
+                                                                        </span>
+                                                                        <!--end::Cancel button-->
+                                                                        <!--begin::Remove button-->
+                                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                                            <i class="bi bi-x fs-2"></i>
+                                                                        </span>
+                                                                        <!--end::Remove button-->
+                                        </a>
+                                    </div>
+
+
+                                    <div class="me-7 mb-4">
                                         <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{thumbnail_size.thumb}})">
                                             <!--begin::Image preview wrapper-->
                                             <div class="image-input-wrapper w-125px h-125px"></div>
