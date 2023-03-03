@@ -946,7 +946,7 @@
                     <i class="bi bi-link-45deg  fs-2x" data-bs-toggle="modal" data-bs-target="#create_a_variant"></i>
                 </a>
             </div>
-            <!--new thumbed size modal-->
+            <!--new thumbnail size modal-->
             <div class="modal fade" tabindex="-1" id="create_thumbed_size">
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
@@ -957,7 +957,7 @@
                             </div>
                         </div>
                         <div class="modal-body">
-                            <form action="{% url 'inventory-edit' 'add_thumbed_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'inventory-edit' 'add_thumbnail_size' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="card-title">
                                     <div class="card card-flush py-4">
@@ -1102,7 +1102,7 @@
                     </div>
                 </div>
             </div>
-            <!--end new thumbed size modal-->
+            <!--end new thumbnail size modal-->
             <!--new variant modal-->
             <div class="modal fade" tabindex="-1" id="create_a_variant">
                 <div class="modal-dialog modal-dialog-scrollable">

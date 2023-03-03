@@ -36,7 +36,6 @@ class Size(models.Model):
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/size/', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    value = models.CharField(max_length=200, blank=True, null=True)
     show_thumb = models.BooleanField(default=False)
     upc = models.CharField(max_length=20, unique=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
