@@ -316,7 +316,6 @@ def add_new_size(request, sku):
         new_size.save()
         selected_product.size.add(new_size)
 
-        quantity = 0
         for selected_product_size in selected_product.size.all():
             quantity += selected_product_size.quantity
         selected_product.quantity = quantity
@@ -357,7 +356,6 @@ def edit_size(request, sku, index):
 
         selected_size.save()
 
-        quantity = 0
         for selected_product_size in selected_product.size.all():
             quantity += selected_product_size.quantity
         selected_product.quantity = quantity
@@ -409,7 +407,6 @@ def add_thumbnail_size(request, sku):
         new_thumbnail_size.save()
         selected_product.size.add(new_thumbnail_size)
 
-        quantity = 0
         for selected_product_size in selected_product.size.all():
             quantity += selected_product_size.quantity
         selected_product.quantity = quantity
@@ -453,7 +450,6 @@ def edit_thumbnail_size(request, sku, index):
 
         selected_size.save()
 
-        quantity = 0
         for selected_product_size in selected_product.size.all():
             quantity += selected_product_size.quantity
         selected_product.quantity = quantity
