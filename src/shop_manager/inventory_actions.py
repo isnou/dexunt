@@ -281,7 +281,9 @@ def add_new_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
-        value = request.POST.get('value', False)
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
         upc = request.POST.get('upc', False)
         quantity = request.POST.get('quantity', False)
         buy_price = request.POST.get('buy_price', False)
@@ -300,7 +302,9 @@ def add_new_size(request, sku):
         if not discount_price:
             discount_price = selected_product.discount_price
 
-        new_size = Size(value=value,
+        new_size = Size(en_title=en_title,
+                        fr_title=fr_title,
+                        ar_title=ar_title,
                         upc=upc,
                         sku=sku,
                         quantity=int(quantity),
@@ -328,14 +332,20 @@ def edit_size(request, sku, index):
     selected_product = Product.objects.all().get(sku=sku)
     selected_size = Size.objects.all().get(id=index)
     if request.method == 'POST':
-        value = request.POST.get('value', False)
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
         quantity = request.POST.get('quantity', False)
         buy_price = request.POST.get('buy_price', False)
         sell_price = request.POST.get('sell_price', False)
         discount_price = request.POST.get('discount_price', False)
 
-        if value:
-            selected_size.value = value
+        if en_title:
+            selected_size.en_title = en_title
+        if fr_title:
+            selected_size.fr_title = fr_title
+        if ar_title:
+            selected_size.ar_title = ar_title
         if quantity:
             selected_size.quantity = quantity
         if buy_price:
@@ -363,6 +373,8 @@ def add_thumbnail_size(request, sku):
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
         upc = request.POST.get('upc', False)
         quantity = request.POST.get('quantity', False)
         buy_price = request.POST.get('buy_price', False)
@@ -383,6 +395,8 @@ def add_thumbnail_size(request, sku):
             discount_price = selected_product.discount_price
 
         new_thumbnail_size = Size(en_title=en_title,
+                                  fr_title=fr_title,
+                                  ar_title=ar_title,
                                   upc=upc,
                                   sku=sku,
                                   quantity=int(quantity),
@@ -406,51 +420,47 @@ def add_thumbnail_size(request, sku):
     }
 
 
-def edit_a_set(request, sku):
+def edit_thumbnail_size(request, sku, index):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
-    attached_products = Product.objects.all().filter(attach=selected_product.attach)
-    if attached_products.filter(type='main').exists():
-        main_product = attached_products.get(type='main')
-    elif attached_products.filter(type='variant').exists():
-        main_product = attached_products.get(type='variant')
-    else:
-        main_product = None
-
+    selected_size = Size.objects.all().get(id=index)
     if request.method == 'POST':
-        en_variant = request.POST.get('en_variant', False)
-        if en_variant:
-            selected_product.en_variant = en_variant
-        fr_variant = request.POST.get('fr_variant', False)
-        if fr_variant:
-            selected_product.fr_variant = fr_variant
-        ar_variant = request.POST.get('ar_variant', False)
-        if ar_variant:
-            selected_product.ar_variant = ar_variant
-        thumb = request.FILES.get('thumb', False)
-        if thumb:
-            selected_product.thumb = thumb
-        size = request.POST.get('size', False)
-        if size:
-            selected_product.size = size
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
         quantity = request.POST.get('quantity', False)
-        if quantity:
-            selected_product.quantity = quantity
         buy_price = request.POST.get('buy_price', False)
-        if buy_price:
-            selected_product.buy_price = buy_price
         sell_price = request.POST.get('sell_price', False)
-        if sell_price:
-            selected_product.sell_price = sell_price
         discount_price = request.POST.get('discount_price', False)
-        if discount_price:
-            selected_product.discount_price = discount_price
+        thumb = request.FILES.get('thumb', False)
 
+        if en_title:
+            selected_size.en_title = en_title
+        if fr_title:
+            selected_size.fr_title = fr_title
+        if ar_title:
+            selected_size.ar_title = ar_title
+        if quantity:
+            selected_size.quantity = quantity
+        if buy_price:
+            selected_size.buy_price = buy_price
+        if sell_price:
+            selected_size.sell_price = sell_price
+        if discount_price:
+            selected_size.discount_price = discount_price
+        if thumb:
+            selected_size.thumb = thumb
+
+        selected_size.save()
+
+        quantity = 0
+        for selected_product_size in selected_product.size.all():
+            quantity += selected_product_size.quantity
+        selected_product.quantity = quantity
         selected_product.save()
 
     return {
         'url': url,
-        'sku': main_product.sku,
     }
 
 

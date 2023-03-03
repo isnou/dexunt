@@ -62,9 +62,8 @@ def inventory_edit(request, action, sku, index):
         url = direction + inventory_actions.edit_size(request, sku, index).get('url')
     if action == "add_thumbnail_size":
         url = direction + inventory_actions.add_thumbnail_size(request, sku).get('url')
-    if action == "edit_a_set":
-        url = direction + inventory_actions.edit_a_set(request, sku).get('url')
-        sku = inventory_actions.edit_a_set(request, sku).get('sku')
+    if action == "edit_thumbnail_size":
+        url = direction + inventory_actions.edit_thumbnail_size(request, sku, index).get('url')
     if action == 'delete_size':
         url = direction + inventory_actions.delete_size(sku, index).get('url')
     if action == 'delete_feature':
