@@ -456,48 +456,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end product sell price & discount price input-->
-                                                {% else %}
-                                                <!--product prices input-->
-                                                <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--product price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Buy Price</span>
-                                                                <input type="number" name="buy_price" class="form-control" placeholder="product cost" value="{{ selected_product.buy_price }}">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end product price input-->
-
-                                                        <!--sell price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Sell Price</span>
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="product regular price" value="{{ selected_product.sell_price }}">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end sell price input-->
-
-                                                        <!--discount price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Discount</span>
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="product discount price" value="{{ selected_product.discount_price }}">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end discount price input-->
-                                                    </div>
-                                                </div>
-                                                <!--end prices input-->
                                                 {% endif %}
                                             </div>
                                             <!--end block body-->
