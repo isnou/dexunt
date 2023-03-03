@@ -1319,16 +1319,13 @@
         </div>
         <!--end footer-->
     </div>
-    {% if thumbed_sizes.count %}
-    {% for thumbed_size in thumbed_sizes %}
+    {% if thumbnail_sizes.count %}
+    {% for thumbnail_size in thumbnail_sizes %}
     <div class="card card-flush shadow-sm" style="margin-top: 30px;">
         <!--header-->
         <div class="card-header">
             <div class="card-body pt-9 pb-0">
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-
-
-
 
                     <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
                         <thead>
@@ -1355,7 +1352,7 @@
                         </thead>
 
                         <tbody>
-                        {% for size in sizes %}
+                        {% for size in thumbnail_size %}
                         <form action="{% url 'inventory-edit' 'edit_thumbnail_size' selected_product.sku thumbed_size.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <tr>
