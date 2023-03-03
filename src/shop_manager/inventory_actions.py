@@ -10,6 +10,9 @@ def add_new_product(request):
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
         ar_title = request.POST.get('ar_title', False)
+        en_spec = request.POST.get('en_spec', False)
+        fr_spec = request.POST.get('fr_spec', False)
+        ar_spec = request.POST.get('ar_spec', False)
         upc = request.POST.get('upc', False)
         tag = request.POST.get('tag', False)
         quantity = request.POST.get('quantity', False)
@@ -32,6 +35,9 @@ def add_new_product(request):
         Product(en_title=en_title,
                 fr_title=fr_title,
                 ar_title=ar_title,
+                en_spec=en_spec,
+                fr_spec=fr_spec,
+                ar_spec=ar_spec,
                 upc=upc,
                 tag=tag,
                 quantity=int(quantity),
@@ -173,6 +179,9 @@ def edit_product(request, sku):
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
         ar_title = request.POST.get('ar_title', False)
+        en_spec = request.POST.get('en_spec', False)
+        fr_spec = request.POST.get('fr_spec', False)
+        ar_spec = request.POST.get('ar_spec', False)
         upc = request.POST.get('upc', False)
         tag = request.POST.get('tag', False)
         quantity = request.POST.get('quantity', False)
@@ -186,6 +195,12 @@ def edit_product(request, sku):
             selected_product.fr_title = fr_title
         if ar_title:
             selected_product.ar_title = ar_title
+        if en_spec:
+            selected_product.en_spec = en_spec
+        if fr_spec:
+            selected_product.fr_spec = fr_spec
+        if ar_spec:
+            selected_product.ar_spec = ar_spec
         if upc:
             selected_product.upc = upc
         if tag:
