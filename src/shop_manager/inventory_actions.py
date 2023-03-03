@@ -213,6 +213,9 @@ def edit_product(request, sku):
             selected_product.sell_price = sell_price
         if discount_price:
             selected_product.discount_price = discount_price
+        else:
+            selected_product.discount_price = False
+            
         selected_product.save()
 
     return {
