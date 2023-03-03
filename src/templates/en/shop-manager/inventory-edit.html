@@ -938,8 +938,8 @@
         <div class="card-footer">
             <div class="tns tns-default" style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
                 {% if not sizes.count %}
-                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="create a set">
-                    <i class="bi bi-columns-gap  fs-2x" data-bs-toggle="modal" data-bs-target="#add_a_set"></i>
+                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="create a thumbed size">
+                    <i class="bi bi-columns-gap  fs-2x" data-bs-toggle="modal" data-bs-target="#create_thumbed_size"></i>
                 </a>
                 {% endif %}
                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="create a variant">
@@ -947,7 +947,7 @@
                 </a>
             </div>
             <!--new thumbed size modal-->
-            <div class="modal fade" tabindex="-1" id="add_a_set">
+            <div class="modal fade" tabindex="-1" id="create_thumbed_size">
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1086,7 +1086,7 @@
                                     <div class="d-flex justify-content-end" style="padding-top: 50px;">
                                         <!--submit button-->
                                         <button type="submit" class="btn btn-secondary">
-                                            <span class="indicator-label">Create The New Set</span>
+                                            <span class="indicator-label">save</span>
                                         </button>
                                         <!--end submit button-->
                                     </div>
@@ -1310,20 +1310,19 @@
                     <!--end thumbnail-->
                     <!--main information-->
                     <div class="flex-grow-1">
+                        <!--thumbed size information-->
                         <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                             <div class="d-flex flex-column">
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ thumbed_size.en_title }}</a>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
-
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit thumbed size" style="margin-right: 10px;">
                                         <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#edit_a_thumbed_size"></i>
                                     </a>
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete thumbed size">
                                         <i class="bi bi-trash"></i>
                                     </a>
-
                                 </div>
                                 <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
@@ -1338,7 +1337,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="d-flex flex-wrap flex-stack">
                             <!--begin::Wrapper-->
                             <div class="d-flex flex-column flex-grow-1 pe-8">
@@ -1385,13 +1383,14 @@
                             </div>
                             <!--end::Wrapper-->
                         </div>
+                        <!--end thumbed size information-->
 
                         <!--edit thumbed size modal-->
                         <div class="modal fade" tabindex="-1" id="edit_a_thumbed_size">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title">Add a Thumbed Size</h3>
+                                        <h3 class="modal-title">Edit the Thumbed Size</h3>
                                         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                             <span class="svg-icon svg-icon-1"></span>
                                         </div>
@@ -1405,150 +1404,149 @@
                                                     <div class="card-body text-center pt-0">
                                                         <!--begin::Image input-->
                                                         <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                <!--begin::Image preview wrapper-->
-                                                <div class="image-input-wrapper w-125px h-125px"></div>
-                                                <!--end::Image preview wrapper-->
-                                                <!--begin::Edit button-->
-                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                                    <!--begin::Inputs-->
-                                                    <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                    <input type="hidden" name="thumb_remove" />
-                                                    <!--end::Inputs-->
-                                                </label>
-                                                <!--end::Edit button-->
-                                                <!--begin::Cancel button-->
-                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                    <i class="bi bi-x fs-2"></i>
-                                                </span>
-                                                <!--end::Cancel button-->
-                                                <!--begin::Remove button-->
-                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                    <i class="bi bi-x fs-2"></i>
-                                                </span>
-                                                <!--end::Remove button-->
-                                            </div>
-                                            <!--end::Image input-->
-                                        </div>
+                                                            <!--begin::Image preview wrapper-->
+                                                            <div class="image-input-wrapper w-125px h-125px"></div>
+                                                            <!--end::Image preview wrapper-->
+                                                            <!--begin::Edit button-->
+                                                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
+                                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                                <!--begin::Inputs-->
+                                                                <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                                <input type="hidden" name="thumb_remove" />
+                                                                <!--end::Inputs-->
+                                                            </label>
+                                                            <!--end::Edit button-->
+                                                            <!--begin::Cancel button-->
+                                                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
+                                                                <i class="bi bi-x fs-2"></i>
+                                                            </span>
+                                                            <!--end::Cancel button-->
+                                                            <!--begin::Remove button-->
+                                                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
+                                                                <i class="bi bi-x fs-2"></i>
+                                                            </span>
+                                                            <!--end::Remove button-->
+                                                        </div>
+                                                        <!--end::Image input-->
+                                                    </div>
                                                     <!--end photo input-->
 
-                                        <!--title-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="en_title" class="form-control mb-2">
-                                            <!--end input-->
-                                        </div>
-                                        <!--end title-->
+                                                    <!--title-->
+                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                        <!--label-->
+                                                        <label class="form-label">Title</label>
+                                                        <!--end label-->
+                                                        <!--input-->
+                                                        <input type="text" name="en_title" class="form-control mb-2"  placeholder={{thumbed_size.en_title}} value={{thumbed_size.en_title}}>
+                                                        <!--end input-->
+                                                    </div>
+                                                    <!--end title-->
 
-                                        <!--upc input-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Barcode</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="upc" class="form-control mb-2">
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end upc input-->
+                                                    <!--upc input-->
+                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                        <!--label-->
+                                                        <label class="form-label">Barcode</label>
+                                                        <!--end label-->
+                                                        <!--input-->
+                                                        <input type="text" name="upc" class="form-control mb-2" placeholder={{thumbed_size.upc}} value={{thumbed_size.upc}}>
+                                                        <!--end input-->
+                                                        <!--description-->
+                                                        <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
+                                                        <!--end description-->
+                                                    </div>
+                                                    <!--end upc input-->
 
-                                        <!--quantity-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Quantity</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Put product quantity.</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end quantity-->
+                                                    <!--quantity-->
+                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                        <!--label-->
+                                                        <label class="form-label">Quantity</label>
+                                                        <!--end label-->
+                                                        <!--input-->
+                                                        <input type="number" name="quantity" class="form-control" placeholder={{thumbed_size.quantity}} value={{thumbed_size.quantity}}>
+                                                        <!--end input-->
+                                                        <!--description-->
+                                                        <div class="text-muted fs-7">Put product quantity.</div>
+                                                        <!--end description-->
+                                                    </div>
+                                                    <!--end quantity-->
 
-                                        <!--buy price-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Buy Price</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <div class="input-group">
-                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
-                                                <span class="input-group-text">DZD</span>
+                                                    <!--buy price-->
+                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                        <!--label-->
+                                                        <label class="form-label">Buy Price</label>
+                                                        <!--end label-->
+                                                        <!--input-->
+                                                        <div class="input-group">
+                                                            <input type="number" name="buy_price" class="form-control" placeholder={{thumbed_size.buy_price}} value={{thumbed_size.buy_price}}>
+                                                            <span class="input-group-text">DZD</span>
+                                                        </div>
+                                                        <!--end input-->
+                                                        <!--description-->
+                                                        <div class="text-muted fs-7">The buy price is required for best management computing.</div>
+                                                        <!--end description-->
+                                                    </div>
+                                                    <!--end buy price-->
+
+                                                    <!--sell price-->
+                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                        <!--label-->
+                                                        <label class="form-label">Sell Price</label>
+                                                        <!--end label-->
+                                                        <!--input-->
+                                                        <div class="input-group">
+                                                            <input type="number" name="sell_price" class="form-control" placeholder={{thumbed_size.sell_price}} value={{thumbed_size.sell_price}}>
+                                                            <span class="input-group-text">DZD</span>
+                                                        </div>
+                                                        <!--end input-->
+                                                        <!--description-->
+                                                        <div class="text-muted fs-7">Sell price is required to upload the product</div>
+                                                        <!--end description-->
+                                                    </div>
+                                                    <!--end sell price-->
+
+                                                    <!--discount price-->
+                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                        <!--label-->
+                                                        <label class="form-label">Discount Price</label>
+                                                        <!--end label-->
+                                                        <!--input-->
+                                                        <div class="input-group">
+                                                            <input type="number" name="discount_price" class="form-control" placeholder={{thumbed_size.discount_price}} value={{thumbed_size.discount_price}}>
+                                                            <span class="input-group-text">DZD</span>
+                                                        </div>
+                                                        <!--end input-->
+                                                        <!--description-->
+                                                        <div class="text-muted fs-7">Discount must be lower than sell price</div>
+                                                        <!--end description-->
+                                                    </div>
+                                                    <!--end discount price-->
+                                                </div>
+                                                <!--add product buttons-->
+                                                <div class="d-flex justify-content-end" style="padding-top: 50px;">
+                                                    <!--submit button-->
+                                                    <button type="submit" class="btn btn-secondary">
+                                                        <span class="indicator-label">Save</span>
+                                                    </button>
+                                                    <!--end submit button-->
+                                                </div>
+                                                <!--end add product buttons-->
                                             </div>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end buy price-->
-
-                                        <!--sell price-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Sell Price</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <div class="input-group">
-                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
-                                                <span class="input-group-text">DZD</span>
-                                            </div>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end sell price-->
-
-                                        <!--discount price-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Discount Price</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <div class="input-group">
-                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
-                                                <span class="input-group-text">DZD</span>
-                                            </div>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Discount must be lower than sell price</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end discount price-->
+                                        </form>
                                     </div>
-                                    <!--add product buttons-->
-                                    <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                                        <!--submit button-->
-                                        <button type="submit" class="btn btn-secondary">
-                                            <span class="indicator-label">Create The New Set</span>
-                                        </button>
-                                        <!--end submit button-->
+                                    <div class="modal-footer">
+                                        <!--begin::Description-->
+                                        <div class="text-muted fs-7"></div>
+                                        <!--end::Description-->
                                     </div>
-                                    <!--end add product buttons-->
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <!--begin::Description-->
-                            <div class="text-muted fs-7"></div>
-                            <!--end::Description-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end edit thumbed size modal-->
+                        <!--end edit thumbed size modal-->
 
                     </div>
                     <!--end main information-->
                 </div>
             </div>
-
         </div>
         <!--end header-->
     </div>
