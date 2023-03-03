@@ -1308,9 +1308,9 @@
                                 <!--thumbnail-->
                                 <td class="text-center" style="padding-left: 50px;">
                                     <div class="me-7 mb-4">
-                                        <a class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{thumbnail_size.thumb}})" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{thumbnail_size.thumb}}">
+                                        <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{thumbnail_size.thumb}})" >
                                             <!--begin::Image preview wrapper-->
-                                            <div class="image-input-wrapper w-125px h-125px"></div>
+                                            <a class="image-input-wrapper w-125px h-125px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{thumbnail_size.thumb}}"></a>
                                             <!--end::Image preview wrapper-->
                                             <!--begin::Edit button-->
                                             <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
@@ -1331,7 +1331,7 @@
                                                 <i class="bi bi-x fs-2"></i>
                                             </span>
                                             <!--end::Remove button-->
-                                        </a>
+                                        </div>
                                     </div>
                                 </td>
                                 <!--end thumbnail-->
