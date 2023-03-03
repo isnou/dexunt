@@ -1371,6 +1371,70 @@
         <div class="card-header">
             <div class="card-body pt-9 pb-0">
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                    <form action="{% url 'inventory-edit' 'edit_thumbnail_size' selected_product.sku thumbed_size.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!--thumbnail-->
+                        <div class="me-7 mb-4">
+                            <div class="card-body text-center pt-0">
+                                <!--begin::Image input-->
+                                <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{thumbed_size.thumb}})">
+                                    <!--begin::Image preview wrapper-->
+                                    <div class="image-input-wrapper w-125px h-125px"></div>
+                                    <!--end::Image preview wrapper-->
+                                    <!--begin::Edit button-->
+
+                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
+
+                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                        <!--begin::Inputs-->
+
+                                        <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+
+                                        <input type="hidden" name="thumb_remove" />
+
+                                        <!--end::Inputs-->
+
+                                    </label>
+
+                                    <!--end::Edit button-->
+
+                                    <!--begin::Cancel button-->
+
+                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
+
+                                        <i class="bi bi-x fs-2"></i>
+
+                                    </span>
+
+                                    <!--end::Cancel button-->
+
+                                    <!--begin::Remove button-->
+
+                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
+
+                                        <i class="bi bi-x fs-2"></i>
+
+                                    </span>
+
+                                    <!--end::Remove button-->
+
+                                </div>
+
+                                <!--end::Image input-->
+
+                            </div>
+
+
+                        </div>
+                        <!--end thumbnail-->
+                    </form>
+
+
+
+
+
+
                     <!--thumbnail-->
                     <div class="me-7 mb-4">
                         <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{thumbed_size.thumb}}">
