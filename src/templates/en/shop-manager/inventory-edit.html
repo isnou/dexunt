@@ -220,7 +220,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#edit_general_informations">Edit General Informations</a>
                 </li>
-                {% if not thumbed_sizes.count %}
+                {% if not thumbnail_sizes.count %}
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#sizes">Sizes</a>
                 </li>
@@ -1325,10 +1325,7 @@
         <!--header-->
         <div class="card-header">
             <div class="card-body pt-9 pb-0">
-                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-                    <div class="table-responsive">
-
-
+                <div class="table-responsive">
                     <table class="table table-row-dashed table-rounded table-row-gray-300 border gy-7 gs-7">
                         <thead>
                         <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
@@ -1462,7 +1459,6 @@
                         </form>
                         </tbody>
                     </table>
-                    </div>
                 </div>
             </div>
         </div>
