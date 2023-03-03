@@ -1521,95 +1521,20 @@
 
 
                         <!--submit button-->
-                        <button type="submit" class="btn btn-secondary">
+                        <a type="submit" class="btn btn-secondary">
                             <i class="bi bi-arrow-clockwise"></i>
-                        </button>
+                        </a>
                         <!--end submit button-->
+
+                        <!--delete button-->
+                        <a href="{% url 'inventory-edit' 'delete_size' selected_product.sku thumbed_size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete thumbnail size">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                        <!--end delete button-->
+
 
 
                     </form>
-
-
-
-                    <!--main information-->
-                    <div class="flex-grow-1">
-                        <!--thumbnail size information-->
-                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center mb-2">
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ thumbed_size.en_title }}</a>
-                                </div>
-                                <div class="d-flex align-items-center mb-2">
-                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit thumbnail size" style="margin-right: 10px;">
-                                        <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#edit_thumbnail_size"></i>
-                                    </a>
-                                    <a href="{% url 'inventory-edit' 'delete_size' selected_product.sku thumbed_size.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete thumbnail size">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </div>
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                    </a>
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                                        {{ thumbed_size.sku }}
-                                    </a>
-                                    <i class="bi bi-dash-lg"></i>
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                        {{ thumbed_size.quantity }} Available
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-wrap flex-stack">
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <!--begin::Stats-->
-                                <div class="d-flex flex-wrap">
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Buy :</div>
-                                        </div>
-                                        <!--end::Number-->
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ thumbed_size.buy_price|floatformat:"2g" }} DZD</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Sell :</div>
-                                        </div>
-                                        <!--end::Number-->
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ thumbed_size.sell_price|floatformat:"2g" }} DZD</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Discount :</div>
-                                        </div>
-                                        <!--end::Number-->
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ thumbed_size.discount_price|floatformat:"2g" }} DZD</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-                                </div>
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                        <!--end thumbnail size information-->
-
-                    </div>
-                    <!--end main information-->
                 </div>
             </div>
         </div>
