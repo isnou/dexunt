@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
-from .models import Product, Size
+from .models import Product, Size, Feature
 from main_shop.models import Layout
 
 
@@ -64,7 +64,7 @@ def inventory_edit(request, action, sku, index):
     if action == 'delete_size':
         url = direction + inventory_actions.delete_size(sku, index).get('url')
     if action == 'delete_feature':
-        Product.objects.all().get(sku=sku).features.all().get(id=index).delete()
+        Feature.objects.all().get(id=index).delete()
 
     selected_product = Product.objects.all().get(sku=sku)
     sizes = selected_product.size.all().exclude(show_thumb=True)
