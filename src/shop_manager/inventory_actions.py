@@ -251,26 +251,27 @@ def add_new_feature(request, sku):
     }
 
 
-def edit_feature(request, index):
+def edit_feature(request, sku, index):
     url = "/shop-manager/inventory-edit.html"
+    selected_product = Product.objects.all().get(sku=sku)
     selected_feature = Feature.objects.all().get(id=index)
     if request.method == 'POST':
         en_title = request.POST.get('en_feature_title', False)
+        en_value = request.POST.get('en_feature_value', False)
+        fr_title = request.POST.get('fr_feature_title', False)
+        fr_value = request.POST.get('fr_feature_value', False)
+        ar_title = request.POST.get('ar_feature_title', False)
+        ar_value = request.POST.get('ar_feature_value', False)
         if en_title:
             selected_feature.en_title = en_title
-        en_value = request.POST.get('en_feature_value', False)
         if en_value:
             selected_feature.en_value = en_value
-        fr_title = request.POST.get('fr_feature_title', False)
         if fr_title:
             selected_feature.fr_title = fr_title
-        fr_value = request.POST.get('fr_feature_value', False)
         if fr_value:
             selected_feature.fr_value = fr_value
-        ar_title = request.POST.get('ar_feature_title', False)
         if ar_title:
             selected_feature.ar_title = ar_title
-        ar_value = request.POST.get('ar_feature_value', False)
         if ar_value:
             selected_feature.ar_value = ar_value
 
