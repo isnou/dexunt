@@ -1122,167 +1122,108 @@
                                 {% csrf_token %}
                                 <div class="card-title">
                                     <div class="card card-flush py-4">
-                                        <!--photo input-->
-                                        <div class="card-body text-center pt-0">
-                                            <!--begin::Image input-->
-                                            <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                <!--begin::Image preview wrapper-->
-                                                <div class="image-input-wrapper w-125px h-125px"></div>
-                                                <!--end::Image preview wrapper-->
-                                                <!--begin::Edit button-->
-                                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
-                                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                                    <!--begin::Inputs-->
-                                                    <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                    <input type="hidden" name="thumb_remove" />
-                                                    <!--end::Inputs-->
-                                                </label>
-                                                <!--end::Edit button-->
-                                                <!--begin::Cancel button-->
-                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
-                                                    <i class="bi bi-x fs-2"></i>
-                                                </span>
-                                                <!--end::Cancel button-->
-                                                <!--begin::Remove button-->
-                                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
-                                                    <i class="bi bi-x fs-2"></i>
-                                                </span>
-                                                <!--end::Remove button-->
+
+                                        <!--product spec-->
+                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                            <div class="d-flex flex-wrap gap-5">
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="required form-label">English Spec</label>
+                                                    <input type="text" name="en_spec" class="form-control mb-2">
+                                                    <div class="text-muted fs-7">color ,skin ,coat ,....</div>
+                                                </div>
                                             </div>
-                                            <!--end::Image input-->
                                         </div>
-                                        <!--end photo input-->
+                                        <!--end product spec-->
 
-                                        <!--english set's title'-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class=" required form-label">English set's title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="en_variant" class="form-control mb-2" required>
-                                            <!--end input-->
+                                        <!--french product spec-->
+                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                            <div class="d-flex flex-wrap gap-5">
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="form-label">Spec Translated To French</label>
+                                                    <input type="text" name="fr_spec" class="form-control mb-2">
+                                                    <div class="text-muted fs-7">color ,skin ,coat ,....</div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!--end english set's title-->
+                                        <!--end french product spec-->
 
-                                        <!--french set's title'-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">French set's title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="fr_variant" class="form-control mb-2">
-                                            <!--end input-->
+                                        <!--arabic product spec-->
+                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                            <div class="d-flex flex-wrap gap-5">
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="form-label">Spec Translated To Arabic</label>
+                                                    <input type="text" name="ar_spec" class="form-control mb-2" dir="rtl">
+                                                    <div class="text-muted fs-7">color ,skin ,coat ,....</div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!--end french set's title-->
-
-                                        <!--arabic set's title'-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Arabic set's title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="ar_variant" class="form-control mb-2" dir="rtl">
-                                            <!--end input-->
-                                        </div>
-                                        <!--end arabic set's title-->
+                                        <!--end arabic product spec-->
 
                                         <!--upc input-->
                                         <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                    <!--label-->
-                                                    <label class="form-label">Barcode</label>
-                                                    <!--end label-->
-                                                    <!--input-->
-                                                    <input type="text" name="upc" class="form-control mb-2">
-                                                    <!--end input-->
-                                                    <!--description-->
-                                                    <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
-                                                    <!--end description-->
+                                            <label class="form-label">Barcode</label>
+                                            <input type="text" name="upc" class="form-control mb-2">
+                                            <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
                                         </div>
                                         <!--end upc input-->
 
-                                        <!--product quantity & buy price input-->
-                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--quantity input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Quantity</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
-                                                            <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Put product quantity.</div>
-                                                            <!--end description-->
-                                                        </div>
-                                                        <!--end quantity input-->
+                                        <!--tag input-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <label class="form-label">Tag</label>
+                                            <input type="text" name="tag" class="form-control mb-2" placeholder="Separate the tags by a space">
+                                            <div class="text-muted fs-7">Tags are needed to increase search accuracy</div>
+                                        </div>
+                                        <!--end tag input-->
 
-                                                        <!--price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Buy Price</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
-                                                            <!--end description-->
-                                                        </div>
-                                                        <!--end price input-->
-                                                    </div>
-                                                </div>
-                                        <!--end product quantity & buy price input-->
+                                        <!--quantity input-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <label class="form-label">Quantity</label>
+                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
+                                            <div class="text-muted fs-7">Put product quantity.</div>
+                                        </div>
+                                        <!--end quantity input-->
 
-                                        <!--product sell price & discount price input-->
-                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
-                                                    <div class="d-flex flex-wrap gap-5">
-                                                        <!--sell price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Sell Price</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                            <!--description-->
-                                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
-                                                            <!--end description-->
-                                                        </div>
-                                                        <!--end sell price input-->
+                                        <!--buy price input-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <label class="form-label">Buy Price</label>
+                                            <div class="input-group">
+                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
+                                        </div>
+                                        <!--end buy price input-->
 
-                                                        <!--discount price input-->
-                                                        <div class="fv-row w-100 flex-md-root">
-                                                            <!--label-->
-                                                            <label class="form-label">Product Discount Price</label>
-                                                            <!--end label-->
-                                                            <!--input-->
-                                                            <div class="input-group">
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
-                                                                <span class="input-group-text">DZD</span>
-                                                            </div>
-                                                            <!--end input-->
-                                                        </div>
-                                                        <!--end discount price input-->
-                                                    </div>
-                                                </div>
-                                        <!--end product sell price & discount price input-->
+                                        <!--sell price input-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <label class="form-label">Sell Price</label>
+                                            <div class="input-group">
+                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
+                                        </div>
+                                        <!--end sell price input-->
+
+                                        <!--discount price input-->
+                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                            <label class="form-label">Discount Price</label>
+                                            <div class="input-group">
+                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
+                                                <span class="input-group-text">DZD</span>
+                                            </div>
+                                            <div class="text-muted fs-7">Discount must be less than sell price</div>
+                                        </div>
+                                        <!--end discount price input-->
                                     </div>
                                     <!--add product buttons-->
                                     <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                                        <!--submit button-->
-                                        <button type="submit" class="btn btn-primary">
-                                            <span class="indicator-label">Create The New Variant</span>
+                                        <button type="submit" class="btn btn-secondary">
+                                            <span class="indicator-label">save</span>
                                         </button>
-                                        <!--end submit button-->
                                     </div>
                                     <!--end add product buttons-->
+                                    
                                 </div>
                             </form>
                         </div>
