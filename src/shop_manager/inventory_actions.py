@@ -94,7 +94,7 @@ def add_new_variant(request, sku):
                 buy_price=int(buy_price),
                 sell_price=int(sell_price),
                 discount_price=int(discount_price),
-                publish=True,
+                publish=False,
                 sku=sku,
                 ).save()
 
