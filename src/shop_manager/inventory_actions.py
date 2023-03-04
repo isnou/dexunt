@@ -154,6 +154,10 @@ def unpublish(sku):
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
+    if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
+        related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
+    else:
+        related_products = None
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
@@ -193,6 +197,13 @@ def edit_product(request, sku):
         if discount_price:
             selected_product.discount_price = discount_price
         selected_product.save()
+        if related_products:
+            for related_product in related_products:
+                related_product.en_title = selected_product.en_title
+                related_product.fr_title = selected_product.fr_title
+                related_product.ar_title = selected_product.ar_title
+                related_product.tag = selected_product.tag
+                related_product.save()
 
     return {
         'url': url,
