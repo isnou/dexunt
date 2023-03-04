@@ -230,12 +230,12 @@ def add_new_feature(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
     if request.method == 'POST':
-        en_title = request.POST.get('en_feature_title', False)
-        en_value = request.POST.get('en_feature_value', False)
-        fr_title = request.POST.get('fr_feature_title', False)
-        fr_value = request.POST.get('fr_feature_value', False)
-        ar_title = request.POST.get('ar_feature_title', False)
-        ar_value = request.POST.get('ar_feature_value', False)
+        en_title = request.POST.get('en_title', False)
+        en_value = request.POST.get('en_value', False)
+        fr_title = request.POST.get('fr_title', False)
+        fr_value = request.POST.get('fr_value', False)
+        ar_title = request.POST.get('ar_title', False)
+        ar_value = request.POST.get('ar_value', False)
         feature = Feature(en_title=en_title,
                           en_value=en_value,
                           fr_title=fr_title,
@@ -244,8 +244,7 @@ def add_new_feature(request, sku):
                           ar_value=ar_value,
                           )
         feature.save()
-        selected_product.features.add(feature)
-        selected_product.save()
+        selected_product.feature.add(feature)
 
     return {
         'url': url,
