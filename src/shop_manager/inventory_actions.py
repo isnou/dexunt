@@ -56,68 +56,47 @@ def add_new_product(request):
 def add_new_variant(request, sku):
     url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
-    selected_product_features = selected_product.features.all()
     if request.method == 'POST':
-        en_variant = request.POST.get('en_variant', False)
-        fr_variant = request.POST.get('fr_variant', False)
-        ar_variant = request.POST.get('ar_variant', False)
-        if selected_product.fr_title:
-            fr_title = selected_product.fr_title
-        else:
-            fr_title = None
-        if selected_product.ar_title:
-            ar_title = selected_product.ar_title
-        else:
-            ar_title = None
-        if selected_product.brand:
-            brand = selected_product.brand
-        else:
-            brand = None
-        if selected_product.model:
-            model = selected_product.model
-        else:
-            model = None
+        en_title = selected_product.en_title
+        fr_title = selected_product.fr_title
+        ar_title = selected_product.ar_title
+        en_spec = request.POST.get('en_spec', False)
+        fr_spec = request.POST.get('fr_spec', False)
+        ar_spec = request.POST.get('ar_spec', False)
         upc = request.POST.get('upc', False)
+        tag = selected_product.tag
+        quantity = request.POST.get('quantity', False)
+        buy_price = request.POST.get('buy_price', False)
+        sell_price = request.POST.get('sell_price', False)
+        discount_price = request.POST.get('discount_price', False)
+        sku = serial_number_generator(10).upper()
+
         if not upc:
             upc = serial_number_generator(12).upper()
-        quantity = request.POST.get('quantity', False)
         if not quantity:
             quantity = selected_product.quantity
-        buy_price = request.POST.get('buy_price', False)
         if not buy_price:
             buy_price = selected_product.buy_price
-        sell_price = request.POST.get('sell_price', False)
         if not sell_price:
             sell_price = selected_product.sell_price
-        discount_price = request.POST.get('discount_price', False)
         if not discount_price:
             discount_price = selected_product.discount_price
-        thumb = request.FILES.get('thumb', False)
-        new_product = Product(en_title=selected_product.en_title,
-                              en_variant=en_variant,
-                              fr_title=fr_title,
-                              fr_variant=fr_variant,
-                              ar_title=ar_title,
-                              ar_variant=ar_variant,
-                              brand=brand,
-                              model=model,
-                              upc=upc,
-                              tag=selected_product.tag,
-                              quantity=int(quantity),
-                              buy_price=int(buy_price),
-                              sell_price=int(sell_price),
-                              discount_price=int(discount_price),
-                              thumb=thumb,
-                              attach=selected_product.attach
-                              )
-        new_product.sku = serial_number_generator(10).upper()
-        new_product.publish = False
-        new_product.type = 'main'
-        new_product.save()
-        Collection.objects.all().get(attach=new_product.attach).product.add(new_product)
-        if selected_product_features.count():
-            for selected_product_feature in selected_product_features:
-                new_product.features.add(selected_product_feature)
+
+        Product(en_title=en_title,
+                fr_title=fr_title,
+                ar_title=ar_title,
+                en_spec=en_spec,
+                fr_spec=fr_spec,
+                ar_spec=ar_spec,
+                upc=upc,
+                tag=tag,
+                quantity=int(quantity),
+                buy_price=int(buy_price),
+                sell_price=int(sell_price),
+                discount_price=int(discount_price),
+                publish=True,
+                sku=sku,
+                ).save()
 
     return {
         'url': url,
