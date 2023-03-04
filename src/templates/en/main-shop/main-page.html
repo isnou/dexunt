@@ -365,7 +365,7 @@
                 {% for product in best_sellers %}
                 <div class="d-flex align-items-center pb-2 border-bottom">
                     <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
-                        <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
                         <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a></h6>
@@ -389,7 +389,7 @@
                 {% for product in new_arrivals %}
                 <div class="d-flex align-items-center pb-2 border-bottom">
                     <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
-                        <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
                         <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a></h6>
@@ -413,7 +413,7 @@
                 {% for product in top_rated %}
                 <div class="d-flex align-items-center pb-2 border-bottom">
                     <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
-                        <img src="{% get_media_prefix %}{{product.thumb}}" width="64" alt="Product">
+                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
                         <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a></h6>

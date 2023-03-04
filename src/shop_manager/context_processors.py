@@ -10,7 +10,7 @@ def shop_manager_content(request):
     showcase_products = raw_products_list.exclude(publish=False)
     best_sellers = showcase_products.order_by('-sell_rate')[:4]
     top_rated = showcase_products.order_by('-review_rate')[:4]
-    new_arrivals = showcase_products.order_by('-created_at')[:4]
+    new_arrivals = showcase_products.order_by('-updated_at')[:4]
     return {
         'inventory_products': inventory_products,
         'showcase_products': showcase_products,
