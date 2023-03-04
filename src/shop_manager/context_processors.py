@@ -4,7 +4,7 @@ from .models import Product
 def shop_manager_content(request):
     try:
         raw_products_list = Product.objects.all()
-    except InventoryProduct.DoesNotExist:
+    except Product.DoesNotExist:
         raise Http404("No products")
     inventory_products = raw_products_list.order_by('en_title')
     showcase_products = raw_products_list.exclude(publish=False)
