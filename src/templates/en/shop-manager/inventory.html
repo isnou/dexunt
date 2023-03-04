@@ -120,7 +120,7 @@
     <div class="card card-bordered">
         <!--principle card header-->
         <div class="card-header">
-            {% if products.count %}
+            {% if inventory_products.count %}
             <!--search-->
             <div class="d-flex align-items-center position-relative my-1">
                 <!--search logo-->
@@ -158,7 +158,7 @@
         <div class="card-body">
             <!--inventory table-->
             <div class="table-responsive">
-                {% if products.count %}
+                {% if inventory_products.count %}
                 <table class="table table-row-bordered gy-7 gs-7">
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
@@ -175,7 +175,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for product in products %}
+                    {% for product in inventory_products %}
                     {% if not product.size.count %}
                     <tr>
                         <!--product title-->
