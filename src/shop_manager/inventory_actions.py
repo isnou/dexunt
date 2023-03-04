@@ -252,8 +252,8 @@ def add_new_feature(request, sku):
 
         if related_products:
             for related_product in related_products:
-                if related_product.feature.all.count:
-                    for related_product_feature in related_product.feature.all:
+                if related_product.feature.all().count:
+                    for related_product_feature in related_product.feature.all():
                         related_product_feature.delete()
             for related_product in related_products:
                 related_product.feature.add(feature)
