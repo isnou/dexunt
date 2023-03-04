@@ -81,7 +81,6 @@ def add_new_variant(request, sku):
             sell_price = selected_product.sell_price
         if not discount_price:
             discount_price = selected_product.discount_price
-
         variant = Product(en_title=en_title,
                           fr_title=fr_title,
                           ar_title=ar_title,
@@ -96,8 +95,9 @@ def add_new_variant(request, sku):
                           discount_price=int(discount_price),
                           publish=False,
                           sku=sku,
-                          ).save()
-
+                          )
+        variant.save()
+        
         if selected_product.feature.all().count:
             for selected_product_feature in selected_product.feature.all():
                 variant.feature.add(selected_product_feature)
