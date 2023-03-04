@@ -97,7 +97,7 @@ def add_new_variant(request, sku):
                           sku=sku,
                           )
         variant.save()
-        
+
         if selected_product.feature.all().count:
             for selected_product_feature in selected_product.feature.all():
                 variant.feature.add(selected_product_feature)

@@ -225,9 +225,15 @@
                     <a class="nav-link" data-bs-toggle="tab" href="#sizes">Sizes</a>
                 </li>
                 {% endif %}
+                {% if selected_product.feature.count %}
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#features">Edit Features</a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#features">Create Features</a>
+                </li>
+                {% endif %}
             </ul>
             <!--end actions-->
             <!--contents-->
