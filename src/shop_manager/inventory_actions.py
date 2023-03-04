@@ -82,21 +82,25 @@ def add_new_variant(request, sku):
         if not discount_price:
             discount_price = selected_product.discount_price
 
-        Product(en_title=en_title,
-                fr_title=fr_title,
-                ar_title=ar_title,
-                en_spec=en_spec,
-                fr_spec=fr_spec,
-                ar_spec=ar_spec,
-                upc=upc,
-                tag=tag,
-                quantity=int(quantity),
-                buy_price=int(buy_price),
-                sell_price=int(sell_price),
-                discount_price=int(discount_price),
-                publish=False,
-                sku=sku,
-                ).save()
+        variant = Product(en_title=en_title,
+                          fr_title=fr_title,
+                          ar_title=ar_title,
+                          en_spec=en_spec,
+                          fr_spec=fr_spec,
+                          ar_spec=ar_spec,
+                          upc=upc,
+                          tag=tag,
+                          quantity=int(quantity),
+                          buy_price=int(buy_price),
+                          sell_price=int(sell_price),
+                          discount_price=int(discount_price),
+                          publish=False,
+                          sku=sku,
+                          ).save()
+
+        if selected_product.feature.all().count:
+            for selected_product_feature in selected_product.feature.all():
+                variant.feature.add(selected_product_feature)
 
     return {
         'url': url,
@@ -259,14 +263,9 @@ def add_new_feature(request, sku):
     }
 
 
-def edit_feature(request, sku, index):
+def edit_feature(request, index):
     url = "/shop-manager/inventory-edit.html"
     selected_feature = Feature.objects.all().get(id=index)
-    selected_product = Product.objects.all().get(sku=sku)
-    if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
-        related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
-    else:
-        related_products = None
     if request.method == 'POST':
         en_title = request.POST.get('en_feature_title', False)
         en_value = request.POST.get('en_feature_value', False)
