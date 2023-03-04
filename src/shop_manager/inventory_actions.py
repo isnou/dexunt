@@ -229,6 +229,10 @@ def add_new_photo(request, sku):
 def add_new_feature(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
+    if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
+        related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
+    else:
+        related_products = None
     if request.method == 'POST':
         en_title = request.POST.get('en_feature_title', False)
         en_value = request.POST.get('en_feature_value', False)
@@ -246,6 +250,15 @@ def add_new_feature(request, sku):
         feature.save()
         selected_product.feature.add(feature)
 
+        if related_products:
+            for related_product in related_products:
+                if related_product.feature.all.count:
+                    for related_product_feature in related_product.feature.all:
+                        related_product_feature.delete()
+            for related_product in related_products:
+                related_product.feature.add(feature)
+
+
     return {
         'url': url,
     }
@@ -253,8 +266,12 @@ def add_new_feature(request, sku):
 
 def edit_feature(request, sku, index):
     url = "/shop-manager/inventory-edit.html"
-    selected_product = Product.objects.all().get(sku=sku)
     selected_feature = Feature.objects.all().get(id=index)
+    selected_product = Product.objects.all().get(sku=sku)
+    if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
+        related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
+    else:
+        related_products = None
     if request.method == 'POST':
         en_title = request.POST.get('en_feature_title', False)
         en_value = request.POST.get('en_feature_value', False)
