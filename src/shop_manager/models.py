@@ -108,6 +108,10 @@ class ShowcaseProduct(models.Model):
     sell_rate = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
     product = models.ManyToManyField(Product, blank=True)
+    brand = models.CharField(max_length=80, blank=True, null=True)
+    model = models.CharField(max_length=80, blank=True, null=True)
+    description = models.CharField(max_length=800, blank=True, null=True)
+    note = models.CharField(max_length=500, blank=True, null=True)
     sell_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
