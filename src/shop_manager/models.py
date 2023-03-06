@@ -98,7 +98,7 @@ class ShowcaseProduct(models.Model):
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='shop-manager/showcase/', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    publish = models.BooleanField(default=True)
+    publish = models.BooleanField(default=False)
     availability = models.CharField(max_length=80, blank=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
@@ -108,10 +108,14 @@ class ShowcaseProduct(models.Model):
     product = models.ManyToManyField(Product, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
     model = models.CharField(max_length=80, blank=True, null=True)
-    description = models.CharField(max_length=800, blank=True, null=True)
-    note = models.CharField(max_length=500, blank=True, null=True)
     sell_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    en_description = models.CharField(max_length=800, blank=True, null=True)
+    fr_description = models.CharField(max_length=800, blank=True, null=True)
+    ar_description = models.CharField(max_length=800, blank=True, null=True)
+    en_note = models.CharField(max_length=500, blank=True, null=True)
+    fr_note = models.CharField(max_length=500, blank=True, null=True)
+    ar_note = models.CharField(max_length=500, blank=True, null=True)
 
     def products(self):
         return "\n".join([p.en_title for p in self.product.all()])

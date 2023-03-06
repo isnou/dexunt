@@ -161,7 +161,8 @@ def refresh_e_shop_product(request):
         else:
             sku = serial_number_generator(10).upper()
             showcase_product = ShowcaseProduct(en_title=product_to_add.en_title,
-                                               publish=False,
+                                               fr_title=product_to_add.fr_title,
+                                               ar_title=product_to_add.ar_title,
                                                sku=sku,
                                                )
             showcase_product.save()
