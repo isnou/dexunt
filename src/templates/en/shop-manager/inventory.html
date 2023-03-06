@@ -421,9 +421,15 @@
                     {% if e_shop_products.count %}
                     <!--products count message-->
                     <div class="d-flex align-items-center position-relative my-1">
-                        You have {{ e_shop_products.count }} registered products ,to add more click on add products
+                        {{ e_shop_products.count }} registered products
                     </div>
                     <!--end products count message-->
+                    <div class="d-flex align-items-center position-relative my-1">
+                        To generate more ,
+                        <a class="fw-semibold ms-1" href="#">
+                            click here
+                        </a>
+                    </div>
                     {% else %}
                     <!--no products message-->
                     <div class="d-flex align-items-center position-relative my-1">
@@ -432,18 +438,15 @@
                             click here
                         </a>
                         to autogenerate
-
                     </div>
                     <!--end no products message-->
-                    {% endif %}
-
                     <div class="d-flex align-items-center position-relative my-1">
                     </div>
+                    {% endif %}
+
+
                     <!--toolbar-->
                     <div class="card-toolbar">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#add_new_product">
-                            Add Products
-                        </button>
                     </div>
                     <!--end toolbar-->
                 </div>
