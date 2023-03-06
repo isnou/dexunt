@@ -234,16 +234,16 @@ def edit_product(request, sku):
             selected_product.tag = tag
         if quantity:
             selected_product.quantity = quantity
-        if buy_price > 0:
-            selected_product.buy_price = buy_price
+        if int(buy_price) > 0:
+            selected_product.buy_price = int(buy_price)
         else:
             selected_product.buy_price = None
-        if sell_price > 0:
-            selected_product.sell_price = sell_price
+        if int(sell_price) > 0:
+            selected_product.sell_price = int(sell_price)
         else:
             selected_product.sell_price = None
-        if discount_price > 0:
-            selected_product.discount_price = discount_price
+        if int(discount_price) > 0:
+            selected_product.discount_price = int(discount_price)
         else:
             selected_product.discount_price = None
         selected_product.save()
@@ -410,16 +410,16 @@ def edit_size(request, sku, index):
             selected_size.ar_title = ar_title
         if quantity:
             selected_size.quantity = quantity
-        if buy_price > 0:
-            selected_size.buy_price = buy_price
+        if int(buy_price) > 0:
+            selected_size.buy_price = int(buy_price)
         else:
             selected_size.buy_price = None
-        if sell_price > 0:
-            selected_size.sell_price = sell_price
+        if int(sell_price) > 0:
+            selected_size.sell_price = int(sell_price)
         else:
             selected_size.sell_price = None
-        if discount_price > 0:
-            selected_size.discount_price = discount_price
+        if int(discount_price) > 0:
+            selected_size.discount_price = int(discount_price)
         else:
             selected_size.discount_price = None
 
@@ -510,16 +510,16 @@ def edit_thumbnail_size(request, sku, index):
             selected_size.ar_title = ar_title
         if quantity:
             selected_size.quantity = quantity
-        if buy_price > 0:
-            selected_size.buy_price = buy_price
+        if int(buy_price) > 0:
+            selected_size.buy_price = int(buy_price)
         else:
             selected_size.buy_price = None
-        if sell_price > 0:
-            selected_size.sell_price = sell_price
+        if int(sell_price) > 0:
+            selected_size.sell_price = int(sell_price)
         else:
             selected_size.sell_price = None
-        if discount_price > 0:
-            selected_size.discount_price = discount_price
+        if int(discount_price) > 0:
+            selected_size.discount_price = int(discount_price)
         else:
             selected_size.discount_price = None
         if thumb:
@@ -590,16 +590,16 @@ def edit_e_shop_product(request, sku):
             selected_product.tag = tag
         if quantity:
             selected_product.quantity = quantity
-        if buy_price > 0:
-            selected_product.buy_price = buy_price
+        if int(buy_price) > 0:
+            selected_product.buy_price = int(buy_price)
         else:
             selected_product.buy_price = None
-        if sell_price > 0:
-            selected_product.sell_price = sell_price
+        if int(sell_price) > 0:
+            selected_product.sell_price = int(sell_price)
         else:
             selected_product.sell_price = None
-        if discount_price > 0:
-            selected_product.discount_price = discount_price
+        if int(discount_price) > 0:
+            selected_product.discount_price = int(discount_price)
         else:
             selected_product.discount_price = None
         selected_product.save()
@@ -655,12 +655,12 @@ def prepare_product(request, sku):
             selected_product.ar_note = ar_note
         if tag:
             selected_product.tag = tag
-        if sell_price > 0:
-            selected_product.sell_price = sell_price
+        if int(sell_price) > 0:
+            selected_product.sell_price = int(sell_price)
         else:
             selected_product.sell_price = None
-        if discount_price > 0:
-            selected_product.discount_price = discount_price
+        if int(discount_price) > 0:
+            selected_product.discount_price = int(discount_price)
         else:
             selected_product.discount_price = None
 
