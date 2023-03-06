@@ -116,12 +116,8 @@
 <!-- english version -->
 {% block content %}
 <div class="container-xxl">
-    <!--principle card-->
     <div class="card card-bordered">
-        <!--principle card header-->
-        <div class="card-header">
-            {% if inventory_products.count %}
-            <!--tab actions-->
+        <!--tab actions-->
             <ul class="nav nav-pills">
                 <li class="nav-item me-1" role="presentation">
                     <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 active" data-kt-countup-tabs="true" id="kt_chart_widget_1_tab_1" data-bs-toggle="tab" href="#kt_chart_widget_1_tab_pane_1">
@@ -134,8 +130,14 @@
                     </a>
                 </li>
             </ul>
-
             <!--end tab actions-->
+    </div>
+    <!--principle card-->
+    <div class="card card-bordered">
+        <!--principle card header-->
+        <div class="card-header">
+            {% if inventory_products.count %}
+
             {% else %}
             <!--no products message-->
             <div class="d-flex align-items-center position-relative my-1">
