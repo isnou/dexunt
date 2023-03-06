@@ -132,125 +132,127 @@
         </ul>
         <!--end tab actions-->
     </div>
-    <!--principle card-->
+    <!--inventory product pan-->
     <div class="tab-pane fade active show" id="inventory_products_pan">
-    <div class="card card-bordered">
-        <!--principle card header-->
-        <div class="card-header">
-            {% if inventory_products.count %}
-            <!--no products message-->
-            <div class="d-flex align-items-center position-relative my-1">
-                You have {{ inventory_products.count }} registered products ,to add more click on add products
-            </div>
-            <!--end no products message-->
-
-            {% else %}
-            <!--no products message-->
-            <div class="d-flex align-items-center position-relative my-1">
-                No registered products ,to start click on Add products
-            </div>
-            <!--end no products message-->
-            {% endif %}
-            <div class="d-flex align-items-center position-relative my-1">
-            </div>
-            <!--toolbar-->
-            <div class="card-toolbar">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#add_new_product">
-                    Add Products
-                </button>
-            </div>
-            <!--end toolbar-->
-        </div>
-        <!--end principle card header-->
-        <!--principle card body-->
-        <div class="card-body">
-            <!--inventory table-->
-            <div class="table-responsive">
+        <div class="card card-bordered">
+            <!--principle card header-->
+            <div class="card-header">
                 {% if inventory_products.count %}
-                <table class="table table-row-bordered gy-7 gs-7">
-                    <thead>
-                    <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-                        <th class="min-w-400px">Product</th>
-                        <th class="text-end min-w-20px"></th>
-                        <th class="text-end min-w-20px"></th>
-                        <th class="text-end min-w-20px"></th>
-                        <th class="text-center min-w-60px">Qty</th>
-                        <th class="text-end min-w-20px"></th>
-                        <th class="text-center min-w-200px">Published</th>
-                        <th class="text-center min-w-200px">Buy Price</th>
-                        <th class="text-center min-w-200px">Sell Price</th>
-                        <th class="text-center min-w-200px">Discount</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for product in inventory_products %}
-                    {% if not product.size.count %}
-                    <tr>
-                        <!--product title-->
-                        <td>
-                            <div class="d-flex align-items-center">
-                                {% if not product.album.count %}
-                                <!--product missed thumbnail-->
-                                <i class="bi bi-x-square" style="font-size: 2rem;"></i>
-                                <!--end product missed thumbnail-->
-                                {% else %}
-                                <!--product thumbnail-->
-                                <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
-                                    <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
-                                </a>
-                                <!--end product thumbnail-->
-                                {% endif %}
-                                <div class="ms-5">
-                                    <!--begin::Title-->
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
-                                    <!--end::Title-->
+                <!--no products message-->
+                <div class="d-flex align-items-center position-relative my-1">
+                    You have {{ inventory_products.count }} registered products ,to add more click on add products
+                </div>
+                <!--end no products message-->
+
+                {% else %}
+                <!--no products message-->
+                <div class="d-flex align-items-center position-relative my-1">
+                    No registered products ,to start click on Add products
+                </div>
+                <!--end no products message-->
+
+                {% endif %}
+                <div class="d-flex align-items-center position-relative my-1">
+                </div>
+                <!--toolbar-->
+                <div class="card-toolbar">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#add_new_product">
+                        Add Products
+                    </button>
+                </div>
+                <!--end toolbar-->
+            </div>
+            <!--end principle card header-->
+            <!--principle card body-->
+            <div class="card-body">
+                <!--inventory table-->
+                <div class="table-responsive">
+                    {% if inventory_products.count %}
+                    <table class="table table-row-bordered gy-7 gs-7">
+                        <thead>
+                        <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                            <th class="min-w-400px">Product</th>
+                            <th class="text-end min-w-20px"></th>
+                            <th class="text-end min-w-20px"></th>
+                            <th class="text-end min-w-20px"></th>
+                            <th class="text-center min-w-60px">Qty</th>
+                            <th class="text-end min-w-20px"></th>
+                            <th class="text-center min-w-200px">Published</th>
+                            <th class="text-center min-w-200px">Buy Price</th>
+                            <th class="text-center min-w-200px">Sell Price</th>
+                            <th class="text-center min-w-200px">Discounted price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in inventory_products %}
+                        {% if not product.size.count %}
+                        <tr>
+                            <!--product title-->
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    {% if not product.album.count %}
+                                    <!--product missed thumbnail-->
+                                    <i class="bi bi-x-square" style="font-size: 2rem;"></i>
+                                    <!--end product missed thumbnail-->
+                                    {% else %}
+                                    <!--product thumbnail-->
+                                    <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                        <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                    </a>
+                                    <!--end product thumbnail-->
+                                    {% endif %}
+                                    <div class="ms-5">
+                                        <!--begin::Title-->
+                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                        <!--end::Title-->
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <!--end product title-->
+                            </td>
+                            <!--end product title-->
 
-                        <!--edit product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory-edit' 'product_view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                        </td>
-                        <!--end edit product action-->
+                            <!--edit product action-->
 
-                        <!--delete product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                        </td>
-                        <!--end delete product action-->
+                            <td class="text-end">
+                                <a href="{% url 'inventory-edit' 'product_view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            <!--end edit product action-->
 
-                        <!--add qty-->
-                        <td>
-                            <a href="{% url 'inventory' 'remove_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove quantity">
-                                <i class="bi bi-dash"></i>
-                            </a>
-                        </td>
-                        <!--end add qty-->
+                            <!--delete product action-->
+                            <td class="text-end">
+                                <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                            <!--end delete product action-->
 
-                        <!--qty-->
-                        <td class="text-center">
-                            <span class="fw-bold">{{product.quantity}}</span>
-                        </td>
-                        <!--end qty-->
+                            <!--add qty-->
+                            <td>
+                                <a href="{% url 'inventory' 'remove_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove quantity">
+                                    <i class="bi bi-dash"></i>
+                                </a>
+                            </td>
+                            <!--end add qty-->
 
-                        <!--remove qty-->
-                        <td>
-                            <a href="{% url 'inventory' 'add_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add quantity">
-                                <i class="bi bi-plus"></i>
-                            </a>
-                        </td>
-                        <!--end remove qty-->
+                            <!--qty-->
+                            <td class="text-center">
+                                <span class="fw-bold">{{product.quantity}}</span>
+                            </td>
+                            <!--end qty-->
 
-                        <!--publish-->
-                        <td class="text-center">
-                            <!--
-                            <div class="rating justify-content-center">
+                            <!--remove qty-->
+                            <td>
+                                <a href="{% url 'inventory' 'add_quantity' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add quantity">
+                                    <i class="bi bi-plus"></i>
+                                </a>
+                            </td>
+                            <!--end remove qty-->
+
+                            <!--publish-->
+                            <td class="text-center">
+                                <!--
+                                <div class="rating justify-content-center">
                                 {% for fill in fool %}
                                 {% if fill < product.review_rate %}
                                 <div class="rating-label checked">
@@ -272,141 +274,141 @@
                                 {% endfor %}
                             </div>
                             -->
-                            {% if product.publish %}
-                            <a href="{% url 'inventory' 'unpublish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
-                                <i class="bi bi-check-lg"></i>
-                            </a>
-                            {% else %}
-                            <a href="{% url 'inventory' 'publish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
-                                <i class="bi bi-x-lg"></i>
-                            </a>
-                            {% endif %}
-                        </td>
-                        <!--end publish-->
-
-                        <!--buy price-->
-                        <td class="text-center">
-                            <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
-                        </td>
-                        <!--end buy price-->
-
-                        <!--sell price-->
-                        <td class="text-center">
-                            <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
-                        </td>
-                        <!--end sell price-->
-
-                        <!--discount price-->
-                        <td class="text-center">
-                            <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                        </td>
-                        <!--end discount price-->
-                    </tr>
-                    {% else %}
-                    <tr>
-                        <!--product title-->
-                        <td>
-                            <div class="d-flex align-items-center">
-                                {% if not product.album.count %}
-                                <!--product missed thumbnail-->
-                                <i class="bi bi-x-square" style="font-size: 2rem;"></i>
-                                <!--end product missed thumbnail-->
-                                {% else %}
-                                <!--product thumbnail-->
-                                <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
-                                    <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                {% if product.publish %}
+                                <a href="{% url 'inventory' 'unpublish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
+                                    <i class="bi bi-check-lg"></i>
                                 </a>
-                                <!--end product thumbnail-->
+                                {% else %}
+                                <a href="{% url 'inventory' 'publish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
+                                    <i class="bi bi-x-lg"></i>
+                                </a>
                                 {% endif %}
-                                <div class="ms-5">
-                                    <!--begin::Title-->
-                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
-                                    <!--end::Title-->
+                            </td>
+                            <!--end publish-->
+
+                            <!--buy price-->
+                            <td class="text-center">
+                                <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
+                            </td>
+                            <!--end buy price-->
+
+                            <!--sell price-->
+                            <td class="text-center">
+                                <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                            </td>
+                            <!--end sell price-->
+
+                            <!--discount price-->
+                            <td class="text-center">
+                                <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            </td>
+                            <!--end discount price-->
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <!--product title-->
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    {% if not product.album.count %}
+                                    <!--product missed thumbnail-->
+                                    <i class="bi bi-x-square" style="font-size: 2rem;"></i>
+                                    <!--end product missed thumbnail-->
+                                    {% else %}
+                                    <!--product thumbnail-->
+                                    <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                        <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                    </a>
+                                    <!--end product thumbnail-->
+                                    {% endif %}
+                                    <div class="ms-5">
+                                        <!--begin::Title-->
+                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                        <!--end::Title-->
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <!--end product title-->
+                            </td>
+                            <!--end product title-->
 
-                        <!--edit product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory-edit' 'product_view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                        </td>
-                        <!--end edit product action-->
+                            <!--edit product action-->
+                            <td class="text-end">
+                                <a href="{% url 'inventory-edit' 'product_view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            <!--end edit product action-->
 
-                        <!--delete product action-->
-                        <td class="text-end">
-                            <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                        </td>
-                        <!--end delete product action-->
+                            <!--delete product action-->
+                            <td class="text-end">
+                                <a href="{% url 'inventory' 'delete_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete product">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                            <!--end delete product action-->
 
-                        <!--add qty-->
-                        <td>
-                        </td>
-                        <!--end add qty-->
+                            <!--add qty-->
+                            <td>
+                            </td>
+                            <!--end add qty-->
 
-                        <!--qty-->
-                        <td class="text-center">
-                            <span class="fw-bold">{{product.quantity}}</span>
-                        </td>
-                        <!--end qty-->
+                            <!--qty-->
+                            <td class="text-center">
+                                <span class="fw-bold">{{product.quantity}}</span>
+                            </td>
+                            <!--end qty-->
 
-                        <!--remove qty-->
-                        <td>
-                        </td>
-                        <!--end remove qty-->
+                            <!--remove qty-->
+                            <td>
+                            </td>
+                            <!--end remove qty-->
 
-                        <!--publish-->
-                        <td class="text-center">
-                            {% if product.publish %}
-                            <a href="{% url 'inventory' 'unpublish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
-                                <i class="bi bi-check-lg"></i>
-                            </a>
-                            {% else %}
-                            <a href="{% url 'inventory' 'publish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
-                                <i class="bi bi-x-lg"></i>
-                            </a>
-                            {% endif %}
-                        </td>
-                        <!--end publish-->
+                            <!--publish-->
+                            <td class="text-center">
+                                {% if product.publish %}
+                                <a href="{% url 'inventory' 'unpublish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
+                                    <i class="bi bi-check-lg"></i>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'inventory' 'publish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
+                                    <i class="bi bi-x-lg"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                            <!--end publish-->
 
-                        <!--buy price-->
-                        <td class="text-center">
-                            <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
-                        </td>
-                        <!--end buy price-->
+                            <!--buy price-->
+                            <td class="text-center">
+                                <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
+                            </td>
+                            <!--end buy price-->
 
-                        <!--sell price-->
-                        <td class="text-center">
-                            <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
-                        </td>
-                        <!--end sell price-->
+                            <!--sell price-->
+                            <td class="text-center">
+                                <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                            </td>
+                            <!--end sell price-->
 
-                        <!--discount price-->
-                        <td class="text-center">
-                            <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                        </td>
-                        <!--end discount price-->
-                    </tr>
+                            <!--discounted price-->
+                            <td class="text-center">
+                                <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            </td>
+                            <!--end discounted price-->
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
                     {% endif %}
-                    {% endfor %}
-                    </tbody>
-                </table>
-                {% endif %}
+                </div>
+                <!--end inventory table-->
             </div>
-            <!--end inventory table-->
+            <!--end principle card body-->
+            <!--principle card footer-->
+            <div class="card-footer">
+            </div>
+            <!--end principle card footer-->
         </div>
-        <!--end principle card body-->
-        <!--principle card footer-->
-        <div class="card-footer">
-        </div>
-        <!--end principle card footer-->
     </div>
-        </div>
-    <!--end principle card-->
+    <!--end inventory product pan-->
 
     <!--add new product modal-->
     <div class="modal fade" tabindex="-1" id="add_new_product">
@@ -641,7 +643,7 @@
                                                 <!--discount price input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                     <!--label-->
-                                                    <label class="form-label">Discount Price</label>
+                                                    <label class="form-label">Discounted Price</label>
                                                     <!--end label-->
                                                     <!--input-->
                                                     <div class="input-group">
@@ -650,7 +652,7 @@
                                                     </div>
                                                     <!--end input-->
                                                     <!--description-->
-                                                    <div class="text-muted fs-7">Discount must be less than sell price</div>
+                                                    <div class="text-muted fs-7">Discounted must be less than sell price .</div>
                                                     <!--end description-->
                                                 </div>
                                                 <!--end discount price input-->
