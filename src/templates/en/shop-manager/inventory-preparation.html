@@ -138,6 +138,9 @@
                                                 {% if selected_product.thumb %}
                                                 <!--begin::Image input-->
                                                 <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image:url({% get_media_prefix %}{{selected_product.thumb}});">
+                                                    <!--begin::Image preview wrapper-->
+                                                    <div class="image-input-wrapper w-125px h-125px"></div>
+                                                    <!--end::Image preview wrapper-->
                                                     <!--begin::Edit button-->
                                                     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
                                                         <i class="bi bi-pencil-fill fs-7"></i>
@@ -163,9 +166,7 @@
                                                 <!--begin::Image input-->
                                                 <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
                                                     <!--begin::Image preview wrapper-->
-                                                    <div class="image-input-wrapper w-125px h-125px">
-                                                        <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{selected_product.thumb}});"></span>
-                                                    </div>
+                                                    <div class="image-input-wrapper w-125px h-125px"></div>
                                                     <!--end::Image preview wrapper-->
                                                     <!--begin::Edit button-->
                                                     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
