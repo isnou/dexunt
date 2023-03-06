@@ -425,7 +425,7 @@
                     </div>
                     <!--end products count message-->
                     <div class="d-flex align-items-center position-relative my-1">
-                        <a class="fw-semibold me-1" href="{% url 'inventory' 'refresh_e_shop_product' '#' %}">
+                        <a class="fw-semibold me-1" href="{% url 'inventory' 'refresh_e_shop_product' '#' %}#e-shop">
                             Click here
                         </a>
                         to refresh and generate more
@@ -434,7 +434,7 @@
                     <!--no products message-->
                     <div class="d-flex align-items-center position-relative my-1">
                         No linked products ,
-                        <a class="fw-semibold me-1" data-kt-countup-tabs="true" data-bs-toggle="tab" href="{% url 'inventory' 'refresh_e_shop_product' '#' %}#e-shop">
+                        <a class="fw-semibold me-1" href="{% url 'inventory' 'refresh_e_shop_product' '#' %}">
                             click here
                         </a>
                         to autogenerate
