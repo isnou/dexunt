@@ -487,6 +487,12 @@
                                         <div class="ms-5">
                                             <!--begin::Title-->
                                             <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}}</a>
+                                            {% if not product.en_description %}
+                                            <span class="badge badge-info">des</span>
+                                            {% endif %}
+                                            {% if not product.fr_description & product.ar_description %}
+                                            <span class="badge badge-light">tra</span>
+                                            {% endif %}
                                             <!--end::Title-->
                                         </div>
                                     </div>
