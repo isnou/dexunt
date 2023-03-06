@@ -531,13 +531,21 @@
 
                                 <!--sell price-->
                                 <td class="text-center">
+                                    {% if product.sell_price > 0 %}
                                     <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                                    {% else %}
+                                    <span class="fw-bold text-dark">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end sell price-->
 
                                 <!--discounted price-->
                                 <td class="text-center">
+                                    {% if product.discount_price > 0 %}
                                     <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                                    {% else %}
+                                    <span class="fw-bold text-dark">no discount</span>
+                                    {% endif %}
                                 </td>
                                 <!--end discounted price-->
                             </tr>
