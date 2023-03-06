@@ -160,12 +160,12 @@ def refresh_e_shop_product(request):
             ShowcaseProduct.objects.all().get(fr_title=product_to_add.fr_title).product.add(product_to_add)
         else:
             sku = serial_number_generator(10).upper()
-            showcase_product = ShowcaseProduct(fr_title=product_to_add.fr_title,
+            showcase_product = ShowcaseProduct(en_title=product_to_add.fr_title,
                                                publish=False,
                                                sku=sku,
                                                )
             showcase_product.save()
-            showcase_product.add(product_to_add)
+            showcase_product.product.add(product_to_add)
 
     return {
         'url': url,
