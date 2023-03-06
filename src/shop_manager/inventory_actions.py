@@ -519,10 +519,6 @@ def delete_size(sku, index):
 def edit_e_shop_product(request, sku):
     url = "/shop-manager/inventory-preparation.html"
     selected_product = ShowcaseProduct.objects.all().get(sku=sku)
-    if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
-        related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
-    else:
-        related_products = None
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)

@@ -107,7 +107,7 @@ def inventory_preparation(request, action, sku):
     if action == "edit_e_shop_product":
         url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
 
-    selected_product = Product.objects.all().get(sku=sku)
+    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
 
     context = {
         'selected_product': selected_product,
