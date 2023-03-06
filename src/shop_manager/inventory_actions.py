@@ -515,7 +515,66 @@ def delete_size(sku, index):
         'url': url,
     }
 
+# ------------------ inventory preparation
+def edit_e_shop_product(request, sku):
+    url = "/shop-manager/inventory-preparation.html"
+    selected_product = Product.objects.all().get(sku=sku)
+    if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
+        related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
+    else:
+        related_products = None
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
+        en_spec = request.POST.get('en_spec', False)
+        fr_spec = request.POST.get('fr_spec', False)
+        ar_spec = request.POST.get('ar_spec', False)
+        upc = request.POST.get('upc', False)
+        tag = request.POST.get('tag', False)
+        quantity = request.POST.get('quantity', False)
+        buy_price = request.POST.get('buy_price', False)
+        sell_price = request.POST.get('sell_price', False)
+        discount_price = request.POST.get('discount_price', False)
 
+        if en_title:
+            selected_product.en_title = en_title
+        if fr_title:
+            selected_product.fr_title = fr_title
+        if ar_title:
+            selected_product.ar_title = ar_title
+        if en_spec:
+            selected_product.en_spec = en_spec
+        if fr_spec:
+            selected_product.fr_spec = fr_spec
+        if ar_spec:
+            selected_product.ar_spec = ar_spec
+        if upc:
+            selected_product.upc = upc
+        if tag:
+            selected_product.tag = tag
+        if quantity:
+            selected_product.quantity = quantity
+        if buy_price:
+            selected_product.buy_price = buy_price
+        if sell_price:
+            selected_product.sell_price = sell_price
+        if discount_price:
+            selected_product.discount_price = discount_price
+        selected_product.save()
+        if related_products:
+            for related_product in related_products:
+                related_product.en_title = selected_product.en_title
+                related_product.fr_title = selected_product.fr_title
+                related_product.ar_title = selected_product.ar_title
+                related_product.tag = selected_product.tag
+                related_product.save()
+
+    return {
+        'url': url,
+    }
+
+# ------------------ functions
 def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits
     result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))

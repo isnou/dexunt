@@ -86,6 +86,8 @@ def inventory_edit(request, action, sku, index):
         url = direction + inventory_actions.delete_size(sku, index).get('url')
     if action == 'delete_feature':
         Feature.objects.all().get(id=index).delete()
+    if action == "edit_e_shop_product":
+        url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
 
     selected_product = Product.objects.all().get(sku=sku)
     sizes = selected_product.size.all().exclude(show_thumb=True)
@@ -95,6 +97,20 @@ def inventory_edit(request, action, sku, index):
         'selected_product': selected_product,
         'sizes': sizes,
         'thumbnail_sizes': thumbnail_sizes,
+    }
+    return render(request, url, context)
+
+def inventory_preparation(request, action, sku):
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/inventory-preparation.html"
+
+    if action == "edit_e_shop_product":
+        url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
+
+    selected_product = Product.objects.all().get(sku=sku)
+
+    context = {
+        'selected_product': selected_product,
     }
     return render(request, url, context)
 
