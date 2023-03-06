@@ -518,11 +518,11 @@
                                 <!--publish-->
                                 <td class="text-center">
                                     {% if product.publish %}
-                                    <a href="{% url 'inventory' 'unpublish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
+                                    <a href="{% url 'inventory' 'unpublish_e_shop_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
                                         <i class="bi bi-check-lg"></i>
                                     </a>
                                     {% else %}
-                                    <a href="{% url 'inventory' 'publish' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
+                                    <a href="{% url 'inventory' 'publish_e_shop_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
                                         <i class="bi bi-x-lg"></i>
                                     </a>
                                     {% endif %}
