@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
-from .models import Product, Size, Feature
+from .models import Product, Size, Feature, ShowcaseProduct
 from main_shop.models import Layout
 
 
@@ -17,10 +17,16 @@ def manager_dashboard(request, action):
 
 def inventory(request, action, sku):
     try:
-        raw_products_list = Product.objects.all()
+        inventory_products_list = Product.objects.all()
     except Product.DoesNotExist:
         raise Http404("No products")
-    inventory_products = raw_products_list.order_by('en_title')
+    try:
+        e_shop_products_list = ShowcaseProduct.objects.all()
+    except ShowcaseProduct.DoesNotExist:
+        raise Http404("No products")
+
+    inventory_products = inventory_products_list.order_by('en_title')
+    e_shop_products = e_shop_products_list.order_by('en_title')
 
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory.html"
@@ -42,6 +48,7 @@ def inventory(request, action, sku):
 
     context = {
         'inventory_products': inventory_products,
+        'e_shop_products': e_shop_products,
     }
     return render(request, url, context)
 
