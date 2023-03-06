@@ -571,7 +571,7 @@ def edit_e_shop_product(request, sku):
     }
 
 def edit_e_shop_product_thumb(request, sku):
-    url = "/shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-preparation.html"
     selected_product = ShowcaseProduct.objects.all().get(sku=sku)
     if request.method == 'POST':
         thumb = request.FILES.get('thumb', False)
