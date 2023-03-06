@@ -9,6 +9,8 @@ def manager_dashboard(request, action):
         request.session['language'] = 'en'
     direction = request.session.get('language')
     url = direction + "/shop-manager/dashboard.html"
+    for product in ShowcaseProduct.objects.all():
+        product.delete()
 
     context = {
     }
