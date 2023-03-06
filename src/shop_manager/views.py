@@ -32,6 +32,7 @@ def inventory(request, action, sku):
 
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory.html"
+    tab = 'main'
 
     if action == "add_new_product":
         url = direction + inventory_actions.add_new_product(request).get('url')
@@ -49,10 +50,12 @@ def inventory(request, action, sku):
         Product.objects.all().get(sku=sku).delete()
     if action == "refresh_e_shop_product":
         url = direction + inventory_actions.refresh_e_shop_product(request).get('url')
+        tab = direction + inventory_actions.refresh_e_shop_product(request).get('tab')
 
     context = {
         'inventory_products': inventory_products,
         'e_shop_products': e_shop_products,
+        'tab':tab,
     }
     return render(request, url, context)
 

@@ -166,8 +166,10 @@ def refresh_e_shop_product(request):
                                                )
             showcase_product.save()
             showcase_product.product.add(product_to_add)
+    tab = 'e_shop'
 
     return {
+        'tab': tab,
         'url': url,
     }
 
