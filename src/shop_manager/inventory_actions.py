@@ -518,7 +518,7 @@ def delete_size(sku, index):
 # ------------------ inventory preparation
 def edit_e_shop_product(request, sku):
     url = "/shop-manager/inventory-preparation.html"
-    selected_product = Product.objects.all().get(sku=sku)
+    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
     if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
         related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
     else:
