@@ -154,7 +154,7 @@ def unpublish(sku):
     }
 
 def refresh_e_shop_product(request):
-    url = "/shop-manager/inventory.html#e-shop"
+    url = "/shop-manager/inventory.html/#e-shop"
     for product_to_add in Product.objects.all():
         if ShowcaseProduct.objects.all().filter(en_title=product_to_add.en_title).exists():
             ShowcaseProduct.objects.all().get(en_title=product_to_add.en_title).product.add(product_to_add)
