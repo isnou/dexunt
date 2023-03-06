@@ -295,10 +295,7 @@
             <!--actions-->
             <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#photos">Product Photos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#edit_general_informations">Edit General Informations</a>
+                    <a class="nav-link active" data-bs-toggle="tab" href="#edit_general_informations">Edit General Informations</a>
                 </li>
                 {% if not thumbnail_sizes.count %}
                 <li class="nav-item">
@@ -318,86 +315,8 @@
             <!--end actions-->
             <!--contents-->
             <div class="tab-content">
-                <!--photos tab-->
-                <div class="tab-pane fade show active" id="photos" role="tabpanel">
-                    <div class="card-body p-9">
-                        <div class="tns tns-default">
-                            <div class="d-flex flex-wrap flex-stack">
-                            <!--begin::Wrapper-->
-                                <div class="d-flex flex-column flex-grow-1 pe-8">
-                                    <!--begin::Stats-->
-                                    <div class="d-flex flex-wrap">
-                                        {% for photo in selected_product.album.all %}
-                                        <div class="py-3 px-4 me-6 mb-3">
-                                            <a class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{photo.image}}">
-                                                <img src="{% get_media_prefix %}{{photo.image}}" />
-                                            </a>
-                                            <a href="{% url 'inventory-edit' 'delete_photo' selected_product.sku photo.id %}" class="btn btn-active-color-primary" style="padding-bottom: 175px;padding-left: 0px;">
-                                                <i class="bi bi-x fs-2"></i>
-                                            </a>
-                                        </div>
-                                        {% endfor %}
-                                        <div class="py-3 px-4 me-6 mb-3">
-                                            <form action="{% url 'inventory-edit' 'add_new_photo' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <div class="card-title">
-                                                    <div class="card card-flush py-4">
-                                                        <div class="card-title">
-                                                            <div class="card card-flush py-4">
-                                                                <!--photo input-->
-                                                                <div class="card-body text-center pt-0">
-                                                                    <!--begin::Image input-->
-                                                                    <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                                        <!--begin::Image preview wrapper-->
-                                                                        <div class="image-input-wrapper w-125px h-125px"></div>
-                                                                        <!--end::Image preview wrapper-->
-                                                                        <!--begin::Edit button-->
-                                                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
-                                                                            <i class="bi bi-pencil-fill fs-7"></i>
-                                                                            <!--begin::Inputs-->
-                                                                            <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
-                                                                            <input type="hidden" name="photo_remove" />
-                                                                            <!--end::Inputs-->
-                                                                        </label>
-                                                                        <!--end::Edit button-->
-                                                                        <!--begin::Cancel button-->
-                                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
-                                                                            <i class="bi bi-x fs-2"></i>
-                                                                        </span>
-                                                                        <!--end::Cancel button-->
-                                                                        <!--begin::Remove button-->
-                                                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
-                                                                            <i class="bi bi-x fs-2"></i>
-                                                                        </span>
-                                                                        <!--end::Remove button-->
-                                                                    </div>
-                                                                    <!--end::Image input-->
-                                                                </div>
-                                                                <!--end photo input-->
-                                                            </div>
-                                                        </div>
-                                                        <!--submit button-->
-                                                        <button type="submit" class="btn btn-secondary">
-                                                            <span class="indicator-label">Save</span>
-                                                        </button>
-                                                        <!--end submit button-->
-                                                    </div>
-                                                    <!--add photo buttons-->
-                                                    <div class="d-flex justify-content-end" style="padding-top: 50px;">
-                                                    </div>
-                                                    <!--end add photo buttons-->
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end photos tab-->
                 <!--edit product tab-->
-                <div class="tab-pane fade" id="edit_general_informations" role="tabpanel">
+                <div class="tab-pane fade show active" id="edit_general_informations" role="tabpanel">
                     <!--edit product form-->
                     <form action="{% url 'inventory-edit' 'edit_product' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                         {% csrf_token %}
