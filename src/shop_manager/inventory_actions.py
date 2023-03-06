@@ -156,7 +156,7 @@ def unpublish(sku):
 def refresh_e_shop_product(request):
     url = "/shop-manager/inventory.html"
     for product_to_add in Product.objects.all():
-        if ShowcaseProduct.objects.all().filter(fr_title=product_to_add.fr_title).exist():
+        if ShowcaseProduct.objects.all().filter(fr_title=product_to_add.fr_title).exists():
             ShowcaseProduct.objects.all().get(fr_title=product_to_add.fr_title).product.add(product_to_add)
         else:
             sku = serial_number_generator(10).upper()
