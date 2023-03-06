@@ -425,7 +425,7 @@
                     </div>
                     <!--end products count message-->
                     <div class="d-flex align-items-center position-relative my-1">
-                        <a class="fw-semibold me-1" href="#">
+                        <a class="fw-semibold me-1" href="{% url 'inventory' 'refresh_e_shop_product' '#' %}">
                             Click here
                         </a>
                         to refresh and generate more
@@ -470,7 +470,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for product in inventory_products %}
+                            {% for product in e_shop_products %}
                             {% if not product.size.count %}
                             <tr>
                                 <!--product title-->
