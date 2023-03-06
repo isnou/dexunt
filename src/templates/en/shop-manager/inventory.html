@@ -137,11 +137,16 @@
         <!--principle card header-->
         <div class="card-header">
             {% if inventory_products.count %}
+            <!--no products message-->
+            <div class="d-flex align-items-center position-relative my-1">
+                You have {{ inventory_products.count }} registered products ,to add more click on add products
+            </div>
+            <!--end no products message-->
 
             {% else %}
             <!--no products message-->
             <div class="d-flex align-items-center position-relative my-1">
-                No registered products ,to start click on add products
+                No registered products ,to start click on Add products
             </div>
             <!--end no products message-->
             {% endif %}
@@ -150,7 +155,7 @@
             <!--toolbar-->
             <div class="card-toolbar">
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#add_new_product">
-                    New Product
+                    Add Products
                 </button>
             </div>
             <!--end toolbar-->
