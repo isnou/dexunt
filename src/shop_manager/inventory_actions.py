@@ -170,6 +170,7 @@ def refresh_e_shop_product(request):
     return {
         'url': url,
     }
+
 # ------------------ inventory edit
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"
