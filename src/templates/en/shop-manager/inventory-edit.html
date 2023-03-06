@@ -433,7 +433,7 @@
                                                             <!--input-->
                                                             <div class="input-group">
                                                                 <span class="input-group-text">Quantity</span>
-                                                                <input type="number" name="quantity" class="form-control" placeholder="product quantity" value="{{ selected_product.quantity }}">
+                                                                <input type="number" name="quantity" class="form-control" placeholder="product quantity" value="{{ selected_product.quantity }}" min="0">
                                                             </div>
                                                             <!--end input-->
                                                         </div>
@@ -444,7 +444,7 @@
                                                             <!--input-->
                                                             <div class="input-group">
                                                                 <span class="input-group-text">Buy Price</span>
-                                                                <input type="number" name="buy_price" class="form-control" placeholder="product cost" value="{{ selected_product.buy_price }}">
+                                                                <input type="number" name="buy_price" class="form-control" placeholder="product cost" value="{{ selected_product.buy_price }}" min="0">
                                                                 <span class="input-group-text">DZD</span>
                                                             </div>
                                                             <!--end input-->
@@ -462,7 +462,7 @@
                                                             <!--input-->
                                                             <div class="input-group">
                                                                 <span class="input-group-text">Sell Price</span>
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="product regular price" value="{{ selected_product.sell_price }}">
+                                                                <input type="number" name="sell_price" class="form-control" placeholder="product regular price" value="{{ selected_product.sell_price }}" min="0">
                                                                 <span class="input-group-text">DZD</span>
                                                             </div>
                                                             <!--end input-->
@@ -473,8 +473,8 @@
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Discount</span>
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="product discount price" value="{{ selected_product.discount_price }}">
+                                                                <span class="input-group-text">Discounted</span>
+                                                                <input type="number" name="discount_price" class="form-control" placeholder="product discount price" value="{{ selected_product.discount_price }}" min="0">
                                                                 <span class="input-group-text">DZD</span>
                                                             </div>
                                                             <!--end input-->
