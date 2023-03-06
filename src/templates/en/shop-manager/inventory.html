@@ -476,7 +476,7 @@
                                 <!--product title-->
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        {% if not product.thumb.count %}
+                                        {% if not product.thumb %}
                                         <!--product missed thumbnail-->
                                         <i class="bi bi-x-square fs-4x"></i>
                                         <!--end product missed thumbnail-->
@@ -519,7 +519,7 @@
 
                                 <!--qty-->
                                 <td class="text-center">
-                                    <span class="fw-bold">{{ product.products.count }}</span>
+                                    <span class="fw-bold">{{ product.product.count }}</span>
                                 </td>
                                 <!--end qty-->
 
