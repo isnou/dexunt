@@ -16,6 +16,12 @@ def manager_dashboard(request, action):
 
 
 def inventory(request, action, sku):
+    try:
+        raw_products_list = Product.objects.all()
+    except Product.DoesNotExist:
+        raise Http404("No products")
+    inventory_products = raw_products_list.order_by('en_title')
+
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory.html"
 
@@ -35,6 +41,7 @@ def inventory(request, action, sku):
         Product.objects.all().get(sku=sku).delete()
 
     context = {
+        'inventory_products': inventory_products,
     }
     return render(request, url, context)
 
