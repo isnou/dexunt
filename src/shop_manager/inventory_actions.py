@@ -167,10 +167,30 @@ def refresh_e_shop_product(request):
                                                )
             showcase_product.save()
             showcase_product.product.add(product_to_add)
-    tab = 'e_shop'
 
     return {
-        'tab': tab,
+        'url': url,
+    }
+
+
+def publish_e_shop_product(sku):
+    url = "/shop-manager/inventory.html"
+    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
+    selected_product.publish = True
+    selected_product.save()
+
+    return {
+        'url': url,
+    }
+
+
+def unpublish_e_shop_product(sku):
+    url = "/shop-manager/inventory.html"
+    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
+    selected_product.publish = False
+    selected_product.save()
+
+    return {
         'url': url,
     }
 
