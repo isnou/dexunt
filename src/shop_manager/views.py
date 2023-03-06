@@ -51,6 +51,9 @@ def inventory(request, action, sku):
     if action == "refresh_e_shop_product":
         url = direction + inventory_actions.refresh_e_shop_product(request).get('url')
         tab = inventory_actions.refresh_e_shop_product(request).get('tab')
+    if action == "delete_e_shop_product":
+        ShowcaseProduct.objects.all().get(sku=sku).delete()
+        tab = 'e_shop'
 
     context = {
         'inventory_products': inventory_products,
