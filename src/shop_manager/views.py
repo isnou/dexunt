@@ -50,7 +50,7 @@ def inventory(request, action, sku):
         Product.objects.all().get(sku=sku).delete()
     if action == "refresh_e_shop_product":
         url = direction + inventory_actions.refresh_e_shop_product(request).get('url')
-        tab = direction + inventory_actions.refresh_e_shop_product(request).get('tab')
+        tab = inventory_actions.refresh_e_shop_product(request).get('tab')
 
     context = {
         'inventory_products': inventory_products,
