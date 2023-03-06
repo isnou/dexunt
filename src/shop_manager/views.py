@@ -45,6 +45,8 @@ def inventory(request, action, sku):
         url = direction + inventory_actions.unpublish(sku).get('url')
     if action == "delete_product":
         Product.objects.all().get(sku=sku).delete()
+    if action == "refresh_e_shop_product":
+        url = direction + inventory_actions.refresh_e_shop_product(request).get('url')
 
     context = {
         'inventory_products': inventory_products,

@@ -1,6 +1,6 @@
 import random
 import string
-from .models import Product, Feature, Album, Size
+from .models import Product, Feature, Album, Size, ShowcaseProduct
 
 
 # ------------------ inventory
@@ -153,7 +153,22 @@ def unpublish(sku):
         'url': url,
     }
 
+def refresh_e_shop_product(request):
+    url = "/shop-manager/inventory.html"
+    for product_to_add in Product.objects.all():
+        if ShowcaseProduct.objects.all().filter(fr_title=product_to_add.fr_title).exist():
+            ShowcaseProduct.objects.all().get(fr_title=product_to_add.fr_title).product.add(product_to_add)
+        else:
+            sku = serial_number_generator(10).upper()
+            showcase_product = ShowcaseProduct(fr_title=product_to_add.fr_title,
+                                               sku=sku,
+                                               )
+            showcase_product.save()
+            showcase_product.add(product_to_add)
 
+    return {
+        'url': url,
+    }
 # ------------------ inventory edit
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"

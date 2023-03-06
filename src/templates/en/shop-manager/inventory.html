@@ -425,10 +425,10 @@
                     </div>
                     <!--end products count message-->
                     <div class="d-flex align-items-center position-relative my-1">
-                        To generate more ,
                         <a class="fw-semibold me-1" href="#">
-                            click here
+                            Click here
                         </a>
+                        to refresh and generate more
                     </div>
                     {% else %}
                     <!--no products message-->
@@ -443,8 +443,6 @@
                     <div class="d-flex align-items-center position-relative my-1">
                     </div>
                     {% endif %}
-
-
                     <!--toolbar-->
                     <div class="card-toolbar">
                     </div>
@@ -455,7 +453,7 @@
                 <div class="card-body">
                     <!--inventory table-->
                     <div class="table-responsive">
-                        {% if inventory_products.count %}
+                        {% if e_shop_products.count %}
                         <table class="table table-row-bordered gy-7 gs-7">
                             <thead>
                             <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
