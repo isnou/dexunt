@@ -490,7 +490,7 @@
                                             {% if not product.en_description %}
                                             <span class="badge badge-info">des</span>
                                             {% endif %}
-                                            {% if not product.fr_description and product.ar_description %}
+                                            {% if not product.fr_description and if not product.ar_description %}
                                             <span class="badge badge-light">tra</span>
                                             {% endif %}
                                             <!--end::Title-->
