@@ -615,7 +615,7 @@ def prepare_product(request, sku):
             selected_product.sell_price = int(sell_price)
         if discount_price:
             selected_product.discount_price = int(discount_price)
-        
+
         selected_product.save()
 
     return {
