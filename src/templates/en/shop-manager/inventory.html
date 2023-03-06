@@ -122,14 +122,19 @@
         <div class="card-header">
             {% if inventory_products.count %}
             <!--tab actions-->
-            <ul class="nav nav-tabs mb-5 fs-6">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#inventory">Inventory</a>
+            <ul class="nav nav-pills">
+                <li class="nav-item me-1" role="presentation">
+                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-kt-countup-tabs="true" id="kt_chart_widget_1_tab_1" data-bs-toggle="tab" href="#kt_chart_widget_1_tab_pane_1" aria-selected="false">
+                        Inventory
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#categories">E-Shop</a>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 active" data-kt-countup-tabs="true" id="kt_chart_widget_1_tab_2" data-bs-toggle="tab" href="#kt_chart_widget_1_tab_pane_2" aria-selected="true">
+                        E-Shop
+                    </a>
                 </li>
             </ul>
+
             <!--end tab actions-->
             {% else %}
             <!--no products message-->
