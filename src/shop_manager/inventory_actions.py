@@ -583,6 +583,45 @@ def edit_e_shop_product_thumb(request, sku):
         'url': url,
     }
 
+def prepare_product(request, sku):
+    url = "/shop-manager/inventory-preparation.html"
+    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
+    if request.method == 'POST':
+        en_description = request.POST.get('en_description', False)
+        fr_description = request.POST.get('fr_description', False)
+        ar_description = request.POST.get('ar_description', False)
+        en_note = request.POST.get('en_note', False)
+        fr_note = request.POST.get('fr_note', False)
+        ar_note = request.POST.get('ar_note', False)
+        tag = request.POST.get('tag', False)
+        sell_price = request.POST.get('sell_price', False)
+        discount_price = request.POST.get('discount_price', False)
+
+        if en_description:
+            selected_product.en_description = en_description
+        if fr_description:
+            selected_product.fr_description = fr_description
+        if ar_description:
+            selected_product.ar_description = ar_description
+        if en_note:
+            selected_product.en_note = en_note
+        if fr_note:
+            selected_product.fr_note = fr_note
+        if ar_note:
+            selected_product.ar_note = ar_note
+        if tag:
+            selected_product.tag = tag
+        if sell_price:
+            selected_product.sell_price = int(sell_price)
+        if discount_price:
+            selected_product.discount_price = int(discount_price)
+        
+        selected_product.save()
+
+    return {
+        'url': url,
+    }
+
 # ------------------ functions
 def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits

@@ -108,6 +108,8 @@ def inventory_preparation(request, action, sku):
         url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
     if action == "edit_e_shop_product_thumb":
         url = direction + inventory_actions.edit_e_shop_product_thumb(request, sku).get('url')
+    if action == "prepare_product":
+        url = direction + inventory_actions.prepare_product(request, sku).get('url')
 
     selected_product = ShowcaseProduct.objects.all().get(sku=sku)
 
