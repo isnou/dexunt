@@ -234,12 +234,18 @@ def edit_product(request, sku):
             selected_product.tag = tag
         if quantity:
             selected_product.quantity = quantity
-        if buy_price:
+        if buy_price > 0:
             selected_product.buy_price = buy_price
-        if sell_price:
+        else:
+            selected_product.buy_price = None
+        if sell_price > 0:
             selected_product.sell_price = sell_price
-        if discount_price:
+        else:
+            selected_product.sell_price = None
+        if discount_price > 0:
             selected_product.discount_price = discount_price
+        else:
+            selected_product.discount_price = None
         selected_product.save()
         if related_products:
             for related_product in related_products:
@@ -404,12 +410,18 @@ def edit_size(request, sku, index):
             selected_size.ar_title = ar_title
         if quantity:
             selected_size.quantity = quantity
-        if buy_price:
+        if buy_price > 0:
             selected_size.buy_price = buy_price
-        if sell_price:
+        else:
+            selected_size.buy_price = None
+        if sell_price > 0:
             selected_size.sell_price = sell_price
-        if discount_price:
+        else:
+            selected_size.sell_price = None
+        if discount_price > 0:
             selected_size.discount_price = discount_price
+        else:
+            selected_size.discount_price = None
 
         selected_size.save()
 
@@ -498,12 +510,18 @@ def edit_thumbnail_size(request, sku, index):
             selected_size.ar_title = ar_title
         if quantity:
             selected_size.quantity = quantity
-        if buy_price:
+        if buy_price > 0:
             selected_size.buy_price = buy_price
-        if sell_price:
+        else:
+            selected_size.buy_price = None
+        if sell_price > 0:
             selected_size.sell_price = sell_price
-        if discount_price:
+        else:
+            selected_size.sell_price = None
+        if discount_price > 0:
             selected_size.discount_price = discount_price
+        else:
+            selected_size.discount_price = None
         if thumb:
             selected_size.thumb = thumb
 
@@ -572,12 +590,18 @@ def edit_e_shop_product(request, sku):
             selected_product.tag = tag
         if quantity:
             selected_product.quantity = quantity
-        if buy_price:
+        if buy_price > 0:
             selected_product.buy_price = buy_price
-        if sell_price:
+        else:
+            selected_product.buy_price = None
+        if sell_price > 0:
             selected_product.sell_price = sell_price
-        if discount_price:
+        else:
+            selected_product.sell_price = None
+        if discount_price > 0:
             selected_product.discount_price = discount_price
+        else:
+            selected_product.discount_price = None
         selected_product.save()
         if related_products:
             for related_product in related_products:
@@ -631,10 +655,14 @@ def prepare_product(request, sku):
             selected_product.ar_note = ar_note
         if tag:
             selected_product.tag = tag
-        if sell_price:
-            selected_product.sell_price = int(sell_price)
-        if discount_price:
-            selected_product.discount_price = int(discount_price)
+        if sell_price > 0:
+            selected_product.sell_price = sell_price
+        else:
+            selected_product.sell_price = None
+        if discount_price > 0:
+            selected_product.discount_price = discount_price
+        else:
+            selected_product.discount_price = None
 
         selected_product.save()
 
