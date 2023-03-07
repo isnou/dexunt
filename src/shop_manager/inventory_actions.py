@@ -157,7 +157,12 @@ def refresh_e_shop_product():
     url = "/shop-manager/inventory.html"
     for product_to_add in Product.objects.all():
         if ShowcaseProduct.objects.all().filter(en_title=product_to_add.en_title).exists():
-            ShowcaseProduct.objects.all().get(en_title=product_to_add.en_title).product.add(product_to_add)
+            showcase_product = ShowcaseProduct.objects.all().get(en_title=product_to_add.en_title)
+            showcase_product.product.add(product_to_add)
+            if not showcase_product.sell_price:
+                showcase_product.sell_price=product_to_add.sell_price
+            if not showcase_product.discount_price:
+                showcase_product.discount_price=product_to_add.discount_price
         else:
             sku = serial_number_generator(10).upper()
             showcase_product = ShowcaseProduct(en_title=product_to_add.en_title,
