@@ -703,7 +703,6 @@
                                     {% if product.buy_price %}
                                     <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
                                     {% else %}
-                                    {% if product.sell_price > 0 %}
                                     <span class="badge badge-warning">price missing</span>
                                     {% endif %}
                                 </td>
