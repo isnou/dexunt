@@ -49,7 +49,7 @@ def inventory(request, action, sku):
     if action == "delete_product":
         Product.objects.all().get(sku=sku).delete()
     if action == "refresh_e_shop_product":
-        url = direction + inventory_actions.refresh_e_shop_product(request).get('url')
+        url = direction + inventory_actions.refresh_e_shop_product().get('url')
         tab = 'e_shop'
     if action == "delete_e_shop_product":
         ShowcaseProduct.objects.all().get(sku=sku).delete()
