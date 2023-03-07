@@ -207,10 +207,14 @@
 
                     <div class="card-body py-9">
 						<div class="row gx-9 h-100">
-							<div class="col-sm-6 mb-10 mb-sm-0">
+							<div class="col-sm-6 mb-sm-0">
 
                                 {% if first_main_banner.thumb %}
                                 <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" data-kt-image-input="true" style="background-size: 100% 100%;background-image:url({% get_media_prefix %}{{first_main_banner.thumb}});">
+                                    <div class="image-input-wrapper w-125px h-125px"></div>
+                                </div>
+                                {% else %}
+                                <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" data-kt-image-input="true" style="background-size: 100% 100%;background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
                                     <div class="image-input-wrapper w-125px h-125px"></div>
                                     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
                                         <i class="bi bi-pencil-fill fs-7"></i>
