@@ -711,7 +711,7 @@
 
                                 <!--sell price-->
                                 <td class="text-center">
-                                    {% product product.sell_price %}
+                                    {% if product.sell_price %}
                                     {% if product.buy_price > product.sell_price %}
                                     <span class="badge badge-danger">check prices</span>
                                     {% else %}
