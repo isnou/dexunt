@@ -544,7 +544,7 @@ def delete_size(sku, index):
 
 # ------------------ inventory preparation
 def edit_e_shop_product(request, sku):
-    url = "/shop-manager/inventory-edit.html"
+    url = "/shop-manager/inventory-preparation.html"
     selected_product = ShowcaseProduct.objects.all().get(sku=sku)
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
