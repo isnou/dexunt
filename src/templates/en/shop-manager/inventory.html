@@ -212,7 +212,6 @@
                                 <!--end product title-->
 
                                 <!--edit product action-->
-
                                 <td class="text-end">
                                     <a href="{% url 'inventory-edit' 'product_view' product.sku 0 %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="edit product">
                                         <i class="bi bi-pencil-square"></i>
@@ -266,19 +265,39 @@
 
                                 <!--buy price-->
                                 <td class="text-center">
+                                    {% if product.buy_price %}
                                     <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end buy price-->
 
                                 <!--sell price-->
                                 <td class="text-center">
+                                    {% if product.sell_price %}
+                                    {% if product.buy_price > product.sell_price %}
+                                    <span class="badge badge-danger">check prices</span>
+                                    {% else %}
                                     <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end sell price-->
 
                                 <!--discount price-->
                                 <td class="text-center">
+                                    {% if product.discount_price %}
+                                    {% if product.discount_price > product.sell_price %}
+                                    <span class="badge badge-danger">check prices</span>
+                                    {% else %}
                                     <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end discount price-->
                             </tr>
@@ -355,21 +374,41 @@
 
                                 <!--buy price-->
                                 <td class="text-center">
+                                    {% if product.buy_price %}
                                     <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end buy price-->
 
                                 <!--sell price-->
                                 <td class="text-center">
+                                    {% if product.sell_price %}
+                                    {% if product.buy_price > product.sell_price %}
+                                    <span class="badge badge-danger">check prices</span>
+                                    {% else %}
                                     <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end sell price-->
 
-                                <!--discounted price-->
+                                <!--discount price-->
                                 <td class="text-center">
+                                    {% if product.discount_price %}
+                                    {% if product.discount_price > product.sell_price %}
+                                    <span class="badge badge-danger">check prices</span>
+                                    {% else %}
                                     <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
-                                <!--end discounted price-->
+                                <!--end discount price-->
                             </tr>
                             {% endif %}
                             {% endfor %}
