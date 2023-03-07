@@ -164,8 +164,6 @@ def refresh_e_shop_product():
                                                fr_title=product_to_add.fr_title,
                                                ar_title=product_to_add.ar_title,
                                                sku=sku,
-                                               sell_price=product_to_add.sell_price,
-                                               discount_price=product_to_add.discount_price,
                                                )
             showcase_product.save()
             showcase_product.product.add(product_to_add)
