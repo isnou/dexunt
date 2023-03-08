@@ -14,28 +14,28 @@ def initialisation():
         raise Http404("No thumbs")
 
     if not intro_banners.filter(rank=1).exists():
-        IntroBanner(en_intro='first',
+        IntroBanner(en_title='first',
                     rank=1,
                     ).save()
     if not intro_banners.filter(rank=2).exists():
-        IntroBanner(en_intro='second',
+        IntroBanner(en_title='second',
                     rank=2,
                     ).save()
     if not intro_banners.filter(rank=3).exists():
-        IntroBanner(en_intro='third',
+        IntroBanner(en_title='third',
                     rank=3,
                     ).save()
 
     if not intro_thumbs.filter(rank=1).exists():
-        IntroThumb(en_intro='first',
+        IntroThumb(en_title='first',
                     rank=1,
                     ).save()
     if not intro_thumbs.filter(rank=2).exists():
-        IntroThumb(en_intro='second',
+        IntroThumb(en_title='second',
                     rank=2,
                     ).save()
     if not intro_thumbs.filter(rank=3).exists():
-        IntroThumb(en_intro='third',
+        IntroThumb(en_title='third',
                     rank=3,
                     ).save()
 
