@@ -1,4 +1,4 @@
-from .models import Layout
+from .models import IntroBanner, IntroThumb, Showcase
 
 
 def main_shop_content(request):

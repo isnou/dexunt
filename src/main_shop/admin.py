@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Layout
+from .models import IntroBanner, IntroThumb, Showcase
 
 
-class LayoutAdmin(admin.ModelAdmin):
-    list_display = ('type', 'en_first_title', 'thumb', 'rank')
+class IntroBannerAdmin(admin.ModelAdmin):
+    list_display = ('en_intro', 'en_title', 'thumb', 'en_description')
 
 
-admin.site.register(Layout, LayoutAdmin)
+admin.site.register(IntroBanner, IntroBannerAdmin)
+admin.site.register(IntroThumb)
+admin.site.register(Showcase)
 
