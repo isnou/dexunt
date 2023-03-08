@@ -1,6 +1,6 @@
 import random
 import string
-from main_shop.models import Layout
+from main_shop.models import IntroThumb, IntroBanner ,Showcase
 from .models import Product, Feature
 
 
