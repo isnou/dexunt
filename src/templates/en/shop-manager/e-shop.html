@@ -208,21 +208,17 @@
             <div class="card card-flush shadow-sm">
                 <div class="card-body">
                     <div class="card-body py-9">
-
-
-
                         <div class="row gx-9 h-100">
 
                             <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
-                            <div class="col-sm-6 mb-10 mb-sm-0">
-                                <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})"></div>
-                            </div>
+                                <div class="col-sm-6 mb-10 mb-sm-0">
+                                    <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})"></div>
+                                </div>
 
-
-                            <div class="col-sm-6">
-                                <div class="d-flex flex-column h-100">
+                                <div class="col-sm-6">
+                                    <div class="d-flex flex-column h-100">
 
 
                                     <div class="mb-7">
@@ -281,9 +277,11 @@
                                         <a href="#" class="text-primary opacity-75-hover fs-6 fw-semibold me-10">
                                             <i class="bi bi-image fs-2x"></i>
                                         </a>
-                                        <a href="#" class="text-primary opacity-75-hover fs-6 fw-semibold me-5">
+
+                                        <button type="submit" class="text-primary opacity-75-hover fs-6 fw-semibold me-5">
                                             <i class="bi bi-arrow-repeat fs-2x"></i>
-                                        </a>
+                                        </button>
+                                        
                                         <a href="#" class="text-primary opacity-75-hover fs-6 fw-semibold me-5">
                                             <i class="bi bi-arrow-down-square fs-2x"></i>
                                         </a>
@@ -292,16 +290,11 @@
                                         </a>
                                     </div>
 
-
-
+                                    </div>
                                 </div>
-                            </div>
-
                             </form>
 
                         </div>
-
-
                     </div>
                 </div>
             </div>
