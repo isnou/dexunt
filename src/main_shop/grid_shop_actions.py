@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Product, Layout
+from .models import Product, IntroThumb, IntroBanner ,Showcase
 
 
 def all_products(request):
