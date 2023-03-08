@@ -53,7 +53,7 @@ def edit_banner(request, index):
         raise Http404("No banners")
 
     if request.method == 'POST':
-        thumb = request.FILES.get('thumb', False)
+
         en_intro = request.POST.get('en_intro', False)
         en_title = request.POST.get('en_title', False)
         en_description = request.POST.get('en_description', False)
@@ -67,6 +67,7 @@ def edit_banner(request, index):
         ar_description = request.POST.get('ar_description', False)
         ar_button = request.POST.get('ar_button', False)
         button_link = request.POST.get('button_link', False)
+        thumb = request.FILES.get('thumb', False)
 
         if en_intro:
             intro_banner.en_intro = en_intro
@@ -98,8 +99,8 @@ def edit_banner(request, index):
         if button_link:
             intro_banner.link = button_link
 
-
-        intro_banner.thumb = thumb
+        if thumb:
+            intro_banner.thumb = thumb
 
         intro_banner.save()
 
