@@ -139,7 +139,7 @@ def e_shop(request, action, detail, index):
     intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
 
     if action == "edit_banner":
-        url = direction + e_shop_actions.edit_banner(request, detail).get('url')
+        url = direction + e_shop_actions.edit_banner(request, index).get('url')
     if action == "edit_thumb_banner":
         url = direction + e_shop_actions.thumb_banner(request, detail).get('url')
     if action == "add_movable_banner":
