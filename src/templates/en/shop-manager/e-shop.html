@@ -206,19 +206,18 @@
         {% for intro_banner in intro_banners %}
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
-                <div class="card-header">
-                    {% if intro_banner.rank == 1 %}
-                    <p class="text-gray-900 text-hover-primary fs-2 fw-bold text-muted">First Intro Banner</p>
-                    {% elif intro_banner.rank == 2 %}
-                    <p class="text-gray-900 text-hover-primary fs-2 fw-bold text-muted">Second Intro Banner</p>
-                    {% else %}
-                    <p class="text-gray-900 text-hover-primary fs-2 fw-bold text-muted">Third Intro Banner</p>
-                    {% endif %}
-                </div>
                 <div class="card-body">
                     <div class="card-body py-9">
+                        <div class="row">
+                            {% if intro_banner.rank == 1 %}
+                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">First Intro Banner</p>
+                            {% elif intro_banner.rank == 2 %}
+                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">Second Intro Banner</p>
+                            {% else %}
+                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">Third Intro Banner</p>
+                            {% endif %}
+                        </div>
                         <div class="row gx-9 h-100">
-
                             <form action="{% url 'e-shop' 'edit_banner' '#' intro_banner.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
@@ -347,7 +346,6 @@
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
