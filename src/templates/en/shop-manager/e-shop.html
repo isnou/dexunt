@@ -216,10 +216,11 @@
                                 <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})"></div>
                             </div>
 
+                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
                             <div class="col-sm-6">
                                 <div class="d-flex flex-column h-100">
-                                    <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                        {% csrf_token %}
+
 
                                     <div class="mb-7">
                                         <div class="d-flex flex-stack mb-6">
@@ -288,10 +289,12 @@
                                         </a>
                                     </div>
 
-                                    </form>
+
 
                                 </div>
                             </div>
+                            </form>
+                            
                         </div>
 
 
