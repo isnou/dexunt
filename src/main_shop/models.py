@@ -58,7 +58,6 @@ class Showcase(models.Model):
     fr_button = models.TextField(max_length=40, blank=True, null=True)
     ar_button = models.TextField(max_length=40, blank=True, null=True)
     # --------------------------------- additional information ---------------------------------
-    link = models.TextField(max_length=500, blank=True, null=True)
     thumb = models.ImageField(upload_to='main-shop/e-shop/thumb', blank=True, null=True)
     product = models.ManyToManyField(Product, blank=True)
     rank = models.IntegerField(blank=True, null=True)
