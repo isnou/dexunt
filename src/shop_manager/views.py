@@ -146,7 +146,7 @@ def e_shop(request, action, detail, index):
     if action == "down_banner":
         url = direction + e_shop_actions.down_banner().get('url')
         intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
-        
+
     if action == "edit_thumb":
         url = direction + e_shop_actions.edit_thumb(request, index).get('url')
     if action == "up_thumb":
