@@ -196,7 +196,7 @@ def edit_thumb(request, index):
         'url': url,
     }
 
-def up_thumb():
+def up_thumb(index):
     url = "/shop-manager/e-shop.html"
     selected_intro_thumb = IntroThumb.objects.all().get(rank=index)
 
@@ -217,7 +217,7 @@ def up_thumb():
         'url': url,
     }
 
-def down_thumb():
+def down_thumb(index):
     url = "/shop-manager/e-shop.html"
     selected_intro_thumb = IntroThumb.objects.all().get(rank=index)
 
