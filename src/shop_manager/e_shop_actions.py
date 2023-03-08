@@ -108,7 +108,7 @@ def edit_banner(request, index):
         'url': url,
     }
 
-def up_banner(index):
+def down_banner(index):
     url = "/shop-manager/e-shop.html"
     selected_intro_banner = IntroBanner.objects.all().get(rank=index)
 
@@ -129,7 +129,7 @@ def up_banner(index):
         'url': url,
     }
 
-def down_banner(index):
+def up_banner(index):
     url = "/shop-manager/e-shop.html"
     try:
         intro_banners = IntroBanner.objects.all()
