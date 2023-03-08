@@ -244,7 +244,11 @@
                                                 </h2>
                                                 <div id="kt_accordion_1_body_1" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
                                                     <div class="accordion-body">
-                                                        <input type="text" name="en_intro" class="form-control" placeholder="english intro" value="{{ intro_banner.en_intro }}">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" name="en_intro" id="en_intro" placeholder="english banner intro" value="{{ intro_banner.en_intro }}"/>
+                                                            <label for="en_intro">english banner intro</label>
+                                                        </div>
+                                                        
                                                         <input type="text" name="en_title" class="form-control" placeholder="english title" value="{{ intro_banner.en_title }}">
                                                         <input type="text" name="en_description" class="form-control" placeholder="english description" value="{{ intro_banner.en_description }}">
                                                         <input type="text" name="en_button" class="form-control" placeholder="english button" value="{{ intro_banner.en_button }}">
