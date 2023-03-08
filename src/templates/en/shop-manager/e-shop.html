@@ -507,29 +507,24 @@
                 <div class="card-body">
                     <div class="row gx-9 h-100">
                         <div class="tns tns-default" style="text-align: center;">
-                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal" data-bs-target="#single_flash_showcase" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-content="create a single flash showcase">
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal" data-bs-target="#single_flash_showcase">
                                 Single Flash
                             </a>
-                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary me-4" data-bs-toggle="modal"
-                               data-bs-target="#multiple_flash_showcase" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-content="create a multiple flash showcase">
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary me-4" data-bs-toggle="modal" data-bs-target="#multiple_flash_showcase">
                                 Multiple Flash
                             </a>
 
-                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal"
-                               data-bs-target="#grid_showcase" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-content="create a grid showcase">
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal" data-bs-target="#grid_showcase">
                                 Grid Showcase
                             </a>
-                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary me-4" data-bs-toggle="modal"
-                               data-bs-target="#slider_showcase" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-content="create a slider showcase">
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary me-4" data-bs-toggle="modal" data-bs-target="#slider_showcase">
                                 Slider Showcase
                             </a>
 
-                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal"
-                               data-bs-target="#single_ad_banner" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-content="create a single ad banner">
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal" data-bs-target="#single_ad_banner">
                                 Single Ad
                             </a>
-                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal"
-                               data-bs-target="#double_ad_banner" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-content="create a double ad banner">
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal" data-bs-target="#double_ad_banner">
                                 Double Ad
                             </a>
                         </div>
@@ -538,7 +533,7 @@
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title">Single Flash </h3>
+                                        <h3 class="modal-title">Single Flash Showcase</h3>
                                         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                             <span class="svg-icon svg-icon-1"></span>
                                         </div>
@@ -548,47 +543,16 @@
                                             {% csrf_token %}
                                             <div class="card-title">
                                                 <div class="card card-flush py-4">
-                                                    <!--photo input-->
-                                                    <div class="card-body text-center pt-0">
-                                                        <!--begin::Image input-->
-                                                        <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                            <!--begin::Image preview wrapper-->
-                                                            <div class="image-input-wrapper w-125px h-125px"></div>
-                                                <!--end::Image preview wrapper-->
-                                                <!--begin::Edit button-->
-                                                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                                <i class="bi bi-pencil-fill fs-7"></i>
-                                                    <!--begin::Inputs-->
-                                                                <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                                <input type="hidden" name="thumb_remove" />
-                                                    <!--end::Inputs-->
-                                                            </label>
-                                                <!--end::Edit button-->
-                                                <!--begin::Cancel button-->
-                                                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                                <i class="bi bi-x fs-2"></i>
-                                                            </span>
-                                                <!--end::Cancel button-->
-                                                <!--begin::Remove button-->
-                                                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                                <i class="bi bi-x fs-2"></i>
-                                                            </span>
-                                                <!--end::Remove button-->
-                                                        </div>
-                                            <!--end::Image input-->
-                                                    </div>
-                                        <!--end photo input-->
-
-                                        <!--title-->
+                                                    <!--title-->
                                                     <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
+                                                        <!--label-->
                                                         <label class="form-label">Title</label>
-                                            <!--end label-->
-                                            <!--input-->
+                                                        <!--end label-->
+                                                        <!--input-->
                                                         <input type="text" name="en_title" class="form-control mb-2">
-                                            <!--end input-->
+                                                        <!--end input-->
                                                     </div>
-                                        <!--end title-->
+                                                    <!--end title-->
 
                                         <!--french title-->
                                                     <div class="mb-10 fv-row fv-plugins-icon-container">
