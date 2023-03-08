@@ -2,15 +2,18 @@ from .models import IntroBanner, IntroThumb, Showcase
 
 
 def main_shop_content(request):
+    try:
+        intro_thumbs = IntroThumb.objects.all()
+    except IntroThumb.objects.all().DoesNotExist:
+        raise Http404("No thumbs")
+    try:
+        intro_banners = IntroBanner.objects.all()
+    except IntroBanner.objects.all().DoesNotExist:
+        raise Http404("No banners")
 
     return {
-        'first_main_banner': None,
-        'second_main_banner': None,
-        'third_main_banner': None,
-
-        'first_thumb_banner': None,
-        'second_thumb_banner': None,
-        'third_thumb_banner': None,
+        'intro_thumbs': intro_thumbs,
+        'intro_banners': intro_banners,
 
         'showcases_exists': None,
         'showcases': None,
