@@ -298,10 +298,22 @@
                                                 </h2>
                                                 <div id="body_3_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="header_3_{{ intro_banner.rank }}" data-bs-parent="#accordion_{{ intro_banner.rank }}">
                                                     <div class="accordion-body">
-                                                        <input type="text" name="ar_intro" class="form-control" placeholder="arabic intro" value="{{ intro_banner.ar_intro }}" dir="rtl">
-                                                        <input type="text" name="ar_title" class="form-control" placeholder="arabic title" value="{{ intro_banner.ar_title }}" dir="rtl">
-                                                        <input type="text" name="ar_description" class="form-control" placeholder="arabic description" value="{{ intro_banner.ar_description }}" dir="rtl">
-                                                        <input type="text" name="ar_button" class="form-control" placeholder="arabic button" value="{{ intro_banner.ar_button }}" dir="rtl">
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="ar_intro" id="ar_intro" placeholder="arabic banner intro" value="{{ intro_banner.ar_intro }}" dir="rtl"/>
+                                                            <label for="ar_intro">arabic banner intro</label>
+                                                        </div>
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="ar_title" id="ar_title" placeholder="arabic banner title" value="{{ intro_banner.ar_title }}" dir="rtl"/>
+                                                            <label for="ar_title">arabic banner title</label>
+                                                        </div>
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="ar_description" id="ar_description" placeholder="arabic banner description" value="{{ intro_banner.ar_description }}" dir="rtl"/>
+                                                            <label for="ar_description">arabic banner description</label>
+                                                        </div>
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="ar_button" id="ar_button" placeholder="arabic button title" value="{{ intro_banner.ar_button }}" dir="rtl"/>
+                                                            <label for="ar_button">arabic button title</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -311,7 +323,12 @@
 
 
                                         <div class="mb-2">
-                                            <input type="text" name="button_link" class="form-control" placeholder="banner url" value="{{ intro_banner.link }}">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon3">url</span>
+                                                <input type="text" name="button_link" id="basic-url" aria-describedby="basic-addon3" class="form-control" placeholder="banner url" value="{{ intro_banner.link }}">
+                                            </div>
+
+
                                         </div>
 
                                         <div class="d-flex align-self-end">
