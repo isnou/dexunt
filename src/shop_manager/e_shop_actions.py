@@ -116,7 +116,7 @@ def up_banner():
         raise Http404("No banners")
 
     for intro_banner in intro_banners:
-        if intro_banner.rank < 4:
+        if intro_banner.rank < 3:
             intro_banner.rank=+1
         else:
             intro_banner.rank=1
@@ -134,7 +134,7 @@ def down_banner():
         raise Http404("No banners")
 
     for intro_banner in intro_banners:
-        if intro_banner.rank > 0:
+        if intro_banner.rank > 1:
             intro_banner.rank=-1
         else:
             intro_banner.rank=3
