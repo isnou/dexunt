@@ -111,9 +111,10 @@ def edit_banner(request, index):
 def up_banner():
     url = "/shop-manager/e-shop.html"
     try:
-        intro_banners = IntroBanner.objects.all().get(rank=index)
+        intro_banners = IntroBanner.objects.all()
     except IntroBanner.objects.all().DoesNotExist:
         raise Http404("No banners")
+
     for intro_banner in intro_banners:
         if intro_banner.rank < 4:
             intro_banner.rank=+1
@@ -128,9 +129,10 @@ def up_banner():
 def down_banner():
     url = "/shop-manager/e-shop.html"
     try:
-        intro_banners = IntroBanner.objects.all().get(rank=index)
+        intro_banners = IntroBanner.objects.all()
     except IntroBanner.objects.all().DoesNotExist:
         raise Http404("No banners")
+    
     for intro_banner in intro_banners:
         if intro_banner.rank > 0:
             intro_banner.rank=-1
