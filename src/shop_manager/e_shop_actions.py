@@ -39,6 +39,11 @@ def initialisation():
                     rank=3,
                     ).save()
 
+    return {
+        'intro_banners': intro_banners,
+        'intro_thumbs':intro_thumbs,
+    }
+
 
 def main_banner(request, detail):
     url = "/shop-manager/e-shop.html"
