@@ -214,7 +214,21 @@
                                 {% csrf_token %}
 
                                 <div class="col-sm-6 mb-10 mb-sm-0">
-                                    <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})"></div>
+                                    <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})">
+                                        <div class="image-input-wrapper w-125px h-125px"></div>
+
+                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
+                                            <input type="hidden" name="photo_remove" />
+                                        </label>
+                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -274,12 +288,6 @@
                                     </div>
 
                                     <div class="d-flex align-self-end">
-<div class="image-input-wrapper w-125px h-125px"></div>
-                                        <label class="btn btn-light-secondary me-10" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change photo">
-                                            <i class="bi bi-image fs-2x"></i>
-                                            <input type="file" name="photo" accept=".png, .jpg, .jpeg" />
-                                            <input type="hidden" name="photo_remove" />
-                                        </label>
 
                                         <button type="submit" class="btn btn-light-secondary me-5">
                                             <i class="bi bi-arrow-repeat fs-2x"></i>
