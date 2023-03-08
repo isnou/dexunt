@@ -209,8 +209,7 @@
                 <div class="card-body">
                     <div class="card-body py-9">
 
-                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
+
 
                         <div class="row gx-9 h-100">
                             <div class="col-sm-6 mb-10 mb-sm-0">
@@ -219,6 +218,8 @@
 
                             <div class="col-sm-6">
                                 <div class="d-flex flex-column h-100">
+                                    <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
 
                                     <div class="mb-7">
                                         <div class="d-flex flex-stack mb-6">
@@ -287,11 +288,13 @@
                                         </a>
                                     </div>
 
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
 
-                        </form>
+
                     </div>
                 </div>
             </div>
