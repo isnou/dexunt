@@ -198,19 +198,20 @@ def edit_thumb(request, index):
 
 def up_thumb():
     url = "/shop-manager/e-shop.html"
-    try:
-        intro_thumbs = IntroThumb.objects.all()
-    except IntroThumb.objects.all().DoesNotExist:
-        raise Http404("No banners")
+    selected_intro_thumb = IntroThumb.objects.all().get(rank=index)
 
-    for intro_thumb in intro_thumbs:
-        if intro_thumb.rank == 1:
-            intro_thumb.rank = 2
-        elif intro_thumb.rank == 2:
-            intro_thumb.rank = 3
-        elif intro_thumb.rank == 3:
-            intro_thumb.rank = 1
-        intro_thumb.save()
+    if not index == 3:
+        next_intro_thumb = IntroThumb.objects.all().get(rank=index+1)
+    else:
+        next_intro_thumb = IntroThumb.objects.all().get(rank=1)
+    rank = selected_intro_thumb.rank
+    next_rank = next_intro_thumb.rank
+
+    selected_intro_thumb.rank = next_rank
+    next_intro_thumb.rank = rank
+
+    selected_intro_thumb.save()
+    next_intro_thumb.save()
 
     return {
         'url': url,
@@ -218,19 +219,20 @@ def up_thumb():
 
 def down_thumb():
     url = "/shop-manager/e-shop.html"
-    try:
-        intro_thumbs = IntroThumb.objects.all()
-    except IntroThumb.objects.all().DoesNotExist:
-        raise Http404("No banners")
+    selected_intro_thumb = IntroThumb.objects.all().get(rank=index)
 
-    for intro_thumb in intro_thumbs:
-        if intro_thumb.rank == 1:
-            intro_thumb.rank = 3
-        elif intro_thumb.rank == 2:
-            intro_thumb.rank = 1
-        elif intro_thumb.rank == 3:
-            intro_thumb.rank = 2
-        intro_thumb.save()
+    if not index == 1:
+        next_intro_thumb = IntroThumb.objects.all().get(rank=index-1)
+    else:
+        next_intro_thumb = IntroThumb.objects.all().get(rank=3)
+    rank = selected_intro_thumb.rank
+    next_rank = next_intro_thumb.rank
+
+    selected_intro_thumb.rank = next_rank
+    next_intro_thumb.rank = rank
+
+    selected_intro_thumb.save()
+    next_intro_thumb.save()
 
     return {
         'url': url,
