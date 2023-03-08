@@ -77,7 +77,7 @@
                         {% for intro_thumb in intro_thumbs %}
                         <div>
                             <div class="row align-items-center">
-                                <div class="col-md-6 order-md-2"><img class="d-block mx-auto" src="{% get_media_prefix %}{{ second_main_banner.thumb }}" alt="{{ second_main_banner.type }}"></div>
+                                <div class="col-md-6 order-md-2"><img class="d-block mx-auto" src="{% get_media_prefix %}{{ intro_thumb.thumb }}" alt="{{ intro_thumb.en_intro }}"></div>
                                 <div class="col-lg-5 col-md-6 offset-lg-1 order-md-1 pt-4 pb-md-4 text-center text-md-start">
                                     <h2 class="fw-light pb-1 from-bottom">{{ intro_thumb.en_title }}</h2>
                                     <h1 class="display-4 from-bottom delay-1">{{ intro_thumb.en_intro }}</h1>
