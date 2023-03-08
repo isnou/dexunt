@@ -244,14 +244,22 @@
                                                 </h2>
                                                 <div id="kt_accordion_1_body_1" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
                                                     <div class="accordion-body">
-                                                        <div class="form-floating">
+                                                        <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="en_intro" id="en_intro" placeholder="english banner intro" value="{{ intro_banner.en_intro }}"/>
                                                             <label for="en_intro">english banner intro</label>
                                                         </div>
-                                                        
-                                                        <input type="text" name="en_title" class="form-control" placeholder="english title" value="{{ intro_banner.en_title }}">
-                                                        <input type="text" name="en_description" class="form-control" placeholder="english description" value="{{ intro_banner.en_description }}">
-                                                        <input type="text" name="en_button" class="form-control" placeholder="english button" value="{{ intro_banner.en_button }}">
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="en_title" id="en_title" placeholder="english banner title" value="{{ intro_banner.en_title }}"/>
+                                                            <label for="en_title">english banner title</label>
+                                                        </div>
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="en_description" id="en_description" placeholder="english banner description" value="{{ intro_banner.en_description }}"/>
+                                                            <label for="en_description">english banner description</label>
+                                                        </div>
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="en_button" id="en_button" placeholder="english button title" value="{{ intro_banner.en_button }}"/>
+                                                            <label for="en_button">english button title</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
