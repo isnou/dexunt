@@ -149,70 +149,86 @@ def down_banner():
     }
 
 
-def thumb_banner(request, detail):
+def edit_thumb(request, index):
     url = "/shop-manager/e-shop.html"
     try:
-        layouts = Layout.objects.all()
-    except Layout.DoesNotExist:
-        raise Http404("No products")
-
-    if layouts.filter(type=detail).exists():
-        layout = layouts.get(type=detail)
-    else:
-        layout = Layout(type=detail)
+        intro_thumb = IntroThumb.objects.all().get(rank=index)
+    except IntroThumb.objects.all().DoesNotExist:
+        raise Http404("No banners")
 
     if request.method == 'POST':
-        en_first_title = request.POST.get('en_first_title', False)
-        if not en_first_title:
-            en_first_title = layout.en_first_title
-        en_second_title = request.POST.get('en_second_title', False)
-        if not en_second_title:
-            en_second_title = layout.en_second_title
+
+        en_title = request.POST.get('en_title', False)
         en_button = request.POST.get('en_button', False)
-        if not en_button:
-            en_button = layout.en_button
-
-        fr_first_title = request.POST.get('fr_first_title', False)
-        if not fr_first_title:
-            fr_first_title = layout.fr_first_title
-        fr_second_title = request.POST.get('fr_second_title', False)
-        if not fr_second_title:
-            fr_second_title = layout.fr_second_title
+        fr_title = request.POST.get('fr_title', False)
         fr_button = request.POST.get('fr_button', False)
-        if not fr_button:
-            fr_button = layout.fr_button
-
-        ar_first_title = request.POST.get('ar_first_title', False)
-        if not ar_first_title:
-            ar_first_title = layout.ar_first_title
-        ar_second_title = request.POST.get('ar_second_title', False)
-        if not ar_second_title:
-            ar_second_title = layout.ar_second_title
+        ar_title = request.POST.get('ar_title', False)
         ar_button = request.POST.get('ar_button', False)
-        if not ar_button:
-            ar_button = layout.ar_button
-
-
+        button_link = request.POST.get('button_link', False)
         thumb = request.FILES.get('thumb', False)
-        if not thumb:
-            thumb = layout.thumb
-        layout.en_first_title = en_first_title
-        layout.en_second_title = en_second_title
-        layout.en_button = en_button
 
-        layout.fr_first_title = fr_first_title
-        layout.fr_second_title = fr_second_title
-        layout.fr_button = fr_button
+        if en_title:
+            intro_thumb.en_title = en_title
+        if en_button:
+            intro_thumb.en_button = en_button
 
-        layout.ar_first_title = ar_first_title
-        layout.ar_second_title = ar_second_title
-        layout.ar_button = ar_button
+        if fr_title:
+            intro_thumb.fr_title = fr_title
+        if fr_button:
+            intro_thumb.fr_button = fr_button
 
-        layout.link = link
+        if ar_title:
+            intro_thumb.ar_title = ar_title
+        if ar_button:
+            intro_thumb.ar_button = ar_button
 
-        layout.thumb = thumb
+        if button_link:
+            intro_thumb.link = button_link
 
-        layout.save()
+        if thumb:
+            intro_thumb.thumb = thumb
+
+        intro_thumb.save()
+
+    return {
+        'url': url,
+    }
+
+def up_thumb():
+    url = "/shop-manager/e-shop.html"
+    try:
+        intro_thumbs = IntroThumb.objects.all()
+    except IntroThumb.objects.all().DoesNotExist:
+        raise Http404("No banners")
+
+    for intro_thumb in intro_thumbs:
+        if intro_thumb.rank == 1:
+            intro_thumb.rank = 2
+        elif intro_thumb.rank == 2:
+            intro_thumb.rank = 3
+        elif intro_thumb.rank == 3:
+            intro_thumb.rank = 1
+        intro_thumb.save()
+
+    return {
+        'url': url,
+    }
+
+def down_thumb():
+    url = "/shop-manager/e-shop.html"
+    try:
+        intro_thumbs = IntroThumb.objects.all()
+    except IntroThumb.objects.all().DoesNotExist:
+        raise Http404("No banners")
+
+    for intro_thumb in intro_thumbs:
+        if intro_thumb.rank == 1:
+            intro_thumb.rank = 3
+        elif intro_thumb.rank == 2:
+            intro_thumb.rank = 1
+        elif intro_thumb.rank == 3:
+            intro_thumb.rank = 2
+        intro_thumb.save()
 
     return {
         'url': url,
