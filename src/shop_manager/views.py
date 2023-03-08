@@ -11,6 +11,10 @@ def manager_dashboard(request, action):
     url = direction + "/shop-manager/dashboard.html"
     for product in ShowcaseProduct.objects.all():
         product.delete()
+    for thumb in IntroThumb.objects.all():
+        thumb.delete()
+    for banner in IntroBanner.objects.all():
+        banner.delete()
 
     context = {
     }
