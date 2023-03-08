@@ -132,7 +132,7 @@ def down_banner():
         intro_banners = IntroBanner.objects.all()
     except IntroBanner.objects.all().DoesNotExist:
         raise Http404("No banners")
-    
+
     for intro_banner in intro_banners:
         if intro_banner.rank > 0:
             intro_banner.rank=-1
