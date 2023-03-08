@@ -5,17 +5,17 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class IntroBanner(models.Model):
     # --------------------------------- layout titles ------------------------------------------
-    en_intro = models.TextField(max_length=500, blank=True, null=True)
-    en_title = models.TextField(max_length=500, blank=True, null=True)
-    en_description = models.TextField(max_length=500, blank=True, null=True)
+    en_intro = models.TextField(max_length=300, blank=True, null=True)
+    en_title = models.TextField(max_length=300, blank=True, null=True)
+    en_description = models.TextField(max_length=300, blank=True, null=True)
 
-    fr_intro = models.TextField(max_length=500, blank=True, null=True)
-    fr_title = models.TextField(max_length=500, blank=True, null=True)
-    fr_description = models.TextField(max_length=500, blank=True, null=True)
+    fr_intro = models.TextField(max_length=300, blank=True, null=True)
+    fr_title = models.TextField(max_length=300, blank=True, null=True)
+    fr_description = models.TextField(max_length=300, blank=True, null=True)
 
-    ar_intro = models.TextField(max_length=500, blank=True, null=True)
-    ar_title = models.TextField(max_length=500, blank=True, null=True)
-    ar_description = models.TextField(max_length=500, blank=True, null=True)
+    ar_intro = models.TextField(max_length=300, blank=True, null=True)
+    ar_title = models.TextField(max_length=300, blank=True, null=True)
+    ar_description = models.TextField(max_length=300, blank=True, null=True)
     # --------------------------------- buttons ------------------------------------------------
     en_button = models.TextField(max_length=40, blank=True, null=True)
     fr_button = models.TextField(max_length=40, blank=True, null=True)
