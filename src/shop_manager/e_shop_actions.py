@@ -54,6 +54,50 @@ def edit_banner(request, index):
 
     if request.method == 'POST':
         thumb = request.FILES.get('thumb', False)
+        en_intro = request.POST.get('en_intro', False)
+        en_title = request.POST.get('en_title', False)
+        en_description = request.POST.get('en_description', False)
+        en_button = request.POST.get('en_button', False)
+        fr_intro = request.POST.get('fr_intro', False)
+        fr_title = request.POST.get('fr_title', False)
+        fr_description = request.POST.get('fr_description', False)
+        fr_button = request.POST.get('fr_button', False)
+        ar_intro = request.POST.get('ar_intro', False)
+        ar_title = request.POST.get('ar_title', False)
+        ar_description = request.POST.get('ar_description', False)
+        ar_button = request.POST.get('ar_button', False)
+        button_link = request.POST.get('button_link', False)
+
+        if en_intro:
+            intro_banner.en_intro = en_intro
+        if en_title:
+            intro_banner.en_title = en_title
+        if en_description:
+            intro_banner.en_description = en_description
+        if en_button:
+            intro_banner.en_button = en_button
+
+        if fr_intro:
+            intro_banner.fr_intro = fr_intro
+        if fr_title:
+            intro_banner.fr_title = fr_title
+        if fr_description:
+            intro_banner.fr_description = fr_description
+        if fr_button:
+            intro_banner.fr_button = fr_button
+
+        if ar_intro:
+            intro_banner.ar_intro = ar_intro
+        if ar_title:
+            intro_banner.ar_title = ar_title
+        if ar_description:
+            intro_banner.ar_description = ar_description
+        if ar_button:
+            intro_banner.ar_button = ar_button
+
+        if button_link:
+            intro_banner.link = button_link
+
 
         intro_banner.thumb = thumb
 
