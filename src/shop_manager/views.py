@@ -132,7 +132,7 @@ def inventory_preparation(request, action, sku):
     return render(request, url, context)
 
 
-def e_shop(request, action, detail, index):
+def e_shop(request, action, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
     intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
