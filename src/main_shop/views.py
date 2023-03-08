@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from .models import Product
 from sell_manager.models import Clip
-from .models import Layout
+from .models import IntroThumb, IntroBanner ,Showcase
 from . import grid_shop_actions, product_actions
 
 
