@@ -206,6 +206,15 @@
         {% for intro_banner in intro_banners %}
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
+                <div class="card-header">
+                    {% if intro_banner.rank == 1 %}
+                    <p class="h6 text-muted">First Intro Banner</p>
+                    {% elif intro_banner.rank == 2 %}
+                    <p class="h6 text-muted">Second Intro Banner</p>
+                    {% else %}
+                    <p class="h6 text-muted">Third Intro Banner</p>
+                    {% endif %}
+                </div>
                 <div class="card-body">
                     <div class="card-body py-9">
                         <div class="row gx-9 h-100">
@@ -233,8 +242,6 @@
 
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
-
-                                        <!--begin::Accordion-->
                                         <div class="accordion mb-2" id="accordion_{{ intro_banner.rank }}">
                                             <div class="accordion-item">
                                                 <h6 class="accordion-header" id="header_{{ intro_banner.rank }}">
@@ -318,17 +325,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--end::Accordion-->
-
-
-
                                         <div class="mb-5">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon3">url</span>
                                                 <input type="text" name="button_link" id="basic-url" aria-describedby="basic-addon3" class="form-control" placeholder="banner url" value="{{ intro_banner.link }}">
                                             </div>
-
-
                                         </div>
 
                                         <div class="d-flex align-self-end">
