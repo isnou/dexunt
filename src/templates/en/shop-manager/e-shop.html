@@ -237,7 +237,6 @@
                                         </span>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
                                         <div class="accordion mb-2" id="accordion_{{ intro_banner.rank }}">
@@ -334,10 +333,10 @@
                                             <button type="submit" class="btn btn-light-secondary me-5">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
                                             </button>
-                                            <button href="#" class="btn btn-light-secondary me-5">
+                                            <button href="{% url 'e-shop' 'down_banner' '#' intro_banner.rank %}" class="btn btn-light-secondary me-5">
                                                 <i class="bi bi-arrow-down-square fs-2x"></i>
                                             </button>
-                                            <button href="#" class="btn btn-light-secondary">
+                                            <button href="{% url 'e-shop' 'up_banner' '#' intro_banner.rank %}" class="btn btn-light-secondary">
                                                 <i class="bi bi-arrow-up-square fs-2x"></i>
                                             </button>
                                         </div>
@@ -346,6 +345,7 @@
                                 </div>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>

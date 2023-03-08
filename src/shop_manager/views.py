@@ -140,6 +140,10 @@ def e_shop(request, action, detail, index):
 
     if action == "edit_banner":
         url = direction + e_shop_actions.edit_banner(request, index).get('url')
+    if action == "up_banner":
+        url = direction + e_shop_actions.up_banner().get('url')
+    if action == "down_banner":
+        url = direction + e_shop_actions.down_banner().get('url')
     if action == "edit_thumb_banner":
         url = direction + e_shop_actions.thumb_banner(request, detail).get('url')
     if action == "add_movable_banner":

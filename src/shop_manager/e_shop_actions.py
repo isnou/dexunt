@@ -108,6 +108,40 @@ def edit_banner(request, index):
         'url': url,
     }
 
+def up_banner():
+    url = "/shop-manager/e-shop.html"
+    try:
+        intro_banners = IntroBanner.objects.all().get(rank=index)
+    except IntroBanner.objects.all().DoesNotExist:
+        raise Http404("No banners")
+    for intro_banner in intro_banners:
+        if intro_banner.rank < 4:
+            intro_banner.rank=+1
+        else:
+            intro_banner.rank=1
+        intro_banner.save()
+
+    return {
+        'url': url,
+    }
+
+def down_banner():
+    url = "/shop-manager/e-shop.html"
+    try:
+        intro_banners = IntroBanner.objects.all().get(rank=index)
+    except IntroBanner.objects.all().DoesNotExist:
+        raise Http404("No banners")
+    for intro_banner in intro_banners:
+        if intro_banner.rank > 0:
+            intro_banner.rank=-1
+        else:
+            intro_banner.rank=3
+        intro_banner.save()
+
+    return {
+        'url': url,
+    }
+
 
 def thumb_banner(request, detail):
     url = "/shop-manager/e-shop.html"
