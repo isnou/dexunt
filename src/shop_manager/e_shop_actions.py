@@ -45,7 +45,7 @@ def initialisation():
     }
 
 
-def main_banner(request, detail):
+def edit_banner(request, index):
     url = "/shop-manager/e-shop.html"
     try:
         layouts = Layout.objects.all()
