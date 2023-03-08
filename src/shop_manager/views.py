@@ -141,10 +141,10 @@ def e_shop(request, action, detail, index):
     if action == "edit_banner":
         url = direction + e_shop_actions.edit_banner(request, index).get('url')
     if action == "up_banner":
-        url = direction + e_shop_actions.up_banner().get('url')
+        url = direction + e_shop_actions.up_banner(index).get('url')
         intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
     if action == "down_banner":
-        url = direction + e_shop_actions.down_banner().get('url')
+        url = direction + e_shop_actions.down_banner(index).get('url')
         intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
 
     if action == "edit_thumb":
