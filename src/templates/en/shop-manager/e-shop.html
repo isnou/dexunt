@@ -214,7 +214,7 @@
                                 {% csrf_token %}
 
                                 <div class="col-sm-6 mb-10 mb-sm-0">
-                                    <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})">
+                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})">
                                         <div class="image-input-wrapper min-h-400px min-h-sm-100 h-100"></div>
 
                                         <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
