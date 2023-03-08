@@ -135,8 +135,8 @@ def inventory_preparation(request, action, sku):
 def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
-    intro_banners = e_shop_actions.initialisation().get('intro_banners')
-    intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs')
+    intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
+    intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
 
     if action == "edit_main_banner":
         url = direction + e_shop_actions.main_banner(request, detail).get('url')
