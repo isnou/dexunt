@@ -3,6 +3,36 @@ import string
 from main_shop.models import IntroThumb, IntroBanner ,Showcase
 from .models import Product, Feature
 
+def initialisation():
+    try:
+        intro_banners = IntroBanner.objects.all()
+    except IntroBanner.DoesNotExist:
+        raise Http404("No banners")
+    try:
+        intro_thumbs = IntroThumb.objects.all()
+    except IntroThumb.DoesNotExist:
+        raise Http404("No thumbs")
+
+    if not intro_banners.filter(rank=1).exists():
+        IntroBanner(rank=1,
+                    ).save()
+    if not intro_banners.filter(rank=2).exists():
+        IntroBanner(rank=2,
+                    ).save()
+    if not intro_banners.filter(rank=3).exists():
+        IntroBanner(rank=3,
+                    ).save()
+
+    if not intro_thumbs.filter(rank=1).exists():
+        IntroThumb(rank=1,
+                    ).save()
+    if not intro_thumbs.filter(rank=2).exists():
+        IntroThumb(rank=2,
+                    ).save()
+    if not intro_thumbs.filter(rank=3).exists():
+        IntroThumb(rank=3,
+                    ).save()
+
 
 def main_banner(request, detail):
     url = "/shop-manager/e-shop.html"
@@ -132,9 +162,6 @@ def thumb_banner(request, detail):
         if not ar_button:
             ar_button = layout.ar_button
 
-        link = request.POST.get('link', False)
-        if not link:
-            link = layout.link
 
         thumb = request.FILES.get('thumb', False)
         if not thumb:
