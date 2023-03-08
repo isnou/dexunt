@@ -140,28 +140,6 @@ def e_shop(request, action, index):
 
     if action == "edit_banner":
         url = direction + e_shop_actions.edit_banner(request, index).get('url')
-    if action == "edit_thumb_banner":
-        url = direction + e_shop_actions.thumb_banner(request, detail).get('url')
-    if action == "add_movable_banner":
-        url = direction + e_shop_actions.add_movable_banner(request).get('url')
-    if action == "add_showcase":
-        url = direction + e_shop_actions.add_showcase(request).get('url')
-    if action == "delete":
-        url = direction + e_shop_actions.delete(index).get('url')
-    if action == "up":
-        url = direction + e_shop_actions.up(index).get('url')
-    if action == "down":
-        url = direction + e_shop_actions.down(index).get('url')
-    if action == "refresh_points":
-        url = direction + clips_actions.points(request).get('url')
-    if action == "refresh_delivery":
-        url = direction + clips_actions.delivery(request).get('url')
-    if action == "refresh_solidarity":
-        url = direction + clips_actions.solidarity(request).get('url')
-    if action == "points_to_product":
-        url = direction + clips_actions.points_to_product(request, index).get('url')
-    if action == "value_to_product":
-        url = direction + clips_actions.value_to_product(request, index).get('url')
 
     context = {
         'intro_banners': intro_banners,
