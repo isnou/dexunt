@@ -1002,7 +1002,8 @@
                 <div class="card-body">
                     <div class="card-body py-1">
                         <div class="row mb-4" style="text-align: center;">
-                            
+                            <div class="col">
+
                             {% if showcase.publish %}
                             <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" title="deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="left">
                                 <span class="badge badge-circle badge-warning ms-2"></span>
@@ -1012,7 +1013,7 @@
                                 <span class="badge badge-circle badge-light ms-2"></span>
                             </a>
                             {% endif %}
-
+                                </div>
                             <p class="text-gray-900 text-hover-primary fs-2 fw-bold">{{ showcase.en_title }} - {{ showcase.rank }}</p>
                         </div>
                         <div class="row gx-9 h-100">
