@@ -613,6 +613,22 @@ def edit_big_ad(request, detail):
         'url': url,
     }
 
+def up_showcase(detail, index):
+    url = "/shop-manager/e-shop.html"
+
+
+    return {
+        'url': url,
+    }
+
+def down_showcase(detail, index):
+    url = "/shop-manager/e-shop.html"
+
+
+    return {
+        'url': url,
+    }
+
 
 
 
@@ -702,20 +718,6 @@ def add_showcase(request):
         'url': url,
     }
 
-
-def delete(index):
-    url = "/shop-manager/e-shop.html"
-    ranked_layouts = Layout.objects.all().filter(type='showcase').order_by('rank')
-    Layout.objects.all().get(id=index).delete()
-    rank = 1
-    for selected_layout in ranked_layouts:
-        selected_layout.rank = rank
-        rank += 1
-        selected_layout.save()
-
-    return {
-        'url': url,
-    }
 
 
 def up(index):
