@@ -616,12 +616,12 @@ def edit_big_ad(request, detail):
 def up_showcase(detail, index):
     url = "/shop-manager/e-shop.html"
     selected_showcase = Showcase.objects.all().get(sku=detail)
-    max_rank = Showcase.objects.all().count() + 1
+    max_rank = Showcase.objects.all().count()
 
     if index == max_rank:
         next_showcase = Showcase.objects.all().get(rank=1)
     else:
-        next_showcase = Showcase.objects.all().get(rank=(index + 1))
+        next_showcase = Showcase.objects.all().get(rank=index + 1)
 
     selected_showcase.rank = next_showcase.rank
     next_showcase.rank = index
