@@ -331,7 +331,8 @@ def edit_multiple_flash(request, detail):
             rank = 1
         selected_showcase = Showcase(rank=rank,
                                      type=type,
-                                     ).save()
+                                     )
+        selected_showcase.save()
 
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
