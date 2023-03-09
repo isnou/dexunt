@@ -1121,11 +1121,15 @@
 
                                         <div class="d-flex align-self-end">
                                             {% if showcase.publish %}
-                                            <button type="submit" class="btn btn-light-secondary me-5">
+                                            <a href="#" class="btn btn-light-secondary me-5">
                                                 DEACTIVATE
                                                 <span class="badge badge-circle badge-warning ms-2"></span>
-                                            </button>
+                                            </a>
                                             {% else %}
+                                            <a href="#" class="btn btn-light-secondary me-5">
+                                                ACTIVATE
+                                                <span class="badge badge-circle badge-light ms-2"></span>
+                                            </a>
                                             {% endif %}
                                             <a href="{% url 'e-shop' 'delete_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5">
                                                 <i class="bi bi-trash fs-2x"></i>
