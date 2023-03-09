@@ -1006,6 +1006,7 @@
                 </div>
             </div>
         </div>
+        {% for showcase in showcases %}
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
                 <div class="card-body">
@@ -1016,13 +1017,14 @@
                             </div>
 
                             <div class="col-sm-6">
-                                ads & showcases
+                                {{ showcase.en_title }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
     <!--end ads & showcases pan-->
 

@@ -10,11 +10,15 @@ def main_shop_content(request):
         intro_banners = IntroBanner.objects.all().order_by('rank')
     except IntroBanner.objects.all().DoesNotExist:
         raise Http404("No banners")
+    try:
+        showcases = Showcase.objects.all().order_by('rank')
+    except Showcase.objects.all().DoesNotExist:
+        raise Http404("No showcases")
 
     return {
         'intro_thumbs': intro_thumbs,
         'intro_banners': intro_banners,
+        'showcases': showcases,
 
         'showcases_exists': None,
-        'showcases': None,
     }
