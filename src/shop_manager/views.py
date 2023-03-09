@@ -171,6 +171,8 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.edit_small_ad(request, detail).get('url')
     if action == "edit_big_ad":
         url = direction + e_shop_actions.edit_big_ad(request, detail).get('url')
+    if action == "delete_showcase":
+        Showcase.objects.all().get(sku=detail).delete()
 
 
 
