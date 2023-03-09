@@ -294,8 +294,6 @@ def edit_single_flash(request, detail):
         if ar_button:
             selected_showcase.ar_button = ar_button
 
-        if thumb:
-            selected_showcase.thumb = thumb
 
         if day:
             selected_showcase.day = day
@@ -303,6 +301,8 @@ def edit_single_flash(request, detail):
             selected_showcase.month = month
         if year:
             selected_showcase.year = year
+
+        selected_showcase.thumb = thumb
 
         selected_showcase.save()
 
