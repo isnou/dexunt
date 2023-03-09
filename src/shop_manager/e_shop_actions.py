@@ -621,7 +621,7 @@ def up_showcase(detail, index):
     if index == max_rank:
         next_showcase = Showcase.objects.all().get(rank=1)
     else:
-        next_showcase = Showcase.objects.all().get(rank=index + 1)
+        next_showcase = Showcase.objects.all().get(rank=(index + 1))
 
     selected_showcase.rank = next_showcase.rank
     next_showcase.rank = index
