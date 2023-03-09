@@ -241,12 +241,12 @@
                                     <div class="d-flex flex-column h-100">
                                         <div class="accordion mb-2" id="banner_{{ intro_banner.rank }}">
                                             <div class="accordion-item">
-                                                <h6 class="accordion-header" id="header_{{ intro_banner.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="body_{{ intro_banner.rank }}">
+                                                <h6 class="accordion-header" id="banner_header_{{ intro_banner.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#banner_body_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="banner_body_{{ intro_banner.rank }}">
                                                         <p class="h6 text-muted">Parameters</p>
                                                     </button>
                                                 </h6>
-                                                <div id="body_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="header_{{ intro_banner.rank }}" data-bs-parent="#banner_{{ intro_banner.rank }}">
+                                                <div id="banner_body_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="banner_header_{{ intro_banner.rank }}" data-bs-parent="#banner_{{ intro_banner.rank }}">
                                                     <div class="accordion-body">
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="en_intro" id="en_intro" placeholder="english banner intro" value="{{ intro_banner.en_intro }}"/>
