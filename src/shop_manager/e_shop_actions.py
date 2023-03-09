@@ -255,7 +255,6 @@ def edit_single_flash(request, detail):
         selected_showcase = None
 
     type='single_flash'
-
     if not selected_showcase:
         if showcases:
             rank = showcases.count() + 1
@@ -320,10 +319,7 @@ def edit_multiple_flash(request, detail):
     else:
         selected_showcase = None
 
-
-
     type='multiple_flash'
-
     if not selected_showcase:
         if showcases:
             rank = showcases.count() + 1
@@ -366,6 +362,226 @@ def edit_multiple_flash(request, detail):
             selected_showcase.month = month
         if year:
             selected_showcase.year = year
+
+        selected_showcase.save()
+
+    return {
+        'url': url,
+    }
+
+def edit_grid_showcase(request, detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        showcases = Showcase.objects.all()
+    except Showcase.objects.all().DoesNotExist:
+        raise Http404("No showcases")
+
+    if not detail =='new':
+        try:
+            selected_showcase = Showcase.objects.all().get(sku=detail)
+        except Showcase.objects.all().DoesNotExist:
+            raise Http404("No showcase")
+    else:
+        selected_showcase = None
+
+    type='grid_showcase'
+    if not selected_showcase:
+        if showcases:
+            rank = showcases.count() + 1
+        else:
+            rank = 1
+        selected_showcase = Showcase(rank=rank,
+                                     type=type,
+                                     )
+        selected_showcase.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        en_button = request.POST.get('en_button', False)
+        fr_title = request.POST.get('fr_title', False)
+        fr_button = request.POST.get('fr_button', False)
+        ar_title = request.POST.get('ar_title', False)
+        ar_button = request.POST.get('ar_button', False)
+
+        if en_title:
+            selected_showcase.en_title = en_title
+        if en_button:
+            selected_showcase.en_button = en_button
+
+        if fr_title:
+            selected_showcase.fr_title = fr_title
+        if fr_button:
+            selected_showcase.fr_button = fr_button
+
+        if ar_title:
+            selected_showcase.ar_title = ar_title
+        if ar_button:
+            selected_showcase.ar_button = ar_button
+
+        selected_showcase.save()
+
+    return {
+        'url': url,
+    }
+
+def edit_slider_showcase(request, detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        showcases = Showcase.objects.all()
+    except Showcase.objects.all().DoesNotExist:
+        raise Http404("No showcases")
+
+    if not detail =='new':
+        try:
+            selected_showcase = Showcase.objects.all().get(sku=detail)
+        except Showcase.objects.all().DoesNotExist:
+            raise Http404("No showcase")
+    else:
+        selected_showcase = None
+
+    type='slider_showcase'
+    if not selected_showcase:
+        if showcases:
+            rank = showcases.count() + 1
+        else:
+            rank = 1
+        selected_showcase = Showcase(rank=rank,
+                                     type=type,
+                                     )
+        selected_showcase.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        en_button = request.POST.get('en_button', False)
+        fr_title = request.POST.get('fr_title', False)
+        fr_button = request.POST.get('fr_button', False)
+        ar_title = request.POST.get('ar_title', False)
+        ar_button = request.POST.get('ar_button', False)
+
+        if en_title:
+            selected_showcase.en_title = en_title
+        if en_button:
+            selected_showcase.en_button = en_button
+
+        if fr_title:
+            selected_showcase.fr_title = fr_title
+        if fr_button:
+            selected_showcase.fr_button = fr_button
+
+        if ar_title:
+            selected_showcase.ar_title = ar_title
+        if ar_button:
+            selected_showcase.ar_button = ar_button
+
+        selected_showcase.save()
+
+    return {
+        'url': url,
+    }
+
+def edit_small_ad(request, detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        showcases = Showcase.objects.all()
+    except Showcase.objects.all().DoesNotExist:
+        raise Http404("No showcases")
+
+    if not detail =='new':
+        try:
+            selected_showcase = Showcase.objects.all().get(sku=detail)
+        except Showcase.objects.all().DoesNotExist:
+            raise Http404("No showcase")
+    else:
+        selected_showcase = None
+
+    type='small_ad'
+    if not selected_showcase:
+        if showcases:
+            rank = showcases.count() + 1
+        else:
+            rank = 1
+        selected_showcase = Showcase(rank=rank,
+                                     type=type,
+                                     )
+        selected_showcase.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        en_button = request.POST.get('en_button', False)
+        fr_title = request.POST.get('fr_title', False)
+        fr_button = request.POST.get('fr_button', False)
+        ar_title = request.POST.get('ar_title', False)
+        ar_button = request.POST.get('ar_button', False)
+
+        if en_title:
+            selected_showcase.en_title = en_title
+        if en_button:
+            selected_showcase.en_button = en_button
+
+        if fr_title:
+            selected_showcase.fr_title = fr_title
+        if fr_button:
+            selected_showcase.fr_button = fr_button
+
+        if ar_title:
+            selected_showcase.ar_title = ar_title
+        if ar_button:
+            selected_showcase.ar_button = ar_button
+
+        selected_showcase.save()
+
+    return {
+        'url': url,
+    }
+
+def edit_big_ad(request, detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        showcases = Showcase.objects.all()
+    except Showcase.objects.all().DoesNotExist:
+        raise Http404("No showcases")
+
+    if not detail =='new':
+        try:
+            selected_showcase = Showcase.objects.all().get(sku=detail)
+        except Showcase.objects.all().DoesNotExist:
+            raise Http404("No showcase")
+    else:
+        selected_showcase = None
+
+    type='big_ad'
+    if not selected_showcase:
+        if showcases:
+            rank = showcases.count() + 1
+        else:
+            rank = 1
+        selected_showcase = Showcase(rank=rank,
+                                     type=type,
+                                     )
+        selected_showcase.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        en_button = request.POST.get('en_button', False)
+        fr_title = request.POST.get('fr_title', False)
+        fr_button = request.POST.get('fr_button', False)
+        ar_title = request.POST.get('ar_title', False)
+        ar_button = request.POST.get('ar_button', False)
+
+        if en_title:
+            selected_showcase.en_title = en_title
+        if en_button:
+            selected_showcase.en_button = en_button
+
+        if fr_title:
+            selected_showcase.fr_title = fr_title
+        if fr_button:
+            selected_showcase.fr_button = fr_button
+
+        if ar_title:
+            selected_showcase.ar_title = ar_title
+        if ar_button:
+            selected_showcase.ar_button = ar_button
 
         selected_showcase.save()
 

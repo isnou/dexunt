@@ -163,6 +163,14 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.edit_single_flash(request, detail).get('url')
     if action == "edit_multiple_flash":
         url = direction + e_shop_actions.edit_multiple_flash(request, detail).get('url')
+    if action == "edit_grid_showcase":
+        url = direction + e_shop_actions.edit_grid_showcase(request, detail).get('url')
+    if action == "edit_slider_showcase":
+        url = direction + e_shop_actions.edit_slider_showcase(request, detail).get('url')
+    if action == "edit_small_ad":
+        url = direction + e_shop_actions.edit_small_ad(request, detail).get('url')
+    if action == "edit_big_ad":
+        url = direction + e_shop_actions.edit_big_ad(request, detail).get('url')
 
 
 
