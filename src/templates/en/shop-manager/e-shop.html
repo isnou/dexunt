@@ -1000,6 +1000,20 @@
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
                 <div class="card-body">
+                    <div class="card-title">
+                        <div class="row" style="text-align: end;">
+                        
+                                            {% if showcase.publish %}
+                                            <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" title="deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                                <span class="badge badge-circle badge-warning ms-2"></span>
+                                            </a>
+                                            {% else %}
+                                            <a href="{% url 'e-shop' 'activate' showcase.sku showcase.rank %}" title="activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                                <span class="badge badge-circle badge-light ms-2"></span>
+                                            </a>
+                                            {% endif %}
+                        </div>
+                    </div>
                     <div class="card-body py-1">
 
                         <div class="row mb-4" style="text-align: center;">
@@ -1129,18 +1143,9 @@
                                             <a href="{% url 'e-shop' 'up_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-down-square fs-2x"></i>
                                             </a>
-                                            <a href="{% url 'e-shop' 'down_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'down_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-up-square fs-2x"></i>
                                             </a>
-                                            {% if showcase.publish %}
-                                            <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <span class="badge badge-circle badge-warning ms-2"></span>
-                                            </a>
-                                            {% else %}
-                                            <a href="{% url 'e-shop' 'activate' showcase.sku showcase.rank %}" class="btn btn-light-secondary" title="activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <span class="badge badge-circle badge-light ms-2"></span>
-                                            </a>
-                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
