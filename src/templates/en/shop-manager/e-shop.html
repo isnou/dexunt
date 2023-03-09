@@ -781,7 +781,7 @@
                                                         <label for="grid_showcase_ar_button">arabic button title</label>
                                                     </div>
                                                     <!--end arabic button title-->
-                                                    
+
                                                 </div>
                                                 <!--add product buttons-->
                                                 <div class="d-flex justify-content-center">
@@ -804,8 +804,8 @@
                         <div class="modal fade" tabindex="-1" id="slider_showcase">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title">Add a Thumbed Size</h3>
+                                    <div class="modal-header align-self-center">
+                                        <h3 class="modal-title">Slider Showcase</h3>
                                         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                             <span class="svg-icon svg-icon-1"></span>
                                         </div>
@@ -813,174 +813,47 @@
                                     <div class="modal-body">
                                         <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            <div class="card-title">
+                                            <div class="card-body">
                                                 <div class="card card-flush py-4">
-                                                    <!--photo input-->
-                                                    <div class="card-body text-center pt-0">
-                                                        <!--begin::Image input-->
-                                                        <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% static 'manager/media/svg/avatars/blank-dark.svg' %})">
-                                                            <!--begin::Image preview wrapper-->
-                                                            <div class="image-input-wrapper w-125px h-125px"></div>
-                                                <!--end::Image preview wrapper-->
-                                                <!--begin::Edit button-->
-                                                            <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                                <i class="bi bi-pencil-fill fs-7"></i>
-                                                    <!--begin::Inputs-->
-                                                                <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                                <input type="hidden" name="thumb_remove" />
-                                                    <!--end::Inputs-->
-                                                            </label>
-                                                <!--end::Edit button-->
-                                                <!--begin::Cancel button-->
-                                                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                                <i class="bi bi-x fs-2"></i>
-                                                            </span>
-                                                <!--end::Cancel button-->
-                                                <!--begin::Remove button-->
-                                                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change Image">
-                                                                <i class="bi bi-x fs-2"></i>
-                                                            </span>
-                                                <!--end::Remove button-->
-                                                        </div>
-                                            <!--end::Image input-->
+                                                    <!--title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" id="slider_showcase_en_title" name="en_title" placeholder=" "/>
+                                                        <label for="slider_showcase_en_title">english title</label>
                                                     </div>
-                                        <!--end photo input-->
+                                                    <!--end title-->
 
-                                        <!--title-->
-                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                                        <label class="form-label">Title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                                        <input type="text" name="en_title" class="form-control mb-2">
-                                            <!--end input-->
+                                                    <!--french title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" id="slider_showcase_fr_title" name="fr_title" placeholder=" "/>
+                                                        <label for="slider_showcase_fr_title">french title</label>
                                                     </div>
-                                        <!--end title-->
+                                                    <!--end french title-->
 
-                                        <!--french title-->
-                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                                        <label class="form-label">French Title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                                        <input type="text" name="fr_title" class="form-control mb-2">
-                                            <!--end input-->
+                                                    <!--arabic title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" id="slider_showcase_ar_title" name="ar_title" placeholder=" " dir="rtl"/>
+                                                        <label for="slider_showcase_ar_title">arabic title</label>
                                                     </div>
-                                        <!--end french title-->
-
-                                        <!--arabic title-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Arabic Title</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="ar_title" class="form-control mb-2" dir="rtl">
-                                            <!--end input-->
-                                        </div>
-                                        <!--end arabic title-->
-
-                                        <!--upc input-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Barcode</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="text" name="upc" class="form-control mb-2">
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Product can be stored without Barcode but highly recommended.</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end upc input-->
-
-                                        <!--quantity-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Quantity</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <input type="number" name="quantity" class="form-control" placeholder="put product quantity" value=0>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Put product quantity.</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end quantity-->
-
-                                        <!--buy price-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Buy Price</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <div class="input-group">
-                                                <input type="number" name="buy_price" class="form-control" placeholder="put product coast">
-                                                <span class="input-group-text">DZD</span>
+                                                    <!--end arabic title-->
+                                                </div>
+                                                <!--add product buttons-->
+                                                <div class="d-flex justify-content-center">
+                                                    <!--submit button-->
+                                                    <button type="submit" class="btn btn-secondary">
+                                                        <span class="indicator-label">save</span>
+                                                    </button>
+                                                    <!--end submit button-->
+                                                </div>
+                                                <!--end add product buttons-->
                                             </div>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">The buy price is required for best management computing.</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end buy price-->
-
-                                        <!--sell price-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Sell Price</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <div class="input-group">
-                                                <input type="number" name="sell_price" class="form-control" placeholder="sell price in algerian currency">
-                                                <span class="input-group-text">DZD</span>
-                                            </div>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Sell price is required to upload the product</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end sell price-->
-
-                                        <!--discount price-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--label-->
-                                            <label class="form-label">Discount Price</label>
-                                            <!--end label-->
-                                            <!--input-->
-                                            <div class="input-group">
-                                                <input type="number" name="discount_price" class="form-control" placeholder="discount price">
-                                                <span class="input-group-text">DZD</span>
-                                            </div>
-                                            <!--end input-->
-                                            <!--description-->
-                                            <div class="text-muted fs-7">Discount must be lower than sell price</div>
-                                            <!--end description-->
-                                        </div>
-                                        <!--end discount price-->
+                                        </form>
                                     </div>
-                                    <!--add product buttons-->
-                                    <div class="d-flex justify-content-center" style="padding-top: 50px;">
-                                        <!--submit button-->
-                                        <button type="submit" class="btn btn-secondary">
-                                            <span class="indicator-label">save</span>
-                                        </button>
-                                        <!--end submit button-->
-                                    </div>
-                                    <!--end add product buttons-->
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <!--begin::Description-->
-                            <div class="text-muted fs-7"></div>
-                            <!--end::Description-->
-                        </div>
-                    </div>
-                </div>
-            </div>
                         <!--end new slider showcase modal-->
 
-                        <!--new single flash showcase modal-->
+                        <!--new single ad banner modal-->
                         <div class="modal fade" tabindex="-1" id="single_ad_banner">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -1158,9 +1031,9 @@
                     </div>
                 </div>
             </div>
-                        <!--end new single flash showcase modal-->
+                        <!--end new single ad banner showcase modal-->
 
-                        <!--new double flash showcase modal-->
+                        <!--new double ad banner modal-->
                         <div class="modal fade" tabindex="-1" id="double_ad_banner">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -1338,7 +1211,7 @@
                     </div>
                 </div>
             </div>
-                        <!--end new double flash showcase modal-->
+                        <!--end new double ad banner modal-->
                     </div>
                 </div>
             </div>
