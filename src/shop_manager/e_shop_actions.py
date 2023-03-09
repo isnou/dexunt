@@ -256,12 +256,14 @@ def edit_single_flash(request, detail):
 
     type='single_flash'
     if not selected_showcase:
+        sku = serial_number_generator(10).upper()
         if showcases:
             rank = showcases.count() + 1
         else:
             rank = 1
         selected_showcase = Showcase(rank=rank,
                                      type=type,
+                                     sku=sku,
                                      )
         selected_showcase.save()
 
@@ -321,12 +323,14 @@ def edit_multiple_flash(request, detail):
 
     type='multiple_flash'
     if not selected_showcase:
+        sku = serial_number_generator(10).upper()
         if showcases:
             rank = showcases.count() + 1
         else:
             rank = 1
         selected_showcase = Showcase(rank=rank,
                                      type=type,
+                                     sku=sku,
                                      )
         selected_showcase.save()
 
@@ -386,12 +390,14 @@ def edit_grid_showcase(request, detail):
 
     type='grid_showcase'
     if not selected_showcase:
+        sku = serial_number_generator(10).upper()
         if showcases:
             rank = showcases.count() + 1
         else:
             rank = 1
         selected_showcase = Showcase(rank=rank,
                                      type=type,
+                                     sku=sku,
                                      )
         selected_showcase.save()
 
@@ -441,12 +447,14 @@ def edit_slider_showcase(request, detail):
 
     type='slider_showcase'
     if not selected_showcase:
+        sku = serial_number_generator(10).upper()
         if showcases:
             rank = showcases.count() + 1
         else:
             rank = 1
         selected_showcase = Showcase(rank=rank,
                                      type=type,
+                                     sku=sku,
                                      )
         selected_showcase.save()
 
@@ -496,12 +504,14 @@ def edit_small_ad(request, detail):
 
     type='small_ad'
     if not selected_showcase:
+        sku = serial_number_generator(10).upper()
         if showcases:
             rank = showcases.count() + 1
         else:
             rank = 1
         selected_showcase = Showcase(rank=rank,
                                      type=type,
+                                     sku=sku,
                                      )
         selected_showcase.save()
 
@@ -551,12 +561,14 @@ def edit_big_ad(request, detail):
 
     type='big_ad'
     if not selected_showcase:
+        sku = serial_number_generator(10).upper()
         if showcases:
             rank = showcases.count() + 1
         else:
             rank = 1
         selected_showcase = Showcase(rank=rank,
                                      type=type,
+                                     sku=sku,
                                      )
         selected_showcase.save()
 

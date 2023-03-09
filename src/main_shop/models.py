@@ -49,6 +49,7 @@ class Showcase(models.Model):
     # --------------------------------- showcase technical informations ------------------------
     type = models.CharField(max_length=50, blank=True, null=True)
     publish = models.BooleanField(default=False)
+    sku = models.CharField(max_length=20, unique=True, null=True)
     # --------------------------------- showcase titles ----------------------------------------
     en_title = models.TextField(max_length=300, blank=True, null=True)
     fr_title = models.TextField(max_length=300, blank=True, null=True)
