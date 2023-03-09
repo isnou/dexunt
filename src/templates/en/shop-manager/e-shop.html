@@ -735,64 +735,97 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                        {% csrf_token %}
-                                        <div class="card-body">
-                                            <div class="card card-flush py-4">
+                                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="card-body">
+                                                <div class="card card-flush py-4">
                                                     <!--title-->
                                                     <div class="form-floating mb-2">
-                                                        <input type="text" class="form-control" id="grid_showcase_en_title" name="en_title" placeholder=" "/>
-                                                        <label for="grid_showcase_en_title">english title</label>
+                                                        <input type="text" class="form-control" id="multiple_flash_en_title" name="en_title" placeholder=" "/>
+                                                        <label for="multiple_flash_en_title">english title</label>
                                                     </div>
                                                     <!--end title-->
 
                                                     <!--button title-->
                                                     <div class="form-floating mb-8">
-                                                        <input type="text" class="form-control" id="grid_showcase_en_button" name="en_button" placeholder=" "/>
-                                                        <label for="grid_showcase_en_button">english button title</label>
+                                                        <input type="text" class="form-control" id="multiple_flash_en_button" name="en_button" placeholder=" "/>
+                                                        <label for="multiple_flash_en_button">english button title</label>
                                                     </div>
                                                     <!--end button title-->
 
                                                     <!--french title-->
                                                     <div class="form-floating mb-2">
-                                                        <input type="text" class="form-control" id="grid_showcase_fr_title" name="fr_title" placeholder=" "/>
-                                                        <label for="grid_showcase_fr_title">french title</label>
+                                                        <input type="text" class="form-control" id="multiple_flash_fr_title" name="fr_title" placeholder=" "/>
+                                                        <label for="multiple_flash_fr_title">french title</label>
                                                     </div>
                                                     <!--end french title-->
 
                                                     <!--french button title-->
                                                     <div class="form-floating mb-8">
-                                                        <input type="text" class="form-control" id="grid_showcase_fr_button" name="fr_button" placeholder=" "/>
-                                                        <label for="grid_showcase_fr_button">french button title</label>
+                                                        <input type="text" class="form-control" id="multiple_flash_fr_button" name="fr_button" placeholder=" "/>
+                                                        <label for="multiple_flash_fr_button">french button title</label>
                                                     </div>
                                                     <!--end french button title-->
 
                                                     <!--arabic title-->
                                                     <div class="form-floating mb-2">
-                                                        <input type="text" class="form-control" id="grid_showcase_ar_title" name="ar_title" placeholder=" " dir="rtl"/>
-                                                        <label for="grid_showcase_ar_title">arabic title</label>
+                                                        <input type="text" class="form-control" id="multiple_flash_ar_title" name="ar_title" placeholder=" " dir="rtl"/>
+                                                        <label for="multiple_flash_ar_title">arabic title</label>
                                                     </div>
                                                     <!--end arabic title-->
 
                                                     <!--arabic button title-->
                                                     <div class="form-floating mb-8">
-                                                        <input type="text" class="form-control" id="grid_showcase_ar_button" name="ar_button" placeholder=" " dir="rtl"/>
-                                                        <label for="grid_showcase_ar_button">arabic button title</label>
+                                                        <input type="text" class="form-control" id="multiple_flash_ar_button" name="ar_button" placeholder=" " dir="rtl"/>
+                                                        <label for="multiple_flash_ar_button">arabic button title</label>
                                                     </div>
                                                     <!--end arabic button title-->
+
+                                                    <!--expiration date-->
+                                                    <div class="mb-4 fv-row fv-plugins-icon-container">
+                                                        <div class="d-flex flex-wrap gap-5">
+                                                            <!--day input-->
+                                                            <div class="fv-row w-100 flex-md-root">
+                                                                <div class="form-floating mb-8">
+                                                                    <input type="number" class="form-control" id="multiple_flash_day" name="day" placeholder=" " max="31" min="1"/>
+                                                                    <label for="multiple_flash_day">Day</label>
+                                                                </div>
+                                                            </div>
+                                                            <!--end day input-->
+
+                                                            <!--month input-->
+                                                            <div class="fv-row w-100 flex-md-root">
+                                                                <div class="form-floating mb-8">
+                                                                    <input type="number" class="form-control" id="multiple_flash_month" name="month" placeholder=" " max="12" min="1"/>
+                                                                    <label for="multiple_flash_month">Month</label>
+                                                                </div>
+                                                            </div>
+                                                            <!--end month input-->
+
+                                                            <!--year input-->
+                                                            <div class="fv-row w-100 flex-md-root">
+                                                                <div class="form-floating mb-4">
+                                                                    <input type="number" class="form-control" id="multiple_flash_year" name="year" placeholder=" " min="2023"/>
+                                                                    <label for="multiple_flash_year">Year</label>
+                                                                </div>
+                                                            </div>
+                                                            <!--end year input-->
+                                                        </div>
+                                                    </div>
+                                                    <!--end expiration date-->
                                                 </div>
-                                            <!--add product buttons-->
-                                            <div class="d-flex justify-content-center">
-                                                <!--submit button-->
-                                                <button type="submit" class="btn btn-secondary">
-                                                    <span class="indicator-label">save</span>
-                                                </button>
-                                                <!--end submit button-->
+                                                <!--add product buttons-->
+                                                <div class="d-flex justify-content-center">
+                                                    <!--submit button-->
+                                                    <button type="submit" class="btn btn-secondary">
+                                                        <span class="indicator-label">save</span>
+                                                    </button>
+                                                    <!--end submit button-->
+                                                </div>
+                                                <!--end add product buttons-->
                                             </div>
-                                            <!--end add product buttons-->
-                                        </div>
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
                             </div>
                         </div>
                         <!--end new grid showcase modal-->
