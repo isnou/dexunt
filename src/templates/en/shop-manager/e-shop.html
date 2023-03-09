@@ -728,13 +728,14 @@
                         <!--new grid showcase modal-->
                         <div class="modal fade" tabindex="-1" id="grid_showcase">
                             <div class="modal-dialog modal-dialog-scrollable">
-                                <div class="modal-header align-self-center">
-                                    <h3 class="modal-title">Grid Showcase</h3>
-                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                        <span class="svg-icon svg-icon-1"></span>
+                                <div class="modal-content">
+                                    <div class="modal-header align-self-center">
+                                        <h3 class="modal-title">Grid Showcase</h3>
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-1"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-body">
+                                    <div class="modal-body">
                                         <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
                                             <div class="card-body">
@@ -826,6 +827,7 @@
                                             </div>
                                         </form>
                                     </div>
+                                </div>
                             </div>
                         </div>
                         <!--end new grid showcase modal-->
