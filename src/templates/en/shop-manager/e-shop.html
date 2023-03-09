@@ -541,8 +541,6 @@
                                     <div class="modal-body">
                                         <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            <div class="card-body">
-                                                <div class="card card-flush py-4">
                                                     <!--title-->
                                                     <div class="form-floating mb-2">
                                                         <input type="text" class="form-control" id="flash_en_title" name="en_title" placeholder=" "/>
@@ -615,9 +613,8 @@
                                                             </div>
                                                             <!--end year input-->
                                                     </div>
-                                                </div>
-
-                                    </div>
+                                                    </div>
+                                                    <!--end expiration date-->
                                     <!--add product buttons-->
                                     <div class="d-flex justify-content-center" style="padding-top: 50px;">
                                         <!--submit button-->
@@ -627,7 +624,6 @@
                                         <!--end submit button-->
                                     </div>
                                     <!--end add product buttons-->
-                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
