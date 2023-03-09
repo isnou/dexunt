@@ -239,14 +239,14 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
-                                        <div class="accordion mb-2" id="parameters_{{ intro_banner.en_intro }}">
+                                        <div class="accordion mb-2" id="accordion_{{ intro_banner.rank }}_{{ intro_banner.en_intro }}">
                                             <div class="accordion-item">
-                                                <h6 class="accordion-header" id="header_{{ intro_banner.en_intro }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_{{ intro_banner.en_intro }}" aria-expanded="false" aria-controls="body_{{ intro_banner.en_intro }}">
+                                                <h6 class="accordion-header" id="header_{{ intro_banner.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="body_{{ intro_banner.rank }}">
                                                         <p class="h6 text-muted">Parameters</p>
                                                     </button>
                                                 </h6>
-                                                <div id="body_{{ intro_banner.en_intro }}" class="accordion-collapse collapse" aria-labelledby="header_{{ intro_banner.en_intro }}" data-bs-parent="#parameters_{{ intro_banner.en_intro }}">
+                                                <div id="body_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="header_{{ intro_banner.rank }}" data-bs-parent="#accordion_{{ intro_banner.rank }}_{{ intro_banner.en_intro }}">
                                                     <div class="accordion-body">
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="en_intro" id="en_intro" placeholder="english banner intro" value="{{ intro_banner.en_intro }}"/>
@@ -272,12 +272,12 @@
                                                 </div>
                                             </div>
                                             <div class="accordion-item">
-                                                <h6 class="accordion-header" id="french_parameters_{{ intro_banner.en_intro }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_2_{{ intro_banner.en_intro }}" aria-expanded="false" aria-controls="body_2_{{ intro_banner.en_intro }}">
+                                                <h6 class="accordion-header" id="header_2_{{ intro_banner.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_2_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="body_2_{{ intro_banner.rank }}">
                                                         <p class="h6 text-muted">French Translation</p>
                                                     </button>
                                                 </h6>
-                                                <div id="body_2_{{ intro_banner.en_intro }}" class="accordion-collapse collapse" aria-labelledby="header_2_{{ intro_banner.en_intro }}" data-bs-parent="#french_parameters_{{ intro_banner.en_intro }}">
+                                                <div id="body_2_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="header_2_{{ intro_banner.rank }}" data-bs-parent="#accordion_{{ intro_banner.rank }}">
                                                     <div class="accordion-body">
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="fr_intro" id="fr_intro" placeholder="french banner intro" value="{{ intro_banner.fr_intro }}"/>
@@ -299,12 +299,12 @@
                                                 </div>
                                             </div>
                                             <div class="accordion-item">
-                                                <h6 class="accordion-header" id="arabic_parameters_{{ intro_banner.en_intro }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_3_{{ intro_banner.en_intro }}" aria-expanded="false" aria-controls="body_3_{{ intro_banner.en_intro }}">
+                                                <h6 class="accordion-header" id="header_3_{{ intro_banner.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_3_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="body_3_{{ intro_banner.rank }}">
                                                         <p class="h6 text-muted">Arabic Translation</p>
                                                     </button>
                                                 </h6>
-                                                <div id="body_3_{{ intro_banner.en_intro }}" class="accordion-collapse collapse" aria-labelledby="header_3_{{ intro_banner.en_intro }}" data-bs-parent="#arabic_parameters_{{ intro_banner.en_intro }}">
+                                                <div id="body_3_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="header_3_{{ intro_banner.rank }}" data-bs-parent="#accordion_{{ intro_banner.rank }}">
                                                     <div class="accordion-body">
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="ar_intro" id="ar_intro" placeholder="arabic banner intro" value="{{ intro_banner.ar_intro }}" dir="rtl"/>
@@ -386,22 +386,22 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
-                                        <div class="accordion mb-2" id="parameters_{{ intro_thumb.en_intro }}">
+                                        <div class="accordion mb-2" id="accordion_{{ intro_thumb.rank }}_{{ intro_thumb.en_intro }}">
                                             <div class="accordion-item">
-                                                <h6 class="accordion-header" id="header_{{ intro_thumb.en_intro }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_{{ intro_thumb.en_intro }}" aria-expanded="false" aria-controls="body_{{ intro_thumb.en_intro }}">
+                                                <h6 class="accordion-header" id="header_{{ intro_thumb.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_{{ intro_thumb.rank }}" aria-expanded="false" aria-controls="body_{{ intro_thumb.rank }}">
                                                         <p class="h6 text-muted">Parameters</p>
                                                     </button>
                                                 </h6>
-                                                <div id="body_{{ intro_thumb.en_intro }}" class="accordion-collapse collapse" aria-labelledby="header_{{ intro_thumb.en_intro }}" data-bs-parent="#parameters_{{ intro_thumb.en_intro }}">
+                                                <div id="body_{{ intro_thumb.rank }}" class="accordion-collapse collapse" aria-labelledby="header_{{ intro_thumb.rank }}" data-bs-parent="#accordion_{{ intro_thumb.rank }}_{{ intro_thumb.en_intro }}">
                                                     <div class="accordion-body">
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="en_title" placeholder="title" value="{{ intro_thumb.en_title }}"/>
-                                                            <label>title</label>
+                                                            <label>english banner title</label>
                                                         </div>
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="en_button" placeholder="button title" value="{{ intro_thumb.en_button }}"/>
-                                                            <label>button title</label>
+                                                            <label>english button title</label>
                                                         </div>
                                                         <div class="input-group">
                                                             <span class="input-group-text" id="intro_thumb">url</span>
@@ -411,12 +411,12 @@
                                                 </div>
                                             </div>
                                             <div class="accordion-item">
-                                                <h6 class="accordion-header" id="french_parameters_{{ intro_thumb.en_intro }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_2_{{ intro_thumb.en_intro }}" aria-expanded="false" aria-controls="body_2_{{ intro_thumb.en_intro }}">
+                                                <h6 class="accordion-header" id="header_2_{{ intro_thumb.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_2_{{ intro_thumb.rank }}" aria-expanded="false" aria-controls="body_2_{{ intro_thumb.rank }}">
                                                         <p class="h6 text-muted">French Translation</p>
                                                     </button>
                                                 </h6>
-                                                <div id="body_2_{{ intro_thumb.en_intro }}" class="accordion-collapse collapse" aria-labelledby="header_2_{{ intro_thumb.en_intro }}" data-bs-parent="#french_parameters_{{ intro_thumb.en_intro }}">
+                                                <div id="body_2_{{ intro_thumb.rank }}" class="accordion-collapse collapse" aria-labelledby="header_2_{{ intro_thumb.rank }}" data-bs-parent="#accordion_{{ intro_thumb.rank }}">
                                                     <div class="accordion-body">
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="fr_title" placeholder="french title" value="{{ intro_thumb.fr_title }}"/>
@@ -430,12 +430,12 @@
                                                 </div>
                                             </div>
                                             <div class="accordion-item">
-                                                <h6 class="accordion-header" id="arabic_parameters_{{ intro_thumb.en_intro }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_3_{{ intro_thumb.en_intro }}" aria-expanded="false" aria-controls="body_3_{{ intro_thumb.en_intro }}">
+                                                <h6 class="accordion-header" id="header_3_{{ intro_thumb.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_3_{{ intro_thumb.rank }}" aria-expanded="false" aria-controls="body_3_{{ intro_thumb.rank }}">
                                                         <p class="h6 text-muted">Arabic Translation</p>
                                                     </button>
                                                 </h6>
-                                                <div id="body_3_{{ intro_thumb.en_intro }}" class="accordion-collapse collapse" aria-labelledby="header_3_{{ intro_thumb.en_intro }}" data-bs-parent="#french_parameters_{{ intro_thumb.en_intro }}">
+                                                <div id="body_3_{{ intro_thumb.rank }}" class="accordion-collapse collapse" aria-labelledby="header_3_{{ intro_thumb.rank }}" data-bs-parent="#accordion_{{ intro_thumb.rank }}">
                                                     <div class="accordion-body">
                                                         <div class="form-floating mb-2">
                                                             <input type="text" class="form-control" name="ar_title" placeholder="arabic title" value="{{ intro_thumb.ar_title }}" dir="rtl"/>
