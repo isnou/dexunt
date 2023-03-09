@@ -635,7 +635,19 @@ def up_showcase(detail, index):
 
 def down_showcase(detail, index):
     url = "/shop-manager/e-shop.html"
+    selected_showcase = Showcase.objects.all().get(sku=detail)
+    max_rank = Showcase.objects.all().count()
 
+    if index == 1:
+        next_showcase = Showcase.objects.all().get(rank=max_rank)
+    else:
+        next_showcase = Showcase.objects.all().get(rank=index - 1)
+
+    selected_showcase.rank = next_showcase.rank
+    next_showcase.rank = index
+
+    selected_showcase.save()
+    next_showcase.save()
 
     return {
         'url': url,
