@@ -15,6 +15,8 @@ def manager_dashboard(request, action):
         thumb.delete()
     for banner in IntroBanner.objects.all():
         banner.delete()
+    for showcase in Showcase.objects.all():
+        showcase.delete()
 
     context = {
     }
