@@ -19,6 +19,4 @@ def main_shop_content(request):
         'intro_thumbs': intro_thumbs,
         'intro_banners': intro_banners,
         'showcases': showcases,
-
-        'showcases_exists': None,
     }
