@@ -999,8 +999,10 @@
         {% if showcase.type == 'single_flash' %}
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
+                
                 <div class="card-toolbar">
                     <div class="row mb-4" style="text-align: center;">
+                        <div class="w-100 mw-150px">
                             {% if showcase.publish %}
                             <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" title="deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="left">
                                 <span class="badge badge-circle badge-warning ms-2"></span>
@@ -1010,9 +1012,11 @@
                                 <span class="badge badge-circle badge-light ms-2"></span>
                             </a>
                             {% endif %}
-                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">{{ showcase.en_title }} - {{ showcase.rank }}</p>
                         </div>
+                        <p class="text-gray-900 text-hover-primary fs-2 fw-bold">{{ showcase.en_title }} - {{ showcase.rank }}</p>
+                    </div>
                 </div>
+
                 <div class="card-body">
                     <div class="card-body py-1">
 
