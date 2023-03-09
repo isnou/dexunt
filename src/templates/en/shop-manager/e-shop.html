@@ -1121,7 +1121,14 @@
                                             </div>
                                         </div>
                                         <div class="mb-5">
-                                            <!--day input-->
+                                            <div class="input-group">
+                                                <span class="input-group-text">url</span>
+                                                <input type="text" name="button_link" aria-describedby="intro_banner" class="form-control" placeholder="banner url" value="{{ showcase.link }}">
+                                            </div>
+
+                                            <div class="mb-4 fv-row fv-plugins-icon-container">
+                                                        <div class="d-flex flex-wrap gap-5">
+                                                            <!--day input-->
                                                             <div class="fv-row w-100 flex-md-root">
                                                                 <div class="form-floating mb-8">
                                                                     <input type="number" class="form-control" id="single_flash_day" name="day" placeholder=" " max="31" min="1"/>
@@ -1147,6 +1154,8 @@
                                                                 </div>
                                                             </div>
                                                             <!--end year input-->
+                                                        </div>
+                                                    </div>
 
                                         </div>
 
