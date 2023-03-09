@@ -1002,16 +1002,15 @@
                 <div class="card-body">
                     <div class="card-title">
                         <div class="row" style="text-align: end;">
-                        
-                                            {% if showcase.publish %}
-                                            <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" title="deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                                <span class="badge badge-circle badge-warning ms-2"></span>
-                                            </a>
-                                            {% else %}
-                                            <a href="{% url 'e-shop' 'activate' showcase.sku showcase.rank %}" title="activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                                <span class="badge badge-circle badge-light ms-2"></span>
-                                            </a>
-                                            {% endif %}
+                            {% if showcase.publish %}
+                            <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" title="deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="left">
+                                <span class="badge badge-circle badge-warning ms-2"></span>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'e-shop' 'activate' showcase.sku showcase.rank %}" title="activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="left">
+                                <span class="badge badge-circle badge-light ms-2"></span>
+                            </a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="card-body py-1">
