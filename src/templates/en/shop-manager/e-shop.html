@@ -1041,7 +1041,7 @@
                                             <div class="accordion-item">
                                                 <h6 class="accordion-header" id="header_{{ showcase.rank }}">
                                                     <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_{{ showcase.rank }}" aria-expanded="false" aria-controls="body_{{ showcase.rank }}">
-                                                        <p class="h6 text-muted">English banner parameters</p>
+                                                        <p class="h6 text-muted">English Parameters</p>
                                                     </button>
                                                 </h6>
                                                 <div id="body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="header_{{ showcase.rank }}" data-bs-parent="#accordion_{{ showcase.rank }}">
@@ -1068,7 +1068,7 @@
                                             <div class="accordion-item">
                                                 <h6 class="accordion-header" id="header_2_{{ showcase.rank }}">
                                                     <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_2_{{ showcase.rank }}" aria-expanded="false" aria-controls="body_2_{{ showcase.rank }}">
-                                                        <p class="h6 text-muted">French banner parameters</p>
+                                                        <p class="h6 text-muted">French Parameters</p>
                                                     </button>
                                                 </h6>
                                                 <div id="body_2_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="header_2_{{ showcase.rank }}" data-bs-parent="#accordion_{{ showcase.rank }}">
@@ -1095,7 +1095,7 @@
                                             <div class="accordion-item">
                                                 <h6 class="accordion-header" id="header_3_{{ showcase.rank }}">
                                                     <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#body_3_{{ showcase.rank }}" aria-expanded="false" aria-controls="body_3_{{ showcase.rank }}">
-                                                        <p class="h6 text-muted">Arabic banner parameters</p>
+                                                        <p class="h6 text-muted">Arabic Parameters</p>
                                                     </button>
                                                 </h6>
                                                 <div id="body_3_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="header_3_{{ showcase.rank }}" data-bs-parent="#accordion_{{ showcase.rank }}">
@@ -1121,10 +1121,33 @@
                                             </div>
                                         </div>
                                         <div class="mb-5">
-                                            <div class="input-group">
-                                                <span class="input-group-text">url</span>
-                                                <input type="text" name="button_link" aria-describedby="intro_banner" class="form-control" placeholder="banner url" value="{{ showcase.link }}">
-                                            </div>
+                                            <!--day input-->
+                                                            <div class="fv-row w-100 flex-md-root">
+                                                                <div class="form-floating mb-8">
+                                                                    <input type="number" class="form-control" id="single_flash_day" name="day" placeholder=" " max="31" min="1"/>
+                                                                    <label for="single_flash_day">Day</label>
+                                                                </div>
+                                                            </div>
+                                                            <!--end day input-->
+
+                                                            <!--month input-->
+                                                            <div class="fv-row w-100 flex-md-root">
+                                                                <div class="form-floating mb-8">
+                                                                    <input type="number" class="form-control" id="single_flash_month" name="month" placeholder=" " max="12" min="1"/>
+                                                                    <label for="single_flash_month">Month</label>
+                                                                </div>
+                                                            </div>
+                                                            <!--end month input-->
+
+                                                            <!--year input-->
+                                                            <div class="fv-row w-100 flex-md-root">
+                                                                <div class="form-floating mb-4">
+                                                                    <input type="number" class="form-control" id="single_flash_year" name="year" placeholder=" " min="2023"/>
+                                                                    <label for="single_flash_year">Year</label>
+                                                                </div>
+                                                            </div>
+                                                            <!--end year input-->
+
                                         </div>
 
                                         <div class="d-flex align-self-end">
