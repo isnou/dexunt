@@ -1007,11 +1007,11 @@
 
                             {% if showcase.publish %}
                             <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" title="deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                <span class="badge badge-circle badge-warning ms-2"></span>
+                                <span class="badge badge-circle badge-warning ms-2 mt-2"></span>
                             </a>
                             {% else %}
                             <a href="{% url 'e-shop' 'activate' showcase.sku showcase.rank %}" title="activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                <span class="badge badge-circle badge-light ms-2"></span>
+                                <span class="badge badge-circle badge-light ms-2 mt-2"></span>
                             </a>
                             {% endif %}
                         </p>
