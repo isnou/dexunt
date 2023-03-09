@@ -177,6 +177,12 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.up_showcase(detail, index).get('url')
     if action == "down_showcase":
         url = direction + e_shop_actions.down_showcase(detail, index).get('url')
+    if action == "activate":
+        Showcase.objects.all().get(sku=detail).publish = True
+        Showcase.objects.all().get(sku=detail).save()
+    if action == "deactivate":
+        Showcase.objects.all().get(sku=detail).publish = False
+        Showcase.objects.all().get(sku=detail).save()
 
 
 
