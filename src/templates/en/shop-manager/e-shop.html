@@ -1363,56 +1363,56 @@
                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                                    <h5 class="modal-title">{{ showcase.en_title }}</h5>
+                                                            <h5 class="modal-title">{{ showcase.en_title }}</h5>
 
-                                                                    <!--begin::Close-->
-                                                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                                                        <span class="svg-icon svg-icon-2x"></span>
-                                                                    </div>
-                                                                    <!--end::Close-->
-                                                                </div>
-
-                                                                <div class="modal-body">
-                                                                    <table class="table table-row-bordered gy-7 gs-7">
-                                                                        <tbody>
-                                                                        {% for product in all_products %}
-                                                                        <tr>
-                                                                            <!--product title-->
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <!--product thumbnail-->
-                                                                                    <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
-                                                                                        <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
-                                                                                    </a>
-                                                                                    <!--end product thumbnail-->
-                                                                                    <div class="ms-5">
-                                                                                        <!--begin::Title-->
-                                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
-                                                                                        <!--end::Title-->
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <!--end product title-->
-
-                                                                            <!--remove product action-->
-                                                                            <td class="text-end">
-                                                                                <a href="{% url 'e-shop' 'add_product_to_showcase' showcase.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{showcase.en_title}}">
-                                                                                    <i class="bi bi-download"></i>
-                                                                                </a>
-                                                                            </td>
-                                                                            <!--end remove product action-->
-                                                                        </tr>
-                                                                        {% endfor %}
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">close</button>
-                                                                </div>
+                                                            <!--begin::Close-->
+                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span class="svg-icon svg-icon-2x"></span>
                                                             </div>
+                                                            <!--end::Close-->
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <table class="table table-row-bordered gy-7 gs-7">
+                                                                <tbody>
+                                                                {% for product in all_products %}
+                                                                <tr>
+                                                                    <!--product title-->
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <!--product thumbnail-->
+                                                                            <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                                <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                            </a>
+                                                                            <!--end product thumbnail-->
+                                                                            <div class="ms-5">
+                                                                                <!--begin::Title-->
+                                                                                <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                                <!--end::Title-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <!--end product title-->
+
+                                                                    <!--remove product action-->
+                                                                    <td class="text-end">
+                                                                        <a href="{% url 'e-shop' 'add_product_to_showcase' showcase.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{showcase.en_title}}">
+                                                                            <i class="bi bi-download"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                    <!--end remove product action-->
+                                                                </tr>
+                                                                {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">close</button>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
