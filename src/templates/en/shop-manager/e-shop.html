@@ -1179,9 +1179,52 @@
                                 {% csrf_token %}
                                 <div class="col-sm-6 me-5">
                                     <div class="d-flex flex-column h-100">
-                                        <div class="d-flex align-self-start">
-                                            <div class="mb-4 fv-row fv-plugins-icon-container">
-                                                <div class="d-flex flex-wrap gap-5">
+                                        <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                            <div class="accordion-item">
+                                                <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}">
+                                                        <p class="h6 text-muted">You have {{ showcase.product.count }} product</p>
+                                                    </button>
+                                                </h6>
+                                                <div id="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                                    <div class="accordion-body">
+                                                        <table class="table table-row-bordered gy-7 gs-7">
+                                                            <tbody>
+                                                            {% for product in showcase.product.all %}
+                                                            <tr>
+                                                                <!--product title-->
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <!--product thumbnail-->
+                                                                        <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                        </a>
+                                                                        <!--end product thumbnail-->
+                                                                        <div class="ms-5">
+                                                                            <!--begin::Title-->
+                                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                            <!--end::Title-->
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <!--end product title-->
+
+                                                                <!--remove product action-->
+                                                                <td class="text-end">
+                                                                    <a href="{% url 'e-shop' 'remove_product_from_showcase' showcase.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
+                                                                        <i class="bi bi-upload"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <!--end remove product action-->
+                                                            </tr>
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-5">
                                                     <button type="button" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#{{ showcase.sku }}_link_new_product">
                                                         <i class="bi bi-link-45deg fs-2x"></i>
                                                     </button>
@@ -1240,53 +1283,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}">
-                                                        <p class="h6 text-muted">You have {{ showcase.product.count }} product</p>
-                                                    </button>
-                                                </h6>
-                                                <div id="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
-                                                    <div class="accordion-body">
-                                                        <table class="table table-row-bordered gy-7 gs-7">
-                                                            <tbody>
-                                                            {% for product in showcase.product.all %}
-                                                            <tr>
-                                                                <!--product title-->
-                                                                <td>
-                                                                    <div class="d-flex align-items-center">
-                                                                        <!--product thumbnail-->
-                                                                        <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
-                                                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
-                                                                        </a>
-                                                                        <!--end product thumbnail-->
-                                                                        <div class="ms-5">
-                                                                            <!--begin::Title-->
-                                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
-                                                                            <!--end::Title-->
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <!--end product title-->
-
-                                                                <!--remove product action-->
-                                                                <td class="text-end">
-                                                                    <a href="{% url 'e-shop' 'remove_product_from_showcase' showcase.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
-                                                                        <i class="bi bi-upload"></i>
-                                                                    </a>
-                                                                </td>
-                                                                <!--end remove product action-->
-                                                            </tr>
-                                                            {% endfor %}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <div class="mb-5">
                                             <div class="col-sm-6 mb-10 mb-sm-0">
