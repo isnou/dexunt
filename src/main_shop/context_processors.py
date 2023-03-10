@@ -11,7 +11,7 @@ def main_shop_content(request):
     except IntroBanner.objects.all().DoesNotExist:
         raise Http404("No banners")
     try:
-        showcases = Showcase.objects.all().order_by('rank')
+        showcases = Showcase.objects.all().order_by('-rank')
     except Showcase.objects.all().DoesNotExist:
         raise Http404("No showcases")
 
