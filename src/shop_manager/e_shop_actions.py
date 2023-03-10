@@ -274,7 +274,7 @@ def edit_single_flash(request, detail):
         fr_button = request.POST.get('fr_button', False)
         ar_title = request.POST.get('ar_title', False)
         ar_button = request.POST.get('ar_button', False)
-        url = request.POST.get('link', False)
+        url = request.POST.get('url', False)
         thumb = request.FILES.get('thumb', False)
         day = request.POST.get('day', False)
         month = request.POST.get('month', False)
@@ -530,7 +530,7 @@ def edit_small_ad(request, detail):
         fr_button = request.POST.get('fr_button', False)
         ar_title = request.POST.get('ar_title', False)
         ar_button = request.POST.get('ar_button', False)
-        url = request.POST.get('link', False)
+        url = request.POST.get('url', False)
         thumb = request.FILES.get('thumb', False)
 
         if en_title:
@@ -595,7 +595,7 @@ def edit_big_ad(request, detail):
         fr_button = request.POST.get('fr_button', False)
         ar_title = request.POST.get('ar_title', False)
         ar_button = request.POST.get('ar_button', False)
-        url = request.POST.get('link', False)
+        url = request.POST.get('url', False)
         thumb = request.FILES.get('thumb', False)
 
         if en_title:
