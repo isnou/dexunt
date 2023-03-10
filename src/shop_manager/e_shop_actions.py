@@ -669,9 +669,9 @@ def add_product_to_showcase(detail, index):
     url = "/shop-manager/e-shop.html"
     selected_showcase = Showcase.objects.all().get(sku=detail)
     selected_product = Product.objects.all().get(id=index)
-    
+
     if not selected_showcase.product.all().filter(sku=selected_product.sku).exists():
-        selected_showcase.add(selected_product)
+        selected_showcase.product.add(selected_product)
 
     return {
         'url': url,
