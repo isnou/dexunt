@@ -1187,13 +1187,45 @@
                                                 </h6>
                                                 <div id="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
                                                     <div class="accordion-body">
-                                                        {% for product in showcase.product.all %}
-                                                        <!--begin::Item-->
-                                                        <div class="text-center px-5 py-5">
-                                                            <img src="{% get_media_prefix %}{{product.album.all.0.image}}" class="card-rounded mw-100" alt=""/>
-                                                        </div>
-                                                        <!--end::Item-->
-                                                        {% endfor %}
+                                                        <table class="table table-row-bordered gy-7 gs-7">
+                                                            <thead>
+                                                            <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                                                                <th class="min-w-400px">Product</th>
+                                                                <th class="text-end min-w-20px"></th>
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                            {% for product in showcase.product.all %}
+                                                            <tr>
+                                                                <!--product title-->
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <!--product thumbnail-->
+                                                                        <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                        </a>
+                                                                        <!--end product thumbnail-->
+                                                                        <div class="ms-5">
+                                                                            <!--begin::Title-->
+                                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                            <!--end::Title-->
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <!--end product title-->
+
+                                                                <!--delete product action-->
+                                                                <td class="text-end">
+                                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove product">
+                                                                        <i class="bi bi-trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <!--end delete product action-->
+                                                            </tr>
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
