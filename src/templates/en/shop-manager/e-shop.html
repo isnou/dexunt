@@ -1241,50 +1241,14 @@
                                         <div class="mb-5">
                                             <div class="mb-4 fv-row fv-plugins-icon-container">
                                                 <div class="d-flex flex-wrap gap-5">
-                                                    <!--day input-->
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <div class="form-floating mb-8">
-                                                            <input type="number" class="form-control" name="day" placeholder=" " value="{{ showcase.day }}" max="31" min="1"/>
-                                                            <label>Day</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--end day input-->
-
-                                                    <!--month input-->
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <div class="form-floating mb-8">
-                                                            <input type="number" class="form-control" name="month" placeholder=" " value="{{ showcase.month }}" max="12" min="1"/>
-                                                            <label>Month</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--end month input-->
-
-                                                    <!--year input-->
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="number" class="form-control" name="year" placeholder=" " value="{{ showcase.year }}" min="2023"/>
-                                                            <label>Year</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--end year input-->
+                                                    
                                                 </div>
                                             </div>
 
                                         </div>
 
                                         <div class="d-flex align-self-end">
-                                            <a href="{% url 'e-shop' 'delete_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <i class="bi bi-trash fs-2x"></i>
-                                            </a>
-                                            <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <i class="bi bi-arrow-repeat fs-2x"></i>
-                                            </button>
-                                            <a href="{% url 'e-shop' 'up_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <i class="bi bi-arrow-down-square fs-2x"></i>
-                                            </a>
-                                            <a href="{% url 'e-shop' 'down_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <i class="bi bi-arrow-up-square fs-2x"></i>
-                                            </a>
+
                                         </div>
                                     </div>
 
