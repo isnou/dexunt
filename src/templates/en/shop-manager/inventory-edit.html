@@ -386,23 +386,19 @@
 
                                                 <!--upc input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                    <!--input-->
                                                     <div class="input-group">
                                                         <span class="input-group-text">Barcode</span>
                                                         <input type="text" name="upc" class="form-control" placeholder="the bar is required for inventory management" value="{{ selected_product.upc }}">
                                                     </div>
-                                                    <!--end input-->
                                                 </div>
                                                 <!--end upc input-->
 
                                                 <!--tag input-->
                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                    <!--input-->
                                                     <div class="input-group">
                                                         <span class="input-group-text">Tag</span>
                                                         <input type="text" name="tag" class="form-control" placeholder="tags must be separated by space" value="{{ selected_product.tag }}">
                                                     </div>
-                                                    <!--end input-->
                                                 </div>
                                                 <!--end tag input-->
 
@@ -435,6 +431,7 @@
                                                     </div>
                                                 </div>
                                                 <!--end product quantity & buy price input-->
+                                                {% endif %}
 
                                                 <!--product sell price & discount price input-->
                                                 <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
@@ -465,7 +462,7 @@
                                                     </div>
                                                 </div>
                                                 <!--end product sell price & discount price input-->
-                                                {% endif %}
+
                                             </div>
                                             <!--end block body-->
                                         </div>

@@ -374,16 +374,39 @@
 
                                 <!--buy price-->
                                 <td class="text-center">
+                                    {% if product.buy_price %}
+                                    <span class="fw-bold text-dark">{{ product.buy_price|floatformat:"2g" }} DZD</span>
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end buy price-->
 
                                 <!--sell price-->
                                 <td class="text-center">
+                                    {% if product.sell_price %}
+                                    {% if product.buy_price > product.sell_price %}
+                                    <span class="badge badge-danger">check prices</span>
+                                    {% else %}
+                                    <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="badge badge-warning">price missing</span>
+                                    {% endif %}
                                 </td>
                                 <!--end sell price-->
 
                                 <!--discount price-->
                                 <td class="text-center">
+                                    {% if product.discount_price %}
+                                    {% if product.discount_price > product.sell_price %}
+                                    <span class="badge badge-danger">check prices</span>
+                                    {% else %}
+                                    <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                                    {% endif %}
+                                    {% else %}
+                                    <span class="badge badge-light">no discount</span>
+                                    {% endif %}
                                 </td>
                                 <!--end discount price-->
                             </tr>
