@@ -1177,68 +1177,55 @@
                             <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
-                                <div class="row gx-9 h-100">
-                                        <div class="tns-carousel tns-controls-static tns-controls-outside">
-                                            <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: true, &quot;nav&quot;: false, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;768&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;items&quot;:4, &quot;gutter&quot;: 30}}}">
-                                                {% for product in showcase.product.all %}
-                                                <!-- Product-->
-                                                {% if product.quantity > 0 %}
-                                                <div>
-                                                    <div class="card product-card card-static">
-                                                        <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
-                                                            <i class="ci-heart"></i>
-                                                        </button>
-                                                        <a class="card-img-top d-block overflow-hidden" href="#">
-                                                            <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
-                                                        </a>
-                                                        <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
-                                                            <h3 class="product-title fs-sm text-truncate">
-                                                                <a href="#">{{ product.en_title }}</a>
-                                                            </h3>
-                                                            {% if product.discount_price %}
-                                                            <div class="product-price">
-                                                                <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                                                                <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                                                            </div>
-                                                            {% else %}
-                                                            <div class="product-price">
-                                                                <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
-                                                            </div>
-                                                            {% endif %}
-                                                        </div>
-                                                        <div class="card-body">
+                                <div class="row pt-2 mx-n2">
+        <div class="tns-carousel tns-controls-static tns-controls-outside">
+            <div class="tns tns-default" style="direction: ltr">
+                <!--begin::Slider-->
+                <div
+                        data-tns="true"
+                        data-tns-loop="true"
+                        data-tns-swipe-angle="false"
+                        data-tns-speed="2000"
+                        data-tns-autoplay="true"
+                        data-tns-autoplay-timeout="18000"
+                        data-tns-controls="true"
+                        data-tns-nav="false"
+                        data-tns-items="3"
+                        data-tns-center="false"
+                        data-tns-dots="false"
+                        data-tns-prev-button="#kt_team_slider_prev1"
+                        data-tns-next-button="#kt_team_slider_next1">
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {% else %}
-                                                <div>
-                                                    <div class="card product-card card-static">
-                                                        <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
-                                                            <i class="ci-heart"></i>
-                                                        </button>
-                                                        <a class="card-img-top d-block overflow-hidden" href="#">
-                                                            <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
-                                                        </a>
-                                                        <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
-                                                            <h3 class="product-title fs-sm text-truncate">
-                                                                <a href="#">{{ product.en_title }}</a>
-                                                            </h3>
-                                                            <div class="product-price">
-                                                                <span class="text-muted fs-sm">Out of stock</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body">
+                    {% for product in showcase.product.all %}
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {% endif %}
-                                                <!-- Product-->
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                </div>
+                    <!--begin::Item-->
+                    <div class="text-center px-5 py-5">
+                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" class="card-rounded mw-100" alt=""/>
+                    </div>
+                    <!--end::Item-->
+                    {% endfor %}
+                    ...
+                </div>
+                <!--end::Slider-->
+
+                <!--begin::Slider button-->
+                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev1">
+                    <span class="svg-icon svg-icon-3x">
+                        ...
+                    </span>
+                </button>
+                <!--end::Slider button-->
+
+                <!--begin::Slider button-->
+                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next1">
+                    <span class="svg-icon svg-icon-3x">
+                        ...
+                    </span>
+                </button>
+                <!--end::Slider button-->
+            </div>
+        </div>
+    </div>
 
                                 <div class="row gx-9 h-100">
                                     <div class="d-flex flex-column h-100">
