@@ -187,6 +187,8 @@ def e_shop(request, action, detail, index):
         showcase.save()
     if action == "add_product_to_showcase":
         url = direction + e_shop_actions.add_product_to_showcase(detail, index).get('url')
+    if action == "remove_product_from_showcase":
+        url = direction + e_shop_actions.remove_product_from_showcase(detail, index).get('url')
 
 
 

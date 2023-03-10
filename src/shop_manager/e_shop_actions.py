@@ -677,6 +677,17 @@ def add_product_to_showcase(detail, index):
         'url': url,
     }
 
+def remove_product_from_showcase(detail, index):
+    url = "/shop-manager/e-shop.html"
+    selected_showcase = Showcase.objects.all().get(sku=detail)
+    selected_product = Product.objects.all().get(id=index)
+
+    selected_showcase.product.remove(selected_product)
+
+    return {
+        'url': url,
+    }
+
 
 
 
