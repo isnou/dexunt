@@ -1179,6 +1179,15 @@
                                 {% csrf_token %}
                                 <div class="col-sm-6 me-5">
                                     <div class="d-flex flex-column h-100">
+                                        <div class="d-flex align-self-end">
+                                            <div class="mb-4 fv-row fv-plugins-icon-container">
+                                                <div class="d-flex flex-wrap gap-5">
+                                                    <a href="{% url 'e-shop' 'delete_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                        <i class="bi bi-trash fs-2x"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
                                             <div class="accordion-item">
                                                 <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
@@ -1226,15 +1235,6 @@
                                         </div>
 
                                         <div class="mb-5">
-                                            <div class="mb-4 fv-row fv-plugins-icon-container">
-                                                <div class="d-flex flex-wrap gap-5">
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-self-end">
-
                                         </div>
                                     </div>
                                 </div>
