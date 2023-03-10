@@ -349,9 +349,11 @@ def edit_multiple_flash(request, detail):
         fr_button = request.POST.get('fr_button', False)
         ar_title = request.POST.get('ar_title', False)
         ar_button = request.POST.get('ar_button', False)
+        thumb = request.FILES.get('thumb', False)
         day = request.POST.get('day', False)
         month = request.POST.get('month', False)
         year = request.POST.get('year', False)
+
 
         if en_title:
             selected_showcase.en_title = en_title
@@ -367,6 +369,9 @@ def edit_multiple_flash(request, detail):
             selected_showcase.ar_title = ar_title
         if ar_button:
             selected_showcase.ar_button = ar_button
+
+        if thumb:
+            selected_showcase.thumb = thumb
 
         if day:
             selected_showcase.day = day
