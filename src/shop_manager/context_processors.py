@@ -17,5 +17,5 @@ def shop_manager_content(request):
     #top_rated = showcase_products.order_by('-review_rate')[:4]
     #new_arrivals = showcase_products.order_by('-updated_at')[:4]
     return {
-        'products' : products,
+        'all_products' : all_products,
     }
