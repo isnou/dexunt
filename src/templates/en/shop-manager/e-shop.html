@@ -1177,19 +1177,47 @@
                             <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="row gx-9 h-100">
-                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-350px min-w-1200px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ showcase.thumb }})">
-                                        <div class="image-input-wrapper min-h-350px min-w-1200px"></div>
-                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
-                                            <i class="bi bi-pencil-fill fs-7"></i>
-                                            <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                            <input type="hidden" name="photo_remove" />
-                                        </label>
-                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="cancel image">
-                                            <i class="bi bi-x fs-2"></i>
-                                        </span>
-                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="remove image">
-                                            <i class="bi bi-x fs-2"></i>
-                                        </span>
+                                    <div class="tns tns-default" style="direction: ltr">
+                                        <!--begin::Slider-->
+                                        <div
+                                                data-tns="true"
+                                                data-tns-loop="true"
+                                                data-tns-swipe-angle="false"
+                                                data-tns-speed="2000"
+                                                data-tns-autoplay="true"
+                                                data-tns-autoplay-timeout="18000"
+                                                data-tns-controls="true"
+                                                data-tns-nav="false"
+                                                data-tns-items="3"
+                                                data-tns-center="false"
+                                                data-tns-dots="false"
+                                                data-tns-prev-button="#kt_team_slider_prev1"
+                                                data-tns-next-button="#kt_team_slider_next1">
+
+                                            <!--begin::Item-->
+                                            <div class="text-center px-5 py-5">
+                                                <img src="assets/media/stock/600x400/img-1.jpg" class="card-rounded mw-100" alt=""/>
+                                            </div>
+                                            <!--end::Item-->
+                                            ...
+                                        </div>
+                                        <!--end::Slider-->
+
+                                        <!--begin::Slider button-->
+                                        <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev1">
+                                            <span class="svg-icon svg-icon-3x">
+                                                ...
+                                            </span>
+                                        </button>
+                                        <!--end::Slider button-->
+
+                                        <!--begin::Slider button-->
+                                        <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next1">
+                                            <span class="svg-icon svg-icon-3x">
+                                                ...
+                                            </span>
+                                        </button>
+                                        <!--end::Slider button-->
                                     </div>
                                 </div>
                                 <div class="row gx-9 h-100">
