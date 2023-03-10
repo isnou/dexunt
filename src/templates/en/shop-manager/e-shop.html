@@ -1203,7 +1203,9 @@
                                                                         <tbody>
                                                                         {% for product in all_products %}
                                                                         {% for showcase_product in showcase.product.all %}
-                                                                        {% if not product.sku == showcase_product.sku %}
+                                                                        {% if product.sku == showcase_product.sku %}
+
+                                                                        {% else %}
                                                                         <tr>
                                                                             <!--product title-->
                                                                             <td>
