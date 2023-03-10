@@ -1176,75 +1176,75 @@
                     <div class="card-body py-1">
                         <div class="row gx-9 h-100">
                             <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="col-sm-6 me-5">
-                                <div class="d-flex flex-column h-100">
-                                    <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
-                                        <div class="accordion-item">
-                                            <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
-                                                <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}">
-                                                    <p class="h6 text-muted">You have {{ showcase.product.count }} product</p>
-                                                </button>
-                                            </h6>
-                                            <div id="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
-                                                <div class="accordion-body">
-                                                    <table class="table table-row-bordered gy-7 gs-7">
-                                                        <thead>
-                                                        <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-                                                            <th class="min-w-400px">Product</th>
-                                                            <th class="text-end min-w-20px"></th>
-                                                        </tr>
-                                                        </thead>
+                                {% csrf_token %}
+                                <div class="col-sm-6 me-5">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                            <div class="accordion-item">
+                                                <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}">
+                                                        <p class="h6 text-muted">You have {{ showcase.product.count }} product</p>
+                                                    </button>
+                                                </h6>
+                                                <div id="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                                    <div class="accordion-body">
+                                                        <table class="table table-row-bordered gy-7 gs-7">
+                                                            <thead>
+                                                            <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                                                                <th class="min-w-400px"></th>
+                                                                <th class="text-end min-w-20px"></th>
+                                                            </tr>
+                                                            </thead>
 
-                                                        <tbody>
-                                                        {% for product in showcase.product.all %}
-                                                        <tr>
-                                                            <!--product title-->
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <!--product thumbnail-->
-                                                                    <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
-                                                                        <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
-                                                                    </a>
-                                                                    <!--end product thumbnail-->
-                                                                    <div class="ms-5">
-                                                                        <!--begin::Title-->
-                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
-                                                                        <!--end::Title-->
+                                                            <tbody>
+                                                            {% for product in showcase.product.all %}
+                                                            <tr>
+                                                                <!--product title-->
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <!--product thumbnail-->
+                                                                        <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                        </a>
+                                                                        <!--end product thumbnail-->
+                                                                        <div class="ms-5">
+                                                                            <!--begin::Title-->
+                                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                            <!--end::Title-->
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <!--end product title-->
+                                                                </td>
+                                                                <!--end product title-->
 
-                                                            <!--remove product action-->
-                                                            <td class="text-end">
-                                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from the list">
-                                                                    <i class="bi bi-upload"></i>
-                                                                </a>
-                                                            </td>
-                                                            <!--end remove product action-->
-                                                        </tr>
-                                                        {% endfor %}
-                                                        </tbody>
-                                                    </table>
+                                                                <!--remove product action-->
+                                                                <td class="text-end">
+                                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from the list">
+                                                                        <i class="bi bi-upload"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <!--end remove product action-->
+                                                            </tr>
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="mb-5">
-                                        <div class="mb-4 fv-row fv-plugins-icon-container">
-                                            <div class="d-flex flex-wrap gap-5">
+                                        <div class="mb-5">
+                                            <div class="mb-4 fv-row fv-plugins-icon-container">
+                                                <div class="d-flex flex-wrap gap-5">
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="d-flex align-self-end">
+                                        <div class="d-flex align-self-end">
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
