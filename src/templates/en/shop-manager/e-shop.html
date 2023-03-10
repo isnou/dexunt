@@ -1179,6 +1179,7 @@
                                 {% csrf_token %}
                                 <div class="col-sm-6 me-5">
                                     <div class="d-flex flex-column h-100">
+                                        <div class="col-sm-6">
                                         <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
                                             <div class="accordion-item">
                                                 <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
@@ -1223,6 +1224,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <button type="button" class="btn btn-light-secondary" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#{{ showcase.sku }}_link_new_product">
