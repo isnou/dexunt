@@ -1176,58 +1176,120 @@
                     <div class="card-body py-1">
                             <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
+                                <div class="col-sm-6 mb-10 mb-sm-0">
 
-                                <div class="row pt-2 mx-n2">
-        <div class="tns-carousel tns-controls-static tns-controls-outside">
-            <div class="tns tns-default" style="direction: ltr">
-                <!--begin::Slider-->
-                <div
-                        data-tns="true"
-                        data-tns-loop="true"
-                        data-tns-swipe-angle="false"
-                        data-tns-speed="2000"
-                        data-tns-autoplay="true"
-                        data-tns-autoplay-timeout="18000"
-                        data-tns-controls="true"
-                        data-tns-nav="false"
-                        data-tns-items="3"
-                        data-tns-center="false"
-                        data-tns-dots="false"
-                        data-tns-prev-button="#kt_team_slider_prev1"
-                        data-tns-next-button="#kt_team_slider_next1">
 
-                    {% for product in showcase.product.all %}
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                            <div class="accordion-item">
+                                                <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}">
+                                                        <p class="h6 text-muted">You have {{ showcase.product.count }} product</p>
+                                                    </button>
+                                                </h6>
+                                                <div id="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                                    <div class="accordion-body">
+                                                        {% for product in showcase.product.all %}
+                                                        <!--begin::Item-->
+                                                        <div class="text-center px-5 py-5">
+                                                            <img src="{% get_media_prefix %}{{product.album.all.0.image}}" class="card-rounded mw-100" alt=""/>
+                                                        </div>
+                                                        <!--end::Item-->
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h6 class="accordion-header" id="products_edit_multiple_{{ showcase.sku }}_header_2_{{ showcase.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_2_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_2_{{ showcase.rank }}">
+                                                        <p class="h6 text-muted">French Translation</p>
+                                                    </button>
+                                                </h6>
+                                                <div id="products_edit_multiple_{{ showcase.sku }}_body_2_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_2_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                                    <div class="accordion-body">
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="fr_title" placeholder="french banner title" value="{{ showcase.fr_title }}"/>
+                                                            <label>title</label>
+                                                        </div>
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="fr_button" placeholder="french button title" value="{{ showcase.fr_button }}"/>
+                                                            <label>button title</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h6 class="accordion-header" id="products_edit_multiple_{{ showcase.sku }}_header_3_{{ showcase.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_3_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_3_{{ showcase.rank }}">
+                                                        <p class="h6 text-muted">Arabic Translation</p>
+                                                    </button>
+                                                </h6>
+                                                <div id="products_edit_multiple_{{ showcase.sku }}_body_3_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_3_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                                    <div class="accordion-body">
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="ar_title" placeholder="arabic banner title" value="{{ showcase.ar_title }}" dir="rtl"/>
+                                                            <label>title</label>
+                                                        </div>
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="ar_button" placeholder="arabic button title" value="{{ showcase.ar_button }}" dir="rtl"/>
+                                                            <label>button title</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-5">
+                                            <div class="mb-4 fv-row fv-plugins-icon-container">
+                                                <div class="d-flex flex-wrap gap-5">
+                                                    <!--day input-->
+                                                    <div class="fv-row w-100 flex-md-root">
+                                                        <div class="form-floating mb-8">
+                                                            <input type="number" class="form-control" name="day" placeholder=" " value="{{ showcase.day }}" max="31" min="1"/>
+                                                            <label>Day</label>
+                                                        </div>
+                                                    </div>
+                                                    <!--end day input-->
 
-                    <!--begin::Item-->
-                    <div class="text-center px-5 py-5">
-                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" class="card-rounded mw-100" alt=""/>
-                    </div>
-                    <!--end::Item-->
-                    {% endfor %}
-                    ...
-                </div>
-                <!--end::Slider-->
+                                                    <!--month input-->
+                                                    <div class="fv-row w-100 flex-md-root">
+                                                        <div class="form-floating mb-8">
+                                                            <input type="number" class="form-control" name="month" placeholder=" " value="{{ showcase.month }}" max="12" min="1"/>
+                                                            <label>Month</label>
+                                                        </div>
+                                                    </div>
+                                                    <!--end month input-->
 
-                <!--begin::Slider button-->
-                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev1">
-                    <span class="svg-icon svg-icon-3x">
-                        ...
-                    </span>
-                </button>
-                <!--end::Slider button-->
+                                                    <!--year input-->
+                                                    <div class="fv-row w-100 flex-md-root">
+                                                        <div class="form-floating mb-4">
+                                                            <input type="number" class="form-control" name="year" placeholder=" " value="{{ showcase.year }}" min="2023"/>
+                                                            <label>Year</label>
+                                                        </div>
+                                                    </div>
+                                                    <!--end year input-->
+                                                </div>
+                                            </div>
 
-                <!--begin::Slider button-->
-                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next1">
-                    <span class="svg-icon svg-icon-3x">
-                        ...
-                    </span>
-                </button>
-                <!--end::Slider button-->
-            </div>
-        </div>
-    </div>
+                                        </div>
 
-                                <div class="row gx-9 h-100">
+                                        <div class="d-flex align-self-end">
+                                            <a href="{% url 'e-shop' 'delete_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-trash fs-2x"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-repeat fs-2x"></i>
+                                            </button>
+                                            <a href="{% url 'e-shop' 'up_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-down-square fs-2x"></i>
+                                            </a>
+                                            <a href="{% url 'e-shop' 'down_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-up-square fs-2x"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
                                         <div class="accordion mb-2" id="edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
                                             <div class="accordion-item">
