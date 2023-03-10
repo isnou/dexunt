@@ -1177,8 +1177,8 @@
                             <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="row gx-9 h-100">
-                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-350px min-w-500px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ showcase.thumb }})">
-                                        <div class="image-input-wrapper min-h-350px min-w-500px"></div>
+                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-350px min-w-1200px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ showcase.thumb }})">
+                                        <div class="image-input-wrapper min-h-350px min-w-1200px"></div>
                                         <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
                                             <i class="bi bi-pencil-fill fs-7"></i>
                                             <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
