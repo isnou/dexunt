@@ -274,7 +274,7 @@ def edit_single_flash(request, detail):
         fr_button = request.POST.get('fr_button', False)
         ar_title = request.POST.get('ar_title', False)
         ar_button = request.POST.get('ar_button', False)
-        url = request.POST.get('url', False)
+        showcase_url = request.POST.get('showcase_url', False)
         thumb = request.FILES.get('thumb', False)
         day = request.POST.get('day', False)
         month = request.POST.get('month', False)
@@ -295,8 +295,8 @@ def edit_single_flash(request, detail):
         if ar_button:
             selected_showcase.ar_button = ar_button
 
-        if url:
-            selected_showcase.link = url
+        if showcase_url:
+            selected_showcase.link = showcase_url
 
         if thumb:
             selected_showcase.thumb = thumb

@@ -1016,7 +1016,6 @@
 
                 <div class="card-body">
                     <div class="card-body py-1">
-
                         <div class="row gx-9 h-100">
                             <form action="{% url 'e-shop' 'edit_single_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
@@ -1057,7 +1056,7 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <span class="input-group-text">url</span>
-                                                            <input type="text" name="url" class="form-control" placeholder=" " value="{{ showcase.link }}">
+                                                            <input type="text" name="showcase_url" class="form-control" placeholder=" " value="{{ showcase.link }}">
                                                         </div>
                                                     </div>
                                                 </div>
