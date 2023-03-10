@@ -185,6 +185,8 @@ def e_shop(request, action, detail, index):
         showcase = Showcase.objects.all().get(sku=detail)
         showcase.publish = False
         showcase.save()
+    if action == "add_product_to_showcase":
+        url = direction + e_shop_actions.add_product_to_showcase(detail, index).get('url')
 
 
 
