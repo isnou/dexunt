@@ -1182,9 +1182,35 @@
                                         <div class="d-flex align-self-start">
                                             <div class="mb-4 fv-row fv-plugins-icon-container">
                                                 <div class="d-flex flex-wrap gap-5">
-                                                    <a href="{% url 'e-shop' 'delete_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="link a new product" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                    <button href="#" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#{{ showcase.sku }}_link_new_product">
                                                         <i class="bi bi-link-45deg fs-2x"></i>
-                                                    </a>
+                                                    </button>
+
+                                                    <div class="modal fade" tabindex="-1" id="{{ showcase.sku }}_link_new_product">
+                                                        <div class="modal-dialog modal-dialog-scrollable">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Modal title</h5>
+
+                                                                    <!--begin::Close-->
+                                                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                        <span class="svg-icon svg-icon-2x"></span>
+                                                                    </div>
+                                                                    <!--end::Close-->
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <p>Long modal body text goes here.</p>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">close</button>
+                                                                    <button type="button" class="btn btn-primary">save</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
