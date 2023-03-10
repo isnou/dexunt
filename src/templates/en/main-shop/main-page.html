@@ -113,7 +113,7 @@
     </div>
 </section>
 <!-- Showcases & Movable Banners ---------------------->
-{% if showcases_exists %}
+{% if showcases.count %}
 {% for showcase in showcases %}
 <!-- grid showcase -->
 {% if showcase.en_second_title == 'grid_showcase' %}
