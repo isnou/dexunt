@@ -1193,7 +1193,7 @@
                                                         </a>
                                                         <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
                                                             <h3 class="product-title fs-sm text-truncate">
-                                                                <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a>
+                                                                <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a>
                                                             </h3>
                                                             {% if product.discount_price %}
                                                             <div class="product-price">
@@ -1222,7 +1222,7 @@
                                                         </a>
                                                         <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
                                                             <h3 class="product-title fs-sm text-truncate">
-                                                                <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a>
+                                                                <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a>
                                                             </h3>
                                                             <div class="product-price">
                                                                 <span class="text-muted fs-sm">Out of stock</span>
