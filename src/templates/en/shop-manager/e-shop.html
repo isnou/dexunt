@@ -1179,12 +1179,21 @@
                                 {% csrf_token %}
                                 <div class="col-sm-6 me-5">
                                     <div class="d-flex flex-column h-100">
-
                                         <div class="accordion mb-2" id="products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
                                             <div class="accordion-item">
                                                 <h6 class="accordion-header" id="products_edit_multiple_header_{{ showcase.rank }}">
                                                     <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" aria-expanded="false" aria-controls="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}">
-                                                        <p class="h6 text-muted">You have {{ showcase.product.count }} product</p>
+                                                        <p class="h6 text-muted">
+                                                            {% if showcase.product.count %}
+                                                            {% if showcase.product.count == 1 %}
+                                                            one linked product
+                                                            {% else %}
+                                                            {{ showcase.product.count }} linked products products
+                                                            {% endif %}
+                                                            {% else %}
+                                                            no linked products
+                                                            {% endif %}
+                                                        </p>
                                                     </button>
                                                 </h6>
                                                 <div id="products_edit_multiple_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="products_edit_multiple_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#products_edit_multiple_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
@@ -1225,7 +1234,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="mb-5 mt-8 ms-20">
                                             <div class="col-sm-6 mb-10 mb-sm-0">
                                                 <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-250px min-w-300px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ showcase.thumb }})">
