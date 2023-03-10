@@ -1202,6 +1202,8 @@
                                                                     <table class="table table-row-bordered gy-7 gs-7">
                                                                         <tbody>
                                                                         {% for product in all_products %}
+                                                                        {% for showcase_product in showcase.product.all %}
+                                                                        {% if product.sku == showcase_product.sku %}
                                                                         <tr>
                                                                             <!--product title-->
                                                                             <td>
@@ -1228,6 +1230,8 @@
                                                                             </td>
                                                                             <!--end remove product action-->
                                                                         </tr>
+                                                                        {% endif %}
+                                                                        {% endfor %}
                                                                         {% endfor %}
                                                                         </tbody>
                                                                     </table>
