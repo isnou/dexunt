@@ -162,8 +162,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="tab" href="#groups_categories">
-                        Groups & Categories
+                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'category' %} active {% endif %}" data-bs-toggle="tab" href="#categories">
+                        Categories
                     </a>
                 </li>
             </ul>
@@ -2066,72 +2066,16 @@
     <!--end ads & showcases pan-->
 
     <!--grouped products & categories pan-->
-    <div class="tab-pane fade" id="groups_categories">
+    <div class="tab-pane fade {% if tab == 'category' %} active show {% endif %}" id="categories">
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
                 <div class="card-body">
                     <div class="row gx-9 h-100">
                         <div class="tns tns-default" style="text-align: center;">
-                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary me-4" data-bs-toggle="modal" data-bs-target="#new_group">
-                                New Group
-                            </a>
                             <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal" data-bs-target="#new_category">
                                 New Category
                             </a>
                         </div>
-
-                        <!--new showcase modal-->
-                        <div class="modal fade" tabindex="-1" id="new_group">
-                            <div class="modal-dialog modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header align-self-center">
-                                        <h3 class="modal-title">New Group</h3>
-                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                            <span class="svg-icon svg-icon-1"></span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                            <div class="card-body">
-                                                <div class="card card-flush py-4">
-                                                    <!--title-->
-                                                    <div class="form-floating mb-2">
-                                                        <input type="text" class="form-control" name="en_title" placeholder=" "/>
-                                                        <label>english title</label>
-                                                    </div>
-                                                    <!--end title-->
-
-                                                    <!--french title-->
-                                                    <div class="form-floating mb-2">
-                                                        <input type="text" class="form-control" name="fr_title" placeholder=" "/>
-                                                        <label>french title</label>
-                                                    </div>
-                                                    <!--end french title-->
-
-                                                    <!--arabic title-->
-                                                    <div class="form-floating mb-2">
-                                                        <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
-                                                        <label>arabic title</label>
-                                                    </div>
-                                                    <!--end arabic title-->
-                                                </div>
-                                                <!--add product buttons-->
-                                                <div class="d-flex justify-content-center">
-                                                    <!--submit button-->
-                                                    <button type="submit" class="btn btn-secondary">
-                                                        <span class="indicator-label">save</span>
-                                                    </button>
-                                                    <!--end submit button-->
-                                                </div>
-                                                <!--end add product buttons-->
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end new showcase modal-->
 
                         <!--new category modal-->
                         <div class="modal fade" tabindex="-1" id="new_category">
@@ -2144,7 +2088,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                        <form action="{% url 'e-shop' 'edit_category' 'new' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
                                             <div class="card-body">
                                                 <div class="card card-flush py-4">

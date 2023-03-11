@@ -79,12 +79,11 @@ class Category(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     rank = models.IntegerField(blank=True, null=True)
-    type = models.CharField(max_length=50, blank=True, null=True)
     publish = models.BooleanField(default=False)
     sku = models.CharField(max_length=20, unique=True, null=True)
     product = models.ManyToManyField(Product, blank=True)
     # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/category/', blank=True, null=True)
+    thumb = models.ImageField(upload_to='main-shop/e-shop/category/', blank=True, null=True)
 
     def products(self):
         return "\n".join([p.en_title for p in self.product.all()])
