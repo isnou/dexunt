@@ -185,11 +185,10 @@
                                             <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
                                                 <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
                                             </a>
-                                            <div class="fs-2 fw-bold" >{{ product.en_title }}</div>
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
+                                        <div class="fw-semibold fs-6 text-gray-400">{{ product.en_title }}</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
