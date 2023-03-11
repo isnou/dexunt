@@ -508,12 +508,13 @@
                             </div>
                             {% if product.discount_price %}
                             <div class="mb-3">
-                                <span class="h3 fw-normal text-accent me-1">{{ product.discount_price }}.<small>DA</small></span>
-                                <del class="text-muted fs-lg me-3">{{ product.sell_price }}<small>DA</small></del><span class="badge bg-danger badge-shadow align-middle mt-n2">Sale</span>
+                                <span class="h3 fw-normal text-accent me-1">{{ product.discount_price }}<small>DA</small></span>
+                                <del class="text-muted fs-lg me-3">{{ product.sell_price }}</del><small>DA</small>
+                                <span class="badge bg-danger badge-shadow align-middle mt-n2">Sale</span>
                             </div>
                             {% else %}
                             <div class="mb-3">
-                                <span class="h3 fw-normal text-accent me-1">{{ product.sell_price }}.<small>00</small></span>
+                                <span class="h3 fw-normal text-accent me-1">{{ product.sell_price }}<small>00</small></span>
                             </div>
                             {% endif %}
                             <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Color:</span><span class="text-muted" id="colorOptionText">Red/Dark blue/White</span></div>
