@@ -2070,16 +2070,121 @@
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
                 <div class="card-body">
-                    <div class="card-body py-9">
-                        <div class="row gx-9 h-100">
-                            <div class="col-sm-6 mb-10 mb-sm-0">
-                                <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-size: 100% 100%;background-image:url('../assets/media/stock/600x600/img-33.jpg')"></div>
-                            </div>
+                    <div class="row gx-9 h-100">
+                        <div class="tns tns-default" style="text-align: center;">
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary" data-bs-toggle="modal" data-bs-target="#new_showcase">
+                                New Showcase
+                            </a>
+                            <a class="btn btn-outline btn-outline-dashed btn-outline-secondary btn-active-light-secondary me-4" data-bs-toggle="modal" data-bs-target="#new_category">
+                                New Category
+                            </a>
+                        </div>
 
-                            <div class="col-sm-6">
-                                grouped products & categories
+                        <!--new showcase modal-->
+                        <div class="modal fade" tabindex="-1" id="new_showcase">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header align-self-center">
+                                        <h3 class="modal-title">New Showcase</h3>
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-1"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="card-body">
+                                                <div class="card card-flush py-4">
+                                                    <!--title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" name="en_title" placeholder=" "/>
+                                                        <label>english title</label>
+                                                    </div>
+                                                    <!--end title-->
+
+                                                    <!--french title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" name="fr_title" placeholder=" "/>
+                                                        <label>french title</label>
+                                                    </div>
+                                                    <!--end french title-->
+
+                                                    <!--arabic title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
+                                                        <label>arabic title</label>
+                                                    </div>
+                                                    <!--end arabic title-->
+                                                </div>
+                                                <!--add product buttons-->
+                                                <div class="d-flex justify-content-center">
+                                                    <!--submit button-->
+                                                    <button type="submit" class="btn btn-secondary">
+                                                        <span class="indicator-label">save</span>
+                                                    </button>
+                                                    <!--end submit button-->
+                                                </div>
+                                                <!--end add product buttons-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!--end new showcase modal-->
+
+                        <!--new category modal-->
+                        <div class="modal fade" tabindex="-1" id="new_category">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header align-self-center">
+                                        <h3 class="modal-title">New Showcase</h3>
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-1"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="card-body">
+                                                <div class="card card-flush py-4">
+                                                    <!--title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" name="en_title" placeholder=" "/>
+                                                        <label>english title</label>
+                                                    </div>
+                                                    <!--end title-->
+
+                                                    <!--french title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" name="fr_title" placeholder=" "/>
+                                                        <label>french title</label>
+                                                    </div>
+                                                    <!--end french title-->
+
+                                                    <!--arabic title-->
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
+                                                        <label>arabic title</label>
+                                                    </div>
+                                                    <!--end arabic title-->
+                                                </div>
+                                                <!--add product buttons-->
+                                                <div class="d-flex justify-content-center">
+                                                    <!--submit button-->
+                                                    <button type="submit" class="btn btn-secondary">
+                                                        <span class="indicator-label">save</span>
+                                                    </button>
+                                                    <!--end submit button-->
+                                                </div>
+                                                <!--end add product buttons-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end new category modal-->
                     </div>
                 </div>
             </div>
