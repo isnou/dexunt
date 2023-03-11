@@ -165,12 +165,12 @@
         <div class="card-footer">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="tab" href="#intro_banners">
+                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'intro_banner' %} active {% endif %}" data-bs-toggle="tab" href="#intro_banners">
                         Intro Banners
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="tab" href="#intro_thumbs">
+                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'intro_thumb' %} active {% endif %}" data-bs-toggle="tab" href="#intro_thumbs">
                         Intro Thumbs
                     </a>
                 </li>
@@ -193,7 +193,7 @@
 
 <div class="tab-content">
     <!--intro banners pan-->
-    <div class="tab-pane fade" id="intro_banners">
+    <div class="tab-pane fade {% if tab == 'intro_banner' %} active show {% endif %}" id="intro_banners">
         {% for intro_banner in intro_banners %}
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
@@ -340,7 +340,7 @@
     <!--end intro banners pan-->
 
     <!--intro thumbs pan-->
-    <div class="tab-pane fade" id="intro_thumbs">
+    <div class="tab-pane fade {% if tab == 'intro_thumb' %} active show {% endif %}" id="intro_thumbs">
         {% for intro_thumb in intro_thumbs %}
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
