@@ -179,9 +179,9 @@
 
                                     {% for product in selected_product.product.all %}
                                     <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3 align-items-center">
                                         <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex">
                                             <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
                                                 <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
                                             </a>
