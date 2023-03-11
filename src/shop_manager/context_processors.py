@@ -12,10 +12,13 @@ def shop_manager_content(request):
     except Product.DoesNotExist:
         raise Http404("No products")
 
-    #showcase_products = raw_products_list.exclude(publish=False)
-    #best_sellers = showcase_products.order_by('-sell_rate')[:4]
-    #top_rated = showcase_products.order_by('-review_rate')[:4]
-    #new_arrivals = showcase_products.order_by('-updated_at')[:4]
+    products_to_publish = all_products.exclude(publish=False)
+    best_sellers = products_to_publish.order_by('-sell_rate')[:4]
+    top_rated = products_to_publish.order_by('-review_rate')[:4]
+    new_arrivals = products_to_publish.order_by('-updated_at')[:4]
     return {
         'all_products' : all_products,
+        'best_sellers' : best_sellers,
+        'top_rated' : top_rated,
+        'new_arrivals' : new_arrivals,
     }
