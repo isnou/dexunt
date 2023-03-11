@@ -58,6 +58,9 @@ def inventory(request, action, sku):
     if action == "unpublish_e_shop_product":
         url = direction + inventory_actions.unpublish_e_shop_product(sku).get('url')
         tab = 'e_shop'
+    if action == "remove_product":
+        ShowcaseProduct.objects.all().get(sku=sku).delete()
+        tab = 'e_shop'
 
     context = {
         'inventory_products': inventory_products,
@@ -136,8 +139,7 @@ def inventory_preparation(request, action, sku):
 
     if action == "prepare_product":
         url = direction + inventory_actions.prepare_product(request, sku).get('url')
-    if action == "remove_product":
-        ShowcaseProduct.objects.all().get(sku=sku).delete()
+
 
 
     context = {
