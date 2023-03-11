@@ -613,9 +613,10 @@ def prepare_product(request, sku):
         en_note = request.POST.get('en_note', False)
         fr_note = request.POST.get('fr_note', False)
         ar_note = request.POST.get('ar_note', False)
-        tag = request.POST.get('tag', False)
-        sell_price = request.POST.get('sell_price', False)
-        discount_price = request.POST.get('discount_price', False)
+        brand = request.POST.get('brand', False)
+        model = request.POST.get('model', False)
+        points = request.POST.get('points', False)
+        delivery_quotient = request.POST.get('delivery_quotient', False)
 
         if en_description:
             selected_product.en_description = en_description
@@ -629,12 +630,14 @@ def prepare_product(request, sku):
             selected_product.fr_note = fr_note
         if ar_note:
             selected_product.ar_note = ar_note
-        if tag:
-            selected_product.tag = tag
-        if sell_price:
-            selected_product.sell_price = int(sell_price)
-        if discount_price:
-            selected_product.discount_price = int(discount_price)
+        if brand:
+            selected_product.brand = brand
+        if model:
+            selected_product.model = model
+        if points:
+            selected_product.points = int(points)
+        if delivery_quotient:
+            selected_product.delivery_quotient = int(delivery_quotient)
 
         selected_product.save()
 

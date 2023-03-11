@@ -489,7 +489,7 @@
                                         {% else %}
                                         <!--product thumbnail-->
                                         <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.thumb}}">
-                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.thumb}});"></span>
+                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.all.0.album.all.0.image}});"></span>
                                         </a>
                                         <!--end product thumbnail-->
                                         {% endif %}
