@@ -484,10 +484,11 @@
                                 <a class="product-gallery-thumblist-item" href="#four">
                                     <img src="{% get_media_prefix %}{{ product.album.all.3.image }}">
                                 </a>
-
+                                {% if product.album.all.4.id %}
                                 <a class="product-gallery-thumblist-item" href="#five">
                                     <img src="{% get_media_prefix %}{{ product.album.all.4.image }}">
                                 </a>
+                                {% endif %}
 
                             </div>
 
