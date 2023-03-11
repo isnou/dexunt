@@ -49,15 +49,6 @@ def inventory(request, action, sku):
     if action == "refresh_e_shop_product":
         url = direction + inventory_actions.refresh_e_shop_product().get('url')
         tab = 'e_shop'
-    if action == "delete_e_shop_product":
-        ShowcaseProduct.objects.all().get(sku=sku).delete()
-        tab = 'e_shop'
-    if action == "publish_e_shop_product":
-        url = direction + inventory_actions.publish_e_shop_product(sku).get('url')
-        tab = 'e_shop'
-    if action == "unpublish_e_shop_product":
-        url = direction + inventory_actions.unpublish_e_shop_product(sku).get('url')
-        tab = 'e_shop'
     if action == "remove_product":
         ShowcaseProduct.objects.all().get(sku=sku).delete()
         tab = 'e_shop'
@@ -114,14 +105,9 @@ def inventory_edit(request, action, sku, index):
     if action == 'delete_size':
         url = direction + inventory_actions.delete_size(sku, index).get('url')
 
-    # -----------------------------edit showcase product
-    if action == "edit_e_shop_product":
-        url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
-
     selected_product = Product.objects.all().get(sku=sku)
     sizes = selected_product.size.all().exclude(show_thumb=True)
     thumbnail_sizes = selected_product.size.all().exclude(show_thumb=False)
-
 
     context = {
         'selected_product': selected_product,
@@ -135,10 +121,10 @@ def inventory_preparation(request, action, sku):
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory-preparation.html"
 
-    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
-
     if action == "prepare_product":
         url = direction + inventory_actions.prepare_product(request, sku).get('url')
+
+    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
 
     context = {
         'selected_product': selected_product,

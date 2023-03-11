@@ -52,7 +52,6 @@ def add_new_product(request):
         'url': url,
     }
 
-
 def add_new_variant(request, sku):
     url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -106,7 +105,6 @@ def add_new_variant(request, sku):
         'url': url,
     }
 
-
 def add_quantity(sku):
     url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -116,7 +114,6 @@ def add_quantity(sku):
     return {
         'url': url,
     }
-
 
 def remove_quantity(sku):
     url = "/shop-manager/inventory.html"
@@ -131,7 +128,6 @@ def remove_quantity(sku):
         'url': url,
     }
 
-
 def publish(sku):
     url = "/shop-manager/inventory.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -141,7 +137,6 @@ def publish(sku):
     return {
         'url': url,
     }
-
 
 def unpublish(sku):
     url = "/shop-manager/inventory.html"
@@ -165,28 +160,6 @@ def refresh_e_shop_product():
                                                )
             showcase_product.save()
             showcase_product.product.add(product_to_add)
-
-    return {
-        'url': url,
-    }
-
-
-def publish_e_shop_product(sku):
-    url = "/shop-manager/inventory.html"
-    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
-    selected_product.publish = True
-    selected_product.save()
-
-    return {
-        'url': url,
-    }
-
-
-def unpublish_e_shop_product(sku):
-    url = "/shop-manager/inventory.html"
-    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
-    selected_product.publish = False
-    selected_product.save()
 
     return {
         'url': url,
@@ -261,7 +234,6 @@ def edit_product(request, sku):
         'url': url,
     }
 
-
 def add_new_photo(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -276,7 +248,6 @@ def add_new_photo(request, sku):
     return {
         'url': url,
     }
-
 
 def add_new_feature(request, sku):
     url = "/shop-manager/inventory-edit.html"
@@ -310,7 +281,6 @@ def add_new_feature(request, sku):
         'url': url,
     }
 
-
 def edit_feature(request, index):
     url = "/shop-manager/inventory-edit.html"
     selected_feature = Feature.objects.all().get(id=index)
@@ -339,7 +309,6 @@ def edit_feature(request, index):
     return {
         'url': url,
     }
-
 
 def add_new_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
@@ -390,7 +359,6 @@ def add_new_size(request, sku):
         'url': url,
     }
 
-
 def edit_size(request, sku, index):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -430,7 +398,6 @@ def edit_size(request, sku, index):
     return {
         'url': url,
     }
-
 
 def add_thumbnail_size(request, sku):
     url = "/shop-manager/inventory-edit.html"
@@ -483,7 +450,6 @@ def add_thumbnail_size(request, sku):
         'url': url,
     }
 
-
 def edit_thumbnail_size(request, sku, index):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -527,7 +493,6 @@ def edit_thumbnail_size(request, sku, index):
         'url': url,
     }
 
-
 def delete_size(sku, index):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
@@ -545,60 +510,6 @@ def delete_size(sku, index):
     }
 
 # ------------------ inventory preparation
-def edit_e_shop_product(request, sku):
-    url = "/shop-manager/inventory-preparation.html"
-    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
-    if request.method == 'POST':
-        en_title = request.POST.get('en_title', False)
-        fr_title = request.POST.get('fr_title', False)
-        ar_title = request.POST.get('ar_title', False)
-        en_spec = request.POST.get('en_spec', False)
-        fr_spec = request.POST.get('fr_spec', False)
-        ar_spec = request.POST.get('ar_spec', False)
-        upc = request.POST.get('upc', False)
-        tag = request.POST.get('tag', False)
-        quantity = request.POST.get('quantity', False)
-        buy_price = request.POST.get('buy_price', False)
-        sell_price = request.POST.get('sell_price', False)
-        discount_price = request.POST.get('discount_price', False)
-
-        if en_title:
-            selected_product.en_title = en_title
-        if fr_title:
-            selected_product.fr_title = fr_title
-        if ar_title:
-            selected_product.ar_title = ar_title
-        if en_spec:
-            selected_product.en_spec = en_spec
-        if fr_spec:
-            selected_product.fr_spec = fr_spec
-        if ar_spec:
-            selected_product.ar_spec = ar_spec
-        if upc:
-            selected_product.upc = upc
-        if tag:
-            selected_product.tag = tag
-        if quantity:
-            selected_product.quantity = int(quantity)
-        if buy_price:
-            selected_product.buy_price = int(buy_price)
-        if sell_price:
-            selected_product.sell_price = int(sell_price)
-        if discount_price:
-            selected_product.discount_price = int(discount_price)
-        selected_product.save()
-        if related_products:
-            for related_product in related_products:
-                related_product.en_title = selected_product.en_title
-                related_product.fr_title = selected_product.fr_title
-                related_product.ar_title = selected_product.ar_title
-                related_product.tag = selected_product.tag
-                related_product.save()
-
-    return {
-        'url': url,
-    }
-
 def prepare_product(request, sku):
     url = "/shop-manager/inventory-preparation.html"
     selected_product = ShowcaseProduct.objects.all().get(sku=sku)
