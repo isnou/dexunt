@@ -1574,7 +1574,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="d-flex align-self-center">
+                                        <div class="d-flex align-self-end">
                                             <button type="button" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#grid_showcase_{{ showcase.sku }}_link_new_product">
                                                 <i class="bi bi-link-45deg fs-2x"></i>
                                             </button>
@@ -1591,6 +1591,183 @@
                                                 <i class="bi bi-arrow-down-square fs-2x"></i>
                                             </a>
                                             <div class="modal fade" tabindex="-1" id="grid_showcase_{{ showcase.sku }}_link_new_product">
+                                                <div class="modal-dialog modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{ showcase.en_title }}</h5>
+
+                                                            <!--begin::Close-->
+                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span class="svg-icon svg-icon-2x"></span>
+                                                            </div>
+                                                            <!--end::Close-->
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <table class="table table-row-bordered gy-7 gs-7">
+                                                                <tbody>
+                                                                {% for product in all_products %}
+                                                                <tr>
+                                                                    <!--product title-->
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <!--product thumbnail-->
+                                                                            <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                                <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                            </a>
+                                                                            <!--end product thumbnail-->
+                                                                            <div class="ms-5">
+                                                                                <!--begin::Title-->
+                                                                                <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                                <!--end::Title-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <!--end product title-->
+
+                                                                    <!--remove product action-->
+                                                                    <td class="text-end">
+                                                                        <a href="{% url 'e-shop' 'add_product_to_showcase' showcase.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{showcase.en_title}}">
+                                                                            <i class="bi bi-download"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                    <!--end remove product action-->
+                                                                </tr>
+                                                                {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if showcase.type == 'slider_showcase' %}
+        <div class="container-xxl mt-5">
+            <div class="card card-flush shadow-sm">
+                <div class="card-toolbar">
+                    <div class="row mt-8" style="text-align: center;">
+                        {% if showcase.publish %}
+                        <a href="{% url 'e-shop' 'deactivate' showcase.sku showcase.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                            {{ showcase.en_title }} - {{ showcase.rank }} - {{ showcase.type }}
+                        </a>
+                        {% else %}
+                        <a href="{% url 'e-shop' 'activate' showcase.sku showcase.rank %}" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                            {{ showcase.en_title }} - {{ showcase.rank }} - {{ showcase.type }}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body py-1">
+                        <div class="row gx-9 h-100">
+                            <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="col-sm-6 me-5">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="accordion mb-2" id="slider_showcase_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                            <div class="accordion-item">
+                                                <h6 class="accordion-header" id="slider_showcase_{{ showcase.sku }}_header_{{ showcase.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#slider_showcase_{{ showcase.sku }}_body_{{ showcase.rank }}" aria-expanded="false" aria-controls="slider_showcase_{{ showcase.sku }}_body_{{ showcase.rank }}">
+                                                        <p class="h6 text-muted">
+                                                            {% if showcase.product.count %}
+                                                            {% if showcase.product.count == 1 %}
+                                                            one linked product
+                                                            {% else %}
+                                                            {{ showcase.product.count }} linked products
+                                                            {% endif %}
+                                                            {% else %}
+                                                            no linked products
+                                                            {% endif %}
+                                                        </p>
+                                                    </button>
+                                                </h6>
+                                                <div id="slider_showcase_{{ showcase.sku }}_body_{{ showcase.rank }}" class="accordion-collapse collapse" aria-labelledby="slider_showcase_{{ showcase.sku }}_header_{{ showcase.rank }}" data-bs-parent="#slider_showcase_{{ showcase.sku }}_accordion_{{ showcase.rank }}">
+                                                    <div class="accordion-body">
+                                                        <table class="table table-row-bordered gy-7 gs-7">
+                                                            <tbody>
+                                                            {% for product in showcase.product.all %}
+                                                            <tr>
+                                                                <!--product title-->
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <!--product thumbnail-->
+                                                                        <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                        </a>
+                                                                        <!--end product thumbnail-->
+                                                                        <div class="ms-5">
+                                                                            <!--begin::Title-->
+                                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                            <!--end::Title-->
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <!--end product title-->
+
+                                                                <!--remove product action-->
+                                                                <td class="text-end">
+                                                                    <a href="{% url 'e-shop' 'remove_product_from_showcase' showcase.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
+                                                                        <i class="bi bi-upload"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <!--end remove product action-->
+                                                            </tr>
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="en_title" placeholder="english banner title" value="{{ showcase.en_title }}"/>
+                                            <label>english title</label>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="fr_title" placeholder="french banner title" value="{{ showcase.fr_title }}"/>
+                                            <label>french title</label>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="ar_title" placeholder="arabic banner title" value="{{ showcase.ar_title }}" dir="rtl"/>
+                                            <label>arabic title</label>
+                                        </div>
+
+                                        <div class="d-flex align-self-end">
+                                            <button type="button" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#slider_showcase_{{ showcase.sku }}_link_new_product">
+                                                <i class="bi bi-link-45deg fs-2x"></i>
+                                            </button>
+                                            <a href="{% url 'e-shop' 'delete_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-trash fs-2x"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-repeat fs-2x"></i>
+                                            </button>
+                                            <a href="{% url 'e-shop' 'up_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-up-square fs-2x"></i>
+                                            </a>
+                                            <a href="{% url 'e-shop' 'down_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-down-square fs-2x"></i>
+                                            </a>
+                                            <div class="modal fade" tabindex="-1" id="slider_showcase_{{ showcase.sku }}_link_new_product">
                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
