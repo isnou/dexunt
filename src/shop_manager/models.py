@@ -97,8 +97,6 @@ class ShowcaseProduct(models.Model):
     ar_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
-    review_rate = models.IntegerField(default=0)
-    sell_rate = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
     delivery_quotient = models.IntegerField(default=1)
     points = models.IntegerField(default=0)
