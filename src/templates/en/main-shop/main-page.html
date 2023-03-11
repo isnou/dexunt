@@ -433,7 +433,6 @@
                     <div class="col-lg-7 pe-lg-0">
                         <div class="product-gallery">
 
-
                             <div class="product-gallery-thumblist order-sm-1">
                                 <a class="product-gallery-thumblist-item active" href="#one">
                                     <img src="{% get_media_prefix %}{{ product.album.all.0.image }}">
@@ -462,8 +461,6 @@
                                 {% endif %}
 
                             </div>
-
-
                             <div class="product-gallery-preview order-sm-2">
                                 <div class="product-gallery-preview-item active" id="one">
                                     <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.0.image }}"
@@ -509,9 +506,16 @@
                                 <span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">74 Reviews</span></a>
                                 <button class="btn-wishlist" type="button" data-bs-toggle="tooltip" title="Add to wishlist"><i class="ci-heart"></i></button>
                             </div>
-                            <div class="mb-3"><span class="h3 fw-normal text-accent me-1">$18.<small>99</small></span>
-                                <del class="text-muted fs-lg me-3">$25.<small>00</small></del><span class="badge bg-danger badge-shadow align-middle mt-n2">Sale</span>
+                            {% if product.discount_price %}
+                            <div class="mb-3">
+                                <span class="h3 fw-normal text-accent me-1">{{ product.discount_price }}.<small>00</small>DA</span>
+                                <del class="text-muted fs-lg me-3">{{ product.sell_price }}<small>{{ product.sell_price }}</small>DA</del><span class="badge bg-danger badge-shadow align-middle mt-n2">Sale</span>
                             </div>
+                            {% else %}
+                            <div class="mb-3">
+                                <span class="h3 fw-normal text-accent me-1">{{ product.sell_price }}.<small>00</small></span>
+                            </div>
+                            {% endif %}
                             <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Color:</span><span class="text-muted" id="colorOptionText">Red/Dark blue/White</span></div>
                             <div class="position-relative me-n4 mb-3">
                                 <div class="form-check form-option form-check-inline mb-2">
