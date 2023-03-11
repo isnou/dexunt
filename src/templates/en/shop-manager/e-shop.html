@@ -2198,7 +2198,7 @@
 
                                                                 <!--remove product action-->
                                                                 <td class="text-end">
-                                                                    <a href="{% url 'e-shop' 'remove_product_from_showcase' showcase.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
+                                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
                                                                         <i class="bi bi-upload"></i>
                                                                     </a>
                                                                 </td>
@@ -2213,7 +2213,7 @@
                                         </div>
                                         <div class="mb-5 mt-8 ms-20">
                                             <div class="col-sm-6 mb-10 mb-sm-0">
-                                                <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-250px min-w-300px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ showcase.thumb }})">
+                                                <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-250px min-w-300px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ category.thumb }})">
                                                     <div class="image-input-wrapper min-h-250px min-w-300px"></div>
                                                     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
                                                         <i class="bi bi-pencil-fill fs-7"></i>
@@ -2235,15 +2235,15 @@
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
                                         <div class="form-floating mb-2">
-                                            <input type="text" class="form-control" name="en_title" placeholder="english banner title" value="{{ showcase.en_title }}"/>
+                                            <input type="text" class="form-control" name="en_title" placeholder="english category title" value="{{ category.en_title }}"/>
                                             <label>english title</label>
                                         </div>
                                         <div class="form-floating mb-2">
-                                            <input type="text" class="form-control" name="fr_title" placeholder="french banner title" value="{{ showcase.fr_title }}"/>
+                                            <input type="text" class="form-control" name="fr_title" placeholder="french category title" value="{{ category.fr_title }}"/>
                                             <label>french title</label>
                                         </div>
                                         <div class="form-floating mb-10">
-                                            <input type="text" class="form-control" name="ar_title" placeholder="arabic banner title" value="{{ showcase.ar_title }}" dir="rtl"/>
+                                            <input type="text" class="form-control" name="ar_title" placeholder="arabic category title" value="{{ category.ar_title }}" dir="rtl"/>
                                             <label>arabic title</label>
                                         </div>
 
@@ -2251,16 +2251,16 @@
                                             <button type="button" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#{{ category.sku }}_link_new_product">
                                                 <i class="bi bi-link-45deg fs-2x"></i>
                                             </button>
-                                            <a href="{% url 'e-shop' 'delete_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="#" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-trash fs-2x"></i>
                                             </a>
                                             <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
                                             </button>
-                                            <a href="{% url 'e-shop' 'up_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="#" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-up-square fs-2x"></i>
                                             </a>
-                                            <a href="{% url 'e-shop' 'down_showcase' showcase.sku showcase.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="#" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-down-square fs-2x"></i>
                                             </a>
                                             <div class="modal fade" tabindex="-1" id="{{ category.sku }}_link_new_product">
