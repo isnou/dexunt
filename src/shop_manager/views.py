@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
 from .models import Product, Size, Feature, ShowcaseProduct
-from main_shop.models import IntroThumb, IntroBanner ,Showcase
+from main_shop.models import IntroThumb, IntroBanner ,Showcase ,Category
 
 
 def manager_dashboard(request, action):
@@ -201,6 +201,20 @@ def e_shop(request, action, detail, index):
     if action == "edit_category":
         url = direction + e_shop_actions.edit_category(request, detail).get('url')
         tab = 'category'
+    if action == "activate_category":
+        category = Category.objects.all().get(sku=detail)
+        category.publish = True
+        category.save()
+    if action == "deactivate_category":
+        category = Category.objects.all().get(sku=detail)
+        category.publish = False
+        category.save()
+    if action == "delete_category":
+        Category.objects.all().get(sku=detail).delete()
+    if action == "up_category":
+        url = direction + e_shop_actions.up_category(detail, index).get('url')
+    if action == "down_category":
+        url = direction + e_shop_actions.down_category(detail, index).get('url')
 
     context = {
         'intro_banners': intro_banners,

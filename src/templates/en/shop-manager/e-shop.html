@@ -2139,11 +2139,11 @@
                 <div class="card-toolbar">
                     <div class="row mt-8" style="text-align: center;">
                         {% if category.publish %}
-                        <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                        <a href="{% url 'e-shop' 'deactivate' category.sku category.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
                             {{ category.en_title }} - {{ category.rank }}
                         </a>
                         {% else %}
-                        <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                        <a href="{% url 'e-shop' 'activate' category.sku category.rank %}" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
                             {{ category.en_title }} - {{ category.rank }}
                         </a>
                         {% endif %}
@@ -2251,16 +2251,16 @@
                                             <button type="button" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#category_{{ category.sku }}_link_new_product">
                                                 <i class="bi bi-link-45deg fs-2x"></i>
                                             </button>
-                                            <a href="#" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'delete_category' category.sku category.rank %}" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-trash fs-2x"></i>
                                             </a>
                                             <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
                                             </button>
-                                            <a href="#" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'up_category' category.sku category.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-up-square fs-2x"></i>
                                             </a>
-                                            <a href="#" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'down_category' category.sku category.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-down-square fs-2x"></i>
                                             </a>
                                             <div class="modal fade" tabindex="-1" id="category_{{ category.sku }}_link_new_product">
@@ -2319,7 +2319,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </form>
                         </div>
