@@ -95,6 +95,7 @@ class ShowcaseProduct(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
     # --------------------------------- showcase information -----------------------------------
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
