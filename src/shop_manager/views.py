@@ -203,28 +203,3 @@ def e_shop(request, action, detail, index):
         'tab':tab,
     }
     return render(request, url, context)
-
-
-def e_shop_edit(request, action, detail, index):
-    direction = request.session.get('language')
-    url = direction + "/shop-manager/e-shop-edit.html"
-
-    if action == "showcase":
-        url = direction + e_shop_actions.showcase(request, index).get('url')
-    if action == "banner":
-        url = direction + e_shop_actions.banner(request, index).get('url')
-    if action == "link_product":
-        url = direction + e_shop_actions.link(detail, index).get('url')
-        detail = 'showcase'
-    if action == "unlink_product":
-        url = direction + e_shop_actions.unlink(detail, index).get('url')
-        detail = 'showcase'
-
-    selected_layout = Layout.objects.all().get(id=index)
-    selected_layout_type = detail
-
-    context = {
-        'selected_layout': selected_layout,
-        'selected_layout_type': selected_layout_type,
-    }
-    return render(request, url, context)
