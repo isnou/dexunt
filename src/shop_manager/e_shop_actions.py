@@ -473,26 +473,17 @@ def edit_slider_showcase(request, detail):
 
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
-        en_button = request.POST.get('en_button', False)
         fr_title = request.POST.get('fr_title', False)
-        fr_button = request.POST.get('fr_button', False)
         ar_title = request.POST.get('ar_title', False)
-        ar_button = request.POST.get('ar_button', False)
 
         if en_title:
             selected_showcase.en_title = en_title
-        if en_button:
-            selected_showcase.en_button = en_button
 
         if fr_title:
             selected_showcase.fr_title = fr_title
-        if fr_button:
-            selected_showcase.fr_button = fr_button
 
         if ar_title:
             selected_showcase.ar_title = ar_title
-        if ar_button:
-            selected_showcase.ar_button = ar_button
 
         selected_showcase.save()
 
