@@ -77,6 +77,8 @@ class Showcase(models.Model):
 class Category(models.Model):
     # --------------------------------- category identification --------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.TextField(max_length=300, blank=True, null=True)
+    ar_title = models.TextField(max_length=300, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     rank = models.IntegerField(blank=True, null=True)
     publish = models.BooleanField(default=False)
