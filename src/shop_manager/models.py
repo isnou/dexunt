@@ -113,22 +113,3 @@ class ShowcaseProduct(models.Model):
 
     def __str__(self):
         return self.en_title
-
-
-class Category(models.Model):
-    # --------------------------------- category identification --------------------------------
-    en_title = models.CharField(max_length=200, blank=True, null=True)
-    # --------------------------------- technical details --------------------------------------
-    rank = models.IntegerField(blank=True, null=True)
-    type = models.CharField(max_length=50, blank=True, null=True)
-    publish = models.BooleanField(default=False)
-    sku = models.CharField(max_length=20, unique=True, null=True)
-    product = models.ManyToManyField(Product, blank=True)
-    # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/category/', blank=True, null=True)
-
-    def products(self):
-        return "\n".join([p.en_title for p in self.product.all()])
-
-    def __str__(self):
-        return self.en_title
