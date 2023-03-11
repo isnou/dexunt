@@ -25,7 +25,7 @@ def inventory(request, action, sku):
     except ShowcaseProduct.DoesNotExist:
         raise Http404("No products")
 
-    inventory_products = inventory_products_list.order_by('en_title')
+    inventory_products = inventory_products_list.order_by('updated_at')
     e_shop_products = e_shop_products_list.order_by('en_title')
 
     direction = request.session.get('language')
