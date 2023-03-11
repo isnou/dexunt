@@ -736,6 +736,46 @@ def edit_category(request, detail):
         'url': url,
     }
 
+def up_category(detail, index):
+    url = "/shop-manager/e-shop.html"
+    selected_category = Category.objects.all().get(sku=detail)
+    max_rank = Category.objects.all().count()
+
+    if index == max_rank:
+        next_category = Category.objects.all().get(rank=1)
+    else:
+        next_category = Category.objects.all().get(rank=index + 1)
+
+    selected_category.rank = next_category.rank
+    next_category.rank = index
+
+    selected_category.save()
+    next_category.save()
+
+    return {
+        'url': url,
+    }
+
+def down_category(detail, index):
+    url = "/shop-manager/e-shop.html"
+    selected_category = Category.objects.all().get(sku=detail)
+    max_rank = Category.objects.all().count()
+
+    if index == 1:
+        next_category = Category.objects.all().get(rank=max_rank)
+    else:
+        next_category = Category.objects.all().get(rank=index - 1)
+
+    selected_category.rank = next_category.rank
+    next_category.rank = index
+
+    selected_category.save()
+    next_category.save()
+
+    return {
+        'url': url,
+    }
+
 
 # ------------------ functions
 def serial_number_generator(length):
