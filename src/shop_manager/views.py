@@ -137,6 +137,7 @@ def e_shop(request, action, detail, index):
     url = direction + "/shop-manager/e-shop.html"
     intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
     intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
+    tab = 'ad_showcase'
     # -----------------------------intro banner
     if action == "edit_banner":
         url = direction + e_shop_actions.edit_banner(request, index).get('url')
@@ -190,6 +191,7 @@ def e_shop(request, action, detail, index):
     context = {
         'intro_banners': intro_banners,
         'intro_thumbs':intro_thumbs,
+        'tab':tab,
     }
     return render(request, url, context)
 
