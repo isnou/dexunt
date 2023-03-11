@@ -133,22 +133,13 @@
                                         <div class="card card-flush py-4">
                                             <!--photo input-->
                                             <div class="card-body text-center pt-0">
-                                                <!--begin::Image input-->
-                                        <!--product thumbnail-->
-                                        <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{selected_product.product.all.0.album.all.0.image}}">
-                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{selected_product.product.all.0.album.all.0.image}});"></span>
-                                        </a>
-                                        <!--end product thumbnail-->
-                                                <!--end::Image input-->
+                                                <div class="me-20">
+                                                    <img alt="Logo" src="/static/manager/media/logos/logo-default.svg" class="h-90px">
+                                                </div>
                                             </div>
                                             <!--end photo input-->
                                         </div>
                                     </div>
-                                    <!--submit button-->
-                                    <button type="submit" class="btn btn-secondary">
-                                        <span class="indicator-label">Save</span>
-                                    </button>
-                                    <!--end submit button-->
                                 </div>
                                 <!--add photo buttons-->
                                 <div class="d-flex justify-content-end" style="padding-top: 50px;">
