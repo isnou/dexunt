@@ -95,21 +95,16 @@ class ShowcaseProduct(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
-    # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='shop-manager/showcase/', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    publish = models.BooleanField(default=False)
-    availability = models.CharField(max_length=80, blank=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
-    tag = models.CharField(max_length=500, blank=True, default='tag')
     review_rate = models.IntegerField(default=0)
     sell_rate = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
+    delivery_quotient = models.IntegerField(default=1)
+    points = models.IntegerField(default=0)
     product = models.ManyToManyField(Product, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
     model = models.CharField(max_length=80, blank=True, null=True)
-    sell_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     en_description = models.CharField(max_length=800, blank=True, null=True)
     fr_description = models.CharField(max_length=800, blank=True, null=True)
     ar_description = models.CharField(max_length=800, blank=True, null=True)
