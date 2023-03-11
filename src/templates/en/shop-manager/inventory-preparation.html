@@ -128,17 +128,14 @@
                         <form action="{% url 'inventory-preparation' 'edit_e_shop_product_thumb' selected_product.sku %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="card-title">
-                                <div class="card card-flush py-4">
+                                <div class="card card-flush">
                                     <div class="card-title">
-                                        <div class="card card-flush py-4">
-                                            <!--photo input-->
-                                            <div class="card-body text-center pt-0">
+                                        <div class="card-body text-center pt-0">
                                                 <div class="me-20">
                                                     <img alt="Logo" src="/static/manager/media/logos/logo-default.svg" class="h-90px">
                                                 </div>
                                             </div>
-                                            <!--end photo input-->
-                                        </div>
+
                                     </div>
                                 </div>
                                 <!--add photo buttons-->
