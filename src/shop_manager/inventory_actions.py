@@ -196,13 +196,13 @@ def unpublish_e_shop_product(sku):
 def edit_product(request, sku):
     url = "/shop-manager/inventory-edit.html"
     selected_product = Product.objects.all().get(sku=sku)
-    if Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku).count:
-        related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
+    if Product.objects.all().filter(en_title=selected_product.en_title).exclude(sku=sku).count:
+        related_products = Product.objects.all().filter(en_title=selected_product.en_title).exclude(sku=sku)
     else:
         related_products = None
 
-    if ShowcaseProduct.objects.all().filter(fr_title=selected_product.fr_title).exists():
-        related_showcase_products = ShowcaseProduct.objects.all().get(fr_title=selected_product.fr_title)
+    if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
+        related_showcase_products = ShowcaseProduct.objects.all().get(en_title=selected_product.en_title)
     else:
         related_showcase_products = None
 
