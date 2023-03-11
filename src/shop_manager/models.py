@@ -96,7 +96,7 @@ class ShowcaseProduct(models.Model):
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
     # --------------------------------- showcase information -----------------------------------
-    delivery_quotient = models.IntegerField(default=1)
+    delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
     product = models.ManyToManyField(Product, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
