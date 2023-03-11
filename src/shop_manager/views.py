@@ -78,29 +78,47 @@ def inventory(request, action, sku):
 def inventory_edit(request, action, sku, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory-edit.html"
+    tab = 'edit_product'
 
+    # -----------------------------edit product
     if action == "edit_product":
         url = direction + inventory_actions.edit_product(request, sku).get('url')
+
+    # -----------------------------edit photos
     if action == "add_new_photo":
         url = direction + inventory_actions.add_new_photo(request, sku).get('url')
+        tab = 'edit_photo'
     if action == "delete_photo":
         Product.objects.all().get(sku=sku).album.all().get(id=index).delete()
+        tab = 'edit_photo'
+
+    # -----------------------------edit features
     if action == 'add_new_feature':
         url = direction + inventory_actions.add_new_feature(request, sku).get('url')
+        tab = 'edit_feature'
     if action == 'edit_feature':
         url = direction + inventory_actions.edit_feature(request, index).get('url')
+        tab = 'edit_feature'
+    if action == 'delete_feature':
+        Feature.objects.all().get(id=index).delete()
+        tab = 'edit_feature'
+
+    # -----------------------------edit sizes
     if action == "add_new_size":
         url = direction + inventory_actions.add_new_size(request, sku).get('url')
+        tab = 'edit_size'
     if action == "edit_size":
         url = direction + inventory_actions.edit_size(request, sku, index).get('url')
+        tab = 'edit_size'
+    # -----------------------------edit thumb sizes
     if action == "add_thumbnail_size":
         url = direction + inventory_actions.add_thumbnail_size(request, sku).get('url')
     if action == "edit_thumbnail_size":
         url = direction + inventory_actions.edit_thumbnail_size(request, sku, index).get('url')
     if action == 'delete_size':
         url = direction + inventory_actions.delete_size(sku, index).get('url')
-    if action == 'delete_feature':
-        Feature.objects.all().get(id=index).delete()
+
+    # -----------------------------edit showcase product
     if action == "edit_e_shop_product":
         url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
 
@@ -112,6 +130,7 @@ def inventory_edit(request, action, sku, index):
         'selected_product': selected_product,
         'sizes': sizes,
         'thumbnail_sizes': thumbnail_sizes,
+        'tab': tab,
     }
     return render(request, url, context)
 
