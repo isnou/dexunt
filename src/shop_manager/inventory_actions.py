@@ -200,6 +200,12 @@ def edit_product(request, sku):
         related_products = Product.objects.all().filter(fr_title=selected_product.fr_title).exclude(sku=sku)
     else:
         related_products = None
+
+    if ShowcaseProduct.objects.all().filter(fr_title=selected_product.fr_title).exists():
+        related_showcase_products = ShowcaseProduct.objects.all().get(fr_title=selected_product.fr_title)
+    else:
+        related_showcase_products = None
+
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
@@ -246,6 +252,10 @@ def edit_product(request, sku):
                 related_product.ar_title = selected_product.ar_title
                 related_product.tag = selected_product.tag
                 related_product.save()
+
+        if related_showcase_products:
+            related_showcase_products.en_title = selected_product.en_title
+            related_showcase_products.save()
 
     return {
         'url': url,

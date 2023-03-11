@@ -75,10 +75,6 @@ def inventory_edit(request, action, sku, index):
     url = direction + "/shop-manager/inventory-edit.html"
     tab = 'edit_product'
 
-    selected_product = Product.objects.all().get(sku=sku)
-    sizes = selected_product.size.all().exclude(show_thumb=True)
-    thumbnail_sizes = selected_product.size.all().exclude(show_thumb=False)
-
     # -----------------------------edit product
     if action == "edit_product":
         url = direction + inventory_actions.edit_product(request, sku).get('url')
@@ -117,6 +113,14 @@ def inventory_edit(request, action, sku, index):
         url = direction + inventory_actions.edit_thumbnail_size(request, sku, index).get('url')
     if action == 'delete_size':
         url = direction + inventory_actions.delete_size(sku, index).get('url')
+
+    # -----------------------------edit showcase product
+    if action == "edit_e_shop_product":
+        url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
+
+    selected_product = Product.objects.all().get(sku=sku)
+    sizes = selected_product.size.all().exclude(show_thumb=True)
+    thumbnail_sizes = selected_product.size.all().exclude(show_thumb=False)
 
 
     context = {
