@@ -113,14 +113,14 @@
     </div>
 </section>
 <!-- Showcases & Movable Banners ---------------------->
-{% if showcases.count %}
+
 {% for showcase in showcases %}
 <!-- grid showcase -->
-{% if showcase.en_second_title == 'grid_showcase' %}
+{% if showcase.type == 'grid_showcase' %}
 <section class="container pt-5">
     <!-- Heading-->
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
-        <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.en_first_title }}</h2>
+        <h2 class="h3 mb-0 pt-3 me-2">{{ showcase.en_title }}</h2>
         <div class="pt-3"><a class="btn btn-outline-accent btn-sm" href="{% url 'grid-shop' 'showcase' showcase.id %}">{{ showcase.en_button }}<i class="ci-arrow-right ms-1 me-n1"></i></a></div>
     </div>
     <!-- Grid-->
@@ -136,7 +136,7 @@
                     </button>
                 </div>
                 <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' 'main' %}">
-                    <img src="{% get_media_prefix %}{{product.thumb}}" style="width: auto;height: 220px;">
+                    <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                 </a>
                 <div class="card-body py-2">
                     <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
@@ -170,7 +170,7 @@
                     </button>
                 </div>
                 <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' 'main' %}">
-                    <img src="{% get_media_prefix %}{{product.thumb}}" style="width: auto;height: 220px;">
+                    <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                 </a>
                 <div class="card-body py-2">
                     <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
@@ -196,7 +196,7 @@
 {% endif %}
 <!-- end grid showcase -->
 <!-- column showcase -->
-{% if showcase.type == 'multiple_flash' %}
+{% if showcase.type == 'slider_showcase' %}
 <section class="container pt-5">
     <!-- Heading-->
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
@@ -289,6 +289,7 @@
 </section>
 {% endif %}
 <!-- end timed banner -->
+
 <!-- timed banner -->
 {% if showcase.en_second_title == 'timed_banner' %}
 <!-- Promo banner-->
@@ -315,9 +316,9 @@
 {% endif %}
 <!-- end timed banner -->
 {% endfor %}
-{% endif %}
+
+
 <!-- Bestsellers New Arrivals Top Rated --------------->
-<!-- Product widgets-->
 <section class="container pb-4 pb-md-5">
     <div class="row">
         <!-- Bestsellers-->
