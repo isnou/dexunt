@@ -2065,7 +2065,7 @@
     </div>
     <!--end ads & showcases pan-->
 
-    <!--grouped products & categories pan-->
+    <!--categories pan-->
     <div class="tab-pane fade {% if tab == 'category' %} active show {% endif %}" id="categories">
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
@@ -2198,7 +2198,7 @@
 
                                                                 <!--remove product action-->
                                                                 <td class="text-end">
-                                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
+                                                                    <a href="{% url 'e-shop' 'remove_product_from_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
                                                                         <i class="bi bi-upload"></i>
                                                                     </a>
                                                                 </td>
@@ -2300,7 +2300,7 @@
 
                                                                     <!--remove product action-->
                                                                     <td class="text-end">
-                                                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
+                                                                        <a href="{% url 'e-shop' 'add_product_to_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
                                                                             <i class="bi bi-download"></i>
                                                                         </a>
                                                                     </td>
@@ -2328,7 +2328,7 @@
         </div>
         {% endfor %}
     </div>
-    <!--end grouped products & categories pan-->
+    <!--end categories pan-->
 </div>
 
 {% endblock %}

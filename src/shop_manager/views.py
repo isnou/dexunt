@@ -220,6 +220,12 @@ def e_shop(request, action, detail, index):
     if action == "down_category":
         url = direction + e_shop_actions.down_category(detail, index).get('url')
         tab = 'category'
+    if action == "add_product_to_category":
+        url = direction + e_shop_actions.add_product_to_category(detail, index).get('url')
+        tab = 'category'
+    if action == "remove_product_from_category":
+        url = direction + e_shop_actions.remove_product_from_category(detail, index).get('url')
+        tab = 'category'
 
     context = {
         'intro_banners': intro_banners,
