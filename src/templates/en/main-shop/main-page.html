@@ -331,7 +331,7 @@
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
@@ -355,7 +355,7 @@
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
@@ -379,7 +379,7 @@
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_product_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
