@@ -72,6 +72,10 @@ def inventory_edit(request, action, sku, index):
     url = direction + "/shop-manager/inventory-edit.html"
     tab = 'edit_product'
 
+    selected_product = Product.objects.all().get(sku=sku)
+    sizes = selected_product.size.all().exclude(show_thumb=True)
+    thumbnail_sizes = selected_product.size.all().exclude(show_thumb=False)
+
     # -----------------------------edit product
     if action == "edit_product":
         url = direction + inventory_actions.edit_product(request, sku).get('url')
@@ -114,9 +118,6 @@ def inventory_edit(request, action, sku, index):
     if action == "edit_e_shop_product":
         url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
 
-    selected_product = Product.objects.all().get(sku=sku)
-    sizes = selected_product.size.all().exclude(show_thumb=True)
-    thumbnail_sizes = selected_product.size.all().exclude(show_thumb=False)
 
     context = {
         'selected_product': selected_product,
@@ -130,11 +131,14 @@ def inventory_preparation(request, action, sku):
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory-preparation.html"
 
+    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
+
 
     if action == "prepare_product":
         url = direction + inventory_actions.prepare_product(request, sku).get('url')
+    if action == "remove_product":
+        ShowcaseProduct.objects.all().get(sku=sku).delete()
 
-    selected_product = ShowcaseProduct.objects.all().get(sku=sku)
 
     context = {
         'selected_product': selected_product,
