@@ -109,6 +109,7 @@ def inventory_edit(request, action, sku, index):
     if action == "edit_size":
         url = direction + inventory_actions.edit_size(request, sku, index).get('url')
         tab = 'edit_size'
+
     # -----------------------------edit thumb sizes
     if action == "add_thumbnail_size":
         url = direction + inventory_actions.add_thumbnail_size(request, sku).get('url')
@@ -116,10 +117,6 @@ def inventory_edit(request, action, sku, index):
         url = direction + inventory_actions.edit_thumbnail_size(request, sku, index).get('url')
     if action == 'delete_size':
         url = direction + inventory_actions.delete_size(sku, index).get('url')
-
-    # -----------------------------edit showcase product
-    if action == "edit_e_shop_product":
-        url = direction + inventory_actions.edit_e_shop_product(request, sku).get('url')
 
 
     context = {
@@ -136,11 +133,8 @@ def inventory_preparation(request, action, sku):
 
     selected_product = ShowcaseProduct.objects.all().get(sku=sku)
 
-
     if action == "prepare_product":
         url = direction + inventory_actions.prepare_product(request, sku).get('url')
-
-
 
     context = {
         'selected_product': selected_product,
