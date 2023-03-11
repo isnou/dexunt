@@ -434,24 +434,21 @@
                         <div class="product-gallery">
                             <div class="product-gallery-preview order-sm-2">
 
-
-
                                 {% for item in product.album.all %}
                                 <div class="product-gallery-preview-item" id="{{ item.id }}">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{item.image}}" data-zoom="{% get_media_prefix %}{{ item.image }}" alt="Product image">
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{item.image}}" data-zoom="{% get_media_prefix %}{{ item.image }}">
                                     <div class="image-zoom-pane"></div>
                                 </div>
                                 {% endfor %}
-                            </div>
-                            {% for item in product.album.all %}
-                            <div class="product-gallery-thumblist order-sm-1">
 
+                            </div>
+                            <div class="product-gallery-thumblist order-sm-1">
+                                {% for item in product.album.all %}
                                 <a class="product-gallery-thumblist-item" href="#{{ item.id }}">
                                     <img src="{% get_media_prefix %}{{ item.image }}">
                                 </a>
-
+                                {% endfor %}
                             </div>
-                            {% endfor %}
                         </div>
                     </div>
                     <!-- Product details-->
