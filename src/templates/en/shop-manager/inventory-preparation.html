@@ -156,12 +156,24 @@
                                     </a>
                                     <i class="bi bi-dash-lg"></i>
                                     <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
-                                        {% if selected_product.publish %}
-                                        published
-                                        {% else %}
-                                        not published
-                                        {% endif %}
+                                        {{ selected_product.delivery_quotient }} %
                                     </a>
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.points }} pts
+                                    </a>
+                                    {% if selected_product.brand %}
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.brand }}
+                                    </a>
+                                    {% endif %}
+                                    {% if selected_product.model %}
+                                    <i class="bi bi-dash-lg"></i>
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" style="margin-left: 10px;">
+                                        {{ selected_product.model }}
+                                    </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
