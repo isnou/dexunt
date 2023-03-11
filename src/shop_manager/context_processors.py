@@ -17,6 +17,7 @@ def shop_manager_content(request):
     top_rated = published_products.order_by('-review_rate')[:4]
     new_arrivals = published_products.order_by('-updated_at')[:4]
     return {
+        'all_products' : all_products,
         'best_sellers' : best_sellers,
         'top_rated' : top_rated,
         'new_arrivals' : new_arrivals,

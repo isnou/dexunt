@@ -238,7 +238,7 @@
                                 <i class="ci-cart fs-sm me-1"></i>Add to Cart
                             </button>
                             <div class="text-center mb-2">
-                                <a class="nav-link-style fs-ms" href="#quick_view" data-bs-toggle="modal">
+                                <a class="nav-link-style fs-ms" href="#quick_view_{{ product.sku }}" data-bs-toggle="modal">
                                     <i class="ci-eye align-middle me-1"></i>Quick view
                                 </a>
                             </div>
@@ -339,8 +339,89 @@
 <!-- end timed banner -->
 {% endfor %}
 
+
+
+<!-- Bestsellers New Arrivals Top Rated --------------->
+<section class="container pb-4 pb-md-5">
+    <div class="row">
+        <!-- Bestsellers-->
+        <div class="col-md-4 col-sm-6 mb-2 py-3">
+            <div class="widget">
+                <h3 class="widget-title">Bestsellers</h3>
+                {% for product in best_sellers %}
+                <div class="d-flex align-items-center pb-2 border-bottom">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
+                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
+                    </a>
+                    <div class="ps-2">
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
+                        {% if product.discount_price %}
+                        <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                        </div>
+                        {% else %}
+                        <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'best_sellers' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+            </div>
+        </div>
+        <!-- New arrivals-->
+        <div class="col-md-4 col-sm-6 mb-2 py-3">
+            <div class="widget">
+                <h3 class="widget-title">New arrivals</h3>
+                {% for product in new_arrivals %}
+                <div class="d-flex align-items-center pb-2 border-bottom">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
+                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
+                    </a>
+                    <div class="ps-2">
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
+                        {% if product.discount_price %}
+                        <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                        </div>
+                        {% else %}
+                        <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'new_arrivals' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+            </div>
+        </div>
+        <!-- Top rated-->
+        <div class="col-md-4 col-sm-6 mb-2 py-3">
+            <div class="widget">
+                <h3 class="widget-title">Top rated</h3>
+                {% for product in top_rated %}
+                <div class="d-flex align-items-center pb-2 border-bottom">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
+                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
+                    </a>
+                    <div class="ps-2">
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
+                        {% if product.discount_price %}
+                        <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                        </div>
+                        {% else %}
+                        <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'top_rated' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Quick View Modal-->
-                <div class="modal-quick-view modal fade" id="quick_view" tabindex="-1">
+{% for product in all_products %}
+<div class="modal-quick-view modal fade" id="quick_view_{{ product.sku }}" tabindex="-1">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -441,82 +522,6 @@
           </div>
         </div>
       </div>
+{% endfor %}
 
-<!-- Bestsellers New Arrivals Top Rated --------------->
-<section class="container pb-4 pb-md-5">
-    <div class="row">
-        <!-- Bestsellers-->
-        <div class="col-md-4 col-sm-6 mb-2 py-3">
-            <div class="widget">
-                <h3 class="widget-title">Bestsellers</h3>
-                {% for product in best_sellers %}
-                <div class="d-flex align-items-center pb-2 border-bottom">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
-                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
-                    </a>
-                    <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
-                        {% if product.discount_price %}
-                        <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                            <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                        </div>
-                        {% else %}
-                        <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'best_sellers' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
-            </div>
-        </div>
-        <!-- New arrivals-->
-        <div class="col-md-4 col-sm-6 mb-2 py-3">
-            <div class="widget">
-                <h3 class="widget-title">New arrivals</h3>
-                {% for product in new_arrivals %}
-                <div class="d-flex align-items-center pb-2 border-bottom">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
-                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
-                    </a>
-                    <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
-                        {% if product.discount_price %}
-                        <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                            <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                        </div>
-                        {% else %}
-                        <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'new_arrivals' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
-            </div>
-        </div>
-        <!-- Top rated-->
-        <div class="col-md-4 col-sm-6 mb-2 py-3">
-            <div class="widget">
-                <h3 class="widget-title">Top rated</h3>
-                {% for product in top_rated %}
-                <div class="d-flex align-items-center pb-2 border-bottom">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
-                        <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
-                    </a>
-                    <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
-                        {% if product.discount_price %}
-                        <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                            <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                        </div>
-                        {% else %}
-                        <div class="widget-product-meta"><span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span></div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-                <p class="mb-0">...</p><a class="fs-sm" href="{% url 'grid-shop' 'top_rated' 0 %}">View more<i class="ci-arrow-right fs-xs ms-1"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
 {% endblock %}}
