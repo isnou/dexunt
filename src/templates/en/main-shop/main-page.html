@@ -117,7 +117,7 @@
 {% for showcase in showcases %}
 
 <!-- grid showcase -->
-{% if showcase.type == 'grid_showcase' %}
+{% if showcase.publish and showcase.type == 'grid_showcase' %}
 <section class="container pt-5">
     <!-- Heading-->
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
@@ -212,7 +212,7 @@
                 <!-- Product-->
                 {% if product.quantity > 0 %}
                 <div>
-                    <div class="card product-card card-static">
+                    <div class="card product-card card-static" style="text-align: -webkit-center;">
                         <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
                             <i class="ci-heart"></i>
                         </button>
@@ -240,7 +240,7 @@
                 </div>
                 {% else %}
                 <div>
-                    <div class="card product-card card-static">
+                    <div class="card product-card card-static" style="text-align: -webkit-center;">
                         <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
                             <i class="ci-heart"></i>
                         </button>
