@@ -140,7 +140,7 @@
                     <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                 </a>
                 <div class="card-body py-2">
-                    <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
+                    <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.en_spec }}</a>
                     <h3 class="product-title fs-sm">
                         <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a>
                     </h3>
