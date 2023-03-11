@@ -138,6 +138,7 @@ def e_shop(request, action, detail, index):
     intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
     intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
     tab = 'ad_showcase'
+
     # -----------------------------intro banner
     if action == "edit_banner":
         url = direction + e_shop_actions.edit_banner(request, index).get('url')
@@ -150,6 +151,7 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.down_banner(index).get('url')
         intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
         tab = 'intro_banner'
+
     # -----------------------------intro thumb
     if action == "edit_thumb":
         url = direction + e_shop_actions.edit_thumb(request, index).get('url')
@@ -162,6 +164,7 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.down_thumb(index).get('url')
         intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
         tab = 'intro_thumb'
+
     # -----------------------------ad & showcase
     if action == "edit_single_flash":
         url = direction + e_shop_actions.edit_single_flash(request, detail).get('url')
