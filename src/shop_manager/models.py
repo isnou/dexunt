@@ -93,8 +93,6 @@ class Product(models.Model):
 class ShowcaseProduct(models.Model):
     # --------------------------------- product identification ---------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
-    fr_title = models.CharField(max_length=200, blank=True, null=True)
-    ar_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     sku = models.CharField(max_length=20, unique=True, null=True)
     # --------------------------------- showcase information -----------------------------------
