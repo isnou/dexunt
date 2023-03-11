@@ -302,46 +302,55 @@
                                                 </div>
                                                 <!--end arabic note-->
 
-                                                <!--tag input-->
-                                                <div class="mb-5 fv-row fv-plugins-icon-container">
-                                                    <!--input-->
-                                                    <div class="input-group">
-                                                        <span class="input-group-text">Tag</span>
-                                                        <input type="text" name="tag" class="form-control" placeholder="tags must be separated by space" value="{{ selected_product.tag }}">
-                                                    </div>
-                                                    <!--end input-->
-                                                </div>
-                                                <!--end tag input-->
-
-                                                <!--product sell price & discount price input-->
+                                                <!--brand & model input-->
                                                 <div class="mb-5 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
-                                                        <!--sell price input-->
+                                                        <!--brand input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Sell Price</span>
-                                                                <input type="number" name="sell_price" class="form-control" placeholder="product regular price" value="{{ selected_product.sell_price }}" min="0">
-                                                                <span class="input-group-text">DZD</span>
+                                                                <span class="input-group-text">Brand</span>
+                                                                <input type="number" name="brand" class="form-control" placeholder="product brand" value="{{ selected_product.brand }}">
                                                             </div>
-                                                            <!--end input-->
                                                         </div>
-                                                        <!--end sell price input-->
+                                                        <!--end brand input-->
 
-                                                        <!--discounted price input-->
+                                                        <!--model input-->
                                                         <div class="fv-row w-100 flex-md-root">
-                                                            <!--input-->
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Discounted Price</span>
-                                                                <input type="number" name="discount_price" class="form-control" placeholder="product discount price" value="{{ selected_product.discount_price }}" min="0">
-                                                                <span class="input-group-text">DZD</span>
+                                                                <span class="input-group-text">Model</span>
+                                                                <input type="text" name="model" class="form-control" placeholder="product model" value="{{ selected_product.model }}">
                                                             </div>
-                                                            <!--end input-->
                                                         </div>
-                                                        <!--end discounted price input-->
+                                                        <!--end model input-->
                                                     </div>
                                                 </div>
-                                                <!--end product sell price & discount price input-->
+                                                <!--end brand & model input-->
+
+                                                <!--product delivery & points input-->
+                                                <div class="mb-5 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-wrap gap-5">
+                                                        <!--delivery input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Delivery Quotient</span>
+                                                                <input type="number" name="delivery_quotient" class="form-control" placeholder="a percentage of regular delivery price" value="{{ selected_product.delivery_quotient }}" min="0">
+                                                                <span class="input-group-text">%</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end delivery input-->
+
+                                                        <!--points input-->
+                                                        <div class="fv-row w-100 flex-md-root">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Points</span>
+                                                                <input type="number" name="points" class="form-control" placeholder="points to earn" value="{{ selected_product.discount_price }}" min="0">
+                                                                <span class="input-group-text">pts</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end points input-->
+                                                    </div>
+                                                </div>
+                                                <!--end product delivery & points input-->
                                             </div>
                                             <!--end block body-->
                                         </div>
