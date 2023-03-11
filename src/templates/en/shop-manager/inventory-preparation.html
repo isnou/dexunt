@@ -176,23 +176,16 @@
                             <div class="d-flex flex-column flex-grow-1 pe-8">
                                 <!--begin::Stats-->
                                 <div class="d-flex flex-wrap">
+
+                                    {% for product in selected_product.product.all %}
                                     <!--begin::Stat-->
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         <!--begin::Number-->
                                         <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Sell :</div>
-                                        </div>
-                                        <!--end::Number-->
-                                        <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Stat-->
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <!--begin::Number-->
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" >Discount :</div>
+                                            <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                            </a>
+                                            <div class="fs-2 fw-bold" >{{ product.en_title }}</div>
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
@@ -200,6 +193,7 @@
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
+                                    {% endfor %}
                                 </div>
                                 <!--end::Stats-->
                             </div>
