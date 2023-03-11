@@ -135,6 +135,12 @@ def inventory_preparation(request, action, sku):
 def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
+
+    try:
+        all_products = Product.objects.all()
+    except Product.DoesNotExist:
+        raise Http404("No products")
+
     intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
     intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
     tab = 'ad_showcase'
@@ -228,6 +234,7 @@ def e_shop(request, action, detail, index):
         tab = 'category'
 
     context = {
+        'all_products': all_products,
         'intro_banners': intro_banners,
         'intro_thumbs':intro_thumbs,
         'tab':tab,
