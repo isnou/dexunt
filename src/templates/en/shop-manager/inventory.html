@@ -471,9 +471,8 @@
                                 <th class="text-end min-w-20px"></th>
                                 <th class="text-end min-w-20px"></th>
                                 <th class="text-center min-w-40px">Variants</th>
-                                <th class="text-center min-w-40px">Published</th>
-                                <th class="text-center min-w-150px">Price</th>
-                                <th class="text-center min-w-150px">Discounted price</th>
+                                <th class="text-center min-w-150px">Delivery</th>
+                                <th class="text-center min-w-150px">Points</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -526,39 +525,17 @@
                                 </td>
                                 <!--end variants number-->
 
-                                <!--publish-->
+                                <!--delivery-->
                                 <td class="text-center">
-                                    {% if product.publish %}
-                                    <a href="{% url 'inventory' 'unpublish_e_shop_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="unpublish">
-                                        <i class="bi bi-check-lg"></i>
-                                    </a>
-                                    {% else %}
-                                    <a href="{% url 'inventory' 'publish_e_shop_product' product.sku %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="publish">
-                                        <i class="bi bi-x-lg"></i>
-                                    </a>
-                                    {% endif %}
+                                    <span class="fw-bold text-dark">{{ product.delivery_quotient }} %</span>
                                 </td>
-                                <!--end publish-->
+                                <!--end delivery-->
 
-                                <!--sell price-->
+                                <!--points-->
                                 <td class="text-center">
-                                    {% if product.sell_price > 0 %}
-                                    <span class="fw-bold text-dark">{{ product.sell_price|floatformat:"2g" }} DZD</span>
-                                    {% else %}
-                                    <span class="badge badge-danger">price missing</span>
-                                    {% endif %}
+                                    <span class="fw-bold text-dark">{{ product.points }}</span>
                                 </td>
-                                <!--end sell price-->
-
-                                <!--discounted price-->
-                                <td class="text-center">
-                                    {% if product.discount_price > 0 %}
-                                    <span class="fw-bold text-dark">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                                    {% else %}
-                                    <span class="badge badge-success">no discount</span>
-                                    {% endif %}
-                                </td>
-                                <!--end discounted price-->
+                                <!--end points-->
                             </tr>
                             {% endfor %}
                             </tbody>
