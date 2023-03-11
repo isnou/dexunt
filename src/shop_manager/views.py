@@ -197,6 +197,11 @@ def e_shop(request, action, detail, index):
     if action == "remove_product_from_showcase":
         url = direction + e_shop_actions.remove_product_from_showcase(detail, index).get('url')
 
+    # -----------------------------category
+    if action == "edit_category":
+        url = direction + e_shop_actions.edit_category(request, detail).get('url')
+        tab = 'category'
+
     context = {
         'intro_banners': intro_banners,
         'intro_thumbs':intro_thumbs,

@@ -1,4 +1,4 @@
-from .models import IntroBanner, IntroThumb, Showcase
+from .models import IntroBanner, IntroThumb, Showcase, Category
 
 
 def main_shop_content(request):
@@ -14,9 +14,14 @@ def main_shop_content(request):
         showcases = Showcase.objects.all().order_by('-rank')
     except Showcase.objects.all().DoesNotExist:
         raise Http404("No showcases")
+    try:
+        categories = Category.objects.all().order_by('-rank')
+    except Category.objects.all().DoesNotExist:
+        raise Http404("No categories")
 
     return {
         'intro_thumbs': intro_thumbs,
         'intro_banners': intro_banners,
         'showcases': showcases,
+        'categories': categories,
     }

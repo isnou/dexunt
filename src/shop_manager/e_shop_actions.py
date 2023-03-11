@@ -1,6 +1,6 @@
 import random
 import string
-from main_shop.models import IntroThumb, IntroBanner ,Showcase
+from main_shop.models import IntroThumb, IntroBanner ,Showcase ,Category
 from .models import Product, Feature
 
 def initialisation():
@@ -679,6 +679,58 @@ def remove_product_from_showcase(detail, index):
     selected_product = Product.objects.all().get(id=index)
 
     selected_showcase.product.remove(selected_product)
+
+    return {
+        'url': url,
+    }
+
+# ------------------ category
+def edit_category(request, detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        categories = Category.objects.all()
+    except Category.objects.all().DoesNotExist:
+        raise Http404("No categories")
+
+    if not detail =='new':
+        try:
+            selected_category = Category.objects.all().get(sku=detail)
+        except Category.objects.all().DoesNotExist:
+            raise Http404("No category")
+    else:
+        selected_category = None
+
+    if not selected_category:
+        sku = serial_number_generator(10).upper()
+        if categories:
+            rank = categories.count() + 1
+        else:
+            rank = 1
+        selected_category = Category(rank=rank,
+                                     sku=sku,
+                                     )
+        selected_category.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
+        thumb = request.FILES.get('thumb', False)
+
+
+        if en_title:
+            selected_category.en_title = en_title
+
+        if fr_title:
+            selected_category.fr_title = fr_title
+
+        if ar_title:
+            selected_category.ar_title = ar_title
+
+        if thumb:
+            selected_category.thumb = thumb
+
+        selected_category.save()
 
     return {
         'url': url,
