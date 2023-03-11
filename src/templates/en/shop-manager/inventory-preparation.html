@@ -181,14 +181,14 @@
                                     <!--begin::Stat-->
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3" style="font-variant: all-small-caps;">
                                         <!--begin::Number-->
-                                        <div class="d-flex">
+                                        <div class="d-flex ml-22">
                                             <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
                                                 <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
                                             </a>
                                         </div>
                                         <!--end::Number-->
                                         <!--begin::Label-->
-                                        <div class="fw-semibold fs-6 text-gray-400 mt-2">{{ product.en_spec }}</div>
+                                        <div class="fw-semibold fs-6 text-gray-400 mt-2" style="text-align: center;">{{ product.en_spec }}</div>
                                         <!--end::Label-->
                                     </div>
                                     <!--end::Stat-->
