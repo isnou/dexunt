@@ -520,21 +520,10 @@
                                 <span class="h3 fw-normal text-accent me-1">{{ product.sell_price }}<small>DA</small></span>
                             </div>
                             {% endif %}
-                            <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Color:</span><span class="text-muted" id="colorOptionText">Red/Dark blue/White</span></div>
                             <div class="position-relative me-n4 mb-3">
-                                <div class="form-check form-option form-check-inline mb-2">
-                                    <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="colorOptionText" value="Red/Dark blue/White" checked>
-                                    <label class="form-option-label rounded-circle" for="color1"><span class="form-option-color rounded-circle" style="background-image: url(img/shop/single/color-opt-1.png)"></span></label>
-                                </div>
-                                <div class="form-check form-option form-check-inline mb-2">
-                                    <input class="form-check-input" type="radio" name="color" id="color2" data-bs-label="colorOptionText" value="Beige/White/Black">
-                                    <label class="form-option-label rounded-circle" for="color2"><span class="form-option-color rounded-circle" style="background-image: url(img/shop/single/color-opt-2.png)"></span></label>
-                                </div>
-                                <div class="form-check form-option form-check-inline mb-2">
-                                    <input class="form-check-input" type="radio" name="color" id="color3" data-bs-label="colorOptionText" value="Dark grey/White/Mustard">
-                                    <label class="form-option-label rounded-circle" for="color3"><span class="form-option-color rounded-circle" style="background-image: url(img/shop/single/color-opt-3.png)"></span></label>
-                                </div>
-                                <div class="product-badge product-available mt-n1"><i class="ci-security-check"></i>Product available</div>
+                                {% if product.quantity %}
+                                <div class="product-badge product-available mt-n1"><i class="ci-security-check"></i>{{ product.quantity }} available</div>
+                                {% endif %}
                             </div>
                             <form class="mb-grid-gutter">
                                 <div class="mb-3">
