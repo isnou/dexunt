@@ -530,21 +530,23 @@
                                 <button class="btn btn-primary btn-shadow d-block w-100" type="button"><i class="ci-cart fs-lg me-2"></i>Add to Cart</button>
                             </div>
 
-                    <h5 class="h6 mb-3 pb-2 border-bottom"><i class="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>Product info</h5>
-                    <h6 class="fs-sm mb-2">Style</h6>
-                    <ul class="fs-sm ps-4">
-                      <li>Hooded top</li>
-                    </ul>
-                    <h6 class="fs-sm mb-2">Composition</h6>
-                    <ul class="fs-sm ps-4">
-                      <li>Elastic rib: Cotton 95%, Elastane 5%</li>
-                      <li>Lining: Cotton 100%</li>
-                      <li>Cotton 80%, Polyester 20%</li>
-                    </ul>
-                    <h6 class="fs-sm mb-2">Art. No.</h6>
-                    <ul class="fs-sm ps-4 mb-0">
-                      <li>183260098</li>
-                    </ul>
+                            <h5 class="h6 mb-3 pb-2 border-bottom">
+                                <i class="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>Product info
+                            </h5>
+                            <h6 class="fs-sm mb-2">Spec</h6>
+                            <ul class="fs-sm ps-4">
+                                <li>{{ product.en_spec }}</li>
+                            </ul>
+                            <h6 class="fs-sm mb-2">Details</h6>
+                            <ul class="fs-sm ps-4">
+                                {% for product_feature in product.feature.all %}
+                                <li>{{ product_feature.en_title }} : {{ product_feature.en_value }}</li>
+                                {% endfor %}
+                            </ul>
+                            <h6 class="fs-sm mb-2">Art. No.</h6>
+                            <ul class="fs-sm ps-4 mb-0">
+                                <li>{{ product.sku }}</li>
+                            </ul>
                   </div>
                 </div>
               </div>
