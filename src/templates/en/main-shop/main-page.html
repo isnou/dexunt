@@ -537,12 +537,14 @@
                             <ul class="fs-sm ps-4">
                                 <li>{{ product.en_spec }}</li>
                             </ul>
+                            {% if product.feature.all.count %}
                             <h6 class="fs-sm mb-2">Details</h6>
                             <ul class="fs-sm ps-4">
                                 {% for product_feature in product.feature.all %}
                                 <li>{{ product_feature.en_title }} : {{ product_feature.en_value }}</li>
                                 {% endfor %}
                             </ul>
+                            {% endif %}
                             <h6 class="fs-sm mb-2">Art. No.</h6>
                             <ul class="fs-sm ps-4 mb-0">
                                 <li>{{ product.sku }}</li>
