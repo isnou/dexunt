@@ -240,6 +240,7 @@
                                         </div>
                                         {% endfor %}
                                         <div class="py-3 px-4 me-6 mb-3">
+                                            {% if selected_product.album.all.count < 5 %}
                                             <form action="{% url 'inventory-edit' 'add_new_photo' selected_product.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <div class="card-title">
@@ -290,6 +291,7 @@
                                                     <!--end add photo buttons-->
                                                 </div>
                                             </form>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
