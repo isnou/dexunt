@@ -345,7 +345,49 @@
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- Tech specs tab-->
+                <div class="tab-pane fade" id="specs" role="tabpanel">
+                    <div class="d-md-flex justify-content-between align-items-start pb-4 mb-4 border-bottom">
+                        <div class="d-flex align-items-center me-md-3"><img src="{% get_media_prefix %}{{ selected_product.thumb }}" width="90" alt="Product thumb">
+                            <div class="ps-3">
+                                <h6 class="fs-base mb-2">{{ selected_product.en_title }} - {{ selected_product.en_spec }}</h6>
+                                {% if selected_product.discount_price %}
+                                <div class="h4 fw-normal text-accent">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
+                                {% else %}
+                                <div class="h4 fw-normal text-accent">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center pt-3">
+                            <!-- toolbar -->
+                        </div>
+                    </div>
+                    <!-- Specs table-->
+                    <div class="card border-0 shadow">
+                        <div class="card-body" style="margin-right: 45px; margin-left: 45px; margin-top: 40px; margin-bottom: 20px;">
+                            <h3 class="h6">General specs</h3>
+                            <ul class="list-unstyled fs-sm pb-2">
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Model:</span><span>{{ selected_product.model }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Brand:</span><span>{{ selected_product.brand }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Stock:</span><span>{{ selected_product.quantity }}</span></li>
+                            </ul>
+                            <h3 class="h6">Technical specs</h3>
+                            <ul class="list-unstyled fs-sm pb-2">
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">SKU:</span><span>{{ selected_product.sku }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Published:</span><span>{{ selected_product.created_at }}</span></li>
+                            </ul>
+                            {% if selected_product.feature.all.count %}
+                            <h3 class="h6">Features</h3>
+                            <ul class="list-unstyled fs-sm pb-2">
+                                {% for feature in selected_product.feature.all %}
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">{{ feature.en_title }}:</span><span>{{ feature.en_value }}</span></li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
                 <!-- Reviews tab-->
                 <div class="tab-pane fade" id="reviews" role="tabpanel">
                     <div class="d-md-flex justify-content-between align-items-start pb-4 mb-4 border-bottom">
