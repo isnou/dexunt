@@ -219,11 +219,11 @@
                                         {% for selected_attach in selected_product.size.all %}
                                         {% if selected_attach.sku == size_sku %}
                                         <div class="form-check form-option form-check-inline mb-2" style="border: double;">
-                                            <a class="form-option-label" href="#">{{ selected_attach.size }}</a>
+                                            <a class="form-option-label" href="#">{{ selected_attach.en_title }}</a>
                                         </div>
                                         {% else %}
                                         <div class="form-check form-option form-check-inline mb-2">
-                                            <a class="form-option-label" href="#">{{ selected_attach.size }}</a>
+                                            <a class="form-option-label" href="#">{{ selected_attach.en_title }}</a>
                                         </div>
                                         {% endif %}
                                         {% endfor %}
