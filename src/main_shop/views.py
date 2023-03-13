@@ -30,6 +30,7 @@ def change_language(request, language):
 def product(request, sku, size_sku):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
+    size_sku = size_sku
     try:
         selected_product = Product.objects.all().get(sku=sku)
     except Product.DoesNotExist:
