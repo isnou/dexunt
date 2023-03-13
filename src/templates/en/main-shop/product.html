@@ -67,5 +67,104 @@
 
 <!--content-->
 {% block content %}
-
+<!-- Main Sliders and Banners ------------------------->
+<!-- Custom page title-->
+<div class="page-title-overlap bg-dark pt-4">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                    <li class="breadcrumb-item"><a class="text-nowrap" href="#"><i class="ci-home"></i>Home</a></li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">{{ selected_product.en_title }} {{ selected_product.en_spec }}</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-2">{{ selected_product.en_title }} - {{ selected_product.en_spec }}</h1>
+            <div>
+                <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                </div><span class="d-inline-block fs-sm text-white opacity-70 align-middle mt-1 ms-1">74 Reviews</span>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="mb-5">
+<!-- Product carousel (You may also like)-->
+<div class="container pt-lg-2 pb-5 mb-md-3">
+        <h2 class="h3 text-center pb-4">You may also like</h2>
+        <div class="tns-carousel tns-controls-static tns-controls-outside">
+          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: true, &quot;nav&quot;: false, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;768&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;items&quot;:4, &quot;gutter&quot;: 30}}}">
+            <!-- Product-->
+            <div>
+              <div class="card product-card card-static">
+                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html#"><img src="img/shop/catalog/66.jpg" alt="Product"></a>
+                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="shop-single-v2.html#">Smartwatches</a>
+                  <h3 class="product-title fs-sm"><a href="shop-single-v2.html#">Health &amp; Fitness Smartwatch</a></h3>
+                  <div class="d-flex justify-content-between">
+                    <div class="product-price"><span class="text-accent">$250.<small>00</small></span></div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Product-->
+            <div>
+              <div class="card product-card card-static">
+                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html#"><img src="img/shop/catalog/67.jpg" alt="Product"></a>
+                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="shop-single-v2.html#">Smartwatches</a>
+                  <h3 class="product-title fs-sm"><a href="shop-single-v2.html#">Heart Rate &amp; Activity Tracker</a></h3>
+                  <div class="d-flex justify-content-between">
+                    <div class="product-price text-accent">$26.<small>99</small></div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i><i class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Product-->
+            <div>
+              <div class="card product-card card-static">
+                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html#"><img src="img/shop/catalog/64.jpg" alt="Product"></a>
+                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="shop-single-v2.html#">Smartwatches</a>
+                  <h3 class="product-title fs-sm"><a href="shop-single-v2.html#">Smart Watch Series 5, Aluminium</a></h3>
+                  <div class="d-flex justify-content-between">
+                    <div class="product-price text-accent">$349.<small>99</small></div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Product-->
+            <div>
+              <div class="card product-card card-static">
+                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html#"><img src="img/shop/catalog/68.jpg" alt="Product"></a>
+                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="shop-single-v2.html#">Smartwatches</a>
+                  <h3 class="product-title fs-sm"><a href="shop-single-v2.html#">Health &amp; Fitness Smartwatch</a></h3>
+                  <div class="d-flex justify-content-between">
+                    <div class="product-price text-accent">$118.<small>00</small></div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Product-->
+            <div>
+              <div class="card product-card card-static">
+                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html#"><img src="img/shop/catalog/69.jpg" alt="Product"></a>
+                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="shop-single-v2.html#">Smartwatches</a>
+                  <h3 class="product-title fs-sm"><a href="shop-single-v2.html#">Heart Rate &amp; Activity Tracker</a></h3>
+                  <div class="d-flex justify-content-between">
+                    <div class="product-price text-accent">$25.<small>00</small></div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
 {% endblock %}}
