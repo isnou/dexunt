@@ -3,6 +3,15 @@ from shop_manager.models import Product
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
+class Intro(models.Model):
+    # --------------------------------- layout information -------------------------------------
+    color = models.CharField(max_length=50, blank=True, null=True)
+    banner = models.ImageField(upload_to='main-shop/e-shop/banner', blank=True, null=True)
+    space = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.color
+
 class IntroBanner(models.Model):
     # --------------------------------- layout titles ------------------------------------------
     en_intro = models.TextField(max_length=300, blank=True, null=True)
