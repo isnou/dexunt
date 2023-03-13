@@ -102,78 +102,76 @@
                 <!-- General info tab-->
                 <div class="tab-pane fade show active" id="general" role="tabpanel">
                     <div class="row">
+                        <!-- Product gallery-->
+                        <div class="col-lg-7 pe-lg-0">
+                            <div class="product-gallery">
+                                <div class="product-gallery-thumblist order-sm-1">
+                                    <a class="product-gallery-thumblist-item active" href="#one">
+                                        <img src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}">
+                                    </a>
 
+                                    <a class="product-gallery-thumblist-item" href="#two">
+                                        <img src="{% get_media_prefix %}{{ selected_product.album.all.1.image }}">
+                                    </a>
 
-                    <!-- Product gallery-->
-                    <div class="col-lg-7 pe-lg-0">
-                        <div class="product-gallery">
-                            <div class="product-gallery-thumblist order-sm-1">
-                                <a class="product-gallery-thumblist-item active" href="#one">
-                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}">
-                                </a>
+                                    {% if selected_product.album.all.2.id %}
+                                    <a class="product-gallery-thumblist-item" href="#three">
+                                        <img src="{% get_media_prefix %}{{ selected_product.album.all.2.image }}">
+                                    </a>
+                                    {% endif %}
 
-                                <a class="product-gallery-thumblist-item" href="#two">
-                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.1.image }}">
-                                </a>
+                                    {% if selected_product.album.all.3.id %}
+                                    <a class="product-gallery-thumblist-item" href="#four">
+                                        <img src="{% get_media_prefix %}{{ selected_product.album.all.3.image }}">
+                                    </a>
+                                    {% endif %}
 
-                                {% if selected_product.album.all.2.id %}
-                                <a class="product-gallery-thumblist-item" href="#three">
-                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.2.image }}">
-                                </a>
-                                {% endif %}
-
-                                {% if selected_product.album.all.3.id %}
-                                <a class="product-gallery-thumblist-item" href="#four">
-                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.3.image }}">
-                                </a>
-                                {% endif %}
-
-                                {% if selected_product.album.all.4.id %}
-                                <a class="product-gallery-thumblist-item" href="#five">
-                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.4.image }}">
-                                </a>
-                                {% endif %}
-
-                            </div>
-                            <div class="product-gallery-preview order-sm-2">
-                                <div class="product-gallery-preview-item active" id="one">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}"
-                                          style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.0.image }}">
-                                    <div class="image-zoom-pane"></div>
+                                    {% if selected_product.album.all.4.id %}
+                                    <a class="product-gallery-thumblist-item" href="#five">
+                                        <img src="{% get_media_prefix %}{{ selected_product.album.all.4.image }}">
+                                    </a>
+                                    {% endif %}
                                 </div>
 
-                                <div class="product-gallery-preview-item" id="two">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.1.image }}"
-                                          style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.1.image }}">
-                                    <div class="image-zoom-pane"></div>
-                                </div>
+                                <div class="product-gallery-preview order-sm-2">
+                                    <div class="product-gallery-preview-item active" id="one">
+                                        <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}"
+                                             style="width: auto;height: 450px;"
+                                             data-zoom="{% get_media_prefix %}{{ selected_product.album.all.0.image }}">
+                                        <div class="image-zoom-pane"></div>
+                                    </div>
 
-                                <div class="product-gallery-preview-item" id="three">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.2.image }}"
-                                          style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.2.image }}">
-                                    <div class="image-zoom-pane"></div>
-                                </div>
+                                    <div class="product-gallery-preview-item" id="two">
+                                        <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.1.image }}"
+                                             style="width: auto;height: 450px;"
+                                             data-zoom="{% get_media_prefix %}{{ selected_product.album.all.1.image }}">
+                                        <div class="image-zoom-pane"></div>
+                                    </div>
 
-                                <div class="product-gallery-preview-item" id="four">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.3.image }}"
-                                          style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.3.image }}">
-                                    <div class="image-zoom-pane"></div>
-                                </div>
+                                    <div class="product-gallery-preview-item" id="three">
+                                        <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.2.image }}"
+                                             style="width: auto;height: 450px;"
+                                             data-zoom="{% get_media_prefix %}{{ selected_product.album.all.2.image }}">
+                                        <div class="image-zoom-pane"></div>
+                                    </div>
 
-                                <div class="product-gallery-preview-item" id="five">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.4.image }}"
-                                          style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.4.image }}">
-                                    <div class="image-zoom-pane"></div>
-                                </div>
+                                    <div class="product-gallery-preview-item" id="four">
+                                        <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.3.image }}"
+                                             style="width: auto;height: 450px;"
+                                             data-zoom="{% get_media_prefix %}{{ selected_product.album.all.3.image }}">
+                                        <div class="image-zoom-pane"></div>
+                                    </div>
 
+                                    <div class="product-gallery-preview-item" id="five">
+                                        <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.4.image }}"
+                                             style="width: auto;height: 450px;"
+                                             data-zoom="{% get_media_prefix %}{{ selected_product.album.all.4.image }}">
+                                        <div class="image-zoom-pane"></div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                         <!-- Product details-->
                         <div class="col-lg-5 pt-4 pt-lg-0">
@@ -188,19 +186,19 @@
                                     {% endif %}
                                     <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted" id="">{{ selected_product.en_spec }}</span></div>
                                     <div class="position-relative me-n4 mb-3">
-                                        {% if selected_variants.count > 1 %}
-                                        {% for selected_variant in selected_variants %}
+                                        {% if variant %}
+                                        {% for selected_variant in variant.product.all %}
                                         <div class="form-check form-option form-check-inline mb-2">
                                             {% if selected_variant.sku == sku_variant %}
                                             <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;border-radius: 5px;">
                                                 <a class="product-thumb-overlay" href="#">
-                                                    <img src="{% get_media_prefix %}{{selected_variant.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
+                                                    <img src="{% get_media_prefix %}{{selected_variant..album.all.0.image}}" style="width: 80px;height: 80px;margin: 4px;">
                                                 </a>
                                             </div>
                                             {% else %}
                                             <div class="form-check form-option form-check-inline"  style="width: 90px;border-radius: 5px;">
                                                 <a class="product-thumb-overlay" href="#">
-                                                    <img src="{% get_media_prefix %}{{selected_variant.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
+                                                    <img src="{% get_media_prefix %}{{selected_variant..album.all.0.image}}" style="width: 80px;height: 80px;margin: 4px;">
                                                 </a>
                                             </div>
                                             {% endif %}
@@ -214,10 +212,12 @@
                                         {% endif %}
                                     </div>
 
-                                    {% if sizes %}
+                                    {% if selected_product.size.all.count %}
+
+                                    {% if selected_product.size.all.0.show_thumb %}
                                     <div class="position-relative me-n4 mb-3">
-                                        {% for selected_attach in sizes %}
-                                        {% if selected_attach.sku == sku_attach %}
+                                        {% for selected_attach in selected_product.size.all %}
+                                        {% if selected_attach.sku == size_sku %}
                                         <div class="form-check form-option form-check-inline mb-2" style="border: double;">
                                             <a class="form-option-label" href="#">{{ selected_attach.size }}</a>
                                         </div>
@@ -228,12 +228,10 @@
                                         {% endif %}
                                         {% endfor %}
                                     </div>
-                                    {% endif %}
-
-                                    {% if sets %}
+                                    {% else %}
                                     <div class="position-relative me-n4 mb-3">
-                                        {% for selected_attach in sets %}
-                                        {% if selected_attach.sku == sku_attach %}
+                                        {% for selected_attach in selected_product.size.all %}
+                                        {% if selected_attach.sku == size_sku %}
                                         <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;border-radius: 5px;">
                                             <a class="product-thumb-overlay" href="#">
                                                 <img src="{% get_media_prefix %}{{selected_attach.thumb}}" style="width: 80px;height: 80px;margin: 4px;">
@@ -248,6 +246,8 @@
                                         {% endif %}
                                         {% endfor %}
                                     </div>
+                                    {% endif %}
+
                                     {% endif %}
 
 

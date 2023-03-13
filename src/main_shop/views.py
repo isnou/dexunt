@@ -34,13 +34,13 @@ def product(request, sku, size_sku):
     selected_product = Product.objects.all().get(sku=sku)
 
     if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
-        selected_variants = ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title)
+        variant = ShowcaseProduct.objects.all().get(en_title=selected_product.en_title)
     else:
-        selected_variants = None
+        variant = None
 
     context = {
         'selected_product': selected_product,
-        'selected_variants': selected_variants,
+        'variant': variant,
         'size_sku': size_sku,
     }
     return render(request, url, context)
