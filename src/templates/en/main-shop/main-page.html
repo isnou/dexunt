@@ -510,7 +510,7 @@
                                 <button class="btn-wishlist" type="button" data-bs-toggle="tooltip" title="Add to wishlist"><i class="ci-heart"></i></button>
                             </div>
                             {% if product.discount_price %}
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <span class="h3 fw-normal text-accent me-1">{{ product.discount_price }}<small>DA</small></span>
                                 <del class="text-muted fs-lg ms-2 me-1">{{ product.sell_price }}</del><small>DA</small>
                                 <span class="badge bg-danger badge-shadow align-middle mt-n2">Sale</span>
@@ -520,6 +520,36 @@
                                 <span class="h3 fw-normal text-accent me-1">{{ product.sell_price }}<small>DA</small></span>
                             </div>
                             {% endif %}
+
+                            {% if product.size.all.count %}
+
+                            {% if product.size.all.o.show_thumb %}
+
+                            {% else %}
+
+                            {% endif %}
+
+                            {% if product.quantity %}
+                            <div class="position-relative me-n4 mb-3">
+                                <div class="product-badge product-available mt-n4"><i class="ci-security-check"></i>available</div>
+                            </div>
+
+                            <div class="mb-3 d-flex align-items-center">
+                                <button class="btn btn-primary btn-shadow d-block w-100" type="button"><i class="ci-forward fs-lg me-2"></i>more details</button>
+                            </div>
+                            {% else %}
+                            <div class="position-relative me-n4 mb-3">
+                                <div class="product-badge product-available mt-n4"><i class="ci-security-prohibition"></i>out of stock</div>
+                            </div>
+
+                            <div class="mb-3 d-flex align-items-center">
+                                <button class="btn btn-primary btn-shadow d-block w-100" type="button" disabled><i class="ci-forward fs-lg me-2"></i>more details</button>
+                            </div>
+                            {% endif %}
+
+
+
+                            {% else %}
                             {% if product.quantity %}
                             <div class="position-relative me-n4 mb-3">
                                 <div class="product-badge product-available mt-n4"><i class="ci-security-check"></i>{{ product.quantity }} available</div>
@@ -536,8 +566,10 @@
                             <div class="mb-3 d-flex align-items-center">
                                 <button class="btn btn-primary btn-shadow d-block w-100" type="button" disabled><i class="ci-forward fs-lg me-2"></i>more details</button>
                             </div>
-
                             {% endif %}
+                            {% endif %}
+
+
 
                             <h5 class="h6 mb-3 pb-2 border-bottom">
                                 <i class="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>Product info
