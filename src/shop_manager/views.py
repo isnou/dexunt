@@ -156,16 +156,16 @@ def e_shop(request, action, detail, index):
         Intro.get(id=1, ).save()
         tab = 'main_page'
     if action == "unfix_intro":
-        Intro.get(id=1,).fixed = False
-        Intro.get(id=1, ).save()
+        Intro.objects.all().get(id=1,).fixed = False
+        Intro.objects.all().get(id=1, ).save()
         tab = 'main_page'
     if action == "stretch_intro":
-        Intro.get(id=1,).repeat = False
-        Intro.get(id=1, ).save()
+        Intro.objects.all().get(id=1,).repeat = False
+        Intro.objects.all().get(id=1, ).save()
         tab = 'main_page'
     if action == "repeat_intro":
-        Intro.get(id=1,).repeat = False
-        Intro.get(id=1, ).save()
+        Intro.objects.all().get(id=1,).repeat = False
+        Intro.objects.all().get(id=1, ).save()
         tab = 'main_page'
 
     # -----------------------------ad & showcase
