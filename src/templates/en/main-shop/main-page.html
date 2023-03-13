@@ -67,17 +67,17 @@
 <!--page_background-->
 {% block page_background %}
 <body class="handheld-toolbar-enabled"
-      style="background-image: url({% get_media_prefix %}{{ intro_banners.all.0.thumb }});
+      style="background-image: url({% get_media_prefix %}{{ intro.banner }});
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
-      background-color:#00FFFF;">
+      background-color:#{{ intro.color }};">
 {% endblock %}
 
 <!--content-->
 {% block content %}
 <!-- Main Sliders and Banners ------------------------->
-<section class="container pt-2 pb-2" style="margin-top: 280px;">
+<section class="container pt-2 pb-2" style="margin-top: {{ intro.margin }}px;">
 
 </section>
 <!-- Showcases & Movable Banners ---------------------->
