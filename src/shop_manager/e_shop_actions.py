@@ -1,47 +1,32 @@
 import random
 import string
-from main_shop.models import IntroThumb, IntroBanner ,Showcase ,Category
+from main_shop.models import Intro ,Showcase ,Category
 from .models import Product, Feature
 
-def initialisation():
-    try:
-        intro_banners = IntroBanner.objects.all()
-    except IntroBanner.DoesNotExist:
-        raise Http404("No banners")
-    try:
-        intro_thumbs = IntroThumb.objects.all()
-    except IntroThumb.DoesNotExist:
-        raise Http404("No thumbs")
+# -----------------------------intro
+def edit_intro(request):
+    url = "/shop-manager/e-shop.html"
 
-    if not intro_banners.filter(rank=1).exists():
-        IntroBanner(en_title='first',
-                    rank=1,
-                    ).save()
-    if not intro_banners.filter(rank=2).exists():
-        IntroBanner(en_title='second',
-                    rank=2,
-                    ).save()
-    if not intro_banners.filter(rank=3).exists():
-        IntroBanner(en_title='third',
-                    rank=3,
-                    ).save()
+    if request.method == 'POST':
 
-    if not intro_thumbs.filter(rank=1).exists():
-        IntroThumb(en_title='first',
-                    rank=1,
-                    ).save()
-    if not intro_thumbs.filter(rank=2).exists():
-        IntroThumb(en_title='second',
-                    rank=2,
-                    ).save()
-    if not intro_thumbs.filter(rank=3).exists():
-        IntroThumb(en_title='third',
-                    rank=3,
-                    ).save()
+        color = request.POST.get('color', False)
+        banner = request.FILES.get('banner', False)
+        margin = request.POST.get('margin', False)
+
+        if Intro.objects.all().get(id=1).exists():
+            intro = Intro.objects.all().get(id=1)
+        else:
+            intro = Intro(id=1,
+                          ).save()
+        if color:
+            intro.color = color
+        if banner:
+            intro.banner = banner
+        if margin:
+            intro.margin = margin
 
     return {
-        'intro_banners': intro_banners,
-        'intro_thumbs':intro_thumbs,
+        'url': url,
     }
 
 # -----------------------------intro banner

@@ -147,13 +147,8 @@
         <div class="card-footer">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'intro_banner' %} active {% endif %}" data-bs-toggle="tab" href="#intro_banners">
-                        Intro Banners
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'intro_thumb' %} active {% endif %}" data-bs-toggle="tab" href="#intro_thumbs">
-                        Intro Thumbs
+                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'main_page' %} active {% endif %}" data-bs-toggle="tab" href="#main_page">
+                        Main Page
                     </a>
                 </li>
                 <li class="nav-item">
@@ -174,31 +169,24 @@
 
 
 <div class="tab-content">
-    <!--intro banners pan-->
-    <div class="tab-pane fade {% if tab == 'intro_banner' %} active show {% endif %}" id="intro_banners">
-        {% for intro_banner in intro_banners %}
+    <!--intro pan-->
+    <div class="tab-pane fade {% if tab == 'main_page' %} active show {% endif %}" id="main_page">
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
                 <div class="card-body">
                     <div class="card-body py-1">
                         <div class="row mb-4" style="text-align: center;">
-                            {% if intro_banner.rank == 1 %}
-                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">First Intro Banner</p>
-                            {% elif intro_banner.rank == 2 %}
-                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">Second Intro Banner</p>
-                            {% else %}
-                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">Third Intro Banner</p>
-                            {% endif %}
+                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">Main Page Settings</p>
                         </div>
                         <div class="row gx-9 h-100">
-                            <form action="{% url 'e-shop' 'edit_banner' '#' intro_banner.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'e-shop' 'edit_intro' '#' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="col-sm-6 mb-10 mb-sm-0">
-                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-300px min-w-400px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ intro_banner.thumb }})">
+                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-300px min-w-400px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ intro.banner }})">
                                         <div class="image-input-wrapper min-h-300px min-w-400px"></div>
                                         <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
                                             <i class="bi bi-pencil-fill fs-7"></i>
-                                            <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                            <input type="file" name="banner" accept=".png, .jpg, .jpeg" />
                                             <input type="hidden" name="photo_remove" />
                                         </label>
                                         <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="cancel image">
@@ -210,229 +198,30 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="d-flex flex-column h-100">
-                                        <div class="accordion mb-5" id="banner_{{ intro_banner.rank }}">
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="banner_header_{{ intro_banner.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#banner_body_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="banner_body_{{ intro_banner.rank }}">
-                                                        <p class="h6 text-muted">Parameters</p>
-                                                    </button>
-                                                </h6>
-                                                <div id="banner_body_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="banner_header_{{ intro_banner.rank }}" data-bs-parent="#banner_{{ intro_banner.rank }}">
-                                                    <div class="accordion-body">
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_intro" id="en_intro" placeholder="english banner intro" value="{{ intro_banner.en_intro }}"/>
-                                                            <label>intro</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_title" id="en_title" placeholder="english banner title" value="{{ intro_banner.en_title }}"/>
-                                                            <label>title</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_description" id="en_description" placeholder="english banner description" value="{{ intro_banner.en_description }}"/>
-                                                            <label>description</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_button" id="en_button" placeholder="english button title" value="{{ intro_banner.en_button }}"/>
-                                                            <label>button title</label>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text" id="intro_banner">url</span>
-                                                            <input type="text" name="button_link" aria-describedby="intro_banner" class="form-control" placeholder="banner url" value="{{ intro_banner.link }}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="banner_header_2_{{ intro_banner.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#banner_body_2_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="banner_body_2_{{ intro_banner.rank }}">
-                                                        <p class="h6 text-muted">French Translation</p>
-                                                    </button>
-                                                </h6>
-                                                <div id="banner_body_2_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="banner_header_2_{{ intro_banner.rank }}" data-bs-parent="#banner_{{ intro_banner.rank }}">
-                                                    <div class="accordion-body">
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_intro" id="fr_intro" placeholder="french banner intro" value="{{ intro_banner.fr_intro }}"/>
-                                                            <label>intro</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_title" id="fr_title" placeholder="french banner title" value="{{ intro_banner.fr_title }}"/>
-                                                            <label>title</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_description" id="fr_description" placeholder="french banner description" value="{{ intro_banner.fr_description }}"/>
-                                                            <label>description</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_button" id="fr_button" placeholder="french button title" value="{{ intro_banner.fr_button }}"/>
-                                                            <label>button title</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="banner_header_3_{{ intro_banner.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#banner_body_3_{{ intro_banner.rank }}" aria-expanded="false" aria-controls="banner_body_3_{{ intro_banner.rank }}">
-                                                        <p class="h6 text-muted">Arabic Translation</p>
-                                                    </button>
-                                                </h6>
-                                                <div id="banner_body_3_{{ intro_banner.rank }}" class="accordion-collapse collapse" aria-labelledby="banner_header_3_{{ intro_banner.rank }}" data-bs-parent="#banner_{{ intro_banner.rank }}">
-                                                    <div class="accordion-body">
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_intro" id="ar_intro" placeholder="arabic banner intro" value="{{ intro_banner.ar_intro }}" dir="rtl"/>
-                                                            <label>intro</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_title" id="ar_title" placeholder="arabic banner title" value="{{ intro_banner.ar_title }}" dir="rtl"/>
-                                                            <label>title</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_description" id="ar_description" placeholder="arabic banner description" value="{{ intro_banner.ar_description }}" dir="rtl"/>
-                                                            <label>description</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_button" id="ar_button" placeholder="arabic button title" value="{{ intro_banner.ar_button }}" dir="rtl"/>
-                                                            <label>button title</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="card card-flush py-4">
+                                        <!--color-->
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="color" placeholder="{{ intro.color }}"/>
+                                            <label>color</label>
                                         </div>
-                                        <div class="d-flex align-self-end">
-                                            <button type="submit" class="btn btn-light-secondary me-5">
-                                                <i class="bi bi-arrow-repeat fs-2x"></i>
-                                            </button>
-                                            <a href="{% url 'e-shop' 'down_banner' '#' intro_banner.rank %}" class="btn btn-light-secondary me-5">
-                                                <i class="bi bi-arrow-up-square fs-2x"></i>
-                                            </a>
-                                            <a href="{% url 'e-shop' 'up_banner' '#' intro_banner.rank %}" class="btn btn-light-secondary">
-                                                <i class="bi bi-arrow-down-square fs-2x"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    <!--end intro banners pan-->
+                                        <!--end color-->
 
-    <!--intro thumbs pan-->
-    <div class="tab-pane fade {% if tab == 'intro_thumb' %} active show {% endif %}" id="intro_thumbs">
-        {% for intro_thumb in intro_thumbs %}
-        <div class="container-xxl mt-5">
-            <div class="card card-flush shadow-sm">
-                <div class="card-body">
-                    <div class="card-body py-1">
-                        <div class="row mb-4" style="text-align: center;">
-                            {% if intro_thumb.rank == 1 %}
-                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">First Intro Thumb</p>
-                            {% elif intro_thumb.rank == 2 %}
-                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">Second Intro Thumb</p>
-                            {% else %}
-                            <p class="text-gray-900 text-hover-primary fs-2 fw-bold">Third Intro Thumb</p>
-                            {% endif %}
-                        </div>
-                        <div class="row gx-9 h-100">
-                            <form action="{% url 'e-shop' 'edit_thumb' '#' intro_thumb.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div class="col-sm-6 mb-10 mb-sm-0">
-                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-300px min-w-400px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ intro_thumb.thumb }})">
-                                        <div class="image-input-wrapper min-h-300px min-w-400px"></div>
-                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
-                                            <i class="bi bi-pencil-fill fs-7"></i>
-                                            <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                            <input type="hidden" name="photo_remove" />
-                                        </label>
-                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="cancel image">
-                                            <i class="bi bi-x fs-2"></i>
-                                        </span>
-                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="remove image">
-                                            <i class="bi bi-x fs-2"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="d-flex flex-column h-100">
-                                        <div class="accordion mb-5" id="thumb_{{ intro_thumb.rank }}">
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="thumb_header_{{ intro_thumb.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#thumb_body_{{ intro_thumb.rank }}" aria-expanded="false" aria-controls="thumb_body_{{ intro_thumb.rank }}">
-                                                        <p class="h6 text-muted">Parameters</p>
-                                                    </button>
-                                                </h6>
-                                                <div id="thumb_body_{{ intro_thumb.rank }}" class="accordion-collapse collapse" aria-labelledby="thumb_header_{{ intro_thumb.rank }}" data-bs-parent="#thumb_{{ intro_thumb.rank }}">
-                                                    <div class="accordion-body">
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_title" placeholder="title" value="{{ intro_thumb.en_title }}"/>
-                                                            <label>english banner title</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_button" placeholder="button title" value="{{ intro_thumb.en_button }}"/>
-                                                            <label>english button title</label>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text" id="intro_thumb">url</span>
-                                                            <input type="text" name="button_link" aria-describedby="intro_thumb" class="form-control" placeholder="banner url" value="{{ intro_thumb.link }}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="thumb_header_2_{{ intro_thumb.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#thumb_body_2_{{ intro_thumb.rank }}" aria-expanded="false" aria-controls="thumb_body_2_{{ intro_thumb.rank }}">
-                                                        <p class="h6 text-muted">French Translation</p>
-                                                    </button>
-                                                </h6>
-                                                <div id="thumb_body_2_{{ intro_thumb.rank }}" class="accordion-collapse collapse" aria-labelledby="thumb_header_2_{{ intro_thumb.rank }}" data-bs-parent="#thumb_{{ intro_thumb.rank }}">
-                                                    <div class="accordion-body">
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_title" placeholder="french title" value="{{ intro_thumb.fr_title }}"/>
-                                                            <label>title</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_button" placeholder="french button title" value="{{ intro_thumb.fr_button }}"/>
-                                                            <label>button title</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <h6 class="accordion-header" id="thumb_header_3_{{ intro_thumb.rank }}">
-                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#thumb_body_3_{{ intro_thumb.rank }}" aria-expanded="false" aria-controls="thumb_body_3_{{ intro_thumb.rank }}">
-                                                        <p class="h6 text-muted">Arabic Translation</p>
-                                                    </button>
-                                                </h6>
-                                                <div id="thumb_body_3_{{ intro_thumb.rank }}" class="accordion-collapse collapse" aria-labelledby="thumb_header_3_{{ intro_thumb.rank }}" data-bs-parent="#thumb_{{ intro_thumb.rank }}">
-                                                    <div class="accordion-body">
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_title" placeholder="arabic title" value="{{ intro_thumb.ar_title }}" dir="rtl"/>
-                                                            <label>title</label>
-                                                        </div>
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_button" placeholder="arabic button title" value="{{ intro_thumb.ar_button }}" dir="rtl"/>
-                                                            <label>button title</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <!--margin title-->
+                                        <div class="form-floating mb-2">
+                                            <input type="number" class="form-control" name="margin" placeholder="{{ intro.margin }}"/>
+                                            <label>margin</label>
                                         </div>
-                                        <div class="d-flex align-self-end">
-                                            <button type="submit" class="btn btn-light-secondary me-5">
-                                                <i class="bi bi-arrow-repeat fs-2x"></i>
-                                            </button>
-                                            <a href="{% url 'e-shop' 'down_thumb' '#' intro_thumb.rank %}" class="btn btn-light-secondary me-5">
-                                                <i class="bi bi-arrow-up-square fs-2x"></i>
-                                            </a>
-                                            <a href="{% url 'e-shop' 'up_thumb' '#' intro_thumb.rank %}" class="btn btn-light-secondary">
-                                                <i class="bi bi-arrow-down-square fs-2x"></i>
-                                            </a>
-                                        </div>
+                                        <!--end margin title-->
                                     </div>
+                                    <!--main page buttons-->
+                                    <div class="d-flex justify-content-center">
+                                        <!--submit button-->
+                                        <button type="submit" class="btn btn-secondary">
+                                            <span class="indicator-label">save</span>
+                                        </button>
+                                        <!--end submit button-->
+                                    </div>
+                                    <!--end main page buttons-->
                                 </div>
                             </form>
                         </div>
@@ -440,9 +229,8 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
-    <!--end intro thumbs pan-->
+    <!--end intro pan-->
 
     <!--ads & showcases pan-->
     <div class="tab-pane fade {% if tab == 'ad_showcase' %} active show {% endif %}" id="ads_showcases">

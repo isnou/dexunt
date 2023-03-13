@@ -8,7 +8,8 @@ class Intro(models.Model):
     color = models.CharField(max_length=50, blank=True, null=True)
     banner = models.ImageField(upload_to='main-shop/e-shop/banner', blank=True, null=True)
     fixed = models.BooleanField(default=False)
-    space = models.IntegerField(blank=True, null=True)
+    repeat = models.BooleanField(default=False)
+    margin = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.color

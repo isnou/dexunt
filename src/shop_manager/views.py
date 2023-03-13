@@ -117,6 +117,7 @@ def inventory_edit(request, action, sku, index):
     }
     return render(request, url, context)
 
+
 def inventory_preparation(request, action, sku):
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory-preparation.html"
@@ -141,9 +142,24 @@ def e_shop(request, action, detail, index):
     except Product.DoesNotExist:
         raise Http404("No products")
 
-    intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
-    intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
     tab = 'ad_showcase'
+
+    # -----------------------------intro
+    if action == "edit_intro":
+        url = direction + e_shop_actions.edit_intro(request).get('url')
+        tab = 'setting'
+    if action == "fix_intro":
+        url = direction + e_shop_actions.fix_intro(request).get('url')
+        tab = 'setting'
+    if action == "unfix_intro":
+        url = direction + e_shop_actions.fix_intro(request).get('url')
+        tab = 'setting'
+    if action == "uniq_intro":
+        url = direction + e_shop_actions.uniq_intro(request).get('url')
+        tab = 'setting'
+    if action == "repeat_intro":
+        url = direction + e_shop_actions.repeat_intro(request).get('url')
+        tab = 'setting'
 
     # -----------------------------intro banner
     if action == "edit_banner":
@@ -151,11 +167,9 @@ def e_shop(request, action, detail, index):
         tab = 'intro_banner'
     if action == "up_banner":
         url = direction + e_shop_actions.up_banner(index).get('url')
-        intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
         tab = 'intro_banner'
     if action == "down_banner":
         url = direction + e_shop_actions.down_banner(index).get('url')
-        intro_banners = e_shop_actions.initialisation().get('intro_banners').order_by('rank')
         tab = 'intro_banner'
 
     # -----------------------------intro thumb
@@ -164,11 +178,9 @@ def e_shop(request, action, detail, index):
         tab = 'intro_thumb'
     if action == "up_thumb":
         url = direction + e_shop_actions.up_thumb(index).get('url')
-        intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
         tab = 'intro_thumb'
     if action == "down_thumb":
         url = direction + e_shop_actions.down_thumb(index).get('url')
-        intro_thumbs = e_shop_actions.initialisation().get('intro_thumbs').order_by('rank')
         tab = 'intro_thumb'
 
     # -----------------------------ad & showcase

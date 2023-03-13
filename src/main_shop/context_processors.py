@@ -1,7 +1,9 @@
-from .models import IntroBanner, IntroThumb, Showcase, Category
+from .models import Intro, IntroBanner, IntroThumb, Showcase, Category
 
 
 def main_shop_content(request):
+    intro = Intro.objects.all().get(id=1)
+
     try:
         intro_thumbs = IntroThumb.objects.all().order_by('rank')
     except IntroThumb.objects.all().DoesNotExist:
@@ -24,4 +26,5 @@ def main_shop_content(request):
         'intro_banners': intro_banners,
         'showcases': showcases,
         'categories': categories,
+        'intro': intro,
     }
