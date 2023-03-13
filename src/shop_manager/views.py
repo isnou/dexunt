@@ -150,19 +150,19 @@ def e_shop(request, action, detail, index):
     # -----------------------------intro
     if action == "edit_intro":
         url = direction + e_shop_actions.edit_intro(request).get('url')
-        tab = 'setting'
+        tab = 'main_page'
     if action == "fix_intro":
         url = direction + e_shop_actions.fix_intro(request).get('url')
-        tab = 'setting'
+        tab = 'main_page'
     if action == "unfix_intro":
         url = direction + e_shop_actions.fix_intro(request).get('url')
-        tab = 'setting'
+        tab = 'main_page'
     if action == "uniq_intro":
         url = direction + e_shop_actions.uniq_intro(request).get('url')
-        tab = 'setting'
+        tab = 'main_page'
     if action == "repeat_intro":
         url = direction + e_shop_actions.repeat_intro(request).get('url')
-        tab = 'setting'
+        tab = 'main_page'
 
     # -----------------------------intro banner
     if action == "edit_banner":

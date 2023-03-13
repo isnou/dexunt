@@ -20,8 +20,8 @@ def edit_intro(request):
         if banner:
             intro.banner = banner
         if margin:
-            intro.margin = margin
-            
+            intro.margin = int(margin)
+
         intro.save()
 
     return {
