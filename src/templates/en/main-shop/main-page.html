@@ -68,9 +68,13 @@
 {% block page_background %}
 <body class="handheld-toolbar-enabled"
       style="background-image: url({% get_media_prefix %}{{ intro.banner }});
+      {% if not intro.repeat %}
       background-repeat: no-repeat;
+      {% endif %}
       background-size: cover;
+      {% if intro.fixed %}
       background-attachment: fixed;
+      {% endif %}
       background-color:#{{ intro.color }};">
 {% endblock %}
 
