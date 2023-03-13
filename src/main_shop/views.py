@@ -32,7 +32,10 @@ def product(request, sku, size_sku):
     url = direction + "/main-shop/product.html"
     size_sku = size_sku
 
-    selected_product = Product.objects.all().get(sku=sku)
+    try:
+        selected_product = Product.objects.all().get(sku=size_sku)
+    except Product.DoesNotExist:
+        raise Http404("Product doesnt exist")
 
     if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
         selected_variants = ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title)
