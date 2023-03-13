@@ -109,65 +109,65 @@
                         <div class="product-gallery">
                             <div class="product-gallery-thumblist order-sm-1">
                                 <a class="product-gallery-thumblist-item active" href="#one">
-                                    <img src="{% get_media_prefix %}{{ product.album.all.0.image }}">
+                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}">
                                 </a>
 
                                 <a class="product-gallery-thumblist-item" href="#two">
-                                    <img src="{% get_media_prefix %}{{ product.album.all.1.image }}">
+                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.1.image }}">
                                 </a>
 
-                                {% if product.album.all.2.id %}
+                                {% if selected_product.album.all.2.id %}
                                 <a class="product-gallery-thumblist-item" href="#three">
-                                    <img src="{% get_media_prefix %}{{ product.album.all.2.image }}">
+                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.2.image }}">
                                 </a>
                                 {% endif %}
 
-                                {% if product.album.all.3.id %}
+                                {% if selected_product.album.all.3.id %}
                                 <a class="product-gallery-thumblist-item" href="#four">
-                                    <img src="{% get_media_prefix %}{{ product.album.all.3.image }}">
+                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.3.image }}">
                                 </a>
                                 {% endif %}
 
-                                {% if product.album.all.4.id %}
+                                {% if selected_product.album.all.4.id %}
                                 <a class="product-gallery-thumblist-item" href="#five">
-                                    <img src="{% get_media_prefix %}{{ product.album.all.4.image }}">
+                                    <img src="{% get_media_prefix %}{{ selected_product.album.all.4.image }}">
                                 </a>
                                 {% endif %}
 
                             </div>
                             <div class="product-gallery-preview order-sm-2">
                                 <div class="product-gallery-preview-item active" id="one">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.0.image }}"
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}"
                                           style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ product.album.all.0.image }}">
+                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.0.image }}">
                                     <div class="image-zoom-pane"></div>
                                 </div>
 
                                 <div class="product-gallery-preview-item" id="two">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.1.image }}"
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.1.image }}"
                                           style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ product.album.all.1.image }}">
+                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.1.image }}">
                                     <div class="image-zoom-pane"></div>
                                 </div>
 
                                 <div class="product-gallery-preview-item" id="three">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.2.image }}"
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.2.image }}"
                                           style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ product.album.all.2.image }}">
+                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.2.image }}">
                                     <div class="image-zoom-pane"></div>
                                 </div>
 
                                 <div class="product-gallery-preview-item" id="four">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.3.image }}"
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.3.image }}"
                                           style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ product.album.all.3.image }}">
+                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.3.image }}">
                                     <div class="image-zoom-pane"></div>
                                 </div>
 
                                 <div class="product-gallery-preview-item" id="five">
-                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.4.image }}"
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ selected_product.album.all.4.image }}"
                                           style="width: auto;height: 450px;"
-                                         data-zoom="{% get_media_prefix %}{{ product.album.all.4.image }}">
+                                         data-zoom="{% get_media_prefix %}{{ selected_product.album.all.4.image }}">
                                     <div class="image-zoom-pane"></div>
                                 </div>
 
@@ -349,7 +349,7 @@
                 <!-- Tech specs tab-->
                 <div class="tab-pane fade" id="specs" role="tabpanel">
                     <div class="d-md-flex justify-content-between align-items-start pb-4 mb-4 border-bottom">
-                        <div class="d-flex align-items-center me-md-3"><img src="{% get_media_prefix %}{{ selected_product.thumb }}" width="90" alt="Product thumb">
+                        <div class="d-flex align-items-center me-md-3"><img src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}" width="90" alt="Product thumb">
                             <div class="ps-3">
                                 <h6 class="fs-base mb-2">{{ selected_product.en_title }} - {{ selected_product.en_spec }}</h6>
                                 {% if selected_product.discount_price %}
