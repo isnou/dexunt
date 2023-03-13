@@ -201,14 +201,14 @@
                                     <div class="card card-flush py-4">
                                         <!--color-->
                                         <div class="form-floating mb-2">
-                                            <input type="text" class="form-control" name="color" placeholder="{{ intro.color }}"/>
+                                            <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
                                             <label>color</label>
                                         </div>
                                         <!--end color-->
 
                                         <!--margin title-->
                                         <div class="form-floating mb-2">
-                                            <input type="number" class="form-control" name="margin" placeholder="{{ intro.margin }}"/>
+                                            <input type="number" class="form-control" name="margin" placeholder="put margin" value="{{ intro.margin }}"/>
                                             <label>margin</label>
                                         </div>
                                         <!--end margin title-->
@@ -1210,7 +1210,7 @@
                 <div class="card-body">
                     <div class="card-body py-1">
                         <div class="row gx-9 h-100">
-                            <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'e-shop' 'edit_grid_showcase' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="col-sm-6 me-5">
                                     <div class="d-flex flex-column h-100">
@@ -1440,7 +1440,7 @@
                 <div class="card-body">
                     <div class="card-body py-1">
                         <div class="row gx-9 h-100">
-                            <form action="{% url 'e-shop' 'edit_multiple_flash' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'e-shop' 'edit_slider_showcase' showcase.sku showcase.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="col-sm-6 me-5">
                                     <div class="d-flex flex-column h-100">
