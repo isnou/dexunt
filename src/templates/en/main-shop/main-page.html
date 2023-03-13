@@ -139,24 +139,24 @@
                     <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                 </a>
                 <div class="card-body py-2">
-                            <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.spec }}</a>
-                            <h3 class="product-title fs-sm text-truncate">
-                                <a href="#">{{ product.en_title }}</a>
-                            </h3>
-                            {% if product.discount_price %}
-                            <div class="product-price">
+                    <h3 class="product-title fs-sm text-truncate">
+                        <a href="#">{{ product.en_title }}</a>
+                    </h3>
+                    <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.en_spec }}</a>
+                    {% if product.discount_price %}
+                    <div class="product-price">
                                 <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
                                 <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             </div>
-                            {% else %}
-                            <div class="product-price">
-                                <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
-                            </div>
-                            {% endif %}
+                    {% else %}
+                    <div class="product-price">
+                        <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                    </div>
+                    {% endif %}
 
-                            <button class="btn btn-primary btn-sm d-block w-100 mb-2" type="button">
-                                <i class="ci-cart fs-sm me-1"></i>Buy Now
-                            </button>
+                    <button class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button">
+                        <i class="ci-cart fs-sm me-1"></i>Buy Now
+                    </button>
                 </div>
                 <div class="card-body card-body-hidden">
                 </div>
