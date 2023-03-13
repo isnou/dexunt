@@ -420,7 +420,7 @@
 
 <!-- Quick View Modal-->
 {% for product in all_products %}
-<div class="modal-quick-view modal fade" id="quick_view_{{ product.sku }}" tabindex="-1">
+<div class="modal-quick-view modal fade" id="quick_view_{{ product.sku }}" tabindex="-1" dir="rtl">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -525,11 +525,11 @@
 
                             {% if product.size.all.o.show_thumb %}
                             <div class="mb-5">
-                                <span class="text-muted fs-lg ms-2 me-1"><small>Exists on different sets</small></span>
+                                <span class="text-muted fs-lg ms-2 me-1"><small>different sets</small></span>
                             </div>
                             {% else %}
                             <div class="mb-5">
-                                <span class="text-muted fs-lg ms-2 me-1"><small>Exists on different sizes</small></span>
+                                <span class="text-muted fs-lg ms-2 me-1"><small>different sizes</small></span>
                             </div>
                             {% endif %}
 
