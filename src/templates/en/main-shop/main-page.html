@@ -144,12 +144,12 @@
                     </h3>
                     <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.en_spec }}</a>
                     {% if product.discount_price %}
-                    <div class="product-price">
-                                <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                                <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                            </div>
+                    <div class="product-price mb-2">
+                        <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                        <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                    </div>
                     {% else %}
-                    <div class="product-price">
+                    <div class="product-price mb-2">
                         <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
                     </div>
                     {% endif %}
