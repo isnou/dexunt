@@ -13,11 +13,8 @@ def edit_intro(request):
         banner = request.FILES.get('banner', False)
         margin = request.POST.get('margin', False)
 
-        if Intro.objects.all().get(id=1).exists():
-            intro = Intro.objects.all().get(id=1)
-        else:
-            intro = Intro(id=1,
-                          ).save()
+        intro = Intro.objects.all().get(id=1)
+
         if color:
             intro.color = color
         if banner:

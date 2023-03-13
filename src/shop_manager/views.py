@@ -137,9 +137,8 @@ def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
 
-    if not Intro.objects.all().get(id=1).exists():
-        intro = Intro(id=1,
-                      ).save()
+    if not Intro.objects.all().filter(id=1).exists():
+        Intro(id=1,).save()
 
     try:
         all_products = Product.objects.all()
