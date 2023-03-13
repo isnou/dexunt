@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
 from .models import Product, Size, Feature, ShowcaseProduct
-from main_shop.models import IntroThumb, IntroBanner ,Showcase ,Category
+from main_shop.models import IntroThumb, IntroBanner ,Showcase ,Category ,Intro
 
 
 def manager_dashboard(request, action):
@@ -137,12 +137,10 @@ def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
 
-    if Intro.objects.all().get(id=1).exists():
-        intro = Intro.objects.all().get(id=1)
-    else:
+    if not Intro.objects.all().get(id=1).exists():
         intro = Intro(id=1,
                       ).save()
-        
+
     try:
         all_products = Product.objects.all()
     except Product.DoesNotExist:
