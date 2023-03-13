@@ -175,15 +175,18 @@
                     <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                 </a>
                 <div class="card-body py-2">
-                    <h3 class="product-title fs-sm">
-                        <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a>
+                    <h3 class="product-title fs-sm text-truncate">
+                        <a href="#">{{ product.en_title }}</a>
                     </h3>
                     <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.en_spec }}</a>
-                    <div class="d-flex justify-content-between">
-                        <div class="product-price">
-                            <span class="text-muted fs-sm">Out of stock</span>
-                        </div>
+                    <div class="product-price mb-2">
+                        <span class="text-muted fs-sm">Out of stock</span>
                     </div>
+
+                    <button class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button" disabled>
+                        <i class="ci-cart fs-sm me-1"></i>Buy Now
+                    </button>
+
                 </div>
                 <div class="card-body card-body-hidden">
                 </div>
