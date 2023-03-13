@@ -143,7 +143,7 @@
                         <i class="ci-heart"></i>
                     </button>
                 </div>
-                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' 'main' %}">
+                <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' %}">
                     <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                 </a>
                 <div class="card-body py-2">
@@ -191,7 +191,7 @@
                         <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
                             <i class="ci-heart"></i>
                         </button>
-                        <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' 'main' %}">
+                        <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' %}">
                             <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                         </a>
                         <div class="card-body py-2">
@@ -324,11 +324,11 @@
                 <h3 class="widget-title">Bestsellers</h3>
                 {% for product in best_sellers %}
                 <div class="d-flex align-items-center pb-2">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' %}">
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' %}">{{ product.en_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
@@ -348,11 +348,11 @@
                 <h3 class="widget-title">New arrivals</h3>
                 {% for product in new_arrivals %}
                 <div class="d-flex align-items-center pb-2">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' %}">
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' %}">{{ product.en_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
@@ -372,11 +372,11 @@
                 <h3 class="widget-title">Top rated</h3>
                 {% for product in top_rated %}
                 <div class="d-flex align-items-center pb-2">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' 'main' %}">
+                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' %}">
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a></h6>
+                        <h6 class="widget-product-title"><a href="{% url 'product' product.sku 'main' %}">{{ product.en_title }}</a></h6>
                         {% if product.discount_price %}
                         <div class="widget-product-meta"><span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
                             <del class="text-muted fs-xs">{{ product.sell_price|floatformat:"2g" }} DZD</del>
