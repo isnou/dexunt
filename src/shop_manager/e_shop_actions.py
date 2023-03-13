@@ -21,6 +21,8 @@ def edit_intro(request):
             intro.banner = banner
         if margin:
             intro.margin = margin
+            
+        intro.save()
 
     return {
         'url': url,
