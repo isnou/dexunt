@@ -31,6 +31,7 @@ def product(request, sku, size_sku):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
     size_sku = size_sku
+
     try:
         selected_product = Product.objects.all().get(sku=sku)
     except Product.DoesNotExist:
@@ -44,7 +45,6 @@ def product(request, sku, size_sku):
     context = {
         'selected_product': selected_product,
         'selected_variants': selected_variants,
-        'size_sku': size_sku,
     }
     return render(request, url, context)
 
