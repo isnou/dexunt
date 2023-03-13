@@ -523,12 +523,11 @@
 
                             {% if product.size.all.count %}
 
-                            {% if product.size.all.o.show_thumb %}
+                            {% if product.size.all.o.thumb %}
                             <div class="mb-5">
                                 <span class="text-muted fs-lg ms-2 me-1"><small>different sets</small></span>
                             </div>
-                            {% endif %}
-                            {% if not product.size.all.o.show_thumb %}
+                            {% else %}
                             <div class="mb-5">
                                 <span class="text-muted fs-lg ms-2 me-1"><small>different sizes</small></span>
                             </div>
