@@ -247,8 +247,6 @@ def e_shop(request, action, detail, index):
 
     context = {
         'all_products': all_products,
-        'intro_banners': intro_banners,
-        'intro_thumbs':intro_thumbs,
         'tab':tab,
     }
     return render(request, url, context)
