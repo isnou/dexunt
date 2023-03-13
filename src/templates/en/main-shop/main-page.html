@@ -139,22 +139,29 @@
                     <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                 </a>
                 <div class="card-body py-2">
-                    <h3 class="product-title fs-sm">
-                        <a href="{% url 'product' product.sku 'main' 'main' %}">{{ product.en_title }}</a>
-                    </h3>
-                    <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.en_spec }}</a>
-                    <div class="d-flex justify-content-between">
-                        {% if product.discount_price %}
-                        <div class="product-price">
-                            <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
-                            <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
-                        </div>
-                        {% else %}
-                        <div class="product-price">
-                            <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
-                        </div>
-                        {% endif %}
-                    </div>
+                            <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
+                            <h3 class="product-title fs-sm text-truncate">
+                                <a href="#">{{ product.en_title }}</a>
+                            </h3>
+                            {% if product.discount_price %}
+                            <div class="product-price">
+                                <del class="fs-sm text-muted">{{ product.sell_price|floatformat:"2g" }} DZD</del>
+                                <span class="text-accent">{{ product.discount_price|floatformat:"2g" }} DZD</span>
+                            </div>
+                            {% else %}
+                            <div class="product-price">
+                                <span class="text-accent">{{ product.sell_price|floatformat:"2g" }} DZD</span>
+                            </div>
+                            {% endif %}
+
+                            <button class="btn btn-primary btn-sm d-block w-100 mb-2" type="button">
+                                <i class="ci-cart fs-sm me-1"></i>Add to Cart
+                            </button>
+                            <div class="text-center mb-2">
+                                <a class="nav-link-style fs-ms" href="#quick_view_{{ product.sku }}" data-bs-toggle="modal">
+                                    <i class="ci-eye align-middle me-1"></i>Quick view
+                                </a>
+                            </div>
                 </div>
                 <div class="card-body card-body-hidden">
                 </div>
@@ -218,7 +225,8 @@
                         <a class="card-img-top d-block overflow-hidden" href="{% url 'product' product.sku 'main' 'main' %}">
                             <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                         </a>
-                        <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
+                        <div class="card-body py-2">
+                            <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
                             <h3 class="product-title fs-sm text-truncate">
                                 <a href="#">{{ product.en_title }}</a>
                             </h3>
@@ -242,8 +250,6 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="card-body card-body-hidden">
-                </div>
                     </div>
                 </div>
                 {% else %}
@@ -255,7 +261,8 @@
                         <a class="card-img-top d-block overflow-hidden" href="#">
                             <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                         </a>
-                        <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
+                        <div class="card-body py-2">
+                            <a class="product-meta d-block fs-xs pb-1" href="#">{{ product.brand }}</a>
                             <h3 class="product-title fs-sm text-truncate">
                                 <a href="#">{{ product.en_title }}</a>
                             </h3>
