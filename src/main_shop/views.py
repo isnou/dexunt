@@ -1,8 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-from .models import Product
 from sell_manager.models import Clip
-from shop_manager.models import ShowcaseProduct
+from shop_manager.models import ShowcaseProduct, Product
 from .models import Showcase
 from . import grid_shop_actions, product_actions
 
@@ -34,8 +33,14 @@ def product(request, sku, size_sku):
 
     selected_product = Product.objects.all().get(sku=sku)
 
+    if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
+        selected_variants = ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title)
+    else:
+        selected_variants = None
+
     context = {
         'selected_product': selected_product,
+        'selected_variants': selected_variants,
         'size_sku': size_sku,
     }
     return render(request, url, context)
