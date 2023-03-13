@@ -43,8 +43,6 @@ def product(request, sku, size_sku):
         selected_variants = None
 
     context = {
-        'selected_product': selected_product,
-        'selected_variants': selected_variants,
     }
     return render(request, url, context)
 
