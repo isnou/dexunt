@@ -527,7 +527,8 @@
                             <div class="mb-5">
                                 <span class="text-muted fs-lg ms-2 me-1"><small>different sets</small></span>
                             </div>
-                            {% else %}
+                            {% endif %}
+                            {% if not product.size.all.o.show_thumb %}
                             <div class="mb-5">
                                 <span class="text-muted fs-lg ms-2 me-1"><small>different sizes</small></span>
                             </div>
