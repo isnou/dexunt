@@ -151,22 +151,18 @@ def e_shop(request, action, detail, index):
     if action == "edit_intro":
         url = direction + e_shop_actions.edit_intro(request).get('url')
         tab = 'main_page'
-
     if action == "fix_intro":
         intro.fixed = True
         intro.save()
         tab = 'main_page'
-
     if action == "unfix_intro":
         intro.fixed = False
         intro.save()
         tab = 'main_page'
-
     if action == "stretch_intro":
         intro.repeat = True
         intro.save()
         tab = 'main_page'
-
     if action == "repeat_intro":
         intro.repeat = False
         intro.save()

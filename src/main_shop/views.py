@@ -1,8 +1,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product ,ShowcaseProduct
 from sell_manager.models import Clip
-from .models import IntroThumb, IntroBanner ,Showcase
+from .models import Showcase
 from . import grid_shop_actions, product_actions
 
 
@@ -26,93 +26,23 @@ def change_language(request, language):
     return redirect('main-shop-home')
 
 
-def product(request, sku, sku_variant, sku_attach):
+def product(request, sku, size_sku):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
-
     try:
-        clips = Clip.objects.all()
-    except Clip.DoesNotExist:
-        raise Http404("No clips")
+        selected_product = Product.objects.all().get(sku=sku)
+    except Product.DoesNotExist:
+        raise Http404("Product doesnt exist")
 
-    selected_product = Product.objects.all().get(sku=sku)
-    related_products = Product.objects.all().filter(en_product_title=selected_product.en_product_title)
-    selected_variants = related_products.exclude(type='photo').exclude(type='size').exclude(type='set')
-
-    album = related_products.filter(type='photo').filter(attach=selected_product.attach)
-    sizes = related_products.filter(type='size').filter(attach=selected_product.attach)
-    sets = related_products.filter(type='set').filter(attach=selected_product.attach)
-    thumb = selected_product.thumb
-    show_album = True
-
-    if sku_variant == 'main' and sku_attach == 'main':
-        sku_variant = sku
-        sku_attach = sku
-        if sizes:
-            sku_attach = sizes[0].sku
-    if sku_attach != 'main':
-        attached_product = Product.objects.all().get(sku=sku_attach)
-        selected_product.sell_price = attached_product.sell_price
-        selected_product.discount_price = attached_product.discount_price
-        selected_product.en_variant = attached_product.en_variant
-        selected_product.quantity = attached_product.quantity
-        if attached_product.type == 'set':
-            show_album = False
-        if sets:
-            thumb = attached_product.thumb
-        # attached product clips
-        if clips.filter(sku=sku_attach).exists():
-            clips = clips.filter(sku=sku_attach)
-            if clips.filter(type='points-products').exists():
-                points_product = clips.get(type='points-products')
-            else:
-                points_product = None
-            if clips.filter(type='delivery-products').exists():
-                delivery_product = clips.get(type='delivery-products')
-            else:
-                delivery_product = None
-            if clips.filter(type='solidarity-products').exists():
-                solidarity_product = clips.get(type='solidarity-products')
-            else:
-                solidarity_product = None
-        else:
-            points_product = None
-            delivery_product = None
-            solidarity_product = None
+    if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
+        selected_variants = ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title)
     else:
-        # product clips
-        if clips.filter(sku=sku).exists():
-            clips = clips.filter(sku=sku)
-            if clips.filter(type='points-products').exists():
-                points_product = clips.get(type='points-products')
-            else:
-                points_product = None
-            if clips.filter(type='delivery-products').exists():
-                delivery_product = clips.get(type='delivery-products')
-            else:
-                delivery_product = None
-            if clips.filter(type='solidarity-products').exists():
-                solidarity_product = clips.get(type='solidarity-products')
-            else:
-                solidarity_product = None
-        else:
-            points_product = None
-            delivery_product = None
-            solidarity_product = None
+        selected_variants = None
 
     context = {
         'selected_product': selected_product,
         'selected_variants': selected_variants,
-        'sizes': sizes,
-        'sets': sets,
-        'thumb': thumb,
-        'album': album,
-        'show_album': show_album,
-        'points_product': points_product,
-        'delivery_product': delivery_product,
-        'solidarity_product': solidarity_product,
-        'sku_variant': sku_variant,
-        'sku_attach': sku_attach,
+        'size_sku': size_sku,
     }
     return render(request, url, context)
 

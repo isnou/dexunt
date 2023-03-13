@@ -126,7 +126,7 @@
                     </div>
                     {% endif %}
 
-                    <button class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button">
+                    <button href="{% url 'product' product.sku 'main' %}" class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button">
                         <i class="ci-cart fs-sm me-1"></i>Buy Now
                     </button>
                 </div>
