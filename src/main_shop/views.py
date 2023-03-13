@@ -32,10 +32,7 @@ def product(request, sku, size_sku):
     url = direction + "/main-shop/product.html"
     size_sku = size_sku
 
-    try:
-        selected_product = Product.objects.all().get(sku=sku)
-    except Product.DoesNotExist:
-        raise Http404("Product doesnt exist")
+    selected_product = Product.objects.all().get(sku=sku)
 
     if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
         selected_variants = ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title)
@@ -43,7 +40,7 @@ def product(request, sku, size_sku):
         selected_variants = None
 
     context = {
-        'selected_product': None,
+        'selected_product': selected_product,
         'selected_variants': selected_variants,
         'size_sku': size_sku,
     }
