@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
 from .models import Product, Size, Feature, ShowcaseProduct
-from main_shop.models import IntroThumb, IntroBanner ,Showcase ,Category ,Intro
+from main_shop.models import Showcase ,Category ,Intro
 
 
 def manager_dashboard(request, action):
@@ -152,39 +152,21 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.edit_intro(request).get('url')
         tab = 'main_page'
     if action == "fix_intro":
-        url = direction + e_shop_actions.fix_intro(request).get('url')
+        Intro(id=1,).fixed = True
+        Intro(id=1, ).save()
         tab = 'main_page'
     if action == "unfix_intro":
-        url = direction + e_shop_actions.fix_intro(request).get('url')
+        Intro(id=1,).fixed = False
+        Intro(id=1, ).save()
         tab = 'main_page'
-    if action == "uniq_intro":
-        url = direction + e_shop_actions.uniq_intro(request).get('url')
+    if action == "stretch_intro":
+        Intro(id=1,).repeat = False
+        Intro(id=1, ).save()
         tab = 'main_page'
     if action == "repeat_intro":
-        url = direction + e_shop_actions.repeat_intro(request).get('url')
+        Intro(id=1,).repeat = False
+        Intro(id=1, ).save()
         tab = 'main_page'
-
-    # -----------------------------intro banner
-    if action == "edit_banner":
-        url = direction + e_shop_actions.edit_banner(request, index).get('url')
-        tab = 'intro_banner'
-    if action == "up_banner":
-        url = direction + e_shop_actions.up_banner(index).get('url')
-        tab = 'intro_banner'
-    if action == "down_banner":
-        url = direction + e_shop_actions.down_banner(index).get('url')
-        tab = 'intro_banner'
-
-    # -----------------------------intro thumb
-    if action == "edit_thumb":
-        url = direction + e_shop_actions.edit_thumb(request, index).get('url')
-        tab = 'intro_thumb'
-    if action == "up_thumb":
-        url = direction + e_shop_actions.up_thumb(index).get('url')
-        tab = 'intro_thumb'
-    if action == "down_thumb":
-        url = direction + e_shop_actions.down_thumb(index).get('url')
-        tab = 'intro_thumb'
 
     # -----------------------------ad & showcase
     if action == "edit_single_flash":
