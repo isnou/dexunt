@@ -186,7 +186,7 @@
                                     {% endif %}
                                     <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted" id="">{{ selected_product.en_spec }}</span></div>
                                     <div class="position-relative me-n4 mb-3">
-                                        {% if variant %}
+                                        {% if variant.product.all.count > 1 %}
                                         {% for selected_variant in variant.product.all %}
                                         <div class="form-check form-option form-check-inline mb-2">
                                             {% if selected_variant.sku == selected_product.sku %}
