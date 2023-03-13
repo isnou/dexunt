@@ -74,13 +74,13 @@
         <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-                    <li class="breadcrumb-item"><a class="text-nowrap" href="{% url 'main-shop-home' %}"><i class="ci-home"></i>Home</a></li>
-                    <li class="breadcrumb-item text-nowrap active" aria-current="page">{{ selected_product.en_product_title }} {{ selected_product.en_variant }}</li>
+                    <li class="breadcrumb-item"><a class="text-nowrap" href="#"><i class="ci-home"></i>Home</a></li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">{{ selected_product.en_title }} {{ selected_product.en_spec }}</li>
                 </ol>
             </nav>
         </div>
         <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-            <h1 class="h3 text-light mb-2">{{ selected_product.en_product_title }} - {{ selected_product.en_variant }}</h1>
+            <h1 class="h3 text-light mb-2">{{ selected_product.en_title }} - {{ selected_product.en_spec }}</h1>
             <div>
                 <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
                 </div><span class="d-inline-block fs-sm text-white opacity-70 align-middle mt-1 ms-1">74 Reviews</span>
@@ -103,42 +103,77 @@
                 <div class="tab-pane fade show active" id="general" role="tabpanel">
                     <div class="row">
 
-                        <!-- Product gallery-->
-                        <div class="col-lg-7 pe-lg-0">
-                            <div class="product-gallery">
-                                {% if show_album %}
-                                <div class="product-gallery-preview order-sm-2">
-                                    <div class="product-gallery-preview-item active" id="first">
-                                        <img class="image-zoom" src="{% get_media_prefix %}{{ thumb }}" style="width: auto;height: 450px;" data-zoom="{% get_media_prefix %}{{ thumb }}">
-                                        <div class="image-zoom-pane"></div>
-                                    </div>
-                                    {% for photo in album %}
-                                    <div class="product-gallery-preview-item" id="{{ photo.sku }}">
-                                        <img class="image-zoom" src="{% get_media_prefix %}{{ photo.thumb }}" style="width: auto;height: 450px;" data-zoom="{% get_media_prefix %}{{ photo.thumb }}">
-                                        <div class="image-zoom-pane"></div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                                <div class="product-gallery-thumblist order-sm-1">
-                                    <a class="product-gallery-thumblist-item active" href="#first">
-                                        <img src="{% get_media_prefix %}{{ thumb }}">
-                                    </a>
-                                    {% for photo in album %}
-                                    <a class="product-gallery-thumblist-item" href="#{{ photo.sku }}">
-                                        <img src="{% get_media_prefix %}{{ photo.thumb }}">
-                                    </a>
-                                    {% endfor %}
-                                </div>
-                                {% else %}
-                                <div class="product-gallery-preview order-sm-2">
-                                    <div class="product-gallery-preview-item active">
-                                        <img class="image-zoom" src="{% get_media_prefix %}{{ thumb }}" style="width: auto;height: 450px;" data-zoom="{% get_media_prefix %}{{ thumb }}">
-                                        <div class="image-zoom-pane"></div>
-                                    </div>
-                                </div>
+
+                    <!-- Product gallery-->
+                    <div class="col-lg-7 pe-lg-0">
+                        <div class="product-gallery">
+                            <div class="product-gallery-thumblist order-sm-1">
+                                <a class="product-gallery-thumblist-item active" href="#one">
+                                    <img src="{% get_media_prefix %}{{ product.album.all.0.image }}">
+                                </a>
+
+                                <a class="product-gallery-thumblist-item" href="#two">
+                                    <img src="{% get_media_prefix %}{{ product.album.all.1.image }}">
+                                </a>
+
+                                {% if product.album.all.2.id %}
+                                <a class="product-gallery-thumblist-item" href="#three">
+                                    <img src="{% get_media_prefix %}{{ product.album.all.2.image }}">
+                                </a>
                                 {% endif %}
+
+                                {% if product.album.all.3.id %}
+                                <a class="product-gallery-thumblist-item" href="#four">
+                                    <img src="{% get_media_prefix %}{{ product.album.all.3.image }}">
+                                </a>
+                                {% endif %}
+
+                                {% if product.album.all.4.id %}
+                                <a class="product-gallery-thumblist-item" href="#five">
+                                    <img src="{% get_media_prefix %}{{ product.album.all.4.image }}">
+                                </a>
+                                {% endif %}
+
+                            </div>
+                            <div class="product-gallery-preview order-sm-2">
+                                <div class="product-gallery-preview-item active" id="one">
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.0.image }}"
+                                          style="width: auto;height: 450px;"
+                                         data-zoom="{% get_media_prefix %}{{ product.album.all.0.image }}">
+                                    <div class="image-zoom-pane"></div>
+                                </div>
+
+                                <div class="product-gallery-preview-item" id="two">
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.1.image }}"
+                                          style="width: auto;height: 450px;"
+                                         data-zoom="{% get_media_prefix %}{{ product.album.all.1.image }}">
+                                    <div class="image-zoom-pane"></div>
+                                </div>
+
+                                <div class="product-gallery-preview-item" id="three">
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.2.image }}"
+                                          style="width: auto;height: 450px;"
+                                         data-zoom="{% get_media_prefix %}{{ product.album.all.2.image }}">
+                                    <div class="image-zoom-pane"></div>
+                                </div>
+
+                                <div class="product-gallery-preview-item" id="four">
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.3.image }}"
+                                          style="width: auto;height: 450px;"
+                                         data-zoom="{% get_media_prefix %}{{ product.album.all.3.image }}">
+                                    <div class="image-zoom-pane"></div>
+                                </div>
+
+                                <div class="product-gallery-preview-item" id="five">
+                                    <img class="image-zoom" src="{% get_media_prefix %}{{ product.album.all.4.image }}"
+                                          style="width: auto;height: 450px;"
+                                         data-zoom="{% get_media_prefix %}{{ product.album.all.4.image }}">
+                                    <div class="image-zoom-pane"></div>
+                                </div>
+
                             </div>
                         </div>
+                    </div>
 
                         <!-- Product details-->
                         <div class="col-lg-5 pt-4 pt-lg-0">
