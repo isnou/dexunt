@@ -152,20 +152,20 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.edit_intro(request).get('url')
         tab = 'main_page'
     if action == "fix_intro":
-        Intro.get(id=1,).fixed = True
-        Intro.get(id=1, ).save()
+        Intro.objects.all().get(id=1).fixed = True
+        Intro.objects.all().get(id=1).save()
         tab = 'main_page'
     if action == "unfix_intro":
-        Intro.objects.all().get(id=1,).fixed = False
-        Intro.objects.all().get(id=1, ).save()
+        Intro.objects.all().get(id=1).fixed = False
+        Intro.objects.all().get(id=1).save()
         tab = 'main_page'
     if action == "stretch_intro":
-        Intro.objects.all().get(id=1,).repeat = False
-        Intro.objects.all().get(id=1, ).save()
+        Intro.objects.all().get(id=1).repeat = False
+        Intro.objects.all().get(id=1).save()
         tab = 'main_page'
     if action == "repeat_intro":
-        Intro.objects.all().get(id=1,).repeat = False
-        Intro.objects.all().get(id=1, ).save()
+        Intro.objects.all().get(id=1).repeat = False
+        Intro.objects.all().get(id=1).save()
         tab = 'main_page'
 
     # -----------------------------ad & showcase
