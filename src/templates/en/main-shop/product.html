@@ -214,7 +214,7 @@
 
                                     {% if selected_product.size.all.count %}
 
-                                    {% if selected_product.size.all.0.show_thumb %}
+                                    {% if not selected_product.size.all.0.show_thumb %}
                                     <div class="position-relative me-n4 mb-3">
                                         {% for selected_attach in selected_product.size.all %}
                                         {% if selected_attach.sku == size_sku %}
