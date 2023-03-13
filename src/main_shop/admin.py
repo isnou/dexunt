@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import IntroBanner, IntroThumb, Showcase
+from .models import IntroBanner, Intro, Showcase
 
 
 class IntroBannerAdmin(admin.ModelAdmin):
@@ -7,6 +7,6 @@ class IntroBannerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(IntroBanner, IntroBannerAdmin)
-admin.site.register(IntroThumb)
+admin.site.register(Intro)
 admin.site.register(Showcase)
 
