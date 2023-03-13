@@ -160,7 +160,7 @@ def e_shop(request, action, detail, index):
         Intro.objects.all().get(id=1).save()
         tab = 'main_page'
     if action == "stretch_intro":
-        Intro.objects.all().get(id=1).repeat = False
+        Intro.objects.all().get(id=1).repeat = True
         Intro.objects.all().get(id=1).save()
         tab = 'main_page'
     if action == "repeat_intro":
