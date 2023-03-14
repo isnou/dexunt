@@ -336,8 +336,12 @@
                                     {% if size_sku == 'main' %}
                                     <!-- disabled quantity -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
-                                        <label class="form-label me-2" for="quantity"></label>
-                                        <input class="form-control me-2" type="number" placeholder="please select an option below" disabled>
+                                        <div class="alert alert-warning d-flex" role="alert">
+                                            <div class="alert-icon">
+                                                <i class="ci-location"></i>
+                                            </div>
+                                            <div>Please select an option below to unlock.</div>
+                                        </div>
                                     </div>
                                     {% else %}
                                     <!-- quantity -->
