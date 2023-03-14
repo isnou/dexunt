@@ -191,7 +191,7 @@
                                         <div class="form-check form-option form-check-inline mb-2">
                                             {% if selected_variant.sku == selected_product.sku %}
                                             <div class="form-check form-option form-check-inline"  style="width: 90px; border: double;border-radius: 5px;">
-                                                <a class="product-thumb-overlay" href="#">
+                                                <a class="product-thumb-overlay" href="{% url 'product' selected_product.sku 'main' %}">
                                                     <img src="{% get_media_prefix %}{{selected_variant.album.all.0.image}}" style="width: 80px;height: 80px;margin: 4px;">
                                                 </a>
                                             </div>
