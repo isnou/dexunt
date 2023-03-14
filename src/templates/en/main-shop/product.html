@@ -461,11 +461,33 @@
                         <div class="d-flex align-items-center me-md-3"><img src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}" width="90" alt="Product thumb">
                             <div class="ps-3">
                                 <h6 class="fs-base mb-2">{{ selected_product.en_title }} - {{ selected_product.en_spec }}</h6>
-                                {% if selected_product.discount_price %}
-                                <div class="h4 fw-normal text-accent">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
-                                {% else %}
-                                <div class="h4 fw-normal text-accent">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
-                                {% endif %}
+
+
+                                <!-- pricing -->
+                                    {% if not selected_size %}
+                                    <!-- main pricing -->
+                                    {% if selected_product.discount_price %}
+                                    <div class="mb-3 me-1">
+                                        <del><span class="text-muted fs-6">{{ selected_product.sell_price|floatformat:"2g" }} DZD</span></del>
+                                        <span class="fw-normal text-accent fs-2">{{ selected_product.discount_price|floatformat:"2g" }} DZD</span>
+                                    </div>
+                                    {% else %}
+                                    <div class="fw-normal text-accent fs-2 mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                    {% endif %}
+                                    {% else %}
+                                    <!-- size pricing -->
+                                    {% if selected_size.discount_price %}
+                                    <div class="mb-3 me-1">
+                                        <del><span class="text-muted fs-6">{{ selected_size.sell_price|floatformat:"2g" }} DZD</span></del>
+                                        <span class="fw-normal text-accent fs-2">{{ selected_size.discount_price|floatformat:"2g" }} DZD</span>
+                                    </div>
+                                    {% else %}
+                                    <div class="fw-normal text-accent fs-2 mb-3 me-1">{{ selected_size.sell_price|floatformat:"2g" }} DZD</div>
+                                    {% endif %}
+                                    {% endif %}
+                                    <!-- end pricing -->
+
+                                
                             </div>
                         </div>
                         <div class="d-flex align-items-center pt-3">
