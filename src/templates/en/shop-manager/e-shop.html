@@ -2018,7 +2018,7 @@
 
                                                                 <!--remove product action-->
                                                                 <td class="text-end">
-                                                                    <a href="{% url 'e-shop' 'remove_product_from_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
+                                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
                                                                         <i class="bi bi-upload"></i>
                                                                     </a>
                                                                 </td>
@@ -2077,10 +2077,10 @@
                                             <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
                                             </button>
-                                            <a href="{% url 'e-shop' 'up_category' category.sku category.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="#" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-up-square fs-2x"></i>
                                             </a>
-                                            <a href="{% url 'e-shop' 'down_category' category.sku category.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="#" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-down-square fs-2x"></i>
                                             </a>
                                             <div class="modal fade" tabindex="-1" id="category_{{ category.sku }}_link_new_product">
@@ -2120,7 +2120,7 @@
 
                                                                     <!--remove product action-->
                                                                     <td class="text-end">
-                                                                        <a href="{% url 'e-shop' 'add_product_to_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
+                                                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
                                                                             <i class="bi bi-download"></i>
                                                                         </a>
                                                                     </td>
