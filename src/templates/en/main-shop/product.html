@@ -182,15 +182,15 @@
                                 <div class="product-details ms-auto pb-3">
                                     <!-- pricing -->
                                     {% if selected_product.discount_price %}
-                                    <div class="h3 fw-normal text-accent mb-2 me-1">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
+                                    <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
                                     {% else %}
-                                    <div class="h3 fw-normal text-accent mb-2 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                    <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
                                     {% endif %}
                                     <!-- end pricing -->
 
                                     <!-- notes -->
                                     {% if variant.delivery_quotient < 100 %}
-                                    <div class="fs-sm mb-1">
+                                    <div class="fs-sm mb-2">
                                         <span class="text-heading fw-medium me-1">
                                             <i class="ci-delivery text-muted lead align-middle mt-n1 me-2"></i>
                                         </span>
@@ -200,7 +200,7 @@
                                     {% endif %}
 
                                     {% if variant.points %}
-                                    <div class="fs-sm mb-1">
+                                    <div class="fs-sm mb-2">
                                         <span class="text-heading fw-medium me-1">
                                             <i class="ci-gift text-muted lead align-middle mt-n1 me-2"></i>
                                         </span>
