@@ -210,8 +210,13 @@
                                         <span class="text-heading fw-medium me-2">
                                             <i class="ci-delivery text-muted lead align-middle mt-n1 me-2"></i>
                                         </span>
+                                        {% if variant.delivery_quotient == 0 %}
+                                        <span class="text-muted">free delivery
+                                        </span>
+                                        {% else %}
                                         <span class="text-muted">save {{ 100|sub:variant.delivery_quotient }} % on delivery
                                         </span>
+                                        {% endif %}
                                     </div>
                                     {% endif %}
 
