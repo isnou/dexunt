@@ -321,7 +321,7 @@
                                         <div class="alert-icon">
                                             <i class="ci-time"></i>
                                         </div>
-                                        <div>out of stock ,new arrival soon .</div>
+                                        <div>out of stock new arrival soon .</div>
                                     </div>
 
                                     <!-- disabled buttons -->
@@ -337,13 +337,20 @@
                                     {% if selected_product.size.all.count %}
                                     {% if size_sku == 'main' %}
                                     <!-- unselected option -->
-                                    <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
-                                        <div class="alert alert-warning d-flex" role="alert">
-                                            <div class="alert-icon">
-                                                <i class="ci-unlocked"></i>
-                                            </div>
-                                            <div>Please select an option below.</div>
+                                    <div class="alert alert-warning d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-unlocked"></i>
                                         </div>
+                                        <div>Please select an option below.</div>
+                                    </div>
+
+
+                                    <!-- disabled buttons -->
+                                    <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
+
+                                    </div>
+                                    <div class="d-flex mb-4">
+
                                     </div>
                                     {% else %}
                                     <!-- quantity -->
