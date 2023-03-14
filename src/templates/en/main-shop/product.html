@@ -536,11 +536,24 @@
                             </ul>
                             {% endif %}
 
-                            <h3 class="h6">Dimensions</h3>
-                            <ul class="list-unstyled fs-sm pb-2">
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Dimensions:</span><span>195 x 20 mm</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Weight:</span><span>32 g</span></li>
-                            </ul>
+                            {% if variant.en_description %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Description</h5>
+                                    <p class="card-text fs-sm text-muted">{{ variant.en_description }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if variant.en_note %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Note</h5>
+                                    <p class="card-text fs-sm text-muted">{{ variant.en_note }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+
                         </div>
                     </div>
 
