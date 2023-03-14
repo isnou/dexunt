@@ -1962,7 +1962,6 @@
 
         <div class="tab-content">
             <div class="container-xxl">
-                <div class="card card-flush shadow-sm">
             {% for root_directory in root_directories %}
 
             <!--inventory product pan-->
@@ -2004,47 +2003,9 @@
             <!--end inventory product pan-->
 
             {% endfor %}
-                </div>
             </div>
         </div>
 
-        {% for root_directory in root_directories %}
-        <div class="container-xxl mt-5">
-            <div class="card card-flush shadow-sm">
-                <div class="card-toolbar">
-                    <div class="row mt-8" style="text-align: center;">
-                        {% if root_directory.publish %}
-                        <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ root_directory.en_title }} - {{ root_directory.rank }}
-                        </a>
-                        {% else %}
-                        <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ root_directory.en_title }} - {{ root_directory.rank }}
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-body py-1">
-                        <div class="row gx-9 h-100">
-                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div class="col-sm-6 me-5">
-
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="d-flex flex-column h-100">
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
 
         {% for category in categories %}
         <div class="container-xxl mt-5">
