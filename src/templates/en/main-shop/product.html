@@ -506,13 +506,11 @@
                             <h3 class="h6">Technical specs</h3>
                             <ul class="list-unstyled fs-sm pb-2">
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Detail:</span><span>{{ selected_product.en_spec }}</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Available Variants:</span><span>{{ variant.product.all.count }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Colors:</span><span>{{ variant.product.all.count }}</span></li>
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">SKU:</span><span>{{ selected_product.sku }}</span></li>
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Published:</span><span>{{ selected_product.created_at }}</span></li>
                             </ul>
-                        </div>
 
-                        <div class="col-lg-5 col-sm-6 offset-lg-1">
                             {% if selected_product.feature.all.count %}
                             <h3 class="h6">Features</h3>
                             <ul class="list-unstyled fs-sm pb-2">
@@ -521,12 +519,23 @@
                                 {% endfor %}
                             </ul>
                             {% endif %}
+                        </div>
 
-                            <h3 class="h6">Battery</h3>
+                        <div class="col-lg-5 col-sm-6 offset-lg-1">
+
+                            {% if variant.points or delivery_quotient < 100 %}
+                            <h3 class="h6">Additional informations</h3>
                             <ul class="list-unstyled fs-sm pb-2">
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Battery:</span><span>Li-Pol</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Battery capacity:</span><span>190 mAh</span></li>
+                                {% if variant.points %}
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Points:</span><span>{{ variant.points }}</span></li>
+                                {% endif %}
+
+                                {% if variant.delivery_quotient < 100 %}
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Delivery Discount:</span><span>{{ variant.delivery_quotient }}</span></li>
+                                {% endif %}
                             </ul>
+                            {% endif %}
+
                             <h3 class="h6">Dimensions</h3>
                             <ul class="list-unstyled fs-sm pb-2">
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Dimensions:</span><span>195 x 20 mm</span></li>
