@@ -179,13 +179,21 @@
                                 {% csrf_token %}
 
                                 <div class="product-details ms-auto pb-3">
+                                    <!-- pricing -->
                                     {% if selected_product.discount_price %}
                                     <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
                                     {% else %}
                                     <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
                                     {% endif %}
-                                    <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted" id="">{{ selected_product.en_spec }}</span></div>
+                                    <!-- end pricing -->
+
+                                    <!-- specs & notes -->
+                                    <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted">{{ selected_product.en_spec }}</span></div>
+                                    <!-- end specs & notes -->
+
+                                    <!-- variants & availability-->
                                     <div class="position-relative me-n4 mb-3">
+                                        <!-- variants -->
                                         {% if variant.product.all.count > 1 %}
                                         {% for selected_variant in variant.product.all %}
                                         <div class="form-check form-option form-check-inline mb-2">
@@ -205,15 +213,20 @@
                                         </div>
                                         {% endfor %}
                                         {% endif %}
+                                        <!-- end variants -->
+                                        <!-- availability -->
                                         {% if selected_product.quantity == 0 %}
                                         <div class="product-badge product-available mt-n5">
                                             <i class="ci-security-announcement"></i>Product Unavailable
                                         </div>
                                         {% endif %}
+                                        <!-- end availability -->
                                     </div>
+                                    <!-- end variants & availability-->
 
+                                    <!-- sizes & sets -->
                                     {% if selected_product.size.all.count %}
-
+                                    <!-- sizes -->
                                     {% if not selected_product.size.all.0.show_thumb %}
                                     <div class="position-relative me-n4 mb-3">
                                         {% for selected_attach in selected_product.size.all %}
@@ -229,6 +242,8 @@
                                         {% endfor %}
                                     </div>
                                     {% else %}
+                                    <!-- end sizes -->
+                                    <!-- sets -->
                                     <div class="position-relative me-n4 mb-3">
                                         {% for selected_attach in selected_product.size.all %}
                                         {% if selected_attach.sku == size_sku %}
@@ -247,11 +262,11 @@
                                         {% endfor %}
                                     </div>
                                     {% endif %}
-
+                                    <!-- end sets -->
                                     {% endif %}
+                                    <!-- end sizes & sets -->
 
-
-                                    {% if selected_product.quantity > 0 %}
+                                    {% if selected_product.quantity %}
                                     <!-- Product panels-->
                                     <div class="accordion mb-4" id="productPanels">
                                         {% if points_product.points > 0 %}
