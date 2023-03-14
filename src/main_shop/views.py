@@ -60,6 +60,11 @@ def grid_shop(request, action, ref):
     if action == 'all':
         url = direction + grid_shop_actions.all_products(request).get('url')
         products = grid_shop_actions.all_products(request).get('products_list')
+
+    if action == 'best_sellers':
+        url = direction + grid_shop_actions.best_sellers(request).get('url')
+        products = grid_shop_actions.best_sellers(request).get('products_list')
+
     if action == 'showcase':
         url = direction + grid_shop_actions.showcase_products(request, ref).get('url')
         products = grid_shop_actions.showcase_products(request, ref).get('products_list')
