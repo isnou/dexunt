@@ -211,7 +211,7 @@
                                             <i class="ci-delivery text-muted lead align-middle mt-n1 me-2"></i>
                                         </span>
                                         {% if variant.delivery_quotient == 0 %}
-                                        <span class="text-muted">free delivery
+                                        <span class="text-muted">free delivery for that product
                                         </span>
                                         {% else %}
                                         <span class="text-muted">save {{ 100|sub:variant.delivery_quotient }} % on delivery
@@ -223,7 +223,7 @@
                                     {% if variant.points %}
                                     <div class="fs-sm mb-2">
                                         <span class="text-heading fw-medium me-1">
-                                            <i class="ci-gift text-muted lead align-middle mt-n1 me-4"></i>
+                                            <i class="ci-gift text-muted lead align-middle mt-n1 me-2"></i>
                                         </span>
                                         <span class="text-muted">buy and get {{ variant.points }} points
                                         </span>
