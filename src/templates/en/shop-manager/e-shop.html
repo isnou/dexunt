@@ -1892,7 +1892,7 @@
                 <ul class="nav nav-pills">
                     {% for root_directory in root_directories %}
                     <li class="nav-item me-1">
-                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == 'main' or sub_tab == root_directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#inventory">
+                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == root_directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#inventory">
                             {{ root_directory.en_title }}
                         </a>
                     </li>
