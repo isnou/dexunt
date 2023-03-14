@@ -65,6 +65,14 @@ def grid_shop(request, action, ref):
         url = direction + grid_shop_actions.best_sellers(request).get('url')
         products = grid_shop_actions.best_sellers(request).get('products_list')
 
+    if action == 'new_arrivals':
+        url = direction + grid_shop_actions.new_arrivals(request).get('url')
+        products = grid_shop_actions.new_arrivals(request).get('products_list')
+
+    if action == 'top_rated':
+        url = direction + grid_shop_actions.top_rated(request).get('url')
+        products = grid_shop_actions.top_rated(request).get('products_list')
+
     if action == 'showcase':
         url = direction + grid_shop_actions.showcase_products(request, ref).get('url')
         products = grid_shop_actions.showcase_products(request, ref).get('products_list')
