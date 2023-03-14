@@ -290,7 +290,7 @@
                                     {% if selected_product.quantity and not selected_product.size.all.count %}
                                     <!-- Product panels-->
                                     <div class="accordion mb-4" id="productPanels">
-                                        {% if variant.points %}
+                                        {% if globe.points %}
                                         <div class="accordion-item">
                                             <h3 class="accordion-header">
                                                 <a class="accordion-button" href="#win_with_us" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="win_with_us">
@@ -311,7 +311,7 @@
                                         </div>
                                         {% endif %}
 
-                                        {% if variant.delivery_quotient < 100 %}
+                                        {% if globe.delivery_quotient < 100 %}
                                         <div class="accordion-item">
                                             <h3 class="accordion-header">
                                                 <a class="accordion-button" href="#shipping_discount" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shipping_discount">
