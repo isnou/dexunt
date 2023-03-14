@@ -368,8 +368,14 @@
                         <div class="card-body" style="margin-right: 45px; margin-left: 45px; margin-top: 40px; margin-bottom: 20px;">
                             <h3 class="h6">General specs</h3>
                             <ul class="list-unstyled fs-sm pb-2">
+                                {% if variant.model %}
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Model:</span><span>{{ variant.model }}</span></li>
+                                {% endif %}
+
+                                {% if variant.brand %}
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Brand:</span><span>{{ variant.brand }}</span></li>
+                                {% endif %}
+                                
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Stock:</span><span>{{ selected_product.quantity }}</span></li>
                             </ul>
                             <h3 class="h6">Technical specs</h3>
