@@ -509,6 +509,9 @@
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">SKU:</span><span>{{ selected_product.sku }}</span></li>
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Published:</span><span>{{ selected_product.created_at }}</span></li>
                             </ul>
+                        </div>
+
+                        <div class="col-lg-5 col-sm-6 offset-lg-1">
                             {% if selected_product.feature.all.count %}
                             <h3 class="h6">Features</h3>
                             <ul class="list-unstyled fs-sm pb-2">
@@ -517,16 +520,7 @@
                                 {% endfor %}
                             </ul>
                             {% endif %}
-                        </div>
 
-                        <div class="col-lg-5 col-sm-6 offset-lg-1">
-                            <h3 class="h6">Functions</h3>
-                            <ul class="list-unstyled fs-sm pb-2">
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Phone calls:</span><span>Incoming call notification</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Monitoring:</span><span>Heart rate / Physical activity</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">GPS support:</span><span>Yes</span></li>
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Sensors:</span><span>Heart rate, Gyroscope, Geomagnetic, Light sensor</span></li>
-                            </ul>
                             <h3 class="h6">Battery</h3>
                             <ul class="list-unstyled fs-sm pb-2">
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Battery:</span><span>Li-Pol</span></li>
