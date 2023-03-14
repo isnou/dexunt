@@ -188,7 +188,6 @@
                                         <del><span class="text-muted fs-6">{{ selected_product.sell_price|floatformat:"2g" }} DZD</span></del>
                                         <span class="fw-normal text-accent fs-2">{{ selected_product.discount_price|floatformat:"2g" }} DZD</span>
                                     </div>
-
                                     {% else %}
                                     <div class="fw-normal text-accent fs-2 mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
                                     {% endif %}
@@ -199,7 +198,6 @@
                                         <del><span class="text-muted fs-6">{{ selected_size.sell_price|floatformat:"2g" }} DZD</span></del>
                                         <span class="fw-normal text-accent fs-2">{{ selected_size.discount_price|floatformat:"2g" }} DZD</span>
                                     </div>
-
                                     {% else %}
                                     <div class="fw-normal text-accent fs-2 mb-3 me-1">{{ selected_size.sell_price|floatformat:"2g" }} DZD</div>
                                     {% endif %}
@@ -227,7 +225,9 @@
                                     </div>
                                     {% endif %}
 
-                                    <div class="fs-sm mb-1"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted">{{ selected_product.en_spec }}</span></div>
+                                    {% if selected_size.show_thumb %}
+                                    <div class="fs-sm mb-1"><span class="text-heading fw-medium me-2">Option :</span><span class="text-muted">{{ selected_size.en_title }}</span></div>
+                                    {% endif %}
                                     <!-- end notes -->
 
                                     <!-- variants -->
