@@ -188,9 +188,29 @@
                                     {% endif %}
                                     <!-- end pricing -->
 
-                                    <!-- specs & notes -->
-                                    <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1"></span><span class="text-muted">{{ selected_product.en_spec }} version</span></div>
-                                    <!-- end specs & notes -->
+                                    <!-- notes -->
+                                    {% if variant.delivery_quotient < 100 %}
+                                    <div class="fs-sm mb-4">
+                                        <span class="text-heading fw-medium me-1">
+                                            <i class="ci-delivery text-muted lead align-middle mt-n1 me-2"></i>
+                                        </span>
+                                        <span class="text-muted">save {{ 100|sub:variant.delivery_quotient }} % on delivery
+                                        </span>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if variant.points %}
+                                    <div class="fs-sm mb-4">
+                                        <span class="text-heading fw-medium me-1">
+                                            <i class="ci-gift text-muted lead align-middle mt-n1 me-2"></i>
+                                        </span>
+                                        <span class="text-muted">buy and get {{ variant.points }} points
+                                        </span>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted">{{ selected_product.en_spec }}</span></div>
+                                    <!-- end notes -->
 
                                     <!-- variants & availability-->
                                     <div class="position-relative me-n4 mb-3">
