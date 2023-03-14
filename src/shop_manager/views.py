@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
 from .models import Product, Size, Feature, ShowcaseProduct
-from main_shop.models import Showcase ,Category ,Intro
+from main_shop.models import Intro ,Showcase ,RootDirectory ,SubDirectory ,Category
 
 
 def manager_dashboard(request, action):
