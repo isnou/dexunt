@@ -1,4 +1,4 @@
-from .models import Intro, Showcase, Category
+from .models import Intro, Showcase, Category, RootDirectory, SubDirectory
 
 
 def main_shop_content(request):
@@ -8,13 +8,14 @@ def main_shop_content(request):
         showcases = Showcase.objects.all().order_by('-rank')
     except Showcase.objects.all().DoesNotExist:
         raise Http404("No showcases")
+
     try:
-        categories = Category.objects.all().order_by('-rank')
-    except Category.objects.all().DoesNotExist:
-        raise Http404("No categories")
+        root_directories = RootDirectory.objects.all().order_by('-rank')
+    except RootDirectory.objects.all().DoesNotExist:
+        raise Http404("No directories")
 
     return {
         'intro': intro,
         'showcases': showcases,
-        'categories': categories,
+        'root_directories': root_directories,
     }
