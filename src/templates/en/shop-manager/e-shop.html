@@ -1953,18 +1953,56 @@
                 </div>
             </div>
         </div>
-        {% for directory in root_directories %}
+        {% for root_directory in root_directories %}
         <div class="container-xxl mt-5">
             <div class="card card-flush shadow-sm">
                 <div class="card-toolbar">
                     <div class="row mt-8" style="text-align: center;">
-                        {% if directory.publish %}
-                        <a href="{% url 'e-shop' 'deactivate_category' directory.sku directory.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ directory.en_title }} - {{ directory.rank }}
+                        {% if root_directory.publish %}
+                        <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                            {{ root_directory.en_title }} - {{ root_directory.rank }}
                         </a>
                         {% else %}
                         <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ directory.en_title }} - {{ directory.rank }}
+                            {{ root_directory.en_title }} - {{ root_directory.rank }}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body py-1">
+                        <div class="row gx-9 h-100">
+                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="col-sm-6 me-5">
+
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="d-flex flex-column h-100">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for category in categories %}
+        <div class="container-xxl mt-5">
+            <div class="card card-flush shadow-sm">
+                <div class="card-toolbar">
+                    <div class="row mt-8" style="text-align: center;">
+                        {% if category.publish %}
+                        <a href="{% url 'e-shop' 'deactivate_category' category.sku category.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                            {{ category.en_title }} - {{ category.rank }}
+                        </a>
+                        {% else %}
+                        <a href="{% url 'e-shop' 'activate_category' category.sku category.rank %}" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                            {{ category.en_title }} - {{ category.rank }}
                         </a>
                         {% endif %}
                     </div>
@@ -2018,7 +2056,7 @@
 
                                                                 <!--remove product action-->
                                                                 <td class="text-end">
-                                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
+                                                                    <a href="{% url 'e-shop' 'remove_product_from_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
                                                                         <i class="bi bi-upload"></i>
                                                                     </a>
                                                                 </td>
@@ -2077,10 +2115,10 @@
                                             <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
                                             </button>
-                                            <a href="#" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'up_category' category.sku category.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-up-square fs-2x"></i>
                                             </a>
-                                            <a href="#" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'down_category' category.sku category.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-down-square fs-2x"></i>
                                             </a>
                                             <div class="modal fade" tabindex="-1" id="category_{{ category.sku }}_link_new_product">
@@ -2120,7 +2158,7 @@
 
                                                                     <!--remove product action-->
                                                                     <td class="text-end">
-                                                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
+                                                                        <a href="{% url 'e-shop' 'add_product_to_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
                                                                             <i class="bi bi-download"></i>
                                                                         </a>
                                                                     </td>
