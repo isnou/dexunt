@@ -269,11 +269,11 @@
                                     {% if selected_product.quantity and not selected_product.size.all.count %}
                                     <!-- Product panels-->
                                     <div class="accordion mb-4" id="productPanels">
-                                        {% if points_product.points > 0 %}
+                                        {% if variant.points %}
                                         <div class="accordion-item">
                                             <h3 class="accordion-header">
                                                 <a class="accordion-button" href="#win_with_us" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="win_with_us">
-                                                    <i class="ci-gift text-muted lead align-middle mt-n1 me-2"></i>{{ points_product.en_clip_title }}
+                                                    <i class="ci-gift text-muted lead align-middle mt-n1 me-2"></i>aaa
                                                 </a>
                                             </h3>
                                             <div class="accordion-collapse collapse show" id="win_with_us" data-bs-parent="#productPanels">
@@ -281,48 +281,8 @@
                                                     <div class="card text-center border-0 shadow">
                                                         <div class="card-body">
                                                             <p class="card-title fs-smtext-muted">buy and get</p>
-                                                            <h4 class="card-text">{{ points_product.points }} points</h4>
+                                                            <h4 class="card-text">{{ variant.points }} points</h4>
                                                             <p class="card-text fs-smtext-muted">collect points and win with us</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {% endif %}
-
-                                        {% if delivery_product.value > 0 %}
-                                        <div class="accordion-item">
-                                            <h3 class="accordion-header">
-                                                <a class="accordion-button" href="#shipping_discount" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shipping_discount">
-                                                    <i class="ci-delivery text-muted lead align-middle mt-n1 me-2"></i>{{ delivery_product.en_clip_title }}
-                                                </a>
-                                            </h3>
-                                            <div class="accordion-collapse collapse" id="shipping_discount" data-bs-parent="#productPanels">
-                                                <div class="accordion-body fs-sm">
-                                                    <div class="card text-center border-0 shadow">
-                                                        <div class="card-body">
-                                                            <h4 class="card-text">save {{ delivery_product.value }} %</h4>
-                                                            <p class="card-text fs-smtext-muted">on delivery fees</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {% endif %}
-
-                                        {% if solidarity_product.value > 0 %}
-                                        <div class="accordion-item">
-                                            <h3 class="accordion-header">
-                                                <a class="accordion-button collapsed" href="#solidarity" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="solidarity">
-                                                    <i class="ci-heart-circle text-muted fs-lg align-middle mt-n1 me-2"></i>{{ solidarity_product.en_clip_title }}
-                                                </a>
-                                            </h3>
-                                            <div class="accordion-collapse collapse" id="solidarity" data-bs-parent="#productPanels">
-                                                <div class="accordion-body">
-                                                    <div class="card text-center border-0 shadow">
-                                                        <div class="card-body">
-                                                            <h4 class="card-text">{{ solidarity_product.value }} %</h4>
-                                                            <p class="card-text fs-smtext-muted">for charity</p>
                                                         </div>
                                                     </div>
                                                 </div>
