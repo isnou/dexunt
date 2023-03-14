@@ -1,11 +1,7 @@
-from .models import Product, ShowcaseProduct
+from .models import Product
 
 
 def shop_manager_content(request):
-    try:
-        shop_products_list = ShowcaseProduct.objects.all()
-    except ShowcaseProduct.DoesNotExist:
-        raise Http404("No products")
 
     try:
         all_products = Product.objects.all()

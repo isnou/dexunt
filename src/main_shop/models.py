@@ -14,48 +14,6 @@ class Intro(models.Model):
     def __str__(self):
         return self.color
 
-class IntroBanner(models.Model):
-    # --------------------------------- layout titles ------------------------------------------
-    en_intro = models.TextField(max_length=300, blank=True, null=True)
-    en_title = models.TextField(max_length=300, blank=True, null=True)
-    en_description = models.TextField(max_length=300, blank=True, null=True)
-
-    fr_intro = models.TextField(max_length=300, blank=True, null=True)
-    fr_title = models.TextField(max_length=300, blank=True, null=True)
-    fr_description = models.TextField(max_length=300, blank=True, null=True)
-
-    ar_intro = models.TextField(max_length=300, blank=True, null=True)
-    ar_title = models.TextField(max_length=300, blank=True, null=True)
-    ar_description = models.TextField(max_length=300, blank=True, null=True)
-    # --------------------------------- buttons ------------------------------------------------
-    en_button = models.TextField(max_length=40, blank=True, null=True)
-    fr_button = models.TextField(max_length=40, blank=True, null=True)
-    ar_button = models.TextField(max_length=40, blank=True, null=True)
-    # --------------------------------- additional information ---------------------------------
-    link = models.TextField(max_length=500, blank=True, null=True)
-    thumb = models.ImageField(upload_to='main-shop/e-shop/thumb', blank=True, null=True)
-    rank = models.IntegerField(blank=True, null=True)
-
-    def __str__(self):
-        return self.en_title
-
-class IntroThumb(models.Model):
-    # --------------------------------- layout titles ------------------------------------------
-    en_title = models.TextField(max_length=300, blank=True, null=True)
-    fr_title = models.TextField(max_length=300, blank=True, null=True)
-    ar_title = models.TextField(max_length=300, blank=True, null=True)
-    # --------------------------------- buttons ------------------------------------------------
-    en_button = models.TextField(max_length=40, blank=True, null=True)
-    fr_button = models.TextField(max_length=40, blank=True, null=True)
-    ar_button = models.TextField(max_length=40, blank=True, null=True)
-    # --------------------------------- additional information ---------------------------------
-    link = models.TextField(max_length=500, blank=True, null=True)
-    thumb = models.ImageField(upload_to='main-shop/e-shop/thumb', blank=True, null=True)
-    rank = models.IntegerField(blank=True, null=True)
-
-    def __str__(self):
-        return self.en_title
-
 class Showcase(models.Model):
     # --------------------------------- showcase technical informations ------------------------
     type = models.CharField(max_length=50, blank=True, null=True)
@@ -95,11 +53,52 @@ class Category(models.Model):
     publish = models.BooleanField(default=False)
     sku = models.CharField(max_length=20, unique=True, null=True)
     product = models.ManyToManyField(Product, blank=True)
-    # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='main-shop/e-shop/category/', blank=True, null=True)
 
     def products(self):
         return "\n".join([p.en_title for p in self.product.all()])
+
+    def __str__(self):
+        return self.en_title
+
+class SubDirectory(models.Model):
+    # --------------------------------- category identification --------------------------------
+    en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.TextField(max_length=300, blank=True, null=True)
+    ar_title = models.TextField(max_length=300, blank=True, null=True)
+    # --------------------------------- technical details --------------------------------------
+    rank = models.IntegerField(blank=True, null=True)
+    publish = models.BooleanField(default=False)
+    sku = models.CharField(max_length=20, unique=True, null=True)
+    category = models.ManyToManyField(Category, blank=True)
+
+    def categories(self):
+        return "\n".join([p.en_title for p in self.category.all()])
+
+    def __str__(self):
+        return self.en_title
+
+class RootDirectory(models.Model):
+    # --------------------------------- category identification --------------------------------
+    en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.TextField(max_length=300, blank=True, null=True)
+    ar_title = models.TextField(max_length=300, blank=True, null=True)
+    # --------------------------------- offer details ------------------------------------------
+    offer_en_title = models.CharField(max_length=200, blank=True, null=True)
+    offer_fr_title = models.CharField(max_length=200, blank=True, null=True)
+    offer_ar_title = models.CharField(max_length=200, blank=True, null=True)
+    offer_link = models.TextField(max_length=500, blank=True, null=True)
+    offer_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # --------------------------------- technical details --------------------------------------
+    rank = models.IntegerField(blank=True, null=True)
+    publish = models.BooleanField(default=False)
+    sku = models.CharField(max_length=20, unique=True, null=True)
+    sub_directory = models.ManyToManyField(SubDirectory, blank=True)
+    # --------------------------------- media --------------------------------------------------
+    thumb = models.ImageField(upload_to='main-shop/e-shop/category/', blank=True, null=True)
+
+
+    def sub_directories(self):
+        return "\n".join([p.en_title for p in self.sub_directory.all()])
 
     def __str__(self):
         return self.en_title
