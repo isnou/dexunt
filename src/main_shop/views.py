@@ -29,7 +29,6 @@ def change_language(request, language):
 def product(request, sku, size_sku):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
-    size_sku = size_sku
 
     selected_product = Product.objects.all().get(sku=sku)
 
@@ -38,8 +37,14 @@ def product(request, sku, size_sku):
     else:
         variant = None
 
+    if not size_sku == 'main':
+        selected_size = selected_product.size.all.get(sku=size_sku)
+    else:
+        selected_size = None
+
     context = {
         'selected_product': selected_product,
+        'selected_size': selected_size,
         'variant': variant,
         'size_sku': size_sku,
     }
