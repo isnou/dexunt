@@ -531,7 +531,7 @@
                                 {% endif %}
 
                                 {% if variant.delivery_quotient < 100 %}
-                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Delivery Discount:</span><span>{{ variant.delivery_quotient }}</span></li>
+                                <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Delivery Discount:</span><span>{{ 100|sub:variant.delivery_quotient }} %</span></li>
                                 {% endif %}
                             </ul>
                             {% endif %}
