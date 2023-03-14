@@ -184,9 +184,9 @@
                                     {% if not selected_size %}
                                     <!-- main pricing -->
                                     {% if selected_product.discount_price %}
-                                    <div class="fw-normal text-accent mb-3 me-1">
+                                    <div class="mb-3 me-1">
                                         <del><span class="text-muted fs-6">{{ selected_product.sell_price|floatformat:"2g" }} DZD</span></del>
-                                        {{ selected_product.discount_price|floatformat:"2g" }} DZD
+                                        <span class="fw-normal text-accent">{{ selected_product.discount_price|floatformat:"2g" }} DZD</span>
                                     </div>
 
                                     {% else %}
@@ -195,9 +195,9 @@
                                     {% else %}
                                     <!-- size pricing -->
                                     {% if selected_size.discount_price %}
-                                    <div class="fw-normal text-accent mb-3 me-1">
+                                    <div class="mb-3 me-1">
                                         <del><span class="text-muted fs-6">{{ selected_size.sell_price|floatformat:"2g" }} DZD</span></del>
-                                        {{ selected_size.discount_price|floatformat:"2g" }} DZD
+                                        <span class="fw-normal text-accent">{{ selected_size.discount_price|floatformat:"2g" }} DZD</span>
                                     </div>
 
                                     {% else %}
