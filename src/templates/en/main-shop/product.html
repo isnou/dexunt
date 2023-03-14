@@ -212,7 +212,7 @@
                                     <div class="fs-sm mb-1"><span class="text-heading fw-medium me-1">Option:</span><span class="text-muted">{{ selected_product.en_spec }}</span></div>
                                     <!-- end notes -->
 
-                                    <!-- variants & availability-->
+                                    <!-- variants -->
                                     <div class="position-relative me-n4 mb-3">
                                         <!-- variants -->
                                         {% if variant.product.all.count > 1 %}
@@ -235,15 +235,8 @@
                                         {% endfor %}
                                         {% endif %}
                                         <!-- end variants -->
-                                        <!-- availability -->
-                                        {% if selected_product.quantity == 0 %}
-                                        <div class="product-badge product-available mt-n5">
-                                            <i class="ci-security-announcement"></i>Product Unavailable
-                                        </div>
-                                        {% endif %}
-                                        <!-- end availability -->
                                     </div>
-                                    <!-- end variants & availability-->
+                                    <!-- end variants -->
 
                                     <!-- sizes & sets -->
                                     {% if selected_product.size.all.count %}
