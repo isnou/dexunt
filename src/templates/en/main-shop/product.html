@@ -384,7 +384,6 @@
                                     {% endif %}
                                     {% endif %}
 
-
                                     <!-- Product panels-->
                                     <div class="accordion mb-4" id="productPanels">
                                         {% if globe.points %}
@@ -448,7 +447,6 @@
                                         </div>
                                         {% endif %}
                                     </div>
-
                                 </div>
                             </form>
                         </div>
@@ -491,36 +489,59 @@
                         </div>
                     </div>
                     <!-- Specs table-->
-                    <div class="card border-0 shadow">
-                        <div class="card-body" style="margin-right: 45px; margin-left: 45px; margin-top: 40px; margin-bottom: 20px;">
-                            <h3 class="h6">General specs</h3>
-                            <ul class="list-unstyled fs-sm pb-2">
-                                {% if variant.model %}
+
+                    <div class="row pt-2">
+                  <div class="col-lg-5 col-sm-6">
+                    <h3 class="h6">General specs</h3>
+                    <ul class="list-unstyled fs-sm pb-2">
+                      {% if variant.model %}
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Model:</span><span>{{ variant.model }}</span></li>
                                 {% endif %}
-
-                                {% if variant.brand %}
+                        {% if variant.brand %}
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Brand:</span><span>{{ variant.brand }}</span></li>
                                 {% endif %}
 
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Stock:</span><span>{{ selected_product.quantity }}</span></li>
-                            </ul>
-                            <h3 class="h6">Technical specs</h3>
-                            <ul class="list-unstyled fs-sm pb-2">
+
+
+                    </ul>
+                    <h3 class="h6">Technical specs</h3>
+                    <ul class="list-unstyled fs-sm pb-2">
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Option:</span><span>{{ selected_product.en_spec }}</span></li>
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">SKU:</span><span>{{ selected_product.sku }}</span></li>
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Published:</span><span>{{ selected_product.created_at }}</span></li>
                             </ul>
-                            {% if selected_product.feature.all.count %}
-                            <h3 class="h6">Features</h3>
-                            <ul class="list-unstyled fs-sm pb-2">
+                      {% if selected_product.feature.all.count %}
+                    <h3 class="h6">Features</h3>
+                    <ul class="list-unstyled fs-sm pb-2">
                                 {% for feature in selected_product.feature.all %}
                                 <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">{{ feature.en_title }}:</span><span>{{ feature.en_value }}</span></li>
                                 {% endfor %}
                             </ul>
-                            {% endif %}
-                        </div>
-                    </div>
+                      {% endif %}
+                  </div>
+
+                  <div class="col-lg-5 col-sm-6 offset-lg-1">
+                    <h3 class="h6">Functions</h3>
+                    <ul class="list-unstyled fs-sm pb-2">
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Phone calls:</span><span>Incoming call notification</span></li>
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Monitoring:</span><span>Heart rate / Physical activity</span></li>
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">GPS support:</span><span>Yes</span></li>
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Sensors:</span><span>Heart rate, Gyroscope, Geomagnetic, Light sensor</span></li>
+                    </ul>
+                    <h3 class="h6">Battery</h3>
+                    <ul class="list-unstyled fs-sm pb-2">
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Battery:</span><span>Li-Pol</span></li>
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Battery capacity:</span><span>190 mAh</span></li>
+                    </ul>
+                    <h3 class="h6">Dimensions</h3>
+                    <ul class="list-unstyled fs-sm pb-2">
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Dimensions:</span><span>195 x 20 mm</span></li>
+                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Weight:</span><span>32 g</span></li>
+                    </ul>
+                  </div>
+                </div>
+
                 </div>
                 <!-- Reviews tab-->
                 <div class="tab-pane fade" id="reviews" role="tabpanel">
