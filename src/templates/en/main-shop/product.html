@@ -347,7 +347,7 @@
                                     </div>
                                     {% endif %}
 
-                                    {% if not selected_product.quantity and selected_product.size.all.count %}
+                                    {% if not selected_product.quantity and not selected_product.size.all.count %}
                                     <!-- disabled buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                         <button class="btn btn-dark btn-shadow d-block w-100" type="button" disabled><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
