@@ -181,10 +181,15 @@
 
                                 <div class="product-details ms-auto pb-3">
                                     <!-- pricing -->
+                                    {% if size_sku == 'main' %}
+                                    <!-- main pricing -->
                                     {% if selected_product.discount_price %}
                                     <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.discount_price|floatformat:"2g" }} DZD</div>
                                     {% else %}
                                     <div class="h3 fw-normal text-accent mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                    {% endif %}
+                                    {% else %}
+                                    <!-- size pricing -->
                                     {% endif %}
                                     <!-- end pricing -->
 
