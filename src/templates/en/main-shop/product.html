@@ -108,7 +108,11 @@
                             <div class="product-gallery">
                                 <div class="product-gallery-thumblist order-sm-1">
                                     <a class="product-gallery-thumblist-item active" href="#one">
+                                        {% if not selected_size.show_thumb %}
                                         <img src="{% get_media_prefix %}{{ selected_product.album.all.0.image }}">
+                                        {% else %}
+                                        <img src="{% get_media_prefix %}{{ selected_size.thumb }}">
+                                        {% endif %}
                                     </a>
 
                                     <a class="product-gallery-thumblist-item" href="#two">
