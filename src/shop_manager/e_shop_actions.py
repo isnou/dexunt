@@ -475,6 +475,124 @@ def remove_product_from_showcase(detail, index):
     }
 
 # ------------------ category
+def edit_root(request, detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        root_directories = RootDirectory.objects.all()
+    except RootDirectory.objects.all().DoesNotExist:
+        raise Http404("No root directories")
+
+    if not detail =='new':
+        try:
+            selected_root_directory = RootDirectory.objects.all().get(sku=detail)
+        except RootDirectory.objects.all().DoesNotExist:
+            raise Http404("No root directories")
+    else:
+        selected_root_directory = None
+
+    if not selected_root_directory:
+        sku = serial_number_generator(10).upper()
+        if root_directories:
+            rank = root_directories.count() + 1
+        else:
+            rank = 1
+        selected_root_directory = RootDirectory(rank=rank,
+                                                sku=sku,
+                                                )
+        selected_root_directory.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
+        offer_en_title = request.POST.get('offer_en_title', False)
+        offer_fr_title = request.POST.get('offer_fr_title', False)
+        offer_ar_title = request.POST.get('offer_ar_title', False)
+        offer_link = request.POST.get('offer_link', False)
+        offer_price = request.POST.get('offer_price', False)
+        thumb = request.FILES.get('thumb', False)
+
+
+        if en_title:
+            selected_root_directory.en_title = en_title
+
+        if fr_title:
+            selected_root_directory.fr_title = fr_title
+
+        if ar_title:
+            selected_root_directory.ar_title = ar_title
+
+        if offer_en_title:
+            selected_root_directory.offer_en_title = offer_en_title
+
+        if offer_fr_title:
+            selected_root_directory.offer_fr_title = offer_fr_title
+
+        if offer_ar_title:
+            selected_root_directory.offer_ar_title = offer_ar_title
+
+        if offer_link:
+            selected_root_directory.offer_link = offer_link
+
+        if offer_price:
+            selected_root_directory.offer_price = int(offer_price)
+
+        if thumb:
+            selected_root_directory.thumb = thumb
+
+        selected_root_directory.save()
+
+    return {
+        'url': url,
+    }
+
+
+def edit_directory(request, detail):
+    url = "/shop-manager/e-shop.html"
+    try:
+        sub_directories = SubDirectory.objects.all()
+    except SubDirectory.objects.all().DoesNotExist:
+        raise Http404("No root directories")
+
+    if not detail == 'new':
+        try:
+            selected_sub_directory = SubDirectory.objects.all().get(sku=detail)
+        except SubDirectory.objects.all().DoesNotExist:
+            raise Http404("No root directories")
+    else:
+        selected_sub_directory = None
+
+    if not selected_sub_directory:
+        sku = serial_number_generator(10).upper()
+        if sub_directories:
+            rank = sub_directories.count() + 1
+        else:
+            rank = 1
+        selected_sub_directory = RootDirectory(rank=rank,
+                                                sku=sku,
+                                                )
+        selected_sub_directory.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
+
+        if en_title:
+            selected_sub_directory.en_title = en_title
+
+        if fr_title:
+            selected_sub_directory.fr_title = fr_title
+
+        if ar_title:
+            selected_sub_directory.ar_title = ar_title
+
+        selected_sub_directory.save()
+
+    return {
+        'url': url,
+    }
+
 def edit_category(request, detail):
     url = "/shop-manager/e-shop.html"
     try:

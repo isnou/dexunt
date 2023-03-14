@@ -201,6 +201,14 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.remove_product_from_showcase(detail, index).get('url')
 
     # -----------------------------category
+    if action == "edit_root":
+        url = direction + e_shop_actions.edit_root(request, detail).get('url')
+        tab = 'category'
+    if action == "edit_directory":
+        url = direction + e_shop_actions.edit_directory(request, detail).get('url')
+        tab = 'category'
+
+
     if action == "edit_category":
         url = direction + e_shop_actions.edit_category(request, detail).get('url')
         tab = 'category'
