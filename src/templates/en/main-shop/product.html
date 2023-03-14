@@ -266,7 +266,7 @@
                                     {% endif %}
                                     <!-- end sizes & sets -->
 
-                                    {% if selected_product.quantity %}
+                                    {% if selected_product.quantity and not selected_product.size.all.count %}
                                     <!-- Product panels-->
                                     <div class="accordion mb-4" id="productPanels">
                                         {% if points_product.points > 0 %}
