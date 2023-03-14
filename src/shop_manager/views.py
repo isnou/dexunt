@@ -146,6 +146,7 @@ def e_shop(request, action, detail, index):
         raise Http404("No products")
 
     tab = 'ad_showcase'
+    sub_tab = 'main'
 
     # -----------------------------intro
     if action == "edit_intro":
