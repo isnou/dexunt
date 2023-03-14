@@ -38,7 +38,7 @@ def product(request, sku, size_sku):
         variant = None
 
     if not size_sku == 'main':
-        selected_size = selected_product.size.all.get(sku=size_sku)
+        selected_size = selected_product.size.all().get(sku=size_sku)
     else:
         selected_size = None
 
