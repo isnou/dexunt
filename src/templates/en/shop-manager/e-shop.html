@@ -1961,8 +1961,9 @@
         </div>
 
         <div class="tab-content">
+            <div class="container-xxl">
             {% for root_directory in root_directories %}
-            <div class="container-xxl mt-5">
+
             <!--inventory product pan-->
             <div class="tab-pane fade {% if sub_tab == root_directory.sku %} active show {% endif %}" id="{{ root_directory.sku }}">
                 <div class="card card-flush shadow-sm">
@@ -2000,8 +2001,9 @@
             </div>
             </div>
             <!--end inventory product pan-->
-            </div>
+
             {% endfor %}
+            </div>
         </div>
 
         {% for root_directory in root_directories %}
