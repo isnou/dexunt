@@ -1958,12 +1958,12 @@
             <div class="card card-flush shadow-sm">
                 <div class="card-toolbar">
                     <div class="row mt-8" style="text-align: center;">
-                        {% if category.publish %}
-                        <a href="{% url 'e-shop' 'deactivate_category' category.sku category.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                        {% if directory.publish %}
+                        <a href="{% url 'e-shop' 'deactivate_category' directory.sku directory.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
                             {{ directory.en_title }} - {{ directory.rank }}
                         </a>
                         {% else %}
-                        <a href="{% url 'e-shop' 'activate_category' category.sku category.rank %}" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                        <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
                             {{ directory.en_title }} - {{ directory.rank }}
                         </a>
                         {% endif %}
