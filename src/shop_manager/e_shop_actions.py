@@ -546,7 +546,7 @@ def edit_directory(request, detail):
         'url': url,
     }
 
-def add_category_to_directory(detail):
+def add_category_to_directory(request, detail):
     url = "/shop-manager/e-shop.html"
     selected_directory = Directory.objects.all().get(sku=detail)
     categories = selected_directory.category.all()
