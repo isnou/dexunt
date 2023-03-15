@@ -161,6 +161,11 @@
                         Directories
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'category' %} active {% endif %}" data-bs-toggle="tab" href="#category">
+                        Categories
+                    </a>
+                </li>
             </ul>
         </div>
         <!--end footer-->
@@ -1885,7 +1890,7 @@
     </div>
     <!--end ads & showcases pan-->
 
-    <!--categories pan-->
+    <!--directory pan-->
     <div class="tab-pane fade {% if tab == 'directory' %} active show {% endif %}" id="directory">
         <div class="container-xxl mt-5">
             <div class="card card-bordered mb-5">
@@ -1917,6 +1922,266 @@
                             </div>
                             <div class="modal-body">
                                 <form action="{% url 'e-shop' 'edit_directory' 'new' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="card-body">
+                                        <div class="card card-flush py-4">
+                                            <!--title-->
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="en_title" placeholder=" "/>
+                                                <label>english title</label>
+                                            </div>
+                                            <!--end title-->
+
+                                            <!--french title-->
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="fr_title" placeholder=" "/>
+                                                <label>french title</label>
+                                            </div>
+                                            <!--end french title-->
+
+                                            <!--arabic title-->
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
+                                                <label>arabic title</label>
+                                            </div>
+                                            <!--end arabic title-->
+                                        </div>
+                                        <!--add product buttons-->
+                                        <div class="d-flex justify-content-center">
+                                            <!--submit button-->
+                                            <button type="submit" class="btn btn-secondary">
+                                                <span class="indicator-label">save</span>
+                                            </button>
+                                            <!--end submit button-->
+                                        </div>
+                                        <!--end add product buttons-->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end new directory modal-->
+            </div>
+        </div>
+
+        <div class="container-xxl">
+            <div class="tab-content">
+                {% for directory in directories %}
+                <!--inventory product pan-->
+                <div class="tab-pane fade {% if sub_tab == directory.sku %} active show {% endif %}" id="{{ directory.sku }}">
+                    <div class="card card-flush shadow-sm">
+                        <div class="card-toolbar">
+                            <div class="row mt-8" style="text-align: center;">
+                                {% if directory.publish %}
+                                <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                    {{ directory.en_title }} - {{ directory.rank }}
+                                </a>
+                                {% else %}
+                                <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                    {{ directory.en_title }} - {{ directory.rank }}
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row gx-9 h-100">
+                                <form action="{% url 'e-shop' 'edit_directory' directory.sku directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="col-sm-5 me-2">
+                                        <div class="card card-flush py-4">
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="offer_en_title" value="{{ directory.offer_en_title }}"/>
+                                                <label>offer title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="offer_fr_title" value="{{ directory.offer_fr_title }}"/>
+                                                <label>offer french title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="offer_ar_title" value="{{ directory.offer_ar_title }}" dir="rtl"/>
+                                                <label>offer arabic title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="offer_link" value="{{ directory.offer_link }}"/>
+                                                <label>offer link</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="number" class="form-control" name="offer_price" placeholder="{{ directory.offer_price }}"/>
+                                                <label>offer price</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 me-4 mb-sm-0">
+                                        <div class="card card-flush py-4">
+                                            <div class="card-body text-center pt-0">
+                                                <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ directory.thumb }})">
+                                                    <div class="image-input-wrapper w-125px h-125px"></div>
+                                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+                                                        <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="photo_remove" />
+                                                    </label>
+                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 me-2">
+                                        <div class="card card-flush py-4">
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="en_title" value="{{ directory.en_title }}"/>
+                                                <label>title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="fr_title" value="{{ directory.fr_title }}"/>
+                                                <label>french title</label>
+                                            </div>
+                                            <div class="form-floating mb-6">
+                                                <input type="text" class="form-control" name="ar_title" value="{{ directory.ar_title }}" dir="rtl"/>
+                                                <label>arabic title</label>
+                                            </div>
+                                        </div>
+                                        <div class="text-start mb-5">
+                                            <a href="{% url 'e-shop' 'delete_directory' directory.sku 0 %}" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-trash fs-2x"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-repeat fs-2x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="row gx-9 h-100 me-20 ms-20">
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <!--actions-->
+                            <ul class="nav nav-pills">
+                                {% for category in directory.category.all %}
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#remove_category_{{ category.sku }}">
+                                        {{ category.en_title }} <i class="bi bi-x-lg ms-2"></i>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#add_category_{{ directory.sku }}">
+                                        <i class="bi bi-plus fs-2"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--end actions-->
+
+                            {% for category in directory.category.all %}
+                            <!--remove category modal-->
+                            <div class="modal fade" tabindex="-1" id="remove_category_{{ category.sku }}">
+                                <div class="modal-dialog modal-flush">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h3 class="modal-title">Click yes to remove {{ category.en_title }} from {{ directory.en_title }} </h3>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                            <a type="button" href="{% url 'e-shop' 'remove_category_from_directory' directory.sku category.id %}" class="btn btn-secondary">Yes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end remove category modal-->
+                            {% endfor %}
+
+                            <!--new category modal-->
+                            <div class="modal fade" tabindex="-1" id="add_category_{{ directory.sku }}">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header align-self-center">
+                                            <h3 class="modal-title">Add Category</h3>
+                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                <span class="svg-icon svg-icon-1"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-row-bordered gy-7 gs-7">
+                                                <tbody>
+                                                {% for category in categories %}
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="ms-5">
+                                                                <a class="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                                                    {{category.en_title}}
+                                                                </a>
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-end">
+                                                        <a href="{% url 'e-shop' 'add_category_to_directory' directory.sku category.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{category.en_title}} to {{ directory.en_title }}">
+                                                            <i class="bi bi-upload"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end new category modal-->
+                        </div>
+                    </div>
+                </div>
+                <!--end inventory product pan-->
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!--end directory pan-->
+
+    <!--categories pan-->
+    <div class="tab-pane fade {% if tab == 'category' %} active show {% endif %}" id="category">
+        <div class="container-xxl mt-5">
+            <div class="card card-bordered mb-5">
+                <!--actions-->
+                <ul class="nav nav-pills">
+                    {% for category in categories %}
+                    <li class="nav-item me-1">
+                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == category.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ category.sku }}">
+                            {{ category.en_title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#new_category">
+                            <i class="bi bi-plus fs-2"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!--end actions-->
+                <!--new directory modal-->
+                <div class="modal fade" tabindex="-1" id="new_category">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header align-self-center">
+                                <h3 class="modal-title">New Category</h3>
+                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                    <span class="svg-icon svg-icon-1"></span>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{% url 'e-shop' 'edit_category' 'new' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="card-body">
                                         <div class="card card-flush py-4">
