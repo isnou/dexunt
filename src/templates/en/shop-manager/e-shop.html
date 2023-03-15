@@ -2305,7 +2305,7 @@
 
                                                                     <!--remove product action-->
                                                                     <td class="text-end">
-                                                                        <a href="{% url 'e-shop' 'add_product_to_showcase' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
+                                                                        <a href="{% url 'e-shop' 'add_product_to_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
                                                                             <i class="bi bi-download"></i>
                                                                         </a>
                                                                     </td>
