@@ -57,6 +57,9 @@ class Category(models.Model):
     def products(self):
         return "\n".join([p.en_title for p in self.product.all()])
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.en_title
 
@@ -73,6 +76,9 @@ class SubDirectory(models.Model):
 
     def categories(self):
         return "\n".join([p.en_title for p in self.category.all()])
+
+    class Meta:
+        verbose_name_plural = "SubDirectories"
 
     def __str__(self):
         return self.en_title
@@ -99,6 +105,9 @@ class RootDirectory(models.Model):
 
     def sub_directories(self):
         return "\n".join([p.en_title for p in self.sub_directory.all()])
+
+    class Meta:
+        verbose_name_plural = "RootDirectories"
 
     def __str__(self):
         return self.en_title
