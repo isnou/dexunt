@@ -1916,7 +1916,7 @@
                                 </div>
                             </div>
                             <div class="modal-body">
-                                <form action="{% url 'e-shop' 'edit_root' 'new' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                <form action="{% url 'e-shop' 'edit_directory' 'new' 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="card-body">
                                         <div class="card card-flush py-4">
@@ -1981,7 +1981,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row gx-9 h-100">
-                                <form action="{% url 'e-shop' 'edit_root' directory.sku directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                <form action="{% url 'e-shop' 'edit_directory' directory.sku directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                     <div class="col-sm-2 me-2 mb-sm-0">
                                         <div class="card card-flush py-4">
