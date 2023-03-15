@@ -208,7 +208,7 @@ def e_shop(request, action, detail, index):
         tab = 'category'
         sub_tab = detail
     if action == "add_category_to_directory":
-        url = direction + e_shop_actions.add_category_to_directory(detail, index).get('url')
+        url = direction + e_shop_actions.add_category_to_directory(detail).get('url')
         tab = 'category'
         sub_tab = detail
     if action == "remove_category_from_directory":
