@@ -2048,7 +2048,7 @@
                                             </div>
                                         </div>
                                         <div class="text-start mb-5">
-                                            <a href="{% url 'e-shop' 'delete_directory' directory.sku 0 %}" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'delete_directory' directory.sku 0 %}" class="btn btn-light-secondary me-5" title="delete directory" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-trash fs-2x"></i>
                                             </a>
                                             <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
@@ -2057,10 +2057,6 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-
-                            <div class="row gx-9 h-100 me-20 ms-20">
-
                             </div>
                         </div>
 
@@ -2264,12 +2260,69 @@
                                             </div>
                                         </div>
                                         <div class="text-start mb-5">
-                                            <a href="{% url 'e-shop' 'delete_category' category.sku 0 %}" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'delete_category' category.sku 0 %}" class="btn btn-light-secondary me-5" title="delete category" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-trash fs-2x"></i>
                                             </a>
                                             <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
                                             </button>
+                                            <button type="button" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#{{ category.sku }}_link_new_product">
+                                                <i class="bi bi-link-45deg fs-2x"></i>
+                                            </button>
+                                            <div class="modal fade" tabindex="-1" id="{{ category.sku }}_link_new_product">
+                                                <div class="modal-dialog modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{ category.en_title }}</h5>
+
+                                                            <!--begin::Close-->
+                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span class="svg-icon svg-icon-2x"></span>
+                                                            </div>
+                                                            <!--end::Close-->
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <table class="table table-row-bordered gy-7 gs-7">
+                                                                <tbody>
+                                                                {% for product in all_products %}
+                                                                <tr>
+                                                                    <!--product title-->
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <!--product thumbnail-->
+                                                                            <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                                <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                            </a>
+                                                                            <!--end product thumbnail-->
+                                                                            <div class="ms-5">
+                                                                                <!--begin::Title-->
+                                                                                <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                                <!--end::Title-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <!--end product title-->
+
+                                                                    <!--remove product action-->
+                                                                    <td class="text-end">
+                                                                        <a href="{% url 'e-shop' 'add_product_to_showcase' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
+                                                                            <i class="bi bi-download"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                    <!--end remove product action-->
+                                                                </tr>
+                                                                {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 

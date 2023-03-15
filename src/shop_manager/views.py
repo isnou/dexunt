@@ -231,6 +231,10 @@ def e_shop(request, action, detail, index):
     if action == "delete_category":
         Category.objects.all().get(sku=detail).delete()
         tab = 'category'
+    if action == "add_product_to_category":
+        url = direction + e_shop_actions.add_product_to_category(detail, index).get('url')
+        tab = 'category'
+        sub_tab = detail
 
     if action == "activate_category":
         category = Category.objects.all().get(sku=detail)
@@ -248,9 +252,6 @@ def e_shop(request, action, detail, index):
         tab = 'category'
     if action == "down_category":
         url = direction + e_shop_actions.down_category(detail, index).get('url')
-        tab = 'category'
-    if action == "add_product_to_category":
-        url = direction + e_shop_actions.add_product_to_category(detail, index).get('url')
         tab = 'category'
     if action == "remove_product_from_category":
         url = direction + e_shop_actions.remove_product_from_category(detail, index).get('url')

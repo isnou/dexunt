@@ -621,6 +621,18 @@ def edit_category(request, detail):
         'url': url,
     }
 
+def add_product_to_category(detail, index):
+    url = "/shop-manager/e-shop.html"
+    selected_category = Category.objects.all().get(sku=detail)
+    selected_product = Product.objects.all().get(id=index)
+
+    if not selected_category.product.all().filter(sku=selected_product.sku).exists():
+        selected_category.product.add(selected_product)
+
+    return {
+        'url': url,
+    }
+
 def up_category(detail, index):
     url = "/shop-manager/e-shop.html"
     selected_category = Category.objects.all().get(sku=detail)
@@ -661,17 +673,6 @@ def down_category(detail, index):
         'url': url,
     }
 
-def add_product_to_category(detail, index):
-    url = "/shop-manager/e-shop.html"
-    selected_category = Category.objects.all().get(sku=detail)
-    selected_product = Product.objects.all().get(id=index)
-
-    if not selected_category.product.all().filter(sku=selected_product.sku).exists():
-        selected_category.product.add(selected_product)
-
-    return {
-        'url': url,
-    }
 
 def remove_product_from_category(detail, index):
     url = "/shop-manager/e-shop.html"
