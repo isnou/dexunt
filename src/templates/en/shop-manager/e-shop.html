@@ -2170,7 +2170,7 @@
                     </li>
                 </ul>
                 <!--end actions-->
-                <!--new directory modal-->
+                <!--new category modal-->
                 <div class="modal fade" tabindex="-1" id="new_category">
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
@@ -2221,94 +2221,56 @@
                         </div>
                     </div>
                 </div>
-                <!--end new directory modal-->
+                <!--end new category modal-->
             </div>
         </div>
 
         <div class="container-xxl">
             <div class="tab-content">
-                {% for directory in directories %}
+                {% for category in categories %}
                 <!--inventory product pan-->
-                <div class="tab-pane fade {% if sub_tab == directory.sku %} active show {% endif %}" id="{{ directory.sku }}">
+                <div class="tab-pane fade {% if sub_tab == category.sku %} active show {% endif %}" id="{{ category.sku }}">
                     <div class="card card-flush shadow-sm">
                         <div class="card-toolbar">
                             <div class="row mt-8" style="text-align: center;">
-                                {% if directory.publish %}
+                                {% if category.publish %}
                                 <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ directory.en_title }} - {{ directory.rank }}
+                                    {{ category.en_title }} - {{ category.rank }}
                                 </a>
                                 {% else %}
                                 <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ directory.en_title }} - {{ directory.rank }}
+                                    {{ category.en_title }} - {{ category.rank }}
                                 </a>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row gx-9 h-100">
-                                <form action="{% url 'e-shop' 'edit_directory' directory.sku directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                <form action="{% url 'e-shop' 'edit_category' category.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                     <div class="col-sm-5 me-2">
-                                        <div class="card card-flush py-4">
-                                            <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_en_title" value="{{ directory.offer_en_title }}"/>
-                                                <label>offer title</label>
-                                            </div>
-                                            <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_fr_title" value="{{ directory.offer_fr_title }}"/>
-                                                <label>offer french title</label>
-                                            </div>
-                                            <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_ar_title" value="{{ directory.offer_ar_title }}" dir="rtl"/>
-                                                <label>offer arabic title</label>
-                                            </div>
-                                            <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_link" value="{{ directory.offer_link }}"/>
-                                                <label>offer link</label>
-                                            </div>
-                                            <div class="form-floating mb-2">
-                                                <input type="number" class="form-control" name="offer_price" placeholder="{{ directory.offer_price }}"/>
-                                                <label>offer price</label>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="col-sm-2 me-4 mb-sm-0">
-                                        <div class="card card-flush py-4">
-                                            <div class="card-body text-center pt-0">
-                                                <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ directory.thumb }})">
-                                                    <div class="image-input-wrapper w-125px h-125px"></div>
-                                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
-                                                        <i class="bi bi-pencil-fill fs-7"></i>
-                                                        <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
-                                                        <input type="hidden" name="photo_remove" />
-                                                    </label>
-                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancel avatar">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove avatar">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="col-sm-5 me-2">
                                         <div class="card card-flush py-4">
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="en_title" value="{{ directory.en_title }}"/>
+                                                <input type="text" class="form-control" name="en_title" value="{{ category.en_title }}"/>
                                                 <label>title</label>
                                             </div>
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="fr_title" value="{{ directory.fr_title }}"/>
+                                                <input type="text" class="form-control" name="fr_title" value="{{ category.fr_title }}"/>
                                                 <label>french title</label>
                                             </div>
                                             <div class="form-floating mb-6">
-                                                <input type="text" class="form-control" name="ar_title" value="{{ directory.ar_title }}" dir="rtl"/>
+                                                <input type="text" class="form-control" name="ar_title" value="{{ category.ar_title }}" dir="rtl"/>
                                                 <label>arabic title</label>
                                             </div>
                                         </div>
                                         <div class="text-start mb-5">
-                                            <a href="{% url 'e-shop' 'delete_directory' directory.sku 0 %}" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="{% url 'e-shop' 'delete_category' category.sku 0 %}" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-trash fs-2x"></i>
                                             </a>
                                             <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
