@@ -557,8 +557,8 @@ def add_category_to_directory(request, detail):
     else:
         rank = 1
     new_category = Category(rank=rank,
-                                 sku=sku,
-                                 )
+                            sku=sku,
+                            )
     new_category.save()
 
     if request.method == 'POST':
