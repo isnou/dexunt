@@ -152,7 +152,6 @@ def e_shop(request, action, detail, index):
 
     tab = 'ad_showcase'
     sub_tab = 'main'
-    second_sub_tab = 'main'
 
     # -----------------------------intro
     if action == "edit_intro":
@@ -220,6 +219,9 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.remove_category_from_directory(detail, index).get('url')
         tab = 'directory'
         sub_tab = detail
+    if action == "delete_directory":
+        Directory.objects.all().get(sku=detail).delete()
+        tab = 'directory'
 
 
     if action == "edit_category":
@@ -257,7 +259,6 @@ def e_shop(request, action, detail, index):
     context = {
         'tab':tab,
         'sub_tab':sub_tab,
-        'second_sub_tab':second_sub_tab,
         'all_products': all_products,
         'categories': categories,
     }
