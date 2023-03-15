@@ -566,7 +566,6 @@ def add_category_to_directory(request, detail):
         fr_title = request.POST.get('fr_title', False)
         ar_title = request.POST.get('ar_title', False)
 
-
         if en_title:
             new_category.en_title = en_title
 
@@ -594,8 +593,6 @@ def remove_category_from_directory(detail, index):
     return {
         'url': url,
     }
-
-
 
 def edit_category(request, detail):
     url = "/shop-manager/e-shop.html"

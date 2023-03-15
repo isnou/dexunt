@@ -137,6 +137,11 @@ def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
 
+    try:
+        categories = Category.objects.all()
+    except Category.DoesNotExist:
+        raise Http404("No categories")
+
     if not Intro.objects.all().filter(id=1).exists():
         Intro(id=1,).save()
     intro = Intro.objects.all().get(id=1)
@@ -251,5 +256,6 @@ def e_shop(request, action, detail, index):
         'sub_tab':sub_tab,
         'second_sub_tab':second_sub_tab,
         'all_products': all_products,
+        'categories': categories,
     }
     return render(request, url, context)
