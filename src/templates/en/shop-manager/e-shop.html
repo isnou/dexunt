@@ -2077,6 +2077,74 @@
                                 </form>
                             </div>
                         </div>
+                        <div class="card-footer">
+                            <!--actions-->
+                            <ul class="nav nav-pills">
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#45">
+                                        yolo
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#68">
+                                        <i class="bi bi-plus fs-2"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--end actions-->
+                            <!--new root modal-->
+                            <div class="modal fade" tabindex="-1" id="">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header align-self-center">
+                                            <h3 class="modal-title">New Root</h3>
+                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                <span class="svg-icon svg-icon-1"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <div class="card-body">
+                                        <div class="card card-flush py-4">
+                                            <!--title-->
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="en_title" placeholder=" "/>
+                                                <label>english title</label>
+                                            </div>
+                                            <!--end title-->
+
+                                            <!--french title-->
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="fr_title" placeholder=" "/>
+                                                <label>french title</label>
+                                            </div>
+                                            <!--end french title-->
+
+                                            <!--arabic title-->
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
+                                                <label>arabic title</label>
+                                            </div>
+                                            <!--end arabic title-->
+                                        </div>
+                                        <!--add product buttons-->
+                                        <div class="d-flex justify-content-center">
+                                            <!--submit button-->
+                                            <button type="submit" class="btn btn-secondary">
+                                                <span class="indicator-label">save</span>
+                                            </button>
+                                            <!--end submit button-->
+                                        </div>
+                                        <!--end add product buttons-->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            <!--end new root modal-->
+                        </div>
                     </div>
                 </div>
                 <!--end inventory product pan-->
