@@ -66,27 +66,7 @@ class Category(models.Model):
     def __str__(self):
         return self.en_title
 
-class SubDirectory(models.Model):
-    # --------------------------------- category identification --------------------------------
-    en_title = models.CharField(max_length=200, blank=True, null=True)
-    fr_title = models.TextField(max_length=300, blank=True, null=True)
-    ar_title = models.TextField(max_length=300, blank=True, null=True)
-    # --------------------------------- technical details --------------------------------------
-    rank = models.IntegerField(blank=True, null=True)
-    publish = models.BooleanField(default=False)
-    sku = models.CharField(max_length=20, unique=True, null=True)
-    category = models.ManyToManyField(Category, blank=True)
-
-    def categories(self):
-        return "\n".join([p.en_title for p in self.category.all()])
-
-    class Meta:
-        verbose_name_plural = "SubDirectories"
-
-    def __str__(self):
-        return self.en_title
-
-class RootDirectory(models.Model):
+class Directory(models.Model):
     # --------------------------------- category identification --------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.TextField(max_length=300, blank=True, null=True)
@@ -101,16 +81,16 @@ class RootDirectory(models.Model):
     rank = models.IntegerField(blank=True, null=True)
     publish = models.BooleanField(default=False)
     sku = models.CharField(max_length=20, unique=True, null=True)
-    sub_directory = models.ManyToManyField(SubDirectory, blank=True)
+    category = models.ManyToManyField(Category, blank=True)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='main-shop/e-shop/category/', blank=True, null=True)
 
 
-    def sub_directories(self):
-        return "\n".join([p.en_title for p in self.sub_directory.all()])
+    def categories(self):
+        return "\n".join([p.en_title for p in self.category.all()])
 
     class Meta:
-        verbose_name_plural = "RootDirectories"
+        verbose_name_plural = "Directories"
 
     def __str__(self):
         return self.en_title
