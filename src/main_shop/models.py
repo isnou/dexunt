@@ -11,6 +11,9 @@ class Intro(models.Model):
     repeat = models.BooleanField(default=False)
     margin = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "Intro"
+
     def __str__(self):
         return self.color
 
