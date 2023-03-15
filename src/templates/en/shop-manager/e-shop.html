@@ -1984,7 +1984,7 @@
                                 <form action="{% url 'e-shop' 'edit_root' root_directory.sku root_directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
-                                    <div class="col-sm-2 mb-sm-0">
+                                    <div class="col-sm-4 me-4 mb-sm-0">
                                         <div class="card card-flush py-4">
                                         <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-100px min-w-120px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ root_directory.thumb }})">
                                             <div class="image-input-wrapper min-h-100px min-w-120px"></div>
