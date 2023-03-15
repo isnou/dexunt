@@ -2086,11 +2086,14 @@
                                 <div class="modal-dialog modal-flush">
                                     <div class="modal-content">
 
-                                        <h3 class="modal-title">Click yes to remove {{ category.en_title }} from {{ directory.en_title }} </h3>
+                                        <div class="modal-body">
+                                            <h3 class="modal-title">Click yes to remove {{ category.en_title }} from {{ directory.en_title }} </h3>
+
+                                        </div>
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-secondary">Yes</button>
+                                            <a type="button" href="{% url 'e-shop' 'remove_category_from_directory' directory.sku directory.rank %}" class="btn btn-secondary">Yes</a>
                                         </div>
 
                                     </div>
