@@ -1961,50 +1961,97 @@
         </div>
 
         <div class="container-xxl">
-        <div class="tab-content">
-
-            {% for root_directory in root_directories %}
-
-            <!--inventory product pan-->
-            <div class="tab-pane fade {% if sub_tab == root_directory.sku %} active show {% endif %}" id="{{ root_directory.sku }}">
-                <div class="card card-flush shadow-sm">
-                <div class="card-toolbar">
-                    <div class="row mt-8" style="text-align: center;">
-                        {% if root_directory.publish %}
-                        <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ root_directory.en_title }} - {{ root_directory.rank }}
-                        </a>
-                        {% else %}
-                        <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ root_directory.en_title }} - {{ root_directory.rank }}
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-body py-1">
-                        <div class="row gx-9 h-100">
-                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+            <div class="tab-content">
+                {% for root_directory in root_directories %}
+                <!--inventory product pan-->
+                <div class="tab-pane fade {% if sub_tab == root_directory.sku %} active show {% endif %}" id="{{ root_directory.sku }}">
+                    <div class="card card-flush shadow-sm">
+                        <div class="card-toolbar">
+                            <div class="row mt-8" style="text-align: center;">
+                                {% if root_directory.publish %}
+                                <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                    {{ root_directory.en_title }} - {{ root_directory.rank }}
+                                </a>
+                                {% else %}
+                                <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                    {{ root_directory.en_title }} - {{ root_directory.rank }}
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row gx-9 h-100">
+                                <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <div class="col-sm-6 me-5">
-
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="d-flex flex-column h-100">
-
+                                <div class="col-sm-6 mb-10 mb-sm-0">
+                                    <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-300px min-w-400px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ intro.banner }})">
+                                        <div class="image-input-wrapper min-h-300px min-w-400px"></div>
+                                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            <input type="file" name="banner" accept=".png, .jpg, .jpeg" />
+                                            <input type="hidden" name="photo_remove" />
+                                        </label>
+                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="cancel image">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="remove image">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="card card-flush py-4">
+                                        <!--color-->
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
+                                            <label>color</label>
+                                        </div>
+                                        <!--end color-->
+
+                                        <!--margin title-->
+                                        <div class="form-floating mb-2">
+                                            <input type="number" class="form-control" name="margin" placeholder="put margin" value="{{ intro.margin }}"/>
+                                            <label>margin</label>
+                                        </div>
+                                        <!--end margin title-->
+                                    </div>
+
+                                    <div class="d-flex align-self-end">
+                                        {% if intro.fixed %}
+                                        <a href="#" class="btn btn-light-secondary me-5" title="unfix banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <i class="bi bi-unlock fs-2x"></i>
+                                        </a>
+                                        {% else %}
+                                        <a href="#" class="btn btn-light-secondary me-5" title="fix banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <i class="bi bi-lock fs-2x"></i>
+                                        </a>
+                                        {% endif %}
+
+                                        {% if intro.repeat %}
+                                        <a href="#" class="btn btn-light-secondary me-5" title="repeat banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <i class="bi bi-grid-3x3-gap fs-2x"></i>
+                                        </a>
+                                        {% else %}
+                                        <a href="#" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <i class="bi bi-fullscreen fs-2x"></i>
+                                        </a>
+                                        {% endif %}
+
+                                        <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <i class="bi bi-arrow-repeat fs-2x"></i>
+                                        </button>
+                                    </div>
+                                    <!--end main page buttons-->
+                                </div>
+
                             </form>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!--end inventory product pan-->
+                {% endfor %}
             </div>
-            </div>
-            <!--end inventory product pan-->
-
-            {% endfor %}
-        </div>
         </div>
 
 
