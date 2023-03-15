@@ -1985,6 +1985,7 @@
                                 {% csrf_token %}
 
                                     <div class="col-sm-2 mb-sm-0">
+                                        <div class="card card-flush py-4">
                                         <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-100px min-w-120px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ root_directory.thumb }})">
                                             <div class="image-input-wrapper min-h-100px min-w-120px"></div>
                                             <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
@@ -1999,9 +2000,12 @@
                                                 <i class="bi bi-x fs-2"></i>
                                             </span>
                                         </div>
+
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-4 me-4">
+                                        <div class="card card-flush py-4">
                                             <div class="form-floating mb-2">
                                                 <input type="text" class="form-control" name="offer_en_title" value="{{ root_directory.offer_en_title }}"/>
                                                 <label>offer title</label>
@@ -2022,23 +2026,26 @@
                                                 <input type="number" class="form-control" name="offer_price" value="{{ root_directory.offer_price }}"/>
                                                 <label>offer price</label>
                                             </div>
+                                        </div>
+
                                     </div>
 
 
                                     <div class="col-sm-4">
-                                        <div class="form-floating mb-2">
+                                        <div class="card card-flush py-4">
+                                            <div class="form-floating mb-2">
                                                 <input type="text" class="form-control" name="en_title" value="{{ root_directory.en_title }}"/>
                                                 <label>title</label>
                                             </div>
-                                        <div class="form-floating mb-2">
+                                            <div class="form-floating mb-2">
                                                 <input type="text" class="form-control" name="fr_title" value="{{ root_directory.fr_title }}"/>
                                                 <label>french title</label>
                                             </div>
-                                        <div class="form-floating mb-2">
+                                            <div class="form-floating mb-2">
                                                 <input type="text" class="form-control" name="ar_title" value="{{ root_directory.ar_title }}" dir="rtl"/>
                                                 <label>arabic title</label>
                                             </div>
-                                    </div>
+                                        </div>
 
                                     <div class="d-flex align-self-end">
                                         {% if intro.fixed %}
@@ -2066,8 +2073,9 @@
                                         </button>
                                     </div>
                                     <!--end main page buttons-->
+                                </div>
 
-                                </form>
+                            </form>
                             </div>
                         </div>
                     </div>
