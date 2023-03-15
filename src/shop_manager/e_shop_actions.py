@@ -549,11 +549,36 @@ def edit_directory(request, detail):
 def add_category_to_directory(detail, index):
     url = "/shop-manager/e-shop.html"
     selected_directory = Directory.objects.all().get(sku=detail)
-    selected_category = Category.objects.all().get(id=index)
+    categories = selected_directory.category.objects.all()
+
+    sku = serial_number_generator(10).upper()
+    if categories:
+        rank = categories.count() + 1
+    else:
+        rank = 1
+    selected_category = Category(rank=rank,
+                                 sku=sku,
+                                 )
+    selected_category.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
 
 
-    if not selected_directory.product.all().filter(sku=selected_category.sku).exists():
-        selected_directory.categorie.add(selected_category)
+        if en_title:
+            selected_category.en_title = en_title
+
+        if fr_title:
+            selected_category.fr_title = fr_title
+
+        if ar_title:
+            selected_category.ar_title = ar_title
+
+        selected_category.save()
+
+    selected_directory.categorie.add(selected_category)
 
     return {
         'url': url,
