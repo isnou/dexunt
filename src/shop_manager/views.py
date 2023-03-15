@@ -204,10 +204,11 @@ def e_shop(request, action, detail, index):
     # -----------------------------category
     if action == "edit_root":
         url = direction + e_shop_actions.edit_root(request, detail).get('url')
-        tab = 'category'
+        sub_tab = detail
+
     if action == "edit_directory":
         url = direction + e_shop_actions.edit_directory(request, detail).get('url')
-        tab = 'category'
+        sub_tab = 'main'
 
 
     if action == "edit_category":
@@ -242,5 +243,6 @@ def e_shop(request, action, detail, index):
     context = {
         'all_products': all_products,
         'tab':tab,
+        'sub_tab':sub_tab,
     }
     return render(request, url, context)
