@@ -1891,10 +1891,10 @@
             <div class="card card-bordered mb-5">
                 <!--actions-->
                 <ul class="nav nav-pills">
-                    {% for root_directory in root_directories %}
+                    {% for directory in directories %}
                     <li class="nav-item me-1">
-                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == root_directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ root_directory.sku }}">
-                            {{ root_directory.en_title }}
+                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ directory.sku }}">
+                            {{ directory.en_title }}
                         </a>
                     </li>
                     {% endfor %}
@@ -1962,31 +1962,31 @@
 
         <div class="container-xxl">
             <div class="tab-content">
-                {% for root_directory in root_directories %}
+                {% for directory in directories %}
                 <!--inventory product pan-->
-                <div class="tab-pane fade {% if sub_tab == root_directory.sku %} active show {% endif %}" id="{{ root_directory.sku }}">
+                <div class="tab-pane fade {% if sub_tab == directory.sku %} active show {% endif %}" id="{{ directory.sku }}">
                     <div class="card card-flush shadow-sm">
                         <div class="card-toolbar">
                             <div class="row mt-8" style="text-align: center;">
-                                {% if root_directory.publish %}
+                                {% if directory.publish %}
                                 <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ root_directory.en_title }} - {{ root_directory.rank }}
+                                    {{ directory.en_title }} - {{ directory.rank }}
                                 </a>
                                 {% else %}
                                 <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ root_directory.en_title }} - {{ root_directory.rank }}
+                                    {{ directory.en_title }} - {{ directory.rank }}
                                 </a>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row gx-9 h-100">
-                                <form action="{% url 'e-shop' 'edit_root' root_directory.sku root_directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                <form action="{% url 'e-shop' 'edit_root' directory.sku directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                     <div class="col-sm-2 me-2 mb-sm-0">
                                         <div class="card card-flush py-4">
                                             <div class="card-body text-center pt-0">
-                                                <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ root_directory.thumb }})">
+                                                <div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ directory.thumb }})">
                                                     <div class="image-input-wrapper w-125px h-125px"></div>
                                                     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
                                                         <i class="bi bi-pencil-fill fs-7"></i>
@@ -2006,23 +2006,23 @@
                                     <div class="col-sm-5 me-2">
                                         <div class="card card-flush py-4">
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_en_title" value="{{ root_directory.offer_en_title }}"/>
+                                                <input type="text" class="form-control" name="offer_en_title" value="{{ directory.offer_en_title }}"/>
                                                 <label>offer title</label>
                                             </div>
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_fr_title" value="{{ root_directory.offer_fr_title }}"/>
+                                                <input type="text" class="form-control" name="offer_fr_title" value="{{ directory.offer_fr_title }}"/>
                                                 <label>offer french title</label>
                                             </div>
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_ar_title" value="{{ root_directory.offer_ar_title }}" dir="rtl"/>
+                                                <input type="text" class="form-control" name="offer_ar_title" value="{{ directory.offer_ar_title }}" dir="rtl"/>
                                                 <label>offer arabic title</label>
                                             </div>
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="offer_link" value="{{ root_directory.offer_link }}"/>
+                                                <input type="text" class="form-control" name="offer_link" value="{{ directory.offer_link }}"/>
                                                 <label>offer link</label>
                                             </div>
                                             <div class="form-floating mb-2">
-                                                <input type="number" class="form-control" name="offer_price" placeholder="{{ root_directory.offer_price }}"/>
+                                                <input type="number" class="form-control" name="offer_price" placeholder="{{ directory.offer_price }}"/>
                                                 <label>offer price</label>
                                             </div>
                                         </div>
@@ -2031,15 +2031,15 @@
                                     <div class="col-sm-5 me-4">
                                         <div class="card card-flush py-4">
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="en_title" value="{{ root_directory.en_title }}"/>
+                                                <input type="text" class="form-control" name="en_title" value="{{ directory.en_title }}"/>
                                                 <label>title</label>
                                             </div>
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="fr_title" value="{{ root_directory.fr_title }}"/>
+                                                <input type="text" class="form-control" name="fr_title" value="{{ directory.fr_title }}"/>
                                                 <label>french title</label>
                                             </div>
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="ar_title" value="{{ root_directory.ar_title }}" dir="rtl"/>
+                                                <input type="text" class="form-control" name="ar_title" value="{{ directory.ar_title }}" dir="rtl"/>
                                                 <label>arabic title</label>
                                             </div>
                                         </div>
@@ -2076,22 +2076,22 @@
                         <div class="card-footer">
                             <!--actions-->
                             <ul class="nav nav-pills">
-                                {% for directory in root_directory.sub_directory.all %}
+                                {% for category in directory.category.all %}
                                 <li class="nav-item me-1">
-                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if second_sub_tab == directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ directory.sku }}">
-                                        {{ directory.en_title }}
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if second_sub_tab == category.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ category.sku }}">
+                                        {{ category.en_title }}
                                     </a>
                                 </li>
                                 {% endfor %}
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#new_directory_{{ root_directory.sku }}">
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#new_directory_{{ category.sku }}">
                                         <i class="bi bi-plus fs-2"></i>
                                     </a>
                                 </li>
                             </ul>
                             <!--end actions-->
                             <!--new directory modal-->
-                            <div class="modal fade" tabindex="-1" id="new_directory_{{ root_directory.sku }}">
+                            <div class="modal fade" tabindex="-1" id="new_directory_{{ category.sku }}">
                                 <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header align-self-center">

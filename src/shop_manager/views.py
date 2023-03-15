@@ -147,6 +147,7 @@ def e_shop(request, action, detail, index):
 
     tab = 'ad_showcase'
     sub_tab = 'main'
+    second_sub_tab = 'main'
 
     # -----------------------------intro
     if action == "edit_intro":
@@ -202,14 +203,18 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.remove_product_from_showcase(detail, index).get('url')
 
     # -----------------------------category
-    if action == "edit_root":
-        url = direction + e_shop_actions.edit_root(request, detail).get('url')
-        tab = 'category'
-        sub_tab = detail
-
     if action == "edit_directory":
         url = direction + e_shop_actions.edit_directory(request, detail).get('url')
-        sub_tab = 'main'
+        tab = 'category'
+        sub_tab = detail
+    if action == "add_category_to_directory":
+        url = direction + e_shop_actions.add_category_to_directory(detail, index).get('url')
+        tab = 'category'
+        sub_tab = detail
+    if action == "remove_category_from_directory":
+        url = direction + e_shop_actions.remove_category_from_directory(detail, index).get('url')
+        tab = 'category'
+        sub_tab = detail
 
 
     if action == "edit_category":
@@ -242,8 +247,9 @@ def e_shop(request, action, detail, index):
         tab = 'category'
 
     context = {
-        'all_products': all_products,
         'tab':tab,
         'sub_tab':sub_tab,
+        'second_sub_tab':second_sub_tab,
+        'all_products': all_products,
     }
     return render(request, url, context)

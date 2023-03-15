@@ -1,6 +1,6 @@
 import random
 import string
-from main_shop.models import Intro ,Showcase ,RootDirectory ,SubDirectory ,Category
+from main_shop.models import Intro ,Showcase ,Directory ,Category
 from .models import Product, Feature
 
 # -----------------------------intro
@@ -475,17 +475,17 @@ def remove_product_from_showcase(detail, index):
     }
 
 # ------------------ category
-def edit_root(request, detail):
+def edit_directory(request, detail):
     url = "/shop-manager/e-shop.html"
     try:
-        root_directories = RootDirectory.objects.all()
-    except RootDirectory.objects.all().DoesNotExist:
+        root_directories = Directory.objects.all()
+    except Directory.objects.all().DoesNotExist:
         raise Http404("No root directories")
 
     if not detail =='new':
         try:
-            selected_root_directory = RootDirectory.objects.all().get(sku=detail)
-        except RootDirectory.objects.all().DoesNotExist:
+            selected_root_directory = Directory.objects.all().get(sku=detail)
+        except Directory.objects.all().DoesNotExist:
             raise Http404("No root directories")
     else:
         selected_root_directory = None
@@ -496,9 +496,9 @@ def edit_root(request, detail):
             rank = root_directories.count() + 1
         else:
             rank = 1
-        selected_root_directory = RootDirectory(rank=rank,
-                                                sku=sku,
-                                                )
+        selected_root_directory = Directory(rank=rank,
+                                            sku=sku,
+                                            )
         selected_root_directory.save()
 
     if request.method == 'POST':
@@ -546,52 +546,31 @@ def edit_root(request, detail):
         'url': url,
     }
 
-
-def edit_directory(request, detail):
+def add_category_to_directory(detail, index):
     url = "/shop-manager/e-shop.html"
-    try:
-        sub_directories = SubDirectory.objects.all()
-    except SubDirectory.objects.all().DoesNotExist:
-        raise Http404("No root directories")
+    selected_directory = Directory.objects.all().get(sku=detail)
+    selected_category = Category.objects.all().get(id=index)
 
-    if not detail == 'new':
-        try:
-            selected_sub_directory = SubDirectory.objects.all().get(sku=detail)
-        except SubDirectory.objects.all().DoesNotExist:
-            raise Http404("No root directories")
-    else:
-        selected_sub_directory = None
 
-    if not selected_sub_directory:
-        sku = serial_number_generator(10).upper()
-        if sub_directories:
-            rank = sub_directories.count() + 1
-        else:
-            rank = 1
-        selected_sub_directory = RootDirectory(rank=rank,
-                                                sku=sku,
-                                                )
-        selected_sub_directory.save()
-
-    if request.method == 'POST':
-        en_title = request.POST.get('en_title', False)
-        fr_title = request.POST.get('fr_title', False)
-        ar_title = request.POST.get('ar_title', False)
-
-        if en_title:
-            selected_sub_directory.en_title = en_title
-
-        if fr_title:
-            selected_sub_directory.fr_title = fr_title
-
-        if ar_title:
-            selected_sub_directory.ar_title = ar_title
-
-        selected_sub_directory.save()
+    if not selected_directory.product.all().filter(sku=selected_category.sku).exists():
+        selected_directory.categorie.add(selected_category)
 
     return {
         'url': url,
     }
+
+def remove_category_from_directory(detail, index):
+    url = "/shop-manager/e-shop.html"
+    selected_directory = Directory.objects.all().get(sku=detail)
+    selected_category = Category.objects.all().get(sku=detail)
+
+    selected_directory.category.remove(selected_category)
+
+    return {
+        'url': url,
+    }
+
+
 
 def edit_category(request, detail):
     url = "/shop-manager/e-shop.html"

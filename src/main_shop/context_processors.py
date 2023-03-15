@@ -10,12 +10,12 @@ def main_shop_content(request):
         raise Http404("No showcases")
 
     try:
-        root_directories = RootDirectory.objects.all().order_by('-rank')
-    except RootDirectory.objects.all().DoesNotExist:
+        directories = Directory.objects.all().order_by('-rank')
+    except Directory.objects.all().DoesNotExist:
         raise Http404("No directories")
 
     return {
         'intro': intro,
         'showcases': showcases,
-        'root_directories': root_directories,
+        'directories': directories,
     }
