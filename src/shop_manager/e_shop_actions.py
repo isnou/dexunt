@@ -586,7 +586,7 @@ def add_category_to_directory(request, detail):
 def remove_category_from_directory(detail, index):
     url = "/shop-manager/e-shop.html"
     selected_directory = Directory.objects.all().get(sku=detail)
-    selected_category = Category.objects.all().get(sku=detail)
+    selected_category = Category.objects.all().get(id=index)
 
     selected_directory.category.remove(selected_category)
 
