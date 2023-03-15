@@ -206,15 +206,15 @@ def e_shop(request, action, detail, index):
     # -----------------------------category
     if action == "edit_directory":
         url = direction + e_shop_actions.edit_directory(request, detail).get('url')
-        tab = 'category'
+        tab = 'directory'
         sub_tab = detail
     if action == "add_category_to_directory":
         url = direction + e_shop_actions.add_category_to_directory(request, detail).get('url')
-        tab = 'category'
+        tab = 'directory'
         sub_tab = detail
     if action == "remove_category_from_directory":
         url = direction + e_shop_actions.remove_category_from_directory(detail, index).get('url')
-        tab = 'category'
+        tab = 'directory'
         sub_tab = detail
 
 
