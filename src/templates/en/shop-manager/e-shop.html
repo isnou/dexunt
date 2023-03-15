@@ -2072,6 +2072,29 @@
                                     </div>
                                 </form>
                             </div>
+
+                            <div class="row gx-9 h-100">
+
+                                {% for category in directory.category.all %}
+                                <div class="card shadow-sm">
+                                    <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#{{ directory.sku }}_{{ category.sku }}">
+                                        <h3 class="card-title">{{ category.en_title }}</h3>
+                                        <div class="card-toolbar rotate-180">
+                                            <span class="svg-icon svg-icon-1">
+                                                ...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div id="{{ directory.sku }}_{{ category.sku }}" class="collapse show">
+                                        <div class="card-body">
+                                            Lorem Ipsum is simply dummy text...
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+
+                            </div>
                         </div>
                         <div class="card-footer">
                             <!--actions-->
@@ -2159,20 +2182,20 @@
                 <div class="tab-pane fade {% if second_sub_tab == category.sku %} active show {% endif %}" id="{{ directory.sku }}_{{ category.sku }}">
                     <div class="card card-flush shadow-sm mt-5">
                         <div class="card-toolbar">
-                    <div class="row mt-8" style="text-align: center;">
-                        {% if category.publish %}
-                        <a href="{% url 'e-shop' 'deactivate_category' category.sku category.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ directory.en_title }} - {{ category.en_title }} - {{ category.rank }}
-                        </a>
-                        {% else %}
-                        <a href="{% url 'e-shop' 'activate_category' category.sku category.rank %}" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                            {{ directory.en_title }} - {{ category.en_title }} - {{ category.rank }}
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-body py-1">
+                            <div class="row mt-8" style="text-align: center;">
+                                {% if category.publish %}
+                                <a href="{% url 'e-shop' 'deactivate_category' category.sku category.rank %}" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                    {{ directory.en_title }} - {{ category.en_title }} - {{ category.rank }}
+                                </a>
+                                {% else %}
+                                <a href="{% url 'e-shop' 'activate_category' category.sku category.rank %}" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
+                                    {{ directory.en_title }} - {{ category.en_title }} - {{ category.rank }}
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body py-1">
                         <div class="row gx-9 h-100">
                             <form action="{% url 'e-shop' 'edit_category' category.sku directory.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
@@ -2320,13 +2343,13 @@
                                                                     </td>
                                                                     <!--end product title-->
 
-                                                                    <!--remove product action-->
+                                                                    <!--add product action-->
                                                                     <td class="text-end">
                                                                         <a href="{% url 'e-shop' 'add_product_to_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
                                                                             <i class="bi bi-download"></i>
                                                                         </a>
                                                                     </td>
-                                                                    <!--end remove product action-->
+                                                                    <!--end add product action-->
                                                                 </tr>
                                                                 {% endfor %}
                                                                 </tbody>
