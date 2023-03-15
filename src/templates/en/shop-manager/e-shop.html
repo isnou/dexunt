@@ -2154,9 +2154,9 @@
         <div class="container-xxl">
             <div class="tab-content">
                 {% for category in categories %}
-                <!--inventory product pan-->
+                <!--category pan-->
                 <div class="tab-pane fade {% if sub_tab == directory.sku %} active show {% endif %}" id="{{ category.sku }}">
-                    <div class="card card-flush shadow-sm">
+                    <div class="card card-flush shadow-sm mt-5">
                 <div class="card-toolbar">
                     <div class="row mt-8" style="text-align: center;">
                         {% if category.publish %}
@@ -2347,17 +2347,11 @@
                 </div>
             </div>
                 </div>
-                <!--end inventory product pan-->
+                <!--end category pan-->
                 {% endfor %}
             </div>
         </div>
 
-
-        {% for category in categorie %}
-        <div class="container-xxl mt-5">
-
-        </div>
-        {% endfor %}
     </div>
     <!--end categories pan-->
 </div>
