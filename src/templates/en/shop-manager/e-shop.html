@@ -2235,11 +2235,11 @@
                             <div class="row mt-8" style="text-align: center;">
                                 {% if category.publish %}
                                 <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ category.en_title }} - {{ category.rank }}
+                                    {{ category.en_title }}
                                 </a>
                                 {% else %}
                                 <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ category.en_title }} - {{ category.rank }}
+                                    {{ category.en_title }}
                                 </a>
                                 {% endif %}
                             </div>
@@ -2248,12 +2248,6 @@
                             <div class="row gx-9 h-100">
                                 <form action="{% url 'e-shop' 'edit_category' category.sku 0 %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                    <div class="col-sm-5 me-2">
-
-                                    </div>
-                                    <div class="col-sm-2 me-4 mb-sm-0">
-
-                                    </div>
                                     <div class="col-sm-5 me-2">
                                         <div class="card card-flush py-4">
                                             <div class="form-floating mb-2">
@@ -2278,6 +2272,10 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="col-sm-5 me-2 mb-sm-0">
+
+                                    </div>
+
                                 </form>
                             </div>
 
