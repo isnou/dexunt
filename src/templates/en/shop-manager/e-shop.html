@@ -2070,7 +2070,6 @@
                                     </div>
                                     <div id="{{ directory.sku }}_{{ category.sku }}" class="collapse">
                                         <div class="card-body">
-
                                             <form action="{% url 'e-shop' 'edit_category' category.sku directory.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <div class="col-sm-6 me-5">

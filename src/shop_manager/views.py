@@ -221,7 +221,6 @@ def e_shop(request, action, detail, index):
     if action == "edit_category":
         url = direction + e_shop_actions.edit_category(request, detail).get('url')
         tab = 'category'
-        sub_tab = Directory.objects.all().get(id=index).sku
         second_sub_tab = detail
 
     if action == "activate_category":
