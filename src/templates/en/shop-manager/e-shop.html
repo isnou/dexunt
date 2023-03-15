@@ -2002,23 +2002,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="card card-flush text-center">
-
-                                            <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#new_category_{{ directory.sku }}">
-                                                <i class="bi bi-plus fs-2x"></i>
-                                            </a>
-
-
-                                            <a href="#" class="btn btn-light-secondary" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <i class="bi bi-trash fs-2x"></i>
-                                            </a>
-
-                                            <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <i class="bi bi-arrow-repeat fs-2x"></i>
-                                            </button>
-
-                                        </div>
                                     </div>
                                     <div class="col-sm-5 me-2">
                                         <div class="card card-flush py-4">
@@ -2038,6 +2021,10 @@
                                                 <input type="text" class="form-control" name="offer_link" value="{{ directory.offer_link }}"/>
                                                 <label>offer link</label>
                                             </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="number" class="form-control" name="offer_price" placeholder="{{ directory.offer_price }}"/>
+                                                <label>offer price</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 me-4">
@@ -2054,27 +2041,17 @@
                                                 <input type="text" class="form-control" name="ar_title" value="{{ directory.ar_title }}" dir="rtl"/>
                                                 <label>arabic title</label>
                                             </div>
-                                            <div class="form-floating mb-2">
-                                                <input type="number" class="form-control" name="offer_price" placeholder="{{ directory.offer_price }}"/>
-                                                <label>offer price</label>
-                                            </div>
                                         </div>
 
                                         <div class="text-center">
-                                            <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#new_category_{{ directory.sku }}">
-                                                <i class="bi bi-plus fs-2"></i>
-                                            </a>
-
-
-                                            {% if intro.repeat %}
-                                            <a href="#" class="btn btn-light-secondary me-5" title="repeat banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                            <a href="#" class="btn btn-light-secondary me-5" title="repeat banner" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#new_category_{{ directory.sku }}">
                                                 <i class="bi bi-grid-3x3-gap fs-2x"></i>
                                             </a>
-                                            {% else %}
+
                                             <a href="#" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                                <i class="bi bi-fullscreen fs-2x"></i>
+                                                <i class="bi bi-trash fs-2x"></i>
                                             </a>
-                                            {% endif %}
+
 
                                             <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
