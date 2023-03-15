@@ -227,6 +227,7 @@ def e_shop(request, action, detail, index):
         tab = 'category'
         sub_tab = Directory.objects.all().get(id=index).sku
         second_sub_tab = detail
+
     if action == "activate_category":
         category = Category.objects.all().get(sku=detail)
         category.publish = True
