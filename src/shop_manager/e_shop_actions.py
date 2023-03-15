@@ -549,7 +549,7 @@ def edit_directory(request, detail):
 def add_category_to_directory(detail):
     url = "/shop-manager/e-shop.html"
     selected_directory = Directory.objects.all().get(sku=detail)
-    categories = selected_directory.category.objects.all()
+    categories = selected_directory.category.all()
 
     sku = serial_number_generator(10).upper()
     if categories:
