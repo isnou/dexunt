@@ -578,7 +578,7 @@ def add_category_to_directory(request, detail):
 
         new_category.save()
 
-    selected_directory.categorie.add(new_category)
+    selected_directory.category.add(new_category)
 
     return {
         'url': url,
