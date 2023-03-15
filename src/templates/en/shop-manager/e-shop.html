@@ -2083,7 +2083,7 @@
                                 {% for category in directory.category.all %}
                                 <li class="nav-item me-1">
                                     <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if second_sub_tab == category.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ directory.sku }}_{{ category.sku }}">
-                                        {{ category.en_title }}
+                                        {{ directory.en_title }} - {{ category.en_title }} - {{ category.rank }}
                                     </a>
                                 </li>
                                 {% endfor %}
