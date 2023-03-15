@@ -2070,7 +2070,180 @@
                                     </div>
                                     <div id="{{ directory.sku }}_{{ category.sku }}" class="collapse">
                                         <div class="card-body">
-                                            Lorem Ipsum is simply dummy text...
+
+
+                                            <form action="{% url 'e-shop' 'edit_category' category.sku directory.id %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="col-sm-6 me-5">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="accordion mb-2" id="categories_{{ category.sku }}_accordion_{{ category.rank }}">
+                                            <div class="accordion-item">
+                                                <h6 class="accordion-header" id="categories_{{ category.sku }}_header_{{ category.rank }}">
+                                                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categories_{{ category.sku }}_body_{{ category.rank }}" aria-expanded="false" aria-controls="categories_{{ category.sku }}_body_{{ category.rank }}">
+                                                        <p class="h6 text-muted">
+                                                            {% if category.product.count %}
+                                                            {% if category.product.count == 1 %}
+                                                            one linked product
+                                                            {% else %}
+                                                            {{ category.product.count }} linked products
+                                                            {% endif %}
+                                                            {% else %}
+                                                            no linked products
+                                                            {% endif %}
+                                                        </p>
+                                                    </button>
+                                                </h6>
+                                                <div id="categories_{{ category.sku }}_body_{{ category.rank }}" class="accordion-collapse collapse" aria-labelledby="categories_{{ category.sku }}_header_{{ category.rank }}" data-bs-parent="#categories_{{ category.sku }}_accordion_{{ category.rank }}">
+                                                    <div class="accordion-body">
+                                                        <table class="table table-row-bordered gy-7 gs-7">
+                                                            <tbody>
+                                                            {% for product in category.product.all %}
+                                                            <tr>
+                                                                <!--product title-->
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <!--product thumbnail-->
+                                                                        <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                            <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                        </a>
+                                                                        <!--end product thumbnail-->
+                                                                        <div class="ms-5">
+                                                                            <!--begin::Title-->
+                                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                            <!--end::Title-->
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <!--end product title-->
+
+                                                                <!--remove product action-->
+                                                                <td class="text-end">
+                                                                    <a href="{% url 'e-shop' 'remove_product_from_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="remove {{product.en_title}} from {{ showcase.en_title }}">
+                                                                        <i class="bi bi-upload"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <!--end remove product action-->
+                                                            </tr>
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-5 mt-8 ms-20">
+                                            <div class="col-sm-6 mb-10 mb-sm-0">
+                                                <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-250px min-w-300px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ category.thumb }})">
+                                                    <div class="image-input-wrapper min-h-250px min-w-300px"></div>
+                                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+                                                        <input type="file" name="thumb" accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="photo_remove" />
+                                                    </label>
+                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="cancel image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="remove image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="en_title" placeholder="english category title" value="{{ category.en_title }}"/>
+                                            <label>english title</label>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="fr_title" placeholder="french category title" value="{{ category.fr_title }}"/>
+                                            <label>french title</label>
+                                        </div>
+                                        <div class="form-floating mb-10">
+                                            <input type="text" class="form-control" name="ar_title" placeholder="arabic category title" value="{{ category.ar_title }}" dir="rtl"/>
+                                            <label>arabic title</label>
+                                        </div>
+
+                                        <div class="d-flex align-self-end">
+                                            <button type="button" class="btn btn-light-secondary me-5" title="link a new product" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top" data-bs-toggle="modal" data-bs-target="#category_{{ category.sku }}_link_new_product">
+                                                <i class="bi bi-link-45deg fs-2x"></i>
+                                            </button>
+                                            <a href="{% url 'e-shop' 'delete_category' category.sku category.rank %}" class="btn btn-light-secondary me-5" title="delete" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-trash fs-2x"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-light-secondary me-5" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-repeat fs-2x"></i>
+                                            </button>
+                                            <a href="{% url 'e-shop' 'up_category' category.sku category.rank %}" class="btn btn-light-secondary me-5" title="move up" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-up-square fs-2x"></i>
+                                            </a>
+                                            <a href="{% url 'e-shop' 'down_category' category.sku category.rank %}" class="btn btn-light-secondary" title="move down" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
+                                                <i class="bi bi-arrow-down-square fs-2x"></i>
+                                            </a>
+                                            <div class="modal fade" tabindex="-1" id="category_{{ category.sku }}_link_new_product">
+                                                <div class="modal-dialog modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{ category.en_title }}</h5>
+
+                                                            <!--begin::Close-->
+                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span class="svg-icon svg-icon-2x"></span>
+                                                            </div>
+                                                            <!--end::Close-->
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <table class="table table-row-bordered gy-7 gs-7">
+                                                                <tbody>
+                                                                {% for product in all_products %}
+                                                                <tr>
+                                                                    <!--product title-->
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <!--product thumbnail-->
+                                                                            <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                                                <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{product.album.all.0.image}});"></span>
+                                                                            </a>
+                                                                            <!--end product thumbnail-->
+                                                                            <div class="ms-5">
+                                                                                <!--begin::Title-->
+                                                                                <a class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="{{product.en_title}}">{{product.en_title}} - {{product.en_spec}}</a>
+                                                                                <!--end::Title-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <!--end product title-->
+
+                                                                    <!--add product action-->
+                                                                    <td class="text-end">
+                                                                        <a href="{% url 'e-shop' 'add_product_to_category' category.sku product.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{product.en_title}} to {{category.en_title}}">
+                                                                            <i class="bi bi-download"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                    <!--end add product action-->
+                                                                </tr>
+                                                                {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -2095,7 +2268,7 @@
                             </ul>
                             <!--end actions-->
 
-                            <!--new directory modal-->
+                            <!--new category modal-->
                             <div class="modal fade" tabindex="-1" id="new_category_{{ directory.sku }}">
                                 <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -2146,7 +2319,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--end new directory modal-->
+                            <!--end new category modal-->
                         </div>
                     </div>
                 </div>
