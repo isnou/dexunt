@@ -2303,65 +2303,6 @@
                                 </li>
                             </ul>
                             <!--end actions-->
-
-                            {% for category in directory.category.all %}
-                            <!--remove category modal-->
-                            <div class="modal fade" tabindex="-1" id="remove_category_{{ category.sku }}">
-                                <div class="modal-dialog modal-flush">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <h3 class="modal-title">Click yes to remove {{ category.en_title }} from {{ directory.en_title }} </h3>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <a type="button" href="{% url 'e-shop' 'remove_category_from_directory' directory.sku category.id %}" class="btn btn-secondary">Yes</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end remove category modal-->
-                            {% endfor %}
-
-                            <!--new category modal-->
-                            <div class="modal fade" tabindex="-1" id="add_category_{{ directory.sku }}">
-                                <div class="modal-dialog modal-dialog-scrollable">
-                                    <div class="modal-content">
-                                        <div class="modal-header align-self-center">
-                                            <h3 class="modal-title">Add Category</h3>
-                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                                <span class="svg-icon svg-icon-1"></span>
-                                            </div>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table class="table table-row-bordered gy-7 gs-7">
-                                                <tbody>
-                                                {% for category in categories %}
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ms-5">
-                                                                <a class="text-gray-800 text-hover-primary fs-5 fw-bold">
-                                                                    {{category.en_title}}
-                                                                </a>
-
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-end">
-                                                        <a href="{% url 'e-shop' 'add_category_to_directory' directory.sku category.id %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{category.en_title}} to {{ directory.en_title }}">
-                                                            <i class="bi bi-upload"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end new category modal-->
                         </div>
                     </div>
                 </div>
