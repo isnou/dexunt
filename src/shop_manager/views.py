@@ -136,6 +136,10 @@ def inventory_preparation(request, action, sku):
 def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
+    try:
+        categories = Category.objects.all()
+    except Category.DoesNotExist:
+        raise Http404("No categories")
 
 
     if not Intro.objects.all().filter(id=1).exists():
@@ -203,7 +207,7 @@ def e_shop(request, action, detail, index):
     if action == "remove_product_from_showcase":
         url = direction + e_shop_actions.remove_product_from_showcase(detail, index).get('url')
 
-    # -----------------------------category
+    # -----------------------------directory
     if action == "edit_directory":
         url = direction + e_shop_actions.edit_directory(request, detail).get('url')
         tab = 'directory'
@@ -255,5 +259,6 @@ def e_shop(request, action, detail, index):
         'sub_tab':sub_tab,
         'second_sub_tab':second_sub_tab,
         'all_products': all_products,
+        'categories': categories,
     }
     return render(request, url, context)

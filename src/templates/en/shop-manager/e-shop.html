@@ -2082,17 +2082,14 @@
                             <div class="modal fade" tabindex="-1" id="remove_category_{{ category.sku }}">
                                 <div class="modal-dialog modal-flush">
                                     <div class="modal-content">
-
                                         <div class="modal-body">
                                             <h3 class="modal-title">Click yes to remove {{ category.en_title }} from {{ directory.en_title }} </h3>
-
                                         </div>
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                                             <a type="button" href="{% url 'e-shop' 'remove_category_from_directory' directory.sku category.id %}" class="btn btn-secondary">Yes</a>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -2104,48 +2101,35 @@
                                 <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header align-self-center">
-                                            <h3 class="modal-title">New Category</h3>
+                                            <h3 class="modal-title">Add Category</h3>
                                             <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                                 <span class="svg-icon svg-icon-1"></span>
                                             </div>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{% url 'e-shop' 'add_category_to_directory' directory.sku directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <div class="card-body">
-                                                    <div class="card card-flush py-4">
-                                                        <!--title-->
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_title" placeholder=" "/>
-                                                            <label>english title</label>
-                                                        </div>
-                                                        <!--end title-->
+                                            <table class="table table-row-bordered gy-7 gs-7">
+                                                <tbody>
+                                                {% for category in categories %}
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="ms-5">
+                                                                <a class="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                                                    {{category.en_title}}
+                                                                </a>
 
-                                                        <!--french title-->
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_title" placeholder=" "/>
-                                                            <label>french title</label>
+                                                            </div>
                                                         </div>
-                                                        <!--end french title-->
-
-                                                        <!--arabic title-->
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
-                                                            <label>arabic title</label>
-                                                        </div>
-                                                        <!--end arabic title-->
-                                                    </div>
-                                                    <!--add product buttons-->
-                                                    <div class="d-flex justify-content-center">
-                                                        <!--submit button-->
-                                                        <button type="submit" class="btn btn-secondary">
-                                                            <span class="indicator-label">save</span>
-                                                        </button>
-                                                        <!--end submit button-->
-                                                    </div>
-                                                    <!--end add product buttons-->
-                                                </div>
-                                            </form>
+                                                    </td>
+                                                    <td class="text-end">
+                                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="add {{category.en_title}} to {{ directory.en_title }}">
+                                                            <i class="bi bi-upload"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
