@@ -2076,7 +2076,7 @@
                             <div class="row gx-9 h-100">
 
                                 {% for category in directory.category.all %}
-                                <div class="card shadow-sm">
+                                <div class="card shadow-sm mb-2">
                                     <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#{{ directory.sku }}_{{ category.sku }}">
                                         <h3 class="card-title">{{ category.en_title }}</h3>
                                         <div class="card-toolbar rotate-180">
@@ -2085,7 +2085,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div id="{{ directory.sku }}_{{ category.sku }}" class="collapse show">
+                                    <div id="{{ directory.sku }}_{{ category.sku }}" class="collapse">
                                         <div class="card-body">
                                             Lorem Ipsum is simply dummy text...
                                         </div>
@@ -2179,7 +2179,7 @@
                 {% for directory in directories %}
                 {% for category in directory.category.all %}
                 <!--category pan-->
-                <div class="tab-pane fade {% if second_sub_tab == category.sku %} active show {% endif %}" id="{{ directory.sku }}_{{ category.sku }}">
+                <div class="tab-pane fade {% if second_sub_tab == category.sku %} active show {% endif %}" id=".sku }}_{{ category.sku }}">
                     <div class="card card-flush shadow-sm mt-5">
                         <div class="card-toolbar">
                             <div class="row mt-8" style="text-align: center;">
