@@ -1984,7 +1984,7 @@
                                 <form action="{% url 'e-shop' 'edit_root' root_directory.sku root_directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
-                                    <div class="col-sm-4 mb-sm-0">
+                                    <div class="col-sm-2 mb-sm-0">
                                         <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-80px min-w-90px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ root_directory.thumb }})">
                                             <div class="image-input-wrapper min-h-80px min-w-90px"></div>
                                             <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
@@ -2001,7 +2001,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2 me-2">
                                         <div class="form-floating mb-2">
                                                 <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
                                                 <label>color</label>
