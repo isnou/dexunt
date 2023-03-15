@@ -1983,7 +1983,7 @@
                             <div class="row gx-9 h-100">
                                 <form action="{% url 'e-shop' 'edit_root' root_directory.sku root_directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <div class="col-sm-6 mb-10 mb-sm-0">
+                                <div class="col-sm-6 mb-sm-0">
                                     <div class="image-input image-input-empty bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-80px min-w-90px" data-kt-image-input="true" style="background-image: url({% get_media_prefix %}{{ root_directory.thumb }})">
                                         <div class="image-input-wrapper min-h-80px min-w-90px"></div>
                                         <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="change image">
@@ -1998,51 +1998,25 @@
                                             <i class="bi bi-x fs-2"></i>
                                         </span>
                                     </div>
-                                </div>
                                     <div class="col-sm-6">
-                                    <div class="card card-flush py-4">
-                                        <!--color-->
                                         <div class="form-floating mb-2">
                                             <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
                                             <label>color</label>
                                         </div>
-                                        <!--end color-->
 
-                                        <!--margin title-->
                                         <div class="form-floating mb-2">
-                                            <input type="number" class="form-control" name="margin" placeholder="put margin" value="{{ intro.margin }}"/>
-                                            <label>margin</label>
+                                            <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
+                                            <label>color</label>
                                         </div>
-                                        <!--end margin title-->
+
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
+                                            <label>color</label>
+                                        </div>
+
                                     </div>
-
-                                    <div class="d-flex align-self-end">
-                                        {% if intro.fixed %}
-                                        <a href="#" class="btn btn-light-secondary me-5" title="unfix banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                            <i class="bi bi-unlock fs-2x"></i>
-                                        </a>
-                                        {% else %}
-                                        <a href="#" class="btn btn-light-secondary me-5" title="fix banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                            <i class="bi bi-lock fs-2x"></i>
-                                        </a>
-                                        {% endif %}
-
-                                        {% if intro.repeat %}
-                                        <a href="#" class="btn btn-light-secondary me-5" title="repeat banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                            <i class="bi bi-grid-3x3-gap fs-2x"></i>
-                                        </a>
-                                        {% else %}
-                                        <a href="#" class="btn btn-light-secondary me-5" title="stretch banner" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                            <i class="bi bi-fullscreen fs-2x"></i>
-                                        </a>
-                                        {% endif %}
-
-                                        <button type="submit" class="btn btn-light-secondary" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
-                                            <i class="bi bi-arrow-repeat fs-2x"></i>
-                                        </button>
-                                    </div>
-                                    <!--end main page buttons-->
                                 </div>
+
                                 <div class="col-sm-6">
                                     <div class="card card-flush py-4">
                                         <!--color-->
