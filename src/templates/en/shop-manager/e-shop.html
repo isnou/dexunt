@@ -2000,10 +2000,6 @@
                                                         <i class="bi bi-x fs-2"></i>
                                                     </span>
                                                 </div>
-
-                                                <a href="#" class="btn btn-light-secondary mt-10" title="add a directory" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                                    <i class="bi bi-plus fs-2x"></i>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -2093,11 +2089,11 @@
                             </ul>
                             <!--end actions-->
                             <!--new root modal-->
-                            <div class="modal fade" tabindex="-1" id="">
+                            <div class="modal fade" tabindex="-1" id="68">
                                 <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header align-self-center">
-                                            <h3 class="modal-title">New Root</h3>
+                                            <h3 class="modal-title">New Directory</h3>
                                             <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                                                 <span class="svg-icon svg-icon-1"></span>
                                             </div>
@@ -2106,43 +2102,43 @@
                                             <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <div class="card-body">
-                                        <div class="card card-flush py-4">
-                                            <!--title-->
-                                            <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="en_title" placeholder=" "/>
-                                                <label>english title</label>
-                                            </div>
-                                            <!--end title-->
+                                                    <div class="card card-flush py-4">
+                                                        <!--title-->
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="en_title" placeholder=" "/>
+                                                            <label>english title</label>
+                                                        </div>
+                                                        <!--end title-->
 
-                                            <!--french title-->
-                                            <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="fr_title" placeholder=" "/>
-                                                <label>french title</label>
-                                            </div>
-                                            <!--end french title-->
+                                                        <!--french title-->
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="fr_title" placeholder=" "/>
+                                                            <label>french title</label>
+                                                        </div>
+                                                        <!--end french title-->
 
-                                            <!--arabic title-->
-                                            <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
-                                                <label>arabic title</label>
-                                            </div>
-                                            <!--end arabic title-->
+                                                        <!--arabic title-->
+                                                        <div class="form-floating mb-2">
+                                                            <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
+                                                            <label>arabic title</label>
+                                                        </div>
+                                                        <!--end arabic title-->
+                                                    </div>
+                                                    <!--add product buttons-->
+                                                    <div class="d-flex justify-content-center">
+                                                        <!--submit button-->
+                                                        <button type="submit" class="btn btn-secondary">
+                                                            <span class="indicator-label">save</span>
+                                                        </button>
+                                                        <!--end submit button-->
+                                                    </div>
+                                                    <!--end add product buttons-->
+                                                </div>
+                                            </form>
                                         </div>
-                                        <!--add product buttons-->
-                                        <div class="d-flex justify-content-center">
-                                            <!--submit button-->
-                                            <button type="submit" class="btn btn-secondary">
-                                                <span class="indicator-label">save</span>
-                                            </button>
-                                            <!--end submit button-->
-                                        </div>
-                                        <!--end add product buttons-->
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
                             <!--end new root modal-->
                         </div>
                     </div>
