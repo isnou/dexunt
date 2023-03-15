@@ -2153,7 +2153,8 @@
 
         <div class="container-xxl">
             <div class="tab-content">
-                {% for category in categories %}
+                {% for directory in directories %}
+                {% for category in directory.category.all %}
                 <!--category pan-->
                 <div class="tab-pane fade {% if second_sub_tab == category.sku %} active show {% endif %}" id="{{ category.sku }}">
                     <div class="card card-flush shadow-sm mt-5">
@@ -2348,6 +2349,7 @@
             </div>
                 </div>
                 <!--end category pan-->
+                {% endfor %}
                 {% endfor %}
             </div>
         </div>
