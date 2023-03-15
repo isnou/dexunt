@@ -2085,15 +2085,17 @@
                             <div class="modal fade" tabindex="-1" id="remove_category_{{ category.sku }}">
                                 <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
-                                        <div class="modal-header align-self-center">
-                                            <h3 class="modal-title">Remove Category {{ category.en_title }} </h3>
-                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                                <span class="svg-icon svg-icon-1"></span>
-                                            </div>
-                                        </div>
+
                                         <div class="modal-body">
+                                            <h3 class="modal-title">Click yes to remove {{ category.en_title }} from {{ directory.en_title }} </h3>
 
                                         </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Yes</button>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
