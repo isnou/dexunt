@@ -1,4 +1,4 @@
-from .models import Intro, Showcase, Category, RootDirectory, SubDirectory
+from .models import Intro, Showcase, Category, Directory
 
 
 def main_shop_content(request):
