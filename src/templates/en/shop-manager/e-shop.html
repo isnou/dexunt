@@ -2083,7 +2083,7 @@
                             {% for category in directory.category.all %}
                             <!--remove category modal-->
                             <div class="modal fade" tabindex="-1" id="remove_category_{{ category.sku }}">
-                                <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-dialog modal-flush">
                                     <div class="modal-content">
 
                                         <div class="modal-body">
@@ -2093,9 +2093,9 @@
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Yes</button>
+                                            <button type="button" class="btn btn-secondary">Yes</button>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
