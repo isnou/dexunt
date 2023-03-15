@@ -204,6 +204,7 @@ def e_shop(request, action, detail, index):
     # -----------------------------category
     if action == "edit_root":
         url = direction + e_shop_actions.edit_root(request, detail).get('url')
+        tab = 'category'
         sub_tab = detail
 
     if action == "edit_directory":
