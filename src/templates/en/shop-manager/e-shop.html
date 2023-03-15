@@ -2001,32 +2001,48 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-2 me-2">
+                                    <div class="col-sm-4 me-4">
                                         <div class="card card-flush py-4">
-                                        <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
-                                                <label>color</label>
-                                            </div>
-                                            </div>
-                                    </div>
-
-
-                                    <div class="col-sm-6">
-                                        <div class="card card-flush py-4">
-                                        <!--color-->
                                             <div class="form-floating mb-2">
-                                                <input type="text" class="form-control" name="color" placeholder="background color" value="{{ intro.color }}"/>
-                                                <label>color</label>
+                                                <input type="text" class="form-control" name="offer_en_title" placeholder="{{ root_directory.offer_en_title }}"/>
+                                                <label>offer title</label>
                                             </div>
-                                        <!--end color-->
-
-                                        <!--margin title-->
-                                        <div class="form-floating mb-2">
-                                            <input type="number" class="form-control" name="margin" placeholder="put margin" value="{{ intro.margin }}"/>
-                                            <label>margin</label>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="offer_fr_title" placeholder="{{ root_directory.offer_fr_title }}"/>
+                                                <label>offer french title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="offer_ar_title" placeholder="{{ root_directory.offer_ar_title }}" dir="rtl"/>
+                                                <label>offer arabic title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="offer_link" placeholder="{{ root_directory.offer_link }}"/>
+                                                <label>offer link</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="number" class="form-control" name="offer_price" placeholder="{{ root_directory.offer_price }}"/>
+                                                <label>offer price</label>
+                                            </div>
                                         </div>
-                                        <!--end margin title-->
+
                                     </div>
+
+
+                                    <div class="col-sm-4">
+                                        <div class="card card-flush py-4">
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="en_title" placeholder="{{ root_directory.en_title }}"/>
+                                                <label>title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="fr_title" placeholder="{{ root_directory.fr_title }}"/>
+                                                <label>french title</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="ar_title" placeholder="{{ root_directory.ar_title }}" dir="rtl"/>
+                                                <label>arabic title</label>
+                                            </div>
+                                        </div>
 
                                     <div class="d-flex align-self-end">
                                         {% if intro.fixed %}
