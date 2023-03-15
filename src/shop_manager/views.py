@@ -211,6 +211,9 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.edit_directory(request, detail).get('url')
         tab = 'directory'
         sub_tab = detail
+    if action == "delete_directory":
+        Directory.objects.all().get(sku=detail).delete()
+        tab = 'directory'
     if action == "add_category_to_directory":
         url = direction + e_shop_actions.add_category_to_directory(detail, index).get('url')
         tab = 'directory'
@@ -219,15 +222,15 @@ def e_shop(request, action, detail, index):
         url = direction + e_shop_actions.remove_category_from_directory(detail, index).get('url')
         tab = 'directory'
         sub_tab = detail
-    if action == "delete_directory":
-        Directory.objects.all().get(sku=detail).delete()
-        tab = 'directory'
 
     # -----------------------------category
     if action == "edit_category":
         url = direction + e_shop_actions.edit_category(request, detail).get('url')
         tab = 'category'
-        sub_tab = Directory.objects.all().get(id=index).sku
+        sub_tab = detail
+    if action == "delete_category":
+        Category.objects.all().get(sku=detail).delete()
+        tab = 'category'
 
     if action == "activate_category":
         category = Category.objects.all().get(sku=detail)
@@ -239,9 +242,7 @@ def e_shop(request, action, detail, index):
         category.publish = False
         category.save()
         tab = 'category'
-    if action == "delete_category":
-        Category.objects.all().get(sku=detail).delete()
-        tab = 'category'
+
     if action == "up_category":
         url = direction + e_shop_actions.up_category(detail, index).get('url')
         tab = 'category'
