@@ -2067,7 +2067,7 @@
                             <ul class="nav nav-pills">
                                 {% for category in directory.category.all %}
                                 <li class="nav-item me-1">
-                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#remove_category_{{ directory.sku }}_{{ category.id }}">
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#remove_category_{{ directory.sku }}_{{ category.sku }}">
                                         {{ category.en_title }} <i class="bi bi-x-lg ms-2"></i>
                                     </a>
                                 </li>
@@ -2082,7 +2082,7 @@
 
                             {% for category in directory.category.all %}
                             <!--remove category modal-->
-                            <div class="modal fade" tabindex="-1" id="remove_category_{{ directory.sku }}_{{ category.id }}">
+                            <div class="modal fade" tabindex="-1" id="remove_category_{{ directory.sku }}_{{ category.sku }}">
                                 <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header align-self-center">
@@ -2092,42 +2092,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{% url 'e-shop' 'add_category_to_directory' directory.sku directory.rank %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <div class="card-body">
-                                                    <div class="card card-flush py-4">
-                                                        <!--title-->
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="en_title" placeholder=" "/>
-                                                            <label>english title</label>
-                                                        </div>
-                                                        <!--end title-->
 
-                                                        <!--french title-->
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="fr_title" placeholder=" "/>
-                                                            <label>french title</label>
-                                                        </div>
-                                                        <!--end french title-->
-
-                                                        <!--arabic title-->
-                                                        <div class="form-floating mb-2">
-                                                            <input type="text" class="form-control" name="ar_title" placeholder=" " dir="rtl"/>
-                                                            <label>arabic title</label>
-                                                        </div>
-                                                        <!--end arabic title-->
-                                                    </div>
-                                                    <!--add product buttons-->
-                                                    <div class="d-flex justify-content-center">
-                                                        <!--submit button-->
-                                                        <button type="submit" class="btn btn-secondary">
-                                                            <span class="indicator-label">save</span>
-                                                        </button>
-                                                        <!--end submit button-->
-                                                    </div>
-                                                    <!--end add product buttons-->
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
