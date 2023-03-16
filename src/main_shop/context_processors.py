@@ -10,7 +10,7 @@ def main_shop_content(request):
         raise Http404("No showcases")
 
     try:
-        directories = Directory.objects.all().order_by('-rank')
+        directories = Directory.objects.all()
     except Directory.objects.all().DoesNotExist:
         raise Http404("No directories")
 
