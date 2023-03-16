@@ -1903,7 +1903,7 @@
                 <ul class="nav nav-pills">
                     {% for department in departments %}
                     <li class="nav-item me-1">
-                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == department.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ department.sku }}">
+                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == department.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#check_{{ department.sku }}">
                             {{ department.en_title }}
                         </a>
                     </li>
@@ -1974,7 +1974,7 @@
             <div class="tab-content">
                 {% for department in departments %}
                 <!--inventory product pan-->
-                <div class="tab-pane fade {% if sub_tab == department.sku %} active show {% endif %}" id="{{ department.sku }}">
+                <div class="tab-pane fade {% if sub_tab == department.sku %} active show {% endif %}" id="check_{{ department.sku }}">
                     <div class="card card-flush shadow-sm">
                         <div class="card-toolbar">
                             <div class="row mt-8" style="text-align: center;">
@@ -2159,7 +2159,7 @@
                 <ul class="nav nav-pills">
                     {% for directory in directories %}
                     <li class="nav-item me-1">
-                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#{{ directory.sku }}">
+                        <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#check_{{ directory.sku }}">
                             {{ directory.en_title }}
                         </a>
                     </li>
@@ -2230,7 +2230,7 @@
             <div class="tab-content">
                 {% for directory in directories %}
                 <!--inventory product pan-->
-                <div class="tab-pane fade {% if sub_tab == directory.sku %} active show {% endif %}" id="{{ directory.sku }}">
+                <div class="tab-pane fade {% if sub_tab == directory.sku %} active show {% endif %}" id="check_{{ directory.sku }}">
                     <div class="card card-flush shadow-sm">
                         <div class="card-toolbar">
                             <div class="row mt-8" style="text-align: center;">
