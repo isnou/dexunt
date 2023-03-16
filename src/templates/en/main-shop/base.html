@@ -239,34 +239,14 @@
                           <div class="d-flex flex-wrap flex-sm-nowrap px-2">
                             <div class="mega-dropdown-column pt-4 pb-0 py-sm-4 px-3">
                               <div class="widget widget-links">
-                                {% for category in directory.category.all %}
-                                <h6 class="fs-base mb-3">{{ category.en_title }}</h6>
+                                {% for directory in directories %}
+                                <h6 class="fs-base mb-3">{{ directory.en_title }}</h6>
                                 <ul class="widget-list">
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Laptops &amp; Tablets</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Desktop Computers</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Computer External Components</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Computer Internal Components</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Networking Products (NAS)</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Single Board Computers</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Desktop Barebones</a></li>
+                                  {% for category in directory.category.all %}
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Laptops &amp; {{ category.en_title }}</a></li>
+                                  {% endfor %}
                                 </ul>
                                 {% endfor %}
-                              </div>
-                            </div>
-                            <div class="mega-dropdown-column py-4 px-3">
-                              <div class="widget widget-links">
-                                <h6 class="fs-base mb-3">Accessories</h6>
-                                <ul class="widget-list">
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Monitors</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Bags, Cases &amp; Sleeves</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Batteries</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Charges &amp; Adapters</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Cooling Pads</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Mounts</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Replacement Screens</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Security Locks</a></li>
-                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Stands</a></li>
-                                </ul>
                               </div>
                             </div>
                             <div class="mega-dropdown-column d-none d-lg-block py-4 text-center"><a class="d-block mb-2" href="{{ directory.offer_link }}"><img src="{% get_media_prefix %}{{directory.thumb}}" alt="Computers &amp; Accessories"></a>
