@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions, clips_actions
 from .models import Product, Size, Feature, ShowcaseProduct
-from main_shop.models import Intro ,Showcase ,Directory ,Category
+from main_shop.models import Intro ,Showcase,Department ,Directory ,Category
 
 
 def manager_dashboard(request, action):
@@ -136,11 +136,16 @@ def inventory_preparation(request, action, sku):
 def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
+
     try:
         categories = Category.objects.all()
     except Category.DoesNotExist:
         raise Http404("No categories")
 
+    try:
+        directories = Directory.objects.all()
+    except Directory.DoesNotExist:
+        raise Http404("No directories")
 
     if not Intro.objects.all().filter(id=1).exists():
         Intro(id=1,).save()
@@ -206,6 +211,23 @@ def e_shop(request, action, detail, index):
     if action == "remove_product_from_showcase":
         url = direction + e_shop_actions.remove_product_from_showcase(detail, index).get('url')
 
+    # -----------------------------department
+    if action == "edit_department":
+        url = direction + e_shop_actions.edit_department(request, detail).get('url')
+        tab = 'department'
+        sub_tab = detail
+    if action == "delete_department":
+        Department.objects.all().get(sku=detail).delete()
+        tab = 'department'
+    if action == "add_directory_to_department":
+        url = direction + e_shop_actions.add_directory_to_department(detail, index).get('url')
+        tab = 'department'
+        sub_tab = detail
+    if action == "remove_directory_from_department":
+        url = direction + e_shop_actions.remove_directory_from_department(detail, index).get('url')
+        tab = 'department'
+        sub_tab = detail
+
     # -----------------------------directory
     if action == "edit_directory":
         url = direction + e_shop_actions.edit_directory(request, detail).get('url')
@@ -246,5 +268,6 @@ def e_shop(request, action, detail, index):
         'sub_tab':sub_tab,
         'all_products': all_products,
         'categories': categories,
+        'directories': directories,
     }
     return render(request, url, context)
