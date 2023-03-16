@@ -235,20 +235,20 @@
                         <!--dropdown menu items-->
                         <div class="dropdown-menu p-0">
                           <div class="d-flex flex-wrap flex-sm-nowrap px-2">
+                            {% for directory in directories %}
                             <div class="mega-dropdown-column pt-4 pb-0 py-sm-4 px-3">
-                              {% for directory in directories %}
-                              <div class="widget widget-links">
 
+                              <div class="widget widget-links">
                                 <h6 class="fs-base mb-3">{{ directory.en_title|title }}</h6>
                                 <ul class="widget-list">
                                   {% for category in directory.category.all %}
                                   <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">{{ category.en_title|title }}</a></li>
                                   {% endfor %}
                                 </ul>
-
                               </div>
-                              {% endfor %}
+
                             </div>
+                            {% endfor %}
                             <div class="mega-dropdown-column d-none d-lg-block py-4 text-center"><a class="d-block mb-2" href="{{ directory.offer_link }}"><img src="{% get_media_prefix %}{{directory.thumb}}" alt="Computers &amp; Accessories"></a>
                               <div class="fs-sm mb-3">Starting from <span class='fw-medium'>$149.<small>80</small></span></div><a class="btn btn-primary btn-shadow btn-sm" href="home-electronics-store.html#">See offers<i class="ci-arrow-right fs-xs ms-1"></i></a>
                             </div>
