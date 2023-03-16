@@ -52,8 +52,6 @@ class Category(models.Model):
     fr_title = models.TextField(max_length=300, blank=True, null=True)
     ar_title = models.TextField(max_length=300, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    rank = models.IntegerField(blank=True, null=True)
-    publish = models.BooleanField(default=False)
     sku = models.CharField(max_length=20, unique=True, null=True)
     product = models.ManyToManyField(Product, blank=True)
 
@@ -71,15 +69,7 @@ class Directory(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.TextField(max_length=300, blank=True, null=True)
     ar_title = models.TextField(max_length=300, blank=True, null=True)
-    # --------------------------------- offer details ------------------------------------------
-    offer_en_title = models.CharField(max_length=200, blank=True, null=True)
-    offer_fr_title = models.CharField(max_length=200, blank=True, null=True)
-    offer_ar_title = models.CharField(max_length=200, blank=True, null=True)
-    offer_link = models.TextField(max_length=500, blank=True, null=True)
-    offer_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    rank = models.IntegerField(blank=True, null=True)
-    publish = models.BooleanField(default=False)
     sku = models.CharField(max_length=20, unique=True, null=True)
     category = models.ManyToManyField(Category, blank=True)
     # --------------------------------- media --------------------------------------------------
@@ -91,6 +81,31 @@ class Directory(models.Model):
 
     class Meta:
         verbose_name_plural = "Directories"
+
+    def __str__(self):
+        return self.en_title
+
+
+class Department(models.Model):
+    # --------------------------------- category identification --------------------------------
+    en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.TextField(max_length=300, blank=True, null=True)
+    ar_title = models.TextField(max_length=300, blank=True, null=True)
+    # --------------------------------- offer details ------------------------------------------
+    offer_en_title = models.CharField(max_length=200, blank=True, null=True)
+    offer_fr_title = models.CharField(max_length=200, blank=True, null=True)
+    offer_ar_title = models.CharField(max_length=200, blank=True, null=True)
+    offer_link = models.TextField(max_length=500, blank=True, null=True)
+    offer_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # --------------------------------- technical details --------------------------------------
+    sku = models.CharField(max_length=20, unique=True, null=True)
+    directory = models.ManyToManyField(Directory, blank=True)
+    # --------------------------------- media --------------------------------------------------
+    thumb = models.ImageField(upload_to='main-shop/e-shop/category/', blank=True, null=True)
+
+
+    def directories(self):
+        return "\n".join([p.en_title for p in self.directory.all()])
 
     def __str__(self):
         return self.en_title

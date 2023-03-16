@@ -240,23 +240,6 @@ def e_shop(request, action, detail, index):
         tab = 'category'
         sub_tab = detail
 
-    if action == "activate_category":
-        category = Category.objects.all().get(sku=detail)
-        category.publish = True
-        category.save()
-        tab = 'category'
-    if action == "deactivate_category":
-        category = Category.objects.all().get(sku=detail)
-        category.publish = False
-        category.save()
-        tab = 'category'
-
-    if action == "up_category":
-        url = direction + e_shop_actions.up_category(detail, index).get('url')
-        tab = 'category'
-    if action == "down_category":
-        url = direction + e_shop_actions.down_category(detail, index).get('url')
-        tab = 'category'
 
     context = {
         'tab':tab,

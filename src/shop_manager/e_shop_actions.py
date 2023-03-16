@@ -1,6 +1,6 @@
 import random
 import string
-from main_shop.models import Intro ,Showcase ,Directory ,Category
+from main_shop.models import Intro ,Showcase,Department ,Directory ,Category
 from .models import Product, Feature
 
 # -----------------------------intro
@@ -474,32 +474,20 @@ def remove_product_from_showcase(detail, index):
         'url': url,
     }
 
-# ------------------ category
-def edit_directory(request, detail):
+# ------------------ department
+def edit_department(request, detail):
     url = "/shop-manager/e-shop.html"
-    try:
-        root_directories = Directory.objects.all()
-    except Directory.objects.all().DoesNotExist:
-        raise Http404("No root directories")
 
     if not detail =='new':
         try:
-            selected_root_directory = Directory.objects.all().get(sku=detail)
-        except Directory.objects.all().DoesNotExist:
-            raise Http404("No root directories")
+            selected_department = Department.objects.all().get(sku=detail)
+        except Department.objects.all().DoesNotExist:
+            raise Http404("No departments")
     else:
-        selected_root_directory = None
-
-    if not selected_root_directory:
         sku = serial_number_generator(10).upper()
-        if root_directories:
-            rank = root_directories.count() + 1
-        else:
-            rank = 1
-        selected_root_directory = Directory(rank=rank,
-                                            sku=sku,
-                                            )
-        selected_root_directory.save()
+        selected_department = Department(sku=sku,
+                                         )
+        selected_department.save()
 
     if request.method == 'POST':
         en_title = request.POST.get('en_title', False)
@@ -512,35 +500,84 @@ def edit_directory(request, detail):
         offer_price = request.POST.get('offer_price', False)
         thumb = request.FILES.get('thumb', False)
 
-
         if en_title:
-            selected_root_directory.en_title = en_title
-
+            selected_department.en_title = en_title
         if fr_title:
-            selected_root_directory.fr_title = fr_title
-
+            selected_department.fr_title = fr_title
         if ar_title:
-            selected_root_directory.ar_title = ar_title
+            selected_department.ar_title = ar_title
 
         if offer_en_title:
-            selected_root_directory.offer_en_title = offer_en_title
-
+            selected_department.offer_en_title = offer_en_title
         if offer_fr_title:
-            selected_root_directory.offer_fr_title = offer_fr_title
-
+            selected_department.offer_fr_title = offer_fr_title
         if offer_ar_title:
-            selected_root_directory.offer_ar_title = offer_ar_title
-
+            selected_department.offer_ar_title = offer_ar_title
         if offer_link:
-            selected_root_directory.offer_link = offer_link
-
+            selected_department.offer_link = offer_link
         if offer_price:
-            selected_root_directory.offer_price = int(offer_price)
-
+            selected_department.offer_price = int(offer_price)
         if thumb:
-            selected_root_directory.thumb = thumb
+            selected_department.thumb = thumb
 
-        selected_root_directory.save()
+        selected_department.save()
+
+    return {
+        'url': url,
+    }
+
+def add_directory_to_department(detail, index):
+    url = "/shop-manager/e-shop.html"
+    selected_department = Department.objects.all().get(sku=detail)
+    selected_directory = Directory.objects.all().get(id=index)
+
+    if not selected_department.directory.all().filter(sku=selected_directory.sku).exists():
+        selected_department.directory.add(selected_directory)
+
+    return {
+        'url': url,
+    }
+
+def remove_directory_from_department(detail, index):
+    url = "/shop-manager/e-shop.html"
+    selected_department = Department.objects.all().get(sku=detail)
+    selected_directory = Directory.objects.all().get(id=index)
+
+    selected_department.directors.remove(selected_directory)
+
+    return {
+        'url': url,
+    }
+
+# ------------------ directory
+def edit_directory(request, detail):
+    url = "/shop-manager/e-shop.html"
+
+    if not detail =='new':
+        try:
+            selected_directory = Directory.objects.all().get(sku=detail)
+        except Directory.objects.all().DoesNotExist:
+            raise Http404("No root directories")
+    else:
+        sku = serial_number_generator(10).upper()
+        selected_directory = Directory(sku=sku,
+                                       )
+        selected_directory.save()
+
+    if request.method == 'POST':
+        en_title = request.POST.get('en_title', False)
+        fr_title = request.POST.get('fr_title', False)
+        ar_title = request.POST.get('ar_title', False)
+
+
+        if en_title:
+            selected_directory.en_title = en_title
+        if fr_title:
+            selected_directory.fr_title = fr_title
+        if ar_title:
+            selected_directory.ar_title = ar_title
+
+        selected_directory.save()
 
     return {
         'url': url,
@@ -548,7 +585,6 @@ def edit_directory(request, detail):
 
 def add_category_to_directory(detail, index):
     url = "/shop-manager/e-shop.html"
-
     selected_directory = Directory.objects.all().get(sku=detail)
     selected_category = Category.objects.all().get(id=index)
 
@@ -570,12 +606,8 @@ def remove_category_from_directory(detail, index):
         'url': url,
     }
 
+# ------------------ category
 def edit_category(request, detail):
-    url = "/shop-manager/e-shop.html"
-    try:
-        categories = Category.objects.all()
-    except Category.objects.all().DoesNotExist:
-        raise Http404("No categories")
 
     if not detail =='new':
         try:
@@ -583,16 +615,8 @@ def edit_category(request, detail):
         except Category.objects.all().DoesNotExist:
             raise Http404("No category")
     else:
-        selected_category = None
-
-    if not selected_category:
         sku = serial_number_generator(10).upper()
-        if categories:
-            rank = categories.count() + 1
-        else:
-            rank = 1
-        selected_category = Category(rank=rank,
-                                     sku=sku,
+        selected_category = Category(sku=sku,
                                      )
         selected_category.save()
 
@@ -600,20 +624,14 @@ def edit_category(request, detail):
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
         ar_title = request.POST.get('ar_title', False)
-        thumb = request.FILES.get('thumb', False)
 
 
         if en_title:
             selected_category.en_title = en_title
-
         if fr_title:
             selected_category.fr_title = fr_title
-
         if ar_title:
             selected_category.ar_title = ar_title
-
-        if thumb:
-            selected_category.thumb = thumb
 
         selected_category.save()
 
@@ -645,45 +663,6 @@ def remove_product_from_category(detail, index):
     }
 
 
-def up_category(detail, index):
-    url = "/shop-manager/e-shop.html"
-    selected_category = Category.objects.all().get(sku=detail)
-    max_rank = Category.objects.all().count()
-
-    if index == max_rank:
-        next_category = Category.objects.all().get(rank=1)
-    else:
-        next_category = Category.objects.all().get(rank=index + 1)
-
-    selected_category.rank = next_category.rank
-    next_category.rank = index
-
-    selected_category.save()
-    next_category.save()
-
-    return {
-        'url': url,
-    }
-
-def down_category(detail, index):
-    url = "/shop-manager/e-shop.html"
-    selected_category = Category.objects.all().get(sku=detail)
-    max_rank = Category.objects.all().count()
-
-    if index == 1:
-        next_category = Category.objects.all().get(rank=max_rank)
-    else:
-        next_category = Category.objects.all().get(rank=index - 1)
-
-    selected_category.rank = next_category.rank
-    next_category.rank = index
-
-    selected_category.save()
-    next_category.save()
-
-    return {
-        'url': url,
-    }
 
 
 
