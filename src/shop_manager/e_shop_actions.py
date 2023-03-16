@@ -608,6 +608,7 @@ def remove_category_from_directory(detail, index):
 
 # ------------------ category
 def edit_category(request, detail):
+    url = "/shop-manager/e-shop.html"
 
     if not detail =='new':
         try:
