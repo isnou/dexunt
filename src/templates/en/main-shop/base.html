@@ -230,7 +230,6 @@
                       <li class="dropdown mega-dropdown">
                         <!--dropdown menu title-->
                         <a class="dropdown-item" href="home-electronics-store.html#" data-bs-toggle="dropdown">
-                          <i class="ci-laptop opacity-60 fs-lg mt-n1 me-2"></i>
                           {{ directory.en_title }}
                         </a>
                         <!--end dropdown menu title-->
@@ -242,22 +241,19 @@
                               <div class="widget widget-links">
                                 {% for category in directory.category.all %}
                                 <ul class="widget-list">
-                                  <li class="widget-list-item pb-1">
-                                    <a class="widget-list-link" href="#">
-                                    {{category.en_title }}
-                                    </a>
-                                  </li>
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Laptops &amp; Tablets</a></li>
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Desktop Computers</a></li>
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Computer External Components</a></li>
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Computer Internal Components</a></li>
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Networking Products (NAS)</a></li>
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Single Board Computers</a></li>
+                                  <li class="widget-list-item pb-1"><a class="widget-list-link" href="home-electronics-store.html#">Desktop Barebones</a></li>
                                 </ul>
                                 {% endfor %}
                               </div>
                             </div>
-                            <div class="mega-dropdown-column d-none d-lg-block py-4 text-center"><a class="d-block mb-2" href="{{ directory.offer_link }}"><img src="{% get_media_prefix %}{{directory.thumb}}" alt="Computers &amp; Accessories"></a>
-                              <div class="fs-sm mb-3">
-                                Starting from <span class='fw-medium'>{{ directory.offer_price }}<small>DA</small></span>
-                              </div>
-                              <a class="btn btn-primary btn-shadow btn-sm" href="home-electronics-store.html#">
-                                See offers<i class="ci-arrow-right fs-xs ms-1"></i>
-                              </a>
+                            <div class="mega-dropdown-column d-none d-lg-block py-4 text-center"><a class="d-block mb-2" href="home-electronics-store.html#"><img src="img/shop/departments/07.jpg" alt="Computers &amp; Accessories"></a>
+                              <div class="fs-sm mb-3">Starting from <span class='fw-medium'>$149.<small>80</small></span></div><a class="btn btn-primary btn-shadow btn-sm" href="home-electronics-store.html#">See offers<i class="ci-arrow-right fs-xs ms-1"></i></a>
                             </div>
                           </div>
                         </div>
