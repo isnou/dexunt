@@ -2065,7 +2065,7 @@
                             <ul class="nav nav-pills">
                                 {% for category in directory.category.all %}
                                 <li class="nav-item me-1">
-                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#remove_category_{{ category.sku }}">
+                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#remove_category_{{ category.sku }}_{{ directory.sku }}">
                                         {{ category.en_title }} <i class="bi bi-x-lg ms-2"></i>
                                     </a>
                                 </li>
@@ -2080,7 +2080,7 @@
 
                             {% for category in directory.category.all %}
                             <!--remove category modal-->
-                            <div class="modal fade" tabindex="-1" id="remove_category_{{ category.sku }}">
+                            <div class="modal fade" tabindex="-1" id="remove_category_{{ category.sku }}_{{ directory.sku }}">
                                 <div class="modal-dialog modal-flush">
                                     <div class="modal-content">
                                         <div class="modal-body">
