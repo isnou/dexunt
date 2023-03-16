@@ -1,7 +1,7 @@
 from .models import Intro, Showcase, Category, Directory
 
 
-def main_shop_content(request):
+def main_shop_content():
     intro = Intro.objects.all().get(id=1)
 
     try:
