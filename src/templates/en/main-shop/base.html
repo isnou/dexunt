@@ -189,17 +189,9 @@
                 <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
                 <!--category select-->
                 <select class="form-select flex-shrink-0" style="width: 10.5rem;">
-                  <option>All categories</option>
-                  <option>Computers</option>
-                  <option>Smartphones</option>
-                  <option>TV, Video, Audio</option>
-                  <option>Cameras</option>
-                  <option>Headphones</option>
-                  <option>Wearables</option>
-                  <option>Printers</option>
-                  <option>Video Games</option>
-                  <option>Home Music</option>
-                  <option>Data Storage</option>
+                  {% for category in directories %}
+                  <option>{{ category.en_title }}</option>
+                  {% endfor %}
                 </select>
                 <!--end category select-->
               </div>
