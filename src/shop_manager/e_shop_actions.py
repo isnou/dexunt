@@ -543,7 +543,7 @@ def remove_directory_from_department(detail, index):
     selected_department = Department.objects.all().get(sku=detail)
     selected_directory = Directory.objects.all().get(id=index)
 
-    selected_department.directors.remove(selected_directory)
+    selected_department.directory.remove(selected_directory)
 
     return {
         'url': url,

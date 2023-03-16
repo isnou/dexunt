@@ -1978,15 +1978,9 @@
                     <div class="card card-flush shadow-sm">
                         <div class="card-toolbar">
                             <div class="row mt-8" style="text-align: center;">
-                                {% if department.publish %}
-                                <a href="#" class="text-gray-900 fs-2 fw-bold" title="click to deactivate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ department.en_title }} - {{ department.rank }}
-                                </a>
-                                {% else %}
                                 <a href="#" class="text-muted fs-2 fw-bold" title="click to activate" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="bottom">
-                                    {{ department.en_title }} - {{ department.rank }}
+                                    {{ department.en_title }}
                                 </a>
-                                {% endif %}
                             </div>
                         </div>
                         <div class="card-body">
