@@ -1,4 +1,4 @@
-from .models import Intro, Showcase, Category, Directory
+from .models import Intro, Showcase, Category, Directory, Department
 
 
 def main_shop_content(request):
@@ -10,12 +10,12 @@ def main_shop_content(request):
         raise Http404("No showcases")
 
     try:
-        directories = Directory.objects.all()
-    except Directory.objects.all().DoesNotExist:
+        departments = Department.objects.all()
+    except Department.objects.all().DoesNotExist:
         raise Http404("No directories")
 
     return {
         'intro': intro,
         'showcases': showcases,
-        'directories': directories,
+        'departments': departments,
     }
