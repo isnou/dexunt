@@ -225,9 +225,9 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="home-electronics-store.html#" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ci-menu align-middle mt-n1 me-2"></i>Departments</a>
                     <ul class="dropdown-menu">
+                      {% for department in departments %}
                       <!--dropdown menu-->
                       <li class="dropdown mega-dropdown">
-                        {% for department in departments %}
                         <!--dropdown menu title-->
                         <a class="dropdown-item" href="home-electronics-store.html#" data-bs-toggle="dropdown">
                           {{ department.en_title|title }}
@@ -256,9 +256,9 @@
                           </div>
                         </div>
                         <!--end dropdown menu items-->
-                        {% endfor %}
                       </li>
                       <!--end dropdown menu-->
+                      {% endfor %}
                     </ul>
                   </li>
                 </ul>
