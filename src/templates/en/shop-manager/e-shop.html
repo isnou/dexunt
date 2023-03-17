@@ -2070,15 +2070,9 @@
                                 </li>
                                 {% endfor %}
 
-                                {% if department.directory.all.count < 3 %}
+                                {% if department.directory.all.count < 2 %}
                                 <li class="nav-item">
                                     <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#add_category_{{ department.sku }}">
-                                        <i class="bi bi-plus fs-2"></i>
-                                    </a>
-                                </li>
-                                {% else %}
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" >
                                         <i class="bi bi-plus fs-2"></i>
                                     </a>
                                 </li>
