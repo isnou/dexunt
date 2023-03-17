@@ -2034,6 +2034,10 @@
                                     <div class="col-sm-5 me-2">
                                         <div class="card card-flush py-4">
                                             <div class="form-floating mb-2">
+                                                <input type="text" class="form-control" name="icon_code" value="{{ department.icon_code }}"/>
+                                                <label>icon</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
                                                 <input type="text" class="form-control" name="en_title" value="{{ department.en_title }}"/>
                                                 <label>title</label>
                                             </div>
@@ -2053,10 +2057,6 @@
                                             <button type="submit" class="btn btn-light-secondary me-2" title="refresh" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="top">
                                                 <i class="bi bi-arrow-repeat fs-2x"></i>
                                             </button>
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" name="icon_code" value="{{ department.icon_code }}"/>
-                                                <label>icon</label>
-                                            </div>
                                         </div>
                                     </div>
                                 </form>
