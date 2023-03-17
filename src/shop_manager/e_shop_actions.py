@@ -490,6 +490,7 @@ def edit_department(request, detail):
         selected_department.save()
 
     if request.method == 'POST':
+        icon_code = request.POST.get('icon_code', False)
         en_title = request.POST.get('en_title', False)
         fr_title = request.POST.get('fr_title', False)
         ar_title = request.POST.get('ar_title', False)
@@ -500,6 +501,8 @@ def edit_department(request, detail):
         offer_price = request.POST.get('offer_price', False)
         thumb = request.FILES.get('thumb', False)
 
+        if icon_code:
+            selected_department.icon_code = icon_code
         if en_title:
             selected_department.en_title = en_title
         if fr_title:
