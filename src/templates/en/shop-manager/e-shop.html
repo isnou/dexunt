@@ -2155,11 +2155,13 @@
                 <!--actions-->
                 <ul class="nav nav-pills">
                     {% for directory in directories %}
+                    {% if not directory.linked %}
                     <li class="nav-item me-1">
                         <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == directory.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#check_{{ directory.sku }}">
                             {{ directory.en_title }}
                         </a>
                     </li>
+                    {% endif %}
                     {% endfor %}
                     <li class="nav-item">
                         <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#new_directory">
@@ -2361,11 +2363,13 @@
                 <!--actions-->
                 <ul class="nav nav-pills">
                     {% for category in categories %}
+                    {% if not category.linked %}
                     <li class="nav-item me-1">
                         <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if sub_tab == category.sku %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#check_{{ category.sku }}">
                             {{ category.en_title }}
                         </a>
                     </li>
+                    {% endif %}
                     {% endfor %}
                     <li class="nav-item">
                         <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700" data-bs-toggle="modal" data-bs-target="#new_category">

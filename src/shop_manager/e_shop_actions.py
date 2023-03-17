@@ -532,6 +532,9 @@ def add_directory_to_department(detail, index):
     selected_directory = Directory.objects.all().get(id=index)
 
     if not selected_department.directory.all().filter(sku=selected_directory.sku).exists():
+        selected_directory.linked=True
+        selected_directory.save()
+
         selected_department.directory.add(selected_directory)
 
     return {
@@ -542,6 +545,8 @@ def remove_directory_from_department(detail, index):
     url = "/shop-manager/e-shop.html"
     selected_department = Department.objects.all().get(sku=detail)
     selected_directory = Directory.objects.all().get(id=index)
+    selected_directory.linked = False
+    selected_directory.save()
 
     selected_department.directory.remove(selected_directory)
 
@@ -589,6 +594,9 @@ def add_category_to_directory(detail, index):
     selected_category = Category.objects.all().get(id=index)
 
     if not selected_directory.category.all().filter(sku=selected_category.sku).exists():
+        selected_category.linked=True
+        selected_category.save()
+
         selected_directory.category.add(selected_category)
 
     return {
@@ -599,6 +607,8 @@ def remove_category_from_directory(detail, index):
     url = "/shop-manager/e-shop.html"
     selected_directory = Directory.objects.all().get(sku=detail)
     selected_category = Category.objects.all().get(id=index)
+    selected_category.linked=False
+    selected_category.save()
 
     selected_directory.category.remove(selected_category)
 
