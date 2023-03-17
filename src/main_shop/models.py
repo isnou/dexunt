@@ -52,6 +52,7 @@ class Category(models.Model):
     fr_title = models.TextField(max_length=300, blank=True, null=True)
     ar_title = models.TextField(max_length=300, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
+    linked = models.BooleanField(default=False)
     sku = models.CharField(max_length=20, unique=True, null=True)
     product = models.ManyToManyField(Product, blank=True)
 
@@ -70,6 +71,7 @@ class Directory(models.Model):
     fr_title = models.TextField(max_length=300, blank=True, null=True)
     ar_title = models.TextField(max_length=300, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
+    linked = models.BooleanField(default=False)
     sku = models.CharField(max_length=20, unique=True, null=True)
     category = models.ManyToManyField(Category, blank=True)
     # --------------------------------- media --------------------------------------------------
