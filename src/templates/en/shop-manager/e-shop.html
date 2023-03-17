@@ -2099,7 +2099,7 @@
                             <!--end remove category modal-->
                             {% endfor %}
 
-                            <!--new category modal-->
+                            <!--add category modal-->
                             <div class="modal fade" tabindex="-1" id="add_category_{{ department.sku }}">
                                 <div class="modal-dialog modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -2113,6 +2113,7 @@
                                             <table class="table table-row-bordered gy-7 gs-7">
                                                 <tbody>
                                                 {% for directory in directories %}
+                                                {% if not directory.linked %}
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
@@ -2120,7 +2121,6 @@
                                                                 <a class="text-gray-800 text-hover-primary fs-5 fw-bold">
                                                                     {{directory.en_title}}
                                                                 </a>
-
                                                             </div>
                                                         </div>
                                                     </td>
@@ -2130,6 +2130,7 @@
                                                         </a>
                                                     </td>
                                                 </tr>
+                                                {% endif %}
                                                 {% endfor %}
                                                 </tbody>
                                             </table>
@@ -2137,7 +2138,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--end new category modal-->
+                            <!--end add category modal-->
                         </div>
                     </div>
                 </div>
