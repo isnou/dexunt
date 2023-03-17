@@ -2321,6 +2321,7 @@
                                             <table class="table table-row-bordered gy-7 gs-7">
                                                 <tbody>
                                                 {% for category in categories %}
+                                                {% if not category.linked %}
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
@@ -2338,6 +2339,7 @@
                                                         </a>
                                                     </td>
                                                 </tr>
+                                                {% endif %}
                                                 {% endfor %}
                                                 </tbody>
                                             </table>
