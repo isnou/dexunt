@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_user_agents',
     'phonenumber_field',
+    'fontawesomefree',
     'mathfilters',
     'sell_manager',
     'shop_manager',
