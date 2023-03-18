@@ -25,7 +25,8 @@
     <link rel="stylesheet" media="screen" href="{% static 'main-shop/vendor/lightgallery/css/lightgallery-bundle.min.css' %}">
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="{% static 'main-shop/css/theme.min.css' %}">
-    <!-- Google Tag Manager-->
+    <!-- Font Awesome JS-->
+    <script src="https://kit.fontawesome.com/f9c426c597.js" crossorigin="anonymous"></script>
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -230,7 +231,7 @@
                       <li class="dropdown mega-dropdown">
                         <!--dropdown menu title-->
                         <a class="dropdown-item" href="home-electronics-store.html#" data-bs-toggle="dropdown">
-                          <i class="{{ department.icon_code }} opacity-60 fs-lg mt-n1 me-2"></i> {{ department.en_title|title }}
+                          <i class="fa-thin {{ department.icon_code }} fs-lg me-2"></i> {{ department.en_title|title }}
                         </a>
                         <!--end dropdown menu title-->
                         <!--dropdown menu items-->
