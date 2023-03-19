@@ -26,6 +26,29 @@ def change_language(request, language):
     return redirect('main-shop-home')
 
 
+def product(request, sku, size_sku):
+    direction = request.session.get('language')
+    url = direction + "/main-shop/product.html"
+
+    selected_product = Product.objects.all().get(sku=sku)
+
+    if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
+        variant = ShowcaseProduct.objects.all().get(en_title=selected_product.en_title)
+    else:
+        variant = None
+
+    if not size_sku == 'main':
+        selected_size = selected_product.size.all().get(sku=size_sku)
+    else:
+        selected_size = None
+
+    context = {
+        'selected_product': selected_product,
+        'selected_size': selected_size,
+        'variant': variant,
+        'size_sku': size_sku,
+    }
+    return render(request, url, context)
 
 
 def grid_shop(request, action, ref):
