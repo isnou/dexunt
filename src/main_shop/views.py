@@ -30,7 +30,10 @@ def product(request, sku, size_sku):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
 
-    selected_product = Product.objects.all().get(sku=sku)
+    if Product.objects.all().filter(sku=sku).exists():
+        selected_product = Product.objects.all().get(sku=sku)
+    else :
+        selected_product = None
 
     if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
         variant = ShowcaseProduct.objects.all().get(en_title=selected_product.en_title)
