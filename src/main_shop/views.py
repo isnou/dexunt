@@ -32,13 +32,15 @@ def product(request, sku, size_sku):
 
     if Product.objects.all().filter(sku=sku).exists():
         selected_product = Product.objects.all().get(sku=sku)
+        if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
+            variant = ShowcaseProduct.objects.all().get(en_title=selected_product.en_title)
+        else:
+            variant = None
     else :
         selected_product = None
-
-    if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
-        variant = ShowcaseProduct.objects.all().get(en_title=selected_product.en_title)
-    else:
         variant = None
+
+
 
     if not size_sku == 'main':
         selected_size = selected_product.size.all().get(sku=size_sku)
