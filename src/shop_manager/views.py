@@ -148,8 +148,10 @@ def e_shop(request, action, detail, index):
         raise Http404("No directories")
 
     if not Intro.objects.all().filter(id=1).exists():
-        Intro(id=1,).save()
-    intro = Intro.objects.all().get(id=1)
+        intro = Intro(id=1,)
+        intro.save()
+    else:
+        intro = Intro.objects.all().get(id=1)
     try:
         all_products = Product.objects.all()
     except Product.DoesNotExist:
