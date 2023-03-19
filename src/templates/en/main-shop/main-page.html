@@ -126,7 +126,7 @@
                     </div>
                     {% endif %}
 
-                    <a href="{% url 'product' product.sku 'main' %}" class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button">
+                    <a href="{% url 'single-product' product.sku 'main' %}" class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button">
                         <i class="ci-cart fs-sm me-1"></i>Buy Now
                     </a>
                 </div>
@@ -155,7 +155,7 @@
                         <span class="text-muted fs-sm">Out of stock</span>
                     </div>
 
-                    <a href="{% url 'product' product.sku 'main' %}" class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button" disabled>
+                    <a href="{% url 'single-product' product.sku 'main' %}" class="btn btn-secondary btn-sm d-block w-100 mb-2" type="button" disabled>
                         <i class="ci-cart fs-sm me-1"></i>Buy Now
                     </a>
 
@@ -210,7 +210,7 @@
                             </div>
                             {% endif %}
 
-                            <a href="{% url 'product' product.sku 'main' %}" class="btn btn-primary btn-sm d-block w-100 mb-2" type="button">
+                            <a href="{% url 'single-product' product.sku 'main' %}" class="btn btn-primary btn-sm d-block w-100 mb-2" type="button">
                                 <i class="ci-cart fs-sm me-1"></i>Add to Cart
                             </a>
                             <div class="text-center mb-2">
@@ -239,7 +239,7 @@
                                 <span class="text-muted fs-sm">Out of stock</span>
                             </div>
 
-                            <a href="{% url 'product' product.sku 'main' %}" class="btn btn-primary btn-sm d-block w-100 mb-2" type="button" disabled>
+                            <a href="{% url 'single-product' product.sku 'main' %}" class="btn btn-primary btn-sm d-block w-100 mb-2" type="button" disabled>
                                 <i class="ci-cart fs-sm me-1"></i>Add to Cart
                             </a>
                             <div class="text-center mb-2">
@@ -324,7 +324,7 @@
                 <h3 class="widget-title">Bestsellers</h3>
                 {% for product in best_sellers %}
                 <div class="d-flex align-items-center pb-2">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' %}">
+                    <a class="d-block flex-shrink-0" href="{% url 'single-product' product.sku 'main' %}">
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
@@ -348,7 +348,7 @@
                 <h3 class="widget-title">New arrivals</h3>
                 {% for product in new_arrivals %}
                 <div class="d-flex align-items-center pb-2">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' %}">
+                    <a class="d-block flex-shrink-0" href="{% url 'single-product' product.sku 'main' %}">
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
@@ -372,7 +372,7 @@
                 <h3 class="widget-title">Top rated</h3>
                 {% for product in top_rated %}
                 <div class="d-flex align-items-center pb-2">
-                    <a class="d-block flex-shrink-0" href="{% url 'product' product.sku 'main' %}">
+                    <a class="d-block flex-shrink-0" href="{% url 'single-product' product.sku 'main' %}">
                         <img src="{% get_media_prefix %}{{product.album.all.0.image}}" width="64" alt="Product">
                     </a>
                     <div class="ps-2">
@@ -517,7 +517,7 @@
                             {% endif %}
 
                             <div class="mb-3 d-flex align-items-center">
-                                <a href="{% url 'product' product.sku 'main' %}" class="btn btn-primary btn-shadow d-block w-100" type="button"><i class="ci-forward fs-lg me-2"></i>more details</a>
+                                <a href="{% url 'single-product' product.sku 'main' %}" class="btn btn-primary btn-shadow d-block w-100" type="button"><i class="ci-forward fs-lg me-2"></i>more details</a>
                             </div>
 
                             {% if product.quantity %}
