@@ -2,7 +2,11 @@ from .models import Intro, Showcase, Category, Directory, Department
 
 
 def main_shop_content(request):
-    intro = Intro.objects.all().get(id=1)
+    if not Intro.objects.all().filter(id=1).exists():
+        intro = Intro(id=1, )
+        intro.save()
+    else:
+        intro = Intro.objects.all().get(id=1)
 
     try:
         showcases = Showcase.objects.all().order_by('-rank')
