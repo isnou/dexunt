@@ -186,11 +186,11 @@
 
                         <!-- Product details-->
                         <div class="col-lg-5 pt-4 pt-lg-0">
-                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'cart-home' 'add_product_to_cart' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
-                                <input type="hidden" name="size_sku" value='{{ size_sku }}' >
-                                <input type="hidden" name="product_sku" value='{{ selected_product.sku }}' >
+                                <input type="hidden" name="size_sku" value='{{ size_sku }}'>
+                                <input type="hidden" name="product_sku" value='{{ selected_product.sku }}'>
 
                                 <div class="product-details ms-auto pb-3">
                                     <!-- pricing -->
