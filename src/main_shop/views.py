@@ -11,6 +11,7 @@ def main_shop_home(request):
         request.session['language'] = 'en'
     if not request.session.get('cart', None):
         request.session['cart'] = functions.serial_number_generator(30).upper()
+    cart_ref = request.session.get('cart')
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
     context = {
