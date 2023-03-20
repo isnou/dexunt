@@ -2,7 +2,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
 from .models import Showcase
-from . import grid_shop_actions, functions
+from . import grid_shop_actions
+from .. import functions
 
 
 def main_shop_home(request):
