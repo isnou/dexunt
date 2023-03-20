@@ -36,7 +36,7 @@ def add_product_to_cart(request):
                                                product_sku=product_sku,
                                                size_sku=size_sku,
                                                quantity=int(quantity),
-                                               price=int(price)
+                                               price=price
                                                )
                     cart_product.save()
                     cart.product.add(cart_product)
@@ -47,7 +47,7 @@ def add_product_to_cart(request):
                                        product_sku=product_sku,
                                        size_sku=size_sku,
                                        quantity=int(quantity),
-                                       price=int(price)
+                                       price=price
                                        )
             cart_product.save()
             cart.product.add(cart_product)
