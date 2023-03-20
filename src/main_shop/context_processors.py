@@ -1,10 +1,10 @@
 from .models import Intro, Showcase, Category, Directory, Department
-from sell_manager.models import Cart
+
 
 
 def main_shop_content(request):
     intro = Intro.objects.all().get(id=1)
-    cart_ref = request.session.get('cart')
+
 
     try:
         showcases = Showcase.objects.all().order_by('-rank')

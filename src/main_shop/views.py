@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
+from sell_manager.models import Cart
 from .models import Showcase
 from . import grid_shop_actions
 from add_ons import functions
@@ -11,10 +12,20 @@ def main_shop_home(request):
         request.session['language'] = 'en'
     if not request.session.get('cart', None):
         request.session['cart'] = functions.serial_number_generator(30).upper()
-    cart_ref = request.session.get('cart')
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
+
+    cart_ref = request.session.get('cart')
+
+    if Cart.objects.all().filter(ref=cart_ref).exists():
+        cart = Cart.objects.all().get(ref=cart_ref)
+    else:
+        cart = Cart(ref=cart_ref,
+                    )
+        cart.save()
+
     context = {
+        'cart': cart
     }
     return render(request, url, context)
 
