@@ -13,14 +13,16 @@ def add_product_to_cart(request):
         quantity = request.POST.get('quantity', False)
 
 
-        if cart.product.all().filter(product_sku=product_sku).exists():
-            if cart.product.all().filter(size_sku=size_sku).exists():
-                cart_product = cart.product.all().get(size_sku=size_sku)
-            else:
-                cart_product = cart.product.all().get(product_sku=product_sku)
+        if cart.product.all().filter(product_sku=product_sku).exists() and size_sku == 'main':
+            cart_product = cart.product.all().get(product_sku=product_sku)
             cart_product.quantity = quantity
             cart_product.save()
-        else:
+        elif cart.product.all().filter(product_sku=product_sku).exists() and size_sku != 'main':
+            if cart.product.all().filter(size_sku=size_sku).exists():
+                cart_product = cart.product.all().get(size_sku=size_sku)
+                cart_product.quantity = quantity
+                cart_product.save()
+        elif not cart.product.all().filter(product_sku=product_sku).exists() and size_sku == 'main':
             cart_product = CartProduct(product_sku=product_sku,
                                        size_sku=size_sku,
                                        quantity=int(quantity),
