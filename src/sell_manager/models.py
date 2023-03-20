@@ -42,6 +42,7 @@ class Cart(models.Model):
     ip_address = models.CharField(max_length=200, default='UNDEFINED')
     # --------------------------------- info ---------------------------------------------------
     product = models.ManyToManyField(CartProduct, blank=True)
+    sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return self.ref
