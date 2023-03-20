@@ -44,7 +44,7 @@ class Cart(models.Model):
     product = models.ManyToManyField(CartProduct, blank=True)
 
     def __str__(self):
-        return self.sku
+        return self.ref
 
 
 class Order(models.Model):
