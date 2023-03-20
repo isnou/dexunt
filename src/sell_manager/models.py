@@ -74,16 +74,16 @@ class Order(models.Model):
 
 class SubDestination(models.Model):
     # --------------------------------- shipping details ---------------------------------------
-    destination = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
-        return self.destination
+        return self.name
 
 class Destination(models.Model):
     # --------------------------------- shipping details ---------------------------------------
-    destination = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200, blank=True, null=True)
     sub_destination = models.ManyToManyField(SubDestination, blank=True)
 
     def __str__(self):
-        return self.destination
+        return self.name
