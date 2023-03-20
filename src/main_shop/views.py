@@ -2,12 +2,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
 from .models import Showcase
-from . import grid_shop_actions
+from . import grid_shop_actions, functions
 
 
 def main_shop_home(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
+    if not request.session.get('cart', None):
+        request.session['cart'] = functions.serial_number_generator(30).upper()
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
     context = {
