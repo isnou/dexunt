@@ -12,6 +12,7 @@ class CartProduct(models.Model):
     thumb = models.ImageField(upload_to='sell-manager/collection/thumb', blank=True, null=True)
     # --------------------------------- info ---------------------------------------------------
     product_sku = models.CharField(max_length=30, blank=True, null=True)
+    size_sku = models.CharField(max_length=30, blank=True, null=True)
 
     en_name = models.CharField(max_length=300, blank=True, null=True)
     fr_name = models.CharField(max_length=300, blank=True, null=True)
