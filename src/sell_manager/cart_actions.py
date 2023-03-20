@@ -22,7 +22,7 @@ def add_product_to_cart(request):
                                    quantity=quantity,
                                    )
         cart_product.save()
-        cart.add(cart_product)
+        cart.product.add(cart_product)
 
 
 
