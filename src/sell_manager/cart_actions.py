@@ -12,20 +12,22 @@ def add_product_to_cart(request):
         product_sku = request.POST.get('product_sku', False)
         quantity = request.POST.get('quantity', False)
 
-        if not size_sku == 'main':
-            size_sku = size_sku
+
+        if cart.product.objects.all().filter(product_sku=product_sku).exists():
+            if cart.product.objects.all().filter(size_sku=size_sku).exists():
+                cart_product = cart.product.objects.all().get(size_sku=size_sku)
+            else:
+                cart_product = cart.product.objects.all().get(product_sku=product_sku)
+            cart_product.quantity = quantity
+            cart_product.save()
         else:
-            size_sku = None
-
-        cart_product = CartProduct(product_sku=product_sku,
-                                   size_sku=size_sku,
-                                   quantity=quantity,
-                                   )
-        cart_product.save()
-        cart.product.add(cart_product)
-
-
-
+            cart_product = CartProduct(product_sku=product_sku,
+                                       size_sku=size_sku,
+                                       quantity=int(quantity),
+                                       )
+            cart_product.save()
+            cart.product.add(cart_product)
+        
     return {
         'url': url,
     }
