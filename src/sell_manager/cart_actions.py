@@ -26,7 +26,7 @@ def add_product_to_cart(request):
             if selected_size.show_thumb:
                 thumb = selected_size.thumb
             else:
-                thumb = selected_product.album.get()[0]
+                thumb = selected_product.album[0].get()
         else:
             if selected_product.discount_price:
                 price = selected_product.discount_price
@@ -35,7 +35,7 @@ def add_product_to_cart(request):
             en_detail = None
             fr_detail = None
             ar_detail = None
-            thumb = selected_product.album.get()[0]
+            thumb = selected_product.album[0].get()
 
         delivery = selected_variant.delivery_quotient
         points = selected_variant.points
