@@ -109,7 +109,7 @@ def add_product_to_cart(request):
 
     sub_total_price=0
     for cart_product in cart.product.all():
-        sub_total_price =+ cart_product.price * cart_product.quantity
+        sub_total_price += cart_product.price * cart_product.quantity
     cart.sub_total_price = sub_total_price
     cart.save()
 
