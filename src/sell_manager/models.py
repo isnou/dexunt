@@ -6,7 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class CartProduct(models.Model):
     # --------------------------------- collection technical informations ----------------------
-    delivery = models.IntegerField(default=0)
+    delivery = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='sell-manager/collection/thumb', blank=True, null=True)
@@ -34,7 +34,7 @@ class CartProduct(models.Model):
 
 class Cart(models.Model):
     # --------------------------------- cart technical informations ----------------------------
-    sku = models.CharField(max_length=30, unique=True)
+    ref = models.CharField(max_length=30, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     device = models.CharField(max_length=200, default='UNDEFINED')
