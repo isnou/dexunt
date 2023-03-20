@@ -30,7 +30,7 @@ class CartProduct(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.product_sku
+        return self.en_name
 
 
 class Cart(models.Model):
@@ -46,7 +46,7 @@ class Cart(models.Model):
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
-        return self.ref
+        return self.ip_address
 
 
 class Order(models.Model):
