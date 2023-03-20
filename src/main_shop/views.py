@@ -1,7 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
-from .models import Intro, Showcase, Category, Directory, Department
 
 from .models import Showcase
 from . import grid_shop_actions
@@ -15,22 +14,7 @@ def main_shop_home(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
 
-    intro = Intro.objects.all().get(id=1)
-
-    try:
-        showcases = Showcase.objects.all().order_by('-rank')
-    except Showcase.objects.all().DoesNotExist:
-        raise Http404("No showcases")
-
-    try:
-        departments = Department.objects.all()
-    except Department.objects.all().DoesNotExist:
-        raise Http404("No directories")
-
     context = {
-        'intro': intro,
-        'showcases': showcases,
-        'departments': departments,
     }
     return render(request, url, context)
 
