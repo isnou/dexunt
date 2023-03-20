@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . import inventory_actions, e_shop_actions, clips_actions
+from . import inventory_actions, e_shop_actions
 from .models import Product, Size, Feature, ShowcaseProduct
 from main_shop.models import Intro ,Showcase,Department ,Directory ,Category
 
