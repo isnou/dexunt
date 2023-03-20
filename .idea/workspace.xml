@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change afterPath="$PROJECT_DIR$/src/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main_shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_shop/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,11 +41,11 @@
       <recent name="$PROJECT_DIR$/src/templates/ltr/main-shop" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/add_ons" />
       <recent name="$PROJECT_DIR$/site/public/static/manager/media/stock/ecommerce" />
       <recent name="$PROJECT_DIR$/site/public/static/main-shop/css/rtl" />
       <recent name="$PROJECT_DIR$/site/public/static/main-shop/css" />
       <recent name="$PROJECT_DIR$/src/templates/en" />
-      <recent name="$PROJECT_DIR$/site/public/static/main-shop/css/color" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

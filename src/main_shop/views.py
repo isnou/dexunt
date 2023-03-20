@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
 from .models import Showcase
 from . import grid_shop_actions
-from ..add_ons import functions
+from add_ons import functions
 
 
 def main_shop_home(request):
