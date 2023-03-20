@@ -46,9 +46,7 @@ def add_product_to_cart(request):
         fr_spec = selected_product.fr_spec
         ar_spec = selected_product.ar_spec
 
-
         quantity = request.POST.get('quantity', False)
-
 
         if cart.product.all().filter(product_sku=product_sku).exists():
             if size_sku == 'main':
@@ -109,25 +107,12 @@ def add_product_to_cart(request):
             cart_product.save()
             cart.product.add(cart_product)
 
-
+    sub_total_price=0
+    for cart_product in cart.product.all():
+        sub_total_price =+ cart_product.price * cart_product.quantity
+    cart.sub_total_price = sub_total_price
+    cart.save()
 
     return {
         'url': url,
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
