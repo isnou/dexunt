@@ -30,7 +30,7 @@ class CartProduct(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.en_name
+        return self.product_sku
 
 
 class Cart(models.Model):
