@@ -24,7 +24,7 @@ def add_product_to_cart(request):
             fr_detail = selected_size.fr_title
             ar_detail = selected_size.ar_title
             if selected_size.show_thumb:
-                thumb = None
+                thumb = selected_size.thumb
             else:
                 thumb = None
         else:
