@@ -1,11 +1,8 @@
-from .models import Intro, Showcase, Category, Directory, Department
 from sell_manager.models import Cart
 from add_ons import functions
 
 
 def main_shop_content(request):
-    intro = Intro.objects.all().get(id=1)
-
     if not request.session.get('cart', None):
         request.session['cart'] = functions.serial_number_generator(30).upper()
     cart_ref = request.session.get('cart')
@@ -20,19 +17,6 @@ def main_shop_content(request):
                     )
         cart.save()
 
-    try:
-        showcases = Showcase.objects.all().order_by('-rank')
-    except Showcase.objects.all().DoesNotExist:
-        raise Http404("No showcases")
-
-    try:
-        departments = Department.objects.all()
-    except Department.objects.all().DoesNotExist:
-        raise Http404("No directories")
-
     return {
-        'intro': intro,
         'cart': cart,
-        'showcases': showcases,
-        'departments': departments,
     }
