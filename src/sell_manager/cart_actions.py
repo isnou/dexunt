@@ -8,9 +8,16 @@ def add_product_to_cart(request):
 
     if request.method == 'POST':
 
+        delivery = request.POST.get('delivery', False)
+        points = request.POST.get('points', False)
+        en_name = request.POST.get('en_name', False)
+
         size_sku = request.POST.get('size_sku', False)
         product_sku = request.POST.get('product_sku', False)
+
+        price = request.POST.get('price', False)
         quantity = request.POST.get('quantity', False)
+
 
         if cart.product.all().filter(product_sku=product_sku).exists():
             if size_sku == 'main':
@@ -23,16 +30,24 @@ def add_product_to_cart(request):
                     cart_product.quantity = quantity
                     cart_product.save()
                 else:
-                    cart_product = CartProduct(product_sku=product_sku,
+                    cart_product = CartProduct(delivery=delivery,
+                                               points=points,
+                                               en_name=en_name,
+                                               product_sku=product_sku,
                                                size_sku=size_sku,
                                                quantity=int(quantity),
+                                               price=int(price)
                                                )
                     cart_product.save()
                     cart.product.add(cart_product)
         else:
-            cart_product = CartProduct(product_sku=product_sku,
+            cart_product = CartProduct(delivery=delivery,
+                                       points=points,
+                                       en_name=en_name,
+                                       product_sku=product_sku,
                                        size_sku=size_sku,
                                        quantity=int(quantity),
+                                       price=int(price)
                                        )
             cart_product.save()
             cart.product.add(cart_product)
@@ -42,3 +57,4 @@ def add_product_to_cart(request):
     return {
         'url': url,
     }
+

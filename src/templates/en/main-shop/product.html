@@ -191,6 +191,10 @@
 
                                 <input type="hidden" name="size_sku" value='{{ size_sku }}'>
                                 <input type="hidden" name="product_sku" value='{{ selected_product.sku }}'>
+                                <input type="hidden" name="en_name" value='{{ selected_product.en_title }}'>
+                                <input type="hidden" name="fr_name" value='{{ selected_product.fr_title }}'>
+                                <input type="hidden" name="ar_name" value='{{ selected_product.ar_title }}'>
+                                <input type="hidden" name="delivery" value='{{ variant.delivery_quotient }}'>
 
                                 <div class="product-details ms-auto pb-3">
                                     <!-- pricing -->
@@ -200,9 +204,11 @@
                                     <div class="mb-3 me-1">
                                         <del><span class="text-muted fs-6">{{ selected_product.sell_price|floatformat:"2g" }} DZD</span></del>
                                         <span class="fw-normal text-accent fs-2">{{ selected_product.discount_price|floatformat:"2g" }} DZD</span>
+                                        <input type="hidden" name="price" value='{{ selected_product.discount_price }}'>
                                     </div>
                                     {% else %}
                                     <div class="fw-normal text-accent fs-2 mb-3 me-1">{{ selected_product.sell_price|floatformat:"2g" }} DZD</div>
+                                    <input type="hidden" name="price" value='{{ selected_product.sell_price }}'>
                                     {% endif %}
                                     {% else %}
                                     <!-- size pricing -->
@@ -210,9 +216,11 @@
                                     <div class="mb-3 me-1">
                                         <del><span class="text-muted fs-6">{{ selected_size.sell_price|floatformat:"2g" }} DZD</span></del>
                                         <span class="fw-normal text-accent fs-2">{{ selected_size.discount_price|floatformat:"2g" }} DZD</span>
+                                        <input type="hidden" name="price" value='{{ selected_size.discount_price }}'>
                                     </div>
                                     {% else %}
                                     <div class="fw-normal text-accent fs-2 mb-3 me-1">{{ selected_size.sell_price|floatformat:"2g" }} DZD</div>
+                                    <input type="hidden" name="price" value='{{ selected_size.sell_price }}'>
                                     {% endif %}
                                     {% endif %}
                                     <!-- end pricing -->
@@ -241,6 +249,7 @@
                                         <span class="text-muted">buy and get {{ variant.points }} points
                                         </span>
                                     </div>
+                                    <input type="hidden" name="points" value='{{ variant.points }}'>
                                     {% endif %}
 
                                     {% if selected_size.show_thumb %}
