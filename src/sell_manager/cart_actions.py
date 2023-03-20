@@ -9,7 +9,7 @@ def add_product_to_cart(request):
     if request.method == 'POST':
 
         size_sku = request.POST.get('size_sku', False)
-        product_sku = request.FILES.get('product_sku', False)
+        product_sku = request.POST.get('product_sku', False)
         quantity = request.POST.get('quantity', False)
 
         if not size_sku == 'main':
