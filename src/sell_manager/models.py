@@ -4,64 +4,47 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-class Clip(models.Model):
-    # --------------------------------- clip technical informations ----------------------------
-    sku = models.CharField(max_length=30, blank=True, null=True)
-    product_title = models.CharField(max_length=400, blank=True, null=True)
-    type = models.CharField(max_length=50, blank=True, null=True)
-    # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='sell-manager/clip/thumb', blank=True, null=True)
-    # --------------------------------- clip info  ---------------------------------------------
-    en_clip_title = models.CharField(max_length=100, blank=True, null=True)
-    fr_clip_title = models.CharField(max_length=100, blank=True, null=True)
-    ar_clip_title = models.CharField(max_length=100, blank=True, null=True)
-
-    value = models.IntegerField(
-        default=0,
-        validators=[
-            MaxValueValidator(100),
-            MinValueValidator(0)
-        ]
-    )
-    points = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.type
-
-
-class Collection(models.Model):
+class CartProduct(models.Model):
     # --------------------------------- collection technical informations ----------------------
-    solidarity = models.IntegerField(default=0)
     delivery = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='sell-manager/collection/thumb', blank=True, null=True)
     # --------------------------------- info ---------------------------------------------------
     product_sku = models.CharField(max_length=30, blank=True, null=True)
-    en_product_name = models.CharField(max_length=300, blank=True, null=True)
-    fr_product_name = models.CharField(max_length=300, blank=True, null=True)
-    ar_product_name = models.CharField(max_length=300, blank=True, null=True)
-    product_option = models.CharField(max_length=300, blank=True, null=True)
+
+    en_name = models.CharField(max_length=300, blank=True, null=True)
+    fr_name = models.CharField(max_length=300, blank=True, null=True)
+    ar_name = models.CharField(max_length=300, blank=True, null=True)
+
+    en_spec = models.CharField(max_length=300, blank=True, null=True)
+    fr_spec = models.CharField(max_length=300, blank=True, null=True)
+    ar_spec = models.CharField(max_length=300, blank=True, null=True)
+
+    en_detail = models.CharField(max_length=300, blank=True, null=True)
+    fr_detail = models.CharField(max_length=300, blank=True, null=True)
+    ar_detail = models.CharField(max_length=300, blank=True, null=True)
+
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.en_product_name
+        return self.en_name
 
 
 class Cart(models.Model):
     # --------------------------------- cart technical informations ----------------------------
-    ref = models.CharField(max_length=30, unique=True)
+    sku = models.CharField(max_length=30, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     device = models.CharField(max_length=200, default='UNDEFINED')
     operating_system = models.CharField(max_length=200, default='UNDEFINED')
     ip_address = models.CharField(max_length=200, default='UNDEFINED')
     # --------------------------------- info ---------------------------------------------------
-    collections = models.ManyToManyField(Collection, blank=True)
+    product = models.ManyToManyField(CartProduct, blank=True)
 
     def __str__(self):
-        return self.ref
+        return self.sku
 
 
 class Order(models.Model):
@@ -74,11 +57,12 @@ class Order(models.Model):
     ip_address = models.CharField(max_length=200, default='UNDEFINED')
     state = models.CharField(max_length=100, default='PENDING')
     # --------------------------------- client info --------------------------------------------
-    collections = models.ManyToManyField(Collection, blank=True)
+    product = models.ManyToManyField(CartProduct, blank=True)
     name = models.CharField(max_length=300, blank=True, null=True)
     phone = PhoneNumberField(blank=True)
     destination = models.CharField(max_length=200, blank=True, null=True)
-    sub_destination = models.CharField(max_length=500, blank=True, null=True)
+    sub_destination = models.CharField(max_length=200, blank=True, null=True)
+    full_address = models.CharField(max_length=500, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
     coupon_title = models.CharField(max_length=30, blank=True, null=True)
     coupon_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
@@ -88,9 +72,18 @@ class Order(models.Model):
     def __str__(self):
         return self.cart_ref
 
-
-class Shipping(models.Model):
+class SubDestination(models.Model):
     # --------------------------------- shipping details ---------------------------------------
     destination = models.CharField(max_length=200, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    product = models.ManyToManyField(Product, blank=True)
+
+    def __str__(self):
+        return self.destination
+
+class Destination(models.Model):
+    # --------------------------------- shipping details ---------------------------------------
+    destination = models.CharField(max_length=200, blank=True, null=True)
+    sub_destination = models.ManyToManyField(SubDestination, blank=True)
+
+    def __str__(self):
+        return self.destination
