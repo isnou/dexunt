@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Cart, CartProduct, Product
+from shop_manager.models import Size, ShowcaseProduct
 
 
 def add_product_to_cart(request):
@@ -7,15 +8,40 @@ def add_product_to_cart(request):
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
 
     if request.method == 'POST':
-
-        delivery = request.POST.get('delivery', False)
-        points = request.POST.get('points', False)
-        en_name = request.POST.get('en_name', False)
-
-        size_sku = request.POST.get('size_sku', False)
         product_sku = request.POST.get('product_sku', False)
+        variant_sku = request.POST.get('variant_sku', False)
+        size_sku = request.POST.get('size_sku', False)
 
-        price = request.POST.get('price', False)
+        selected_variant = ShowcaseProduct.objects.all().get(sku=variant_sku)
+        selected_product = Product.objects.all().get(sku=product_sku)
+        if not size_sku == 'main':
+            selected_size = Size.objects.all().get(sku=size_sku)
+            if selected_size.discount_price:
+                price = selected_size.discount_price
+            else:
+                price = selected_size.sell_price
+            en_detail = selected_size.en_title
+            fr_detail = selected_size.fr_title
+            ar_detail = selected_size.ar_title
+        else:
+            if selected_product.discount_price:
+                price = selected_product.discount_price
+            else:
+                price = selected_product.sell_price
+            en_detail = None
+            fr_detail = None
+            ar_detail = None
+
+        delivery = selected_variant.delivery_quotient
+        points = selected_variant.points
+        en_name = selected_product.en_title
+        fr_name = selected_product.fr_title
+        ar_name = selected_product.ar_title
+        en_spec = selected_product.en_spec
+        fr_spec = selected_product.fr_spec
+        ar_spec = selected_product.ar_spec
+
+
         quantity = request.POST.get('quantity', False)
 
 
@@ -33,6 +59,19 @@ def add_product_to_cart(request):
                     cart_product = CartProduct(delivery=delivery,
                                                points=points,
                                                en_name=en_name,
+                                               fr_name=fr_name,
+                                               ar_name=ar_name,
+
+                                               en_spec=en_spec,
+                                               fr_spec=fr_spec,
+                                               ar_spec=ar_spec,
+
+                                               en_detail=en_detail,
+                                               fr_detail=fr_detail,
+                                               ar_detail=ar_detail,
+
+                                               thumb=thumb,
+
                                                product_sku=product_sku,
                                                size_sku=size_sku,
                                                quantity=int(quantity),
@@ -44,6 +83,19 @@ def add_product_to_cart(request):
             cart_product = CartProduct(delivery=delivery,
                                        points=points,
                                        en_name=en_name,
+                                       fr_name=fr_name,
+                                       ar_name=ar_name,
+
+                                       en_spec=en_spec,
+                                       fr_spec=fr_spec,
+                                       ar_spec=ar_spec,
+
+                                       en_detail=en_detail,
+                                       fr_detail=fr_detail,
+                                       ar_detail=ar_detail,
+
+                                       thumb=thumb,
+
                                        product_sku=product_sku,
                                        size_sku=size_sku,
                                        quantity=int(quantity),
@@ -57,4 +109,20 @@ def add_product_to_cart(request):
     return {
         'url': url,
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
