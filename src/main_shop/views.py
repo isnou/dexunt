@@ -23,7 +23,7 @@ def main_shop_home(request):
         cart = Cart(ref=cart_ref,
                     device=request.user_agent.device.family,
                     operating_system=request.user_agent.os.family+request.user_agent.os.version_string,
-                    ip_address=request.META.REMOTE_ADDR,
+                    ip_address=request.META['REMOTE_ADDR'],
                     )
         cart.save()
 
