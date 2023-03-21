@@ -58,7 +58,7 @@
                     <span class="text-accent fs-base ms-1">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span>
                 </div>
             </div>
-            <a class="btn btn-primary btn-sm d-block w-100" href="checkout-details.html">
+            <a class="btn btn-primary btn-sm d-block w-100" href="{% url 'cart-home' 'show_cart' %}">
                 <i class="ci-card me-2 fs-base align-middle"></i>Checkout
             </a>
         </div>
