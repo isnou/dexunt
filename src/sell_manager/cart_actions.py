@@ -6,6 +6,7 @@ from shop_manager.models import Size, ShowcaseProduct
 def add_product_to_cart(request):
     url = "/main-shop/main-page.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    redirecting = False
 
     if request.method == 'POST':
         product_sku = request.POST.get('product_sku', False)
@@ -13,7 +14,7 @@ def add_product_to_cart(request):
         size_sku = request.POST.get('size_sku', False)
         change_url = request.POST.get('change_url', False)
         if change_url == 'go_to_cart':
-            url = "/main-shop/shop-cart.html"
+            redirecting = True
 
         selected_variant = ShowcaseProduct.objects.all().get(sku=variant_sku)
         selected_product = Product.objects.all().get(sku=product_sku)
@@ -118,6 +119,7 @@ def add_product_to_cart(request):
 
     return {
         'url': url,
+        'redirecting': redirecting,
     }
 
 def remove_product_from_cart(request):

@@ -12,12 +12,14 @@ def cart_home(request, action):
 
     if action == 'add_product_to_cart':
         url = direction + cart_actions.add_product_to_cart(request).get('url')
+        if cart_actions.add_product_to_cart(request).get('redirecting'):
+            action = 'show_cart'
     if action == 'remove_product_from_cart':
         url = direction + cart_actions.remove_product_from_cart(request).get('url')
-    if action == 'show_cart':
-        url = direction + cart_actions.show_cart(request).get('url')
     if action == 'remove_quantity':
         url = direction + cart_actions.remove_quantity(request).get('url')
+    if action == 'show_cart':
+        url = direction + cart_actions.show_cart(request).get('url')
 
     context = {
     }
