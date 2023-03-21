@@ -18,7 +18,7 @@
         <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
         <i class="navbar-tool-icon ci-cart"></i>
     </a>
-    <a class="navbar-tool-text" href="shop-cart.html"><small>My Cart</small>{{ cart.sub_total_price }} DA
+    <a class="navbar-tool-text" href="shop-cart.html"><small>My Cart</small>{{ cart.sub_total_price }}<small>DA</small>
     </a>
     <!--cart dropdown-->
     <div class="dropdown-menu dropdown-menu-end">
@@ -41,10 +41,10 @@
                     <span class="text-muted">Subtotal:</span>
                     <span class="text-accent fs-base ms-1">{{ cart.sub_total_price }}<small>DA</small></span>
                 </div>
-                <a class="btn btn-outline-secondary btn-sm" href="shop-cart.html">Expand cart
-                    <i class="ci-arrow-right ms-1 me-n1"></i>
-                </a>
-            </div><a class="btn btn-primary btn-sm d-block w-100" href="checkout-details.html"><i class="ci-card me-2 fs-base align-middle"></i>Checkout</a>
+            </div>
+            <a class="btn btn-primary btn-sm d-block w-100" href="checkout-details.html">
+                <i class="ci-card me-2 fs-base align-middle"></i>Checkout
+            </a>
         </div>
     </div>
     <!--end cart dropdown-->
