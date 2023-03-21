@@ -16,6 +16,8 @@ def cart_home(request, action):
         url = direction + cart_actions.remove_product_from_cart(request).get('url')
     if action == 'show_cart':
         url = direction + cart_actions.show_cart(request).get('url')
+    if action == 'remove_quantity':
+        url = direction + cart_actions.remove_quantity(request).get('url')
 
     context = {
     }

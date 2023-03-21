@@ -57,7 +57,16 @@
                 <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">
                     <label class="form-label" >Quantity</label>
                     <a href="#" class="nav-link disabled" tabindex="-1" aria-disabled="true">{{ cart_product.quantity }}</a>
-                    <button class="btn btn-link px-0 text-danger" type="button"><i class="ci-close-circle me-2"></i><span class="fs-sm">Remove</span></button>
+                    <form action="{% url 'cart-home' 'remove_quantity' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="size_sku" value='{{ cart_product.size_sku }}'>
+                        <input type="hidden" name="product_sku" value='{{ cart_product.product_sku }}'>
+                        <button class="btn btn-link px-0 text-danger" type="button">
+                            <i class="ci-close-circle me-2"></i><span class="fs-sm">Remove</span>
+                        </button>
+                    </form>
+
                 </div>
             </div>
             {% endfor %}
