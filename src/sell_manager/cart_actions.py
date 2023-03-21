@@ -11,6 +11,9 @@ def add_product_to_cart(request):
         product_sku = request.POST.get('product_sku', False)
         variant_sku = request.POST.get('variant_sku', False)
         size_sku = request.POST.get('size_sku', False)
+        change_url = request.POST.get('change_url', False)
+        if change_url == 'go_to_cart':
+            url = "/main-shop/shop-cart.html"
 
         selected_variant = ShowcaseProduct.objects.all().get(sku=variant_sku)
         selected_product = Product.objects.all().get(sku=product_sku)

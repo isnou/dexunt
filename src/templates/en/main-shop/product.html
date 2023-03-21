@@ -336,6 +336,14 @@
                                         <button class="btn btn-secondary d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
                                         <button class="btn btn-primary d-block w-100 ms-2" type="submit"><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
                                     </div>
+                                    {% else %}
+                                    <input type="hidden" name="change_url" value='go_to_cart'>
+                                    <!-- buttons -->
+                                    <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
+                                        <button class="btn btn-primary d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>Update Cart</button>
+                                    </div>
+                                    <div class="d-flex mb-4">
+                                    </div>
                                     {% endif %}
 
                                     {% endif %}
@@ -390,6 +398,14 @@
                                     <div class="d-flex mb-4">
                                         <button class="btn btn-secondary d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
                                         <button class="btn btn-primary d-block w-100 ms-2" type="submit"><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
+                                    </div>
+                                    {% else %}
+                                    <input type="hidden" name="change_url" value='go_to_cart'>
+                                    <!-- buttons -->
+                                    <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
+                                        <button class="btn btn-primary d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>Update Cart</button>
+                                    </div>
+                                    <div class="d-flex mb-4">
                                     </div>
                                     {% endif %}
 
