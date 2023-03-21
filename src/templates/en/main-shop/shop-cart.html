@@ -121,15 +121,10 @@
                         <form class="needs-validation" novalidate>
                           <div class="mb-3">
                             <select class="form-select" required>
-                              <option value="">Choose your country</option>
-                              <option href="#">Australia</option>
-                              <option value="Belgium">Belgium</option>
-                              <option value="Canada">Canada</option>
-                              <option value="Finland">Finland</option>
-                              <option value="Mexico">Mexico</option>
-                              <option value="New Zealand">New Zealand</option>
-                              <option value="Switzerland">Switzerland</option>
-                              <option value="United States">United States</option>
+                                <option value="">Choose your country</option>
+                                {% for destination in destinations %}
+                                <option href="#">Australia</option>
+                                {% endfor %}
                             </select>
                             <div class="invalid-feedback">Please choose your country!</div>
                           </div>
