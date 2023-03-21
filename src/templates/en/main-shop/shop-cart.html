@@ -85,7 +85,7 @@
               <div class="py-2 px-xl-2">
                 <div class="text-center mb-4 pb-3 border-bottom">
                   <h2 class="h6 mb-3 pb-1">Subtotal</h2>
-                  <h3 class="fw-normal">$265.<small>00</small></h3>
+                  <h3 class="fw-normal">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></h3>
                 </div>
                 <div class="mb-3 mb-4">
                   <label class="form-label mb-3" for="order-comments"><span class="badge bg-info fs-xs me-2">Note</span><span class="fw-medium">Additional comments</span></label>
