@@ -24,9 +24,9 @@
             <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
                 {% for cart_product in cart.product.all %}
                 <div class="widget-cart-item py-2 border-bottom">
-                    <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                    <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" aria-label="Remove">
                         {% csrf_token %}
-                        <button class="btn-close text-danger" type="submit" aria-label="Remove">
+                        <button class="btn-close text-danger" type="submit">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </form>
