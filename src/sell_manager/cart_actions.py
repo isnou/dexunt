@@ -116,3 +116,36 @@ def add_product_to_cart(request):
     return {
         'url': url,
     }
+
+def remove_product_from_cart(request):
+    url = "/main-shop/main-page.html"
+    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+
+    if request.method == 'POST':
+        size_sku = request.POST.get('size_sku', False)
+        product_sku = request.POST.get('product_sku', False)
+
+        if size_sku == 'main':
+            selected_product = cart.product.all().get(product_sku=product_sku)
+            if selected_product.quantity == 1:
+                selected_product.delete()
+            else:
+                selected_product.quantity -= 1
+                selected_product.save()
+        else:
+            selected_product = cart.product.all().get(size_sku=size_sku)
+            if selected_product.quantity == 1:
+                selected_product.delete()
+            else:
+                selected_product.quantity -= 1
+                selected_product.save()
+
+    sub_total_price = 0
+    for cart_product in cart.product.all():
+        sub_total_price += cart_product.price * cart_product.quantity
+    cart.sub_total_price = sub_total_price
+    cart.save()
+
+    return {
+        'url': url,
+    }

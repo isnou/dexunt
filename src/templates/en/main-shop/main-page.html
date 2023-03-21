@@ -23,23 +23,27 @@
         <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
             <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
                 {% for cart_product in cart.product.all %}
-                <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                        {% csrf_token %}
-                <div class="widget-cart-item py-2 border-bottom">
-                    <button class="btn-close text-danger" type="submit" aria-label="Remove">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <form action="{% url 'cart-home' 'remove_product_from_cart' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                    {% csrf_token %}
 
-                    <div class="d-flex align-items-center">
-                        <a class="d-block flex-shrink-0" href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">
-                            <img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="64" alt="Product">
-                        </a>
-                        <div class="ps-2">
-                            <h6 class="widget-product-title"><a href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">{{ cart_product.en_name|title }}</a></h6>
-                            <div class="widget-product-meta"><span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span><span class="text-muted">x {{ cart_product.quantity }}</span></div>
+                    <input type="hidden" name="size_sku" value='{{ cart_product.size_sku }}'>
+                    <input type="hidden" name="product_sku" value='{{ cart_product.sku }}'>
+
+                    <div class="widget-cart-item py-2 border-bottom">
+                        <button class="btn-close text-danger" type="submit" aria-label="Remove">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <div class="d-flex align-items-center">
+                            <a class="d-block flex-shrink-0" href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">
+                                <img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="64" alt="Product">
+                            </a>
+                            <div class="ps-2">
+                                <h6 class="widget-product-title"><a href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">{{ cart_product.en_name|title }}</a></h6>
+                                <div class="widget-product-meta"><span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span><span class="text-muted">x {{ cart_product.quantity }}</span></div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </form>
                 {% endfor %}
             </div>
