@@ -24,8 +24,13 @@
             <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
                 {% for cart_product in cart.product.all %}
                 <div class="widget-cart-item py-2 border-bottom">
-                    <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                    <div class="d-flex align-items-center"><a class="d-block flex-shrink-0" href="shop-single-v2.html"><img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="64" alt="Product"></a>
+                    <button class="btn-close text-danger" type="button" aria-label="Remove">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="d-flex align-items-center">
+                        <a class="d-block flex-shrink-0" href="shop-single-v2.html">
+                            <img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="64" alt="Product">
+                        </a>
                         <div class="ps-2">
                             <h6 class="widget-product-title"><a href="shop-single-v2.html">{{ cart_product.en_name|title }}</a></h6>
                             <div class="widget-product-meta"><span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span><span class="text-muted">x {{ cart_product.quantity }}</span></div>
