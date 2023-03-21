@@ -48,7 +48,7 @@
             <div class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom">
                 <div class="d-block d-sm-flex align-items-center text-center text-sm-start"><a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}"><img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="160" alt="Product"></a>
                     <div class="pt-2">
-                        <h3 class="product-title fs-base mb-2"><a href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">{{ cart_product.en_name|title }}</a></h3>
+                        <h3 class="product-title fs-base mb-2"><a href="{% url 'cart-product' cart_product.product_sku cart_product.size_sku %}">{{ cart_product.en_name|title }}</a></h3>
                         <div class="fs-sm"><span class="text-muted me-2">Size:</span>8.5</div>
                         <div class="fs-sm"><span class="text-muted me-2">Color:</span>White &amp; Blue</div>
                         <div class="fs-lg text-accent pt-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></div>
