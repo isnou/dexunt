@@ -33,6 +33,7 @@ def product(request, sku, size_sku):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
 
+    cart = Cart.objects.all().get(ref=request.session.get('cart'))
     selected_product = Product.objects.all().get(sku=sku)
 
     if ShowcaseProduct.objects.all().filter(en_title=selected_product.en_title).exists():
@@ -45,11 +46,17 @@ def product(request, sku, size_sku):
     else:
         selected_size = None
 
+    if cart.product.all().filter(product_sku=sku).exists():
+        update=True
+    else:
+        update=False
+
     context = {
         'selected_product': selected_product,
         'selected_size': selected_size,
         'variant': variant,
         'size_sku': size_sku,
+        'update': update,
     }
     return render(request, url, context)
 

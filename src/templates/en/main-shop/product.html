@@ -327,6 +327,7 @@
                                         <input class="form-control me-2" type="number" name="quantity" id="quantity" min="1" max="{{ selected_product.quantity }}" placeholder="put a quantity" value=1 required>
                                     </div>
 
+                                    {% if not update %}
                                     <!-- buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                         <button class="btn btn-dark btn-shadow d-block w-100" type="button"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
@@ -335,6 +336,8 @@
                                         <button class="btn btn-secondary d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
                                         <button class="btn btn-primary d-block w-100 ms-2" type="submit"><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
                                     </div>
+                                    {% endif %}
+
                                     {% endif %}
 
                                     {% if not selected_product.quantity and not selected_product.size.all.count %}
@@ -379,6 +382,7 @@
                                         <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ selected_size.quantity }}" placeholder="put a quantity" value=1 required>
                                     </div>
 
+                                    {% if not update %}
                                     <!-- buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                         <button class="btn btn-dark btn-shadow d-block w-100" type="button"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
@@ -387,6 +391,9 @@
                                         <button class="btn btn-secondary d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
                                         <button class="btn btn-primary d-block w-100 ms-2" type="submit"><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
                                     </div>
+                                    {% endif %}
+
+
                                     {% endif %}
                                     {% endif %}
 
