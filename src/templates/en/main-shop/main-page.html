@@ -21,6 +21,7 @@
         <i class="navbar-tool-icon ci-cart"></i>
     </a>
     <!--cart dropdown-->
+    {% if cart.product.all.count %}
     <div class="dropdown-menu dropdown-menu-end">
         <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
             <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
@@ -63,6 +64,7 @@
             </a>
         </div>
     </div>
+    {% endif %}
     <!--end cart dropdown-->
 </div>
 {% endblock %}
