@@ -40,7 +40,10 @@
                             </a>
                             <div class="ps-2">
                                 <h6 class="widget-product-title"><a href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">{{ cart_product.en_name|title }}</a></h6>
-                                <div class="widget-product-meta"><span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span><span class="text-muted">x {{ cart_product.quantity }}</span></div>
+                                <div class="widget-product-meta">
+                                    <span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span>
+                                    <span class="text-muted">x {{ cart_product.quantity }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
