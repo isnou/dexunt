@@ -48,7 +48,12 @@ def product(request, sku, size_sku):
         selected_size = None
 
     if cart.product.all().filter(product_sku=sku).exists():
-        update=True
+        if cart.product.all().filter(size_sku=size_sku).exists():
+            update = True
+        elif size_sku == 'main':
+            update = True
+        else:
+            update = False
     else:
         update=False
 
