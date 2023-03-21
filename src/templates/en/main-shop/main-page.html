@@ -14,7 +14,7 @@
 <!--cart-->
 {% block cart %}
 <div class="navbar-tool dropdown ms-3">
-    <a class="navbar-tool-icon-box bg-secondary" href="shop-cart.html">
+    <a class="navbar-tool-icon-box bg-secondary" href="{% url 'cart-home' 'show_cart' %}">
         <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
         <i class="navbar-tool-icon ci-cart"></i>
     </a>

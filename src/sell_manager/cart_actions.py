@@ -149,3 +149,10 @@ def remove_product_from_cart(request):
     return {
         'url': url,
     }
+
+def show_cart(request):
+    url = "/main-shop/shop-cart.html"
+
+    return {
+        'url': url,
+    }
