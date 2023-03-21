@@ -18,7 +18,7 @@
         <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
         <i class="navbar-tool-icon ci-cart"></i>
     </a>
-    <a class="navbar-tool-text" href="shop-cart.html"><small>My Cart</small>{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small>
+    <a class="navbar-tool-text" href="shop-cart.html"><small>My Cart</small><small>{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></small>
     </a>
     <!--cart dropdown-->
     <div class="dropdown-menu dropdown-menu-end">
