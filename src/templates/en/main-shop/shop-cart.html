@@ -93,13 +93,16 @@
                   <h2 class="h6 mb-3 pb-1">Subtotal</h2>
                   <h3 class="fw-normal">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></h3>
                 </div>
+
                 <div class="mb-3 mb-4">
-                    
                 </div>
+
                 <div class="accordion" id="order-options">
                   <div class="accordion-item">
-                    <h3 class="accordion-header"><a class="accordion-button" href="shop-cart.html#promo-code" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="promo-code">Apply promo code</a></h3>
-                    <div class="accordion-collapse collapse show" id="promo-code" data-bs-parent="#order-options">
+                    <h3 class="accordion-header">
+                        <a class="accordion-button" href="shop-cart.html#promo-code" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="promo-code">Apply promo code</a>
+                    </h3>
+                    <div class="accordion-collapse collapse" id="promo-code" data-bs-parent="#order-options">
                       <form class="accordion-body needs-validation" method="post" novalidate>
                         <div class="mb-3">
                           <input class="form-control" type="text" placeholder="Promo code" required>
@@ -113,7 +116,7 @@
                     <h3 class="accordion-header">
                         <a class="accordion-button collapsed" href="shop-cart.html#shipping-estimates" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shipping-estimates">Shipping estimates</a>
                     </h3>
-                    <div class="accordion-collapse collapse" id="shipping-estimates" data-bs-parent="#order-options">
+                    <div class="accordion-collapse collapse show" id="shipping-estimates" data-bs-parent="#order-options">
                       <div class="accordion-body">
                         <form class="needs-validation" novalidate>
                           <div class="mb-3">
