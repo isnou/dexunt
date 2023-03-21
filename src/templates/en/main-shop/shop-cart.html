@@ -66,7 +66,11 @@
                         <input type="hidden" name="product_sku" value='{{ cart_product.product_sku }}'>
 
                         <button class="btn btn-link px-0 text-danger" type="submit">
-                            <i class="ci-close-circle me-2"></i><span class="fs-sm">Remove</span>
+                            {% if cart_product.quantity > 1 %}
+                            <i class="ci-close-circle me-2"></i><span class="fs-sm">Remove Quantity</span>
+                            {% else %}
+                            <i class="ci-close-circle me-2"></i><span class="fs-sm">Remove Product</span>
+                            {% endif %}
                         </button>
                     </form>
 
