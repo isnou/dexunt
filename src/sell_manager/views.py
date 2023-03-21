@@ -10,7 +10,6 @@ def cart_home(request, action):
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
     destinations = None
-    sub_destinations = None
 
     if action == 'add_product_to_cart':
         url = direction + cart_actions.add_product_to_cart(request).get('url')
@@ -23,11 +22,9 @@ def cart_home(request, action):
     if action == 'show_cart':
         url = direction + cart_actions.show_cart(request).get('url')
         destinations = cart_actions.show_cart(request).get('destinations')
-        sub_destinations = cart_actions.show_cart(request).get('sub_destinations')
 
     context = {
         'destinations': destinations,
-        'sub_destinations': sub_destinations,
     }
     return render(request, url, context)
 

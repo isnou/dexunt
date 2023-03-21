@@ -164,15 +164,9 @@ def show_cart(request):
     except Destination.objects.all().DoesNotExist:
         raise Http404("No destinations")
 
-    try:
-        sub_destinations = SubDestination.objects.all()
-    except SubDestination.objects.all().DoesNotExist:
-        raise Http404("No destinations")
-
     return {
         'url': url,
         'destinations': destinations,
-        'sub_destinations': sub_destinations,
     }
 
 def remove_quantity(request):

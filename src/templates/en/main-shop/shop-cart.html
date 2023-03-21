@@ -120,7 +120,11 @@
                       <div class="accordion-body">
                         <form class="needs-validation" novalidate>
                           <div class="mb-3">
-                            <select class="form-select" required>
+                            <select class="form-select" name="destination"
+                                    hx-get="{% url url %}"
+                                    hx-trigger="change"
+                                    hx-target="#sub-destination"
+                                     required>
                                 <option value="">Choose your country</option>
                                 {% for destination in destinations %}
                                 <option value="{{ destination.name }}">{{ destination.name }}</option>
@@ -128,7 +132,7 @@
                             </select>
                             <div class="invalid-feedback">Please choose your country!</div>
                           </div>
-                          <div class="mb-3">
+                          <div class="mb-3" id="sub-destination">
                             <select class="form-select" required>
                               <option value="">Choose your city</option>
                               <option value="Bern">Bern</option>
