@@ -94,8 +94,7 @@
                   <h3 class="fw-normal">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></h3>
                 </div>
                 <div class="mb-3 mb-4">
-                  <label class="form-label mb-3" for="order-comments"><span class="badge bg-info fs-xs me-2">Note</span><span class="fw-medium">Additional comments</span></label>
-                  <textarea class="form-control" rows="6" id="order-comments"></textarea>
+                    
                 </div>
                 <div class="accordion" id="order-options">
                   <div class="accordion-item">
@@ -111,7 +110,9 @@
                     </div>
                   </div>
                   <div class="accordion-item">
-                    <h3 class="accordion-header"><a class="accordion-button collapsed" href="shop-cart.html#shipping-estimates" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shipping-estimates">Shipping estimates</a></h3>
+                    <h3 class="accordion-header">
+                        <a class="accordion-button collapsed" href="shop-cart.html#shipping-estimates" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shipping-estimates">Shipping estimates</a>
+                    </h3>
                     <div class="accordion-collapse collapse" id="shipping-estimates" data-bs-parent="#order-options">
                       <div class="accordion-body">
                         <form class="needs-validation" novalidate>
@@ -152,7 +153,10 @@
                       </div>
                     </div>
                   </div>
-                </div><a class="btn btn-primary btn-shadow d-block w-100 mt-4" href="checkout-details.html"><i class="ci-card fs-lg me-2"></i>Proceed to Checkout</a>
+                </div>
+                  <a class="btn btn-primary btn-shadow d-block w-100 mt-4" href="checkout-details.html">
+                      <i class="ci-card fs-lg me-2"></i>Proceed to Checkout
+                  </a>
               </div>
             </div>
           </aside>
