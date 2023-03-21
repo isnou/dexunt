@@ -27,7 +27,7 @@
                     {% csrf_token %}
 
                     <input type="hidden" name="size_sku" value='{{ cart_product.size_sku }}'>
-                    <input type="hidden" name="product_sku" value='{{ cart_product.sku }}'>
+                    <input type="hidden" name="product_sku" value='{{ cart_product.product_sku }}'>
 
                     <div class="widget-cart-item py-2 border-bottom">
                         <button class="btn-close text-danger" type="submit" aria-label="Remove">
