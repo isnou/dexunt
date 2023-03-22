@@ -27,10 +27,13 @@ def cart_home(request, action):
     if action == 'load_sub_destinations':
         destination_name = request.GET.get('destination')
         destination = Destination.objects.all().get(name=destination_name)
+        sub_context = {
+            'destination': destination,
+        }
+        return render(request, 'partials/load-sub-destinations.html', sub_context)
 
     context = {
         'destinations': destinations,
-        'destination': destination,
     }
     return render(request, url, context)
 

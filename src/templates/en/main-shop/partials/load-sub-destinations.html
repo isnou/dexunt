@@ -1,0 +1,9 @@
+<select class="form-select" required>
+    <option value="">Choose your city</option>
+    {% if destination %}
+    {% for sub_destination in destination.sub_destination.all %}
+    <option value="Bern">{{ sub_destination.name }}</option>
+    {% endfor %}
+    {% endif %}
+</select>
+<div class="invalid-feedback">Please choose your city!</div>
