@@ -103,12 +103,10 @@
                         <a class="accordion-button" href="shop-cart.html#promo-code" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="promo-code">Apply promo code</a>
                     </h3>
                     <div class="accordion-collapse collapse" id="promo-code" data-bs-parent="#order-options">
-                      <form class="accordion-body needs-validation" hx-get="{% url 'cart-home' 'load_promo' %}" hx-trigger="change" hx-target="#load-promo-code"  novalidate>
-                          {% csrf_token %}
+                      <form class="accordion-body needs-validation" method="post" novalidate>
                         <div class="mb-3">
-                          <input class="form-control" type="text" placeholder="Promo code" name="promo_code_value" required>
+                          <input class="form-control" type="text" placeholder="Promo code" required>
                           <div class="invalid-feedback">Please provide promo code.</div>
-                            <span class="d-inline-block fs-sm text-white opacity-70 align-middle" id="load-promo-code"></span>
                         </div>
                         <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
                       </form>
