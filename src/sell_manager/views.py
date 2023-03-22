@@ -31,6 +31,13 @@ def cart_home(request, action):
             'destination': destination,
         }
         return render(request, 'en/main-shop/partials/load-sub-destinations.html', sub_context)
+    if action == 'load_promo':
+        promo = request.GET.get('promo_code_value')
+        if promo == 'parker':
+            response = 'good code'
+        else:
+            response = 'bad code'
+        return render(request, response)
 
     context = {
         'destinations': destinations,
