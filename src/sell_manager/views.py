@@ -30,7 +30,7 @@ def cart_home(request, action):
         sub_context = {
             'destination': destination,
         }
-        return render(request, url, sub_context)
+        return render(request, 'en/main-shop/partials/load-sub-destinations.html', sub_context)
 
     context = {
         'destinations': destinations,
