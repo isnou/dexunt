@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Cart, CartProduct, Product
 from shop_manager.models import Size, ShowcaseProduct
-from sell_manager.models import Destination, SubDestination
+from sell_manager.models import Destination
 
 
 def add_product_to_cart(request):
