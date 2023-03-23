@@ -2,7 +2,7 @@
     <option value="">Choose your municipality</option>
     {% if province %}
     {% for municipality in province.municipality.all %}
-    <option value="Bern">{{ municipality.en_name }} <small>price: {{ municipality.price }}</small></option>
+    <option value="Bern">{{ municipality.en_name }}</option>
     {% endfor %}
     {% endif %}
 </select>
