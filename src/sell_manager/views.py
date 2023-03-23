@@ -41,27 +41,12 @@ def checkout(request, action):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/main-page.html"
-    provinces = None
+    url = direction + "/main-shop/checkout-details.html"
 
-    if action == 'add_product_to_cart':
+    if action == 'checkout_details':
         url = direction + cart_actions.add_product_to_cart(request).get('url')
         if cart_actions.add_product_to_cart(request).get('redirecting'):
             action = 'show_cart'
-    if action == 'remove_product_from_cart':
-        url = direction + cart_actions.remove_product_from_cart(request).get('url')
-    if action == 'remove_quantity':
-        url = direction + cart_actions.remove_quantity(request).get('url')
-    if action == 'show_cart':
-        url = direction + cart_actions.show_cart(request).get('url')
-        provinces = cart_actions.show_cart(request).get('provinces')
-    if action == 'load_municipality':
-        province_en_name = request.GET.get('province_en_name')
-        province = Province.objects.all().get(en_name=province_en_name)
-        sub_context = {
-            'province': province,
-        }
-        return render(request, 'en/main-shop/partials/load_municipality.html', sub_context)
 
     context = {
         'provinces': provinces,
