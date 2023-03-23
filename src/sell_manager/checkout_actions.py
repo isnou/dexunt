@@ -17,10 +17,12 @@ def details(request):
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
 
     delivery_quotient = 0
+    item_count = 0
     for product in cart.product.all():
         earned_points += product.points
-        delivery_quotient += product.delivery
-    delivery_quotient = delivery_quotient/(cart.product.all().count())
+        delivery_quotient += product.delivery * product.quantity
+        item_count += product.quantity
+    delivery_quotient = delivery_quotient / item_count
 
 
 
