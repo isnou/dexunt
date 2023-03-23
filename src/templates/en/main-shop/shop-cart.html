@@ -97,6 +97,22 @@
                 <div class="mb-3 mb-4">
                 </div>
 
+                  <form class="needs-validation" method="post" novalidate>
+                      <div class="mb-3">
+                            <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_sub_destinations' %}" hx-trigger="change" hx-target="#sub-destination" required>
+                                <option value="">Choose your country</option>
+                                {% for province in provinces %}
+                                <option value="{{ province.en_name }}">{{ province.en_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">Please choose your country!</div>
+                          </div>
+                          <div class="mb-3" id="sub-destination">
+                              {% include 'en/main-shop/partials/load-sub-destinations.html' %}
+                          </div>
+                      <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
+                  </form>
+
                 <div class="accordion" id="order-options">
                   <div class="accordion-item">
                     <h3 class="accordion-header">
@@ -128,7 +144,7 @@
                             </select>
                             <div class="invalid-feedback">Please choose your country!</div>
                           </div>
-                          <div class="mb-3" id="sub-destination">
+                          <div class="mb-3" id="sub-f">
                               {% include 'en/main-shop/partials/load-sub-destinations.html' %}
                           </div>
                           <button class="btn btn-outline-primary d-block w-100" type="submit">Calculate shipping</button>
