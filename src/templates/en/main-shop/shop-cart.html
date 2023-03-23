@@ -99,7 +99,7 @@
                   <div class="fw-normal text-center text-muted my-4">Please select your shipping destination
                   </div>
 
-                  <form class="needs-validation" method="post" novalidate>
+                  <form href="#" class="needs-validation" method="post" novalidate>
                       {% csrf_token %}
                       <div class="mb-3">
                             <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_municipality' %}" hx-trigger="change" hx-target="#sub-destination" required>
