@@ -170,13 +170,13 @@ You earn {{ earned_points }}
                         {% for cart_product in cart.product.all %}
                         <div class="d-flex align-items-center pb-2 border-bottom">
                             <a class="d-block flex-shrink-0" href="shop-single-v1.html">
-                                <img src="img/shop/cart/widget/01.jpg" width="64" alt="Product">
+                                <img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="64" alt="Product">
                             </a>
                             <div class="ps-2">
                                 <h6 class="widget-product-title">
                                     <a href="shop-single-v1.html">{{ cart_product.en_name|title }} — {{ cart_product.en_spec|title }}
                                         {% if cart_product.en_detail %}
-                                        — {{ cart_product.en_detail|title }}
+                                        — {{ cart_product.en_detail }}
                                         {% endif %}
                                     </a>
                                 </h6>
