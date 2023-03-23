@@ -48,8 +48,14 @@ def checkout(request, action):
     if action == 'details':
         url = direction + checkout_actions.details(request).get('url')
         delivery_quotient = checkout_actions.details(request).get('delivery_quotient')
+        shipping_price = checkout_actions.details(request).get('shipping_price')
+        province = checkout_actions.details(request).get('province')
+        municipality = checkout_actions.details(request).get('municipality')
         context = {
             'delivery_quotient': delivery_quotient,
+            'shipping_price': shipping_price,
+            'province': province,
+            'municipality': municipality,
         }
         return render(request, url, context)
 
