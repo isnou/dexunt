@@ -110,52 +110,11 @@
                           <div class="mb-3" id="sub-destination">
                               {% include 'en/main-shop/partials/load-sub-destinations.html' %}
                           </div>
-                      <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
-                  </form>
-
-                <div class="accordion" id="order-options">
-                  <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <a class="accordion-button" href="shop-cart.html#promo-code" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="promo-code">Apply promo code</a>
-                    </h3>
-                    <div class="accordion-collapse collapse" id="promo-code" data-bs-parent="#order-options">
-                      <form class="accordion-body needs-validation" method="post" novalidate>
-                        <div class="mb-3">
-                          <input class="form-control" type="text" placeholder="Promo code" required>
-                          <div class="invalid-feedback">Please provide promo code.</div>
-                        </div>
-                        <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <a class="accordion-button collapsed" href="shop-cart.html#shipping-estimates" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shipping-estimates">Shipping estimates</a>
-                    </h3>
-                    <div class="accordion-collapse collapse show" id="shipping-estimates" data-bs-parent="#order-options">
-                      <div class="accordion-body">
-                        <form class="needs-validation" novalidate>
-                          <div class="mb-3">
-                            <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_sub_destinations' %}" hx-trigger="change" hx-target="#sub-destination" required>
-                                <option value="">Choose your country</option>
-                                {% for province in provinces %}
-                                <option value="{{ province.en_name }}">{{ province.en_name }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="invalid-feedback">Please choose your country!</div>
-                          </div>
-                          <div class="mb-3" id="sub-f">
-                              {% include 'en/main-shop/partials/load-sub-destinations.html' %}
-                          </div>
-                          <button class="btn btn-outline-primary d-block w-100" type="submit">Calculate shipping</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                  <a class="btn btn-primary btn-shadow d-block w-100 mt-4" href="checkout-details.html">
+                      <a class="btn btn-primary btn-shadow d-block w-100 mt-4" type="submit">
                       <i class="ci-card fs-lg me-2"></i>Proceed to Checkout
                   </a>
+                  </form>
+                  
               </div>
             </div>
           </aside>
