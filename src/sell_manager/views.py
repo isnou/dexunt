@@ -45,7 +45,7 @@ def checkout(request, action):
 
     if action == 'details':
         url = direction + checkout_actions.details(request).get('url')
-        delivery_quotient = direction + checkout_actions.details(request).get('delivery_quotient')
+        delivery_quotient = checkout_actions.details(request).get('delivery_quotient')
         context = {
             'delivery_quotient': delivery_quotient,
         }
