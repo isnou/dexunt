@@ -23,10 +23,14 @@ def details(request):
         delivery_quotient += product.delivery * product.quantity
         item_count += product.quantity
     delivery_quotient = round(delivery_quotient / item_count)
+    shipping_price = round((municipality.price * delivery_quotient) / 100)
 
 
 
     return {
         'delivery_quotient':delivery_quotient,
+        'shipping_price':shipping_price,
+        'province':province,
+        'municipality':municipality,
         'url': url,
     }
