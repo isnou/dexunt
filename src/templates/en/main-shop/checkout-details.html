@@ -62,45 +62,43 @@
             <!-- Shipping address-->
             <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Autor Info </h2>
             <form class="needs-validation" method="post" novalidate>
-
                 <div class="row">
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <label class="form-label" for="checkout-fn">Name</label>
-                  <input class="form-control" type="text" name="client_name" id="checkout-fn">
-                </div>
-              </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="checkout-fn">Name</label>
+                            <input class="form-control" type="text" name="client_name" id="checkout-fn">
+                        </div>
+                    </div>
 
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <label class="form-label" for="checkout-phone">Phone Number</label>
-                  <input class="form-control" type="tel" name="phone_number" id="checkout-phone" required>
-                    <div class="invalid-feedback">Please provide a phone number !</div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="checkout-phone">Phone Number</label>
+                            <input class="form-control" type="tel" name="phone_number" id="checkout-phone" required>
+                            <div class="invalid-feedback">Please provide a phone number !</div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-
-            </div>
 
                 <!-- Navigation (desktop)-->
                 <div class="d-none d-lg-flex pt-4 mt-3">
-              <div class="w-50 pe-3">
-                  <a class="btn btn-secondary d-block w-100" href="{% url 'cart-home' 'show_cart' %}">
-                      <i class="ci-arrow-left mt-sm-0 me-1"></i>
-                      <span class="d-none d-sm-inline">Back to Cart</span>
-                      <span class="d-inline d-sm-none">Back</span>
-                  </a>
-              </div>
-              <div class="w-50 ps-2">
-                  <button class="btn btn-primary d-block w-100" type="submit">
-                      <span class="d-none d-sm-inline">Proceed to Shipping</span>
-                      <span class="d-inline d-sm-none">Next</span>
-                      <i class="ci-arrow-right mt-sm-0 ms-1"></i>
-                  </button>
-              </div>
-            </div>
+                    <div class="w-50 pe-3">
+                        <a class="btn btn-secondary d-block w-100" href="{% url 'cart-home' 'show_cart' %}">
+                            <i class="ci-arrow-left mt-sm-0 me-1"></i>
+                            <span class="d-none d-sm-inline">Back to Cart</span>
+                            <span class="d-inline d-sm-none">Back</span>
+                        </a>
+                    </div>
+                    <div class="w-50 ps-2">
+                        <button class="btn btn-primary d-block w-100" type="submit">
+                            <span class="d-none d-sm-inline">Proceed to Shipping</span>
+                            <span class="d-inline d-sm-none">Next</span>
+                            <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+                        </button>
+                    </div>
+                </div>
             </form>
-          </section>
-          <!-- Sidebar-->
+        </section>
+        <!-- Sidebar-->
         <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
             <div class="bg-white rounded-3 shadow-lg p-4 ms-lg-auto">
                 <div class="py-2 px-xl-2">
@@ -125,34 +123,33 @@
                             </div>
                         </div>
                         {% endfor %}
-
+                    </div>
+                    <ul class="list-unstyled fs-sm pb-2 border-bottom">
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span></li>
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small>DA</small></span></li>
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Taxes:</span><span class="text-end">—</span></li>
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
+                    </ul>
+                    <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small>DA</small></h3>
+                    <form class="needs-validation" method="post" novalidate>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" placeholder="Promo code" required>
+                            <div class="invalid-feedback">Please provide promo code.</div>
+                        </div>
+                        <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
+                    </form>
                 </div>
-                <ul class="list-unstyled fs-sm pb-2 border-bottom">
-                  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span></li>
-                  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small>DA</small></span></li>
-                  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Taxes:</span><span class="text-end">—</span></li>
-                  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
-                </ul>
-                <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small>DA</small></h3>
-                <form class="needs-validation" method="post" novalidate>
-                  <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Promo code" required>
-                    <div class="invalid-feedback">Please provide promo code.</div>
-                  </div>
-                  <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
-                </form>
-              </div>
             </div>
-          </aside>
-        </div>
-        <!-- Navigation (mobile)-->
-        <div class="row d-lg-none">
-          <div class="col-lg-8">
+        </aside>
+    </div>
+    <!-- Navigation (mobile)-->
+    <div class="row d-lg-none">
+        <div class="col-lg-8">
             <div class="d-flex pt-4 mt-3">
-              <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100" href="shop-cart.html"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Back to Cart</span><span class="d-inline d-sm-none">Back</span></a></div>
-              <div class="w-50 ps-2"><a class="btn btn-primary d-block w-100" href="checkout-shipping.html"><span class="d-none d-sm-inline">Proceed to Shipping</span><span class="d-inline d-sm-none">Next</span><i class="ci-arrow-right mt-sm-0 ms-1"></i></a></div>
+                <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100" href="shop-cart.html"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Back to Cart</span><span class="d-inline d-sm-none">Back</span></a></div>
+                <div class="w-50 ps-2"><a class="btn btn-primary d-block w-100" href="checkout-shipping.html"><span class="d-none d-sm-inline">Proceed to Shipping</span><span class="d-inline d-sm-none">Next</span><i class="ci-arrow-right mt-sm-0 ms-1"></i></a></div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 {% endblock %}}
