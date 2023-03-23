@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Cart, CartProduct, Product
 from shop_manager.models import Size, ShowcaseProduct
-from sell_manager.models import Destination
+from sell_manager.models import Province
 
 
 def add_product_to_cart(request):
@@ -160,13 +160,13 @@ def show_cart(request):
     url = "/main-shop/shop-cart.html"
 
     try:
-        destinations = Destination.objects.all()
-    except Destination.objects.all().DoesNotExist:
-        raise Http404("No destinations")
+        provinces = Province.objects.all()
+    except Province.objects.all().DoesNotExist:
+        raise Http404("No provinces")
 
     return {
         'url': url,
-        'destinations': destinations,
+        'provinces': provinces,
     }
 
 def remove_quantity(request):

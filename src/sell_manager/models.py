@@ -74,18 +74,25 @@ class Order(models.Model):
     def __str__(self):
         return self.cart_ref
 
-class SubDestination(models.Model):
+class Municipality(models.Model):
     # --------------------------------- shipping details ---------------------------------------
-    name = models.CharField(max_length=200, blank=True, null=True)
+    en_name = models.CharField(max_length=200, blank=True, null=True)
+    fr_name = models.CharField(max_length=200, blank=True, null=True)
+    ar_name = models.CharField(max_length=200, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
-    def __str__(self):
-        return self.name
+    class Meta:
+        verbose_name_plural = "Municipalities"
 
-class Destination(models.Model):
+    def __str__(self):
+        return self.en_name
+
+class Province(models.Model):
     # --------------------------------- shipping details ---------------------------------------
-    name = models.CharField(max_length=200, blank=True, null=True)
-    sub_destination = models.ManyToManyField(SubDestination, blank=True)
+    en_name = models.CharField(max_length=200, blank=True, null=True)
+    fr_name = models.CharField(max_length=200, blank=True, null=True)
+    ar_name = models.CharField(max_length=200, blank=True, null=True)
+    municipality = models.ManyToManyField(Municipality, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.en_name

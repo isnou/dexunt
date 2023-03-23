@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Cart ,CartProduct ,Destination ,SubDestination
+from .models import Cart ,CartProduct ,Province ,Municipality
 
 
 
 admin.site.register(Cart)
 admin.site.register(CartProduct)
-admin.site.register(Destination)
-admin.site.register(SubDestination)
+admin.site.register(Province)
+admin.site.register(Municipality)
