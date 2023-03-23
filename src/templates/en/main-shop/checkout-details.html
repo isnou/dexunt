@@ -61,7 +61,7 @@
             </div>
             <!-- Shipping address-->
             <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Autor Info </h2>
-            <form class="needs-validation" method="post" novalidate>
+            <form class="needs-validation" id="credential_form" method="post" novalidate>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="mb-3">
@@ -154,11 +154,11 @@
                     </a>
                 </div>
                 <div class="w-50 ps-2">
-                    <a class="btn btn-primary d-block w-100" href="checkout-shipping.html">
+                    <button class="btn btn-primary d-block w-100" form="credential_form">
                         <span class="d-none d-sm-inline">Proceed to Shipping</span>
                         <span class="d-inline d-sm-none">Next</span>
                         <i class="ci-arrow-right mt-sm-0 ms-1"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
