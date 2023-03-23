@@ -7,4 +7,6 @@
     {% endif %}
 </select>
 <div class="invalid-feedback">Please choose your municipality!</div>
+{% if municipality.price %}
 <div class="fs-sm text-center my-2">price {{ municipality.price }}</div>
+{% endif %}
