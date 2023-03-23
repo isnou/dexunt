@@ -1,9 +1,9 @@
 <select class="form-select" name="sub_destination" required>
-    <option value="">Choose your city</option>
+    <option value="">Choose your municipality</option>
     {% if province %}
     {% for municipality in province.municipality.all %}
     <option value="Bern">{{ municipality.en_name }}</option>
     {% endfor %}
     {% endif %}
 </select>
-<div class="invalid-feedback">Please choose your city!</div>
+<div class="invalid-feedback">Please choose your municipality!</div>

@@ -23,13 +23,13 @@ def cart_home(request, action):
     if action == 'show_cart':
         url = direction + cart_actions.show_cart(request).get('url')
         provinces = cart_actions.show_cart(request).get('provinces')
-    if action == 'load_sub_destinations':
+    if action == 'load_municipality':
         province_en_name = request.GET.get('province_en_name')
         province = Province.objects.all().get(en_name=province_en_name)
         sub_context = {
             'province': province,
         }
-        return render(request, 'en/main-shop/partials/load-sub-destinations.html', sub_context)
+        return render(request, 'en/main-shop/partials/load_municipality.html', sub_context)
 
     context = {
         'provinces': provinces,
