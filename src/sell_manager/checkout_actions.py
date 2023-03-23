@@ -22,7 +22,7 @@ def details(request):
         earned_points += product.points
         delivery_quotient += product.delivery * product.quantity
         item_count += product.quantity
-    delivery_quotient = delivery_quotient / item_count
+    delivery_quotient = round(delivery_quotient / item_count)
 
 
 
