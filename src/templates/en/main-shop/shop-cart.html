@@ -96,10 +96,11 @@
 
                 <div class="mb-3 mb-4">
                 </div>
-                  <div class="fw-normal text-center my-4">Please select your shipping destination
+                  <div class="fw-normal text-center text-muted my-4">Please select your shipping destination
                   </div>
 
                   <form class="needs-validation" method="post" novalidate>
+                      {% csrf_token %}
                       <div class="mb-3">
                             <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_sub_destinations' %}" hx-trigger="change" hx-target="#sub-destination" required>
                                 <option value="">Choose your country</option>
