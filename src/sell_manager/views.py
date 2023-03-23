@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from .models import CartProduct, Cart, Product
-from . import cart_actions
+from . import cart_actions, checkout_actions
 from sell_manager.models import Province
 
 def cart_home(request, action):
@@ -43,13 +43,16 @@ def checkout(request, action):
     direction = request.session.get('language')
     url = direction + "/main-shop/checkout-details.html"
 
-    if action == 'checkout_details':
-        url = direction + cart_actions.add_product_to_cart(request).get('url')
-        if cart_actions.add_product_to_cart(request).get('redirecting'):
-            action = 'show_cart'
+    if action == 'details':
+        url = direction + checkout_actions.details(request).get('url')
+        delivery_quotient = direction + checkout_actions.details(request).get('delivery_quotient')
+        context = {
+            'delivery_quotient': delivery_quotient,
+        }
+        return render(request, url, context)
+
 
     context = {
-        'provinces': provinces,
     }
     return render(request, url, context)
 
