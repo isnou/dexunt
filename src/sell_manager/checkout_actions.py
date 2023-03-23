@@ -18,7 +18,7 @@ def details(request):
     delivery_quotient = 0
     item_count = 0
     for product in cart.product.all():
-        earned_points += product.points
+        earned_points += product.points * product.quantity
         delivery_quotient += product.delivery * product.quantity
         item_count += product.quantity
     delivery_quotient = round(delivery_quotient / item_count)
@@ -30,5 +30,6 @@ def details(request):
         'shipping_price':shipping_price,
         'province':province,
         'municipality':municipality,
+        'earned_points':earned_points,
         'url': url,
     }
