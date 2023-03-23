@@ -9,22 +9,40 @@ def cart_home(request, action):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/main-page.html"
-    provinces = None
 
     if action == 'add_product_to_cart':
         url = direction + cart_actions.add_product_to_cart(request).get('url')
+        provinces = None
         if cart_actions.add_product_to_cart(request).get('redirecting'):
             url = direction + cart_actions.show_cart(request).get('url')
             provinces = cart_actions.show_cart(request).get('provinces')
+        context = {
+            'provinces': provinces,
+        }
+        return render(request, url, context)
+
     if action == 'remove_product_from_cart':
         url = direction + cart_actions.remove_product_from_cart(request).get('url')
+        context = {
+        }
+        return render(request, url, context)
+
     if action == 'remove_quantity':
         url = direction + cart_actions.remove_quantity(request).get('url')
         provinces = cart_actions.show_cart(request).get('provinces')
+        context = {
+            'provinces': provinces,
+        }
+        return render(request, url, context)
+
     if action == 'show_cart':
         url = direction + cart_actions.show_cart(request).get('url')
         provinces = cart_actions.show_cart(request).get('provinces')
+        context = {
+            'provinces': provinces,
+        }
+        return render(request, url, context)
+
     if action == 'load_municipality':
         province_en_name = request.GET.get('province_en_name')
         province = Province.objects.all().get(en_name=province_en_name)
@@ -33,35 +51,24 @@ def cart_home(request, action):
         }
         return render(request, 'en/main-shop/partials/load_municipality.html', sub_context)
 
-    context = {
-        'provinces': provinces,
-    }
-    return render(request, url, context)
-
 def checkout(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/checkout-details.html"
 
     if action == 'details':
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
         url = direction + checkout_actions.details(request).get('url')
-        delivery_quotient = checkout_actions.details(request).get('delivery_quotient')
         shipping_price = checkout_actions.details(request).get('shipping_price')
         province = checkout_actions.details(request).get('province')
         municipality = checkout_actions.details(request).get('municipality')
         context = {
-            'delivery_quotient': delivery_quotient,
+            'cart': cart,
             'shipping_price': shipping_price,
             'province': province,
             'municipality': municipality,
         }
         return render(request, url, context)
-
-
-    context = {
-    }
-    return render(request, url, context)
 
 

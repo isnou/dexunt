@@ -4,7 +4,6 @@ from sell_manager.models import Province, Municipality
 def details(request):
     url = "/main-shop/checkout-details.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
-    shipping_price = None
     earned_points = 0
     province = None
     municipality = None
@@ -28,7 +27,6 @@ def details(request):
 
 
     return {
-        'delivery_quotient':delivery_quotient,
         'shipping_price':shipping_price,
         'province':province,
         'municipality':municipality,
