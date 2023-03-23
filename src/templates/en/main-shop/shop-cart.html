@@ -62,7 +62,6 @@
                     <a href="#" class="nav-link disabled" tabindex="-1" aria-disabled="true">{{ cart_product.quantity }}</a>
                     <form action="{% url 'cart-home' 'remove_quantity' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
                         {% csrf_token %}
-
                         <input type="hidden" name="size_sku" value='{{ cart_product.size_sku }}'>
                         <input type="hidden" name="product_sku" value='{{ cart_product.product_sku }}'>
 
@@ -74,7 +73,6 @@
                             {% endif %}
                         </button>
                     </form>
-
                 </div>
             </div>
             {% endfor %}
@@ -84,24 +82,22 @@
                 The Cart is Empty
             </button>
             {% endif %}
-          </section>
+        </section>
           <!-- Sidebar-->
-          <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
+        <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
             <div class="bg-white rounded-3 shadow-lg p-4">
-              <div class="py-2 px-xl-2">
-                <div class="text-center mb-4 pb-3 border-bottom">
-                  <h2 class="h6 mb-3 pb-1">Subtotal</h2>
-                  <h3 class="fw-normal">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></h3>
-                </div>
+                <div class="py-2 px-xl-2">
+                    <div class="text-center mb-4 pb-3 border-bottom">
+                        <h2 class="h6 mb-3 pb-1">Subtotal</h2>
+                        <h3 class="fw-normal">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></h3>
+                    </div>
 
-                <div class="mb-3 mb-4">
-                </div>
-                  <div class="fw-normal text-center text-muted my-4">Please select your shipping destination
-                  </div>
+                    <div class="fw-normal text-center text-muted my-4">Please select your shipping destination
+                    </div>
 
-                  <form href="#" class="needs-validation" method="post" novalidate>
-                      {% csrf_token %}
-                      <div class="mb-3">
+                    <form href="#" class="needs-validation" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-3">
                             <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_municipality' %}" hx-trigger="change" hx-target="#sub-destination" required>
                                 <option value="">Choose your province</option>
                                 {% for province in provinces %}
@@ -109,18 +105,17 @@
                                 {% endfor %}
                             </select>
                             <div class="invalid-feedback">Please choose your province!</div>
-                          </div>
-                          <div class="mb-3" id="sub-destination">
-                              {% include 'en/main-shop/partials/load_municipality.html' %}
-                          </div>
-                      <button class="btn btn-primary btn-shadow d-block w-100 mt-4" type="submit">
-                      <i class="ci-card fs-lg me-2"></i>Proceed to Checkout
-                  </button>
-                  </form>
-
-              </div>
+                        </div>
+                        <div class="mb-3" id="sub-destination">
+                            {% include 'en/main-shop/partials/load_municipality.html' %}
+                        </div>
+                        <button class="btn btn-primary btn-shadow d-block w-100 mt-4" type="submit">
+                            <i class="ci-card fs-lg me-2"></i>Proceed to Checkout
+                        </button>
+                    </form>
+                </div>
             </div>
-          </aside>
-        </div>
-      </div>
+        </aside>
+    </div>
+</div>
 {% endblock %}}
