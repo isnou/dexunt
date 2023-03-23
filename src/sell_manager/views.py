@@ -64,12 +64,14 @@ def checkout(request, action):
         shipping_price = checkout_actions.details(request).get('shipping_price')
         province = checkout_actions.details(request).get('province')
         municipality = checkout_actions.details(request).get('municipality')
+        total_price = cart.sub_total_price + shipping_price
         context = {
             'cart': cart,
             'earned_points': earned_points,
             'shipping_price': shipping_price,
             'province': province,
             'municipality': municipality,
+            'total_price': total_price,
         }
         return render(request, url, context)
 
