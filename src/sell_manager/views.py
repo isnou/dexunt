@@ -60,11 +60,13 @@ def checkout(request, action):
     if action == 'details':
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
         url = direction + checkout_actions.details(request).get('url')
+        earned_points = checkout_actions.details(request).get('earned_points')
         shipping_price = checkout_actions.details(request).get('shipping_price')
         province = checkout_actions.details(request).get('province')
         municipality = checkout_actions.details(request).get('municipality')
         context = {
             'cart': cart,
+            'earned_points': earned_points,
             'shipping_price': shipping_price,
             'province': province,
             'municipality': municipality,
