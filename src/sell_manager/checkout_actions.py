@@ -25,6 +25,6 @@ def details(request):
 
 
     return {
-        'delivery_quotient':delivery_quotient,
+        'delivery_quotient':str(delivery_quotient),
         'url': url,
     }
