@@ -96,7 +96,16 @@ class Municipality(models.Model):
     en_name = models.CharField(max_length=200, blank=True, null=True)
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+    en_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    fr_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    ar_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+    en_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    fr_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    ar_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Municipalities"
@@ -109,6 +118,7 @@ class Province(models.Model):
     en_name = models.CharField(max_length=200, blank=True, null=True)
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
+    
     municipality = models.ManyToManyField(Municipality, blank=True)
 
     def __str__(self):
