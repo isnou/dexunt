@@ -52,24 +52,41 @@ class Cart(models.Model):
 class Order(models.Model):
     # --------------------------------- order technical informations ---------------------------
     cart_ref = models.CharField(max_length=30, blank=True, null=True)
+    order_type = models.CharField(max_length=200, default='REGULAR')
+    # -- order_types : REGULAR - BOX
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     device = models.CharField(max_length=200, default='UNDEFINED')
     operating_system = models.CharField(max_length=200, default='UNDEFINED')
     ip_address = models.CharField(max_length=200, default='UNDEFINED')
-    state = models.CharField(max_length=100, default='PENDING')
+    state = models.CharField(max_length=100, default='UNCONFIRMED')
+    # -- states :  UNCONFIRMED - CONFIRMED - CANCELED - IN-PROGRESS - PACKAGING - DELIVERY - PENDING - PAID - REFUND
+
     # --------------------------------- client info --------------------------------------------
     product = models.ManyToManyField(CartProduct, blank=True)
-    name = models.CharField(max_length=300, blank=True, null=True)
-    phone = PhoneNumberField(blank=True)
-    destination = models.CharField(max_length=200, blank=True, null=True)
-    sub_destination = models.CharField(max_length=200, blank=True, null=True)
-    full_address = models.CharField(max_length=500, blank=True, null=True)
+    client_name = models.CharField(max_length=300, blank=True, null=True)
+    client_phone = PhoneNumberField(blank=True)
+    province = models.CharField(max_length=200, blank=True, null=True)
+    municipality = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
     coupon_title = models.CharField(max_length=30, blank=True, null=True)
     coupon_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     shipping_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # --------------------------------- options ------------------------------------------------
+    additional_information = models.CharField(max_length=500, blank=True, null=True)
+    gift_packaging = models.BooleanField(default=False)
+    theme = models.CharField(max_length=100, default='STANDARD')
+    # -- themes :  BIRTHDAY - WEDDING - BIRTH
+
+    occasion = models.CharField(max_length=100, default='UNDEFINED')
+    # -- occasions :  UNDEFINED - BIRTHDAY - WEDDING - BIRTH
+
+    secured = models.BooleanField(default=False)
+    receiver_name = models.CharField(max_length=300, blank=True, null=True)
+    receiver_message = models.CharField(max_length=500, blank=True, null=True)
+
 
     def __str__(self):
         return self.cart_ref
