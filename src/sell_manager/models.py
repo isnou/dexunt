@@ -118,7 +118,7 @@ class Province(models.Model):
     en_name = models.CharField(max_length=200, blank=True, null=True)
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
-    
+
     municipality = models.ManyToManyField(Municipality, blank=True)
 
     def __str__(self):
