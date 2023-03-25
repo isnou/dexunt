@@ -1,6 +1,3 @@
-
-
-
 <table class="table table-hover fs-sm border-top">
     <tbody>
     <tr>
@@ -12,8 +9,7 @@
         </td>
         <td class="align-middle">
             <span class="text-dark fw-medium">To Home</span>
-            <br><span class="text-muted">kjmdwij</span></td>
-        <td class="align-middle">2 - 4 days</td>
+            <br><span class="text-muted">{{ municipality.en_home_delivery_time }}</span></td>
         <td class="align-middle">{{ home_delivery_price|floatformat:"2g" }}<small>DZD</small></td>
     </tr>
     <tr>
@@ -24,8 +20,7 @@
             </div>
         </td>
         <td class="align-middle"><span class="text-dark fw-medium">To Desk</span>
-            <br><span class="text-muted">fkjdscfeéok</span></td>
-        <td class="align-middle">up to one week</td>
+            <br><span class="text-muted">{{ municipality.en_desk_delivery_time }}</span></td>
         <td class="align-middle">{{ desk_delivery_price|floatformat:"2g" }}<small>DZD</small></td>
     </tr>
     </tbody>
