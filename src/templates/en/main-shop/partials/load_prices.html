@@ -22,7 +22,11 @@
         </td>
         <td class="align-middle"><span class="text-dark fw-medium">Delivery to desk</span>
             <br><span class="text-muted">{{ municipality.en_desk_delivery_time }}</span></td>
+        {% if desk_delivery_price %}
         <td class="align-middle">{{ desk_delivery_price|floatformat:"2g" }}<small>DZD</small></td>
+        {% else %}
+        <td class="align-middle">Free</td>
+        {% endif %}
     </tr>
     </tbody>
 </table>
