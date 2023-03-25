@@ -10,8 +10,15 @@
         </td>
         <td class="align-middle">
             <span class="text-dark fw-medium">Delivery to home</span>
-            <br><span class="text-muted">{{ municipality.en_home_delivery_time }}</span></td>
+        </td>
+        <td class="align-middle">
+            <span class="text-muted">{{ municipality.en_home_delivery_time }}</span>
+        </td>
+        {% if home_delivery_price %}
         <td class="align-middle">{{ home_delivery_price|floatformat:"2g" }}<small>DZD</small></td>
+        {% else %}
+        <td class="align-middle">Free</td>
+        {% endif %}
     </tr>
     <tr>
         <td>
@@ -20,8 +27,12 @@
                 <label class="form-check-label" for="local"></label>
             </div>
         </td>
-        <td class="align-middle"><span class="text-dark fw-medium">Delivery to desk</span>
-            <br><span class="text-muted">{{ municipality.en_desk_delivery_time }}</span></td>
+        <td class="align-middle">
+            <span class="text-dark fw-medium">Delivery to desk</span>
+        </td>
+        <td class="align-middle">
+            <span class="text-muted">{{ municipality.en_desk_delivery_time }}</span>
+        </td>
         {% if desk_delivery_price %}
         <td class="align-middle">{{ desk_delivery_price|floatformat:"2g" }}<small>DZD</small></td>
         {% else %}
