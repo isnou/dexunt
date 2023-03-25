@@ -53,11 +53,13 @@ def cart_home(request, action):
 
     if action == 'load_prices':
         municipality_en_name = request.GET.get('municipality_en_name')
+        municipality = Municipality.objects.all().get(en_name=municipality_en_name)
         home_delivery_price = checkout_actions.get_shipping_prices(request, municipality_en_name).get('home_delivery_price')
         desk_delivery_price = checkout_actions.get_shipping_prices(request, municipality_en_name).get('desk_delivery_price')
         sub_context = {
             'home_delivery_price': home_delivery_price,
             'desk_delivery_price': desk_delivery_price,
+            'municipality': municipality,
         }
         return render(request, 'en/main-shop/partials/load_prices.html', sub_context)
 
