@@ -102,7 +102,7 @@
                     <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
                         <div class="mb-3">
-                            <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_municipality' %}" hx-trigger="change" hx-target="#sub-destination" required>
+                            <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_municipality' %}" hx-trigger="change" hx-target="#municipality" required>
                                 <option value="">Choose your province</option>
                                 {% for province in provinces %}
                                 <option value="{{ province.en_name }}">{{ province.en_name }}</option>
@@ -110,7 +110,7 @@
                             </select>
                             <div class="invalid-feedback">Please choose your province!</div>
                         </div>
-                        <div class="mb-3" id="sub-destination">
+                        <div class="mb-3" id="municipality">
                             {% include 'en/main-shop/partials/load_municipality.html' %}
                         </div>
                         <button class="btn btn-primary btn-shadow d-block w-100 mt-4" type="submit">

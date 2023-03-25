@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from .models import CartProduct, Cart, Product
 from . import cart_actions, checkout_actions
-from sell_manager.models import Province
+from sell_manager.models import Province, Municipality
 
 def cart_home(request, action):
     if not request.session.get('language', None):
@@ -50,6 +50,16 @@ def cart_home(request, action):
             'province': province,
         }
         return render(request, 'en/main-shop/partials/load_municipality.html', sub_context)
+
+    if action == 'load_prices':
+        municipality_en_name = request.GET.get('municipality_en_name')
+        home_delivery_price = checkout_actions.get_shipping_prices(request, municipality_en_name).get('home_delivery_price')
+        desk_delivery_price = checkout_actions.get_shipping_prices(request, municipality_en_name).get('desk_delivery_price')
+        sub_context = {
+            'home_delivery_price': home_delivery_price,
+            'desk_delivery_price': desk_delivery_price,
+        }
+        return render(request, 'en/main-shop/partials/load_prices.html', sub_context)
 
 def checkout(request, action):
     if not request.session.get('language', None):
