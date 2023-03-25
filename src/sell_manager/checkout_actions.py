@@ -17,14 +17,10 @@ def details(request):
         province = Province.objects.all().get(en_name=province_en_name)
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
 
-
-
     for product in cart.product.all():
         earned_points += product.points * product.quantity
 
     shipping_price = int(shipping_price)
-
-
 
     return {
         'shipping_price':shipping_price,
