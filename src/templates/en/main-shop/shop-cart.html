@@ -105,7 +105,7 @@
                             <select class="form-select" name="province_en_name" id="province_en_name" hx-get="{% url 'cart-home' 'load_municipality' %}" hx-trigger="change" hx-target="#municipality" required>
                                 <option value=""></option>
                                 {% for province in provinces %}
-                                <option value="{{ province.en_name }}">{{ province.en_name }}</option>
+                                <option value="{{ province.en_name }}">{{ province.en_name|title }}</option>
                                 {% endfor %}
                             </select>
                             <label for="province_en_name">Your province</label>

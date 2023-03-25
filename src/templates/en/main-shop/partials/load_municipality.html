@@ -2,7 +2,7 @@
     <option value=""></option>
     {% if province %}
     {% for municipality in province.municipality.all %}
-    <option value="{{ municipality.en_name }}">{{ municipality.en_name }}</option>
+    <option value="{{ municipality.en_name }}">{{ municipality.en_name|title }}</option>
     {% endfor %}
     {% endif %}
 </select>
