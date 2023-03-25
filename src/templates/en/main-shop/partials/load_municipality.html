@@ -1,4 +1,4 @@
-<select class="form-select" name="municipality_en_name" hx-get="{% url 'cart-home' 'load_prices' %}" hx-trigger="change" hx-target="#prices" required>
+<select class="form-select" name="municipality_en_name" id="municipality_en_name" hx-get="{% url 'cart-home' 'load_prices' %}" hx-trigger="change" hx-target="#prices" required>
     <option value="">Choose your municipality</option>
     {% if province %}
     {% for municipality in province.municipality.all %}
@@ -6,6 +6,7 @@
     {% endfor %}
     {% endif %}
 </select>
+<label for="municipality_en_name">Your municipality</label>
 <div class="invalid-feedback">Please choose your municipality!</div>
 <div class="mb-3 mt-3" id="prices">
     {% include 'en/main-shop/partials/load_prices.html' %}
