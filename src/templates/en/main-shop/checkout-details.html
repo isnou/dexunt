@@ -119,19 +119,19 @@
                                     </a>
                                 </h6>
                                 <div class="widget-product-meta">
-                                    <span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span><span class="text-muted">x {{ cart_product.quantity }}</span>
+                                    <span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small class="ms-1">DA</small></span><span class="text-muted">x {{ cart_product.quantity }}</span>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                     <ul class="list-unstyled fs-sm pb-2 border-bottom">
-                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span></li>
-                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small>DA</small></span></li>
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2"></span><span class="text-end"></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
                     </ul>
-                    <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small>DA</small></h3>
+                    <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     <form class="needs-validation" method="post" novalidate>
                         <div class="mb-3">
                             <input class="form-control" type="text" placeholder="Promo code" required>
