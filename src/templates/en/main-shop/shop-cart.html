@@ -101,7 +101,7 @@
 
                     <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
-                        <div class="mb-3">
+                        <div class="form-floating mb-3">
                             <select class="form-select" name="province_en_name" hx-get="{% url 'cart-home' 'load_municipality' %}" hx-trigger="change" hx-target="#municipality" required>
                                 <option value="">Choose your province</option>
                                 {% for province in provinces %}
