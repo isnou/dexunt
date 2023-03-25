@@ -8,6 +8,13 @@
                 <label class="form-check-label" for="delivery_to_home">
                     <span class="text-dark fw-medium">Delivery to home</span>
                     <br><span class="text-muted">{{ municipality.en_home_delivery_time }}</span>
+
+                    {% if home_delivery_price %}
+        <span class="align-middle">{{ home_delivery_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span>
+        {% else %}
+        <span class="align-middle">Free</span>
+        {% endif %}
+
                 </label>
             </div>
         </td>
