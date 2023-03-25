@@ -1,5 +1,5 @@
 <select class="form-select" name="municipality_en_name" id="municipality_en_name" hx-get="{% url 'cart-home' 'load_prices' %}" hx-trigger="change" hx-target="#prices" required>
-    <option value="">Choose your municipality</option>
+    <option value=""></option>
     {% if province %}
     {% for municipality in province.municipality.all %}
     <option value="{{ municipality.en_name }}">{{ municipality.en_name }}</option>
