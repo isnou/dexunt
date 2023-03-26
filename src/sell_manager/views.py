@@ -68,21 +68,8 @@ def checkout(request, action):
         return render(request, url, context)
 
     if action == 'review':
-        url = direction + checkout_actions.details(request).get('url')
-        cart = Cart.objects.all().get(ref=request.session.get('cart'))
-        earned_points = checkout_actions.details(request).get('earned_points')
-        shipping_price = checkout_actions.details(request).get('shipping_price')
-        province = checkout_actions.details(request).get('province')
-        municipality = checkout_actions.details(request).get('municipality')
-        total_price = cart.sub_total_price + shipping_price
-        context = {
-            'cart': cart,
-            'earned_points': earned_points,
-            'shipping_price': shipping_price,
-            'province': province,
-            'municipality': municipality,
-            'total_price': total_price,
-        }
+        url = direction + checkout_actions.review(request).get('url')
+        context = checkout_actions.review(request).get('context')
         return render(request, url, context)
 
 
