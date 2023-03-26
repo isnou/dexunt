@@ -62,7 +62,8 @@
             </div>
             <!-- Shipping address-->
             <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Autor Info </h2>
-            <form class="needs-validation" id="credential_form" method="post" novalidate>
+            <form action="{% url 'checkout' 'review' %}" class="needs-validation" id="credential_form" method="post" novalidate>
+                {% csrf_token %}
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="mb-3">

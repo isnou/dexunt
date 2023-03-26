@@ -21,12 +21,19 @@ def details(request):
         earned_points += product.points * product.quantity
 
     shipping_price = int(shipping_price)
+    total_price = cart.sub_total_price + shipping_price
+
+    context = {
+        'cart': cart,
+        'earned_points': earned_points,
+        'shipping_price': shipping_price,
+        'province': province,
+        'municipality': municipality,
+        'total_price': total_price,
+    }
 
     return {
-        'shipping_price':shipping_price,
-        'province':province,
-        'municipality':municipality,
-        'earned_points':earned_points,
+        'context':context,
         'url': url,
     }
 

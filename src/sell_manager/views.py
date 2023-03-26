@@ -70,6 +70,12 @@ def checkout(request, action):
     direction = request.session.get('language')
 
     if action == 'details':
+        url = direction + checkout_actions.details(request).get('url')
+        context = checkout_actions.details(request).get('context')
+        
+        return render(request, url, context)
+
+    if action == 'review':
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
         url = direction + checkout_actions.details(request).get('url')
         earned_points = checkout_actions.details(request).get('earned_points')
