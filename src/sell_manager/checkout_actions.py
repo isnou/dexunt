@@ -64,7 +64,7 @@ def get_shipping_prices(request ,municipality_en_name):
 def review(request):
     url = "/main-shop/checkout-review.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
-    
+
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
         municipality_en_name = request.POST.get('municipality_en_name', False)
