@@ -72,7 +72,6 @@ def checkout(request, action):
     if action == 'details':
         url = direction + checkout_actions.details(request).get('url')
         context = checkout_actions.details(request).get('context')
-        
         return render(request, url, context)
 
     if action == 'review':
