@@ -53,14 +53,7 @@ def cart_home(request, action):
 
     if action == 'load_prices':
         municipality_en_name = request.GET.get('municipality_en_name')
-        municipality = Municipality.objects.all().get(en_name=municipality_en_name)
-        home_delivery_price = checkout_actions.get_shipping_prices(request, municipality_en_name).get('home_delivery_price')
-        desk_delivery_price = checkout_actions.get_shipping_prices(request, municipality_en_name).get('desk_delivery_price')
-        sub_context = {
-            'home_delivery_price': home_delivery_price,
-            'desk_delivery_price': desk_delivery_price,
-            'municipality': municipality,
-        }
+        sub_context = checkout_actions.get_shipping_prices(request, municipality_en_name).get('sub_context')
         return render(request, 'en/main-shop/partials/load_prices.html', sub_context)
 
 def checkout(request, action):
@@ -75,8 +68,8 @@ def checkout(request, action):
         return render(request, url, context)
 
     if action == 'review':
-        cart = Cart.objects.all().get(ref=request.session.get('cart'))
         url = direction + checkout_actions.details(request).get('url')
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
         earned_points = checkout_actions.details(request).get('earned_points')
         shipping_price = checkout_actions.details(request).get('shipping_price')
         province = checkout_actions.details(request).get('province')

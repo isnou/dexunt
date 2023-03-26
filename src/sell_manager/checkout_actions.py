@@ -50,9 +50,12 @@ def get_shipping_prices(request ,municipality_en_name):
     home_delivery_price = round((municipality.home_delivery_price * delivery_quotient) / 100)
     desk_delivery_price = round((municipality.desk_delivery_price * delivery_quotient) / 100)
 
-
+    sub_context = {
+        'home_delivery_price': home_delivery_price,
+        'desk_delivery_price': desk_delivery_price,
+        'municipality': municipality,
+    }
 
     return {
-        'home_delivery_price':home_delivery_price,
-        'desk_delivery_price':desk_delivery_price,
+        'sub_context':sub_context,
     }
