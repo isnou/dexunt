@@ -58,8 +58,6 @@ def review(request):
         'cart': cart,
         'earned_points': earned_points,
         'shipping_price': shipping_price,
-        'province': province,
-        'municipality': municipality,
         'total_price': total_price,
     }
 
