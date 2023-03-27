@@ -133,6 +133,19 @@ def add_product_to_cart(request):
         'context': context,
     }
 
+def show_cart(request):
+    url = "/main-shop/shop-cart.html"
+
+    try:
+        provinces = Province.objects.all()
+    except Province.objects.all().DoesNotExist:
+        raise Http404("No provinces")
+
+    return {
+        'url': url,
+        'provinces': provinces,
+    }
+
 def remove_product_from_cart(request):
     url = "/main-shop/main-page.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
