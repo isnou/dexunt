@@ -87,15 +87,15 @@
                 <div class="col-sm-6">
                   <h4 class="h6">Shipping to:</h4>
                   <ul class="list-unstyled fs-sm">
-                    <li><span class="text-muted">Province:&nbsp;</span>{{ province_en_name }}</li>
-                    <li><span class="text-muted">Municipality:&nbsp;</span>{{ municipality_en_name }}</li>
+                    <li><span class="text-muted">Province:&nbsp;</span>{{ province_en_name|title }}</li>
+                    <li><span class="text-muted">Municipality:&nbsp;</span>{{ municipality_en_name|title }}</li>
                   </ul>
                 </div>
                 <div class="col-sm-6">
                   <h4 class="h6">Contact:</h4>
                   <ul class="list-unstyled fs-sm">
-                      <li><span class="text-muted">Name:&nbsp;</span>{{ client_name }}</li>
-                    <li><span class="text-muted">Phone:&nbsp;</span>{{ phone_number }}</li>
+                      <li><span class="text-muted">Name:&nbsp;</span>{{ client_name|title }}</li>
+                    <li><span class="text-muted">Phone:&nbsp;</span>{{ phone_number|title }}</li>
                   </ul>
                 </div>
               </div>
@@ -124,13 +124,13 @@
                 <div class="py-2 px-xl-2">
                     <h2 class="h6 text-center mb-4">Order summary</h2>
                     <ul class="list-unstyled fs-sm pb-2 border-bottom">
-                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span></li>
-                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small>DA</small></span></li>
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2"></span><span class="text-end"></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
                     </ul>
 
-                    <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small>DA</small></h3>
+                    <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     <form class="needs-validation" method="post" novalidate>
                         <div class="mb-3">
                             <input class="form-control" type="text" placeholder="Promo code" required>
