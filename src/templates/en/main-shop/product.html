@@ -339,7 +339,11 @@
                                     </div>
                                     <div class="d-flex mb-4">
                                         <button class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
+                                        {% if buy_now %}
+                                        <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="submit"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
+                                        {% else %}
                                         <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="submit"><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
+                                        {% endif %}
                                     </div>
                                     {% else %}
                                     <input type="hidden" name="change_url" value='go_to_cart'>
@@ -402,7 +406,11 @@
                                     </div>
                                     <div class="d-flex mb-4">
                                         <button class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
+                                        {% if buy_now %}
+                                        <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="submit"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
+                                        {% else %}
                                         <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="submit"><i class="ci-add fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Cart</button>
+                                        {% endif %}
                                     </div>
                                     {% else %}
                                     <input type="hidden" name="change_url" value='go_to_cart'>

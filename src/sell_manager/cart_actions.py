@@ -7,8 +7,9 @@ def add_product_to_cart(request):
     url = "/main-shop/main-page.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     redirecting = False
-
     provinces = False
+    buy_now = False
+
     if request.method == 'POST':
         product_sku = request.POST.get('product_sku', False)
         variant_sku = request.POST.get('variant_sku', False)
@@ -123,9 +124,18 @@ def add_product_to_cart(request):
     cart.sub_total_price = sub_total_price
     cart.save()
 
+    if not cart.product.all().count():
+        url = "/main-shop/shop-cart.html"
+        try:
+            provinces = Province.objects.all()
+        except Province.objects.all().DoesNotExist:
+            raise Http404("No provinces")
+        buy_now = True
+
     context = {
         'provinces': provinces,
         'redirecting': redirecting,
+        'buy_now': buy_now,
     }
 
     return {
