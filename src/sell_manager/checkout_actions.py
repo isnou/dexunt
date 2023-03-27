@@ -14,9 +14,6 @@ def details(request):
         municipality_en_name = request.POST.get('municipality_en_name', False)
         shipping_price = request.POST.get('shipping_price', False)
 
-        province = Province.objects.all().get(en_name=province_en_name)
-        municipality = Municipality.objects.all().get(en_name=municipality_en_name)
-
     for product in cart.product.all():
         earned_points += product.points * product.quantity
 
