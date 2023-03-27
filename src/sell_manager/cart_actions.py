@@ -23,6 +23,7 @@ def add_product_to_cart(request):
                 raise Http404("No provinces")
 
         if not cart.product.all().count():
+            redirecting = True
             url = "/main-shop/shop-cart.html"
             try:
                 provinces = Province.objects.all()
