@@ -58,13 +58,7 @@ def product(request, sku, size_sku):
         update=False
 
     buy_now = False
-    provinces = False
     if not cart.product.all().count():
-        url = direction + "/main-shop/shop-cart.html"
-        try:
-            provinces = Province.objects.all()
-        except Province.objects.all().DoesNotExist:
-            raise Http404("No provinces")
         buy_now = True
 
     context = {
@@ -74,7 +68,6 @@ def product(request, sku, size_sku):
         'size_sku': size_sku,
         'update': update,
         'buy_now': buy_now,
-        'provinces': provinces,
     }
     return render(request, url, context)
 
