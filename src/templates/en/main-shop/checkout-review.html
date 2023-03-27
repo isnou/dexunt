@@ -62,17 +62,12 @@
                     </a>
                     <div class="pt-2">
                         <h3 class="product-title fs-base mb-2">
-                            <a href="#">{{ cart_product.en_name|title }} — {{ cart_product.en_spec|title }}
-                                {% if cart_product.en_detail %}
-                                — {{ cart_product.en_detail }}
-                                {% endif %}
-                            </a>
+                            <a href="#">{{ cart_product.en_name|title }}</a>
                         </h3>
-
+                        <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ cart_product.en_spec }} </div>
                         {% if cart_product.en_detail %}
                         <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ cart_product.en_detail }} </div>
                         {% endif %}
-                        <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ cart_product.en_spec }} </div>
                         <div class="fs-lg text-accent pt-2">{{ cart_product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
                     </div>
                 </div>
