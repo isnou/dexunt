@@ -8,6 +8,7 @@ def add_product_to_cart(request):
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     redirecting = False
 
+    provinces = False
     if request.method == 'POST':
         product_sku = request.POST.get('product_sku', False)
         variant_sku = request.POST.get('variant_sku', False)
@@ -15,6 +16,11 @@ def add_product_to_cart(request):
         change_url = request.POST.get('change_url', False)
         if change_url == 'go_to_cart':
             redirecting = True
+            url = "/main-shop/shop-cart.html"
+            try:
+                provinces = Province.objects.all()
+            except Province.objects.all().DoesNotExist:
+                raise Http404("No provinces")
 
         selected_variant = ShowcaseProduct.objects.all().get(sku=variant_sku)
         selected_product = Product.objects.all().get(sku=product_sku)
@@ -117,9 +123,14 @@ def add_product_to_cart(request):
     cart.sub_total_price = sub_total_price
     cart.save()
 
-    return {
+    context = {
+        'provinces': provinces,
         'url': url,
         'redirecting': redirecting,
+    }
+
+    return {
+        'context': context,
     }
 
 def remove_product_from_cart(request):
@@ -153,19 +164,6 @@ def remove_product_from_cart(request):
 
     return {
         'url': url,
-    }
-
-def show_cart(request):
-    url = "/main-shop/shop-cart.html"
-
-    try:
-        provinces = Province.objects.all()
-    except Province.objects.all().DoesNotExist:
-        raise Http404("No provinces")
-
-    return {
-        'url': url,
-        'provinces': provinces,
     }
 
 def remove_quantity(request):
