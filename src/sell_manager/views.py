@@ -12,7 +12,7 @@ def cart_home(request, action):
 
     if action == 'add_product_to_cart':
         url = direction + cart_actions.add_product_to_cart(request).get('url')
-        context = direction + cart_actions.add_product_to_cart(request).get('context')
+        context = cart_actions.add_product_to_cart(request).get('context')
 
         return render(request, url, context)
 
