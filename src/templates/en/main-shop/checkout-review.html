@@ -52,53 +52,59 @@
                 <div class="step-label"><i class="ci-check-circle"></i>Review</div></a>
             </div>
 
-            <!-- Autor info-->
-            <div class="d-sm-flex justify-content-between align-items-center bg-secondary p-4 rounded-3 mb-grid-gutter">
-                <div class="d-flex align-items-center">
-                    <div class="ps-3">
-                        <h3 class="fs-base mb-0">Two steps and done</h3><span class="text-accent fs-sm">earn {{ earned_points }} with that order</span>
+            <!-- Order details-->
+            <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Review your order</h2>
+
+            {% for cart_product in cart.product.all %}
+            <!-- Item-->
+            <div class="d-sm-flex justify-content-between my-4 pb-3 border-bottom">
+                <div class="d-sm-flex text-center text-sm-start">
+                    <a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" href="#">
+                        <img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="160" alt="Product">
+                    </a>
+                    <div class="pt-2">
+                        <h3 class="product-title fs-base mb-2">
+                            <a href="#">{{ cart_product.en_name|title }} — {{ cart_product.en_spec|title }}
+                                {% if cart_product.en_detail %}
+                                — {{ cart_product.en_detail }}
+                                {% endif %}
+                            </a>
+                        </h3>
+
+                        {% if cart_product.en_detail %}
+                        <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ cart_product.en_detail }} </div>
+                        {% endif %}
+                        <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ cart_product.en_spec }} </div>
+                        <div class="fs-lg text-accent pt-2">{{ cart_product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
                     </div>
                 </div>
-                <a class="btn btn-light btn-sm btn-shadow mt-3 mt-sm-0" href="#"><i class="ci-edit me-2"></i>Edit profile</a>
+                <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-end" style="max-width: 9rem;">
+                    <p class="mb-0"><span class="text-muted fs-sm">Quantity:</span><span>&nbsp;{{ cart_product.quantity }}</span></p>
+                </div>
             </div>
-            <!-- Shipping address-->
-            <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Autor Info </h2>
-            <form class="needs-validation" id="credential_form" method="post" novalidate>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="checkout-fn">Name</label>
-                            <input class="form-control" type="text" name="client_name" id="checkout-fn">
-                        </div>
-                    </div>
+            {% endfor %}
 
-                    <div class="col-sm-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="checkout-phone">Phone Number</label>
-                            <input class="form-control" type="tel" name="phone_number" id="checkout-phone" required>
-                            <div class="invalid-feedback">Please provide a phone number !</div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Navigation (desktop)-->
-                <div class="d-none d-lg-flex pt-4 mt-3">
-                    <div class="w-50 pe-3">
-                        <a class="btn btn-secondary d-block w-100" href="{% url 'cart-home' 'show_cart' %}">
-                            <i class="ci-arrow-left mt-sm-0 me-1"></i>
-                            <span class="d-none d-sm-inline">Back to Cart</span>
-                            <span class="d-inline d-sm-none">Back</span>
-                        </a>
-                    </div>
-                    <div class="w-50 ps-2">
-                        <button class="btn btn-primary d-block w-100" type="submit">
-                            <span class="d-none d-sm-inline">Proceed to Shipping</span>
-                            <span class="d-inline d-sm-none">Next</span>
-                            <i class="ci-arrow-right mt-sm-0 ms-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+
+
+            <!-- Navigation (desktop)-->
+            <div class="d-none d-lg-flex pt-4 mt-3">
+              <div class="w-50 pe-3">
+                  <a class="btn btn-secondary d-block w-100" href="{% url 'cart-home' 'show_cart' %}">
+                      <i class="ci-arrow-left mt-sm-0 me-1"></i>
+                      <span class="d-none d-sm-inline">Back to Payment</span>
+                      <span class="d-inline d-sm-none">Back</span>
+                  </a>
+              </div>
+              <div class="w-50 ps-2">
+                  <a class="btn btn-primary d-block w-100" href="#">
+                      <span class="d-none d-sm-inline">Complete order</span>
+                      <span class="d-inline d-sm-none">Complete</span>
+                      <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+                  </a>
+              </div>
+            </div>
+
         </section>
         <!-- Sidebar-->
         <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
