@@ -22,13 +22,6 @@ def add_product_to_cart(request):
             except Province.objects.all().DoesNotExist:
                 raise Http404("No provinces")
 
-        if not cart.product.all().count():
-            url = "/main-shop/shop-cart.html"
-            try:
-                provinces = Province.objects.all()
-            except Province.objects.all().DoesNotExist:
-                raise Http404("No provinces")
-
         selected_variant = ShowcaseProduct.objects.all().get(sku=variant_sku)
         selected_product = Product.objects.all().get(sku=product_sku)
         if not size_sku == 'main':
