@@ -123,6 +123,13 @@ def add_product_to_cart(request):
     cart.sub_total_price = sub_total_price
     cart.save()
 
+    if not cart.product.all().count():
+        url = "/main-shop/shop-cart.html"
+        try:
+            provinces = Province.objects.all()
+        except Province.objects.all().DoesNotExist:
+            raise Http404("No provinces")
+
     context = {
         'provinces': provinces,
         'redirecting': redirecting,
