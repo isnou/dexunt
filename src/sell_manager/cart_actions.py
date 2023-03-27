@@ -8,7 +8,7 @@ def add_product_to_cart(request):
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     redirecting = False
     provinces = False
-    buy_now = False
+    buy_now = True
 
     if request.method == 'POST':
         product_sku = request.POST.get('product_sku', False)
