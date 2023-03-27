@@ -133,7 +133,7 @@ def add_product_to_cart(request):
         'context': context,
     }
 
-def show_cart(request):
+def show_cart():
     url = "/main-shop/shop-cart.html"
 
     try:

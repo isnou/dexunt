@@ -13,7 +13,6 @@ def cart_home(request, action):
     if action == 'add_product_to_cart':
         url = direction + cart_actions.add_product_to_cart(request).get('url')
         context = cart_actions.add_product_to_cart(request).get('context')
-
         return render(request, url, context)
 
     if action == 'remove_product_from_cart':
@@ -24,15 +23,15 @@ def cart_home(request, action):
 
     if action == 'remove_quantity':
         url = direction + cart_actions.remove_quantity(request).get('url')
-        provinces = cart_actions.show_cart(request).get('provinces')
+        provinces = cart_actions.show_cart().get('provinces')
         context = {
             'provinces': provinces,
         }
         return render(request, url, context)
 
     if action == 'show_cart':
-        url = direction + cart_actions.show_cart(request).get('url')
-        provinces = cart_actions.show_cart(request).get('provinces')
+        url = direction + cart_actions.show_cart().get('url')
+        provinces = cart_actions.show_cart().get('provinces')
         context = {
             'provinces': provinces,
         }
