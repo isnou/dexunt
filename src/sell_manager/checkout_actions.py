@@ -40,26 +40,29 @@ def details(request):
 def review(request):
     url = "/main-shop/checkout-review.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
-    earned_points = 0
-    shipping_price = 0
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
         municipality_en_name = request.POST.get('municipality_en_name', False)
         shipping_price = request.POST.get('shipping_price', False)
+        total_price = request.POST.get('total_price', False)
+        earned_points = request.POST.get('earned_points', False)
+        client_name = request.POST.get('client_name', False)
+        phone_number = request.POST.get('phone_number', False)
 
+        context = {
+            'cart': cart,
+            'province_en_name': province_en_name,
+            'municipality_en_name': municipality_en_name,
+            'client_name': client_name,
+            'phone_number': phone_number,
 
-    for product in cart.product.all():
-        earned_points += product.points * product.quantity
-
-    total_price = cart.sub_total_price + shipping_price
-
-    context = {
-        'cart': cart,
-        'earned_points': earned_points,
-        'shipping_price': shipping_price,
-        'total_price': total_price,
-    }
+            'earned_points': earned_points,
+            'shipping_price': shipping_price,
+            'total_price': total_price,
+        }
+    else:
+        context = False
 
     return {
         'context':context,
