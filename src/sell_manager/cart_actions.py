@@ -58,6 +58,13 @@ def add_product_to_cart(request):
 
         quantity = request.POST.get('quantity', False)
 
+        if not cart.product.all().count():
+            url = "/main-shop/shop-cart.html"
+            try:
+                provinces = Province.objects.all()
+            except Province.objects.all().DoesNotExist:
+                raise Http404("No provinces")
+
         if cart.product.all().filter(product_sku=product_sku).exists():
             if size_sku == 'main':
                 cart_product = cart.product.all().get(product_sku=product_sku)
@@ -122,13 +129,6 @@ def add_product_to_cart(request):
         sub_total_price += cart_product.price * cart_product.quantity
     cart.sub_total_price = sub_total_price
     cart.save()
-
-    if not cart.product.all().count():
-        url = "/main-shop/shop-cart.html"
-        try:
-            provinces = Province.objects.all()
-        except Province.objects.all().DoesNotExist:
-            raise Http404("No provinces")
 
     context = {
         'provinces': provinces,
