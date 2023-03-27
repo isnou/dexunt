@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
-from sell_manager.models import Cart
+from sell_manager.models import Cart, Province
 
 from .models import Showcase
 from . import grid_shop_actions
@@ -57,12 +57,24 @@ def product(request, sku, size_sku):
     else:
         update=False
 
+    buy_now = False
+    provinces = False
+    if not cart.product.all().count():
+        url = direction + "/main-shop/shop-cart.html"
+        try:
+            provinces = Province.objects.all()
+        except Province.objects.all().DoesNotExist:
+            raise Http404("No provinces")
+        buy_now = True
+
     context = {
         'selected_product': selected_product,
         'selected_size': selected_size,
         'variant': variant,
         'size_sku': size_sku,
         'update': update,
+        'buy_now': buy_now,
+        'provinces': provinces,
     }
     return render(request, url, context)
 
