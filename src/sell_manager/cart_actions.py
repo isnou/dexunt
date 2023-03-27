@@ -124,7 +124,7 @@ def add_product_to_cart(request):
     cart.sub_total_price = sub_total_price
     cart.save()
 
-    if not cart.product.all().count():
+    if cart.product.all().count() == 0:
         url = "/main-shop/shop-cart.html"
         try:
             provinces = Province.objects.all()
