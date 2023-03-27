@@ -125,11 +125,11 @@ def add_product_to_cart(request):
 
     context = {
         'provinces': provinces,
-        'url': url,
         'redirecting': redirecting,
     }
 
     return {
+        'url': url,
         'context': context,
     }
 
