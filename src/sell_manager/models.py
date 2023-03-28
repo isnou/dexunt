@@ -33,6 +33,20 @@ class CartProduct(models.Model):
         return self.en_name
 
 
+class Coupon(models.Model):
+    # --------------------------------- coupon technical informations --------------------------
+    code = models.CharField(max_length=30, blank=True, null=True)
+    coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
+    # -- coupon_types :  SUBTRACTION - PERCENTAGE
+
+    # --------------------------------- info ---------------------------------------------------
+    quantity = models.IntegerField(default=1)
+    value = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.code
+
+
 class Cart(models.Model):
     # --------------------------------- cart technical informations ----------------------------
     ref = models.CharField(max_length=30, unique=True)
@@ -70,15 +84,18 @@ class Order(models.Model):
     province = models.CharField(max_length=200, blank=True, null=True)
     municipality = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
-    coupon_title = models.CharField(max_length=30, blank=True, null=True)
-    coupon_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     shipping_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    coupon_code = models.CharField(max_length=30, blank=True, null=True)
+    coupon_value = models.IntegerField(default=0)
+    coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
+    # -- coupon_types :  SUBTRACTION - PERCENTAGE
+
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # --------------------------------- options ------------------------------------------------
     additional_information = models.CharField(max_length=500, blank=True, null=True)
     gift_packaging = models.BooleanField(default=False)
-    theme = models.CharField(max_length=100, default='STANDARD')
-    # -- themes :  BIRTHDAY - WEDDING - BIRTH
+    theme = models.CharField(max_length=100, default='SIMPLE')
+    # -- themes :  STANDARD - BIRTHDAY - WEDDING - BIRTH
 
     occasion = models.CharField(max_length=100, default='UNDEFINED')
     # -- occasions :  UNDEFINED - BIRTHDAY - WEDDING - BIRTH
@@ -86,7 +103,6 @@ class Order(models.Model):
     secured = models.BooleanField(default=False)
     receiver_name = models.CharField(max_length=300, blank=True, null=True)
     receiver_message = models.CharField(max_length=500, blank=True, null=True)
-
 
     def __str__(self):
         return self.cart_ref
