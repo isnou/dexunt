@@ -8,6 +8,7 @@ def details(request):
     shipping_price = 0
     province = None
     municipality = None
+    shipping_type = None
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
@@ -30,6 +31,8 @@ def details(request):
         'province': province,
         'municipality': municipality,
         'total_price': total_price,
+
+        'shipping_type': shipping_type,
     }
 
     return {

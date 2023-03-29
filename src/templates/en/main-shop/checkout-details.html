@@ -140,14 +140,13 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
                     </ul>
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
-                    <form action="#" class="needs-validation" method="post" novalidate>
+                    <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
 
                         <input type="hidden" name="province_en_name" value='{{ province.en_name }}'>
                         <input type="hidden" name="municipality_en_name" value='{{ municipality.en_name }}'>
-                        <input type="hidden" name="total_price" value='{{ total_price }}'>
-                        <input type="hidden" name="shipping_price" value='{{ shipping_price }}'>
-                        <input type="hidden" name="earned_points" value='{{ earned_points }}'>
+                        <input type="hidden" name="shipping_type" value='{{ shipping_type }}'>
+
 
                         <div class="mb-3">
                             <input class="form-control" type="text" name="coupon_code" placeholder="Promo code" required>
