@@ -65,3 +65,12 @@ def checkout(request, action):
         url = direction + checkout_actions.review(request).get('url')
         context = checkout_actions.review(request).get('context')
         return render(request, url, context)
+
+    if action == 'load_discount':
+        province_en_name = request.GET.get('province_en_name')
+        province = Province.objects.all().get(en_name=province_en_name)
+        sub_context = {
+            'province': province,
+        }
+        return render(request, 'en/main-shop/partials/load_discount.html', sub_context)
+
