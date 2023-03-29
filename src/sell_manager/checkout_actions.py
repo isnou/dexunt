@@ -9,7 +9,7 @@ def details(request):
     province = None
     municipality = None
     shipping_type = None
-    coupon = None
+    coupon_code = None
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
@@ -20,12 +20,14 @@ def details(request):
         province = Province.objects.all().get(en_name=province_en_name)
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
         shipping_price = get_shipping_price(cart, municipality, shipping_type)
-        coupon = get_coupon(coupon_code)
+
 
     for product in cart.product.all():
         earned_points += product.points * product.quantity
 
     total_price = cart.sub_total_price + shipping_price
+    coupon = check_promotion(coupon_code, total_price).get('coupon')
+    discounted_price = check_promotion(coupon_code, total_price).get('discounted_price')
 
     context = {
         'cart': cart,
@@ -37,6 +39,7 @@ def details(request):
 
         'shipping_type': shipping_type,
         'coupon': coupon,
+        'discounted_price': discounted_price,
     }
 
     return {
@@ -115,9 +118,21 @@ def get_shipping_price(cart, municipality, shipping_type):
     if shipping_type == 'desk_delivery_price':
         return desk_delivery_price
 
-def get_coupon(coupon_code):
+def check_promotion(coupon_code, total_price):
     if Coupon.objects.all().filter(code=coupon_code).exists():
-        return Coupon.objects.all().get(code=coupon_code)
+        coupon = Coupon.objects.all().get(code=coupon_code)
+        if coupon.coupon_type == 'SUBTRACTION':
+            discounted_price = total_price - coupon.value
+        elif coupon.coupon_type == 'PERCENTAGE':
+            discounted_price = round((total_price * coupon.value) / 10000) * 100
+        else:
+            discounted_price = None
     else:
-        return None
+        coupon = None
+        discounted_price = None
+
+    return {
+        'coupon': coupon,
+        'discounted_price': discounted_price,
+    }
 
