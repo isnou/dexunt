@@ -66,10 +66,4 @@ def checkout(request, action):
         context = checkout_actions.review(request).get('context')
         return render(request, url, context)
 
-    if action == 'load_discount':
-        coupon_code = request.GET.get('coupon_code')
-        sub_context = {
-            'coupon_code': coupon_code,
-        }
-        return render(request, 'en/main-shop/partials/load_discount.html', sub_context)
 
