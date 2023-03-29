@@ -9,15 +9,18 @@ def details(request):
     province = None
     municipality = None
     shipping_type = None
+    coupon = None
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
         municipality_en_name = request.POST.get('municipality_en_name', False)
         shipping_type = request.POST.get('shipping_type', False)
+        coupon_code = request.POST.get('coupon_code', False)
 
         province = Province.objects.all().get(en_name=province_en_name)
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
         shipping_price = get_shipping_price(cart, municipality, shipping_type)
+        coupon = get_coupon(coupon_code)
 
     for product in cart.product.all():
         earned_points += product.points * product.quantity
@@ -33,6 +36,7 @@ def details(request):
         'total_price': total_price,
 
         'shipping_type': shipping_type,
+        'coupon': coupon,
     }
 
     return {
@@ -111,6 +115,9 @@ def get_shipping_price(cart, municipality, shipping_type):
     if shipping_type == 'desk_delivery_price':
         return desk_delivery_price
 
-
-
+def get_coupon(coupon_code):
+    if Coupon.objects.all().filter(code=coupon_code).exists():
+        return Coupon.objects.all().get(code=coupon_code)
+    else:
+        return None
 
