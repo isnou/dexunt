@@ -58,9 +58,9 @@ def review(request):
                 coupon = Coupon.objects.all().get(code=coupon_code)
 
                 if coupon.coupon_type == 'SUBTRACTION':
-                    discounted_price = total_price - coupon.value
+                    discounted_price = int(total_price) - coupon.value
                 if coupon.coupon_type == 'PERCENTAGE':
-                    discounted_price = round((total_price * coupon.value) / 100 )
+                    discounted_price = round((int(total_price) * coupon.value) / 100 )
 
 
         context = {
