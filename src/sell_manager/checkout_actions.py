@@ -124,7 +124,7 @@ def check_promotion(coupon_code, total_price):
         if coupon.coupon_type == 'SUBTRACTION':
             discounted_price = total_price - coupon.value
         elif coupon.coupon_type == 'PERCENTAGE':
-            discounted_price = round((total_price * coupon.value) / 10000) * 100
+            discounted_price = total_price - round((total_price * coupon.value) / 10000) * 100
         else:
             discounted_price = None
     else:
