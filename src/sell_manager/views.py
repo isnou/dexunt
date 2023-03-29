@@ -67,10 +67,9 @@ def checkout(request, action):
         return render(request, url, context)
 
     if action == 'load_discount':
-        province_en_name = request.GET.get('province_en_name')
-        province = Province.objects.all().get(en_name=province_en_name)
+        coupon_code = request.GET.get('coupon_code')
         sub_context = {
-            'province': province,
+            'coupon_code': coupon_code,
         }
         return render(request, 'en/main-shop/partials/load_discount.html', sub_context)
 
