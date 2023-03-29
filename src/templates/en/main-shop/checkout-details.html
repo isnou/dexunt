@@ -154,6 +154,7 @@
                     {% if not discounted_price %}
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     {% else %}
+                    <h3 class="fw-normal text-center my-4">{{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     {% endif %}
 
                     <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
