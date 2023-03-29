@@ -123,14 +123,14 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2"></span><span class="text-end"></span></li>
                     </ul>
-                    <div id="discount">
+                    <div id="discounts">
                         {% include 'en/main-shop/partials/load_discounts.html' %}
                     </div>
 
                     <form action="#" class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
                         <div class="mb-3">
-                            <input class="form-control" type="text" name="coupon_code" id="coupon_code" hx-get="{% url 'cart-home' 'discount_calculate' %}" hx-trigger="change" hx-target="#discount" placeholder="Promo code" required>
+                            <input class="form-control" type="text" name="coupon_code" id="coupon_code" hx-get="{% url 'cart-home' 'discount_calculate' %}" hx-trigger="change" hx-target="#discounts" placeholder="Promo code" required>
                             <div class="invalid-feedback">Please provide promo code.</div>
                         </div>
                         <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
