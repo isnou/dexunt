@@ -122,15 +122,31 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2"></span><span class="text-end"></span></li>
+                        {% if coupon %}
+                        {% if coupon.type == 'SUBTRACTION' %}
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }}</span></li>
+                        {% if coupon.type == 'PERCENTAGE' %}
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }} %</span></li>
+                        {% else %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
+                        {% endif %}
                     </ul>
 
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
-                    <form action="#" class="needs-validation" method="post" novalidate>
+                    <form action="{% url 'checkout' 'review' %}" class="needs-validation" method="post" novalidate>
                         <div class="mb-3">
-                            <input class="form-control" type="text" placeholder="Promo code" required>
+                            <input class="form-control" type="text" name="coupon_code" placeholder="Promo code" required>
                             <div class="invalid-feedback">Please provide promo code.</div>
                         </div>
+
+                        <input type="hidden" name="province_en_name" value='{{ province_en_name }}'>
+                        <input type="hidden" name="municipality_en_name" value='{{ municipality_en_name }}'>
+                        <input type="hidden" name="total_price" value='{{ total_price }}'>
+                        <input type="hidden" name="shipping_price" value='{{ shipping_price }}'>
+                        <input type="hidden" name="earned_points" value='{{ earned_points }}'>
+                        <input type="hidden" name="earned_points" value='{{ client_name }}'>
+                        <input type="hidden" name="earned_points" value='{{ phone_number }}'>
+
                         <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
                     </form>
                 </div>

@@ -1,4 +1,4 @@
-from .models import Cart, CartProduct, Product
+from .models import Cart, CartProduct, Product, Coupon
 from sell_manager.models import Province, Municipality
 
 def details(request):
@@ -40,6 +40,8 @@ def details(request):
 def review(request):
     url = "/main-shop/checkout-review.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    coupon = None
+    discounted_price = None
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
@@ -49,6 +51,17 @@ def review(request):
         earned_points = request.POST.get('earned_points', False)
         client_name = request.POST.get('client_name', False)
         phone_number = request.POST.get('phone_number', False)
+        coupon_code = request.POST.get('coupon_code', False)
+
+        if coupon_code:
+            if Coupon.objects.all().filter(code=coupon_code).exists():
+                coupon = Coupon.objects.all().get(code=coupon_code)
+
+                if coupon.coupon_type == 'SUBTRACTION':
+                    discounted_price = total_price - coupon.value
+                if coupon.coupon_type == 'PERCENTAGE':
+                    discounted_price = round((total_price * coupon.value) / 100 )
+
 
         context = {
             'cart': cart,
@@ -60,6 +73,8 @@ def review(request):
             'earned_points': earned_points,
             'shipping_price': shipping_price,
             'total_price': total_price,
+            'coupon': coupon,
+            'discounted_price': discounted_price,
         }
     else:
         context = False

@@ -64,8 +64,8 @@
             <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Autor Info </h2>
             <form action="{% url 'checkout' 'review' %}" class="needs-validation" id="credential_form" method="post" novalidate>
                 {% csrf_token %}
-                <input type="hidden" name="province_en_name" value='{{ province.en_name|title }}'>
-                <input type="hidden" name="municipality_en_name" value='{{ municipality.en_name|title }}'>
+                <input type="hidden" name="province_en_name" value='{{ province.en_name }}'>
+                <input type="hidden" name="municipality_en_name" value='{{ municipality.en_name }}'>
                 <input type="hidden" name="total_price" value='{{ total_price }}'>
                 <input type="hidden" name="shipping_price" value='{{ shipping_price }}'>
                 <input type="hidden" name="earned_points" value='{{ earned_points }}'>

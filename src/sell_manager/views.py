@@ -65,5 +65,3 @@ def checkout(request, action):
         url = direction + checkout_actions.review(request).get('url')
         context = checkout_actions.review(request).get('context')
         return render(request, url, context)
-
-
