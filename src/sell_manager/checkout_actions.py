@@ -24,8 +24,7 @@ def details(request):
 
     for product in cart.product.all():
         earned_points += product.points * product.quantity
-
-    shipping_price = int(shipping_price)
+        
     total_price = cart.sub_total_price + shipping_price
 
     context = {
