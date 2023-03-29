@@ -47,7 +47,7 @@ def review(request):
         province_en_name = request.POST.get('province_en_name', False)
         municipality_en_name = request.POST.get('municipality_en_name', False)
         shipping_price = request.POST.get('shipping_price', False)
-        total_price = int(request.POST.get('total_price', False))
+        total_price = request.POST.get('total_price', False)
         earned_points = request.POST.get('earned_points', False)
         client_name = request.POST.get('client_name', False)
         phone_number = request.POST.get('phone_number', False)
