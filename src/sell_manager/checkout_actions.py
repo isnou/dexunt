@@ -18,13 +18,14 @@ def details(request):
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
 
         if shipping_type == 'home_delivery_price':
-            shipping_price = municipality.home_delivery_price
+            shipping_price = get_shipping_price(cart, municipality).get('home_delivery_price')
+            
         if shipping_type == 'desk_delivery_price':
-            shipping_price = municipality.desk_delivery_price
+            shipping_price = get_shipping_price(cart, municipality).get('desk_delivery_price')
 
     for product in cart.product.all():
         earned_points += product.points * product.quantity
-        
+
     total_price = cart.sub_total_price + shipping_price
 
     context = {
@@ -94,6 +95,21 @@ def get_shipping_prices(request ,municipality_en_name):
 
     return {
         'sub_context':sub_context,
+    }
+
+def get_shipping_price(cart, municipality):
+
+    delivery_quotients = 0
+    for product in cart.product.all():
+        delivery_quotients += product.delivery
+
+    delivery_quotient = round(delivery_quotients / cart.product.all().count())
+    home_delivery_price = round((municipality.home_delivery_price * delivery_quotient) / 100)
+    desk_delivery_price = round((municipality.desk_delivery_price * delivery_quotient) / 100)
+
+    return {
+        'home_delivery_price': home_delivery_price,
+        'desk_delivery_price': desk_delivery_price,
     }
 
 
