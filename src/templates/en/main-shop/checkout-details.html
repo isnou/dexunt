@@ -153,11 +153,6 @@
                     </ul>
                     {% if not discounted_price %}
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
-                    {% else %}
-                    <h5 class="fw-normal text-muted text-center my-4"><del>{{ total_price|floatformat:"2g" }}</del><small class="ms-1">DZD</small></h5>
-
-                    <h3 class="fw-normal text-center my-4">{{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
-                    {% endif %}
 
                     <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
@@ -171,6 +166,12 @@
                         </div>
                         <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
                     </form>
+                    
+                    {% else %}
+                    <h5 class="fw-normal text-muted text-center my-4"><del>{{ total_price|floatformat:"2g" }}</del><small class="ms-1">DZD</small></h5>
+
+                    <h3 class="fw-normal text-center my-4">{{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
+                    {% endif %}
                 </div>
             </div>
         </aside>
@@ -188,7 +189,7 @@
                 </div>
                 <div class="w-50 ps-2">
                     <button class="btn btn-primary d-block w-100" form="credential_form">
-                        <span class="d-none d-sm-inline">Create Order</span>
+                        <span class="d-none d-sm-inline">Place Order</span>
                         <span class="d-inline d-sm-none">Create</span>
                         <i class="ci-arrow-right mt-sm-0 ms-1"></i>
                     </button>
