@@ -129,7 +129,7 @@
                     <form class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
                         <div class="mb-3">
-                            <input class="form-control" type="text" name="coupon_code" hx-get="{% url 'cart-home' 'load_discount' %}" hx-trigger="submit" hx-target="#order_summary" placeholder="Promo code" required>
+                            <input class="form-control" type="text" name="coupon_code" hx-get="{% url 'cart-home' 'load_discount' %}" hx-trigger="change" hx-target="#order_summary" placeholder="Promo code" required>
                             <div class="invalid-feedback">Please provide promo code.</div>
                         </div>
                         <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
