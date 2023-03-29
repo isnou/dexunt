@@ -12,10 +12,15 @@ def details(request):
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
         municipality_en_name = request.POST.get('municipality_en_name', False)
-        shipping_price = request.POST.get('shipping_price', False)
+        shipping_type = request.POST.get('shipping_type', False)
 
         province = Province.objects.all().get(en_name=province_en_name)
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
+
+        if shipping_type == 'home_delivery_price':
+            shipping_price = municipality.home_delivery_price
+        if shipping_type == 'desk_delivery_price':
+            shipping_price = municipality.desk_delivery_price
 
     for product in cart.product.all():
         earned_points += product.points * product.quantity
