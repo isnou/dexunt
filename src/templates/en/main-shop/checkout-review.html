@@ -126,12 +126,12 @@
 
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
 
-                    <form class="needs-validation" hx-get="{% url 'cart-home' 'load_discount' %}" hx-trigger="change" hx-target="#order_summary"  novalidate>
+                    <form class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <input class="form-control" type="text" name="coupon_code" placeholder="Promo code" required>
+                            <input class="form-control" type="text" name="coupon_code" hx-get="{% url 'cart-home' 'load_discount' %}" hx-trigger="change" hx-target="#order_summary" placeholder="Promo code" required>
                             <div class="invalid-feedback">Please provide promo code.</div>
                         </div>
-                        <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
+                        <button class="btn btn-outline-primary d-block w-100" type="button">Apply promo code</button>
                     </form>
                 </div>
             </div>
