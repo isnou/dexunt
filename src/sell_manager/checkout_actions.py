@@ -84,8 +84,8 @@ def get_shipping_prices(request ,municipality_en_name):
         delivery_quotients += product.delivery
 
     delivery_quotient = round(delivery_quotients / cart.product.all().count())
-    home_delivery_price = round((municipality.home_delivery_price * delivery_quotient) / 1000) * 10
-    desk_delivery_price = round((municipality.desk_delivery_price * delivery_quotient) / 1000) * 10
+    home_delivery_price = round((municipality.home_delivery_price * delivery_quotient) / 10000) * 100
+    desk_delivery_price = round((municipality.desk_delivery_price * delivery_quotient) / 10000) * 100
 
     sub_context = {
         'home_delivery_price': home_delivery_price,
