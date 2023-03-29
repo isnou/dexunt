@@ -125,8 +125,10 @@
                         {% if coupon %}
                         {% if coupon.type == 'SUBTRACTION' %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }}</span></li>
+                        {% endif %}
                         {% if coupon.type == 'PERCENTAGE' %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }} %</span></li>
+                        {% endif %}
                         {% else %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
                         {% endif %}
