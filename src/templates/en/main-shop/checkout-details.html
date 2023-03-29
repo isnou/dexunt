@@ -70,6 +70,12 @@
                 <input type="hidden" name="shipping_price" value='{{ shipping_price }}'>
                 <input type="hidden" name="earned_points" value='{{ earned_points }}'>
 
+                <input type="hidden" name="shipping_type" value='{{ shipping_type }}'>
+                {% if coupon %}
+                <input type="hidden" name="coupon_code" value='{{ coupon.coupon_code }}'>
+                {% endif %}
+
+
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="mb-3">
@@ -137,6 +143,7 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2"></span><span class="text-end"></span></li>
+
                         {% if coupon %}
 
                         {% if coupon.coupon_type == 'SUBTRACTION' %}
@@ -153,7 +160,6 @@
                     </ul>
                     {% if not discounted_price %}
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
-
                     <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
                         <input type="hidden" name="province_en_name" value='{{ province.en_name }}'>
@@ -169,7 +175,6 @@
 
                     {% else %}
                     <h5 class="fw-normal text-muted text-center my-4"><del>{{ total_price|floatformat:"2g" }}</del><small class="ms-1">DZD</small></h5>
-
                     <h3 class="fw-normal text-center my-4"> <i class="ci-gift me-2"></i> {{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     {% endif %}
                 </div>

@@ -78,22 +78,23 @@
             {% endfor %}
             <!-- Client details-->
             <div class="bg-secondary rounded-3 px-4 pt-4 pb-2">
-              <div class="row">
-                <div class="col-sm-6">
-                  <h4 class="h6">Shipping to:</h4>
-                  <ul class="list-unstyled fs-sm">
-                    <li><span class="text-muted">Province:&nbsp;</span>{{ province_en_name|title }}</li>
-                    <li><span class="text-muted">Municipality:&nbsp;</span>{{ municipality_en_name|title }}</li>
-                  </ul>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="h6">Shipping:</h4>
+                        <ul class="list-unstyled fs-sm">
+                            <li><span class="text-muted">Province:&nbsp;</span>{{ province_en_name|title }}</li>
+                            <li><span class="text-muted">Municipality:&nbsp;</span>{{ municipality_en_name|title }}</li>
+                            <li><span class="text-muted">Shipping:&nbsp;</span>{{ shipping_type|title }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 class="h6">Contact:</h4>
+                        <ul class="list-unstyled fs-sm">
+                            <li><span class="text-muted">Name:&nbsp;</span>{{ client_name|title }}</li>
+                            <li><span class="text-muted">Phone:&nbsp;</span>{{ phone_number|title }}</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                  <h4 class="h6">Contact:</h4>
-                  <ul class="list-unstyled fs-sm">
-                      <li><span class="text-muted">Name:&nbsp;</span>{{ client_name|title }}</li>
-                    <li><span class="text-muted">Phone:&nbsp;</span>{{ phone_number|title }}</li>
-                  </ul>
-                </div>
-              </div>
             </div>
             <!-- Navigation (desktop)-->
             <div class="d-none d-lg-flex pt-4 mt-3">
@@ -122,9 +123,26 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">{{ cart.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2"></span><span class="text-end"></span></li>
-                    </ul>
+                        {% if coupon %}
 
+                        {% if coupon.coupon_type == 'SUBTRACTION' %}
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
+                        {% endif %}
+
+                        {% if coupon.coupon_type == 'PERCENTAGE' %}
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }} %</span></li>
+                        {% endif %}
+
+                        {% else %}
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
+                        {% endif %}
+                    </ul>
+                    {% if not discounted_price %}
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
+                    {% else %}
+                    <h5 class="fw-normal text-muted text-center my-4"><del>{{ total_price|floatformat:"2g" }}</del><small class="ms-1">DZD</small></h5>
+                    <h3 class="fw-normal text-center my-4"> <i class="ci-gift me-2"></i> {{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
+                    {% endif %}
                 </div>
             </div>
         </aside>
@@ -141,7 +159,7 @@
                     </a>
                 </div>
                 <div class="w-50 ps-2">
-                    <button class="btn btn-primary d-block w-100" form="credential_form">
+                    <button class="btn btn-primary d-block w-100">
                         <span class="d-none d-sm-inline">Complete order</span>
                         <span class="d-inline d-sm-none">Complete</span>
                         <i class="ci-arrow-right mt-sm-0 ms-1"></i>
