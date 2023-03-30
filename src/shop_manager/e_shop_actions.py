@@ -676,12 +676,6 @@ def remove_product_from_category(detail, index):
         'url': url,
     }
 
-
-
-
-
-
-
 # ------------------ functions
 def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits

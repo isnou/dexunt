@@ -4,6 +4,20 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
+class Coupon(models.Model):
+    # --------------------------------- coupon technical informations --------------------------
+    code = models.CharField(max_length=30, blank=True, null=True)
+    coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
+    # -- coupon_types :  SUBTRACTION - PERCENTAGE
+
+    # --------------------------------- info ---------------------------------------------------
+    quantity = models.IntegerField(default=1)
+    value = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.code
+
+
 class CartProduct(models.Model):
     # --------------------------------- collection technical informations ----------------------
     delivery = models.IntegerField(default=100)
@@ -31,20 +45,6 @@ class CartProduct(models.Model):
 
     def __str__(self):
         return self.en_name
-
-
-class Coupon(models.Model):
-    # --------------------------------- coupon technical informations --------------------------
-    code = models.CharField(max_length=30, blank=True, null=True)
-    coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
-    # -- coupon_types :  SUBTRACTION - PERCENTAGE
-
-    # --------------------------------- info ---------------------------------------------------
-    quantity = models.IntegerField(default=1)
-    value = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.code
 
 
 class Cart(models.Model):

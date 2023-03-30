@@ -150,6 +150,7 @@
 
     <form action="{% url 'place-order' 'regular' %}" id="place_order_form" method="post">
         {% csrf_token %}
+        <input type="hidden" name="province_en_name" value='{{ province.en_name }}'>
         <input type="hidden" name="municipality_en_name" value='{{ municipality.en_name }}'>
         <input type="hidden" name="shipping_type" value='{{ shipping_type }}'>
         <input type="hidden" name="client_name" value='{{ client_name }}'>
