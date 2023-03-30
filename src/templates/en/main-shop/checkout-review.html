@@ -140,8 +140,7 @@
                     {% if not discounted_price %}
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     {% else %}
-                    <h5 class="fw-normal text-muted text-center my-4"><del>{{ total_price|floatformat:"2g" }}</del><small class="ms-1">DZD</small></h5>
-                    <h3 class="fw-normal text-center my-4"> <i class="ci-gift me-2"></i> {{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
+                    <h3 class="fw-normal text-center my-4">{{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     {% endif %}
                 </div>
             </div>
