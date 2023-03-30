@@ -61,9 +61,9 @@ def review(request):
         client_name = request.POST.get('client_name', False)
         phone_number = request.POST.get('phone_number', False)
         coupon_code = request.POST.get('coupon_code', False)
+        discounted_price = request.POST.get('discounted_price', False)
 
         coupon = check_promotion(coupon_code, total_price).get('coupon')
-        discounted_price = check_promotion(coupon_code, total_price).get('discounted_price')
 
         context = {
             'cart': cart,

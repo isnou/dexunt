@@ -74,6 +74,9 @@
                 {% if coupon %}
                 <input type="hidden" name="coupon_code" value='{{ coupon.coupon_code }}'>
                 {% endif %}
+                {% if discounted_price %}
+                <input type="hidden" name="discounted_price" value='{{ discounted_price }}'>
+                {% endif %}
 
 
                 <div class="row">
