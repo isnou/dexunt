@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import CartProduct, Cart, Product
 from . import cart_actions, checkout_actions, place_order_actions
 from sell_manager.models import Province, Municipality
+from add_ons import functions
 
 def cart_home(request, action):
     if not request.session.get('language', None):
@@ -47,7 +48,7 @@ def cart_home(request, action):
 
     if action == 'load_prices':
         municipality_en_name = request.GET.get('municipality_en_name')
-        sub_context = checkout_actions.get_shipping_prices(request, municipality_en_name).get('sub_context')
+        sub_context = functions.get_shipping_prices(request, municipality_en_name).get('sub_context')
         return render(request, 'en/main-shop/partials/load_prices.html', sub_context)
 
 def checkout(request, action):
