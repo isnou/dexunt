@@ -112,11 +112,11 @@
                   </a>
               </div>
               <div class="w-50 ps-2">
-                  <a class="btn btn-primary d-block w-100" href="#">
+                  <button class="btn btn-primary d-block w-100" form="place_order_form">
                       <span class="d-none d-sm-inline">Complete Order</span>
                       <span class="d-inline d-sm-none">Complete</span>
                       <i class="ci-arrow-right mt-sm-0 ms-1"></i>
-                  </a>
+                  </button>
               </div>
             </div>
         </section>
@@ -147,6 +147,24 @@
             </div>
         </aside>
     </div>
+
+    <form action="#" class="needs-validation" id="place_order_form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="province_en_name" value='{{ province.en_name }}'>
+        <input type="hidden" name="municipality_en_name" value='{{ municipality.en_name }}'>
+        <input type="hidden" name="total_price" value='{{ total_price }}'>
+        <input type="hidden" name="shipping_price" value='{{ shipping_price }}'>
+        <input type="hidden" name="earned_points" value='{{ earned_points }}'>
+        <input type="hidden" name="shipping_type" value='{{ shipping_type }}'>
+
+        {% if coupon %}
+        <input type="hidden" name="coupon_code" value='{{ coupon.code }}'>
+        {% endif %}
+        {% if discounted_price %}
+        <input type="hidden" name="discounted_price" value='{{ discounted_price }}'>
+        {% endif %}
+    </form>
+
     <!-- Navigation (mobile)-->
     <div class="row d-lg-none">
         <div class="col-lg-8">
@@ -159,7 +177,7 @@
                     </a>
                 </div>
                 <div class="w-50 ps-2">
-                    <button class="btn btn-primary d-block w-100">
+                    <button class="btn btn-primary d-block w-100" form="place_order_form">
                         <span class="d-none d-sm-inline">Complete order</span>
                         <span class="d-inline d-sm-none">Complete</span>
                         <i class="ci-arrow-right mt-sm-0 ms-1"></i>
