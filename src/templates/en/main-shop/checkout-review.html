@@ -84,7 +84,13 @@
                         <ul class="list-unstyled fs-sm">
                             <li><span class="text-muted">Province:&nbsp;</span>{{ province_en_name|title }}</li>
                             <li><span class="text-muted">Municipality:&nbsp;</span>{{ municipality_en_name|title }}</li>
-                            <li><span class="text-muted">Shipping:&nbsp;</span>{{ shipping_type|title }}</li>
+                            {% if shipping_type == 'Desk_Delivery_Price' %}
+                            <li><span class="text-muted">Shipping:&nbsp;</span>To Desk</li>
+                            {% endif %}
+
+                            {% if shipping_type == 'Home_Delivery_Price' %}
+                            <li><span class="text-muted">Shipping:&nbsp;</span>To Home</li>
+                            {% endif %}
                         </ul>
                     </div>
                     <div class="col-sm-6">
@@ -124,15 +130,12 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">{{ shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2"></span><span class="text-end"></span></li>
                         {% if coupon %}
-
                         {% if coupon.coupon_type == 'SUBTRACTION' %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value|floatformat:"2g" }}<small class="ms-1">DZD</small></span></li>
                         {% endif %}
-
                         {% if coupon.coupon_type == 'PERCENTAGE' %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }} %</span></li>
                         {% endif %}
-
                         {% else %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
                         {% endif %}
