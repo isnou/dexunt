@@ -18,21 +18,9 @@ def regular(request):
         coupon_code = request.POST.get('coupon_code', False)
         discounted_price = request.POST.get('discounted_price', False)
 
-        coupon = check_promotion(coupon_code, 0).get('coupon')
 
         context = {
-            'cart': cart,
-            'coupon': coupon,
-            'province_en_name': province_en_name,
-            'municipality_en_name': municipality_en_name,
-            'shipping_type': shipping_type,
-            'client_name': client_name,
-            'phone_number': phone_number,
-
-            'earned_points': earned_points,
-            'shipping_price': shipping_price,
-            'total_price': total_price,
-            'discounted_price': discounted_price,
+            
         }
     else:
         context = False
