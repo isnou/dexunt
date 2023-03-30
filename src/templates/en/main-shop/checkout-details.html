@@ -69,8 +69,8 @@
                 <input type="hidden" name="total_price" value='{{ total_price }}'>
                 <input type="hidden" name="shipping_price" value='{{ shipping_price }}'>
                 <input type="hidden" name="earned_points" value='{{ earned_points }}'>
-
                 <input type="hidden" name="shipping_type" value='{{ shipping_type }}'>
+
                 {% if coupon %}
                 <input type="hidden" name="coupon_code" value='{{ coupon.code }}'>
                 {% endif %}
@@ -158,6 +158,14 @@
 
                         {% else %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
+                        {% endif %}
+
+                        {% if coupon == 'WRONG' %}
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">wrong</span></li>
+                        {% endif %}
+
+                        {% if coupon == 'EXPIRED' %}
+                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">expired</span></li>
                         {% endif %}
                     </ul>
                     {% if not discounted_price %}

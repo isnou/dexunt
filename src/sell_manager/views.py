@@ -1,8 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-from .models import CartProduct, Cart, Product
 from . import cart_actions, checkout_actions, place_order_actions
-from sell_manager.models import Province, Municipality
+from sell_manager.models import CartProduct, Cart, Product, Province, Municipality
 from add_ons import functions
 
 def cart_home(request, action):

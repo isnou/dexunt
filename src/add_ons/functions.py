@@ -48,17 +48,42 @@ def get_shipping_price(cart, municipality, shipping_type):
 def check_promotion(coupon_code, total_price):
     if Coupon.objects.all().filter(code=coupon_code).exists():
         coupon = Coupon.objects.all().get(code=coupon_code)
-        if coupon.coupon_type == 'SUBTRACTION':
-            discounted_price = total_price - coupon.value
-        elif coupon.coupon_type == 'PERCENTAGE':
-            discounted_price = total_price - round((total_price * coupon.value) / 10000) * 100
+        if coupon.quantity:
+            if coupon.coupon_type == 'SUBTRACTION':
+                discounted_price = total_price - coupon.value
+            elif coupon.coupon_type == 'PERCENTAGE':
+                discounted_price = total_price - round((total_price * coupon.value) / 10000) * 100
+            else:
+                discounted_price = None
         else:
+            coupon = 'EXPIRED'
             discounted_price = None
     else:
-        coupon = None
+        coupon = 'WRONG'
         discounted_price = None
 
     return {
         'coupon': coupon,
+        'discounted_price': discounted_price,
+    }
+
+def get_promotion(coupon_code, total_price):
+    if Coupon.objects.all().filter(code=coupon_code).exists():
+        coupon = Coupon.objects.all().get(code=coupon_code)
+        if coupon.quantity:
+            if coupon.coupon_type == 'SUBTRACTION':
+                discounted_price = total_price - coupon.value
+                coupon.quantity = coupon.quantity - 1
+            elif coupon.coupon_type == 'PERCENTAGE':
+                discounted_price = total_price - round((total_price * coupon.value) / 10000) * 100
+                coupon.quantity = coupon.quantity - 1
+            else:
+                discounted_price = None
+        else:
+            discounted_price = None
+    else:
+        discounted_price = None
+
+    return {
         'discounted_price': discounted_price,
     }

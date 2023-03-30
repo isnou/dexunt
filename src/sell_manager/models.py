@@ -85,13 +85,14 @@ class Order(models.Model):
     province = models.CharField(max_length=200, blank=True, null=True)
     municipality = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
-    shipping_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     coupon_code = models.CharField(max_length=30, blank=True, null=True)
     coupon_value = models.IntegerField(default=0)
     coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
     # -- coupon_types :  SUBTRACTION - PERCENTAGE
 
-    total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    shipping_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    final_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # --------------------------------- options ------------------------------------------------
     additional_information = models.CharField(max_length=500, blank=True, null=True)
     gift_packaging = models.BooleanField(default=False)
