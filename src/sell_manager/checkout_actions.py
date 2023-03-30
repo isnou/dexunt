@@ -63,7 +63,7 @@ def review(request):
         coupon_code = request.POST.get('coupon_code', False)
         discounted_price = request.POST.get('discounted_price', False)
 
-        coupon = check_promotion(coupon_code, None).get('coupon')
+        coupon = check_promotion(coupon_code, 0).get('coupon')
 
         context = {
             'cart': cart,
