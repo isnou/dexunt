@@ -2,7 +2,7 @@ from .models import Cart, CartProduct, Product, Coupon
 from sell_manager.models import Province, Municipality
 
 
-def review(request):
+def regular(request):
     url = "/main-shop/checkout-complete.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
 
