@@ -155,14 +155,22 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }} %</span></li>
                         {% endif %}
 
-                        {% if not coupon %}
+
+
+                        {% if coupon == 'intro_code' %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
                         {% endif %}
                     </ul>
 
                     {% if coupon == 'EXPIRED' %}
                     <div class="alert alert-danger text-center" role="alert">
-                        coupon expired
+                        This Coupon is Expired
+                    </div>
+                    {% endif %}
+
+                    {% if not coupon %}
+                    <div class="alert alert-danger text-center" role="alert">
+                        Wrong Code !
                     </div>
                     {% endif %}
 
