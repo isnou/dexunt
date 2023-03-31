@@ -155,14 +155,17 @@
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">{{ coupon.value }} %</span></li>
                         {% endif %}
 
-                        {% if coupon == 'WRONG' %}
+                        {% if not coupon %}
                         <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
                         {% endif %}
-
-                        {% if coupon == 'EXPIRED' %}
-                        <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">expired</span></li>
-                        {% endif %}
                     </ul>
+
+                    {% if coupon == 'EXPIRED' %}
+                    <div class="alert alert-danger" role="alert">
+                        coupon expired
+                    </div>
+                    {% endif %}
+
                     {% if not discounted_price %}
                     <h3 class="fw-normal text-center my-4">{{ total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
                     <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
@@ -177,7 +180,6 @@
                         </div>
                         <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
                     </form>
-
                     {% else %}
                     <h5 class="fw-normal text-muted text-center my-4"><del>{{ total_price|floatformat:"2g" }}</del><small class="ms-1">DZD</small></h5>
                     <h3 class="fw-normal text-center my-4"> <i class="ci-gift me-2"></i> {{ discounted_price|floatformat:"2g" }}<small class="ms-1">DZD</small></h3>
