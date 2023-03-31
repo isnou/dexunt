@@ -123,21 +123,22 @@
         <div class="modal-content">
           <div class="modal-header bg-secondary">
             <div class="text-center">
-              <h5> <i class="ci-location mt-n1 me-3"></i>Order Tracking </h5>
+              <h3> <i class="ci-location mt-n1 me-2"></i>Order Tracking </h3>
             </div>
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body tab-content py-4">
-            <form class="needs-validation tab-pane fade show active" action="{% url 'track-order' 'regular_order' %}" autocomplete="off" novalidate >
+            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate >
               <div class="mb-3">
-                <label class="form-label" for="order_ref">Order Reference</label>
+                <label class="form-label" for="order_reference">Order Reference</label>
                 <div class="">
-                  <input class="form-control" type="text" name="order_ref" id="order_ref" required>
+                  <input class="form-control" type="text" name="order_reference" id="order_reference" required>
                   <div class="invalid-feedback">Please provide a valid reference.</div>
                 </div>
               </div>
               <div class="mb-3 d-flex flex-wrap justify-content-between">
                 <div class="form-check mb-2">
+                </div><a class="fs-sm" href="home-electronics-store.html#">Forgot reference ?</a>
               </div>
               <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Check</button>
             </form>
