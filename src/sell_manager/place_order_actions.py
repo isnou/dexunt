@@ -30,9 +30,6 @@ def regular(request):
                           sub_total_price=cart.sub_total_price,
                           shipping_price=shipping_price,
                           )
-        
-        for product in cart.product.all():
-            new_order.product.add(product)
 
         if Coupon.objects.all().filter(code=coupon_code).exists():
             coupon = Coupon.objects.all().get(code=coupon_code)
@@ -48,6 +45,10 @@ def regular(request):
             new_order.final_price = total_price
 
         new_order.save()
+        
+        for product in cart.product.all():
+            new_order.product.add(product)
+
         cart.delete()
 
         context = {
