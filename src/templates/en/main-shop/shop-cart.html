@@ -71,7 +71,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="size_sku" value='{{ cart_product.size_sku }}'>
                         <input type="hidden" name="product_sku" value='{{ cart_product.product_sku }}'>
-                        <input type="hidden" name="coupon_code" value='intro_code'>
+                        <input type="hidden" name="coupon_code" value='INTRO_CODE'>
 
                         <button class="btn btn-link px-0 text-danger" type="submit">
                             {% if cart_product.quantity > 1 %}
