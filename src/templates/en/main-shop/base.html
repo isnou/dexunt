@@ -127,9 +127,10 @@
           <div class="modal-body tab-content py-4">
             <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate >
               <div class="mb-3">
-                <label class="form-label" for="si-password">Order Reference</label>
+                <label class="form-label" for="order_reference"><i class="ci-location mt-n1"></i> Order Reference</label>
                 <div class="">
-                  <input class="form-control" type="text" name="order_reference" required>
+                  <input class="form-control" type="text" name="order_reference" id="order_reference" required>
+                  <div class="invalid-feedback">Please provide a valid reference.</div>
                 </div>
               </div>
               <div class="mb-3 d-flex flex-wrap justify-content-between">
