@@ -108,7 +108,7 @@
                     <form action="{% url 'checkout' 'details' %}" class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
                         <input type="hidden" name="coupon_code" value='INTRO_CODE'>
-                        
+
                         <div class="form-floating mb-3">
                             <select class="form-select" name="province_en_name" id="province_en_name" hx-get="{% url 'cart-home' 'load_municipality' %}" hx-trigger="change" hx-target="#municipality" required>
                                 <option value=""></option>
