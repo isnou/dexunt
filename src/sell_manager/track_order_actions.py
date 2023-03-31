@@ -6,6 +6,7 @@ from add_ons import functions
 def regular_order(request):
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
 
+    order = None
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 
@@ -14,11 +15,11 @@ def regular_order(request):
         else:
             order = None
 
-        context = {
+    context = {
             'order': order,
             'cart': cart,
         }
 
-        return {
+    return {
             'context': context,
         }
