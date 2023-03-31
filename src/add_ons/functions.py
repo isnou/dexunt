@@ -59,7 +59,10 @@ def check_promotion(coupon_code, total_price):
             coupon = 'EXPIRED'
             discounted_price = None
     else:
-        coupon = None
+        if coupon_code == 'intro_code':
+            coupon = 'intro_code'
+        else:
+            coupon = None
         discounted_price = None
 
     return {
