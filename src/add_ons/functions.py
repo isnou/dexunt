@@ -87,6 +87,4 @@ def validate_promotion(coupon_code, total_price):
     else:
         discounted_price = None
 
-    return {
-        'discounted_price': discounted_price,
-    }
+    return discounted_price
