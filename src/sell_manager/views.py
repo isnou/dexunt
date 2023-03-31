@@ -73,6 +73,6 @@ def place_order(request, action):
     direction = request.session.get('language')
 
     if action == 'regular':
-        url = direction + place_order_actions.regular(request).get('url')
+        url = direction + "/main-shop/checkout-complete.html"
         context = place_order_actions.regular(request).get('context')
         return render(request, url, context)

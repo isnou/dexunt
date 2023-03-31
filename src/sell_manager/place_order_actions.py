@@ -3,7 +3,6 @@ from sell_manager.models import Province, Municipality, Order
 from add_ons import functions
 
 def regular(request):
-    url = "/main-shop/checkout-complete.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     order_ref = functions.serial_number_generator(12).upper()
 
@@ -45,7 +44,7 @@ def regular(request):
             new_order.final_price = total_price
 
         new_order.save()
-        
+
         for product in cart.product.all():
             new_order.product.add(product)
 
@@ -57,7 +56,6 @@ def regular(request):
 
         return {
             'context': context,
-            'url': url,
         }
 
 
