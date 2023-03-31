@@ -3,7 +3,7 @@ from sell_manager.models import Province, Municipality, Order
 from add_ons import functions
 
 
-def regular(request):
+def regular_order(request):
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
 
     if request.method == 'POST':
