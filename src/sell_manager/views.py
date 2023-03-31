@@ -77,15 +77,15 @@ def place_order(request, action):
         context = place_order_actions.regular(request).get('context')
         return render(request, url, context)
 
-def track_order(request, order_ref):
+def track_order(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/track-order.html"
 
-    context = None
-
-    return render(request, url, context)
+    if action == 'regular_order':
+        url = direction + "/main-shop/track-order.html"
+        context = place_order_actions.regular(request).get('context')
+        return render(request, url, context)
 
 

@@ -26,11 +26,15 @@
                 <h2 class="h4 pb-3">Thank you for your order!</h2>
                 <p class="fs-sm mb-2">Your order has been placed and will be processed, you will receive a confirmation call within 24 hours.</p>
                 <p class="fs-sm mb-2">Make sure you make note of your order number, which is <span class='fw-medium'>{{ new_order.order_ref }}.</span></p>
-                <p class="fs-sm">Once confirmed this order will earn you {{ new_order.points }}. <u>click here</u> to register and collect .</p>
+                <p class="fs-sm">Once confirmed this order will earn you {{ new_order.points }}. <a href="#"><u>click here</u></a> to register and collect .</p>
                 <a class="btn btn-secondary mt-3 me-3" href="{% url 'main-shop-home' %}">Go back shopping</a>
-                <a class="btn btn-primary mt-3" href="{% url 'track-order' new_order.order_ref %}"><i class="ci-location"></i>&nbsp;Track order</a>
+                <button class="btn btn-primary mt-3" form="track_order_form"><i class="ci-location"></i>&nbsp;Track order</button>
             </div>
         </div>
     </div>
+    <form action="{% url 'track-order' 'regular_order' %}" id="track_order_form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="order_ref" value='{{ new_order.order_ref }}'>
+    </form>
 </div>
 {% endblock %}}
