@@ -41,6 +41,7 @@ def regular(request):
         else:
             total_price = cart.sub_total_price + shipping_price
             new_order.final_price = total_price
+        new_order.points = functions.get_earned_points(cart)
 
         new_order.save()
 

@@ -4,7 +4,6 @@ from add_ons import functions
 def details(request):
     url = "/main-shop/checkout-details.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
-    earned_points = 0
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
@@ -16,12 +15,12 @@ def details(request):
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
         shipping_price = functions.get_shipping_price(cart, municipality, shipping_type)
 
-        for product in cart.product.all():
-            earned_points += product.points * product.quantity
+
 
         total_price = cart.sub_total_price + shipping_price
         coupon = functions.check_promotion(coupon_code, total_price).get('coupon')
         discounted_price = functions.check_promotion(coupon_code, total_price).get('discounted_price')
+        earned_points = functions.get_earned_points(cart)
 
         context = {
             'cart': cart,

@@ -85,6 +85,7 @@ class Order(models.Model):
     province = models.CharField(max_length=200, blank=True, null=True)
     municipality = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
+    points = models.IntegerField(default=0)
     coupon_code = models.CharField(max_length=30, blank=True, null=True)
     coupon_value = models.IntegerField(default=0)
     coupon_type = models.CharField(max_length=100, default='SUBTRACTION')

@@ -90,3 +90,9 @@ def validate_promotion(coupon_code, total_price):
         discounted_price = None
 
     return discounted_price
+
+def get_earned_points(cart):
+    earned_points = 0
+    for product in cart.product.all():
+        earned_points += product.points * product.quantity
+    return earned_points
