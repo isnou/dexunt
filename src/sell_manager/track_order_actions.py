@@ -3,23 +3,18 @@ from sell_manager.models import Province, Municipality, Order
 from add_ons import functions
 
 
-def regular_order(request):
+def regular(request):
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
 
-    order = None
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
+        order = Order.objects.all().get(order_ref=order_ref)
 
-        if Order.objects.all().filter(order_ref=order_ref).exists():
-            order = Order.objects.all().get(order_ref=order_ref)
-        else:
-            order = None
-
-    context = {
+        context = {
             'order': order,
             'cart': cart,
         }
 
-    return {
+        return {
             'context': context,
         }
