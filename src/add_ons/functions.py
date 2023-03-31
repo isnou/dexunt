@@ -76,10 +76,12 @@ def validate_promotion(coupon_code, total_price):
         if coupon.quantity:
             if coupon.coupon_type == 'SUBTRACTION':
                 discounted_price = total_price - coupon.value
-                coupon.quantity = coupon.quantity - 1
+                coupon.quantity -= 1
+                coupon.save()
             elif coupon.coupon_type == 'PERCENTAGE':
                 discounted_price = total_price - round((total_price * coupon.value) / 10000) * 100
-                coupon.quantity = coupon.quantity - 1
+                coupon.quantity -= 1
+                coupon.save()
             else:
                 discounted_price = None
         else:

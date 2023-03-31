@@ -34,7 +34,6 @@ def regular(request):
             coupon = Coupon.objects.all().get(code=coupon_code)
             total_price = cart.sub_total_price + shipping_price
             discounted_price = functions.validate_promotion(coupon_code, total_price)
-
             new_order.coupon_code = coupon_code
             new_order.coupon_type = coupon.coupon_type
             new_order.coupon_value = coupon.value
