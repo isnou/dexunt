@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <form action="{% url 'track-order' 'regular_order' %}" id="track_order_form" method="post">
+    <form action="{% url 'track-order' 'regular' %}" id="track_order_form" method="post">
         {% csrf_token %}
         <input type="hidden" name="order_ref" value='{{ new_order.order_ref }}'>
     </form>

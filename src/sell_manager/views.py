@@ -83,9 +83,9 @@ def track_order(request, action):
 
     direction = request.session.get('language')
 
-    if action == 'regular_order':
+    if action == 'regular':
         url = direction + "/main-shop/track-order.html"
-        context = track_order_actions.regular(request)
+        context = track_order_actions.regular(request).get('context')
         return render(request, url, context)
 
 

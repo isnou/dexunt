@@ -19,4 +19,6 @@ def regular(request):
             'cart': cart,
         }
 
-        return context
+        return {
+            'context': context,
+        }
