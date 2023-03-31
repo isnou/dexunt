@@ -2,6 +2,7 @@ from .models import Cart, CartProduct, Product, Coupon
 from sell_manager.models import Province, Municipality, Order
 from add_ons import functions
 
+
 def regular(request):
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     order_ref = functions.serial_number_generator(12).upper()
@@ -57,39 +58,3 @@ def regular(request):
         return {
             'context': context,
         }
-
-
-# ------------ order ------------
-# cart_ref
-# order_ref
-# order_type
-# created_at
-# updated_at
-# device
-# operating_system
-# ip_address
-# state
-
-# product
-
-# client_name
-# client_phone
-# province
-# municipality
-
-# shipping_price
-# coupon_code
-# coupon_value
-
-# sub_total_price
-# shipping_price
-# final_price
-
-
-# additional_information
-# gift_packaging
-# theme
-# occasion
-# secured
-# receiver_name
-# receiver_message

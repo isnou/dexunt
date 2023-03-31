@@ -5,4 +5,5 @@ urlpatterns = [
     path('<str:action>/cart/to/home/', views.cart_home, name='cart-home'),
     path('<str:action>/check/out/', views.checkout, name='checkout'),
     path('<str:action>/place/order/', views.place_order, name='place-order'),
+    path('<str:order_ref>/track/order/', views.track_order, name='track-order'),
 ]
