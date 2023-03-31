@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-from . import cart_actions, checkout_actions, place_order_actions
+from . import cart_actions, checkout_actions, place_order_actions, track_order_actions
 from sell_manager.models import CartProduct, Cart, Product, Province, Municipality, Order
 from add_ons import functions
 
@@ -85,7 +85,8 @@ def track_order(request, action):
 
     if action == 'regular_order':
         url = direction + "/main-shop/track-order.html"
-        context = None
+        context = track_order_actions.regular(request)
         return render(request, url, context)
+
 
 
