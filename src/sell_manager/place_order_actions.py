@@ -51,7 +51,7 @@ def regular(request):
         cart.delete()
 
         context = {
-            'order_ref': new_order.order_ref,
+            'new_order': new_order,
         }
 
         return {
