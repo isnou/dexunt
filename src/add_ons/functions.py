@@ -70,7 +70,7 @@ def check_promotion(coupon_code, total_price):
         'discounted_price': discounted_price,
     }
 
-def get_promotion(coupon_code, total_price):
+def validate_promotion(coupon_code, total_price):
     if Coupon.objects.all().filter(code=coupon_code).exists():
         coupon = Coupon.objects.all().get(code=coupon_code)
         if coupon.quantity:

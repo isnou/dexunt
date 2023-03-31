@@ -6,10 +6,6 @@ def regular(request):
     url = "/main-shop/checkout-complete.html"
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     order_ref = functions.serial_number_generator(12).upper()
-    new_order = Order(cart_ref = cart.ref,
-                      order_ref = order_ref,
-                      )
-    new_order.save()
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
@@ -19,15 +15,50 @@ def regular(request):
         phone_number = request.POST.get('phone_number', False)
         coupon_code = request.POST.get('coupon_code', False)
 
+        municipality = Municipality.objects.all().get(en_name=municipality_en_name)
+        shipping_price = functions.get_shipping_price(cart, municipality, shipping_type)
 
-    context = {
+        new_order = Order(cart_ref=cart.ref,
+                          order_ref=order_ref,
+                          device=cart.device,
+                          operating_system=cart.operating_system,
+                          ip_address=cart.ip_address,
+                          client_name=client_name,
+                          client_phone=phone_number,
+                          province=province_en_name,
+                          municipality=municipality_en_name,
+                          sub_total_price=cart.sub_total_price,
+                          shipping_price=shipping_price,
+                          )
+        
+        for product in cart.product.all():
+            new_order.product.add(product)
 
-    }
+        if Coupon.objects.all().filter(code=coupon_code).exists():
+            coupon = Coupon.objects.all().get(code=coupon_code)
+            total_price = cart.sub_total_price + shipping_price
+            discounted_price = functions.validate_promotion(coupon_code, total_price)
 
-    return {
-        'context':context,
-        'url': url,
-    }
+            new_order.coupon_code = coupon_code
+            new_order.coupon_type = coupon.coupon_type
+            new_order.coupon_value = coupon.value
+            new_order.final_price = discounted_price
+        else:
+            total_price = cart.sub_total_price + shipping_price
+            new_order.final_price = total_price
+
+        new_order.save()
+        cart.delete()
+
+        context = {
+            'order_ref': new_order.order_ref,
+        }
+
+        return {
+            'context': context,
+            'url': url,
+        }
+
 
 # ------------ order ------------
 # cart_ref
@@ -39,16 +70,23 @@ def regular(request):
 # operating_system
 # ip_address
 # state
+
 # product
+
 # client_name
 # client_phone
 # province
 # municipality
+
 # shipping_price
 # coupon_code
 # coupon_value
-# coupon_type
-# total_price
+
+# sub_total_price
+# shipping_price
+# final_price
+
+
 # additional_information
 # gift_packaging
 # theme

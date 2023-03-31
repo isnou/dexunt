@@ -107,7 +107,7 @@ class Order(models.Model):
     receiver_message = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
-        return self.cart_ref
+        return self.order_ref
 
 
 class Municipality(models.Model):
