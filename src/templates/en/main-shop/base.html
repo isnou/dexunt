@@ -117,6 +117,31 @@
         </div>
       </div>
     </div>
+    <!-- Order tracking modal-->
+    <div class="modal fade" id="order_tracking_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary">
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body tab-content py-4">
+            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate >
+              <div class="mb-3">
+                <label class="form-label" for="si-password">Order Reference</label>
+                <div class="">
+                  <input class="form-control" type="text" name="order_reference" required>
+                </div>
+              </div>
+              <div class="mb-3 d-flex flex-wrap justify-content-between">
+                <div class="form-check mb-2">
+                </div><a class="fs-sm" href="home-electronics-store.html#">Forgot reference ?</a>
+              </div>
+              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Check</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <main class="page-wrapper">
       <!-- Navbar Electronics Store-->
       <header class="shadow-sm">
@@ -158,7 +183,7 @@
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="#"><i class="ci-bell text-muted me-2"></i>Notifications (2)</a></li>
                 <li><a class="dropdown-item" href="#"><i class="ci-heart text-muted me-2"></i>Wishlist (3)</a></li>
-                <li><a class="dropdown-item" href="#"><i class="ci-location text-muted me-2"></i>Order tracking</a></li>
+                <li><a class="dropdown-item" href="#order_tracking_modal" data-bs-toggle="modal"><i class="ci-location text-muted me-2"></i>Order tracking</a></li>
               </ul>
             </div>
             <!--end mobile top-bar-->
@@ -170,7 +195,7 @@
               <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#">
                 <i class="ci-heart mt-n1"></i>Wishlist (3)
               </a>
-              <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#">
+              <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#order_tracking_modal" data-bs-toggle="modal">
                 <i class="ci-location mt-n1"></i>Order tracking
               </a>
             </div>
@@ -209,7 +234,7 @@
               <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
                 <!--signin & signup-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool navbar-stuck-toggler" href="home-electronics-store.html#"><span class="navbar-tool-tooltip">Toggle menu</span>
-                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="home-electronics-store.html#signin-modal" data-bs-toggle="modal">
+                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="#signin-modal" data-bs-toggle="modal">
                 <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
                 <div class="navbar-tool-text ms-n3"><small>Hello, Sign in</small>My Account</div></a>
                 <!--end signin & signup-->
