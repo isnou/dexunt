@@ -68,7 +68,7 @@
                         {% if cart_product.en_detail %}
                         <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ cart_product.en_detail }} </div>
                         {% endif %}
-                        <div class="fs-lg text-accent pt-2">{{ cart_product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
+                        <div class="fs-lg text-accent pt-2">{{ cart_product.price|mul:cart_product.quantity|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-end" style="max-width: 9rem;">
