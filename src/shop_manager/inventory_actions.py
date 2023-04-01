@@ -183,6 +183,7 @@ def edit_coupon(request, sku):
             selected_coupon.quantity = coupon_quantity
         if coupon_value:
             selected_coupon.value = coupon_value
+        selected_coupon.save()
 
     return coupons
 
