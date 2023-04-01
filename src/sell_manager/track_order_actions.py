@@ -16,8 +16,7 @@ def regular(request):
 
         context = {
             'order': order,
+            'cart': cart,
         }
 
-        return {
-            'context': context,
-        }
+        return context
