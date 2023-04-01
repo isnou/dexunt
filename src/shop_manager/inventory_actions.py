@@ -1,5 +1,6 @@
 import random
 import string
+from sell_manager.models import Coupon
 from .models import Product, Feature, Album, Size, ShowcaseProduct
 
 
@@ -164,6 +165,26 @@ def refresh_e_shop_product():
     return {
         'url': url,
     }
+
+def edit_coupon(request, sku):
+    try:
+        coupons = Coupon.objects.all()
+    except Coupon.DoesNotExist:
+        raise Http404("No coupons")
+
+    selected_coupon = coupons.get(code=sku)
+    if request.method == 'POST':
+        coupon_code = request.POST.get('coupon_code', False)
+        coupon_quantity = request.POST.get('coupon_quantity', False)
+        coupon_value = request.POST.get('coupon_value', False)
+        if coupon_code:
+            selected_coupon.code = coupon_code
+        if coupon_quantity:
+            selected_coupon.quantity = coupon_quantity
+        if coupon_value:
+            selected_coupon.value = coupon_value
+
+    return coupons
 
 # ------------------ inventory edit
 def edit_product(request, sku):

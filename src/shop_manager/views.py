@@ -57,6 +57,9 @@ def inventory(request, action, sku):
     if action == "remove_product":
         ShowcaseProduct.objects.all().get(sku=sku).delete()
         tab = 'e_shop'
+    if action == 'edit_coupon':
+        coupons = inventory_actions.edit_coupon(request, sku).get('coupons')
+        tab = 'coupon'
 
     context = {
         'inventory_products': inventory_products,
