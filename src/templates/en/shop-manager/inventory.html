@@ -559,14 +559,12 @@
 
                                 <!--delete coupon-->
                                 <td class="text-center">
-                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete coupon">
+                                    <a href="{% url 'inventory' 'delete_coupon' coupon.code %}" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete coupon">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>
                                 <!--end delete coupon-->
                             </tr>
-
-
 
                             <!--edit coupon modal-->
                             <div class="modal fade" tabindex="-1" id="{{ coupon.code }}_{{ coupon.value }}_{{ coupon.quantity }}_edit_coupon">
