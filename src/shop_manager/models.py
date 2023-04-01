@@ -98,6 +98,7 @@ class ShowcaseProduct(models.Model):
     # --------------------------------- showcase information -----------------------------------
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
+    showcase_quantity = models.IntegerField(default=0)
     product = models.ManyToManyField(Product, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
     model = models.CharField(max_length=80, blank=True, null=True)

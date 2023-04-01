@@ -523,7 +523,9 @@ def prepare_product(request, sku):
         brand = request.POST.get('brand', False)
         model = request.POST.get('model', False)
         points = request.POST.get('points', False)
+        showcase_quantity = request.POST.get('showcase_quantity', False)
         delivery_quotient = request.POST.get('delivery_quotient', False)
+
 
         if en_description:
             selected_product.en_description = en_description
@@ -543,6 +545,8 @@ def prepare_product(request, sku):
             selected_product.model = model
         if points:
             selected_product.points = int(points)
+        if showcase_quantity:
+            selected_product.showcase_quantity = int(showcase_quantity)
         if delivery_quotient:
             selected_product.delivery_quotient = int(delivery_quotient)
 
