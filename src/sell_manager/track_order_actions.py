@@ -1,6 +1,5 @@
-from .models import Cart, CartProduct, Product, Coupon
-from sell_manager.models import Province, Municipality, Order
-from add_ons import functions
+from .models import Cart
+from sell_manager.models import Order
 
 
 def regular(request):
@@ -19,4 +18,6 @@ def regular(request):
             'cart': cart,
         }
 
-        return context
+        return {
+            'context': context,
+        }
