@@ -129,6 +129,7 @@
           </div>
           <div class="modal-body tab-content py-4">
             <form class="needs-validation tab-pane fade show active" action="{% url 'track-order' 'regular' %}" method="post" autocomplete="off" novalidate >
+              {% csrf_token %}
               <div class="mb-3">
                 <label class="form-label" for="order_ref">Order Reference</label>
                 <div class="">
