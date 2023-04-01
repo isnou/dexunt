@@ -101,7 +101,7 @@
     </div>
     <div class="col-md-4 mb-2">
       <div class="bg-secondary h-100 p-4 text-center rounded-3">
-        <span class="fw-medium text-dark me-2">Status:</span>{{ order.state }}
+        <span class="fw-medium text-dark me-2">Status:</span>{{ order.status }}
       </div>
     </div>
     <div class="col-md-4 mb-2">
@@ -128,7 +128,7 @@
         </li>
         <li class="nav-item">
           <!-- Processing order -->
-          <div class="nav-link {% if order.shipping_type == 'TO-HOME' %} active {% endif %}">
+          <div class="nav-link {% if processing_order == 'IN-PROGRESS' %} active {% endif %} {% if processing_order == 'DONE' %} completed {% endif %}">
             <div class="d-flex align-items-center">
               <div class="media-tab-media"><i class="ci-settings"></i></div>
               <div class="ps-3">
@@ -140,7 +140,7 @@
         </li>
         <li class="nav-item">
           <!-- Quality check -->
-          <div class="nav-link">
+          <div class="nav-link {% if quality_check == 'IN-PROGRESS' %} active {% endif %} {% if quality_check == 'DONE' %} completed {% endif %}">
             <div class="d-flex align-items-center">
               <div class="media-tab-media"><i class="ci-star"></i></div>
               <div class="ps-3">
@@ -152,7 +152,7 @@
         </li>
         <li class="nav-item">
           <!-- Packaging -->
-          <div class="nav-link">
+          <div class="nav-link {% if packaging == 'IN-PROGRESS' %} active {% endif %} {% if packaging == 'DONE' %} completed {% endif %}">
             <div class="d-flex align-items-center">
               <div class="media-tab-media"><i class="ci-package"></i></div>
               <div class="ps-3">
@@ -164,7 +164,7 @@
         </li>
         <li class="nav-item">
           <!-- On delivery -->
-          <div class="nav-link">
+          <div class="nav-link {% if on_delivery == 'IN-PROGRESS' %} active {% endif %}">
             <div class="d-flex align-items-center">
               <div class="media-tab-media"><i class="ci-truck"></i></div>
               <div class="ps-3">
