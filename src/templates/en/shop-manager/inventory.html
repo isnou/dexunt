@@ -625,16 +625,31 @@
                                                                         </div>
                                                                         <!--end quantity input-->
 
+                                                                        <label class="form-label">Sell Price</label>
+
                                                                         <!--value input-->
                                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                                                             <!--label-->
                                                                             <label class="form-label">Value</label>
                                                                             <!--end label-->
+                                                                            {% if coupon.coupon_type == 'SUBTRACTION' %}
                                                                             <!--input-->
-                                                                            <input type="number" name="coupon_value" class="form-control" placeholder="{{ coupon.value }}">
+                                                                            <div class="input-group">
+                                                                                <input type="number" name="coupon_value" class="form-control" placeholder="{{ coupon.value }}">
+                                                                                <span class="input-group-text">DZD</span>
+                                                                            </div>
                                                                             <!--end input-->
+                                                                            {% endif %}
+                                                                            {% if coupon.coupon_type == 'PERCENTAGE' %}
+                                                                            <!--input-->
+                                                                            <div class="input-group">
+                                                                                <input type="number" name="coupon_value" class="form-control" placeholder="{{ coupon.value }}">
+                                                                                <span class="input-group-text">%</span>
+                                                                            </div>
+                                                                            <!--end input-->
+                                                                            {% endif %}
                                                                             <!--description-->
-                                                                            <div class="text-muted fs-7">Edit the coupon quantity.</div>
+                                                                            <div class="text-muted fs-7">Edit the coupon value.</div>
                                                                             <!--end description-->
                                                                         </div>
                                                                         <!--end value input-->
