@@ -136,7 +136,7 @@
       </nav>
     </div>
     <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-      <h1 class="h3 text-light mb-0">Tracking order: <span class="h4 fw-normal text-light">{{ order.order_ref }}</span></h1>
+      <h1 class="h3 text-light mb-0">Tracking order : <span class="h4 fw-normal text-light">{{ order.order_ref }}</span></h1>
     </div>
   </div>
 </div>
@@ -181,7 +181,7 @@
         </li>
         <li class="nav-item">
           <!-- Processing order -->
-          <div class="nav-link {% if processing_order == 'IN-PROGRESS' %} active {% endif %} {% if processing_order == 'DONE' %} completed {% endif %}">
+          <div class="nav-link {% if processing_order == 'IN-PROGRESS' %} active {% elif processing_order == 'DONE' %} completed {% endif %}">
             <div class="d-flex align-items-center">
               <div class="media-tab-media"><i class="ci-settings"></i></div>
               <div class="ps-3">
@@ -193,7 +193,7 @@
         </li>
         <li class="nav-item">
           <!-- Quality check -->
-          <div class="nav-link {% if quality_check == 'IN-PROGRESS' %} active {% endif %} {% if quality_check == 'DONE' %} completed {% endif %}">
+          <div class="nav-link {% if quality_check == 'IN-PROGRESS' %} active {% elif quality_check == 'DONE' %} completed {% endif %}">
             <div class="d-flex align-items-center">
               <div class="media-tab-media"><i class="ci-star"></i></div>
               <div class="ps-3">
@@ -205,7 +205,7 @@
         </li>
         <li class="nav-item">
           <!-- Packaging -->
-          <div class="nav-link {% if packaging == 'IN-PROGRESS' %} active {% endif %} {% if packaging == 'DONE' %} completed {% endif %}">
+          <div class="nav-link {% if packaging == 'IN-PROGRESS' %} active {% elif packaging == 'DONE' %} completed {% endif %}">
             <div class="d-flex align-items-center">
               <div class="media-tab-media"><i class="ci-package"></i></div>
               <div class="ps-3">
