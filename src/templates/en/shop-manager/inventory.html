@@ -987,7 +987,7 @@
                                             <!--block body-->
                                             <div class="card-body pt-0">
                                                 <!--coupon code-->
-                                                <div class="mt-4 mb-4 fv-row fv-plugins-icon-container">
+                                                <div class="mt-4 mb-5 fv-row fv-plugins-icon-container">
                                                     <div class="d-flex flex-wrap gap-5">
                                                         <div class="fv-row w-100 flex-md-root">
                                                             <!--label-->
@@ -1005,14 +1005,14 @@
                                                 <!--end coupon code-->
 
                                                 <!--coupon type-->
-                                                <select class="mb-4 form-select" aria-label="coupon type" name="coupon_type">
+                                                <select class="mb-5 form-select" aria-label="coupon type" name="coupon_type">
                                                     <option value="SUBTRACTION">Subtraction</option>
                                                     <option value="PERCENTAGE">Percentage</option>
                                                 </select>
                                                 <!--end coupon type-->
 
                                                 <!--quantity input-->
-                                                <div class="mb-4 fv-row fv-plugins-icon-container">
+                                                <div class="mb-5 fv-row fv-plugins-icon-container">
                                                     <!--label-->
                                                     <label class="form-label">Quantity</label>
                                                     <!--end label-->
@@ -1023,13 +1023,16 @@
                                                 <!--end quantity input-->
 
                                                 <!--value input-->
-                                                <div class="mb-4 fv-row fv-plugins-icon-container">
+                                                <div class="mb-5 fv-row fv-plugins-icon-container">
                                                     <!--label-->
                                                     <label class="form-label">Value</label>
                                                     <!--end label-->
                                                     <!--input-->
                                                     <input type="number" name="coupon_value" class="form-control" placeholder="{{ coupon.value }}">
                                                     <!--end input-->
+                                                    <!--description-->
+                                                    <div class="text-muted fs-7">The coupon value must match to the type .</div>
+                                                    <!--end description-->
                                                 </div>
                                                 <!--end value input-->
 
