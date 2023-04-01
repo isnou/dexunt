@@ -61,7 +61,7 @@ def inventory(request, action, sku):
         coupons = inventory_actions.edit_coupon(request, sku)
         tab = 'coupon'
     if action == 'delete_coupon':
-        Coupon.objects.all().get(sku=sku).delete()
+        Coupon.objects.all().get(code=sku).delete()
         tab = 'coupon'
 
     context = {
