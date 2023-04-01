@@ -128,7 +128,7 @@
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body tab-content py-4">
-            <form class="needs-validation tab-pane fade show active" action="{% url 'track-order' 'regular' %}" autocomplete="off" novalidate >
+            <form class="needs-validation tab-pane fade show active" action="{% url 'track-order' 'regular' %}" method="post" autocomplete="off" novalidate >
               <div class="mb-3">
                 <label class="form-label" for="order_ref">Order Reference</label>
                 <div class="">
