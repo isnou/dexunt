@@ -519,7 +519,9 @@
                             <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
                                 <th class="min-w-150px">Coupons code</th>
                                 <th class="text-center min-w-40px">Value</th>
-                                <th class="text-end min-w-40px">Quantity</th>
+                                <th class="text-center min-w-40px">Quantity</th>
+                                <th class="text-end min-w-20px"></th>
+                                <th class="text-end min-w-20px"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -542,12 +544,131 @@
                                 <!--end coupon value-->
 
                                 <!--coupon quantity-->
-                                <td class="text-end">
+                                <td class="text-center">
                                     <span class="fw-bold">{{ coupon.quantity }}</span>
                                 </td>
                                 <!--end coupon quantity-->
 
+                                <!--coupon edit-->
+                                <td class="text-center">
+                                    <button  class="btn btn-sm btn-light btn-active-light-primary" data-bs-toggle="modal" data-bs-target="#{{ coupon.code }}_{{ coupon.value }}_{{ coupon.quantity }}_edit_coupon">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </td>
+                                <!--end coupon edit-->
+
+                                <!--delete coupon-->
+                                <td class="text-center">
+                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="delete coupon">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                                <!--end delete coupon-->
+
                             </tr>
+
+
+
+                            <!--edit coupon modal-->
+                            <div class="modal fade" tabindex="-1" id="{{ coupon.code }}_{{ coupon.value }}_{{ coupon.quantity }}_edit_coupon">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content shadow-none">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit coupon</h5>
+                                            <!--close-->
+                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                <span class="svg-icon svg-icon-2x"></span>
+                                            </div>
+                                            <!--end clos-->
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <!--add product general information form-->
+                                            <form action="#" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                                                {% csrf_token %}
+                                                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade active show">
+                                                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                                                <div class="card card-flush py-4">
+
+                                                                    <!--block body-->
+                                                                    <div class="card-body pt-0">
+                                                                        <!--coupon code-->
+                                                                        <div class="mt-20 mb-20 fv-row fv-plugins-icon-container">
+                                                                            <div class="d-flex flex-wrap gap-5">
+                                                                                <div class="fv-row w-100 flex-md-root">
+                                                                                    <!--label-->
+                                                                                    <label class="required form-label">Coupon code</label>
+                                                                                    <!--end label-->
+                                                                                    <!--input-->
+                                                                                    <input type="text" name="coupon_code" placeholder="{{ coupon.code }}" class="form-control mb-2" required>
+                                                                                    <!--end input-->
+                                                                                    <!--description-->
+                                                                                    <div class="text-muted fs-7">The coupon code is required and recommended to be unique.</div>
+                                                                                    <!--end description-->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--end coupon code-->
+
+                                                                        <!--quantity input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--label-->
+                                                                            <label class="form-label">Quantity</label>
+                                                                            <!--end label-->
+                                                                            <!--input-->
+                                                                            <input type="number" name="coupon_quantity" class="form-control" placeholder="{{ coupon.quantity }}">
+                                                                            <!--end input-->
+                                                                            <!--description-->
+                                                                            <div class="text-muted fs-7">Edit the coupon quantity.</div>
+                                                                            <!--end description-->
+                                                                        </div>
+                                                                        <!--end quantity input-->
+
+                                                                        <!--value input-->
+                                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                                            <!--label-->
+                                                                            <label class="form-label">Value</label>
+                                                                            <!--end label-->
+                                                                            <!--input-->
+                                                                            <input type="number" name="coupon_value" class="form-control" placeholder="{{ coupon.value }}">
+                                                                            <!--end input-->
+                                                                            <!--description-->
+                                                                            <div class="text-muted fs-7">Edit the coupon quantity.</div>
+                                                                            <!--end description-->
+                                                                        </div>
+                                                                        <!--end value input-->
+
+                                                                    </div>
+                                                                    <!--end block body-->
+                                                                </div>
+                                                                <!--end add product information-->
+                                                            </div>
+                                                        </div>
+                                                        <!--end add product form inputs-->
+
+                                                        <!--submit product button-->
+                                                        <div class="d-flex justify-content-center" style="padding-top: 50px;">
+                                                            <button type="submit" class="btn btn-secondary">
+                                                                <span class="indicator-label">Save</span>
+                                                            </button>
+                                                        </div>
+                                                        <!--end submit product button-->
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--end add product general information form-->
+                                        </div>
+
+                                        <div class="modal-footer">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end edit coupon modal-->
+
                             {% endfor %}
                             </tbody>
                         </table>
@@ -562,6 +683,7 @@
                 <!--end principle card footer-->
             </div>
         </div>
+
         <!--end coupon pan-->
     </div>
 
