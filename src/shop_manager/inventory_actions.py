@@ -183,7 +183,9 @@ def add_new_coupon(request, sku):
         new_coupon = Coupon(code=coupon_code,
                             quantity=coupon_quantity,
                             coupon_type=coupon_type,
-                            ).save()
+                            )
+        new_coupon.save()
+        
         if coupon_type == 'PERCENTAGE':
             if coupon_value > 100:
                 coupon_value = 100
