@@ -329,7 +329,7 @@
                                     <!-- quantity -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                         <label class="form-label me-2" for="quantity">Quantity</label>
-                                        <input class="form-control me-2" type="number" name="quantity" id="quantity" min="1" max="{{ selected_product.quantity }}" placeholder="put a quantity" value=1 required>
+                                        <input class="form-control me-2" type="number" name="quantity" id="quantity" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
                                     </div>
 
                                     {% if not update %}
@@ -395,7 +395,7 @@
                                     <!-- quantity -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                         <label class="form-label me-2" for="quantity">Quantity</label>
-                                        <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ selected_size.quantity }}" placeholder="put a quantity" value=1 required>
+                                        <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
                                     </div>
 
                                     {% if not update %}
