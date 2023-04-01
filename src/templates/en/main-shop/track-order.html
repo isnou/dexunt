@@ -96,13 +96,13 @@
       </div>
     </div>
     <div class="col-md-4 mb-2">
-      <div class="bg-secondary h-100 p-4 text-center rounded-3">state
+      <div class="bg-secondary h-100 p-4 text-center rounded-3">
         <span class="fw-medium text-dark me-2">Status:</span>{{ order.state }}
       </div>
     </div>
     <div class="col-md-4 mb-2">
       <div class="bg-secondary h-100 p-4 text-center rounded-3">
-        <span class="fw-medium text-dark me-2">Order date:</span>{{ order.created_at }}
+        <span class="fw-medium text-dark me-2">Order date:</span>{{ order.created_at|date:"M d, Y" }}
       </div>
     </div>
   </div>
