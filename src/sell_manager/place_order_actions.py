@@ -18,6 +18,12 @@ def regular(request):
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
         shipping_price = functions.get_shipping_price(cart, municipality, shipping_type)
 
+        if shipping_type == 'home_delivery_price':
+            shipping_type = 'TO_HOME'
+
+        if shipping_type == 'desk_delivery_price':
+            shipping_type = 'TO_DESK'
+
         new_order = Order(cart_ref=cart.ref,
                           order_ref=order_ref,
                           device=cart.device,
@@ -27,6 +33,7 @@ def regular(request):
                           client_phone=phone_number,
                           province=province_en_name,
                           municipality=municipality_en_name,
+                          shipping_type=shipping_type,
                           sub_total_price=cart.sub_total_price,
                           shipping_price=shipping_price,
                           )

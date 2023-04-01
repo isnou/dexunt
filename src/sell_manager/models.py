@@ -91,6 +91,9 @@ class Order(models.Model):
     coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
     # -- coupon_types :  SUBTRACTION - PERCENTAGE
 
+    shipping_type = models.CharField(max_length=100, default='TO_HOME')
+    # -- shipping_types :  TO_HOME - TO_OFFICE
+
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     shipping_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     final_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
