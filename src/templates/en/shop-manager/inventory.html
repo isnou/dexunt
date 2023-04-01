@@ -643,7 +643,7 @@
                                                                             {% if coupon.coupon_type == 'PERCENTAGE' %}
                                                                             <!--input-->
                                                                             <div class="input-group">
-                                                                                <input type="number" name="coupon_value" class="form-control" placeholder="{{ coupon.value }}">
+                                                                                <input type="number" name="coupon_value" class="form-control" placeholder="{{ coupon.value }}" max="100">
                                                                                 <span class="input-group-text">%</span>
                                                                             </div>
                                                                             <!--end input-->
