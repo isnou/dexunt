@@ -75,8 +75,8 @@ class Order(models.Model):
     device = models.CharField(max_length=200, default='UNDEFINED')
     operating_system = models.CharField(max_length=200, default='UNDEFINED')
     ip_address = models.CharField(max_length=200, default='UNDEFINED')
-    state = models.CharField(max_length=100, default='UNCONFIRMED')
-    # -- states :  UNCONFIRMED - CONFIRMED - CANCELED - IN-PROGRESS - PACKAGING - DELIVERY - PENDING - PAID - REFUND
+    status = models.CharField(max_length=100, default='UNCONFIRMED')
+    # -- states :  UNCONFIRMED - CONFIRMED - CANCELED - PROCESSING - PACKAGING - DELIVERY - PENDING - PAID - REFUND
 
     # --------------------------------- client info --------------------------------------------
     product = models.ManyToManyField(CartProduct, blank=True)
