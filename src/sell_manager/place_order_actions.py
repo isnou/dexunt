@@ -19,10 +19,10 @@ def regular(request):
         shipping_price = functions.get_shipping_price(cart, municipality, shipping_type)
 
         if shipping_type == 'home_delivery_price':
-            shipping_type = 'TO_HOME'
+            shipping_type = 'TO-HOME'
 
         if shipping_type == 'desk_delivery_price':
-            shipping_type = 'TO_DESK'
+            shipping_type = 'TO-DESK'
 
         new_order = Order(cart_ref=cart.ref,
                           order_ref=order_ref,
