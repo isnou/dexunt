@@ -518,7 +518,7 @@
                             <thead>
                             <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
                                 <th class="min-w-150px">Coupons code</th>
-                                <th class="text-end min-w-40px">Value</th>
+                                <th class="text-center min-w-40px">Value</th>
                                 <th class="text-center min-w-40px">Type</th>
                                 <th class="text-end min-w-40px">Quantity</th>
                             </tr>
@@ -533,23 +533,23 @@
                                 <!--end coupon code-->
 
                                 <!--coupon value-->
-                                <td class="text-start">
+                                <td class="text-center">
                                     {% if coupon.coupon_type == 'SUBTRACTION' %}
-                                    <span class="fw-bold">{{ coupon.value|floatformat:"2g" }}<small class="me-2">DZD</small></span>
+                                    <span class="fw-bold">{{ coupon.value|floatformat:"2g" }}<small class="ms-2">DZD</small></span>
                                     {% elif coupon.coupon_type == 'PERCENTAGE' %}
-                                    <span class="fw-bold">{{ coupon.value }}<small class="me-2">%</small></span>
+                                    <span class="fw-bold">{{ coupon.value }}<small class="ms-2">%</small></span>
                                     {% endif %}
                                 </td>
                                 <!--end coupon value-->
 
                                 <!--coupon type-->
-                                <td class="text-start">
+                                <td class="text-center">
                                     <span class="fw-bold">{{ coupon.coupon_type }}</span>
                                 </td>
                                 <!--end coupon type-->
 
                                 <!--coupon quantity-->
-                                <td class="text-start">
+                                <td class="text-end">
                                     <span class="fw-bold">{{ coupon.quantity }}</span>
                                 </td>
                                 <!--end coupon quantity-->
