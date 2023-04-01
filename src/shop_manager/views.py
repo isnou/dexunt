@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions
 from .models import Product, Size, Feature, ShowcaseProduct
 from main_shop.models import Intro ,Showcase,Department ,Directory ,Category
+from sell_manager.models import Coupon
 
 
 def manager_dashboard(request, action):
@@ -24,6 +25,10 @@ def inventory(request, action, sku):
         e_shop_products_list = ShowcaseProduct.objects.all()
     except ShowcaseProduct.DoesNotExist:
         raise Http404("No products")
+    try:
+        coupons = Coupon.objects.all()
+    except Coupon.DoesNotExist:
+        raise Http404("No coupons")
 
     inventory_products = inventory_products_list.order_by('en_title')
     e_shop_products = e_shop_products_list.order_by('en_title')
@@ -57,6 +62,7 @@ def inventory(request, action, sku):
         'inventory_products': inventory_products,
         'e_shop_products': e_shop_products,
         'tab':tab,
+        'coupons':coupons,
     }
     return render(request, url, context)
 
