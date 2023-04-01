@@ -166,6 +166,33 @@ def refresh_e_shop_product():
         'url': url,
     }
 
+def add_new_coupon(request, sku):
+    try:
+        coupons = Coupon.objects.all()
+    except Coupon.DoesNotExist:
+        raise Http404("No coupons")
+
+
+    if request.method == 'POST':
+        coupon_code = request.POST.get('coupon_code', False)
+        coupon_quantity = int(request.POST.get('coupon_quantity', False))
+        coupon_value = int(request.POST.get('coupon_value', False))
+        coupon_type = request.POST.get('coupon_type', False)
+
+
+        new_coupon = Coupon(code=coupon_code,
+                            quantity=coupon_quantity,
+                            coupon_type=coupon_type,
+                            ).save()
+        if coupon_type == 'PERCENTAGE':
+            if coupon_value > 100:
+                coupon_value = 100
+
+        new_coupon.value  = coupon_value
+        new_coupon.save()
+
+    return coupons
+
 def edit_coupon(request, sku):
     try:
         coupons = Coupon.objects.all()
