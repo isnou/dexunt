@@ -74,7 +74,9 @@
                                 <td>{{ order.created_at }}</td>
                                 <td>{{ order.updated_at }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-light"><i class="bi bi-eye fs-2x"></i></a>
+                                    <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_order_{{ order.order_ref }}_{{ order.order_type }}">
+                                        <i class="bi bi-eye fs-2x"></i>
+                                    </a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -84,6 +86,31 @@
                     <!--end orders table-->
                 </div>
                 <!--end principle card body-->
+
+                {% for order in new_orders %}
+                <!--view order modal-->
+                <div class="modal fade" tabindex="-1" id="view_order_{{ order.order_ref }}_{{ order.order_type }}">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content shadow-none">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Order :{{ order.order_ref }}</h5>
+                                <!--close-->
+                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                    <span class="svg-icon svg-icon-2x"></span>
+                                </div>
+                                <!--end clos-->
+                            </div>
+
+                            <div class="modal-body">
+                            </div>
+
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end view order modal-->
+                {% endfor %}
 
             </div>
         </div>
