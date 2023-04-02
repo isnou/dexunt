@@ -55,7 +55,8 @@
                             <tr class="fw-semibold fs-7 text-danger border-bottom border-gray-200 py-4">
                                 <th>Order ID</th>
                                 <th>Costumer</th>
-                                <th>Status</th>
+                                <th>Phone</th>
+                                <th>Province</th>
                                 <th>Total</th>
                                 <th>Creation</th>
                                 <th>Last log</th>
@@ -63,24 +64,20 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {% for order in new_orders %}
                             <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
+                                <td>{{ order.order_ref }}</td>
+                                <td>{{ order.client_name }}</td>
+                                <td>{{ order.client_phone }}</td>
+                                <td>{{ order.province }}</td>
+                                <td>{{ order.final_price|floatformat:"2g" }}<small class="ms-2">DZD</small></td>
+                                <td>{{ order.created_at }}</td>
+                                <td>{{ order.updated_at }}</td>
+                                <td>
+                                    <a href="#" class="btn btn-light"><i class="bi bi-credit-card-2-front"></i></a>
+                                </td>
                             </tr>
-                            <tr class="py-5 fw-bold  border-bottom  border-gray-400 fs-4">
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                                <td>$320,800</td>
-                            </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

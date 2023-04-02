@@ -159,7 +159,7 @@ def inventory_preparation(request, action, sku):
 def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
-    side_menu = 'e_shop'
+
 
     try:
         categories = Category.objects.all()
@@ -181,6 +181,7 @@ def e_shop(request, action, detail, index):
     except Product.DoesNotExist:
         raise Http404("No products")
 
+    side_menu = 'e_shop'
     tab = 'ad_showcase'
     sub_tab = 'main'
 
@@ -307,7 +308,18 @@ def orders(request, action):
     tab = 'main'
     sub_tab = None
 
+    try:
+        all_orders = Order.objects.all()
+    except Order.DoesNotExist:
+        raise Http404("No orders")
+
+    # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER - NO-NETWORK -( CANCELED )- PROCESSING - PACKAGING -
+    # DELIVERY -( PENDING )-( PAID )-( REFUND )
+
+    new_orders = all_orders.filter(status='UNCONFIRMED').filter(status='NO-ANSWER').filter(status='NO-NETWORK')
+
     context = {
+        'new_orders': new_orders,
         'side_menu': side_menu,
         'tab': tab,
         'sub_tab': sub_tab,
