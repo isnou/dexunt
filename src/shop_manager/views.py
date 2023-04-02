@@ -316,7 +316,7 @@ def orders(request, action):
     # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER - NO-NETWORK -( CANCELED )- PROCESSING - PACKAGING -
     # DELIVERY -( PENDING )-( PAID )-( REFUND )
 
-    new_orders = Order.objects.all()
+    new_orders = all_orders.all().filter(status='UNCONFIRMED')
 
     context = {
         'new_orders': new_orders,
