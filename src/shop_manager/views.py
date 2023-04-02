@@ -316,7 +316,7 @@ def orders(request, action):
     # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER - NO-NETWORK -( CANCELED )- PROCESSING - PACKAGING -
     # DELIVERY -( PENDING )-( PAID )-( REFUND )
 
-    new_orders = all_orders.all().filter(status='UNCONFIRMED')
+    new_orders = all_orders.exclude(status='CONFIRMED').exclude(status='NO-ANSWER').exclude(status='NO-NETWORK')
 
     context = {
         'new_orders': new_orders,
