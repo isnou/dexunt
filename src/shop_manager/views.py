@@ -10,8 +10,10 @@ def manager_dashboard(request, action):
         request.session['language'] = 'en'
     direction = request.session.get('language')
     url = direction + "/shop-manager/dashboard.html"
+    side_menu = 'dashboard'
 
     context = {
+        'side_menu': side_menu,
     }
     return render(request, url, context)
 
@@ -35,6 +37,7 @@ def inventory(request, action, sku):
 
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory.html"
+    side_menu = 'inventory'
     tab = 'main'
 
     if action == "add_new_product":
@@ -68,6 +71,7 @@ def inventory(request, action, sku):
         tab = 'coupon'
 
     context = {
+        'side_menu': side_menu,
         'inventory_products': inventory_products,
         'e_shop_products': e_shop_products,
         'tab':tab,
@@ -79,6 +83,7 @@ def inventory(request, action, sku):
 def inventory_edit(request, action, sku, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory-edit.html"
+    side_menu = 'inventory'
     tab = 'edit_product'
 
     # -----------------------------edit product
@@ -125,6 +130,7 @@ def inventory_edit(request, action, sku, index):
     thumbnail_sizes = selected_product.size.all().exclude(show_thumb=False)
 
     context = {
+        'side_menu': side_menu,
         'selected_product': selected_product,
         'sizes': sizes,
         'thumbnail_sizes': thumbnail_sizes,
@@ -136,6 +142,7 @@ def inventory_edit(request, action, sku, index):
 def inventory_preparation(request, action, sku):
     direction = request.session.get('language')
     url = direction + "/shop-manager/inventory-preparation.html"
+    side_menu = 'inventory'
 
     if action == "prepare_product":
         url = direction + inventory_actions.prepare_product(request, sku).get('url')
@@ -143,6 +150,7 @@ def inventory_preparation(request, action, sku):
     selected_product = ShowcaseProduct.objects.all().get(sku=sku)
 
     context = {
+        'side_menu': side_menu,
         'selected_product': selected_product,
     }
     return render(request, url, context)
@@ -151,6 +159,7 @@ def inventory_preparation(request, action, sku):
 def e_shop(request, action, detail, index):
     direction = request.session.get('language')
     url = direction + "/shop-manager/e-shop.html"
+    side_menu = 'e_shop'
 
     try:
         categories = Category.objects.all()
@@ -281,6 +290,7 @@ def e_shop(request, action, detail, index):
 
 
     context = {
+        'side_menu':side_menu,
         'tab':tab,
         'sub_tab':sub_tab,
         'all_products': all_products,
