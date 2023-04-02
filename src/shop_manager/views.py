@@ -313,10 +313,17 @@ def orders(request, action):
     except Order.DoesNotExist:
         raise Http404("No orders")
 
-    # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER - NO-NETWORK -( CANCELED )- PROCESSING - PACKAGING -
-    # DELIVERY -( PENDING )-( PAID )-( REFUND )
+    # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER - NO-NETWORK - CANCELED - PROCESSING - PACKAGING -
+    # DELIVERY - PENDING - PAID - REFUND
 
-    new_orders = all_orders.exclude(status='CONFIRMED').exclude(status='NO-ANSWER').exclude(status='NO-NETWORK')
+    new_orders = all_orders.exclude(status='CONFIRMED')\
+        .exclude(status='CANCELED')\
+        .exclude(status='PROCESSING')\
+        .exclude(status='PACKAGING')\
+        .exclude(status='DELIVERY')\
+        .exclude(status='PENDING')\
+        .exclude(status='PAID')\
+        .exclude(status='REFUND')
 
     context = {
         'new_orders': new_orders,
