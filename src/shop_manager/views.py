@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from . import inventory_actions, e_shop_actions
 from .models import Product, Size, Feature, ShowcaseProduct
 from main_shop.models import Intro ,Showcase,Department ,Directory ,Category
-from sell_manager.models import Coupon
+from sell_manager.models import Coupon ,Order
 
 
 def manager_dashboard(request, action):
@@ -300,7 +300,7 @@ def e_shop(request, action, detail, index):
     return render(request, url, context)
 
 
-def orders(request):
+def orders(request, action):
     direction = request.session.get('language')
     url = direction + "/shop-manager/orders.html"
     side_menu = 'orders'

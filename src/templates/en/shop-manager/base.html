@@ -130,7 +130,7 @@
 
 									<!--menu title orders management-->
 									<div class="menu-item py-2">
-										<a class="menu-link {% if side_menu == 'orders' %} active {% endif %} menu-center" href="{% url 'orders' %}" title="Orders" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+										<a class="menu-link {% if side_menu == 'orders' %} active {% endif %} menu-center" href="{% url 'orders' '#' %}" title="Orders" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
 											<span class="menu-icon me-0">
 												<span class="menu-link menu-center">
 													<span class="menu-icon me-0">
@@ -2807,8 +2807,6 @@
 		<!--end::Chat drawer-->
 		<!--end::Drawers-->
 		<!--end::Main-->
-
-
 		<!--begin::Engage drawers-->
 		<!--begin::Exolore drawer-->
 		<div id="kt_explore" class="explore bg-body" data-kt-drawer="true" data-kt-drawer-name="explore" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'lg': '440px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_explore_toggle" data-kt-drawer-close="#kt_explore_close">
@@ -5821,14 +5819,10 @@
 		<script src="{% static 'manager/plugins/custom/fslightbox/fslightbox.bundle.js' %}"></script>
 		<!--end::Custom Javascript-->
 
-
-
-
 		<!--add products js-->
 		<script src="{% static 'manager/plugins/custom/formrepeater/formrepeater.bundle.js' %}"></script>
 		<script src="{% static 'manager/js/custom/apps/ecommerce/catalog/save-product.js' %}"></script>
 		<!--end add products js-->
-
 	</body>
 	<!--end body-->
 </html>
