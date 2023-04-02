@@ -102,6 +102,27 @@
                             </div>
 
                             <div class="modal-body">
+                                {% for product in order.product.all %}
+        <div class="d-sm-flex justify-content-between mb-4 pb-3 pb-sm-2 border-bottom">
+          <div class="d-sm-flex text-center text-sm-start">
+            <a class="d-inline-block flex-shrink-0 mx-auto" href="#" style="width: 10rem;">
+              <img src="{% get_media_prefix %}{{ product.thumb }}" alt="Product">
+            </a>
+            <div class="ps-sm-4 pt-2">
+              <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
+              <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }} </div>
+              <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }} </div>
+              <div class="fs-lg text-accent pt-2">{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
+            </div>
+          </div>
+          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+            <div class="text-muted mb-2">Quantity:</div>{{ product.quantity }}
+          </div>
+          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+            <div class="text-muted mb-2">Subtotal:</div>{{ product.price|mul:product.quantity|floatformat:"2g" }}<small class="ms-1">DZD</small>
+          </div>
+        </div>
+        {% endfor %}
                             </div>
 
                             <div class="modal-footer">
