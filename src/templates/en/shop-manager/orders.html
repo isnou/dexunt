@@ -45,7 +45,12 @@
         <!--new orders pan-->
         <div class="tab-pane fade {% if tab == 'main' %} active show {% endif %}" id="new_orders_list">
             <div class="card card-bordered">
-                <table class="table align-middle table-row-dashed fs-6 gy-4" id="kt_docs_datatable_subtable">
+
+                <!--principle card body-->
+                <div class="card-body">
+                    <!--inventory table-->
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-4" id="kt_docs_datatable_subtable">
 	<!--begin::Table head-->
 	<thead>
 		<!--begin::Table row-->
@@ -150,6 +155,11 @@
 	</tbody>
 	<!--end::Table body-->
 </table>
+                    </div>
+                    <!--end inventory table-->
+                </div>
+                <!--end principle card body-->
+
             </div>
         </div>
         <!--end new orders pan-->
