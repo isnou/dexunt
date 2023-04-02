@@ -54,12 +54,12 @@
                             <thead>
                             <tr class="fw-semibold fs-7 text-muted border-bottom border-gray-200 py-4">
                                 <th>Order ID</th>
-                                <th>Costumer</th>
-                                <th>Phone</th>
-                                <th>Province</th>
-                                <th>Total</th>
-                                <th>Creation</th>
-                                <th>Last log</th>
+                                <th class="text-center">Costumer</th>
+                                <th class="text-center">Phone</th>
+                                <th class="text-center">Province</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Creation</th>
+                                <th class="text-center">Last log</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -74,7 +74,7 @@
                                 <td>{{ order.created_at }}</td>
                                 <td>{{ order.updated_at }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-light"><i class="bi bi-credit-card-2-front"></i></a>
+                                    <a href="#" class="btn btn-light"><i class="bi bi-eye"></i></a>
                                 </td>
                             </tr>
                             {% endfor %}
