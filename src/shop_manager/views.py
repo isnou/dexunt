@@ -298,3 +298,18 @@ def e_shop(request, action, detail, index):
         'directories': directories,
     }
     return render(request, url, context)
+
+
+def orders(request):
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/orders.html"
+    side_menu = 'orders'
+    tab = 'main'
+    sub_tab = None
+
+    context = {
+        'side_menu': side_menu,
+        'tab': tab,
+        'sub_tab': sub_tab,
+    }
+    return render(request, url, context)

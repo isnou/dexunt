@@ -1,0 +1,72 @@
+{% extends "en/shop-manager/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+<!------------------------------- title ---------------------------------------------------->
+<!-- english version -->
+{% block title %}
+<title>
+    Inventory - Dexunt Orders
+</title>
+{% endblock %}
+<!------------------------------- end title ------------------------------------------------>
+
+<!------------------------------- breadcrumb ----------------------------------------------->
+<!-- english version -->
+{% block breadcrumb %}
+<!--breadcrumb-->
+<ul class="breadcrumb fw-semibold fs-base my-1">
+    <li class="breadcrumb-item text-muted">
+        <a href="{% url 'dashboard' '#' %}" class="text-muted">Home</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Orders</li>
+</ul>
+<!--end breadcrumb-->
+{% endblock %}
+<!------------------------------- end breadcrumb ------------------------------------------->
+
+<!------------------------------- products table ------------------------------------------->
+<!-- english version -->
+{% block content %}
+<div class="container-xxl">
+    <!--tab actions-->
+    <div class="card card-bordered mb-5">
+        <ul class="nav nav-pills">
+            <li class="nav-item me-1">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'main' %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#new_orders">
+                    New Orders
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <!--end tab actions-->
+    <div class="tab-content">
+        <!--new orders pan-->
+        <div class="tab-pane fade {% if tab == 'main' %} active show {% endif %}" id="new_orders">
+            <div class="card card-bordered">
+                <!--principle card header-->
+                <div class="card-header">
+
+                </div>
+                <!--end principle card header-->
+                <!--principle card body-->
+                <div class="card-body">
+                    <!--inventory table-->
+                    <div class="table-responsive">
+                    </div>
+                    <!--end inventory table-->
+                </div>
+                <!--end principle card body-->
+                <!--principle card footer-->
+                <div class="card-footer">
+                </div>
+                <!--end principle card footer-->
+            </div>
+        </div>
+        <!--end new orders pan-->
+
+    </div>
+</div>
+{% endblock %}
+<!------------------------------- end products table --------------------------------------->
