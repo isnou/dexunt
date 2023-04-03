@@ -323,7 +323,7 @@ def orders(request, action):
         .exclude(status='DELIVERY')\
         .exclude(status='PENDING')\
         .exclude(status='PAID')\
-        .exclude(status='REFUND')
+        .exclude(status='REFUND').order_by('-created_at')
 
     context = {
         'new_orders': new_orders,
