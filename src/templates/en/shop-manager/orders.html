@@ -71,8 +71,8 @@
                                 <td>{{ order.client_phone }}</td>
                                 <td>{{ order.province }}</td>
                                 <td>{{ order.final_price|floatformat:"2g" }}<small class="ms-2">DZD</small></td>
-                                <td>{{ order.created_at|date:"d/m/Y" }}</td>
-                                <td>{{ order.updated_at|date:"d/m/Y" }}</td>
+                                <td>{{ order.created_at|date:"d/m/Y" }}<small class="ms-2">{{ order.created_at|time:"h:i a" }}</small></td>
+                                <td>{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2">{{ order.created_at|time:"h:i a" }}</small></td>
                                 <td>
                                     <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_order_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-eye fs-2x"></i>
