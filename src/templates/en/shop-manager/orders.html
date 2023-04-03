@@ -66,7 +66,12 @@
                             <tbody>
                             {% for order in new_orders %}
                             <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
-                                <td>{{ order.order_ref }}</td>
+                                <td>
+                                    {{ order.order_ref }}
+                                    {% if order.status == 'NO-ANSWER' %}
+                                    <div class="badge badge-light-warning ms-1">Pending</div>
+                                    {% endif %}
+                                </td>
                                 <td class="text-center">{{ order.client_name }}</td>
                                 <td class="text-center">
                                     <a href="tel:{{ order.client_phone }}" class="text-dark">
@@ -171,7 +176,7 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
-                                
+
                                 <form action="#" id="pend_form" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
