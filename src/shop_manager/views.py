@@ -322,6 +322,10 @@ def orders(request, action):
         orders_actions.processed(request)
         tab = 'confirmed'
 
+    if action == 'packaged':
+        orders_actions.packaged(request)
+        tab = 'processed'
+
     new_orders = orders_actions.all_orders().get('new_orders')
     confirmed_orders = orders_actions.all_orders().get('confirmed_orders')
     processed_orders = orders_actions.all_orders().get('processed_orders')
