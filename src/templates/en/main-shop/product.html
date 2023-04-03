@@ -401,7 +401,7 @@
                                         <input class="form-control me-2" type="number" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
                                         {% else %}
                                         <input class="form-control me-2" type="number" min="1" max="{{ selected_size.quantity }}" placeholder="put a quantity" value=1 required>
-                                        {% end %}
+                                        {% endif %}
                                     </div>
 
                                     {% if not update %}
