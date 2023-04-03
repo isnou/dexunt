@@ -188,12 +188,10 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Product details-->
                         <div class="col-lg-5 pt-4 pt-lg-0">
                             <form action="{% url 'cart-home' 'add_product_to_cart' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-
                                 <input type="hidden" name="size_sku" value='{{ size_sku }}'>
                                 <input type="hidden" name="product_sku" value='{{ selected_product.sku }}'>
                                 <input type="hidden" name="variant_sku" value='{{ variant.sku }}'>
@@ -328,8 +326,12 @@
                                     {% if selected_product.quantity and not selected_product.size.all.count %}
                                     <!-- quantity -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
-                                        <label class="form-label me-2" for="quantity">Quantity</label>
-                                        <input class="form-control me-2" type="number" name="quantity" id="quantity" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
+                                        <label class="form-label me-2">Quantity</label>
+                                        {% if selected_product.quantity > variant.showcase_quantity %}
+                                        <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
+                                        {% else %}
+                                        <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ selected_product.quantity }}" placeholder="put a quantity" value=1 required>
+                                        {% endif %}
                                     </div>
 
                                     {% if not update %}
@@ -394,8 +396,12 @@
                                     {% else %}
                                     <!-- quantity -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
-                                        <label class="form-label me-2" for="quantity">Quantity</label>
-                                        <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
+                                        <label class="form-label me-2">Quantity</label>
+                                        {% if selected_size.quantity > variant.showcase_quantity %}
+                                        <input class="form-control me-2" type="number" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
+                                        {% else %}
+                                        <input class="form-control me-2" type="number" min="1" max="{{ selected_size.quantity }}" placeholder="put a quantity" value=1 required>
+                                        {% end %}
                                     </div>
 
                                     {% if not update %}
