@@ -327,7 +327,7 @@ def orders(request, action):
         tab = 'processed'
 
     if action == 'delivered':
-        orders_actions.packaged(request)
+        orders_actions.delivered(request)
         tab = 'packaged'
 
     new_orders = orders_actions.all_orders().get('new_orders')

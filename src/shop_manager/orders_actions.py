@@ -12,7 +12,7 @@ def all_orders():
     # CONFIRMED                       --
     # PROCESSED                       --
     # PACKAGED                        --
-    # DELIVERY                        --
+    # DELIVERED                        --
     # PAID                            --
     # PENDING - REFUND - CANCELED     --
     # ----------------------------------
