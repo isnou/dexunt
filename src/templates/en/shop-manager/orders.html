@@ -795,12 +795,20 @@
 
                             <div class="modal-footer">
                                 <div class="col-lg-4">
-                                    <button class="btn btn-secondary" form="delivery_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Delivered Order">
-                                        <i class="bi bi-truck fs-2x"></i>
+                                    <button class="btn btn-secondary" form="paid_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Paid Order">
+                                        <i class="bi bi-cash-stack fs-2x"></i>
+                                    </button>
+
+                                    <button class="btn btn-secondary" form="pended_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Pended Order">
+                                        <i class="bi bi-hourglass-split fs-2x"></i>
+                                    </button>
+
+                                    <button class="btn btn-secondary" form="canceled_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Canceled Order">
+                                        <i class="bi bi-x fs-2x"></i>
                                     </button>
                                 </div>
 
-                                <form action="{% url 'orders' 'delivered' %}" id="delivery_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                <form action="{% url 'orders' '#' %}" id="paid_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
