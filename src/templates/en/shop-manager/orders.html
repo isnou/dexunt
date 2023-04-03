@@ -100,30 +100,24 @@
                                 <h6 class="modal-title">
                                     <i class="bi bi-upc fs-2x"></i>
                                     <small class="ms-2 text-muted">{{ order.order_ref }}</small>
-
                                     <i class="bi bi-geo-alt ms-5 fs-2x"></i>
                                     <small class="ms-2 text-muted">{{ order.province|title }}</small>
                                     <small class="ms-1 text-muted">|</small>
                                     <small class="ms-2 text-muted">{{ order.municipality|title }}</small>
-
                                     <i class="bi bi-truck ms-5 fs-2x"></i>
                                     {% if order.shipping_type == 'TO-HOME' %}
                                     <small class="ms-2 text-muted">Shipping to Home</small>
                                     {% elif order.shipping_type == 'TO-DESK' %}
                                     <small class="ms-2 text-muted">Shipping to Desk</small>
                                     {% endif %}
-
                                     <i class="bi bi-gift ms-5 fs-2x"></i>
                                     <small class="ms-2 text-muted">{{ order.points }}<small class="ms-1 text-muted">points</small></small>
-
                                     <i class="bi bi-person ms-5 fs-2x"></i>
                                     <small class="ms-2 text-muted">{{ order.client_name }}</small>
-
                                     <i class="bi bi-telephone ms-5 fs-2x"></i>
                                     <a href="tel:{{ order.client_phone }}">
                                         <small class="ms-2 text-muted">{{ order.client_phone }}</small>
                                     </a>
-
                                 </h6>
                                 <!--close-->
                                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
@@ -133,7 +127,6 @@
                             </div>
 
                             <div class="modal-body">
-
                                 <div class="table-responsive">
                                     <table class="table table-rounded table-flush">
                                         <tbody>
@@ -163,17 +156,31 @@
 
                             <div class="modal-footer">
                                 <div class="col-lg-4">
-                                    <button class="btn btn-secondary" href="#">
+                                    <button class="btn btn-secondary" form="confirm_form">
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" href="#">
+                                    <button class="btn btn-secondary" form="pend_form">
                                         <i class="bi bi-circle fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" href="#">
+                                    <button class="btn btn-secondary" form="cancel_form">
                                         <i class="bi bi-x-lg fs-2x"></i>
                                     </button>
                                 </div>
 
+                                <form action="#" id="confirm_form" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
+                                </form>
+                                
+                                <form action="#" id="pend_form" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
+                                </form>
+
+                                <form action="#" id="cancel_form" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
+                                </form>
 
                                 <div class="col-lg-6">
                                     <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
