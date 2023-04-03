@@ -14,7 +14,7 @@ def all_orders():
     # PACKAGED                        --
     # DELIVERED                        --
     # PAID                            --
-    # PENDING - REFUND - CANCELED     --
+    # PENDED - REFUNDED - CANCELED     --
     # ----------------------------------
 
     new_orders = orders \
@@ -23,9 +23,9 @@ def all_orders():
         .exclude(status='PROCESSED') \
         .exclude(status='PACKAGED') \
         .exclude(status='DELIVERED') \
-        .exclude(status='PEND') \
+        .exclude(status='PENDED') \
         .exclude(status='PAID') \
-        .exclude(status='REFUND') \
+        .exclude(status='REFUNDED') \
         .order_by('-created_at')
 
     confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
@@ -53,7 +53,7 @@ def confirmed(request):
             order.status = 'CONFIRMED'
             order.save()
 
-def pending(request):
+def no_answer(request):
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 

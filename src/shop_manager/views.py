@@ -312,8 +312,8 @@ def orders(request, action):
     if action == 'confirmed':
         orders_actions.confirmed(request)
 
-    if action == 'pending':
-        orders_actions.pending(request)
+    if action == 'no_answer':
+        orders_actions.no_answer(request)
 
     if action == 'canceled':
         orders_actions.canceled(request)

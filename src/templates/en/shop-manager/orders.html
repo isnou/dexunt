@@ -187,8 +187,8 @@
                                     <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Confirmed Order">
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" form="pend_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="No Answer">
-                                        <i class="bi bi-circle fs-2x"></i>
+                                    <button class="btn btn-secondary" form="no_answer_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="No Answer">
+                                        <i class="bi bi-telephone-x fs-2x"></i>
                                     </button>
                                     <button class="btn btn-secondary" form="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Canceled Order">
                                         <i class="bi bi-x-lg fs-2x"></i>
@@ -200,7 +200,7 @@
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="{% url 'orders' 'pending' %}" id="pend_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                <form action="{% url 'orders' 'no_answer' %}" id="no_answer_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
