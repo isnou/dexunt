@@ -104,7 +104,7 @@
                                 <td class="text-center">{{ order.province }}</td>
                                 <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
                                 <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
-                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.updated_at|time:"G:i:s" }}</small></td>
                                 <td>
                                     <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_order_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-eye fs-2x"></i>
@@ -268,7 +268,7 @@
                                 <td class="text-center">{{ order.province }}</td>
                                 <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
                                 <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
-                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.updated_at|time:"G:i:s" }}</small></td>
                                 <td>
                                     <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_confirmed_order_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-eye fs-2x"></i>
@@ -416,7 +416,7 @@
                                 <td class="text-center">{{ order.province }}</td>
                                 <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
                                 <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
-                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.updated_at|time:"G:i:s" }}</small></td>
                                 <td>
                                     <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_processed_order_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-eye fs-2x"></i>
@@ -567,7 +567,7 @@
                                 <td class="text-center">{{ order.province }}</td>
                                 <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
                                 <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
-                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.updated_at|time:"G:i:s" }}</small></td>
                                 <td>
                                     <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_packaged_order_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-eye fs-2x"></i>
@@ -715,7 +715,7 @@
                                 <td class="text-center">{{ order.province }}</td>
                                 <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
                                 <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
-                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.updated_at|time:"G:i:s" }}</small></td>
                                 <td>
                                     <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_delivered_order_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-eye fs-2x"></i>
@@ -835,7 +835,6 @@
             </div>
         </div>
         <!--end delivered orders pan-->
-
     </div>
 </div>
 {% endblock %}
