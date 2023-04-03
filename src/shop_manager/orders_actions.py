@@ -1,5 +1,4 @@
-from .models import Cart
-from sell_manager.models import Order
+from sell_manager.models import Order, Cart
 
 
 def all_orders():
