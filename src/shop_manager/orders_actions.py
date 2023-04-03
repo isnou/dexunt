@@ -34,7 +34,7 @@ def all_orders():
     delivery_orders = orders.filter(status='DELIVERY')
 
     return {
-        'new_orders': new_orders_orders,
+        'new_orders': new_orders,
         'confirmed_orders': confirmed_orders,
         'processed_orders': processed_orders,
         'packaged_orders': packaged_orders,
