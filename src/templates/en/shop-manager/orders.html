@@ -102,6 +102,10 @@
                                     <small class="ms-1 text-muted">|</small>
                                     <small class="ms-2 text-muted">{{ order.municipality|title }}</small>
 
+                                    <i class="bi bi-cash ms-10"></i>
+                                    <small class="ms-2 text-muted">Price :{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+                                    <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+
 
                                 </h4>
                                 <!--close-->
@@ -131,7 +135,7 @@
                                                 <span class="text-muted me-2"><i class="bi bi-dash-lg"></i></span>{{ product.en_detail }}
                                                 {% endif %}
                                             </td>
-                                            <td class="min-w-20px"><span class="text-muted me-2">price:</span>{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></td>
+                                            <td class="min-w-20px"><span class="text-muted me-2">Price:</span>{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></td>
                                             <td class="min-w-20px"><span class="text-muted me-2">Quantity:</span>{{ product.quantity }}</td>
                                         </tr>
                                         {% endfor %}
