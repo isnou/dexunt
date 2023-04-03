@@ -96,11 +96,10 @@
                                 <h4 class="modal-title">
                                     <i class="bi bi-upc"></i>
                                     <small class="ms-2 text-muted">{{ order.order_ref }}</small>
-
+                                    
                                     <i class="bi bi-geo-alt ms-10"></i>
-                                    <small class="ms-2 text-muted">{{ order.province }}</small>
-                                    <i class="bi bi-pause"></i>
-                                    <small class="ms-2 text-muted">{{ order.municipality }}</small>
+                                    <small class="ms-2 text-muted">{{ order.province|title }}</small>
+                                    <small class="ms-2 text-muted">{{ order.municipality|title }}</small>
 
 
                                 </h4>
