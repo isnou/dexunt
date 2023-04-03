@@ -1,5 +1,5 @@
 from sell_manager.models import Order, Cart
-from shop_manager.models import Product
+from shop_manager.models import Product, Size
 
 
 def all_orders():
@@ -100,9 +100,16 @@ def delivered(request):
             order.save()
 
             for order_product in order.product.all():
-                inventory_product = Product.objects.all().get(sku=order_product.product_sku)
-                inventory_product.quantity = inventory_product.quantity - order_product.quantity
-                inventory_product.save()
+                if order_product.size_sku == 'main':
+                    inventory_product = Product.objects.all().get(sku=order_product.product_sku)
+                    inventory_product.quantity = inventory_product.quantity - order_product.quantity
+                    inventory_product.save()
+                else:
+                    inventory_product = Size.objects.all().get(sku=order_product.size_sku)
+                    inventory_product.quantity = inventory_product.quantity - order_product.quantity
+                    inventory_product.save()
+
+
 
 
 #    if order_product.quantity > inventory_product.quantity:
