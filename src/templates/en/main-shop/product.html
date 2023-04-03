@@ -394,15 +394,14 @@
 
                                     </div>
                                     {% else %}
+                                    {% if selected_size.quantity %}
                                     <!-- quantity -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                         <label class="form-label me-2">Quantity</label>
-                                        {% if selected_size.quantity %}
                                         {% if selected_size.quantity > variant.showcase_quantity %}
                                         <input class="form-control me-2" type="number" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
                                         {% else %}
                                         <input class="form-control me-2" type="number" min="1" max="{{ selected_size.quantity }}" placeholder="put a quantity" value=1 required>
-                                        {% endif %}
                                         {% endif %}
                                     </div>
 
@@ -425,6 +424,23 @@
                                         <button class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>Update Cart</button>
                                     </div>
                                     <div class="d-flex mb-4">
+                                    </div>
+                                    {% endif %}
+                                    {% else %}
+                                    <!-- disabled quantity -->
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>out of stock new arrival soon .</div>
+                                    </div>
+
+                                    <!-- disabled buttons -->
+                                    <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
+                                    </div>
+                                    <div class="d-flex mb-4">
+                                        <button class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
+                                        <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="button"><i class="ci-bell fs-lg me-2"></i><span class='d-none d-sm-inline'>Be Notified </span></button>
                                     </div>
                                     {% endif %}
 
