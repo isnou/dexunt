@@ -88,15 +88,4 @@
     <MESSAGE value="Update views.py" />
     <option name="LAST_COMMIT_MESSAGE" value="Update views.py" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/shop_manager/orders_actions.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
 </project>
