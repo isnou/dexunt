@@ -16,7 +16,7 @@ def regular(request):
             order = Order.objects.all().get(order_ref=order_ref)
         else:
             order = None
-        # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER - NO-NETWORK -( CANCELED )- PROCESSING - PACKAGING -
+        # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER -( CANCELED )- PROCESSING - PACKAGING -
         # DELIVERY -( PENDING )-( PAID )-( REFUND )
         if order.status == 'UNCONFIRMED' or order.status == 'CONFIRMED':
             processing_order = 'IN-PROGRESS'
