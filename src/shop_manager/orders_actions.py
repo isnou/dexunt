@@ -22,7 +22,7 @@ def all_orders():
         .exclude(status='CANCELED') \
         .exclude(status='PROCESSED') \
         .exclude(status='PACKAGED') \
-        .exclude(status='DELIVERY') \
+        .exclude(status='DELIVERED') \
         .exclude(status='PEND') \
         .exclude(status='PAID') \
         .exclude(status='REFUND') \
@@ -31,14 +31,14 @@ def all_orders():
     confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
     processed_orders = orders.filter(status='PROCESSED').order_by('updated_at')
     packaged_orders = orders.filter(status='PACKAGED').order_by('updated_at')
-    delivery_orders = orders.filter(status='DELIVERY').order_by('updated_at')
+    delivered_orders = orders.filter(status='DELIVERED').order_by('updated_at')
 
     return {
         'new_orders': new_orders,
         'confirmed_orders': confirmed_orders,
         'processed_orders': processed_orders,
         'packaged_orders': packaged_orders,
-        'delivery_orders': delivery_orders,
+        'delivered_orders': delivered_orders,
     }
 
 
@@ -87,4 +87,13 @@ def packaged(request):
         if Order.objects.all().filter(order_ref=order_ref).exists():
             order = Order.objects.all().get(order_ref=order_ref)
             order.status = 'PACKAGED'
+            order.save()
+
+def delivered(request):
+    if request.method == 'POST':
+        order_ref = request.POST.get('order_ref', False)
+
+        if Order.objects.all().filter(order_ref=order_ref).exists():
+            order = Order.objects.all().get(order_ref=order_ref)
+            order.status = 'DELIVERED'
             order.save()

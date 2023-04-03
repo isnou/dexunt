@@ -29,7 +29,7 @@ def regular(request):
             quality_check = 'DONE'
             packaging = 'IN-PROGRESS'
 
-        if order.status == 'DELIVERY':
+        if order.status == 'DELIVERED':
             processing_order = 'DONE'
             quality_check = 'DONE'
             packaging = 'DONE'

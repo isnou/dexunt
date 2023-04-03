@@ -326,18 +326,22 @@ def orders(request, action):
         orders_actions.packaged(request)
         tab = 'processed'
 
+    if action == 'delivered':
+        orders_actions.packaged(request)
+        tab = 'packaged'
+
     new_orders = orders_actions.all_orders().get('new_orders')
     confirmed_orders = orders_actions.all_orders().get('confirmed_orders')
     processed_orders = orders_actions.all_orders().get('processed_orders')
     packaged_orders = orders_actions.all_orders().get('packaged_orders')
-    delivery_orders = orders_actions.all_orders().get('delivery_orders')
+    delivered_orders = orders_actions.all_orders().get('delivered_orders')
 
     context = {
         'new_orders': new_orders,
         'confirmed_orders': confirmed_orders,
         'processed_orders': processed_orders,
         'packaged_orders': packaged_orders,
-        'delivery_orders': delivery_orders,
+        'delivered_orders': delivered_orders,
 
         'side_menu': side_menu,
         'tab': tab,
