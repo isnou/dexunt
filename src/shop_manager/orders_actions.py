@@ -27,34 +27,28 @@ def all_orders():
 
 
 def confirm(request):
-    orders = Order.objects.all()
-
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 
-        if orders.filter(order_ref=order_ref).exists():
-            order = orders.get(order_ref=order_ref)
+        if Order.objects.all().filter(order_ref=order_ref).exists():
+            order = Order.objects.all().get(order_ref=order_ref)
             order.status = 'CONFIRMED'
             order.save()
 
 def pend(request):
-    orders = Order.objects.all()
-
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 
-        if orders.filter(order_ref=order_ref).exists():
-            order = orders.get(order_ref=order_ref)
+        if Order.objects.all().filter(order_ref=order_ref).exists():
+            order = Order.objects.all().get(order_ref=order_ref)
             order.status = 'NO-ANSWER'
             order.save()
 
 def cancel(request):
-    orders = Order.objects.all()
-
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 
-        if orders.filter(order_ref=order_ref).exists():
-            order = orders.get(order_ref=order_ref)
+        if Order.objects.all().filter(order_ref=order_ref).exists():
+            order = Order.objects.all().get(order_ref=order_ref)
             order.status = 'CANCELED'
             order.save()
