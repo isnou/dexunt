@@ -170,7 +170,7 @@
                                 {% elif order.coupon_type == 'PERCENTAGE' %}
                                 <small class="ms-2 text-muted">Discount :{{ order.coupon_value }}<small class="ms-1">%</small></small>
                                 {% endif %}
-                                <small class="ms-2 text-muted">Code :{{ order.coupon_code }}<small class="ms-1">%</small></small>
+                                <small class="ms-2 text-muted">Code :{{ order.coupon_code }}</small>
                                 {% endif %}
 
                                 <small class="ms-2 text-muted">Price :{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
