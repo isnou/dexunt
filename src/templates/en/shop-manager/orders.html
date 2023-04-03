@@ -254,7 +254,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for order in confirmed %}
+                            {% for order in confirmed_orders %}
                             <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
                                 <td>
                                     {{ order.order_ref }}
@@ -283,7 +283,7 @@
                 </div>
                 <!--end principle card body-->
 
-                {% for order in confirmed %}
+                {% for order in confirmed_orders %}
                 <!--view order modal-->
                 <div class="modal fade" tabindex="-1" id="view_confirmed_order_{{ order.order_ref }}_{{ order.order_type }}">
                     <div class="modal-dialog modal-xl modal-dialog-scrollable">
