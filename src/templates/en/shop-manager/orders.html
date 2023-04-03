@@ -67,12 +67,12 @@
                             {% for order in new_orders %}
                             <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
                                 <td>{{ order.order_ref }}</td>
-                                <td>{{ order.client_name }}</td>
-                                <td>{{ order.client_phone }}</td>
-                                <td>{{ order.province }}</td>
-                                <td>{{ order.final_price|floatformat:"2g" }}<small class="ms-2">DZD</small></td>
-                                <td>{{ order.created_at|date:"d/m/Y" }}<small class="ms-2">{{ order.created_at|time:"G:i:s" }}</small></td>
-                                <td>{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.client_name }}</td>
+                                <td class="text-center">{{ order.client_phone }}</td>
+                                <td class="text-center">{{ order.province }}</td>
+                                <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
+                                <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
                                 <td>
                                     <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_order_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-eye fs-2x"></i>
