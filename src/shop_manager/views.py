@@ -320,6 +320,9 @@ def orders(request, action):
 
     new_orders = orders_actions.all_orders().get('new_orders')
     confirmed = orders_actions.all_orders().get('confirmed')
+    processed = orders_actions.all_orders().get('processed')
+    packaged = orders_actions.all_orders().get('packaged')
+    delivery = orders_actions.all_orders().get('delivery')
 
     context = {
         'new_orders': new_orders,
