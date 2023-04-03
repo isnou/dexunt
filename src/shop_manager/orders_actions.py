@@ -1,4 +1,5 @@
 from sell_manager.models import Order, Cart
+from shop_manager.models import Product
 
 
 def all_orders():
@@ -97,3 +98,16 @@ def delivered(request):
             order = Order.objects.all().get(order_ref=order_ref)
             order.status = 'DELIVERED'
             order.save()
+
+            for order_product in order.product.all():
+                inventory_product = Product.objects.all().get(sku=order_product.product_sku)
+                inventory_product.quantity = inventory_product.quantity - order_product.quantity
+                inventory_product.save()
+
+
+#    if order_product.quantity > inventory_product.quantity:
+#        inventory_product.quantity = inventory_product.quantity - order_product.quantity
+#        inventory_product.save()
+#    else:
+#        unavailable_quantity = True
+#        return {'unavailable_quantity': unavailable_quantity,
