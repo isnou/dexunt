@@ -319,9 +319,11 @@ def orders(request, action):
         orders_actions.cancel(request)
 
     new_orders = orders_actions.all_orders().get('new_orders')
+    confirmed = orders_actions.all_orders().get('confirmed')
 
     context = {
         'new_orders': new_orders,
+        'confirmed': confirmed,
         'side_menu': side_menu,
         'tab': tab,
         'sub_tab': sub_tab,
