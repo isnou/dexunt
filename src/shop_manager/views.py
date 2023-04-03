@@ -309,14 +309,14 @@ def orders(request, action):
     tab = 'main'
     sub_tab = None
 
-    if action == 'confirm':
-        orders_actions.confirm(request)
+    if action == 'confirmed':
+        orders_actions.confirmed(request)
 
-    if action == 'pend':
-        orders_actions.pend(request)
+    if action == 'pending':
+        orders_actions.pending(request)
 
-    if action == 'cancel':
-        orders_actions.cancel(request)
+    if action == 'canceled':
+        orders_actions.canceled(request)
 
     new_orders = orders_actions.all_orders().get('new_orders')
     confirmed = orders_actions.all_orders().get('confirmed')
@@ -324,6 +324,10 @@ def orders(request, action):
     context = {
         'new_orders': new_orders,
         'confirmed': confirmed,
+        'processed': processed,
+        'packaged': packaged,
+        'delivery': delivery,
+
         'side_menu': side_menu,
         'tab': tab,
         'sub_tab': sub_tab,

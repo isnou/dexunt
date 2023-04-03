@@ -44,7 +44,7 @@ def all_orders():
 
 
 
-def confirm(request):
+def confirmed(request):
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 
@@ -53,7 +53,7 @@ def confirm(request):
             order.status = 'CONFIRMED'
             order.save()
 
-def pend(request):
+def pending(request):
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 
@@ -62,7 +62,7 @@ def pend(request):
             order.status = 'NO-ANSWER'
             order.save()
 
-def cancel(request):
+def canceled(request):
     if request.method == 'POST':
         order_ref = request.POST.get('order_ref', False)
 

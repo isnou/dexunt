@@ -69,7 +69,6 @@
         <!--new orders pan-->
         <div class="tab-pane fade {% if tab == 'main' %} active show {% endif %}" id="new_orders_list">
             <div class="card card-bordered">
-
                 <!--principle card body-->
                 <div class="card-body">
                     <!--orders table-->
@@ -185,28 +184,28 @@
 
                             <div class="modal-footer">
                                 <div class="col-lg-4">
-                                    <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Confirm Order">
+                                    <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Confirmed Order">
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
                                     <button class="btn btn-secondary" form="pend_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="No Answer">
                                         <i class="bi bi-circle fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" form="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Cancel Order">
+                                    <button class="btn btn-secondary" form="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Canceled Order">
                                         <i class="bi bi-x-lg fs-2x"></i>
                                     </button>
                                 </div>
 
-                                <form action="{% url 'orders' 'confirm' %}" id="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                <form action="{% url 'orders' 'confirmed' %}" id="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="{% url 'orders' 'pend' %}" id="pend_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                <form action="{% url 'orders' 'pended' %}" id="pend_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="{% url 'orders' 'cancel' %}" id="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                <form action="{% url 'orders' 'canceled' %}" id="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
@@ -230,7 +229,6 @@
                 </div>
                 <!--end view order modal-->
                 {% endfor %}
-
             </div>
         </div>
         <!--end new orders pan-->
@@ -238,7 +236,6 @@
         <!--confirmed orders pan-->
         <div class="tab-pane fade {% if tab == 'confirmed' %} active show {% endif %}" id="confirmed_orders_list">
             <div class="card card-bordered">
-
                 <!--principle card body-->
                 <div class="card-body">
                     <!--orders table-->
@@ -352,11 +349,11 @@
                             <div class="modal-footer">
                                 <div class="col-lg-4">
                                     <button class="btn btn-secondary" form="process_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Processed Order">
-                                        <i class="bi bi-check-lg fs-2x"></i>
+                                        <i class="bi bi-gear-lg fs-2x"></i>
                                     </button>
                                 </div>
 
-                                <form action="{% url 'orders' 'confirm' %}" id="process_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                <form action="{% url 'orders' 'processed' %}" id="process_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
@@ -380,7 +377,6 @@
                 </div>
                 <!--end view order modal-->
                 {% endfor %}
-
             </div>
         </div>
         <!--end confirmed orders pan-->
