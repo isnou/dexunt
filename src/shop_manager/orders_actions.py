@@ -27,7 +27,7 @@ def all_orders():
         .exclude(status='PENDED') \
         .exclude(status='PAID') \
         .exclude(status='REFUNDED') \
-        .order_by('-created_at')
+        .order_by('created_at')
 
     confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
     processed_orders = orders.filter(status='PROCESSED').order_by('updated_at')
