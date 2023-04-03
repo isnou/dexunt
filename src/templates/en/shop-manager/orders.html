@@ -161,28 +161,28 @@
 
                             <div class="modal-footer">
                                 <div class="col-lg-4">
-                                    <button class="btn btn-secondary" form="confirm_form">
+                                    <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" form="pend_form">
+                                    <button class="btn btn-secondary" form="pend_form_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-circle fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" form="cancel_form">
+                                    <button class="btn btn-secondary" form="cancel_form_{{ order.order_ref }}_{{ order.order_type }}">
                                         <i class="bi bi-x-lg fs-2x"></i>
                                     </button>
                                 </div>
 
-                                <form action="{% url 'orders' 'confirm' %}" id="confirm_form" method="post">
+                                <form action="{% url 'orders' 'confirm' %}" id="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="{% url 'orders' 'pend' %}" id="pend_form" method="post">
+                                <form action="{% url 'orders' 'pend' %}" id="pend_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="{% url 'orders' 'cancel' %}" id="cancel_form" method="post">
+                                <form action="{% url 'orders' 'cancel' %}" id="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
