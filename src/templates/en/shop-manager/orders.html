@@ -680,6 +680,154 @@
         </div>
         <!--end packaged orders pan-->
 
+        <!--delivered orders pan-->
+        <div class="tab-pane fade {% if tab == 'delivered' %} active show {% endif %}" id="delivered_orders_list">
+            <div class="card card-bordered">
+                <!--principle card body-->
+                <div class="card-body">
+                    <!--orders table-->
+                    <div class="table-responsive">
+                        <table class="table table-rounded table-flush">
+                            <thead>
+                            <tr class="fw-semibold fs-7 text-muted border-bottom border-gray-200 py-4">
+                                <th>Order ID</th>
+                                <th class="text-center">Costumer</th>
+                                <th class="text-center">Phone</th>
+                                <th class="text-center">Province</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Creation</th>
+                                <th class="text-center">Last log</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in delivered_orders %}
+                            <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
+                                <td>
+                                    {{ order.order_ref }}
+                                </td>
+                                <td class="text-center">{{ order.client_name }}</td>
+                                <td class="text-center">
+                                    <a href="tel:{{ order.client_phone }}" class="text-dark">
+                                        {{ order.client_phone }}
+                                    </a>
+                                </td>
+                                <td class="text-center">{{ order.province }}</td>
+                                <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
+                                <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td class="text-center">{{ order.updated_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
+                                <td>
+                                    <a type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#view_delivered_order_{{ order.order_ref }}_{{ order.order_type }}">
+                                        <i class="bi bi-eye fs-2x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--end orders table-->
+                </div>
+                <!--end principle card body-->
+
+                {% for order in delivered_orders %}
+                <!--view order modal-->
+                <div class="modal fade" tabindex="-1" id="view_delivered_order_{{ order.order_ref }}_{{ order.order_type }}">
+                    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                        <div class="modal-content shadow-none">
+                            <div class="modal-header">
+                                <h6 class="modal-title">
+                                    <i class="bi bi-upc fs-2x"></i>
+                                    <small class="ms-2 text-muted">{{ order.order_ref }}</small>
+                                    <i class="bi bi-geo-alt ms-5 fs-2x"></i>
+                                    <small class="ms-2 text-muted">{{ order.province|title }}</small>
+                                    <small class="ms-1 text-muted">|</small>
+                                    <small class="ms-2 text-muted">{{ order.municipality|title }}</small>
+                                    <i class="bi bi-truck ms-5 fs-2x"></i>
+                                    {% if order.shipping_type == 'TO-HOME' %}
+                                    <small class="ms-2 text-muted">Shipping to Home</small>
+                                    {% elif order.shipping_type == 'TO-DESK' %}
+                                    <small class="ms-2 text-muted">Shipping to Desk</small>
+                                    {% endif %}
+                                    <i class="bi bi-gift ms-5 fs-2x"></i>
+                                    <small class="ms-2 text-muted">{{ order.points }}<small class="ms-1 text-muted">points</small></small>
+                                    <i class="bi bi-person ms-5 fs-2x"></i>
+                                    <small class="ms-2 text-muted">{{ order.client_name }}</small>
+                                    <i class="bi bi-telephone ms-5 fs-2x"></i>
+                                    <a href="tel:{{ order.client_phone }}">
+                                        <small class="ms-2 text-muted">{{ order.client_phone }}</small>
+                                    </a>
+                                </h6>
+                                <!--close-->
+                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                    <i class="bi bi-x-lg"></i>
+                                </div>
+                                <!--end clos-->
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table table-rounded table-flush">
+                                        <tbody>
+                                        {% for product in order.product.all %}
+                                        <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
+                                            <td class="min-w-50px">
+                                                <a class="symbol symbol-50px me-4" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{ product.thumb }}">
+                                                    <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{ product.thumb }});"></span>
+                                                </a>
+                                            </td>
+                                            <td class="min-w-400px">{{ product.en_name|title }}
+                                                {% if product.en_spec %}
+                                                <span class="text-muted me-2"><i class="bi bi-dash-lg"></i></span>{{ product.en_spec }}
+                                                {% endif %}
+                                                {% if product.en_detail %}
+                                                <span class="text-muted me-2"><i class="bi bi-dash-lg"></i></span>{{ product.en_detail }}
+                                                {% endif %}
+                                            </td>
+                                            <td class="min-w-20px"><span class="text-muted me-2">Price:</span>{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></td>
+                                            <td class="min-w-20px"><span class="text-muted me-2">Quantity:</span>{{ product.quantity }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="col-lg-4">
+                                    <button class="btn btn-secondary" form="delivery_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Delivered Order">
+                                        <i class="bi bi-truck fs-2x"></i>
+                                    </button>
+                                </div>
+
+                                <form action="{% url 'orders' 'delivered' %}" id="delivery_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
+                                </form>
+
+                                <div class="col-lg-6">
+                                    <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+                                    {% if order.coupon_value %}
+                                    {% if order.coupon_type == 'SUBTRACTION' %}
+                                    <small class="ms-2 text-muted">Discount :{{ order.coupon_value|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+                                    {% elif order.coupon_type == 'PERCENTAGE' %}
+                                    <small class="ms-2 text-muted">Discount :{{ order.coupon_value }}<small class="ms-1">%</small></small>
+                                    {% endif %}
+                                    <small class="ms-2 text-muted">Code :{{ order.coupon_code }}</small>
+                                    {% endif %}
+                                    <small class="ms-2 text-muted">Price :{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end view order modal-->
+                {% endfor %}
+            </div>
+        </div>
+        <!--end delivered orders pan-->
+
     </div>
 </div>
 {% endblock %}
