@@ -68,7 +68,11 @@
                             <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
                                 <td>{{ order.order_ref }}</td>
                                 <td class="text-center">{{ order.client_name }}</td>
-                                <td class="text-center">{{ order.client_phone }}</td>
+                                <td class="text-center">
+                                    <a href="tel:{{ order.client_phone }}">
+                                        <small class="ms-2 text-muted">{{ order.client_phone }}</small>
+                                    </a>
+                                </td>
                                 <td class="text-center">{{ order.province }}</td>
                                 <td class="text-center">{{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small></td>
                                 <td class="text-center">{{ order.created_at|date:"d/m/Y" }}<small class="ms-2 text-muted">{{ order.created_at|time:"G:i:s" }}</small></td>
