@@ -103,7 +103,11 @@
                                     <small class="ms-2 text-muted">{{ order.municipality|title }}</small>
 
                                     <i class="bi bi-truck ms-5 fs-2x"></i>
-                                    <small class="ms-2 text-muted">{{ order.shipping_type|title }}</small>
+                                    {% if order.shipping_type == 'TO-HOME' %}
+                                    <small class="ms-2 text-muted">Shipping to Home</small>
+                                    {% elif order.shipping_type == 'TO-DESK' %}
+                                    <small class="ms-2 text-muted">Shipping to Desk</small>
+                                    {% endif %}
 
 
 
