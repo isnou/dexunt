@@ -399,9 +399,9 @@
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                         <label class="form-label me-2">Quantity</label>
                                         {% if selected_size.quantity > variant.showcase_quantity %}
-                                        <input class="form-control me-2" type="number" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
+                                        <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ variant.showcase_quantity }}" placeholder="put a quantity" value=1 required>
                                         {% else %}
-                                        <input class="form-control me-2" type="number" min="1" max="{{ selected_size.quantity }}" placeholder="put a quantity" value=1 required>
+                                        <input class="form-control me-2" type="number" name="quantity" min="1" max="{{ selected_size.quantity }}" placeholder="put a quantity" value=1 required>
                                         {% endif %}
                                     </div>
 
@@ -443,7 +443,6 @@
                                         <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="button"><i class="ci-bell fs-lg me-2"></i><span class='d-none d-sm-inline'>Be Notified </span></button>
                                     </div>
                                     {% endif %}
-
 
                                     {% endif %}
                                     {% endif %}
