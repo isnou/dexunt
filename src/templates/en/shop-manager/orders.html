@@ -162,14 +162,17 @@
                             </div>
 
                             <div class="modal-footer">
+                                <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+
                                 {% if order.coupon_value %}
                                 {% if order.coupon_type == 'SUBTRACTION' %}
                                 <small class="ms-2 text-muted">Discount :{{ order.coupon_value|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
                                 {% elif order.coupon_type == 'PERCENTAGE' %}
                                 <small class="ms-2 text-muted">Discount :{{ order.coupon_value }}<small class="ms-1">%</small></small>
                                 {% endif %}
+                                <small class="ms-2 text-muted">Code :{{ order.coupon_code }}<small class="ms-1">%</small></small>
                                 {% endif %}
-                                <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+
                                 <small class="ms-2 text-muted">Price :{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
 
                             </div>
