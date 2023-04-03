@@ -162,13 +162,13 @@
                             </div>
 
                             <div class="modal-footer">
-
-                                {% if order.coupon_type == SUBTRACTION %}
+                                {% if order.coupon_value %}
+                                {% if order.coupon_type == 'SUBTRACTION' %}
                                 <small class="ms-2 text-muted">Shipping :{{ order.coupon_value|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
-                                {% elif order.coupon_type == PERCENTAGE %}
+                                {% elif order.coupon_type == 'PERCENTAGE' %}
                                 <small class="ms-2 text-muted">Shipping :{{ order.coupon_value }}<small class="ms-1">%</small></small>
                                 {% endif %}
-                                
+                                {% endif %}
                                 <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
                                 <small class="ms-2 text-muted">Price :{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
 
