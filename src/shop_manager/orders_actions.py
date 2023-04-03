@@ -7,19 +7,38 @@ def all_orders():
     except Order.DoesNotExist:
         raise Http404("No orders")
 
+    # ------------- status -------------
+    # UNCONFIRMED - NO-ANSWER         --
+    # CONFIRMED                       --
+    # PROCESSED                       --
+    # PACKAGED                        --
+    # DELIVERY                        --
+    # PAID                            --
+    # PENDING - REFUND - CANCELED     --
+    # ----------------------------------
+
     new_orders = orders \
         .exclude(status='CONFIRMED') \
         .exclude(status='CANCELED') \
-        .exclude(status='PROCESSING') \
-        .exclude(status='PACKAGING') \
+        .exclude(status='PROCESSED') \
+        .exclude(status='PACKAGED') \
         .exclude(status='DELIVERY') \
-        .exclude(status='PENDING') \
+        .exclude(status='PEND') \
         .exclude(status='PAID') \
         .exclude(status='REFUND') \
         .order_by('-created_at')
 
+    confirmed = orders.filter(status='CONFIRMED')
+    processed = orders.filter(status='PROCESSED')
+    packaged = orders.filter(status='PACKAGED')
+    delivery = orders.filter(status='DELIVERY')
+
     return {
         'new_orders': new_orders,
+        'confirmed': confirmed,
+        'processed': processed,
+        'packaged': packaged,
+        'delivery': delivery,
     }
 
 

@@ -16,16 +16,15 @@ def regular(request):
             order = Order.objects.all().get(order_ref=order_ref)
         else:
             order = None
-        # -- states :  UNCONFIRMED - CONFIRMED - NO-ANSWER -( CANCELED )- PROCESSING - PACKAGING -
-        # DELIVERY -( PENDING )-( PAID )-( REFUND )
+
         if order.status == 'UNCONFIRMED' or order.status == 'CONFIRMED':
             processing_order = 'IN-PROGRESS'
 
-        if order.status == 'PROCESSING':
+        if order.status == 'PROCESSED':
             processing_order = 'DONE'
             quality_check = 'IN-PROGRESS'
 
-        if order.status == 'PACKAGING':
+        if order.status == 'PACKAGED':
             processing_order = 'DONE'
             quality_check = 'DONE'
             packaging = 'IN-PROGRESS'

@@ -34,7 +34,31 @@
         <ul class="nav nav-pills">
             <li class="nav-item me-1">
                 <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'main' %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#new_orders_list">
-                    New Orders
+                    New
+                </a>
+            </li>
+
+            <li class="nav-item me-1">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'confirmed' %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#confirmed_orders_list">
+                    Confirmed
+                </a>
+            </li>
+
+            <li class="nav-item me-1">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'processed' %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#processed_orders_list">
+                    Processed
+                </a>
+            </li>
+
+            <li class="nav-item me-1">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'packaged' %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#packaged_orders_list">
+                    Packaged
+                </a>
+            </li>
+
+            <li class="nav-item me-1">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'delivery' %} active {% endif %}" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#delivery_orders_list">
+                    Delivery
                 </a>
             </li>
 
@@ -161,13 +185,13 @@
 
                             <div class="modal-footer">
                                 <div class="col-lg-4">
-                                    <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}">
+                                    <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Confirm Order">
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" form="pend_form_{{ order.order_ref }}_{{ order.order_type }}">
+                                    <button class="btn btn-secondary" form="pend_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="No Answer">
                                         <i class="bi bi-circle fs-2x"></i>
                                     </button>
-                                    <button class="btn btn-secondary" form="cancel_form_{{ order.order_ref }}_{{ order.order_type }}">
+                                    <button class="btn btn-secondary" form="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Cancel Order">
                                         <i class="bi bi-x-lg fs-2x"></i>
                                     </button>
                                 </div>
