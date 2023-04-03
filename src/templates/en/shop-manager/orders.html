@@ -499,6 +499,9 @@
                                     <button class="btn btn-secondary" form="package_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Packaged Order">
                                         <i class="bi bi-box-seam fs-2x"></i>
                                     </button>
+                                    <button class="btn btn-secondary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Print Order">
+                                        <i class="bi bi-printer fs-2x"></i>
+                                    </button>
                                 </div>
 
                                 <form action="{% url 'orders' 'packaged' %}" id="package_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
@@ -646,9 +649,6 @@
                                 <div class="col-lg-4">
                                     <button class="btn btn-secondary" form="delivery_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Delivered Order">
                                         <i class="bi bi-truck fs-2x"></i>
-                                    </button>
-                                    <button class="btn btn-secondary" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Print Order">
-                                        <i class="bi bi-printer fs-2x"></i>
                                     </button>
                                 </div>
 
