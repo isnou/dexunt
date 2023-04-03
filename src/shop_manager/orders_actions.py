@@ -28,10 +28,10 @@ def all_orders():
         .exclude(status='REFUND') \
         .order_by('-created_at')
 
-    confirmed_orders = orders.filter(status='CONFIRMED')
-    processed_orders = orders.filter(status='PROCESSED')
-    packaged_orders = orders.filter(status='PACKAGED')
-    delivery_orders = orders.filter(status='DELIVERY')
+    confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
+    processed_orders = orders.filter(status='PROCESSED').order_by('updated_at')
+    packaged_orders = orders.filter(status='PACKAGED').order_by('updated_at')
+    delivery_orders = orders.filter(status='DELIVERY').order_by('updated_at')
 
     return {
         'new_orders': new_orders,
