@@ -102,6 +102,9 @@
                                     <small class="ms-1 text-muted">|</small>
                                     <small class="ms-2 text-muted">{{ order.municipality|title }}</small>
 
+                                    <i class="bi bi-truck ms-10"></i>
+                                    <small class="ms-2 text-muted">{{ order.shipping_type|title }}</small>
+
 
 
                                 </h4>
@@ -143,7 +146,7 @@
 
                             <div class="modal-footer">
                                 <small class="ms-2 text-muted">Price :{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
-                                    <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
+                                <small class="ms-2 text-muted">Shipping :{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></small>
                             </div>
                         </div>
                     </div>
