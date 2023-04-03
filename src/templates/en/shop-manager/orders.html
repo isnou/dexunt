@@ -172,17 +172,17 @@
                                     </button>
                                 </div>
 
-                                <form action="#" id="confirm_form" method="post">
+                                <form action="{% url 'orders' 'confirm' %}" id="confirm_form" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="#" id="pend_form" method="post">
+                                <form action="{% url 'orders' 'pend' %}" id="pend_form" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="#" id="cancel_form" method="post">
+                                <form action="{% url 'orders' 'cancel' %}" id="cancel_form" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>

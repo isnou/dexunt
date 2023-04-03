@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . import inventory_actions, e_shop_actions
+from . import inventory_actions, e_shop_actions, orders_actions
 from .models import Product, Size, Feature, ShowcaseProduct
 from main_shop.models import Intro ,Showcase,Department ,Directory ,Category
 from sell_manager.models import Coupon ,Order
@@ -305,27 +305,20 @@ def orders(request, action):
     direction = request.session.get('language')
     url = direction + "/shop-manager/orders.html"
     side_menu = 'orders'
+
     tab = 'main'
     sub_tab = None
 
-    try:
-        all_orders = Order.objects.all()
-    except Order.DoesNotExist:
-        raise Http404("No orders")
+    if action == 'confirm':
+        orders_actions.confirm(request)
 
-    # -- states :  UNCONFIRMED - NO-ANSWER - CONFIRMED - CANCELED - PROCESSING - PACKAGING -
-    # DELIVERY - PENDING - PAID - REFUND
+    if action == 'pend':
+        orders_actions.pend(request)
 
-    new_orders = all_orders\
-        .exclude(status='CONFIRMED')\
-        .exclude(status='CANCELED')\
-        .exclude(status='PROCESSING')\
-        .exclude(status='PACKAGING')\
-        .exclude(status='DELIVERY')\
-        .exclude(status='PENDING')\
-        .exclude(status='PAID')\
-        .exclude(status='REFUND')\
-        .order_by('-created_at')
+    if action == 'cancel':
+        orders_actions.cancel(request)
+
+    new_orders = orders_actions.all_orders().get('new_orders')
 
     context = {
         'new_orders': new_orders,
