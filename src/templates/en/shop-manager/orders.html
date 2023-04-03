@@ -109,7 +109,7 @@
                                         {% for product in order.product.all %}
                                         <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
                                             <td class="min-w-50px">
-                                                <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
+                                                <a class="symbol symbol-50px me-4" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
                                                     <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{ product.thumb }});"></span>
                                                 </a>
                                             </td>
