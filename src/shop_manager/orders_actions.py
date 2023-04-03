@@ -102,7 +102,7 @@ def delivered(request):
             for order_product in order.product.all():
                 inventory_product = Product.objects.all().get(sku=order_product.product_sku)
                 inventory_product.quantity = inventory_product.quantity - order_product.quantity
-                inventory_product.sell_rate += 1
+                inventory_product.sell_rate += inventory_product.quantity
                 inventory_product.save()
                 if not order_product.size_sku == 'main':
                     size_product = Size.objects.all().get(sku=order_product.size_sku)
