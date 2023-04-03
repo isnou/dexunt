@@ -200,7 +200,7 @@
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
 
-                                <form action="{% url 'orders' 'pended' %}" id="pend_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
+                                <form action="{% url 'orders' 'pending' %}" id="pend_form_{{ order.order_ref }}_{{ order.order_type }}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="order_ref" value='{{ order.order_ref }}'>
                                 </form>
