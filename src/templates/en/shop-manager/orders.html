@@ -108,12 +108,12 @@
                                         <tbody>
                                         {% for product in order.product.all %}
                                         <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
-                                            <td>
+                                            <td class="min-w-50px">
                                                 <a class="symbol symbol-50px" data-fslightbox="lightbox-basic" href="{% get_media_prefix %}{{product.album.all.0.image}}">
                                                     <span class="symbol-label" style="background-image:url({% get_media_prefix %}{{ product.thumb }});"></span>
                                                 </a>
                                             </td>
-                                            <td class="min-w-400px ms-2">{{ product.en_name|title }}
+                                            <td class="min-w-400px">{{ product.en_name|title }}
                                                 <span class="text-muted me-2"><i class="bi bi-dash-lg"></i></span>{{ product.en_spec }}
                                                 <span class="text-muted me-2"><i class="bi bi-dash-lg"></i></span>{{ product.en_detail }}
                                             </td>
