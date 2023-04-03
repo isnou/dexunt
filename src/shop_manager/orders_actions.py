@@ -100,14 +100,13 @@ def delivered(request):
             order.save()
 
             for order_product in order.product.all():
-                if order_product.size_sku == 'main':
-                    inventory_product = Product.objects.all().get(sku=order_product.product_sku)
-                    inventory_product.quantity = inventory_product.quantity - order_product.quantity
-                    inventory_product.save()
-                else:
-                    inventory_product = Size.objects.all().get(sku=order_product.size_sku)
-                    inventory_product.quantity = inventory_product.quantity - order_product.quantity
-                    inventory_product.save()
+                inventory_product = Product.objects.all().get(sku=order_product.product_sku)
+                inventory_product.quantity = inventory_product.quantity - order_product.quantity
+                inventory_product.save()
+                if not order_product.size_sku == 'main':
+                    size_product = Size.objects.all().get(sku=order_product.size_sku)
+                    size_product.quantity = size_product.quantity - order_product.quantity
+                    size_product.save()
 
 
 
