@@ -196,14 +196,17 @@
                                     <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Confirmed Order">
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
+                                    <button class="btn btn-secondary" form="no_answer_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="No Answer">
+                                        <i class="bi bi-telephone-x fs-2x"></i>
+                                    </button>
                                     {% else %}
                                     <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Confirmed Order" disabled >
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
-                                    {% endif %}
-                                    <button class="btn btn-secondary" form="no_answer_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="No Answer">
+                                    <button class="btn btn-secondary" form="no_answer_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="No Answer" disabled>
                                         <i class="bi bi-telephone-x fs-2x"></i>
                                     </button>
+                                    {% endif %}
                                     <button class="btn btn-secondary" form="cancel_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Canceled Order">
                                         <i class="bi bi-x-lg fs-2x"></i>
                                     </button>
