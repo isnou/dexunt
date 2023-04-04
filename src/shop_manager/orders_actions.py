@@ -24,7 +24,7 @@ def all_orders():
                     order_product.save()
             else:
                 inventory_product = Size.objects.all().get(sku=order_product.size_sku)
-                if inventory_product.quantity < inventory_product.quantity:
+                if inventory_product.quantity < order_product.quantity:
                     order.quantity_issue=True
                     order.save()
                     order_product.quantity_issue=True
