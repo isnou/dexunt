@@ -95,7 +95,7 @@
                                     <div class="badge badge-light-warning ms-1">Pending</div>
                                     {% endif %}
 
-                                    {% if order.status == 'NO-QUANTITY' %}
+                                    {% if order.quantity_issue %}
                                     <div class="badge badge-light-danger ms-1">Quantity Issue</div>
                                     {% endif %}
                                 </td>
@@ -192,7 +192,7 @@
 
                             <div class="modal-footer">
                                 <div class="col-lg-4">
-                                    {% if not order.status == 'NO-QUANTITY' %}
+                                    {% if not order.quantity_issue %}
                                     <button class="btn btn-secondary" form="confirm_form_{{ order.order_ref }}_{{ order.order_type }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Confirmed Order">
                                         <i class="bi bi-check-lg fs-2x"></i>
                                     </button>
