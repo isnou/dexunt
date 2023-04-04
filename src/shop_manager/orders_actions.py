@@ -28,7 +28,7 @@ def all_orders():
         .exclude(status='PAID') \
         .exclude(status='REFUNDED') \
         .order_by('created_at')
-    
+
     for order in new_orders:
         for order_product in order.product.all():
             inventory_product = Product.objects.all().get(sku=order_product.product_sku)
@@ -36,10 +36,16 @@ def all_orders():
                 if inventory_product.quantity < order_product.quantity:
                     order.status = 'NO-QUANTITY'
                     order.save()
+                else:
+                    order.status = 'UNCONFIRMED'
+                    order.save()
             else:
                 size_product = Size.objects.all().get(sku=order_product.size_sku)
                 if inventory_product.quantity < size_product.quantity:
                     order.status = 'NO-QUANTITY'
+                    order.save()
+                else:
+                    order.status = 'UNCONFIRMED'
                     order.save()
 
     confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
