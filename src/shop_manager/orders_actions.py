@@ -10,8 +10,8 @@ def all_orders():
 
     for order in orders:
         for order_product in order.product.all():
-            inventory_product = Product.objects.all().get(sku=order_product.product_sku)
             if order_product.size_sku == 'main':
+                inventory_product = Product.objects.all().get(sku=order_product.product_sku)
                 if inventory_product.quantity < order_product.quantity:
                     order.quantity_issue=True
                     order.save()
