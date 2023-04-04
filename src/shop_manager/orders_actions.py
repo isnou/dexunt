@@ -8,15 +8,28 @@ def all_orders():
     except Order.DoesNotExist:
         raise Http404("No orders")
 
-    # ------------- status -------------
-    # UNCONFIRMED - NO-ANSWER         --
-    # CONFIRMED                       --
-    # PROCESSED                       --
-    # PACKAGED                        --
-    # DELIVERED                        --
-    # PAID                            --
-    # PENDED - REFUNDED - CANCELED     --
-    # ----------------------------------
+    # ---------------- status -----------------
+    # UNCONFIRMED - NO-ANSWER - NO-QUANTITY  --
+    # CONFIRMED                              --
+    # PROCESSED                              --
+    # PACKAGED                               --
+    # DELIVERED                              --
+    # PAID                                   --
+    # PENDED - REFUNDED - CANCELED           --
+    # -----------------------------------------
+
+    for order in orders:
+        for order_product in order.product.all():
+            inventory_product = Product.objects.all().get(sku=order_product.product_sku)
+            if order_product.size_sku == 'main':
+                if inventory_product.quantity < order_product.quantity:
+                    order.status = 'NO-QUANTITY'
+                    order.save()
+            else:
+                size_product = Size.objects.all().get(sku=order_product.size_sku)
+                if inventory_product.quantity < size_product.quantity:
+                    order.status = 'NO-QUANTITY'
+                    order.save()
 
     new_orders = orders \
         .exclude(status='CONFIRMED') \

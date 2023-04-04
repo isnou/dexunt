@@ -94,6 +94,10 @@
                                     {% if order.status == 'NO-ANSWER' %}
                                     <div class="badge badge-light-warning ms-1">Pending</div>
                                     {% endif %}
+                                    
+                                    {% if order.status == 'NO-QUANTITY' %}
+                                    <div class="badge badge-light-danger ms-1">Quantity Issue</div>
+                                    {% endif %}
                                 </td>
                                 <td class="text-center">{{ order.client_name }}</td>
                                 <td class="text-center">
