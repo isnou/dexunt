@@ -276,6 +276,9 @@
                             <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
                                 <td>
                                     {{ order.order_ref }}
+                                    {% if order.quantity_issue %}
+                                    <div class="badge badge-light-danger ms-1">Quantity Issue</div>
+                                    {% endif %}
                                 </td>
                                 <td class="text-center">{{ order.client_name }}</td>
                                 <td class="text-center">
@@ -353,6 +356,9 @@
                                                 {% endif %}
                                                 {% if product.en_detail %}
                                                 <span class="text-muted me-2"><i class="bi bi-dash-lg"></i></span>{{ product.en_detail }}
+                                                {% endif %}
+                                                {% if product.quantity_issue %}
+                                                <div class="badge badge-light-danger ms-1">Quantity Issue</div>
                                                 {% endif %}
                                             </td>
                                             <td class="min-w-20px"><span class="text-muted me-2">Price:</span>{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></td>
