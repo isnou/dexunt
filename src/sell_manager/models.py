@@ -109,6 +109,7 @@ class Order(models.Model):
     secured = models.BooleanField(default=False)
     receiver_name = models.CharField(max_length=300, blank=True, null=True)
     receiver_message = models.CharField(max_length=500, blank=True, null=True)
+    quantity_issue = models.BooleanField(default=False)
 
     def __str__(self):
         return self.order_ref

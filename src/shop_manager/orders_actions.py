@@ -8,8 +8,35 @@ def all_orders():
     except Order.DoesNotExist:
         raise Http404("No orders")
 
+    for order in orders:
+        for order_product in order.product.all():
+            inventory_product = Product.objects.all().get(sku=order_product.product_sku)
+            if order_product.size_sku == 'main':
+                if inventory_product.quantity < order_product.quantity:
+                    order.quantity_issue=True
+                    order.save()
+                    order_product.quantity_issue=True
+                    order_product.save()
+                else:
+                    order.quantity_issue=False
+                    order.save()
+                    order_product.quantity_issue=False
+                    order_product.save()
+            else:
+                inventory_product = Size.objects.all().get(sku=order_product.size_sku)
+                if inventory_product.quantity < inventory_product.quantity:
+                    order.quantity_issue=True
+                    order.save()
+                    order_product.quantity_issue=True
+                    order_product.save()
+                else:
+                    order.quantity_issue=False
+                    order.save()
+                    order_product.quantity_issue=False
+                    order_product.save()
+
     # ---------------- status -----------------
-    # UNCONFIRMED - NO-ANSWER - NO-QUANTITY  --
+    # UNCONFIRMED - NO-ANSWER                --
     # CONFIRMED                              --
     # PROCESSED                              --
     # PACKAGED                               --
@@ -28,33 +55,6 @@ def all_orders():
         .exclude(status='PAID') \
         .exclude(status='REFUNDED') \
         .order_by('created_at')
-
-    for order in new_orders:
-        for order_product in order.product.all():
-            inventory_product = Product.objects.all().get(sku=order_product.product_sku)
-            if order_product.size_sku == 'main':
-                if inventory_product.quantity < order_product.quantity:
-                    order.status = 'NO-QUANTITY'
-                    order.save()
-                    order_product.quantity_issue=True
-                    order_product.save()
-                else:
-                    order.status = 'UNCONFIRMED'
-                    order.save()
-                    order_product.quantity_issue=False
-                    order_product.save()
-            else:
-                inventory_product = Size.objects.all().get(sku=order_product.size_sku)
-                if inventory_product.quantity < inventory_product.quantity:
-                    order.status = 'NO-QUANTITY'
-                    order.save()
-                    order_product.quantity_issue=True
-                    order_product.save()
-                else:
-                    order.status = 'UNCONFIRMED'
-                    order.save()
-                    order_product.quantity_issue=False
-                    order_product.save()
 
     confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
     processed_orders = orders.filter(status='PROCESSED').order_by('updated_at')
