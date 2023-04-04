@@ -12,8 +12,11 @@ def manager_dashboard(request, action):
     url = direction + "/shop-manager/dashboard.html"
     side_menu = 'dashboard'
 
+    new_orders = orders_actions.all_orders().get('new_orders')
+
     context = {
         'side_menu': side_menu,
+        'new_orders': new_orders,
     }
     return render(request, url, context)
 
@@ -70,12 +73,15 @@ def inventory(request, action, sku):
         Coupon.objects.all().get(code=sku).delete()
         tab = 'coupon'
 
+    new_orders = orders_actions.all_orders().get('new_orders')
+
     context = {
         'side_menu': side_menu,
         'inventory_products': inventory_products,
         'e_shop_products': e_shop_products,
-        'tab':tab,
-        'coupons':coupons,
+        'tab': tab,
+        'coupons': coupons,
+        'new_orders': new_orders,
     }
     return render(request, url, context)
 
@@ -129,12 +135,15 @@ def inventory_edit(request, action, sku, index):
     sizes = selected_product.size.all().exclude(show_thumb=True)
     thumbnail_sizes = selected_product.size.all().exclude(show_thumb=False)
 
+    new_orders = orders_actions.all_orders().get('new_orders')
+
     context = {
         'side_menu': side_menu,
         'selected_product': selected_product,
         'sizes': sizes,
         'thumbnail_sizes': thumbnail_sizes,
         'tab': tab,
+        'new_orders': new_orders,
     }
     return render(request, url, context)
 
@@ -289,6 +298,7 @@ def e_shop(request, action, detail, index):
         tab = 'category'
         sub_tab = detail
 
+    new_orders = orders_actions.all_orders().get('new_orders')
 
     context = {
         'side_menu':side_menu,
@@ -297,6 +307,7 @@ def e_shop(request, action, detail, index):
         'all_products': all_products,
         'categories': categories,
         'directories': directories,
+        'new_orders': new_orders,
     }
     return render(request, url, context)
 
