@@ -9,6 +9,7 @@ def all_orders():
         raise Http404("No orders")
 
     for order in orders.exclude(status='DELIVERED'):
+        order_quantity_issue = False
         for order_product in order.product.all():
 
             if order_product.size_sku == 'main':
@@ -17,15 +18,17 @@ def all_orders():
                 inventory_product = Size.objects.all().get(sku=order_product.size_sku)
 
             if order_product.quantity > inventory_product.quantity:
+                order_quantity_issue = True
                 order_product.quantity_issue=True
-                order_product.save()
-                order.quantity_issue=True
-                order.save()
             else:
                 order_product.quantity_issue=False
-                order_product.save()
-                order.quantity_issue=False
-                order.save()
+            order_product.save()
+
+        if order_quantity_issue:
+            order.quantity_issue=True
+        else:
+            order.quantity_issue = False
+        order.save()
 
     # ---------------- status -----------------
     # UNCONFIRMED - NO-ANSWER                --
