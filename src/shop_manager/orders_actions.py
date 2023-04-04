@@ -36,17 +36,25 @@ def all_orders():
                 if inventory_product.quantity < order_product.quantity:
                     order.status = 'NO-QUANTITY'
                     order.save()
+                    order_product.quantity_issue=True
+                    order_product.save()
                 else:
                     order.status = 'UNCONFIRMED'
                     order.save()
+                    order_product.quantity_issue=False
+                    order_product.save()
             else:
-                size_product = Size.objects.all().get(sku=order_product.size_sku)
-                if inventory_product.quantity < size_product.quantity:
+                inventory_product = Size.objects.all().get(sku=order_product.size_sku)
+                if inventory_product.quantity < inventory_product.quantity:
                     order.status = 'NO-QUANTITY'
                     order.save()
+                    order_product.quantity_issue=True
+                    order_product.save()
                 else:
                     order.status = 'UNCONFIRMED'
                     order.save()
+                    order_product.quantity_issue=False
+                    order_product.save()
 
     confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
     processed_orders = orders.filter(status='PROCESSED').order_by('updated_at')
