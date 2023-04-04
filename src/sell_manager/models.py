@@ -42,6 +42,7 @@ class CartProduct(models.Model):
 
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=1)
+    quantity_issue = models.BooleanField(default=False)
 
     def __str__(self):
         return self.en_name
