@@ -13,27 +13,27 @@ def all_orders():
             if order_product.size_sku == 'main':
                 inventory_product = Product.objects.all().get(sku=order_product.product_sku)
                 if inventory_product.quantity < order_product.quantity:
-                    order.quantity_issue=True
-                    order.save()
                     order_product.quantity_issue=True
                     order_product.save()
-                else:
-                    order.quantity_issue=False
+                    order.quantity_issue=True
                     order.save()
+                else:
                     order_product.quantity_issue=False
                     order_product.save()
+                    order.quantity_issue=False
+                    order.save()
             else:
                 inventory_product = Size.objects.all().get(sku=order_product.size_sku)
                 if inventory_product.quantity < order_product.quantity:
-                    order.quantity_issue=True
-                    order.save()
                     order_product.quantity_issue=True
                     order_product.save()
-                else:
-                    order.quantity_issue=False
+                    order.quantity_issue=True
                     order.save()
+                else:
                     order_product.quantity_issue=False
                     order_product.save()
+                    order.quantity_issue=False
+                    order.save()
 
     # ---------------- status -----------------
     # UNCONFIRMED - NO-ANSWER                --
