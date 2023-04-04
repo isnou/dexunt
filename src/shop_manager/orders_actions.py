@@ -18,7 +18,18 @@ def all_orders():
     # PENDED - REFUNDED - CANCELED           --
     # -----------------------------------------
 
-    for order in orders:
+    new_orders = orders \
+        .exclude(status='CONFIRMED') \
+        .exclude(status='CANCELED') \
+        .exclude(status='PROCESSED') \
+        .exclude(status='PACKAGED') \
+        .exclude(status='DELIVERED') \
+        .exclude(status='PENDED') \
+        .exclude(status='PAID') \
+        .exclude(status='REFUNDED') \
+        .order_by('created_at')
+    
+    for order in new_orders:
         for order_product in order.product.all():
             inventory_product = Product.objects.all().get(sku=order_product.product_sku)
             if order_product.size_sku == 'main':
@@ -30,17 +41,6 @@ def all_orders():
                 if inventory_product.quantity < size_product.quantity:
                     order.status = 'NO-QUANTITY'
                     order.save()
-
-    new_orders = orders \
-        .exclude(status='CONFIRMED') \
-        .exclude(status='CANCELED') \
-        .exclude(status='PROCESSED') \
-        .exclude(status='PACKAGED') \
-        .exclude(status='DELIVERED') \
-        .exclude(status='PENDED') \
-        .exclude(status='PAID') \
-        .exclude(status='REFUNDED') \
-        .order_by('created_at')
 
     confirmed_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
     processed_orders = orders.filter(status='PROCESSED').order_by('updated_at')
