@@ -484,12 +484,19 @@
           <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
           <span class="handheld-toolbar-label">Menu</span>
         </a>
+        {% if cart.product.all.count %}
         <a class="d-table-cell handheld-toolbar-item" href="shop-cart.html">
           <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
-            <span class="badge bg-primary rounded-pill ms-1">4</span>
+            <span class="badge bg-primary rounded-pill ms-1">{{ cart.product.all.count }}</span>
           </span>
-          <span class="handheld-toolbar-label">$265.00</span>
+          <span class="handheld-toolbar-label">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span>
         </a>
+        {% else %}
+        <a class="d-table-cell handheld-toolbar-item" href="#">
+          <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
+          </span>
+        </a>
+        {% endif %}
       </div>
     </div>
     <!-- Back To Top Button-->

@@ -17,13 +17,9 @@
     {% if cart.product.all.count %}
     <a class="navbar-tool-icon-box bg-secondary" href="{% url 'cart-home' 'show_cart' %}">
         <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
+        {% else %}<a class="navbar-tool-icon-box bg-secondary" href="#">{% endif %}
         <i class="navbar-tool-icon ci-cart"></i>
     </a>
-    {% else %}
-    <a class="navbar-tool-icon-box bg-secondary" href="#">
-        <i class="navbar-tool-icon ci-cart"></i>
-    </a>
-    {% endif %}
     <!--cart dropdown-->
     {% if cart.product.all.count %}
     <div class="dropdown-menu dropdown-menu-end">
