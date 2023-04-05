@@ -3,9 +3,5 @@ from django.db import models
 
 
 class User(AbstractUser):
-    ROLE_CHOICES = (
-        (CREATOR, 'CREATOR'),
-        (SUBSCRIBER, 'SUBSCRIBER'),
-    )
     profile_photo = models.ImageField(verbose_name='profile photo')
-    role = models.CharField(max_length=30, choices=ROLE_CHOICES, verbose_name='role')
+    role = models.CharField(max_length=30, verbose_name='role')
