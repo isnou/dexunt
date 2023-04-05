@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
 from sell_manager.models import Cart, Province
-from authentication.forms import LoginForm
+from authentication.forms import LoginForm, SignupForm
 
 from .models import Showcase
 from . import grid_shop_actions
@@ -17,14 +17,22 @@ def main_shop_home(request):
     url = direction + "/main-shop/main-page.html"
 
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
             pass  # does nothing, just trigger the validation
     else:
-        form = LoginForm()
+        login_form = LoginForm()
+
+    if request.method == 'POST':
+        signup_form = SignupForm(request.POST)
+        if signup_form.is_valid():
+            pass  # does nothing, just trigger the validation
+    else:
+        signup_form = SignupForm()
 
     context = {
-        'form': form
+        'login_form': login_form,
+        'signup_form': signup_form,
     }
     return render(request, url, context)
 

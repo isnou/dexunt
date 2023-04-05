@@ -64,19 +64,17 @@
             <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab">
               {% csrf_token %}
 
-              {{ form.non_field_errors }}
-              {{ form.source.errors }}
-              {{ form.source }}
+              {{ login_form.non_field_errors }}
+              {{ login_form.source.errors }}
+              {{ login_form.source }}
 
               <div class="mb-3">
-                <label class="form-label" >{{ form.username.label_tag }}</label>
-                <div class="form-control">
-                  {{ form.username }}
-                </div>
-                <div class="invalid-feedback">{{ form.username.errors }}</div>
+                <label class="form-label" for="signin_username">{{ login_form.username.label_tag }}</label>
+                <input class="form-control" type="text" id="signin_username" name="signin_username" required>
+                <div class="invalid-feedback">Please provide a valid username.</div>
               </div>
               <div class="mb-3">
-                <label class="form-label" for="signin_password">Password</label>
+                <label class="form-label" for="signin_password">{{ login_form.password.label_tag }}</label>
                 <div class="password-toggle">
                   <input class="form-control" type="password" id="signin_password" name="signin_password" required>
                   <label class="password-toggle-btn" aria-label="Show/hide password">
