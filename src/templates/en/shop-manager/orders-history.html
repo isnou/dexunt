@@ -242,7 +242,7 @@
         </div>
         <!--end pended orders pan-->
 
-        <!--pended orders pan-->
+        <!--canceled orders pan-->
         <div class="tab-pane fade {% if tab == 'canceled' %} active show {% endif %}" id="canceled_orders_list">
             <div class="card card-bordered">
                 <!--principle card body-->
@@ -263,7 +263,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for order in pended_orders %}
+                            {% for order in canceled_orders %}
                             <tr class="py-5 fw-semibold  border-bottom border-gray-300 fs-6">
                                 <td>
                                     {{ order.order_ref }}
@@ -296,7 +296,7 @@
                 </div>
                 <!--end principle card body-->
 
-                {% for order in pended_orders %}
+                {% for order in canceled_orders %}
                 <!--view order modal-->
                 <div class="modal fade" tabindex="-1" id="view_canceled_order_{{ order.order_ref }}_{{ order.order_type }}">
                     <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -422,7 +422,7 @@
                 {% endfor %}
             </div>
         </div>
-        <!--end pended orders pan-->
+        <!--end canceled orders pan-->
     </div>
 </div>
 {% endblock %}
