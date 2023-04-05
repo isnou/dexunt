@@ -15,12 +15,16 @@
 <!--cart-->
 {% block cart %}
 <div class="navbar-tool dropdown ms-3">
+    {% if cart.product.all.count %}
     <a class="navbar-tool-icon-box bg-secondary" href="{% url 'cart-home' 'show_cart' %}">
-        {% if cart.product.all.count %}
         <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
-        {% endif %}
         <i class="navbar-tool-icon ci-cart"></i>
     </a>
+    {% else %}
+    <a class="navbar-tool-icon-box bg-secondary" href="#">
+        <i class="navbar-tool-icon ci-cart"></i>
+    </a>
+    {% endif %}
     <!--cart dropdown-->
     {% if cart.product.all.count %}
     <div class="dropdown-menu dropdown-menu-end">
