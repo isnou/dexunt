@@ -18,8 +18,12 @@ def all_orders():
     # PENDED - REFUNDED - CANCELED           --
     # -----------------------------------------
 
-    pended_orders = orders.filter(status='CONFIRMED').order_by('updated_at')
+    canceled_orders = orders.filter(status='CANCELED').order_by('updated_at')
+    pended_orders = orders.filter(status='PENDED').order_by('updated_at')
+    refunded_orders = orders.filter(status='REFUNDED').order_by('updated_at')
 
     return {
+        'canceled_orders': canceled_orders,
         'pended_orders': pended_orders,
+        'refunded_orders': refunded_orders,
     }

@@ -159,15 +159,6 @@
 									<div class="separator mb-3 opacity-75"></div>
 									-->
 
-									<!--cancelled orders-->
-									<div class="menu-item px-3">
-										<a href="#" class="menu-link px-3">
-											<i class="bi bi-stop-btn me-2"></i>
-											Cancelled Orders
-										</a>
-									</div>
-									<!--end cancelled orders-->
-
 									<!--pended orders-->
 									<div class="menu-item px-3">
 										<a href="{% url 'orders-history' 'pended_orders' %}" class="menu-link px-3">
@@ -177,9 +168,18 @@
 									</div>
 									<!--end pended orders-->
 
+									<!--cancelled orders-->
+									<div class="menu-item px-3">
+										<a href="{% url 'orders-history' 'canceled_orders' %}" class="menu-link px-3">
+											<i class="bi bi-stop-btn me-2"></i>
+											Cancelled Orders
+										</a>
+									</div>
+									<!--end cancelled orders-->
+
 									<!--refunded orders-->
 									<div class="menu-item px-3">
-										<a href="#" class="menu-link px-3">
+										<a href="{% url 'orders-history' 'refunded_orders' %}" class="menu-link px-3">
 											<i class="bi bi-reply me-2"></i>
 											Refunded Orders
 										</a>

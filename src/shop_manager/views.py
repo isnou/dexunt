@@ -369,10 +369,21 @@ def orders_history(request, action):
     tab = 'main'
     sub_tab = None
 
+    if action == 'pended_orders':
+        tab = 'pended'
+    if action == 'canceled_orders':
+        tab = 'canceled'
+    if action == 'refunded_orders':
+        tab = 'refunded'
+
     pended_orders = orders_history_actions.all_orders().get('pended_orders')
+    canceled_orders = orders_history_actions.all_orders().get('canceled_orders')
+    refunded_orders = orders_history_actions.all_orders().get('refunded_orders')
 
     context = {
         'pended_orders': pended_orders,
+        'canceled_orders': canceled_orders,
+        'refunded_orders': refunded_orders,
 
         'side_menu': side_menu,
         'tab': tab,
