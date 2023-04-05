@@ -21,7 +21,7 @@ def main_shop_home(request):
         if form.is_valid():
             pass  # does nothing, just trigger the validation
     else:
-        form = ContactForm()
+        form = LoginForm()
 
     context = {
         'form': form
