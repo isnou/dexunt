@@ -485,7 +485,7 @@
           <span class="handheld-toolbar-label">Menu</span>
         </a>
         {% if cart.product.all.count %}
-        <a class="d-table-cell handheld-toolbar-item" href="shop-cart.html">
+        <a class="d-table-cell handheld-toolbar-item" href="{% url 'cart-home' 'show_cart' %}">
           <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
             <span class="badge bg-primary rounded-pill ms-1">{{ cart.product.all.count }}</span>
           </span>
