@@ -63,8 +63,12 @@
             <!-- sign in -->
             <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab">
               {% csrf_token %}
+              {% for field in form %}
 
-              {{ form }}
+              {{ field.username }}
+
+              {% endfor %}
+
               <div class="mb-3">
                 <label class="form-label" for="signin_username">Username</label>
                 <input class="form-control" type="text" id="signin_username" name="signin_username" required>
