@@ -20,8 +20,7 @@
         <i class="navbar-tool-icon ci-cart"></i>
     </a>
     {% else %}
-    <a class="navbar-tool-icon-box bg-secondary" href="{% url 'cart-home' 'show_cart' %}" aria-disabled="true">
-        <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
+    <a class="navbar-tool-icon-box bg-secondary" href="#">
         <i class="navbar-tool-icon ci-cart"></i>
     </a>
     {% endif %}
