@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['94.176.238.2', '192.168.64.6', 'www.dexunt.com', 'dexunt.com']
 
+AUTH_USER_MODEL = 'authentication.User'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -36,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
     'django_user_agents',
     'phonenumber_field',
     'mathfilters',
