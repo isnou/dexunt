@@ -32,65 +32,33 @@
 {% block content %}
 <div class="container-xxl">
     <div class="card card-flush shadow-sm">
-        <!--header-->
-        <div class="card-header">
-            <div class="card-body pt-9 pb-0">
-                <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-                    <!--company logo-->
-                    <div class="me-20">
-                        <img alt="Logo" src="{% static 'manager/media/logos/logo-default.svg' %}" class="h-90px" />
-                    </div>
-                    <!--end company logo-->
-                    <!--main information-->
-                    <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center mb-2">
-                                    <a class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Dexunt - Online Shopping & Logistics </a>
-                                </div>
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-2 pe-2">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end main information-->
-                </div>
-            </div>
-        </div>
-        <!--end header-->
-
-        <!--footer-->
-        <div class="card-footer">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'main_page' %} active {% endif %}" data-bs-toggle="tab" href="#main_page">
-                        Main Page
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'ad_showcase' %} active {% endif %}" data-bs-toggle="tab" href="#ads_showcases">
-                        Ads & Showcases
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'department' %} active {% endif %}" data-bs-toggle="tab" href="#department">
-                        Department
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'directory' %} active {% endif %}" data-bs-toggle="tab" href="#directory">
-                        Directories
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'category' %} active {% endif %}" data-bs-toggle="tab" href="#category">
-                        Categories
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--end footer-->
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'main_page' %} active {% endif %}" data-bs-toggle="tab" href="#main_page">
+                    Main Page
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'ad_showcase' %} active {% endif %}" data-bs-toggle="tab" href="#ads_showcases">
+                    Ads & Showcases
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'department' %} active {% endif %}" data-bs-toggle="tab" href="#department">
+                    Department
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'directory' %} active {% endif %}" data-bs-toggle="tab" href="#directory">
+                    Directories
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-active-light btn-color-gray-400 btn-active-color-gray-700 {% if tab == 'category' %} active {% endif %}" data-bs-toggle="tab" href="#category">
+                    Categories
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 
