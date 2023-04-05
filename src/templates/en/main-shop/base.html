@@ -70,8 +70,9 @@
 
               <div class="mb-3">
                 <label class="form-label" >{{ form.username.label_tag }}</label>
-                <input class="form-control" type="text" required>
-                {{ form.username }}
+                <div class="form-control">
+                  {{ form.username }}
+                </div>
                 <div class="invalid-feedback">{{ form.username.errors }}</div>
               </div>
               <div class="mb-3">
