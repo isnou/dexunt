@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . import inventory_actions, e_shop_actions, orders_actions
+from . import inventory_actions, e_shop_actions, orders_actions, orders_history_actions
 from .models import Product, Size, Feature, ShowcaseProduct
 from main_shop.models import Intro ,Showcase,Department ,Directory ,Category
 from sell_manager.models import Coupon ,Order
@@ -353,6 +353,26 @@ def orders(request, action):
         'processed_orders': processed_orders,
         'packaged_orders': packaged_orders,
         'delivered_orders': delivered_orders,
+
+        'side_menu': side_menu,
+        'tab': tab,
+        'sub_tab': sub_tab,
+    }
+    return render(request, url, context)
+
+
+def orders_history(request, action):
+    direction = request.session.get('language')
+    url = direction + "/shop-manager/orders-history.html"
+    side_menu = 'orders_history'
+
+    tab = 'main'
+    sub_tab = None
+
+    pended_orders = orders_history_actions.all_orders().get('pended_orders')
+
+    context = {
+        'pended_orders': pended_orders,
 
         'side_menu': side_menu,
         'tab': tab,
