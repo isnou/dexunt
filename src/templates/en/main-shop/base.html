@@ -63,11 +63,26 @@
             <!-- sign in -->
             <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab">
               {% csrf_token %}
-              {% for field in form %}
 
-              {{ field.username }}
+              {{ form.non_field_errors }}
 
-              {% endfor %}
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+  {% endfor %}
+
+  <table border="1">
+    {% for field in form.visible_fields %}
+      <tr>
+        <th>{{ field.label_tag }}</th>
+        <td>
+          {{ field.errors }}
+          {{ field }}
+          {{ field.help_text }}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
 
               <div class="mb-3">
                 <label class="form-label" for="signin_username">Username</label>
