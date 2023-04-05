@@ -53,22 +53,22 @@
         <div class="modal-content">
           <div class="modal-header bg-secondary">
             <ul class="nav nav-tabs card-header-tabs" role="tablist">
-              <li class="nav-item"><a class="nav-link fw-medium active" href="home-electronics-store.html#signin-tab" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a></li>
-              <li class="nav-item"><a class="nav-link fw-medium" href="home-electronics-store.html#signup-tab" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium active" href="#signin_tab" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="#signup_tab" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a></li>
             </ul>
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body tab-content py-4">
-            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab">
               <div class="mb-3">
-                <label class="form-label" for="si-email">Email address</label>
-                <input class="form-control" type="email" id="si-email" placeholder="johndoe@example.com" required>
-                <div class="invalid-feedback">Please provide a valid email address.</div>
+                <label class="form-label" for="signin_id">Identifier</label>
+                <input class="form-control" type="text" id="signin_id" name="signin_id" required>
+                <div class="invalid-feedback">Please provide a valid identifier.</div>
               </div>
               <div class="mb-3">
-                <label class="form-label" for="si-password">Password</label>
+                <label class="form-label" for="signin_password">Password</label>
                 <div class="password-toggle">
-                  <input class="form-control" type="password" id="si-password" required>
+                  <input class="form-control" type="password" id="signin_password" name="signin_password" required>
                   <label class="password-toggle-btn" aria-label="Show/hide password">
                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                   </label>
@@ -76,36 +76,36 @@
               </div>
               <div class="mb-3 d-flex flex-wrap justify-content-between">
                 <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="si-remember">
-                  <label class="form-check-label" for="si-remember">Remember me</label>
-                </div><a class="fs-sm" href="home-electronics-store.html#">Forgot password?</a>
+                  <input class="form-check-input" type="checkbox" id="signin_remember" name="signin_remember">
+                  <label class="form-check-label" for="signin_remember">Remember me</label>
+                </div><a class="fs-sm" href="#">Forgot password?</a>
               </div>
               <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign in</button>
             </form>
-            <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+            <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup_tab">
               <div class="mb-3">
-                <label class="form-label" for="su-name">Full name</label>
-                <input class="form-control" type="text" id="su-name" placeholder="John Doe" required>
+                <label class="form-label" for="signup_name">Full name</label>
+                <input class="form-control" type="text" id="signup_name" name="signup_name" placeholder="Benhamida Riad">
                 <div class="invalid-feedback">Please fill in your name.</div>
               </div>
               <div class="mb-3">
-                <label for="su-email">Email address</label>
-                <input class="form-control" type="email" id="su-email" placeholder="johndoe@example.com" required>
-                <div class="invalid-feedback">Please provide a valid email address.</div>
+                <label for="signup_id">Identifier</label>
+                <input class="form-control" type="email" id="signup_id" name="signup_id" placeholder="benhamidariad" required>
+                <div class="invalid-feedback">Please provide a valid identifier.</div>
               </div>
               <div class="mb-3">
-                <label class="form-label" for="su-password">Password</label>
+                <label class="form-label" for="signup_password">Password</label>
                 <div class="password-toggle">
-                  <input class="form-control" type="password" id="su-password" required>
+                  <input class="form-control" type="password" id="signup_password" name="signup_password" required>
                   <label class="password-toggle-btn" aria-label="Show/hide password">
                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                   </label>
                 </div>
               </div>
               <div class="mb-3">
-                <label class="form-label" for="su-password-confirm">Confirm password</label>
+                <label class="form-label" for="signup_password_confirm">Confirm password</label>
                 <div class="password-toggle">
-                  <input class="form-control" type="password" id="su-password-confirm" required>
+                  <input class="form-control" type="password" id="signup_password_confirm" name="signup_password_confirm" required>
                   <label class="password-toggle-btn" aria-label="Show/hide password">
                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                   </label>
@@ -128,7 +128,7 @@
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body tab-content py-4">
-            <form class="needs-validation tab-pane fade show active" action="{% url 'track-order' 'regular' %}" method="post" autocomplete="off" novalidate >
+            <form class="needs-validation tab-pane fade" action="{% url 'track-order' 'regular' %}" method="post" autocomplete="off" novalidate >
               {% csrf_token %}
               <div class="mb-3">
                 <label class="form-label" for="order_ref">Order Reference</label>
