@@ -59,6 +59,7 @@
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body tab-content py-4">
+            <!-- sign in -->
             <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab">
               <div class="mb-3">
                 <label class="form-label" for="signin_id">Identifier</label>
@@ -82,11 +83,19 @@
               </div>
               <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign in</button>
             </form>
+            <!-- end sign in -->
+
+            <!-- sign up -->
             <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup_tab">
               <div class="mb-3">
                 <label class="form-label" for="signup_name">Full name</label>
                 <input class="form-control" type="text" id="signup_name" name="signup_name" placeholder="Benhamida Riad">
                 <div class="invalid-feedback">Please fill in your name.</div>
+              </div>
+              <div class="mb-3">
+                <label for="signup_phone">Phone number</label>
+                <input class="form-control" type="tel" id="signup_phone" name="signup_phone" placeholder="0550-34-56-98" required>
+                <div class="invalid-feedback">Please provide a valid phone number.</div>
               </div>
               <div class="mb-3">
                 <label for="signup_id">Identifier</label>
@@ -113,6 +122,7 @@
               </div>
               <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign up</button>
             </form>
+            <!-- end sign up -->
           </div>
         </div>
       </div>
