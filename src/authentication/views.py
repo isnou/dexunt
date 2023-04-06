@@ -15,13 +15,16 @@ def login_page(request):
     }
     return render(request, url, context)
 
-def user_page(request):
+@login_required
+def user_home_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/user-page.html"
+    url = direction + "/main-shop/user-home-page.html"
 
     context = {
     }
     return render(request, url, context)
+
+def logout(request):

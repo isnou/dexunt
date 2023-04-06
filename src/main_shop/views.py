@@ -27,7 +27,7 @@ def main_shop_home(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect('user-page')
+                return redirect('user-home-page')
             else:
                 return redirect('login-page')
     else:
