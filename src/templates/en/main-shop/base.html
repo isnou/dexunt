@@ -49,23 +49,21 @@
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
 
-
+  {% if is_not_valid %}
     <!-- Invalid user modal-->
     <div class="modal fade" id="user_is_not_valid" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header bg-secondary">
-            <div class="text-center">
-              <h5> <i class="ci-location mt-n1 me-3"></i>Invalid User</h5>
-            </div>
+            <div class="text-center"><h5>Invalid User</h5></div>
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body tab-content py-4">
-
           </div>
         </div>
       </div>
     </div>
+  {% endif %}
 
     <!-- Sign in / sign up modal-->
     <div class="modal fade" id="signin_modal" tabindex="-1" role="dialog">

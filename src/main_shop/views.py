@@ -42,6 +42,7 @@ def main_shop_home(request):
         signup_form = SignupForm()
 
     context = {
+        'is_not_valid': is_not_valid,
         'login_form': login_form,
         'signup_form': signup_form,
         'username': username,
