@@ -46,7 +46,6 @@ def main_shop_home(request):
         'login_form': login_form,
         'signup_form': signup_form,
         'username': username,
-        'invalid_id': invalid_id,
     }
     return render(request, url, context)
 
