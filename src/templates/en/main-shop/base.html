@@ -62,7 +62,7 @@
 
             <!-- sign in -->
             <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab">
-              {{ form.as_p }}
+              {{ login_form.as_p }}
               {% csrf_token %}
 
               {{ login_form.non_field_errors }}
