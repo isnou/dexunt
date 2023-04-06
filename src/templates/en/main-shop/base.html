@@ -50,11 +50,6 @@
     </noscript>
 
 
-  <div id="ModalStart" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-body">
-          <p><i class="icon-spinner icon-spin icon-4x"></i></p>
-    </div>
-</div>
 
     <!-- Sign in / sign up modal-->
     <div class="modal fade" id="signin_modal" tabindex="-1" role="dialog">
@@ -564,6 +559,12 @@
   <script src="{% static 'main-shop/js/theme.min.js' %}"></script>
   <!-- HTMX -->
   <script src="{% static 'htmx/htmx.min.js' %}"></script>
+
+  <script>
+       $(document).ready(function(){
+            $('#signin_modal').modal('show');
+        });
+    </script>
 
   </body>
 </html>
