@@ -39,10 +39,8 @@
     </script>
 
     <script>
-    $(window).load(function()
-    {
-    $('#signin_modal').modal('show');
-    });
+    var myModal = new bootstrap.Modal(document.getElementById('signin_modal'), {})
+    myModal.toggle()
     </script>
 
   </head>
