@@ -29,7 +29,9 @@ def main_shop_home(request):
             if user is not None:
                 login(request, user)
                 username = user.username
-        invalid_id = True
+            else:
+                invalid_id = True
+
     else:
         login_form = LoginForm()
 
