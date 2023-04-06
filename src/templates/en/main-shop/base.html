@@ -76,13 +76,12 @@
               <div class="mb-3">
                 <label class="form-label" for="{{ login_form.password.name }}">{{ login_form.password.label_tag }}</label>
                 <div class="password-toggle">
-                  <input class="form-control" type="password" id="signin_password" name="signin_password" required>
+                  <input class="form-control" type="password" id="{{ login_form.password.name }}" name="{{ login_form.password.name }}" maxlength="{{ login_form.password.field.max_length }}" required>
                   <label class="password-toggle-btn" aria-label="Show/hide password">
                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                   </label>
                 </div>
               </div>
-
 
 
               
