@@ -22,8 +22,8 @@ def main_shop_home(request):
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
             user = authenticate(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password'],
+                username=login_form.cleaned_data['username'],
+                password=login_form.cleaned_data['password'],
             )
             if user is not None:
                 login(request, user)
