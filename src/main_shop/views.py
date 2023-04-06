@@ -17,7 +17,6 @@ def main_shop_home(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
     username = None
-    invalid_id = None
 
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
@@ -30,8 +29,7 @@ def main_shop_home(request):
                 login(request, user)
                 username = user.username
             else:
-                invalid_id = True
-                return render(request, 'hello')
+                return 'INVALID !'
 
     else:
         login_form = LoginForm()
