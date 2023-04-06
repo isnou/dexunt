@@ -38,6 +38,15 @@
       })(window,document,'script','dataLayer','GTM-WKV3GT5');
     </script>
 
+    {% if invalid_id %}
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script>
+       $(document).ready(function(){
+            $('#user_is_not_valid').modal('show');
+        });
+  </script>
+  {% endif %}
+
   </head>
   <!-- Body-->
 
@@ -559,16 +568,5 @@
   <script src="{% static 'main-shop/js/theme.min.js' %}"></script>
   <!-- HTMX -->
   <script src="{% static 'htmx/htmx.min.js' %}"></script>
-
-  {% if invalid_id %}
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script>
-       $(document).ready(function(){
-            $('#user_is_not_valid').modal('show');
-        });
-  </script>
-  {% endif %}
-
-
   </body>
 </html>
