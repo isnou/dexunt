@@ -58,7 +58,8 @@
     </noscript>
 
 
-    <!-- Sign in / sign up modal-->
+
+  <!-- Sign in / sign up modal-->
     <div class="modal fade" id="signin_modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -72,7 +73,7 @@
           <div class="modal-body tab-content py-4">
 
             <!-- sign in -->
-            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" hx-post="{% url 'main-shop-home' %}" hx-target="#signin_modal">
+            <form action="{% url 'main-shop-home' %}" class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" method="post">
               {% csrf_token %}
               <div class="mb-3">
                 <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }}</label>
