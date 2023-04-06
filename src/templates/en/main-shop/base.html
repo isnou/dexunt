@@ -74,7 +74,6 @@
                        type="text"
                        id="{{ login_form.username.name }}"
                        name="{{ login_form.username.name }}"
-                       value="{{ login_form.username.value|stringformat:'s' }}"
                        maxlength="{{ login_form.username.field.max_length }}"
                        required>
                 <div class="invalid-feedback">Please provide a valid username.</div>
@@ -86,7 +85,6 @@
                          type="text"
                          id="{{ login_form.password.name }}"
                          name="{{ login_form.password.name }}"
-                         value="{{ login_form.password.value|stringformat:'s' }}"
                          maxlength="{{ login_form.password.field.max_length }}"
                          required>
                   <label class="password-toggle-btn" aria-label="Show/hide password">
@@ -94,8 +92,7 @@
                   </label>
                 </div>
               </div>
-              {{ login_form.message.errors }}
-              {{ login_form.message }}
+              
               <div class="mb-3 d-flex flex-wrap justify-content-between">
                 <div class="form-check mb-2">
                   <input class="form-check-input" type="checkbox" id="signin_remember" name="signin_remember">
