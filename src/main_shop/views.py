@@ -15,11 +15,20 @@ def main_shop_home(request):
 
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
+    username = False
 
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
-            pass  # does nothing, just trigger the validation
+            user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'],
+            )
+            if user is not None:
+                login(request, user)
+                username = user.username
+            else:
+                username = False
     else:
         login_form = LoginForm()
 
@@ -33,6 +42,7 @@ def main_shop_home(request):
     context = {
         'login_form': login_form,
         'signup_form': signup_form,
+        'username': username,
     }
     return render(request, url, context)
 
