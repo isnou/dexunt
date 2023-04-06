@@ -28,7 +28,12 @@ def main_shop_home(request):
             if user is not None:
                 login(request, user)
                 username = user.username
-                return redirect('main-shop-home')
+                context = {
+                    'login_form': login_form,
+                    'signup_form': signup_form,
+                    'username': username,
+                }
+                return render(request, url, context)
 
             else:
                 sub_context = {
