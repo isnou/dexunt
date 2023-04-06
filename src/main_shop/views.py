@@ -31,6 +31,7 @@ def main_shop_home(request):
                 username = user.username
             else:
                 invalid_id = True
+                return render(request, 'hello')
 
     else:
         login_form = LoginForm()
