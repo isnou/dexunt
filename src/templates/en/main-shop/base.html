@@ -69,8 +69,8 @@
               {{ login_form.source }}
 
               <div class="mb-3">
-                <label class="form-label" for="signin_username">{{ login_form.username.label_tag }}</label>
-                <input class="form-control" type="text" id="signin_username" name="signin_username" required>
+                <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }}</label>
+                <input class="form-control" type="text" id="{{ login_form.username.name }}" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" required>
                 <div class="invalid-feedback">Please provide a valid username.</div>
               </div>
               <div class="mb-3">
@@ -84,7 +84,9 @@
               </div>
 
 
-              
+
+
+
 
 
 
