@@ -38,6 +38,12 @@
       })(window,document,'script','dataLayer','GTM-WKV3GT5');
     </script>
 
+    <script type="text/javascript">
+    $(window).on('load', function() {
+        $('#signin_modal').modal('show');
+    });
+</script>
+
   </head>
   <!-- Body-->
 
@@ -48,8 +54,6 @@
     <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
-
-  <input type="hidden" hx-trigger="load" hx-target="#order_tracking_modal" data-bs-toggle="modal">
 
     <!-- Sign in / sign up modal-->
     <div class="modal fade" id="signin_modal" tabindex="-1" role="dialog">
