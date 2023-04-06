@@ -29,7 +29,9 @@ def main_shop_home(request):
                 login(request, user)
                 username = user.username
             else:
-                username = False
+                username = 'no-authenticate'
+        else:
+            username = 'invalid'
     else:
         login_form = LoginForm()
 
