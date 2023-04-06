@@ -31,7 +31,7 @@ def main_shop_home(request):
             else:
                 sub_context = {
                 }
-                return render(request, '<div class="alert alert-danger" role="alert"> Invalid credentials </div>', sub_context)
+                return render(request, 'en/main-shop/partials/no_credentials_alert.html', sub_context)
 
     else:
         login_form = LoginForm()
