@@ -28,6 +28,10 @@ def main_shop_home(request):
             if user is not None:
                 login(request, user)
                 username = user.username
+                sub_context = {
+
+                }
+                return redirect('login-page')
             else:
                 sub_context = {
                 }
