@@ -72,9 +72,9 @@
           <div class="modal-body tab-content py-4">
 
             <!-- sign in -->
-            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" hx-post="{% url 'main-shop-home' %}" hx-target="#invalid_is">
+            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" hx-post="{% url 'main-shop-home' %}" hx-target="#invalid_id">
               {% csrf_token %}
-              <div class="mb-3" id="invalid_is">
+              <div class="mb-3" id="invalid_id">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }}</label>

@@ -29,7 +29,9 @@ def main_shop_home(request):
                 login(request, user)
                 username = user.username
             else:
-                return 'INVALID !'
+                sub_context = {
+                }
+                return render(request, 'en/main-shop/partials/load_municipality.html', sub_context)
 
     else:
         login_form = LoginForm()
