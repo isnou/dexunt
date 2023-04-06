@@ -33,6 +33,7 @@ def main_shop_home(request):
     else:
         login_form = LoginForm()
 
+
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
