@@ -38,15 +38,14 @@
       })(window,document,'script','dataLayer','GTM-WKV3GT5');
     </script>
 
-    {% if invalid_id %}
+    <!--
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script>
        $(document).ready(function(){
-            $('#signin_modal').modal('show');
+            $('#modal_name').modal('show');
         });
   </script>
-  {% endif %}
-
+      -->
   </head>
   <!-- Body-->
 
@@ -73,16 +72,10 @@
           <div class="modal-body tab-content py-4">
 
             <!-- sign in -->
-            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" method="post">
+            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" hx-post="{% url 'main-shop-home' %}" hx-target="#signin_modal">
               {% csrf_token %}
-
-              {% if invalid_id %}
               <div class="mb-3">
-                <h6 class="form-label">Invalid !</h6>
-              </div>
-              {% endif %}
-              <div class="mb-3">
-                <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }}</label>
+                <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }} {{ invalid_id }}</label>
                 <input class="form-control" type="text" id="{{ login_form.username.name }}" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" required>
                 <div class="invalid-feedback">Please provide a valid username.</div>
               </div>
