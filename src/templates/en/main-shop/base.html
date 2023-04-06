@@ -49,20 +49,6 @@
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript>
 
-    <!-- Invalid user modal-->
-    <div class="modal fade" id="user_is_not_valid_" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary">
-            <div class="text-center"><h5>Invalid User</h5></div>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body tab-content py-4">
-          </div>
-        </div>
-      </div>
-    </div>
-
 
     <!-- Sign in / sign up modal-->
     <div class="modal fade" id="signin_modal" tabindex="-1" role="dialog">
@@ -81,10 +67,11 @@
             <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" method="post">
               {% csrf_token %}
 
-              {{ login_form.non_field_errors }}
-              {{ login_form.source.errors }}
-              {{ login_form.source }}
-
+              {% if invalid_id %}
+              <div class="mb-3">
+                <h6 class="form-label">Invalid !</h6>
+              </div>
+              {% endif %}
               <div class="mb-3">
                 <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }}</label>
                 <input class="form-control" type="text" id="{{ login_form.username.name }}" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" required>
@@ -573,12 +560,15 @@
   <!-- HTMX -->
   <script src="{% static 'htmx/htmx.min.js' %}"></script>
 
+  {% if invalid_id %}
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script>
        $(document).ready(function(){
             $('#user_is_not_valid').modal('show');
         });
   </script>
+  {% endif %}
+
 
   </body>
 </html>
