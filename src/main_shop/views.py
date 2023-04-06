@@ -16,7 +16,7 @@ def main_shop_home(request):
 
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
-    username = None
+    user = None
 
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
@@ -27,7 +27,10 @@ def main_shop_home(request):
             )
             if user is not None:
                 login(request, user)
-                username = user.username
+                user = user
+                url = direction + "/main-shop/user-page.html"
+            else:
+                url = direction + "/main-shop/login-page.html"
     else:
         login_form = LoginForm()
 
@@ -41,7 +44,7 @@ def main_shop_home(request):
     context = {
         'login_form': login_form,
         'signup_form': signup_form,
-        'username': username,
+        'user': user,
     }
     return render(request, url, context)
 
