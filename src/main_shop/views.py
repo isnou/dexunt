@@ -28,21 +28,12 @@ def main_shop_home(request):
             if user is not None:
                 login(request, user)
                 username = user.username
-                context = {
-                    'login_form': login_form,
-                    'signup_form': signup_form,
-                    'username': username,
-                }
-                return render(request, url, context)
-
             else:
                 sub_context = {
                 }
                 return render(request, 'en/main-shop/partials/invalid_credentials_alerts.html', sub_context)
-
     else:
         login_form = LoginForm()
-
 
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
