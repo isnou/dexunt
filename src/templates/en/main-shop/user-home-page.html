@@ -217,7 +217,7 @@
 
 
 
-            
+
 
                     {% if user.is_authenticated %}
                   <li class="d-lg-none border-top mb-0">
@@ -226,6 +226,7 @@
                       </a>
                   </li>
                     {% endif %}
+
                 </ul>
               </div>
             </div>
@@ -244,7 +245,14 @@
                   <option>Delayed</option>
                   <option>Canceled</option>
                 </select>
-              </div><a class="btn btn-primary btn-sm d-none d-lg-inline-block" href="account-signin.html"><i class="ci-sign-out me-2"></i>Sign out</a>
+              </div>
+                
+
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary btn-sm d-none d-lg-inline-block" href="{% url 'user-logout' %}">
+                    <i class="ci-sign-out me-2"></i>Sign out
+                </a>
+                {% endif %}
             </div>
             <!-- Orders list-->
             <div class="table-responsive fs-md mb-4">
