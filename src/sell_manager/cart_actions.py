@@ -164,7 +164,7 @@ def remove_product_from_cart(request):
     if not request.user.is_authenticated:
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
     else:
-        cart = request.user.cart
+        cart = request.user.cart.all()[:1].get()
 
     if request.method == 'POST':
         size_sku = request.POST.get('size_sku', False)
@@ -201,7 +201,7 @@ def remove_quantity(request):
     if not request.user.is_authenticated:
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
     else:
-        cart = request.user.cart
+        cart = request.user.cart.all()[:1].get()
 
     if request.method == 'POST':
         size_sku = request.POST.get('size_sku', False)

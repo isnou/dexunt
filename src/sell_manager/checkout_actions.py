@@ -7,7 +7,7 @@ def details(request):
     if not request.user.is_authenticated:
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
     else:
-        cart = request.user.cart
+        cart = request.user.cart.all()[:1].get()
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
@@ -51,7 +51,7 @@ def review(request):
     if not request.user.is_authenticated:
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
     else:
-        cart = request.user.cart
+        cart = request.user.cart.all()[:1].get()
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
