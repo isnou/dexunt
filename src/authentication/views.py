@@ -32,6 +32,12 @@ def login_page(request):
                 return render(request, url, context)
 
 def signup_page(request):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en'
+
+    direction = request.session.get('language')
+    url = direction + "/main-shop/login-page.html"
+    
     if request.method == 'POST':
         signup_form = forms.SignupForm(request.POST)
         if signup_form.is_valid():
