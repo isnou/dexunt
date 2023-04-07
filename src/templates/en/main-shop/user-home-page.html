@@ -275,42 +275,20 @@
                       </tr>
                     </thead>
                     <tbody>
+                    {% if user.order.all.count %}
+                    {% for order in user.order.all %}
                       <tr>
-                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="account-orders.html#order-details" data-bs-toggle="modal">34VB5540K83</a></td>
-                        <td class="py-3">May 21, 2019</td>
-                        <td class="py-3"><span class="badge bg-info m-0">In Progress</span></td>
-                        <td class="py-3">$358.75</td>
+                        <td class="py-3">
+                            <a class="nav-link-style fw-medium fs-sm" href="#order-details" data-bs-toggle="modal">{{ order.order_ref }}</a>
+                        </td>
+                        <td class="py-3">{{ order.created_at|date:"d/m/Y" }}</td>
+                        <td class="py-3"><span class="badge bg-info m-0">{{ order.status }}</span></td>
+                        <td class="py-3">
+                            {{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small>
+                        </td>
                       </tr>
-                      <tr>
-                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="account-orders.html#order-details" data-bs-toggle="modal">78A643CD409</a></td>
-                        <td class="py-3">December 09, 2018</td>
-                        <td class="py-3"><span class="badge bg-danger m-0">Canceled</span></td>
-                        <td class="py-3"><span>$760.50</span></td>
-                      </tr>
-                      <tr>
-                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="account-orders.html#order-details" data-bs-toggle="modal">112P45A90V2</a></td>
-                        <td class="py-3">October 15, 2018</td>
-                        <td class="py-3"><span class="badge bg-warning m-0">Delayed</span></td>
-                        <td class="py-3">$1,264.00</td>
-                      </tr>
-                      <tr>
-                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="account-orders.html#order-details" data-bs-toggle="modal">28BA67U0981</a></td>
-                        <td class="py-3">July 19, 2018</td>
-                        <td class="py-3"><span class="badge bg-success m-0">Delivered</span></td>
-                        <td class="py-3">$198.35</td>
-                      </tr>
-                      <tr>
-                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="account-orders.html#order-details" data-bs-toggle="modal">502TR872W2</a></td>
-                        <td class="py-3">April 04, 2018</td>
-                        <td class="py-3"><span class="badge bg-success m-0">Delivered</span></td>
-                        <td class="py-3">$2,133.90</td>
-                      </tr>
-                      <tr>
-                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="account-orders.html#order-details" data-bs-toggle="modal">47H76G09F33</a></td>
-                        <td class="py-3">March 30, 2018</td>
-                        <td class="py-3"><span class="badge bg-success m-0">Delivered</span></td>
-                        <td class="py-3">$86.40</td>
-                      </tr>
+                    {% endfor %}
+                    {% endif %}
                     </tbody>
                 </table>
             </div>
