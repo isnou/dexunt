@@ -35,6 +35,7 @@ def signup_page(request):
     if request.method == 'POST':
         signup_form = forms.SignupForm(request.POST)
         if form.is_valid():
+            signup_form.role = 'CUSTOMER'
             user = signup_form.save()
             # auto-login user
             login(request, user)
