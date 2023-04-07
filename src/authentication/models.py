@@ -24,3 +24,6 @@ class User(AbstractUser):
     server = models.ManyToManyField(Server, blank=True)
     wished_product = models.ManyToManyField(WishedProduct, blank=True)
     notified_product = models.ManyToManyField(NotifiedProduct, blank=True)
+
+    def __str__(self):
+        return self.role
