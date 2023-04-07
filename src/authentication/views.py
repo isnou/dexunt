@@ -39,7 +39,7 @@ def signup_page(request):
     url = direction + "/main-shop/login-page.html"
 
     if request.method == 'POST':
-        signup_form = forms.SignupForm(request.POST)
+        signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
