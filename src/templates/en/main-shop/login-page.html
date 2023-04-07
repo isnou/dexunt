@@ -90,7 +90,7 @@
             {% csrf_token %}
 
             <div class="input-group mb-3">
-              <i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+              <i class="ci-user position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
               <input class="form-control rounded-start" type="text" id="{{ login_form.username.name }}" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="Username" required>
             </div>
 
@@ -117,7 +117,7 @@
               <button class="btn btn-primary" type="submit"><i class="ci-sign-in me-2 ms-n21"></i>Sign In</button>
             </div>
           </form>
-          
+
         </div>
       </div>
     </div>
