@@ -4,7 +4,10 @@ from add_ons import functions
 
 
 def regular(request):
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart
     order_ref = functions.serial_number_generator(12).upper()
 
     if request.method == 'POST':

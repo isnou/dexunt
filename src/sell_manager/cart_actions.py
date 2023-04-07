@@ -5,7 +5,11 @@ from sell_manager.models import Province
 
 def add_product_to_cart(request):
     url = "/main-shop/main-page.html"
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart
     redirecting = False
     provinces = False
 
@@ -155,7 +159,11 @@ def show_cart():
 
 def remove_product_from_cart(request):
     url = "/main-shop/main-page.html"
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart
 
     if request.method == 'POST':
         size_sku = request.POST.get('size_sku', False)
@@ -188,7 +196,11 @@ def remove_product_from_cart(request):
 
 def remove_quantity(request):
     url = "/main-shop/shop-cart.html"
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart
 
     if request.method == 'POST':
         size_sku = request.POST.get('size_sku', False)
