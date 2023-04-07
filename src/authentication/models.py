@@ -13,4 +13,4 @@ class User(AbstractUser):
     province = models.CharField(max_length=200, blank=True, null=True)
     municipality = models.CharField(max_length=200, blank=True, null=True)
     activated_account = models.BooleanField(default=False)
-    first_connection = models.BooleanField(default=True)
+    first_login = models.BooleanField(default=True)
