@@ -37,13 +37,11 @@ def signup_page(request):
 
     direction = request.session.get('language')
     url = direction + "/main-shop/login-page.html"
-    
+
     if request.method == 'POST':
         signup_form = forms.SignupForm(request.POST)
         if signup_form.is_valid():
-            signup_form.role.name = 'CUSTOMER'
             user = signup_form.save()
-            # auto-login user
             login(request, user)
             return redirect('user-home-page')
         else:
