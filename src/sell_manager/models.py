@@ -73,7 +73,7 @@ class UserCart(models.Model):
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
-        return self.created_at
+        return self.sub_total_price
 
 
 class Order(models.Model):
