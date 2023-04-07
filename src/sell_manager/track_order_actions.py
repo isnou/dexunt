@@ -3,7 +3,12 @@ from sell_manager.models import Order
 
 
 def regular(request):
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart
+
     processing_order = 'TO-DO'
     quality_check = 'TO-DO'
     packaging = 'TO-DO'

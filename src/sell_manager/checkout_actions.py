@@ -3,7 +3,11 @@ from add_ons import functions
 
 def details(request):
     url = "/main-shop/checkout-details.html"
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
@@ -43,7 +47,11 @@ def details(request):
 
 def review(request):
     url = "/main-shop/checkout-review.html"
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart
 
     if request.method == 'POST':
         province_en_name = request.POST.get('province_en_name', False)
