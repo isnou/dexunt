@@ -98,7 +98,12 @@
                                     {% if order.quantity_issue %}
                                     <div class="badge badge-light-danger ms-1">Quantity Issue</div>
                                     {% endif %}
-                                    <div class="badge badge-light-primary ms-1">{{ order.registred }}</div>
+
+                                    {% if order.registred %}
+                                    <div class="badge badge-light-danger ms-1">
+                                        <i class="bi bi-user fs-2x"></i>
+                                    </div>
+                                    {% endif %}
 
                                 </td>
                                 <td class="text-center">{{ order.client_name }}</td>
