@@ -1,5 +1,4 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import WhishedProducts
 
 
 def all_products(request):
