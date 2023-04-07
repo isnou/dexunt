@@ -117,7 +117,7 @@
         <div class="col-md-6 pt-4 mt-3 mt-md-0">
             <h2 class="h4 mb-3">No account? Sign up</h2>
             <p class="fs-sm text-muted mb-4">Registration takes less than a minute.</p>
-            <form action="{% url 'signup-page' %}" class="needs-validation" autocomplete="off" novalidate method="post">
+            <form action="{% url 'signup-page' %}" class="needs-validation" autocomplete="off" novalidate id="signup_tab" method="post">
                 {% csrf_token %}
                 <div class="row gx-4 gy-3">
                     <div class="col-sm-6">
