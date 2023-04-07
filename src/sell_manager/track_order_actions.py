@@ -7,7 +7,7 @@ def regular(request):
     if not request.user.is_authenticated:
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
     else:
-        cart = request.user.cart
+        cart = request.user.cart.all()[:1].get()
 
     processing_order = 'TO-DO'
     quality_check = 'TO-DO'

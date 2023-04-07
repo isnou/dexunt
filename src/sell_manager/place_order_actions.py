@@ -7,7 +7,7 @@ def regular(request):
     if not request.user.is_authenticated:
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
     else:
-        cart = request.user.cart
+        cart = request.user.cart.all()[:1].get()
     order_ref = functions.serial_number_generator(12).upper()
 
     if request.method == 'POST':

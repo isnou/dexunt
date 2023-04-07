@@ -1,4 +1,4 @@
-from sell_manager.models import Order, Cart
+from sell_manager.models import Order
 from .models import Product, Size
 
 
