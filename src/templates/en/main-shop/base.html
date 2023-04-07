@@ -99,7 +99,7 @@
             <!-- end sign in -->
 
             <!-- sign up -->
-            <form action="{% url 'login-page' %}" class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup_tab" method="post">
+            <form action="{% url 'signup-page' %}" class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup_tab" method="post">
               {{ signup_form.as_p }}
               {% csrf_token %}
               <div class="mb-3">
