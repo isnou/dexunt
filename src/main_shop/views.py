@@ -16,16 +16,9 @@ def main_shop_home(request):
 
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
-    
+
     login_form = LoginForm()
-
-
-    if request.method == 'POST':
-        signup_form = SignupForm(request.POST)
-        if signup_form.is_valid():
-            pass  # does nothing, just trigger the validation
-    else:
-        signup_form = SignupForm()
+    signup_form = SignupForm()
 
     context = {
         'login_form': login_form,

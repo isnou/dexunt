@@ -10,7 +10,7 @@ def login_page(request):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/main-page.html"
+    url = direction + "/main-shop/login-page.html"
 
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
@@ -23,7 +23,11 @@ def login_page(request):
                 login(request, user)
                 return redirect('user-home-page')
             else:
+                login_form = LoginForm()
+                signup_form = SignupForm()
                 context = {
+                    'login_form': login_form,
+                    'signup_form': signup_form,
                 }
                 return render(request, url, context)
 

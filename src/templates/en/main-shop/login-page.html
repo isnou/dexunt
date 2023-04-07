@@ -1,0 +1,160 @@
+{% extends "en/main-shop/base.html" %}
+{% load static %}
+
+
+<!-- english version -->
+
+<!-- title -->
+{% block title %}
+<title>
+    Dexunt - Login Page
+</title>
+{% endblock %}
+
+
+<!--cart-->
+{% block cart %}
+<div class="navbar-tool dropdown ms-3">
+    {% if cart.product.all.count %}
+    <a class="navbar-tool-icon-box bg-secondary" href="{% url 'cart-home' 'show_cart' %}">
+        <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
+        <i class="navbar-tool-icon ci-cart"></i>
+    </a>
+    {% else %}
+    <a class="navbar-tool-icon-box bg-secondary" href="#">
+        <i class="navbar-tool-icon ci-cart"></i>
+    </a>
+    {% endif %}
+    <!--cart dropdown-->
+    {% if cart.product.all.count %}
+    <div class="dropdown-menu dropdown-menu-end">
+        <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
+            <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
+                {% for cart_product in cart.product.all %}
+                <form action="{% url 'cart-home' 'remove_product_from_cart' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="size_sku" value='{{ cart_product.size_sku }}'>
+                    <input type="hidden" name="product_sku" value='{{ cart_product.product_sku }}'>
+
+                    <div class="widget-cart-item py-2 border-bottom">
+                        <button class="btn-close text-danger" type="submit" aria-label="Remove">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <div class="d-flex align-items-center">
+                            <a class="d-block flex-shrink-0" href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">
+                                <img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="64" alt="Product">
+                            </a>
+                            <div class="ps-2">
+                                <h6 class="widget-product-title"><a href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">{{ cart_product.en_name|title }}</a></h6>
+                                <div class="widget-product-meta">
+                                    <span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span>
+                                    <span class="text-muted">x {{ cart_product.quantity }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% endfor %}
+            </div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                <div class="fs-sm me-2 py-2">
+                    <span class="text-muted">Subtotal:</span>
+                    <span class="text-accent fs-base ms-1">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span>
+                </div>
+            </div>
+            <a class="btn btn-primary btn-sm d-block w-100" href="{% url 'cart-home' 'show_cart' %}">
+                <i class="ci-card me-2 fs-base align-middle"></i>Checkout
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    <!--end cart dropdown-->
+</div>
+{% endblock %}
+
+<!--content-->
+{% block content %}
+<div class="container py-4 py-lg-5 my-4">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <h2 class="h4 mb-1">Sign in</h2>
+                <div class="py-3">
+                  <h3 class="d-inline-block align-middle fs-base fw-medium mb-2 me-2">With social account:</h3>
+                  <div class="d-inline-block align-middle"><a class="btn-social bs-google me-2 mb-2" href="account-signin.html#" data-bs-toggle="tooltip" title="Sign in with Google"><i class="ci-google"></i></a><a class="btn-social bs-facebook me-2 mb-2" href="account-signin.html#" data-bs-toggle="tooltip" title="Sign in with Facebook"><i class="ci-facebook"></i></a><a class="btn-social bs-twitter me-2 mb-2" href="account-signin.html#" data-bs-toggle="tooltip" title="Sign in with Twitter"><i class="ci-twitter"></i></a></div>
+                </div>
+                <hr>
+                <h3 class="fs-base pt-4 pb-2">Or using form below</h3>
+                <form class="needs-validation" novalidate>
+                  <div class="input-group mb-3"><i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                    <input class="form-control rounded-start" type="email" placeholder="Email" required>
+                  </div>
+                  <div class="input-group mb-3"><i class="ci-locked position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                    <div class="password-toggle w-100">
+                      <input class="form-control" type="password" placeholder="Password" required>
+                      <label class="password-toggle-btn" aria-label="Show/hide password">
+                        <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-wrap justify-content-between">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" checked id="remember_me">
+                      <label class="form-check-label" for="remember_me">Remember me</label>
+                    </div><a class="nav-link-inline fs-sm" href="account-password-recovery.html">Forgot password?</a>
+                  </div>
+                  <hr class="mt-4">
+                  <div class="text-end pt-4">
+                    <button class="btn btn-primary" type="submit"><i class="ci-sign-in me-2 ms-n21"></i>Sign In</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 pt-4 mt-3 mt-md-0">
+            <h2 class="h4 mb-3">No account? Sign up</h2>
+            <p class="fs-sm text-muted mb-4">Registration takes less than a minute but gives you full control over your orders.</p>
+            <form class="needs-validation" novalidate>
+              <div class="row gx-4 gy-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="reg-fn">First Name</label>
+                  <input class="form-control" type="text" required id="reg-fn">
+                  <div class="invalid-feedback">Please enter your first name!</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="reg-ln">Last Name</label>
+                  <input class="form-control" type="text" required id="reg-ln">
+                  <div class="invalid-feedback">Please enter your last name!</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="reg-email">E-mail Address</label>
+                  <input class="form-control" type="email" required id="reg-email">
+                  <div class="invalid-feedback">Please enter valid email address!</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="reg-phone">Phone Number</label>
+                  <input class="form-control" type="text" required id="reg-phone">
+                  <div class="invalid-feedback">Please enter your phone number!</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="reg-password">Password</label>
+                  <input class="form-control" type="password" required id="reg-password">
+                  <div class="invalid-feedback">Please enter password!</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="reg-password-confirm">Confirm Password</label>
+                  <input class="form-control" type="password" required id="reg-password-confirm">
+                  <div class="invalid-feedback">Passwords do not match!</div>
+                </div>
+                <div class="col-12 text-end">
+                  <button class="btn btn-primary" type="submit"><i class="ci-user me-2 ms-n1"></i>Sign Up</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endblock %}
