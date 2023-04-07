@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
 from sell_manager.models import Cart, Province
-from authentication.forms import LoginForm, SignupForm
+
 from django.contrib.auth import login, authenticate
 
 from .models import Showcase
@@ -16,22 +16,6 @@ def main_shop_home(request):
 
     direction = request.session.get('language')
     url = direction + "/main-shop/main-page.html"
-
-
-    if request.method == 'POST':
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
-            user = authenticate(
-                username=login_form.cleaned_data['username'],
-                password=login_form.cleaned_data['password'],
-            )
-            if user is not None:
-                login(request, user)
-                return redirect('user-home-page')
-            else:
-                return redirect('login-page')
-    else:
-        login_form = LoginForm()
 
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
