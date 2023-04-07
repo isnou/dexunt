@@ -1,5 +1,5 @@
 from .models import Intro, Showcase, Category, Directory, Department
-from sell_manager.models import Cart
+from sell_manager.models import Cart, UserCart
 from add_ons import functions
 from django.contrib.auth import authenticate
 
@@ -22,7 +22,12 @@ def main_shop_content(request):
                         )
             cart.save()
     else:
-        cart = request.user.cart.get()
+        if request.user.cart.all()[:1].exists():
+            cart = request.user.cart.all()[:1].get()
+        else:
+            new_cart = UserCart()
+            new_cart.save()
+            cart = request.user.cart.add(new_cart)
 
     try:
         showcases = Showcase.objects.all().order_by('-rank')

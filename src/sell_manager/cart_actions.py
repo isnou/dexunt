@@ -9,7 +9,7 @@ def add_product_to_cart(request):
     if not request.user.is_authenticated:
         cart = Cart.objects.all().get(ref=request.session.get('cart'))
     else:
-        cart = request.user.cart.get()
+        cart = request.user.cart.all()[:1].get()
 
     redirecting = False
     provinces = False
