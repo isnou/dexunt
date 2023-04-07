@@ -9,7 +9,10 @@ def serial_number_generator(length):
     return result_str
 
 def get_shipping_prices(request ,municipality_en_name):
-    cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    if not request.user.is_authenticated:
+        cart = Cart.objects.all().get(ref=request.session.get('cart'))
+    else:
+        cart = request.user.cart.all()[:1].get()
     municipality = Municipality.objects.all().get(en_name=municipality_en_name)
 
     delivery_quotients = 0
