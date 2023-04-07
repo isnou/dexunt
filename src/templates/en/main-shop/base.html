@@ -274,6 +274,7 @@
                   <span class="navbar-tool-tooltip">Toggle menu</span>
                   <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div>
                 </a>
+                {% block user_toggle %}
                 {% if user.is_authenticated %}
                 <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{% url 'user-home-page' %}">
                   <div class="navbar-tool-icon-box">
@@ -289,6 +290,7 @@
                   <div class="navbar-tool-text ms-n3"><small>Hello, Click</small>Login</div>
                 </a>
                 {% endif %}
+                {% endblock %}
                 <!--end signin & signup-->
                 <!--cart-->
                 {% block cart %}{% endblock %}
