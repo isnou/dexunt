@@ -19,8 +19,6 @@ def details(request):
         municipality = Municipality.objects.all().get(en_name=municipality_en_name)
         shipping_price = functions.get_shipping_price(cart, municipality, shipping_type)
 
-
-
         total_price = cart.sub_total_price + shipping_price
         coupon = functions.check_promotion(coupon_code, total_price).get('coupon')
         discounted_price = functions.check_promotion(coupon_code, total_price).get('discounted_price')

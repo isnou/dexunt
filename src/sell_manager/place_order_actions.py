@@ -27,19 +27,34 @@ def regular(request):
         if shipping_type == 'desk_delivery_price':
             shipping_type = 'TO-DESK'
 
-        new_order = Order(cart_ref=cart.ref,
-                          order_ref=order_ref,
-                          device=cart.device,
-                          operating_system=cart.operating_system,
-                          ip_address=cart.ip_address,
-                          client_name=client_name,
-                          client_phone=phone_number,
-                          province=province_en_name,
-                          municipality=municipality_en_name,
-                          shipping_type=shipping_type,
-                          sub_total_price=cart.sub_total_price,
-                          shipping_price=shipping_price,
-                          )
+        if not request.user.is_authenticated:
+            new_order = Order(cart_ref=cart.ref,
+                              order_ref=order_ref,
+                              device=cart.device,
+                              operating_system=cart.operating_system,
+                              ip_address=cart.ip_address,
+                              client_name=client_name,
+                              client_phone=phone_number,
+                              province=province_en_name,
+                              municipality=municipality_en_name,
+                              shipping_type=shipping_type,
+                              sub_total_price=cart.sub_total_price,
+                              shipping_price=shipping_price,
+                              )
+        else:
+            new_order = Order(cart_ref=cart.ref,
+                              order_ref=order_ref,
+                              client_name=client_name,
+                              client_phone=phone_number,
+                              province=province_en_name,
+                              municipality=municipality_en_name,
+                              shipping_type=shipping_type,
+                              sub_total_price=cart.sub_total_price,
+                              shipping_price=shipping_price,
+                              registred=True,
+                              )
+
+
 
         if Coupon.objects.all().filter(code=coupon_code).exists():
             coupon = Coupon.objects.all().get(code=coupon_code)
@@ -60,6 +75,9 @@ def regular(request):
             new_order.product.add(product)
 
         cart.delete()
+
+        if request.user.is_authenticated:
+            request.user.order.add(new_order)
 
         context = {
             'new_order': new_order,
