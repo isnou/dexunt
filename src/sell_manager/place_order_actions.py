@@ -53,8 +53,6 @@ def regular(request):
                               registred=True,
                               )
 
-
-
         if Coupon.objects.all().filter(code=coupon_code).exists():
             coupon = Coupon.objects.all().get(code=coupon_code)
             total_price = cart.sub_total_price + shipping_price
