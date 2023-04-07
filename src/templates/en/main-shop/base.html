@@ -72,7 +72,7 @@
           </div>
           <div class="modal-body tab-content py-4">
             <!-- sign in -->
-            <form action="{% url 'main-shop-home' %}" class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" method="post">
+            <form action="{% url 'login-page' %}" class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" method="post">
               {% csrf_token %}
               <div class="mb-3">
                 <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }}</label>
