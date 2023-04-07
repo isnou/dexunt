@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate
 def main_shop_content(request):
     intro = Intro.objects.all().get(id=1)
 
-    if not user.is_authenticated:
+    if not request.user.is_authenticated:
         if not request.session.get('cart', None):
             request.session['cart'] = functions.serial_number_generator(30).upper()
         cart_ref = request.session.get('cart')
