@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from shop_manager.models import ShowcaseProduct, Product
 from sell_manager.models import Cart, Province
-
+from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 
 from .models import Showcase
@@ -25,8 +25,6 @@ def main_shop_home(request):
         signup_form = SignupForm()
 
     context = {
-        'login_form': login_form,
-        'signup_form': signup_form,
     }
     return render(request, url, context)
 
