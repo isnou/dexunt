@@ -42,8 +42,7 @@ def regular(request):
                               shipping_price=shipping_price,
                               )
         else:
-            new_order = Order(cart_ref=cart.ref,
-                              order_ref=order_ref,
+            new_order = Order(order_ref=order_ref,
                               client_name=client_name,
                               client_phone=phone_number,
                               province=province_en_name,
