@@ -5,7 +5,6 @@ from sell_manager.models import Order, UserCart
 from main_shop.models import WishedProduct, NotifiedProduct, Server
 
 
-
 class User(AbstractUser):
     # --------------------------------- user info ----------------------------------------------
     first_name = models.CharField(max_length=300, blank=True, null=True)

@@ -23,6 +23,7 @@ def main_shop_content(request):
             cart.save()
     else:
         cart = request.user.cart
+        cart.save()
 
     try:
         showcases = Showcase.objects.all().order_by('-rank')
