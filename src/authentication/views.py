@@ -40,6 +40,14 @@ def signup_page(request):
             # auto-login user
             login(request, user)
             return redirect('user-home-page')
+        else:
+            login_form = LoginForm()
+            signup_form = SignupForm()
+            context = {
+                'login_form': login_form,
+                'signup_form': signup_form,
+            }
+            return render(request, url, context)
 
 @login_required
 def user_home_page(request):
