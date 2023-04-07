@@ -87,7 +87,6 @@ class Directory(models.Model):
     def __str__(self):
         return self.en_title
 
-
 class Department(models.Model):
     # --------------------------------- category identification --------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
@@ -112,3 +111,59 @@ class Department(models.Model):
 
     def __str__(self):
         return self.en_title
+
+class WishedProduct(models.Model):
+    # --------------------------------- media --------------------------------------------------
+    thumb = models.ImageField(upload_to='main-shop/wished-products/thumb', blank=True, null=True)
+    # --------------------------------- info ---------------------------------------------------
+    product_sku = models.CharField(max_length=30, blank=True, null=True)
+    size_sku = models.CharField(max_length=30, blank=True, null=True)
+
+    en_name = models.CharField(max_length=300, blank=True, null=True)
+    fr_name = models.CharField(max_length=300, blank=True, null=True)
+    ar_name = models.CharField(max_length=300, blank=True, null=True)
+
+    en_spec = models.CharField(max_length=300, blank=True, null=True)
+    fr_spec = models.CharField(max_length=300, blank=True, null=True)
+    ar_spec = models.CharField(max_length=300, blank=True, null=True)
+
+    en_detail = models.CharField(max_length=300, blank=True, null=True)
+    fr_detail = models.CharField(max_length=300, blank=True, null=True)
+    ar_detail = models.CharField(max_length=300, blank=True, null=True)
+
+    def __str__(self):
+        return self.en_name
+
+class NotifiedProduct(models.Model):
+    # --------------------------------- media --------------------------------------------------
+    thumb = models.ImageField(upload_to='main-shop/wished-products/thumb', blank=True, null=True)
+    # --------------------------------- info ---------------------------------------------------
+    product_sku = models.CharField(max_length=30, blank=True, null=True)
+    size_sku = models.CharField(max_length=30, blank=True, null=True)
+
+    en_name = models.CharField(max_length=300, blank=True, null=True)
+    fr_name = models.CharField(max_length=300, blank=True, null=True)
+    ar_name = models.CharField(max_length=300, blank=True, null=True)
+
+    en_spec = models.CharField(max_length=300, blank=True, null=True)
+    fr_spec = models.CharField(max_length=300, blank=True, null=True)
+    ar_spec = models.CharField(max_length=300, blank=True, null=True)
+
+    en_detail = models.CharField(max_length=300, blank=True, null=True)
+    fr_detail = models.CharField(max_length=300, blank=True, null=True)
+    ar_detail = models.CharField(max_length=300, blank=True, null=True)
+    available = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.en_name
+
+class Server(models.Model):
+    # --------------------------------- technical informations ---------------------------------
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    device = models.CharField(max_length=200, default='UNDEFINED')
+    operating_system = models.CharField(max_length=200, default='UNDEFINED')
+    ip_address = models.CharField(max_length=200, default='UNDEFINED')
+
+    def __str__(self):
+        return self.ip_address

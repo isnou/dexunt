@@ -64,6 +64,18 @@ class Cart(models.Model):
         return self.ip_address
 
 
+class UserCart(models.Model):
+    # --------------------------------- cart technical informations ----------------------------
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    # --------------------------------- info ---------------------------------------------------
+    product = models.ManyToManyField(CartProduct, blank=True)
+    sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+    def __str__(self):
+        return self.ip_address
+
+
 class Order(models.Model):
     # --------------------------------- order technical informations ---------------------------
     cart_ref = models.CharField(max_length=30, blank=True, null=True)
@@ -79,6 +91,7 @@ class Order(models.Model):
     status = models.CharField(max_length=100, default='UNCONFIRMED')
 
     # --------------------------------- client info --------------------------------------------
+    registred = models.BooleanField(default=False)
     product = models.ManyToManyField(CartProduct, blank=True)
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)

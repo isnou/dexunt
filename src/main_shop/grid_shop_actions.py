@@ -1,10 +1,10 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Product
+from .models import WhishedProducts
 
 
 def all_products(request):
     url = "/main-shop/grid-shop.html"
-    products = Product.objects.all().exclude(type='variant').exclude(type='proto_variant').exclude(type='set')\
+    products = WhishedProducts.objects.all().exclude(type='variant').exclude(type='proto_variant').exclude(type='set')\
         .exclude(type='photo').exclude(type='size')
 
     page = request.GET.get('page', 1)
@@ -23,7 +23,7 @@ def all_products(request):
 
 def best_sellers(request):
     url = "/main-shop/grid-shop.html"
-    products = Product.objects.all().exclude(publish=False).order_by('-sell_rate')
+    products = WhishedProducts.objects.all().exclude(publish=False).order_by('-sell_rate')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(products, 4)
@@ -41,7 +41,7 @@ def best_sellers(request):
 
 def new_arrivals(request):
     url = "/main-shop/grid-shop.html"
-    products = Product.objects.all().exclude(publish=False).order_by('-updated_at')
+    products = WhishedProducts.objects.all().exclude(publish=False).order_by('-updated_at')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(products, 4)
@@ -59,7 +59,7 @@ def new_arrivals(request):
 
 def top_rated(request):
     url = "/main-shop/grid-shop.html"
-    products = Product.objects.all().exclude(publish=False).order_by('-review_rate')
+    products = WhishedProducts.objects.all().exclude(publish=False).order_by('-review_rate')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(products, 4)

@@ -1,6 +1,7 @@
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
-from sell_manager.models import Order
+from sell_manager.models import Order, UserCart
+from main_shop.models import WishedProduct, NotifiedProduct, Server
 from django.db import models
 
 
@@ -16,5 +17,9 @@ class User(AbstractUser):
     municipality = models.CharField(max_length=200, blank=True, null=True)
     activated_account = models.BooleanField(default=False)
 
-    # --------------------------------- order info ---------------------------------------------
+    # --------------------------------- user activities ----------------------------------------
     order = models.ManyToManyField(Order, blank=True)
+    cart = models.ManyToManyField(UserCart, blank=True)
+    server = models.ManyToManyField(Server, blank=True)
+    wished_product = models.ManyToManyField(WishedProduct, blank=True)
+    notified_product = models.ManyToManyField(NotifiedProduct, blank=True)
