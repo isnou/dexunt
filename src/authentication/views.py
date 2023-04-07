@@ -31,6 +31,15 @@ def login_page(request):
                 }
                 return render(request, url, context)
 
+def signup_page(request):
+    if request.method == 'POST':
+        signup_form = forms.SignupForm(request.POST)
+        if form.is_valid():
+            user = signup_form.save()
+            # auto-login user
+            login(request, user)
+            return redirect('user-home-page')
+
 @login_required
 def user_home_page(request):
     if not request.session.get('language', None):
