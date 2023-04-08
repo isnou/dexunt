@@ -253,6 +253,7 @@
                 </div>
               </div>
             <form action="{% url 'edit-profile' %}" class="needs-validation" autocomplete="off" novalidate id="signup_tab" method="post">
+                {% csrf_token %}
                 <div class="row gx-4 gy-3">
                     <div class="col-sm-6">
                         <label class="form-label" for="{{ signup_form.first_name.name }}">{{ signup_form.first_name.label_tag }}</label>
