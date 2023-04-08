@@ -111,6 +111,7 @@ def edit_profile(request):
             signup_form = SignupForm()
             context = {
                 'signup_form': signup_form,
+                'error': True,
             }
             return render(request, url, context)
 
