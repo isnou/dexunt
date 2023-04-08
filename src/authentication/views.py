@@ -22,7 +22,7 @@ def login_page(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect('user-home-page')
+                return redirect('account-orders-page')
             else:
                 login_form = LoginForm()
                 signup_form = SignupForm()
@@ -44,7 +44,7 @@ def signup_page(request):
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
-            return redirect('user-home-page')
+            return redirect('account-orders-page')
         else:
             login_form = LoginForm()
             signup_form = SignupForm()
@@ -55,9 +55,12 @@ def signup_page(request):
             return render(request, url, context)
 
 @login_required
-def user_home_page(request):
+def account_orders_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
+
+    direction = request.session.get('language')
+    url = direction + "/main-shop/account/orders-page.html"
 
     orders = request.user.order.all()
 
@@ -70,13 +73,32 @@ def user_home_page(request):
     except EmptyPage:
         orders = paginator.page(paginator.num_pages)
 
-    direction = request.session.get('language')
-    url = direction + "/main-shop/account/orders-page.html"
 
     context = {
         'orders': orders,
     }
     return render(request, url, context)
+
+@login_required
+def account_profile_page(request):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en'
+
+    direction = request.session.get('language')
+    url = direction + "/main-shop/account/profile-page.html"
+
+    if request.method == 'POST':
+        signup_form = SignupForm(request.POST)
+        if signup_form.is_valid():
+            signup_form.save()
+
+    signup_form = SignupForm()
+    context = {
+        'signup_form': signup_form,
+    }
+    return render(request, url, context)
+
+
 
 def user_logout(request):
 
