@@ -204,13 +204,13 @@
                         <div class="ps-md-3">
                             <h3 class="fs-base mb-0">
                                 {% if user.first_name %}
-                                {{ user.first_name }}
+                                {{ user.first_name|title }}
                                 {% else %}
                                 no first name
                                 {% endif %}
 
                                 {% if user.last_name %}
-                                {{ user.last_name }}
+                                {{ user.last_name|title }}
                                 {% else %}
                                 no last name
                                 {% endif %}
