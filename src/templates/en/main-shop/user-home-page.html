@@ -121,11 +121,21 @@
         </div>
         <!-- Footer-->
         <div class="modal-footer flex-wrap justify-content-between bg-secondary fs-md">
-          <div class="px-2 py-1"><span class="text-muted">Subtotal:&nbsp;</span><span>$265.<small>00</small></span></div>
-          <div class="px-2 py-1"><span class="text-muted">Shipping:&nbsp;</span><span>$22.<small>50</small></span></div>
-          <div class="px-2 py-1"><span class="text-muted">Tax:&nbsp;</span><span>$9.<small>50</small></span></div>
-          <div class="px-2 py-1"><span class="text-muted">Total:&nbsp;</span><span class="fs-lg">$297.<small>00</small></span></div>
-        </div>
+        <div class="px-2 py-1"><span class="text-muted">Subtotal:&nbsp;</span><span>{{ order.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+        <div class="px-2 py-1"><span class="text-muted">Shipping:&nbsp;</span><span>{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+        {% if order.coupon_value %}
+        {% if order.coupon_type == 'SUBTRACTION' %}
+        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+        {% endif %}
+        {% if order.coupon_type == 'PERCENTAGE' %}
+        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value }}<small class="ms-1">%</small></span></div>
+        {% endif %}
+        {% else %}
+        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>-</span></div>
+        {% endif %}
+
+        <div class="px-2 py-1"><span class="text-muted">Total:&nbsp;</span><span class="fs-lg">{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+      </div>
       </div>
     </div>
 </div>
