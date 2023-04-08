@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from authentication.forms import LoginForm, SignupForm
+from authentication.forms import LoginForm, SignupForm, UpdateProfileForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
 
@@ -87,7 +87,7 @@ def account_profile_page(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/account/profile-page.html"
 
-    signup_form = SignupForm()
+    signup_form = UpdateProfileForm()
     context = {
         'signup_form': signup_form,
     }
@@ -102,13 +102,13 @@ def edit_profile(request):
     url = direction + "/main-shop/account/profile-page.html"
 
     if request.method == 'POST':
-        signup_form = SignupForm(request.POST, request.user)
+        signup_form = UpdateProfileForm(request.POST, instance=request.user)
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
             return redirect('account-profile-page')
         else:
-            signup_form = SignupForm()
+            signup_form = UpdateProfileForm()
             context = {
                 'signup_form': signup_form,
             }
