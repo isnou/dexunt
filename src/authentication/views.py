@@ -11,7 +11,7 @@ def login_page(request):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/login-page.html"
+    url = direction + "/main-shop/account/login-page.html"
 
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
@@ -37,7 +37,7 @@ def signup_page(request):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/login-page.html"
+    url = direction + "/main-shop/account/login-page.html"
 
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
@@ -71,7 +71,7 @@ def user_home_page(request):
         orders = paginator.page(paginator.num_pages)
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/user-home-page.html"
+    url = direction + "/main-shop/account/orders-page.html"
 
     context = {
         'orders': orders,

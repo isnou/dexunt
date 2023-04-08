@@ -181,7 +181,7 @@
                                 {% endif %}
                             </h3>
                             <small>
-                                <span class="text-danger fs-sm">not activated account !</span>
+                                <span class="text-danger fs-sm">account not activated !</span>
                             </small>
                         </div>
                     </div><a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="account-orders.html#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="ci-menu me-2"></i>Account menu</a>
@@ -200,8 +200,16 @@
                     </div>
                     <ul class="list-unstyled mb-0">
                         <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-profile.html"><i class="ci-user opacity-60 me-2"></i>Profile info</a></li>
-                        <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-address.html"><i class="ci-location opacity-60 me-2"></i>Addresses</a></li>
-                        <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-payment.html"><i class="ci-card opacity-60 me-2"></i>Payment methods</a></li>
+                        <li class="border-bottom mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-address.html">
+                                <i class="ci-location opacity-60 me-2"></i>Addresses
+                            </a>
+                        </li>
+                        <li class="mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-payment.html">
+                                <i class="ci-card opacity-60 me-2"></i>Payments
+                            </a>
+                        </li>
 
                         <li class="d-lg-none border-top mb-0">
                             <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'user-logout' %}">
