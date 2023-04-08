@@ -87,16 +87,32 @@ def account_profile_page(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/account/profile-page.html"
 
-    if request.method == 'POST':
-        signup_form = SignupForm(request.POST)
-        if signup_form.is_valid():
-            signup_form.save()
-
     signup_form = SignupForm()
     context = {
         'signup_form': signup_form,
     }
     return render(request, url, context)
+
+@login_required
+def edit_profile(request):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en'
+
+    direction = request.session.get('language')
+    url = direction + "/main-shop/account/profile-page.html"
+
+    if request.method == 'POST':
+        signup_form = SignupForm(request.POST)
+        if signup_form.is_valid():
+            user = signup_form.save()
+            login(request, user)
+            return redirect('account-orders-page')
+        else:
+            signup_form = SignupForm()
+            context = {
+                'signup_form': signup_form,
+            }
+            return render(request, url, context)
 
 
 
