@@ -215,7 +215,7 @@
                         <h3 class="fs-sm mb-0 text-muted">Dashboard</h3>
                     </div>
                     <ul class="list-unstyled mb-0">
-                        <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="account-orders.html"><i class="ci-bag opacity-60 me-2"></i>Orders<span class="fs-sm text-muted ms-auto">1</span></a></li>
+                        <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="account-orders.html"><i class="ci-bag opacity-60 me-2"></i>Orders<span class="fs-sm text-muted ms-auto">{{ orders.count }}</span></a></li>
                         <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-wishlist.html"><i class="ci-heart opacity-60 me-2"></i>Wishlist<span class="fs-sm text-muted ms-auto">3</span></a></li>
                         <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-tickets.html"><i class="ci-help opacity-60 me-2"></i>Support tickets<span class="fs-sm text-muted ms-auto">1</span></a></li>
                     </ul>
@@ -227,15 +227,11 @@
                         <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-address.html"><i class="ci-location opacity-60 me-2"></i>Addresses</a></li>
                         <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-payment.html"><i class="ci-card opacity-60 me-2"></i>Payment methods</a></li>
 
-
-                        {% if user.is_authenticated %}
                         <li class="d-lg-none border-top mb-0">
                             <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'user-logout' %}">
                                 <i class="ci-sign-out opacity-60 me-2"></i>Sign out
                             </a>
                         </li>
-                        {% endif %}
-
                     </ul>
                 </div>
             </div>
@@ -256,12 +252,9 @@
                     </select>
                 </div>
 
-
-                {% if user.is_authenticated %}
                 <a class="btn btn-primary btn-sm d-none d-lg-inline-block" href="{% url 'user-logout' %}">
                     <i class="ci-sign-out me-2"></i>Sign out
                 </a>
-                {% endif %}
             </div>
             <!-- Orders list-->
             <div class="table-responsive fs-md mb-4">
