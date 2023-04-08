@@ -277,24 +277,6 @@
                         <input class="form-control" type="text" id="{{ signup_form.username.name }}" name="{{ signup_form.username.name }}" value="{{ user.username }}" maxlength="{{ signup_form.username.field.max_length }}" required>
                         <div class="invalid-feedback">Please provide a valid username.</div>
                     </div>
-                    <div class="col-sm-6">
-                        <label class="form-label" for="{{ signup_form.password1.name }}">{{ signup_form.password1.label_tag }}</label>
-                        <div class="password-toggle">
-                            <input class="form-control" type="password" id="{{ signup_form.password1.name }}" name="{{ signup_form.password1.name }}">
-                            <label class="password-toggle-btn" aria-label="Show/hide password">
-                                <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="form-label" for="{{ signup_form.password2.name }}">{{ signup_form.password2.label_tag }}</label>
-                        <div class="password-toggle">
-                            <input class="form-control" type="password" id="{{ signup_form.password2.name }}" name="{{ signup_form.password2.name }}">
-                            <label class="password-toggle-btn" aria-label="Show/hide password">
-                                <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                            </label>
-                        </div>
-                    </div>
 
                     <div class="col-12">
                         <hr class="mt-2 mb-3">
