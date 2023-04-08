@@ -242,7 +242,11 @@
                 <div class="d-flex align-items-center">
                     {% if user.points %}
                     <label class="d-none d-lg-block fs-sm text-light text-nowrap opacity-75 me-2">You have: {{ user.points }} points</label>
+                    <label class="d-lg-none fs-sm text-nowrap opacity-75 me-2">{{ user.points }} points</label>
                     {% endif %}
+
+
+
                 </div>
 
                 <a class="btn btn-primary btn-sm d-none d-lg-inline-block" href="{% url 'user-logout' %}">
