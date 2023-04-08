@@ -105,7 +105,6 @@ def edit_profile(request):
         signup_form = SignupForm(request.POST, instance=request.user)
         if signup_form.is_valid():
             signup_form.save()
-            return redirect('account-profile-page')
         else:
             signup_form = SignupForm()
             context = {
