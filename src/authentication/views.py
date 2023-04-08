@@ -102,7 +102,7 @@ def edit_profile(request):
     url = direction + "/main-shop/account/profile-page.html"
 
     if request.method == 'POST':
-        signup_form = SignupForm(request.POST, instance=request.user)
+        signup_form = SignupForm(request.POST, request.user)
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
