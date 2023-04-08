@@ -89,7 +89,7 @@
 
 <!-- Order Details Modal-->
 {% for order in orders %}
-<div class="modal fade" id="{{ order.order_ref }}_order_details">
+<div class="modal fade" id="order_{{ order.order_ref }}_details">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -279,7 +279,7 @@
                     {% for order in orders %}
                       <tr>
                         <td class="py-3">
-                            <a class="nav-link-style fw-medium fs-sm" href="#{{ order.order_ref }}_order_details" data-bs-toggle="modal">{{ order.order_ref }}</a>
+                            <a class="nav-link-style fw-medium fs-sm" href="#order_{{ order.order_ref }}_details" data-bs-toggle="modal">{{ order.order_ref }}</a>
                         </td>
                         <td class="py-3">{{ order.created_at|date:"d/m/Y" }}</td>
                         <td class="py-3"><span class="badge bg-info m-0">{{ order.status }}</span></td>
