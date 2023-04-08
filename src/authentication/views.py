@@ -102,10 +102,9 @@ def edit_profile(request):
     url = direction + "/main-shop/account/profile-page.html"
 
     if request.method == 'POST':
-        signup_form = SignupForm(request.POST)
+        signup_form = SignupForm(request.POST, instance=request.user)
         if signup_form.is_valid():
-            user = signup_form.save()
-            login(request, user)
+            signup_form.save()
             return redirect('account-orders-page')
         else:
             signup_form = SignupForm()
