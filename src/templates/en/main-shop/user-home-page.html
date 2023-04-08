@@ -88,11 +88,12 @@
 {% block content %}
 
 <!-- Order Details Modal-->
-<div class="modal fade" id="order_details">
+{% for order in orders %}
+<div class="modal fade" id="{{ order.order_ref }}_order_details">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Order No - 34VB5540K83</h5>
+          <h5 class="modal-title">Order No - {{ order.order_ref }}</h5>
           <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body pb-0">
@@ -175,6 +176,7 @@
       </div>
     </div>
 </div>
+{% endfor %}
 
 <div class="page-title-overlap bg-dark pt-4">
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
@@ -277,7 +279,7 @@
                     {% for order in orders %}
                       <tr>
                         <td class="py-3">
-                            <a class="nav-link-style fw-medium fs-sm" href="#order-details" data-bs-toggle="modal">{{ order.order_ref }}</a>
+                            <a class="nav-link-style fw-medium fs-sm" href="#{{ order.order_ref }}_order_details" data-bs-toggle="modal">{{ order.order_ref }}</a>
                         </td>
                         <td class="py-3">{{ order.created_at|date:"d/m/Y" }}</td>
                         <td class="py-3"><span class="badge bg-info m-0">{{ order.status }}</span></td>
