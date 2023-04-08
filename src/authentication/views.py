@@ -103,7 +103,6 @@ def edit_profile(request):
 
     if request.method == 'POST':
         signup_form = SignupForm(request.POST, instance=request.user)
-        signup_form = SignupForm()
         context = {
             'check': True,
             'signup_form': signup_form,
