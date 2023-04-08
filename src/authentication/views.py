@@ -58,10 +58,22 @@ def user_home_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
+    orders = request.user.order.all()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(orders, 4)
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
+
     direction = request.session.get('language')
     url = direction + "/main-shop/user-home-page.html"
 
     context = {
+        'orders': orders,
     }
     return render(request, url, context)
 

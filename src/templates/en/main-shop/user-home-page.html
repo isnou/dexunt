@@ -275,8 +275,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    {% if user.order.all.count %}
-                    {% for order in user.order.all %}
+                    {% for order in orders %}
                       <tr>
                         <td class="py-3">
                             <a class="nav-link-style fw-medium fs-sm" href="#order-details" data-bs-toggle="modal">{{ order.order_ref }}</a>
@@ -288,26 +287,51 @@
                         </td>
                       </tr>
                     {% endfor %}
-                    {% endif %}
                     </tbody>
                 </table>
             </div>
             <!-- Pagination-->
             <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
+
+                {% if orders.has_other_pages %}
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="account-orders.html#"><i class="ci-arrow-left me-2"></i>Prev</a></li>
+                    {% if orders.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ orders.previous_page_number }}">
+                            <i class="ci-arrow-left me-2"></i>Prev
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
+
                 <ul class="pagination">
-                    <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                    <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
-                    <li class="page-item d-none d-sm-block"><a class="page-link" href="account-orders.html#">2</a></li>
-                    <li class="page-item d-none d-sm-block"><a class="page-link" href="account-orders.html#">3</a></li>
-                    <li class="page-item d-none d-sm-block"><a class="page-link" href="account-orders.html#">4</a></li>
-                    <li class="page-item d-none d-sm-block"><a class="page-link" href="account-orders.html#">5</a></li>
+                    <li class="page-item d-sm-none">
+                        <span class="page-link page-link-static">{{ orders.number }} / {{ orders.paginator.num_pages }}</span>
+                    </li>
+                    {% for i in orders.paginator.page_range %}
+                    {% if orders.number == i %}
+                    <li class="page-item active d-none d-sm-block" aria-current="page">
+                        <span class="page-link">{{ i }}<span class="visually-hidden">(current)</span></span>
+                    </li>
+                    {% else %}
+                    <li class="page-item d-none d-sm-block">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
+
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="account-orders.html#" aria-label="Next">Next<i class="ci-arrow-right ms-2"></i></a></li>
+                    {% if orders.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ orders.next_page_number }}">Next
+                            <i class="ci-arrow-right ms-2"></i>
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
+                {% endif %}
+
             </nav>
         </section>
     </div>
