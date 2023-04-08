@@ -104,7 +104,8 @@ def edit_profile(request):
     if request.method == 'POST':
         signup_form = SignupForm(request.POST, instance=request.user)
         if signup_form.is_valid():
-            signup_form.save()
+            pass
+            # signup_form.save()
         else:
             signup_form = SignupForm()
             context = {
