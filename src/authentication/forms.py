@@ -12,22 +12,3 @@ class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = ('username', 'phone_number', 'first_name', 'last_name')
-
-class PasswordChangeCustomForm(PasswordChangeForm):
-    error_css_class = 'has-error'
-    error_messages = {'password_incorrect': "Password incorrect."}
-    old_password = CharField(required=True, label='Old Password',
-                             widget=PasswordInput(attrs={
-                                 'class': 'form-control'}),
-                             error_messages={
-                                 'required': 'Old password required'})
-    new_password1 = CharField(required=True, label='Password',
-                              widget=PasswordInput(attrs={
-                                  'class': 'form-control'}),
-                              error_messages={
-                                  'required': 'Password required'})
-    new_password2 = CharField(required=True, label='Password confirmation',
-                              widget=PasswordInput(attrs={
-                                  'class': 'form-control'}),
-                              error_messages={
-                                  'required': 'Confirmation required'})
