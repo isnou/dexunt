@@ -106,14 +106,12 @@ def edit_profile(request):
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
-            return redirect('account-profile-page')
-        else:
-            signup_form = SignupForm()
             context = {
                 'check': True,
                 'signup_form': signup_form,
             }
             return render(request, url, context)
+
 
 @login_required
 def change_password(request):
