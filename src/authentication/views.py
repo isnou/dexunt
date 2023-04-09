@@ -122,7 +122,7 @@ def change_password(request):
         request.session['language'] = 'en'
     direction = request.session.get('language')
     url = direction + "/main-shop/account/change-password.html"
-    
+
     change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
     if change_password_form.is_valid():
         change_password_form.save()
