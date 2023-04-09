@@ -172,9 +172,9 @@
                             <span class="badge bg-warning position-absolute end-0 mt-n2" data-bs-toggle="tooltip" title="Reward points">384</span>
                             -->
                             {% if user.profile_photo %}
-                            <img class="rounded" src="{% get_media_prefix %}{{ user.profile_photo }}" alt="{{ user.username }}">
+                            <img class="rounded" src="{% get_media_prefix %}{{ user.profile_photo }}" alt="{{ user.username }}" style="width: 80px;height: 90px;">
                             {% else %}
-                            <img class="rounded" src="{% static 'manager/media/svg/avatars/blank-dark.svg' %}" alt="no pictures">
+                            <img class="rounded" src="{% static 'manager/media/svg/avatars/blank-dark.svg' %}" alt="no pictures" style="width: 80px;height: 90px;">
                             {% endif %}
                         </div>
                         <div class="ps-md-3">
