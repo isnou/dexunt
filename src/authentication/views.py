@@ -118,12 +118,18 @@ def edit_profile(request):
 
 @login_required
 def change_password(request):
-   change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
-   if change_password_form.is_valid():
-     change_password_form.save()
-     update_session_auth_hash(request, change_password_form.user)
-     return redirect('account-profile-page')
-   return render(request, '/main-shop/account/change-password.html', {'change_password_form': change_password_form})
+    if not request.session.get('language', None):
+        request.session['language'] = 'en'
+    direction = request.session.get('language')
+    url = direction + "/main-shop/account/change-password.html"
+    
+    change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+    if change_password_form.is_valid():
+        change_password_form.save()
+        update_session_auth_hash(request, change_password_form.user)
+        return redirect('account-profile-page')
+
+    return render(request, url, {'change_password_form': change_password_form})
 
 def user_logout(request):
     logout(request)
