@@ -109,7 +109,7 @@ def edit_profile(request):
             return redirect('account-profile-page')
         else:
             context = {
-                'edit_profile_form': None,
+                'edit_profile_form': edit_profile_form,
             }
             return render(request, url, context)
 
