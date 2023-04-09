@@ -87,9 +87,9 @@ def account_profile_page(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/account/profile-page.html"
 
-    signup_form = UpdateProfileForm()
+    edit_profile_form = UpdateProfileForm()
     context = {
-        'signup_form': signup_form,
+        'edit_profile_form': edit_profile_form,
     }
     return render(request, url, context)
 
