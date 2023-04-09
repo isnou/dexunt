@@ -3,6 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from authentication.forms import LoginForm, SignupForm, UpdateProfileForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 from . import forms
 
 
@@ -112,29 +115,6 @@ def edit_profile(request):
                 'edit_profile_form': edit_profile_form,
             }
             return render(request, url, context)
-
-@login_required
-def edit_user(request):
-    if not request.session.get('language', None):
-        request.session['language'] = 'en'
-
-    direction = request.session.get('language')
-    url = direction + "/main-shop/account/change_password-page.html"
-
-    if request.method == 'POST':
-        signup_form = SignupForm(request.POST, instance=request.user)
-        if signup_form.is_valid():
-            user = signup_form.save()
-            login(request, user)
-            return redirect('account-orders-page')
-        else:
-            signup_form = SignupForm()
-            context = {
-                'signup_form': signup_form,
-            }
-            return render(request, url, context)
-
-
 
 def user_logout(request):
 

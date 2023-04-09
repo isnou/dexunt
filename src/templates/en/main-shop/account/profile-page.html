@@ -265,9 +265,6 @@
                     <strong>{{ value }}</strong>
                     {% endfor %}
                 </div>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             {% endif %}
 
@@ -286,12 +283,12 @@
                         <label class="form-label" for="{{ edit_profile_form.phone_number.name }}">{{ edit_profile_form.phone_number.label_tag }}</label>
                         <input class="form-control" type="tel" id="{{ edit_profile_form.phone_number.name }}" name="{{ edit_profile_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="0550-34-56-98">
                     </div>
-                    <!--
                     <div class="col-sm-6">
-                        <label class="form-label" for="{{ signup_form.username.name }}">{{ signup_form.username.label_tag }}</label>
-                        <input class="form-control" type="text" id="{{ signup_form.username.name }}" name="{{ signup_form.username.name }}" value="{{ user.username }}" maxlength="{{ signup_form.username.field.max_length }}" required>
-                        <div class="invalid-feedback">Please provide a valid username.</div>
+                        <label class="form-label" for="{{ edit_profile_form.username.name }}">{{ edit_profile_form.username.label_tag }}</label>
+                        <input class="form-control" type="text" id="{{ edit_profile_form.username.name }}" name="{{ edit_profile_form.username.name }}" value="{{ user.username }}" maxlength="{{ edit_profile_form.username.field.max_length }}" required>
+                        <div class="invalid-feedback">Please provide a username.</div>
                     </div>
+                    <!--
                     <div class="col-sm-6">
                         <label class="form-label" for="{{ signup_form.password1.name }}">{{ signup_form.password1.label_tag }}</label>
                         <div class="password-toggle">
