@@ -124,4 +124,4 @@ def user_logout(request):
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = '/main-shop/account/change_password.html'
     success_message = "Successfully Changed Your Password"
-    success_url = reverse_lazy('users-home')
+    success_url = reverse_lazy('edit_profile_form')
