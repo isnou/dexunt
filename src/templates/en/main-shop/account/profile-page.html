@@ -272,12 +272,11 @@
 
                     <input class="form-control" type="file" id="{{ edit_profile_photo_form.profile_photo.name }}" name="{{ edit_profile_photo_form.profile_photo.name }}" required>
 
-                    <button class="btn btn-secondary form-control mt-sm-0" type="submit">
+                    <button class="btn btn-secondary mt-sm-0" type="submit">
                         <i class="ci-check"></i>
                     </button>
+                    <div class="form-text mb-2">Upload JPG, GIF or PNG image. 300 x 300 required, once uploaded don't forget to validate</div>
                 </div>
-                <div class="form-text mb-2">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
-
             </form>
 
             {% if edit_profile_form.errors %}
