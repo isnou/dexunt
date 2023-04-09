@@ -28,9 +28,10 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         super().save()
 
-        img = Image.open(self.profile_photo.path)
+        if open(self.profile_photo.path):
+            img = Image.open(self.profile_photo.path)
+            if img.height > 200 or img.width > 200:
+                new_img = (200, 200)
+                img.thumbnail(new_img)
+                img.save(self.profile_photo.path)
 
-        if img.height > 200 or img.width > 200:
-            new_img = (200, 200)
-            img.thumbnail(new_img)
-            img.save(self.profile_photo.path)
