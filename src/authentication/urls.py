@@ -1,5 +1,5 @@
 from django.urls import path
-from users.views import ChangePasswordView
+from .views import ChangePasswordView
 from . import views
 
 urlpatterns = [
