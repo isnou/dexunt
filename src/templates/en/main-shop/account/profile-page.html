@@ -167,9 +167,15 @@
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
                 <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
                     <div class="d-md-flex align-items-center">
-                        <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;">
+                        <div class="img-thumbnail rounded position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;">
+                            <!--
                             <span class="badge bg-warning position-absolute end-0 mt-n2" data-bs-toggle="tooltip" title="Reward points">384</span>
-                            <img class="rounded-circle" src="{% get_media_prefix %}{{ user.profile_photo }}" alt="{{ user.username }}">
+                            -->
+                            {% if user.profile_photo %}
+                            <img class="rounded" src="{% get_media_prefix %}{{ user.profile_photo }}" alt="{{ user.username }}">
+                            {% else %}
+                            <img class="rounded" src="{% static 'manager/media/svg/avatars/blank-dark.svg' %}" alt="no pictures">
+                            {% endif %}
                         </div>
                         <div class="ps-md-3">
                             <h3 class="fs-base mb-0">
