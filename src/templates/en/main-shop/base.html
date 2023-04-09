@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{% static 'fontawesome/css/brands.css' %}"/>
     <link rel="stylesheet" href="{% static 'fontawesome/css/solid.css' %}"/>
 
+    <!-- Input Image CSS -->
+    <link href="{% static 'manager/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
+
     <meta charset="utf-8">
     {% block title %}{% endblock %}
     <!-- SEO Meta Tags-->
@@ -505,48 +508,52 @@
         </div>
       </div>
     </footer>
-    <!-- Toolbar for handheld devices (Default)-->
-    <div class="handheld-toolbar">
-      <div class="d-table table-layout-fixed w-100">
-        <a class="d-table-cell handheld-toolbar-item" href="account-wishlist.html">
-          <span class="handheld-toolbar-icon"><i class="ci-heart"></i></span>
-          <span class="handheld-toolbar-label">Wishlist</span>
-        </a>
-        <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)">
-          <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
-          <span class="handheld-toolbar-label">Menu</span>
-        </a>
-        {% if cart.product.all.count %}
-        <a class="d-table-cell handheld-toolbar-item" href="{% url 'cart-home' 'show_cart' %}">
-          <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
-            <span class="badge bg-primary rounded-pill ms-1">{{ cart.product.all.count }}</span>
-          </span>
-          <span class="handheld-toolbar-label">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span>
-        </a>
-        {% else %}
-        <a class="d-table-cell handheld-toolbar-item" href="#">
-          <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
-          </span>
-        </a>
-        {% endif %}
-      </div>
+  <!-- Toolbar for handheld devices (Default)-->
+  <div class="handheld-toolbar">
+    <div class="d-table table-layout-fixed w-100">
+      <a class="d-table-cell handheld-toolbar-item" href="account-wishlist.html">
+        <span class="handheld-toolbar-icon"><i class="ci-heart"></i></span>
+        <span class="handheld-toolbar-label">Wishlist</span>
+      </a>
+      <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)">
+        <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
+        <span class="handheld-toolbar-label">Menu</span>
+      </a>
+      {% if cart.product.all.count %}
+      <a class="d-table-cell handheld-toolbar-item" href="{% url 'cart-home' 'show_cart' %}">
+        <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
+          <span class="badge bg-primary rounded-pill ms-1">{{ cart.product.all.count }}</span>
+        </span>
+        <span class="handheld-toolbar-label">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span>
+      </a>
+      {% else %}
+      <a class="d-table-cell handheld-toolbar-item" href="#">
+        <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
+        </span>
+      </a>
+      {% endif %}
     </div>
-    <!-- Back To Top Button-->
-    <a class="btn-scroll-top" href="#top" data-scroll>
-      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
-      <i class="btn-scroll-top-icon ci-arrow-up"></i>
-    </a>
-    <!-- Vendor scripts: js libraries and plugins-->
-    <script src="{% static 'main-shop/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'main-shop/vendor/simplebar/dist/simplebar.min.js' %}"></script>
-    <script src="{% static 'main-shop/vendor/tiny-slider/dist/min/tiny-slider.js' %}"></script>
-    <script src="{% static 'main-shop/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
-    <script src="{% static 'main-shop/vendor/drift-zoom/dist/Drift.min.js' %}"></script>
-    <script src="{% static 'main-shop/vendor/lightgallery.js/dist/js/lightgallery.min.js' %}"></script>
-    <script src="{% static 'main-shop/vendor/lg-video.js/dist/lg-video.min.js' %}"></script>
-    <!-- Main theme script-->
+  </div>
+  <!-- Back To Top Button-->
+  <a class="btn-scroll-top" href="#top" data-scroll>
+    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+    <i class="btn-scroll-top-icon ci-arrow-up"></i>
+  </a>
+  <!-- Vendor scripts: js libraries and plugins-->
+  <script src="{% static 'main-shop/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/simplebar/dist/simplebar.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/tiny-slider/dist/min/tiny-slider.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/drift-zoom/dist/Drift.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/lightgallery.js/dist/js/lightgallery.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/lg-video.js/dist/lg-video.min.js' %}"></script>
+  <!-- Main theme script-->
   <script src="{% static 'main-shop/js/theme.min.js' %}"></script>
   <!-- HTMX -->
   <script src="{% static 'htmx/htmx.min.js' %}"></script>
+
+  <!-- Input Image Script -->
+  <script src="{% static 'manager/js/scripts.bundle.js' %}"></script>
+
   </body>
 </html>
