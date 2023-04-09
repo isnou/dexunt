@@ -24,13 +24,3 @@ class User(AbstractUser):
     server = models.ManyToManyField(Server, blank=True)
     wished_product = models.ManyToManyField(WishedProduct, blank=True)
     notified_product = models.ManyToManyField(NotifiedProduct, blank=True)
-
-    def save(self, *args, **kwargs):
-        super().save()
-
-        img = Image.open(self.profile_photo.path)
-
-        if img.height > 200 or img.width > 200:
-            new_img = (200, 200)
-            img.thumbnail(new_img)
-            img.save(self.profile_photo.path)
