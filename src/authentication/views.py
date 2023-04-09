@@ -102,20 +102,19 @@ def edit_profile(request):
     url = direction + "/main-shop/account/profile-page.html"
 
     if request.method == 'POST':
-        signup_form = UpdateProfileForm(request.POST, instance=request.user)
-        if signup_form.is_valid():
-            user = signup_form.save()
+        edit_profile_form = UpdateProfileForm(request.POST, instance=request.user)
+        if edit_profile_form.is_valid():
+            user = edit_profile_form.save()
             login(request, user)
             return redirect('account-profile-page')
         else:
-            signup_form = UpdateProfileForm()
             context = {
-                'signup_form': signup_form,
+                'edit_profile_form': None,
             }
             return render(request, url, context)
 
 @login_required
-def change_password(request):
+def edit_user(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 

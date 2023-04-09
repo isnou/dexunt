@@ -261,16 +261,16 @@
                 {% csrf_token %}
                 <div class="row gx-4 gy-3">
                     <div class="col-sm-6">
-                        <label class="form-label" for="{{ signup_form.first_name.name }}">{{ signup_form.first_name.label_tag }}</label>
-                        <input class="form-control" type="text" id="{{ signup_form.first_name.name }}" name="{{ signup_form.first_name.name }}" value="{{ user.first_name }}" placeholder="Benhamida">
+                        <label class="form-label" for="{{ edit_profile_form.first_name.name }}">{{ edit_profile_form.first_name.label_tag }}</label>
+                        <input class="form-control" type="text" id="{{ edit_profile_form.first_name.name }}" name="{{ edit_profile_form.first_name.name }}" value="{{ user.first_name }}" placeholder="Benhamida">
                     </div>
                     <div class="col-sm-6">
-                        <label class="form-label" for="{{ signup_form.last_name.name }}">{{ signup_form.last_name.label_tag }}</label>
-                        <input class="form-control" type="text" id="{{ signup_form.last_name.name }}" name="{{ signup_form.last_name.name }}" value="{{ user.last_name }}" placeholder="Riad">
+                        <label class="form-label" for="{{ edit_profile_form.last_name.name }}">{{ edit_profile_form.last_name.label_tag }}</label>
+                        <input class="form-control" type="text" id="{{ edit_profile_form.last_name.name }}" name="{{ edit_profile_form.last_name.name }}" value="{{ user.last_name }}" placeholder="Riad">
                     </div>
                     <div class="col-sm-6">
-                        <label class="form-label" for="{{ signup_form.phone_number.name }}">{{ signup_form.phone_number.label_tag }}</label>
-                        <input class="form-control" type="tel" id="{{ signup_form.phone_number.name }}" name="{{ signup_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="0550-34-56-98">
+                        <label class="form-label" for="{{ edit_profile_form.phone_number.name }}">{{ edit_profile_form.phone_number.label_tag }}</label>
+                        <input class="form-control" type="tel" id="{{ edit_profile_form.phone_number.name }}" name="{{ edit_profile_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="0550-34-56-98">
                     </div>
                     <!--
                     <div class="col-sm-6">
