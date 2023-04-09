@@ -269,13 +269,8 @@
             <form action="{% url 'edit-profile-photo' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="input-group">
-                    <div hidden>
-                        <input class="form-control" type="file" id="change_photo" name="{{ edit_profile_photo_form.profile_photo.name }}" required>
-                    </div>
 
-                    <button class="btn btn-secondary mt-3 mt-sm-0" href="#change_photo" >
-                        <i class="ci-edit"></i>
-                    </button>
+                    <input class="form-control" type="file" id="{{ edit_profile_photo_form.profile_photo.name }}" name="{{ edit_profile_photo_form.profile_photo.name }}" required>
 
                     <button class="btn btn-secondary mt-3 mt-sm-0" type="submit">
                         <i class="ci-check"></i>
