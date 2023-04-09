@@ -267,9 +267,16 @@
                 <div class="bg-secondary rounded-3 p-4 mb-4">
                     <div class="d-flex align-items-center">
                         <img class="rounded" src="{% get_media_prefix %}{{user.profile_photo}}" width="90" alt="{{user.username}}">
+
+
                         <div class="ps-3">
+                            <input type="file" class="file-drop-input">
+                            <button type="button" class="file-drop-btn btn btn-primary btn-sm">
+                                <i class="ci-edit me-2"></i>
+                            </button>
+
                             <button class="btn btn-light btn-shadow btn-sm mb-2" type="submit">
-                                <i class="ci-loading me-2"></i>Change avatar
+                                <i class="ci-loading me-2"></i>
                             </button>
                             <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
                         </div>
