@@ -25,4 +25,4 @@ class UpdateProfilePhotoForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = 'profile_photo'
+        fields = ['profile_photo']
