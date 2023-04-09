@@ -270,7 +270,7 @@
                 {% csrf_token %}
                 <div class="input-group">
 
-                    <input class="form-control" type="file" id="{{ edit_profile_photo_form.profile_photo.name }}" name="{{ edit_profile_photo_form.profile_photo.name }}" required>
+                    <input class="form-control" aria-label="hello" placeholder="hello" type="file" id="{{ edit_profile_photo_form.profile_photo.name }}" name="{{ edit_profile_photo_form.profile_photo.name }}" required>
 
                     <button class="btn btn-secondary mt-3 mt-sm-0" type="submit">
                         <i class="ci-check"></i>
