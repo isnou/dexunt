@@ -116,12 +116,10 @@ def edit_profile(request):
             }
             return render(request, url, context)
 
+def change_password(request):
+    return redirect('main-shop-home')
+
 def user_logout(request):
 
     logout(request)
     return redirect('main-shop-home')
-
-class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
-    template_name = '/main-shop/account/change_password.html'
-    success_message = "Successfully Changed Your Password"
-    success_url = reverse_lazy('users-home')
