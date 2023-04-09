@@ -1,4 +1,5 @@
 from django import forms
+from .models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import PasswordChangeForm
@@ -19,5 +20,5 @@ class UpdateProfileForm(UserCreationForm):
     last_name = forms.CharField(max_length=300, label='Last name')
     phone_number = PhoneNumberField(blank=True)
     class Meta:
-        model = get_user_model()
+        model = User
         fields = ('phone_number', 'first_name', 'last_name')
