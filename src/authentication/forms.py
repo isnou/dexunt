@@ -15,7 +15,7 @@ class SignupForm(UserCreationForm):
         model = get_user_model()
         fields = ('phone_number', 'first_name', 'last_name')
 
-class UpdateProfileForm(UserCreationForm):
+class UpdateProfileForm(forms.Form):
     class Meta:
         model = get_user_model()
         fields = ('phone_number', 'first_name', 'last_name')
