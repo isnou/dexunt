@@ -270,7 +270,7 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     <label class="form-label" for="{{ edit_profile_photo_form.profile_photo.name }}">Profile Photo</label>
-                    <input class="form-control" type="file" id="{{ edit_profile_photo_form.profile_photo.name }}" name="{{ edit_profile_photo_form.profile_photo.name }}">
+                    <input class="form-control" type="file" id="{{ edit_profile_photo_form.profile_photo.name }}" name="{{ edit_profile_photo_form.profile_photo.name }}" required>
                     <div class="form-text">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
                 </div>
 
