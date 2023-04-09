@@ -266,19 +266,12 @@
             </div>
             {% endif %}
 
-            <form action="{% url 'edit-profile-photo' %}" class="needs-validation" autocomplete="off" novalidate method="post">
-                <div class="bg-secondary rounded-3 p-4 mb-4">
-                    <div class="d-flex align-items-center">
-                        <div class="file-drop-area">
-                            <div class="file-drop-icon ci-cloud-upload"></div>
-                            <span class="file-drop-message">Drag and drop here to upload</span>
-                            <input type="file" class="file-drop-input">
-                        </div>
-
-                        <div class="ps-3">
-                            <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
-                        </div>
-                    </div>
+            <form action="{% url 'edit-profile-photo' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3 pb-2">
+                    <label class="form-label" for="edit_profile_photo_form.profile_photo.name">Profile Photo</label>
+                    <input class="form-control" type="file" id="edit_profile_photo_form.profile_photo.name" name="edit_profile_photo_form.profile_photo.name">
+                    <div class="form-text">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
                 </div>
             </form>
 
