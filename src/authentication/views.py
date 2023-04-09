@@ -3,10 +3,10 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from authentication.forms import LoginForm, SignupForm, UpdateProfileForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.urls import reverse_lazy
-from django.contrib.auth.views import PasswordChangeView
-from django.contrib.messages.views import SuccessMessageMixin
 from . import forms
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
 
 
 def login_page(request):
@@ -116,12 +116,15 @@ def edit_profile(request):
             }
             return render(request, url, context)
 
-def user_logout(request):
+@login_required
+def change_password(request):
+   change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+   if change_password_form.is_valid():
+     change_password_form.save()
+     update_session_auth_hash(request, change_password_form.user)
+     return redirect('account-profile-page')
+   return render(request, '/main-shop/account/change-password.html', {'change_password_form': change_password_form})
 
+def user_logout(request):
     logout(request)
     return redirect('main-shop-home')
-
-class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
-    template_name = '/main-shop/account/change_password.html'
-    success_message = "Successfully Changed Your Password"
-    success_url = reverse_lazy('edit_profile_form')
