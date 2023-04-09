@@ -136,7 +136,7 @@ def edit_profile_photo(request):
         if edit_profile_photo_form.is_valid():
             user = edit_profile_photo_form.save()
             login(request, user)
-            return redirect('account-profile-page')
+            return redirect('account-orders-page')
         else:
             context = {
                 'edit_profile_photo_form': edit_profile_photo_form,
