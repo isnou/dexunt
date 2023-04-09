@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from authentication.forms import LoginForm, SignupForm, UpdateProfileForm
+from authentication.forms import LoginForm, SignupForm, UpdateProfileForm, UpdateProfilePhotoForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
 from django.contrib.auth.forms import PasswordChangeForm
@@ -91,7 +91,9 @@ def account_profile_page(request):
     url = direction + "/main-shop/account/profile-page.html"
 
     edit_profile_form = UpdateProfileForm()
+    edit_profile_photo_form = UpdateProfilePhotoForm()
     context = {
+        'edit_profile_photo_form': edit_profile_photo_form,
         'edit_profile_form': edit_profile_form,
     }
     return render(request, url, context)
@@ -104,6 +106,8 @@ def edit_profile(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/account/profile-page.html"
 
+    edit_profile_photo_form = UpdateProfilePhotoForm()
+
     if request.method == 'POST':
         edit_profile_form = UpdateProfileForm(request.POST, instance=request.user)
         if edit_profile_form.is_valid():
@@ -112,6 +116,30 @@ def edit_profile(request):
             return redirect('account-profile-page')
         else:
             context = {
+                'edit_profile_photo_form': edit_profile_photo_form,
+                'edit_profile_form': edit_profile_form,
+            }
+            return render(request, url, context)
+
+@login_required
+def edit_profile_photo(request):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en'
+
+    direction = request.session.get('language')
+    url = direction + "/main-shop/account/profile-page.html"
+
+    edit_profile_form = UpdateProfileForm()
+
+    if request.method == 'POST':
+        edit_profile_photo_form = UpdateProfilePhotoForm(request.POST, request.FILES, instance=request.user)
+        if edit_profile_photo_form.is_valid():
+            user = edit_profile_photo_form.save()
+            login(request, user)
+            return redirect('account-profile-page')
+        else:
+            context = {
+                'edit_profile_photo_form': edit_profile_photo_form,
                 'edit_profile_form': edit_profile_form,
             }
             return render(request, url, context)

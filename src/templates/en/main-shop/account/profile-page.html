@@ -249,18 +249,37 @@
             </div>
             <!-- Profile form-->
 
-              <div class="bg-secondary rounded-3 p-4 mb-4">
-                <div class="d-flex align-items-center"><img class="rounded" src="img/shop/account/avatar.jpg" width="90" alt="Susan Gardner">
-                  <div class="ps-3">
-                    <button class="btn btn-light btn-shadow btn-sm mb-2" type="button"><i class="ci-loading me-2"></i>Change avatar</button>
-                    <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
-                  </div>
+
+            {% if edit_profile_photo_form.errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="profile_photo_form_errors">
+                    {% for key, value in edit_profile_photo_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                    {% endfor %}
                 </div>
-              </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+
+            <form action="{% url 'edit-profile-photo' %}" class="needs-validation" autocomplete="off" novalidate method="post">
+                <div class="bg-secondary rounded-3 p-4 mb-4">
+                    <div class="d-flex align-items-center">
+                        <img class="rounded" src="{% get_media_prefix %}{{user.profile_photo}}" width="90" alt="{{user.username}}">
+                        <div class="ps-3">
+                            <button class="btn btn-light btn-shadow btn-sm mb-2" type="submit">
+                                <i class="ci-loading me-2"></i>Change avatar
+                            </button>
+                            <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
             {% if edit_profile_form.errors %}
             <div class="alert alert-danger alert-dismissible" role="alert">
-                <div id="form_errors">
+                <div id="profile_form_errors">
                     {% for key, value in edit_profile_form.errors.items %}
                     <strong>{{ value }}</strong>
                     {% endfor %}
