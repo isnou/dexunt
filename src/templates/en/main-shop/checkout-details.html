@@ -102,7 +102,11 @@
                         <div class="mb-3">
                             <label class="form-label">Name</label>
                             {% if user.is_authenticated %}
+                            {% if user.last_name %}
                             <input class="form-control" type="text" name="client_name" value="{{ user.last_name }}">
+                            {% else %}
+                            <input class="form-control" type="text" name="client_name" value="{{ user.username }}">
+                            {% endif %}
                             {% else %}
                             <input class="form-control" type="text" name="client_name">
                             {% endif %}
