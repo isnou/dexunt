@@ -100,15 +100,23 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="mb-3">
-                            <label class="form-label" for="checkout-fn">Name</label>
-                            <input class="form-control" type="text" name="client_name" id="checkout-fn">
+                            <label class="form-label">Name</label>
+                            {% if user.is_authenticated %}
+                            <input class="form-control" type="text" name="client_name" value="{{ user.last_name }}">
+                            {% else %}
+                            <input class="form-control" type="text" name="client_name">
+                            {% endif %}
                         </div>
                     </div>
 
                     <div class="col-sm-6">
                         <div class="mb-3">
-                            <label class="form-label" for="checkout-phone">Phone Number</label>
-                            <input class="form-control" type="tel" name="phone_number" id="checkout-phone" placeholder="Ex: 0540 20 26 21" required>
+                            <label class="form-label">Phone Number</label>
+                            {% if user.is_authenticated %}
+                            <input class="form-control" type="tel" name="phone_number" value="{{ user.phone_number }}" required>
+                            {% else %}
+                            <input class="form-control" type="tel" name="phone_number" placeholder="Ex: 0540 20 26 21" required>
+                            {% endif %}
                             <div class="invalid-feedback">Please provide a phone number !</div>
                         </div>
                     </div>
