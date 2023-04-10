@@ -117,7 +117,11 @@
                         <div class="mb-3">
                             <label class="form-label">Phone Number</label>
                             {% if user.is_authenticated %}
+                            {% if user.phone_number %}
                             <input class="form-control" type="tel" name="phone_number" value="{{ user.phone_number }}" required>
+                            {% else %}
+                            <input class="form-control" type="tel" name="phone_number" placeholder="Ex: 0540 20 26 21" required>
+                            {% endif %}
                             {% else %}
                             <input class="form-control" type="tel" name="phone_number" placeholder="Ex: 0540 20 26 21" required>
                             {% endif %}
