@@ -134,7 +134,7 @@ class WishedProduct(models.Model):
     def __str__(self):
         return self.en_name
 
-class NotifiedProduct(models.Model):
+class BookedProduct(models.Model):
     # --------------------------------- media --------------------------------------------------
     thumb = models.ImageField(upload_to='main-shop/wished-products/thumb', blank=True, null=True)
     # --------------------------------- info ---------------------------------------------------
@@ -152,7 +152,7 @@ class NotifiedProduct(models.Model):
     en_detail = models.CharField(max_length=300, blank=True, null=True)
     fr_detail = models.CharField(max_length=300, blank=True, null=True)
     ar_detail = models.CharField(max_length=300, blank=True, null=True)
-    available = models.BooleanField(default=False)
+    arrived = models.BooleanField(default=False)
 
     def __str__(self):
         return self.en_name

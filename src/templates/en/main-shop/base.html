@@ -218,8 +218,8 @@
                 <li>
                   <a class="dropdown-item" href="#">
                     <i class="ci-bell text-muted me-2"></i>Notifications
-                    {% if user.notified_product.all.count %}
-                    ({{ user.notified_product.all.count }})
+                    {% if user.arrived_product.all.count %}
+                    ({{ user.arrived_product.all.count }})
                     {% endif %}
                   </a>
                 </li>
@@ -247,8 +247,8 @@
               {% if user.is_authenticated %}
               <a class="topbar-link d-none d-md-inline-block" href="#">
                 <i class="ci-bell mt-n1"></i>Notifications
-                {% if user.notified_product.all.count %}
-                ({{ user.notified_product.all.count }})
+                {% if user.booked_product.all.count %}
+                ({{ user.booked_product.all.count }})
                 {% endif %}
               </a>
               <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#">
