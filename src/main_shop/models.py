@@ -136,7 +136,7 @@ class WishedProduct(models.Model):
 
 class BookedProduct(models.Model):
     # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='main-shop/wished-products/thumb', blank=True, null=True)
+    thumb = models.ImageField(upload_to='main-shop/booked-products/thumb', blank=True, null=True)
     # --------------------------------- info ---------------------------------------------------
     product_sku = models.CharField(max_length=30, blank=True, null=True)
     size_sku = models.CharField(max_length=30, blank=True, null=True)
