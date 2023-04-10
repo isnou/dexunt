@@ -24,7 +24,6 @@ class User(AbstractUser):
     server = models.ManyToManyField(Server, blank=True)
     wished_product = models.ManyToManyField(WishedProduct, blank=True)
     booked_product = models.ManyToManyField(BookedProduct, blank=True)
-    arrived_product = models.ManyToManyField(ArrivedProduct, blank=True)
 
 
     def save(self, *args, **kwargs):
