@@ -248,9 +248,11 @@
                 {% else %}
                 <div>
                     <div class="card border-0 shadow card-static" style="text-align: -webkit-center;">
+                        <!--
                         <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist">
                             <i class="ci-heart"></i>
                         </button>
+                        -->
                         <a class="card-img-top d-block overflow-hidden" href="#">
                             <img src="{% get_media_prefix %}{{product.album.all.0.image}}" style="width: auto;height: 220px;">
                         </a>
@@ -277,7 +279,6 @@
                 </div>
                 {% endif %}
                 <!-- Product-->
-
                 {% endfor %}
             </div>
         </div>
