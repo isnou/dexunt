@@ -2,7 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
 from sell_manager.models import Order, UserCart
-from main_shop.models import WishedProduct, NotifiedProduct, Server
+from main_shop.models import WishedProduct, Server, BookedProduct
 from PIL import Image
 
 
@@ -23,7 +23,8 @@ class User(AbstractUser):
     cart = models.ManyToManyField(UserCart, blank=True)
     server = models.ManyToManyField(Server, blank=True)
     wished_product = models.ManyToManyField(WishedProduct, blank=True)
-    notified_product = models.ManyToManyField(NotifiedProduct, blank=True)
+    booked_product = models.ManyToManyField(BookedProduct, blank=True)
+
 
     def save(self, *args, **kwargs):
         super().save()
