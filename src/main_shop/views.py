@@ -5,7 +5,7 @@ from sell_manager.models import Cart, Province
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 
-from .models import Showcase
+from .models import Showcase, Wished, Booked
 from . import grid_shop_actions
 from add_ons import functions
 
@@ -113,5 +113,57 @@ def grid_shop(request, action, ref):
     return render(request, url, context)
 
 
-def product_to_book():
-    return None
+def book_it(request, sku, size_sku):
+    if request.user.is_authenticated:
+        user = request.user
+        selected_product = Product.objects.all().get(sku=sku)
+
+        if not size_sku == 'main':
+            selected_size = selected_product.size.all().get(sku=size_sku)
+            if selected_size.show_thumb:
+                product_to_book = Booked(thumb = selected_size.thumb,
+                                         product_sku = selected_product.sku,
+                                         size_sku = selected_size.sku,
+                                         en_name = selected_product.en_title,
+                                         fr_name = selected_product.fr_title,
+                                         ar_name = selected_product.ar_title,
+                                         en_spec = selected_product.en_spec,
+                                         fr_spec = selected_product.fr_spec,
+                                         ar_spec = selected_product.ar_spec,
+                                         en_detail = selected_size.en_title,
+                                         fr_detail = selected_size.fr_title,
+                                         ar_detail = selected_size.ar_title,
+                                         )
+                product_to_book.save()
+            else:
+                product_to_book = Booked(thumb = selected_product.album.all()[:1].get().image,
+                                         product_sku = selected_product.sku,
+                                         size_sku = selected_size.sku,
+                                         en_name = selected_product.en_title,
+                                         fr_name = selected_product.fr_title,
+                                         ar_name = selected_product.ar_title,
+                                         en_spec = selected_product.en_spec,
+                                         fr_spec = selected_product.fr_spec,
+                                         ar_spec = selected_product.ar_spec,
+                                         en_detail = selected_size.en_title,
+                                         fr_detail = selected_size.fr_title,
+                                         ar_detail = selected_size.ar_title,
+                                         )
+                product_to_book.save()
+        else:
+            product_to_book = Booked(thumb=selected_product.album.all()[:1].get().image,
+                                     product_sku=selected_product.sku,
+                                     size_sku=selected_product.sku,
+                                     en_name=selected_product.en_title,
+                                     fr_name=selected_product.fr_title,
+                                     ar_name=selected_product.ar_title,
+                                     en_spec=selected_product.en_spec,
+                                     fr_spec=selected_product.fr_spec,
+                                     ar_spec=selected_product.ar_spec,
+                                     )
+            product_to_book.save()
+        user.booked.add(product_to_book)
+        return redirect('product' 'sku' 'size_sku')
+
+    else:
+        return redirect ('login-page')
