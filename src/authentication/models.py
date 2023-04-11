@@ -23,7 +23,7 @@ class User(AbstractUser):
     cart = models.ManyToManyField(UserCart, blank=True)
     server = models.ManyToManyField(Server, blank=True)
     wished_product = models.ManyToManyField(WishedProduct, blank=True)
-#    booked_product = models.ManyToManyField(BookedProduct, blank=True)
+    booked_product = models.ManyToManyField(BookedProduct, blank=True)
 
 
     def save(self, *args, **kwargs):
