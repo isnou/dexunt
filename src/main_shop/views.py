@@ -114,4 +114,4 @@ def grid_shop(request, action, ref):
 
 
 def book_product():
-    
+    return None
