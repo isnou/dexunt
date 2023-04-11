@@ -113,5 +113,5 @@ def grid_shop(request, action, ref):
     return render(request, url, context)
 
 
-def book_product():
+def product_to_book():
     return None
