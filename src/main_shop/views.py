@@ -194,7 +194,7 @@ def wish_it(request, sku, size_sku):
         if not size_sku == 'main':
             selected_size = selected_product.size.all().get(sku=size_sku)
             if selected_size.show_thumb:
-                product_to_book = Booked(thumb = selected_size.thumb,
+                wished_product = Wished(thumb = selected_size.thumb,
                                          product_sku = selected_product.sku,
                                          size_sku = selected_size.sku,
                                          en_name = selected_product.en_title,
@@ -207,9 +207,9 @@ def wish_it(request, sku, size_sku):
                                          fr_detail = selected_size.fr_title,
                                          ar_detail = selected_size.ar_title,
                                          )
-                product_to_book.save()
+                wished_product.save()
             else:
-                product_to_book = Booked(thumb = selected_product.album.all()[:1].get().image,
+                wished_product = Wished(thumb = selected_product.album.all()[:1].get().image,
                                          product_sku = selected_product.sku,
                                          size_sku = selected_size.sku,
                                          en_name = selected_product.en_title,
@@ -222,9 +222,9 @@ def wish_it(request, sku, size_sku):
                                          fr_detail = selected_size.fr_title,
                                          ar_detail = selected_size.ar_title,
                                          )
-                product_to_book.save()
+                wished_product.save()
         else:
-            product_to_book = Booked(thumb=selected_product.album.all()[:1].get().image,
+            wished_product = Wished(thumb=selected_product.album.all()[:1].get().image,
                                      product_sku=selected_product.sku,
                                      size_sku=selected_product.sku,
                                      en_name=selected_product.en_title,
@@ -234,9 +234,9 @@ def wish_it(request, sku, size_sku):
                                      fr_spec=selected_product.fr_spec,
                                      ar_spec=selected_product.ar_spec,
                                      )
-            product_to_book.save()
-        if not user.wished.filter(product_sku=product_to_book.product_sku).exists():
-            user.wished.add(product_to_book)
+            wished_product.save()
+        if not user.wished.filter(product_sku=wished_product.product_sku).exists():
+            user.wished.add(wished_product)
             request.session['wish_it_message'] = 'success'
         else:
             request.session['wish_it_message'] = 'exists'
