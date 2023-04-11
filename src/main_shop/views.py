@@ -43,6 +43,7 @@ def product(request, sku, size_sku):
 
     if request.session.get('book_it_message', None):
         book_it_message = request.session.get('book_it_message')
+        request.session['book_it_message'] = None
     else:
         book_it_message = None
 
