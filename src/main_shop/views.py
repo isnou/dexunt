@@ -172,7 +172,7 @@ def book_it(request, sku, size_sku):
         else:
             request.session['book_it_message'] = 'exists'
 
-        return redirect('product' ,sku ,size_sku)
+        return redirect('single-product' ,sku ,size_sku)
 
     else:
         return redirect ('login-page')
