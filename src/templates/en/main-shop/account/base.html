@@ -279,19 +279,7 @@
                 <img src="{% static 'main-shop/logos/favicon-45x27.png' %}" width="40" alt="Dexunt">
               </a>
               <!--end mobile logo-->
-              <!--desktop search-->
-              <div class="input-group d-none d-lg-flex flex-nowrap mx-4"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
-                <!--category select-->
-                <select class="form-select flex-shrink-0" style="width: 10.5rem;">
-                  <option>Departments</option>
-                  {% for department in departments %}
-                  <option>{{ department.en_title }}</option>
-                  {% endfor %}
-                </select>
-                <!--end category select-->
-              </div>
-              <!--end desktop search-->
+
               <!--toolbar-->
               <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
                 <!--signin & signup-->
@@ -310,76 +298,6 @@
                 <!--end cart-->
               </div>
               <!--end toolbar-->
-            </div>
-          </div>
-          <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-0">
-            <div class="container">
-              <div class="collapse navbar-collapse" id="navbarCollapse">
-                <!--mobile search-->
-                <div class="input-group d-lg-none my-3"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                  <input class="form-control rounded-start" type="text" placeholder="Search for products">
-                </div>
-                <!--end mobile search-->
-                <!--departments menu-->
-                <ul class="navbar-nav navbar-mega-nav">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="home-electronics-store.html#" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ci-menu align-middle mt-n1 me-2"></i>Departments</a>
-                    <ul class="dropdown-menu">
-                      {% for department in departments %}
-                      <!--dropdown menu-->
-                      <li class="dropdown mega-dropdown">
-                        <!--dropdown menu title-->
-                        <a class="dropdown-item" href="home-electronics-store.html#" data-bs-toggle="dropdown">
-                          <i class="{{ department.icon_code }}"></i> {{ department.en_title|title }}
-                        </a>
-                        <!--end dropdown menu title-->
-                        <!--dropdown menu items-->
-                        <div class="dropdown-menu p-0">
-                          <div class="d-flex flex-wrap flex-sm-nowrap px-2">
-                            {% for directory in department.directory.all %}
-                            <div class="mega-dropdown-column pt-4 pb-0 py-sm-4 px-3">
-                              <div class="widget widget-links">
-                                <h6 class="fs-base mb-3">{{ directory.en_title|title }}</h6>
-                                <ul class="widget-list">
-                                  {% for category in directory.category.all %}
-                                  <li class="widget-list-item pb-1">
-                                    <a class="widget-list-link" href="home-electronics-store.html#">{{ category.en_title|title }}</a>
-                                  </li>
-                                  {% endfor %}
-                                </ul>
-                              </div>
-                            </div>
-                            {% endfor %}
-                            <div class="mega-dropdown-column d-none d-lg-block py-4 text-center">
-                              <a class="d-block mb-2" href="{{ department.offer_link }}">
-                                <img src="{% get_media_prefix %}{{ department.thumb }}" style="width: auto;height: 140px;">
-                              </a>
-                              <div class="fs-sm mb-3">{{ department.offer_en_title }}
-                                <span class='fw-medium'>{{ department.offer_price|floatformat:"2g" }}<small>DA</small></span>
-                              </div>
-                              <a class="btn btn-primary btn-shadow btn-sm" href="{{ department.offer_link }}">See offers
-                                <i class="ci-arrow-right fs-xs ms-1"></i>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!--end dropdown menu items-->
-                      </li>
-                      <!--end dropdown menu-->
-                      {% endfor %}
-                    </ul>
-                  </li>
-                </ul>
-                <!--end departments menu-->
-                <!--primary menu-->
-                <ul class="navbar-nav">
-                  <a class="nav-link" href="#"><i class="ci-gift mt-n1" style="margin-right: 5px;"></i>Gift Cards</a>
-                  <a class="nav-link" href="#"><i class="ci-money-bag mt-n1" style="margin-right: 5px;"></i>Earn With Us</a>
-                  <a class="nav-link" href="#"><i class="ci-tag mt-n1" style="margin-right: 5px;"></i>Coupons</a>
-                  <a class="nav-link" href="#"><i class="ci-cashier mt-n1" style="margin-right: 5px;"></i>Seller</a>
-                </ul>
-                <!--end primary menu-->
-              </div>
             </div>
           </div>
         </div>
