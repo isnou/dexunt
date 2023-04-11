@@ -134,29 +134,6 @@ class WishedProduct(models.Model):
     def __str__(self):
         return self.en_name
 
-class BookedProduct(models.Model):
-    # --------------------------------- media --------------------------------------------------
-    thumb = models.ImageField(upload_to='main-shop/wished-products/thumb', blank=True, null=True)
-    # --------------------------------- info ---------------------------------------------------
-    product_sku = models.CharField(max_length=30, blank=True, null=True)
-    size_sku = models.CharField(max_length=30, blank=True, null=True)
-
-    en_name = models.CharField(max_length=300, blank=True, null=True)
-    fr_name = models.CharField(max_length=300, blank=True, null=True)
-    ar_name = models.CharField(max_length=300, blank=True, null=True)
-
-    en_spec = models.CharField(max_length=300, blank=True, null=True)
-    fr_spec = models.CharField(max_length=300, blank=True, null=True)
-    ar_spec = models.CharField(max_length=300, blank=True, null=True)
-
-    en_detail = models.CharField(max_length=300, blank=True, null=True)
-    fr_detail = models.CharField(max_length=300, blank=True, null=True)
-    ar_detail = models.CharField(max_length=300, blank=True, null=True)
-    available = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.en_name
-
 class Server(models.Model):
     # --------------------------------- technical informations ---------------------------------
     created_at = models.DateTimeField(auto_now_add=True)
