@@ -1,0 +1,585 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'fontawesome/css/fontawesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fontawesome/css/brands.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fontawesome/css/solid.css' %}"/>
+
+    <meta charset="utf-8">
+    {% block title %}{% endblock %}
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Dexunt - Online Shopping Gifts & Deco">
+    <meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'main-shop/logos/favicon-260x155.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'main-shop/logos/favicon-60x36.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'main-shop/logos/favicon-45x27.png' %}">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#fe6a6a" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+    <link rel="stylesheet" media="screen" href="{% static 'main-shop/vendor/simplebar/dist/simplebar.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'main-shop/vendor/tiny-slider/dist/tiny-slider.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'main-shop/vendor/drift-zoom/dist/drift-basic.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'main-shop/vendor/lightgallery/css/lightgallery-bundle.min.css' %}">
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'main-shop/css/theme.min.css' %}">
+    <!-- Google Tag Manager-->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WKV3GT5');
+    </script>
+
+    <!--
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script>
+       $(document).ready(function(){
+            $('#modal_name').modal('show');
+        });
+  </script>
+      -->
+  </head>
+  <!-- Body-->
+
+  <body class="handheld-toolbar-enabled">
+    <!-- Google Tag Manager (noscript)-->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+    </noscript>
+
+
+
+  <!-- Sign in / sign up modal-->
+    <div class="modal fade" id="signin_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary">
+            <ul class="nav nav-tabs card-header-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link fw-medium active" href="#signin_tab" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="#signup_tab" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a></li>
+            </ul>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body tab-content py-4">
+            <!-- sign in -->
+            <form action="{% url 'login-page' %}" class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin_tab" method="post">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label" for="{{ login_form.username.name }}">{{ login_form.username.label_tag }}</label>
+                <input class="form-control" type="text" id="{{ login_form.username.name }}" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" required>
+                <div class="invalid-feedback">Please provide a valid username.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="{{ login_form.password.name }}">{{ login_form.password.label_tag }}</label>
+                <div class="password-toggle">
+                  <input class="form-control" type="password" id="{{ login_form.password.name }}" name="{{ login_form.password.name }}" maxlength="{{ login_form.password.field.max_length }}" required>
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="mb-3 d-flex flex-wrap justify-content-between">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="signin_remember" name="signin_remember">
+                  <label class="form-check-label" for="signin_remember">Remember me</label>
+                </div><a class="fs-sm" href="#">Forgot password?</a>
+              </div>
+              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign in</button>
+            </form>
+            <!-- end sign in -->
+
+            <!-- sign up -->
+            <form action="{% url 'signup-page' %}" class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup_tab" method="post">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label" for="{{ signup_form.first_name.name }}">{{ signup_form.first_name.label_tag }}</label>
+                <input class="form-control" type="text" id="{{ signup_form.first_name.name }}" name="{{ signup_form.first_name.name }}" placeholder="Benhamida Riad">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="{{ signup_form.last_name.name }}">{{ signup_form.last_name.label_tag }}</label>
+                <input class="form-control" type="text" id="{{ signup_form.last_name.name }}" name="{{ signup_form.last_name.name }}" placeholder="Benhamida Riad">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="{{ signup_form.phone_number.name }}">{{ signup_form.phone_number.label_tag }}</label>
+                <input class="form-control" type="tel" id="{{ signup_form.phone_number.name }}" name="{{ signup_form.phone_number.name }}" placeholder="0550-34-56-98">
+                <div class="invalid-feedback">Please provide a valid phone number.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="{{ signup_form.username.name }}">{{ signup_form.username.label_tag }}</label>
+                <input class="form-control" type="text" id="{{ signup_form.username.name }}" name="{{ signup_form.username.name }}" maxlength="{{ signup_form.username.field.max_length }}" required>
+                <div class="invalid-feedback">Please provide a valid username.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="{{ signup_form.password1.name }}">{{ signup_form.password1.label_tag }}</label>
+                <div class="password-toggle">
+                  <input class="form-control" type="password" id="{{ signup_form.password1.name }}" name="{{ signup_form.password1.name }}" required>
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="{{ signup_form.password2.name }}">{{ signup_form.password2.label_tag }}</label>
+                <div class="password-toggle">
+                  <input class="form-control" type="password" id="{{ signup_form.password2.name }}" name="{{ signup_form.password2.name }}" required>
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign up</button>
+            </form>
+            <!-- end sign up -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Order tracking modal-->
+    <div class="modal fade" id="order_tracking_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary">
+            <div class="text-center">
+              <h5> <i class="ci-location mt-n1 me-3"></i>Order Tracking </h5>
+            </div>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body tab-content py-4">
+            <form class="needs-validation" action="{% url 'track-order' 'regular' %}" method="post" autocomplete="off" novalidate >
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label" for="order_ref">Order Reference</label>
+                <div class="">
+                  <input class="form-control" type="text" name="order_ref" id="order_ref" required>
+                  <div class="invalid-feedback">Please provide a valid reference.</div>
+                </div>
+              </div>
+              <div class="mb-3 d-flex flex-wrap justify-content-between">
+                <div class="form-check mb-2">
+                </div>
+                <a class="fs-sm" href="home-electronics-store.html#">Forgot reference ?</a>
+              </div>
+              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Check</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main class="page-wrapper">
+      <!-- Navbar Electronics Store-->
+      <header class="shadow-sm">
+        <!-- Topbar-->
+        <div class="topbar topbar-dark bg-dark">
+          <div class="container">
+            <div>
+              <!--language select-->
+              <div class="topbar-text dropdown disable-autohide">
+                <a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                  <img class="me-2" src="{% static 'main-shop/img/flags/en.png' %}" width="20" alt="English">
+                </a>
+                <ul class="dropdown-menu my-1">
+                  <li>
+                    <a class="dropdown-item pb-1" href="{% url 'change-language' 'fr' %}">
+                      <img class="me-2" src="{% static 'main-shop/img/flags/fr.png' %}" width="20" alt="Frensh">Français
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item pb-1" href="{% url 'change-language' 'ar' %}">
+                      <img class="me-2" src="{% static 'main-shop/img/flags/ar.png' %}" width="20" alt="Arabic">العربية
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!--end language select-->
+              <!-- hotline -->
+              <div class="topbar-text text-nowrap d-none d-md-inline-block border-start border-light ps-3 ms-3">
+                <span class="text-muted me-1">Available 24/7 at</span>
+                <a class="topbar-link" href="tel:00331697720">(00) 33 169 7720</a>
+              </div>
+              <!-- end hotline -->
+            </div>
+            <!--mobile top-bar-->
+            <div class="topbar-text dropdown d-md-none ms-auto">
+              <a class="topbar-link" href="home-electronics-store.html#" data-bs-toggle="dropdown">
+                <i class="ci-menu-circle text-muted me-2"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                {% if user.is_authenticated %}
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <i class="ci-bell text-muted me-2"></i>Notifications
+                    {% if user.arrived_product.all.count %}
+                    ({{ user.arrived_product.all.count }})
+                    {% endif %}
+                  </a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <i class="ci-heart text-muted me-2"></i>Wishlist
+                    {% if user.wished_product.all.count %}
+                    ({{ user.wished_product.all.count }})
+                    {% endif %}
+                  </a>
+                </li>
+                {% endif %}
+
+                <li>
+                  <a class="dropdown-item" href="#order_tracking_modal" data-bs-toggle="modal">
+                    <i class="ci-location text-muted me-2"></i>Order tracking
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!--end mobile top-bar-->
+            <!--desktop top-bar-->
+            <div class="d-none d-md-block ms-3 text-nowrap">
+              {% if user.is_authenticated %}
+              <a class="topbar-link d-none d-md-inline-block" href="#">
+                <i class="ci-book mt-n1"></i>Booked
+                {% if user.booked.all.count %}
+                ({{ user.booked.all.count }})
+                {% endif %}
+              </a>
+              <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#">
+                <i class="ci-heart mt-n1"></i>Wishlist
+                {% if user.wished.all.count %}
+                ({{ user.wished.all.count }})
+                {% endif %}
+              </a>
+              {% endif %}
+
+              <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#order_tracking_modal" data-bs-toggle="modal">
+                <i class="ci-location mt-n1"></i>Order tracking
+              </a>
+            </div>
+            <!--end desktop top-bar-->
+          </div>
+        </div>
+        <!--navbar-->
+        <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+        <div class="navbar-sticky bg-light">
+          <div class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+              <!--desktop logo-->
+              <a class="navbar-brand d-none d-sm-block me-3 flex-shrink-0" href="{% url 'main-shop-home' %}">
+                <img src="{% static 'main-shop/logos/favicon-60x36.png' %}" width="50" alt="Dexunt">
+              </a>
+              <!--end desktop logo-->
+              <!--mobile logo-->
+              <a class="navbar-brand d-sm-none me-2" href="{% url 'main-shop-home' %}">
+                <img src="{% static 'main-shop/logos/favicon-45x27.png' %}" width="40" alt="Dexunt">
+              </a>
+              <!--end mobile logo-->
+              <!--desktop search-->
+              <div class="input-group d-none d-lg-flex flex-nowrap mx-4"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
+                <!--category select-->
+                <select class="form-select flex-shrink-0" style="width: 10.5rem;">
+                  <option>Departments</option>
+                  {% for department in departments %}
+                  <option>{{ department.en_title }}</option>
+                  {% endfor %}
+                </select>
+                <!--end category select-->
+              </div>
+              <!--end desktop search-->
+              <!--toolbar-->
+              <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+                <!--signin & signup-->
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-tool navbar-stuck-toggler" href="home-electronics-store.html#">
+                  <span class="navbar-tool-tooltip">Toggle menu</span>
+                  <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div>
+                </a>
+                {% block user_button %}{% endblock %}
+                <!--end signin & signup-->
+                <!--cart-->
+                {% block cart %}{% endblock %}
+                <!--end cart-->
+              </div>
+              <!--end toolbar-->
+            </div>
+          </div>
+          <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-0">
+            <div class="container">
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!--mobile search-->
+                <div class="input-group d-lg-none my-3"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                  <input class="form-control rounded-start" type="text" placeholder="Search for products">
+                </div>
+                <!--end mobile search-->
+                <!--departments menu-->
+                <ul class="navbar-nav navbar-mega-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="home-electronics-store.html#" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ci-menu align-middle mt-n1 me-2"></i>Departments</a>
+                    <ul class="dropdown-menu">
+                      {% for department in departments %}
+                      <!--dropdown menu-->
+                      <li class="dropdown mega-dropdown">
+                        <!--dropdown menu title-->
+                        <a class="dropdown-item" href="home-electronics-store.html#" data-bs-toggle="dropdown">
+                          <i class="{{ department.icon_code }}"></i> {{ department.en_title|title }}
+                        </a>
+                        <!--end dropdown menu title-->
+                        <!--dropdown menu items-->
+                        <div class="dropdown-menu p-0">
+                          <div class="d-flex flex-wrap flex-sm-nowrap px-2">
+                            {% for directory in department.directory.all %}
+                            <div class="mega-dropdown-column pt-4 pb-0 py-sm-4 px-3">
+                              <div class="widget widget-links">
+                                <h6 class="fs-base mb-3">{{ directory.en_title|title }}</h6>
+                                <ul class="widget-list">
+                                  {% for category in directory.category.all %}
+                                  <li class="widget-list-item pb-1">
+                                    <a class="widget-list-link" href="home-electronics-store.html#">{{ category.en_title|title }}</a>
+                                  </li>
+                                  {% endfor %}
+                                </ul>
+                              </div>
+                            </div>
+                            {% endfor %}
+                            <div class="mega-dropdown-column d-none d-lg-block py-4 text-center">
+                              <a class="d-block mb-2" href="{{ department.offer_link }}">
+                                <img src="{% get_media_prefix %}{{ department.thumb }}" style="width: auto;height: 140px;">
+                              </a>
+                              <div class="fs-sm mb-3">{{ department.offer_en_title }}
+                                <span class='fw-medium'>{{ department.offer_price|floatformat:"2g" }}<small>DA</small></span>
+                              </div>
+                              <a class="btn btn-primary btn-shadow btn-sm" href="{{ department.offer_link }}">See offers
+                                <i class="ci-arrow-right fs-xs ms-1"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end dropdown menu items-->
+                      </li>
+                      <!--end dropdown menu-->
+                      {% endfor %}
+                    </ul>
+                  </li>
+                </ul>
+                <!--end departments menu-->
+                <!--primary menu-->
+                <ul class="navbar-nav">
+                  <a class="nav-link" href="#"><i class="ci-gift mt-n1" style="margin-right: 5px;"></i>Gift Cards</a>
+                  <a class="nav-link" href="#"><i class="ci-money-bag mt-n1" style="margin-right: 5px;"></i>Earn With Us</a>
+                  <a class="nav-link" href="#"><i class="ci-tag mt-n1" style="margin-right: 5px;"></i>Coupons</a>
+                  <a class="nav-link" href="#"><i class="ci-cashier mt-n1" style="margin-right: 5px;"></i>Seller</a>
+                </ul>
+                <!--end primary menu-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end navbar-->
+      </header>
+      {% block content %}{% endblock %}
+    </main>
+    <!-- Footer-->
+    <footer class="footer bg-dark pt-5">
+      <div class="container">
+        <div class="row pb-2">
+          <div class="col-md-4 col-sm-6">
+            <div class="widget widget-links widget-light pb-2 mb-4">
+              <h3 class="widget-title text-light">Shop departments</h3>
+              <ul class="widget-list">
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Sneakers &amp; Athletic</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Athletic Apparel</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Sandals</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Jeans</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Shirts &amp; Tops</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Shorts</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">T-Shirts</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Swimwear</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Clogs &amp; Mules</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Bags &amp; Wallets</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Accessories</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Sunglasses &amp; Eyewear</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Watches</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="widget widget-links widget-light pb-2 mb-4">
+              <h3 class="widget-title text-light">Account &amp; shipping info</h3>
+              <ul class="widget-list">
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Your account</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Shipping rates &amp; policies</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Refunds &amp; replacements</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Order tracking</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Delivery info</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Taxes &amp; fees</a></li>
+              </ul>
+            </div>
+            <div class="widget widget-links widget-light pb-2 mb-4">
+              <h3 class="widget-title text-light">About us</h3>
+              <ul class="widget-list">
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">About company</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Our team</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">Careers</a></li>
+                <li class="widget-list-item"><a class="widget-list-link" href="home-electronics-store.html#">News</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="widget pb-2 mb-4">
+              <h3 class="widget-title text-light pb-1">Stay informed</h3>
+              <form class="subscription-form validate" action="https://studio.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+                <div class="input-group flex-nowrap"><i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                  <input class="form-control rounded-start" type="email" name="EMAIL" placeholder="Your email" required>
+                  <button class="btn btn-primary" type="submit" name="subscribe">Subscribe*</button>
+                </div>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                  <input class="subscription-form-antispam" type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
+                </div>
+                <div class="form-text text-light opacity-50">*Subscribe to our newsletter to receive early discount offers, updates and new products info.</div>
+                <div class="subscription-status"></div>
+              </form>
+            </div>
+            <div class="widget pb-2 mb-4">
+              <h3 class="widget-title text-light pb-1">Download our app</h3>
+              <div class="d-flex flex-wrap">
+                <div class="me-2 mb-2"><a class="btn-market btn-apple" href="home-electronics-store.html#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">App Store</span></a></div>
+                <div class="mb-2"><a class="btn-market btn-google" href="home-electronics-store.html#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">Google Play</span></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-5 bg-darker">
+        <div class="container">
+          <div class="row pb-3">
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="d-flex"><i class="ci-rocket text-primary" style="font-size: 2.25rem;"></i>
+                <div class="ps-3">
+                  <h6 class="fs-base text-light mb-1">Fast and free delivery</h6>
+                  <p class="mb-0 fs-ms text-light opacity-50">Free delivery for all orders over $200</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="d-flex"><i class="ci-currency-exchange text-primary" style="font-size: 2.25rem;"></i>
+                <div class="ps-3">
+                  <h6 class="fs-base text-light mb-1">Money back guarantee</h6>
+                  <p class="mb-0 fs-ms text-light opacity-50">We return money within 30 days</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="d-flex"><i class="ci-support text-primary" style="font-size: 2.25rem;"></i>
+                <div class="ps-3">
+                  <h6 class="fs-base text-light mb-1">24/7 customer support</h6>
+                  <p class="mb-0 fs-ms text-light opacity-50">Friendly 24/7 customer support</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="d-flex"><i class="ci-card text-primary" style="font-size: 2.25rem;"></i>
+                <div class="ps-3">
+                  <h6 class="fs-base text-light mb-1">Secure online payment</h6>
+                  <p class="mb-0 fs-ms text-light opacity-50">We possess SSL / Secure certificate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="hr-light mb-5">
+          <div class="row pb-2">
+            <div class="col-md-6 text-center text-md-start mb-4">
+              <div class="text-nowrap mb-4"><a class="d-inline-block align-middle mt-n1 me-3" href="home-electronics-store.html#"><img class="d-block" src="img/footer-logo-light.png" width="117" alt="Cartzilla"></a>
+                <div class="btn-group dropdown disable-autohide">
+                  <button class="btn btn-outline-light border-light btn-sm dropdown-toggle px-2" type="button" data-bs-toggle="dropdown"><img class="me-2" src="img/flags/en.png" width="20" alt="English">Eng / $</button>
+                  <ul class="dropdown-menu my-1">
+                    <li class="dropdown-item">
+                      <select class="form-select form-select-sm">
+                        <option value="usd">$ USD</option>
+                        <option value="eur">€ EUR</option>
+                        <option value="ukp">£ UKP</option>
+                        <option value="jpy">¥ JPY</option>
+                      </select>
+                    </li>
+                    <li><a class="dropdown-item pb-1" href="home-electronics-store.html#"><img class="me-2" src="img/flags/fr.png" width="20" alt="Français">Français</a></li>
+                    <li><a class="dropdown-item pb-1" href="home-electronics-store.html#"><img class="me-2" src="img/flags/de.png" width="20" alt="Deutsch">Deutsch</a></li>
+                    <li><a class="dropdown-item" href="home-electronics-store.html#"><img class="me-2" src="img/flags/it.png" width="20" alt="Italiano">Italiano</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="widget widget-links widget-light">
+                <ul class="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">
+                  <li class="widget-list-item me-4"><a class="widget-list-link" href="home-electronics-store.html#">Outlets</a></li>
+                  <li class="widget-list-item me-4"><a class="widget-list-link" href="home-electronics-store.html#">Affiliates</a></li>
+                  <li class="widget-list-item me-4"><a class="widget-list-link" href="home-electronics-store.html#">Support</a></li>
+                  <li class="widget-list-item me-4"><a class="widget-list-link" href="home-electronics-store.html#">Privacy</a></li>
+                  <li class="widget-list-item me-4"><a class="widget-list-link" href="home-electronics-store.html#">Terms of use</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 text-center text-md-end mb-4">
+              <div class="mb-3"><a class="btn-social bs-light bs-twitter ms-2 mb-2" href="home-electronics-store.html#"><i class="ci-twitter"></i></a><a class="btn-social bs-light bs-facebook ms-2 mb-2" href="home-electronics-store.html#"><i class="ci-facebook"></i></a><a class="btn-social bs-light bs-instagram ms-2 mb-2" href="home-electronics-store.html#"><i class="ci-instagram"></i></a><a class="btn-social bs-light bs-pinterest ms-2 mb-2" href="home-electronics-store.html#"><i class="ci-pinterest"></i></a><a class="btn-social bs-light bs-youtube ms-2 mb-2" href="home-electronics-store.html#"><i class="ci-youtube"></i></a></div><img class="d-inline-block" src="img/cards-alt.png" width="187" alt="Payment methods">
+            </div>
+          </div>
+          <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">© All rights reserved. Made by <a class="text-light" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></div>
+        </div>
+      </div>
+    </footer>
+  <!-- Toolbar for handheld devices (Default)-->
+  <div class="handheld-toolbar">
+    <div class="d-table table-layout-fixed w-100">
+      <a class="d-table-cell handheld-toolbar-item" href="account-wishlist.html">
+        <span class="handheld-toolbar-icon"><i class="ci-heart"></i></span>
+        <span class="handheld-toolbar-label">Wishlist</span>
+      </a>
+      <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)">
+        <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
+        <span class="handheld-toolbar-label">Menu</span>
+      </a>
+      {% if cart.product.all.count %}
+      <a class="d-table-cell handheld-toolbar-item" href="{% url 'cart-home' 'show_cart' %}">
+        <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
+          <span class="badge bg-primary rounded-pill ms-1">{{ cart.product.all.count }}</span>
+        </span>
+        <span class="handheld-toolbar-label">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span>
+      </a>
+      {% else %}
+      <a class="d-table-cell handheld-toolbar-item" href="#">
+        <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
+        </span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <!-- Back To Top Button-->
+  <a class="btn-scroll-top" href="#top" data-scroll>
+    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+    <i class="btn-scroll-top-icon ci-arrow-up"></i>
+  </a>
+  <!-- Vendor scripts: js libraries and plugins-->
+  <script src="{% static 'main-shop/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/simplebar/dist/simplebar.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/tiny-slider/dist/min/tiny-slider.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/drift-zoom/dist/Drift.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/lightgallery.js/dist/js/lightgallery.min.js' %}"></script>
+  <script src="{% static 'main-shop/vendor/lg-video.js/dist/lg-video.min.js' %}"></script>
+  <!-- Main theme script-->
+  <script src="{% static 'main-shop/js/theme.min.js' %}"></script>
+  <!-- HTMX -->
+  <script src="{% static 'htmx/htmx.min.js' %}"></script>
+
+  <!-- Input Image Script -->
+  <script src="{% static 'manager/js/scripts.bundle.js' %}"></script>
+
+  </body>
+</html>
