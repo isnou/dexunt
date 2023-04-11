@@ -40,7 +40,11 @@ def change_language(request, language):
 def product(request, sku, size_sku):
     direction = request.session.get('language')
     url = direction + "/main-shop/product.html"
-    message=None
+
+    if request.session.get('book_it_message', None):
+        book_it_message = request.session.get('book_it_message')
+    else:
+        book_it_message = None
 
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     selected_product = Product.objects.all().get(sku=sku)
@@ -76,7 +80,7 @@ def product(request, sku, size_sku):
         'size_sku': size_sku,
         'update': update,
         'buy_now': buy_now,
-        'message': message,
+        'book_it_message': book_it_message,
     }
     return render(request, url, context)
 
@@ -162,8 +166,13 @@ def book_it(request, sku, size_sku):
                                      ar_spec=selected_product.ar_spec,
                                      )
             product_to_book.save()
-        user.booked.add(product_to_book)
-        return redirect('product' 'sku' 'size_sku')
+        if not user.booked.filter(product_sku=product_to_book.sku).exists():
+            user.booked.add(product_to_book)
+            request.session['book_it_message'] = 'success'
+        else:
+            request.session['book_it_message'] = 'exists'
+
+        return redirect('product' ,sku ,size_sku)
 
     else:
         return redirect ('login-page')
