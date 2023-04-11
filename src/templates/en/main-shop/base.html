@@ -247,14 +247,14 @@
               {% if user.is_authenticated %}
               <a class="topbar-link d-none d-md-inline-block" href="#">
                 <i class="ci-bell mt-n1"></i>Notifications
-                {% if user.booked_product.all.count %}
-                ({{ user.booked_product.all.count }})
+                {% if user.booked.all.count %}
+                ({{ user.booked.all.count }})
                 {% endif %}
               </a>
               <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#">
                 <i class="ci-heart mt-n1"></i>Wishlist
-                {% if user.wished_product.all.count %}
-                ({{ user.wished_product.all.count }})
+                {% if user.wished.all.count %}
+                ({{ user.wished.all.count }})
                 {% endif %}
               </a>
               {% endif %}
