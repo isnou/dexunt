@@ -361,8 +361,25 @@
                                     <!-- buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                     </div>
+                                    <!-- status messages -->
+                                    {% if not wish_it_message %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>out of stock new arrival soon .</div>
+                                    </div>
+                                    {% else %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>{{ wish_it_message }}</div>
+                                    </div>
+                                    {% endif %}
+
                                     <div class="d-flex mb-4">
-                                        <button class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
+                                        <a class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button" href="{% url 'wish-it' selected_product.sku size_sku %}"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</a>
                                         {% if buy_now %}
                                         <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="submit"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
                                         {% else %}
@@ -414,6 +431,23 @@
                                     <!-- disabled buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                     </div>
+                                    <!-- status messages -->
+                                    {% if not wish_it_message %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>out of stock new arrival soon .</div>
+                                    </div>
+                                    {% else %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>{{ wish_it_message }}</div>
+                                    </div>
+                                    {% endif %}
+
                                     <div class="d-flex mb-4">
                                         <a class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button" href="{% url 'wish-it' selected_product.sku size_sku %}"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</a>
                                         <a class="btn btn-primary btn-shadow d-block w-100 ms-2" type="button" href="{% url 'book-it' selected_product.sku size_sku %}"><i class="ci-book fs-lg me-2"></i><span class='d-none d-sm-inline'></span>Book it</a>
@@ -453,8 +487,25 @@
                                     <!-- buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
                                     </div>
+                                    <!-- status messages -->
+                                    {% if not wish_it_message %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>out of stock new arrival soon .</div>
+                                    </div>
+                                    {% else %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>{{ wish_it_message }}</div>
+                                    </div>
+                                    {% endif %}
+
                                     <div class="d-flex mb-4">
-                                        <button class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>
+                                        <a class="btn btn-secondary btn-shadow d-block w-100 me-2" type="button" href="{% url 'wish-it' selected_product.sku size_sku %}"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</a>
                                         {% if buy_now %}
                                         <button class="btn btn-primary btn-shadow d-block w-100 ms-2" type="submit"><i class="ci-cart fs-lg me-2"></i>Buy Now</button>
                                         {% else %}
@@ -471,7 +522,7 @@
                                     </div>
                                     {% endif %}
                                     {% else %}
-                                    <!-- disabled quantity -->
+                                    <!-- status messages -->
                                     {% if not book_it_message and not wish_it_message %}
                                     <div class="alert alert-primary d-flex" role="alert">
                                         <div class="alert-icon">
