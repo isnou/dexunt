@@ -166,7 +166,7 @@ def book_it(request, sku, size_sku):
                                      ar_spec=selected_product.ar_spec,
                                      )
             product_to_book.save()
-        if not user.booked.filter(product_sku=product_to_book.sku).exists():
+        if not user.booked.filter(product_sku=product_to_book.product_sku).exists():
             user.booked.add(product_to_book)
             request.session['book_it_message'] = 'success'
         else:
