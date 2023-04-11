@@ -382,13 +382,23 @@
                                     {% endif %}
 
                                     {% if not selected_product.quantity and not selected_product.size.all.count %}
+
                                     <!-- disabled quantity -->
+                                    {% if not book_it_message %}
                                     <div class="alert alert-primary d-flex" role="alert">
                                         <div class="alert-icon">
                                             <i class="ci-time"></i>
                                         </div>
                                         <div>out of stock new arrival soon .</div>
                                     </div>
+                                    {% else %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>{{ book_it_message }}</div>
+                                    </div>
+                                    {% endif %}
 
                                     <!-- disabled buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
@@ -451,12 +461,21 @@
                                     {% endif %}
                                     {% else %}
                                     <!-- disabled quantity -->
+                                    {% if not book_it_message %}
                                     <div class="alert alert-primary d-flex" role="alert">
                                         <div class="alert-icon">
                                             <i class="ci-time"></i>
                                         </div>
                                         <div>out of stock new arrival soon .</div>
                                     </div>
+                                    {% else %}
+                                    <div class="alert alert-primary d-flex" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="ci-time"></i>
+                                        </div>
+                                        <div>{{ book_it_message }}</div>
+                                    </div>
+                                    {% endif %}
 
                                     <!-- disabled buttons -->
                                     <div class="w-100 me-3 d-flex align-items-center pt-2 pb-4">
