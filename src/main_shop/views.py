@@ -47,6 +47,12 @@ def product(request, sku, size_sku):
     else:
         book_it_message = None
 
+    if request.session.get('wish_it_message', None):
+        wish_it_message = request.session.get('wish_it_message')
+        request.session['wish_it_message'] = None
+    else:
+        wish_it_message = None
+
     cart = Cart.objects.all().get(ref=request.session.get('cart'))
     selected_product = Product.objects.all().get(sku=sku)
 
@@ -82,6 +88,7 @@ def product(request, sku, size_sku):
         'update': update,
         'buy_now': buy_now,
         'book_it_message': book_it_message,
+        'wish_it_message': wish_it_message,
     }
     return render(request, url, context)
 
@@ -172,6 +179,67 @@ def book_it(request, sku, size_sku):
             request.session['book_it_message'] = 'success'
         else:
             request.session['book_it_message'] = 'exists'
+
+        return redirect('single-product' ,sku ,size_sku)
+
+    else:
+        return redirect ('login-page')
+
+
+def wish_it(request, sku, size_sku):
+    if request.user.is_authenticated:
+        user = request.user
+        selected_product = Product.objects.all().get(sku=sku)
+
+        if not size_sku == 'main':
+            selected_size = selected_product.size.all().get(sku=size_sku)
+            if selected_size.show_thumb:
+                product_to_book = Booked(thumb = selected_size.thumb,
+                                         product_sku = selected_product.sku,
+                                         size_sku = selected_size.sku,
+                                         en_name = selected_product.en_title,
+                                         fr_name = selected_product.fr_title,
+                                         ar_name = selected_product.ar_title,
+                                         en_spec = selected_product.en_spec,
+                                         fr_spec = selected_product.fr_spec,
+                                         ar_spec = selected_product.ar_spec,
+                                         en_detail = selected_size.en_title,
+                                         fr_detail = selected_size.fr_title,
+                                         ar_detail = selected_size.ar_title,
+                                         )
+                product_to_book.save()
+            else:
+                product_to_book = Booked(thumb = selected_product.album.all()[:1].get().image,
+                                         product_sku = selected_product.sku,
+                                         size_sku = selected_size.sku,
+                                         en_name = selected_product.en_title,
+                                         fr_name = selected_product.fr_title,
+                                         ar_name = selected_product.ar_title,
+                                         en_spec = selected_product.en_spec,
+                                         fr_spec = selected_product.fr_spec,
+                                         ar_spec = selected_product.ar_spec,
+                                         en_detail = selected_size.en_title,
+                                         fr_detail = selected_size.fr_title,
+                                         ar_detail = selected_size.ar_title,
+                                         )
+                product_to_book.save()
+        else:
+            product_to_book = Booked(thumb=selected_product.album.all()[:1].get().image,
+                                     product_sku=selected_product.sku,
+                                     size_sku=selected_product.sku,
+                                     en_name=selected_product.en_title,
+                                     fr_name=selected_product.fr_title,
+                                     ar_name=selected_product.ar_title,
+                                     en_spec=selected_product.en_spec,
+                                     fr_spec=selected_product.fr_spec,
+                                     ar_spec=selected_product.ar_spec,
+                                     )
+            product_to_book.save()
+        if not user.wished.filter(product_sku=product_to_book.product_sku).exists():
+            user.wished.add(product_to_book)
+            request.session['wish_it_message'] = 'success'
+        else:
+            request.session['wish_it_message'] = 'exists'
 
         return redirect('single-product' ,sku ,size_sku)
 
