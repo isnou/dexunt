@@ -215,7 +215,12 @@
         </div>
         <!--end navbar-->
       </header>
-      {% block content %}{% endblock %}
+      <div class="container pb-5 mb-2 mb-md-4">
+        <div class="row">
+          {% block side_menu %}{% endblock %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
     </main>
     <!-- Footer-->
     <footer class="footer bg-dark pt-5">
