@@ -142,6 +142,7 @@ def booked_products_page(request):
                         booked_product.available = True
                     else:
                         booked_product.available = False
+            booked_product.save()
 
     page = request.GET.get('page', 1)
     paginator = Paginator(booked_products, 2)
