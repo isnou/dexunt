@@ -211,7 +211,7 @@
                       <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }}</div>
                       <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }}</div>
                       {% if product.size_sku %}
-                      <div class="fs-lg text-accent pt-2"><a href="{% url 'single-product' product.product_sku product.size_sku %}">Product available now </a></div>
+                      <div class="fs-lg text-accent pt-2"><a href="{% url 'single-product' product.product_sku 'main' %}">Product available now </a></div>
                       {% else %}
                       <div class="fs-lg text-accent pt-2"><a href="{% url 'single-product' product.product_sku 'main' %}">Product available now </a></div>
                       {% endif %}
