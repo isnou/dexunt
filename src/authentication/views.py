@@ -132,7 +132,7 @@ def booked_products_page(request):
         booked_product.available = False
         if products.filter(sku=booked_product.product_sku).exists():
             product = products.get(sku=booked_product.product_sku)
-            if not booked_product.size_sku == 'main':
+            if booked_product.size_sku == 'main':
                 if product.quantity > 0:
                     booked_product.available = True
             else:
