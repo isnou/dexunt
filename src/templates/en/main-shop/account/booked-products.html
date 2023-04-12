@@ -219,7 +219,7 @@
 
               </div>
                 <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                    <button class="btn btn-outline-danger btn-sm" type="button"><i class="ci-trash me-2"></i>Remove</button>
+                    <a class="btn btn-outline-danger btn-sm" type="button" href="{% url 'un-book-it' product.product_sku %}"><i class="ci-trash me-2"></i>Remove</a>
                 </div>
             </div>
             {% endfor %}
