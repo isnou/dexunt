@@ -76,10 +76,61 @@
 {% endblock %}
 
 <!--content-->
+{% block content %}
+<!-- Order Details Modal-->
+{% for order in orders %}
+<div class="modal fade" id="order_{{ order.order_ref }}_details">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Order No - {{ order.order_ref }}</h5>
+          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pb-0">
+        {% for product in order.product.all %}
+        <div class="d-sm-flex justify-content-between mb-4 pb-3 pb-sm-2 border-bottom">
+          <div class="d-sm-flex text-center text-sm-start">
+            <a class="d-inline-block flex-shrink-0 mx-auto" href="#" style="width: 10rem;">
+              <img src="{% get_media_prefix %}{{ product.thumb }}" alt="Product">
+            </a>
+            <div class="ps-sm-4 pt-2">
+              <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
+              <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }} </div>
+              <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }} </div>
+              <div class="fs-lg text-accent pt-2">{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
+            </div>
+          </div>
+          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+            <div class="text-muted mb-2">Quantity:</div>{{ product.quantity }}
+          </div>
+          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+            <div class="text-muted mb-2">Subtotal:</div>{{ product.price|mul:product.quantity|floatformat:"2g" }}<small class="ms-1">DZD</small>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+        <!-- Footer-->
+        <div class="modal-footer flex-wrap justify-content-between bg-secondary fs-md">
+        <div class="px-2 py-1"><span class="text-muted">Subtotal:&nbsp;</span><span>{{ order.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+        <div class="px-2 py-1"><span class="text-muted">Shipping:&nbsp;</span><span>{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+        {% if order.coupon_value %}
+        {% if order.coupon_type == 'SUBTRACTION' %}
+        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+        {% endif %}
+        {% if order.coupon_type == 'PERCENTAGE' %}
+        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value }}<small class="ms-1">%</small></span></div>
+        {% endif %}
+        {% else %}
+        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>-</span></div>
+        {% endif %}
 
+        <div class="px-2 py-1"><span class="text-muted">Total:&nbsp;</span><span class="fs-lg">{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
+      </div>
+      </div>
+    </div>
+</div>
+{% endfor %}
 
-
-{% block top_menu %}
 <div class="page-title-overlap bg-dark pt-4">
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
         <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
@@ -99,10 +150,9 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block side_menu %}
-<!-- Sidebar-->
+<div class="container pb-5 mb-2 mb-md-4">
+    <div class="row">
+        <!-- Sidebar-->
         <aside class="col-lg-4 pt-4 pt-lg-0 pe-xl-5">
             <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
                 <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
@@ -190,64 +240,7 @@
                 </div>
             </div>
         </aside>
-{% endblock %}
-
-{% block content %}
-<!-- Order Details Modal-->
-{% for order in orders %}
-<div class="modal fade" id="order_{{ order.order_ref }}_details">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Order No - {{ order.order_ref }}</h5>
-          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body pb-0">
-        {% for product in order.product.all %}
-        <div class="d-sm-flex justify-content-between mb-4 pb-3 pb-sm-2 border-bottom">
-          <div class="d-sm-flex text-center text-sm-start">
-            <a class="d-inline-block flex-shrink-0 mx-auto" href="#" style="width: 10rem;">
-              <img src="{% get_media_prefix %}{{ product.thumb }}" alt="Product">
-            </a>
-            <div class="ps-sm-4 pt-2">
-              <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
-              <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }} </div>
-              <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }} </div>
-              <div class="fs-lg text-accent pt-2">{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
-            </div>
-          </div>
-          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-            <div class="text-muted mb-2">Quantity:</div>{{ product.quantity }}
-          </div>
-          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-            <div class="text-muted mb-2">Subtotal:</div>{{ product.price|mul:product.quantity|floatformat:"2g" }}<small class="ms-1">DZD</small>
-          </div>
-        </div>
-        {% endfor %}
-        </div>
-        <!-- Footer-->
-        <div class="modal-footer flex-wrap justify-content-between bg-secondary fs-md">
-        <div class="px-2 py-1"><span class="text-muted">Subtotal:&nbsp;</span><span>{{ order.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-        <div class="px-2 py-1"><span class="text-muted">Shipping:&nbsp;</span><span>{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-        {% if order.coupon_value %}
-        {% if order.coupon_type == 'SUBTRACTION' %}
-        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-        {% endif %}
-        {% if order.coupon_type == 'PERCENTAGE' %}
-        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value }}<small class="ms-1">%</small></span></div>
-        {% endif %}
-        {% else %}
-        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>-</span></div>
-        {% endif %}
-
-        <div class="px-2 py-1"><span class="text-muted">Total:&nbsp;</span><span class="fs-lg">{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-      </div>
-      </div>
-    </div>
-</div>
-{% endfor %}
-
-<!-- Content  -->
+        <!-- Content  -->
         <section class="col-lg-8">
             <!-- Toolbar-->
             <div class="d-none d-lg-flex justify-content-between align-items-center pt-lg-3 pb-4 pb-lg-5 mb-lg-3">
@@ -326,4 +319,6 @@
                 </div>
             </form>
         </section>
-{% endblock %}
+    </div>
+</div>
+{% endblock %}}
