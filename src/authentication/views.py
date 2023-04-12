@@ -121,7 +121,7 @@ def booked_products_page(request):
         request.session['language'] = 'en'
 
     direction = request.session.get('language')
-    url = direction + "/main-shop/account/orders-page.html"
+    url = direction + "/main-shop/account/booked-products.html"
 
     booked_products = request.user.booked.all()
 
