@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from shop_manager.models import Product
+from shop_manager.models import Product ,Size
 
 
 
@@ -126,6 +126,7 @@ def booked_products_page(request):
 
     booked_products = request.user.booked.all()
     products = Product.objects.all()
+    sizes = Size.objects.all()
 
     for booked_product in booked_products:
         booked_product.available = False
@@ -135,8 +136,8 @@ def booked_products_page(request):
                 if product.quantity > 0:
                     booked_product.available = True
             else:
-                if product.size.all().filter(sku=size_sku).exists():
-                    product = product.size.all().get(sku=size_sku)
+                if sizes.filter(sku=size_sku).exists():
+                    product = sizes.get(sku=size_sku)
                     if product.quantity > 0:
                         booked_product.available = True
         booked_product.save()
