@@ -210,7 +210,7 @@
                       <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
                       <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }}</div>
                       <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }}</div>
-                      <div class="fs-lg text-accent pt-2">{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
+                      <div class="fs-lg text-accent pt-2"><a href="{% url 'single-product' product.product_sku product.size_sku %}">Product available now </a></div>
                   </div>
 
               </div>
