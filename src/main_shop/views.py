@@ -188,7 +188,6 @@ def book_it(request, sku, size_sku):
 def un_book_it(request, sku, size_sku):
     if request.user.is_authenticated:
         user = request.user
-        
         if not size_sku == 'main':
             selected_product = user.booked.all().get(product_sku=sku)
             selected_product.delete()
