@@ -135,7 +135,7 @@ def book_it(request, sku, size_sku):
             if selected_size.show_thumb:
                 product_to_book = Booked(thumb = selected_size.thumb,
                                          product_sku = selected_product.sku,
-                                         size_sku = selected_size.sku,
+                                         size_sku = size_sku,
                                          en_name = selected_product.en_title,
                                          fr_name = selected_product.fr_title,
                                          ar_name = selected_product.ar_title,
@@ -150,7 +150,7 @@ def book_it(request, sku, size_sku):
             else:
                 product_to_book = Booked(thumb = selected_product.album.all()[:1].get().image,
                                          product_sku = selected_product.sku,
-                                         size_sku = 'main',
+                                         size_sku = size_sku,
                                          en_name = selected_product.en_title,
                                          fr_name = selected_product.fr_title,
                                          ar_name = selected_product.ar_title,
