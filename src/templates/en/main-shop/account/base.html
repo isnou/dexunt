@@ -371,10 +371,6 @@
         <span class="handheld-toolbar-icon"><i class="ci-heart"></i></span>
         <span class="handheld-toolbar-label">Wishlist</span>
       </a>
-      <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)">
-        <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
-        <span class="handheld-toolbar-label">Menu</span>
-      </a>
       {% if cart.product.all.count %}
       <a class="d-table-cell handheld-toolbar-item" href="{% url 'cart-home' 'show_cart' %}">
         <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
