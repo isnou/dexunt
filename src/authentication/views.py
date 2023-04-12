@@ -120,6 +120,12 @@ def booked_products_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
+    if request.session.get('book_it_message', None):
+        book_it_message = request.session.get('book_it_message')
+        request.session['book_it_message'] = None
+    else:
+        book_it_message = None
+
     direction = request.session.get('language')
     url = direction + "/main-shop/account/booked-products.html"
 
