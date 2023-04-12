@@ -185,12 +185,16 @@ def book_it(request, sku, size_sku):
     else:
         return redirect ('login-page')
 
-def un_book_it(request, sku):
+def un_book_it(request, sku, size_sku):
     if request.user.is_authenticated:
         user = request.user
-        selected_product = user.booked.all().get(product_sku=sku)
-        selected_product.delete()
-
+        
+        if not size_sku == 'main':
+            selected_product = user.booked.all().get(product_sku=sku)
+            selected_product.delete()
+        else:
+            selected_product = user.booked.all().get(size_sku=size_sku)
+            selected_product.delete()
         return redirect('booked-products-page')
 
 

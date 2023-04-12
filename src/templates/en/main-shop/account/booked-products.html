@@ -210,16 +210,13 @@
                       <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
                       <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }}</div>
                       <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }}</div>
-                      {% if product.size_sku %}
+
                       <div class="fs-lg text-accent pt-2"><a href="{% url 'single-product' product.product_sku product.size_sku %}">Product available now </a></div>
-                      {% else %}
-                      <div class="fs-lg text-accent pt-2"><a href="{% url 'single-product' product.product_sku 'main' %}">Product available now </a></div>
-                      {% endif %}
                   </div>
 
               </div>
                 <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                    <a class="btn btn-outline-danger btn-sm" type="button" href="{% url 'un-book-it' product.product_sku %}"><i class="ci-trash me-2"></i>Remove</a>
+                    <a class="btn btn-outline-danger btn-sm" type="button" href="{% url 'un-book-it' product.product_sku product.size_sku %}"><i class="ci-trash me-2"></i>Remove</a>
                 </div>
             </div>
             {% endfor %}
