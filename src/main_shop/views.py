@@ -150,7 +150,7 @@ def book_it(request, sku, size_sku):
             else:
                 product_to_book = Booked(thumb = selected_product.album.all()[:1].get().image,
                                          product_sku = selected_product.sku,
-                                         size_sku = selected_size.sku,
+                                         size_sku = 'main',
                                          en_name = selected_product.en_title,
                                          fr_name = selected_product.fr_title,
                                          ar_name = selected_product.ar_title,
@@ -184,6 +184,14 @@ def book_it(request, sku, size_sku):
 
     else:
         return redirect ('login-page')
+    
+def un_book_it(request, sku):
+    if request.user.is_authenticated:
+        user = request.user
+        selected_product = user.booked.all().get(sku=sku)
+        selected_product.delete()
+        request.session['book_it_message'] = 'success'
+        return redirect('booked-products-page')
 
 
 def wish_it(request, sku, size_sku):
