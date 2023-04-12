@@ -34,6 +34,14 @@ def login_page(request):
                     'signup_form': signup_form,
                 }
                 return render(request, url, context)
+    else:
+        login_form = LoginForm()
+        signup_form = SignupForm()
+        context = {
+            'login_form': login_form,
+            'signup_form': signup_form,
+        }
+        return render(request, url, context)
 
 def signup_page(request):
     if not request.session.get('language', None):
