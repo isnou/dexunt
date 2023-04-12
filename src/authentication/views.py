@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from shop_manager.models import Product ,Size
+from shop_manager.models import Product
 
 
 
@@ -126,7 +126,6 @@ def booked_products_page(request):
 
     booked_products = request.user.booked.all()
     products = Product.objects.all()
-    sizes = Size.objects.all()
 
     for booked_product in booked_products:
         booked_product.available = False
