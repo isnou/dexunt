@@ -128,21 +128,18 @@ def booked_products_page(request):
     products = Product.objects.all()
 
     for booked_product in booked_products:
+        booked_product.available = False
         if products.filter(sku=booked_product.product_sku).exists():
             product = products.get(sku=booked_product.product_sku)
             if not booked_product.size_sku == 'main':
-                if product.quantity:
+                if product.quantity > 0:
                     booked_product.available = True
-                else:
-                    booked_product.available = False
             else:
                 if product.size.all().filter(sku=size_sku).exists():
                     product = product.size.all().get(sku=size_sku)
-                    if product.quantity:
+                    if product.quantity > 0:
                         booked_product.available = True
-                    else:
-                        booked_product.available = False
-            booked_product.save()
+        booked_product.save()
 
     page = request.GET.get('page', 1)
     paginator = Paginator(booked_products, 2)
