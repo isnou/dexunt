@@ -91,6 +91,56 @@ def account_orders_page(request):
     return render(request, url, context)
 
 @login_required
+def wished_products_page(request):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en'
+
+    direction = request.session.get('language')
+    url = direction + "/main-shop/account/orders-page.html"
+
+    wished_products = request.user.wished.all()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(wished_products, 2)
+    try:
+        wished_products = paginator.page(page)
+    except PageNotAnInteger:
+        wished_products = paginator.page(1)
+    except EmptyPage:
+        wished_products = paginator.page(paginator.num_pages)
+
+
+    context = {
+        'wished_products': wished_products,
+    }
+    return render(request, url, context)
+
+@login_required
+def booked_products_page(request):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en'
+
+    direction = request.session.get('language')
+    url = direction + "/main-shop/account/orders-page.html"
+
+    booked_products = request.user.booked.all()
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(booked_products, 2)
+    try:
+        booked_products = paginator.page(page)
+    except PageNotAnInteger:
+        booked_products = paginator.page(1)
+    except EmptyPage:
+        booked_products = paginator.page(paginator.num_pages)
+
+
+    context = {
+        'booked_products': booked_products,
+    }
+    return render(request, url, context)
+
+@login_required
 def account_profile_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'

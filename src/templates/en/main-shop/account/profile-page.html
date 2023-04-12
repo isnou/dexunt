@@ -201,12 +201,12 @@
                             </a>
                         </li>
                         <li class="border-bottom mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-wishlist.html">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'wished-products-page' %}">
                                 <i class="ci-heart opacity-60 me-2"></i>Wishlist<span class="fs-sm text-muted ms-auto">{{ user.wished.all.count }}</span>
                             </a>
                         </li>
                         <li class="mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-tickets.html">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'booked-products-page' %}">
                                 <i class="ci-book opacity-60 me-2"></i>Booked<span class="fs-sm text-muted ms-auto">{{ user.booked.all.count }}</span>
                             </a>
                         </li>

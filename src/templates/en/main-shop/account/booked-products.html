@@ -8,7 +8,7 @@
 <!-- title -->
 {% block title %}
 <title>
-    Dexunt - Account - Orders page
+    Dexunt - Account - Booked products
 </title>
 {% endblock %}
 
@@ -77,60 +77,6 @@
 
 <!--content-->
 {% block content %}
-<!-- Order Details Modal-->
-{% for order in orders %}
-<div class="modal fade" id="order_{{ order.order_ref }}_details">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Order No - {{ order.order_ref }}</h5>
-          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body pb-0">
-        {% for product in order.product.all %}
-        <div class="d-sm-flex justify-content-between mb-4 pb-3 pb-sm-2 border-bottom">
-          <div class="d-sm-flex text-center text-sm-start">
-            <a class="d-inline-block flex-shrink-0 mx-auto" href="#" style="width: 10rem;">
-              <img src="{% get_media_prefix %}{{ product.thumb }}" alt="Product">
-            </a>
-            <div class="ps-sm-4 pt-2">
-              <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
-              <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }} </div>
-              <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }} </div>
-              <div class="fs-lg text-accent pt-2">{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
-            </div>
-          </div>
-          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-            <div class="text-muted mb-2">Quantity:</div>{{ product.quantity }}
-          </div>
-          <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-            <div class="text-muted mb-2">Subtotal:</div>{{ product.price|mul:product.quantity|floatformat:"2g" }}<small class="ms-1">DZD</small>
-          </div>
-        </div>
-        {% endfor %}
-        </div>
-        <!-- Footer-->
-        <div class="modal-footer flex-wrap justify-content-between bg-secondary fs-md">
-        <div class="px-2 py-1"><span class="text-muted">Subtotal:&nbsp;</span><span>{{ order.sub_total_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-        <div class="px-2 py-1"><span class="text-muted">Shipping:&nbsp;</span><span>{{ order.shipping_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-        {% if order.coupon_value %}
-        {% if order.coupon_type == 'SUBTRACTION' %}
-        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-        {% endif %}
-        {% if order.coupon_type == 'PERCENTAGE' %}
-        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>- {{ order.coupon_value }}<small class="ms-1">%</small></span></div>
-        {% endif %}
-        {% else %}
-        <div class="px-2 py-1"><span class="text-muted">Discount:&nbsp;</span><span>-</span></div>
-        {% endif %}
-
-        <div class="px-2 py-1"><span class="text-muted">Total:&nbsp;</span><span class="fs-lg">{{ order.final_price|floatformat:"2g" }}<small class="ms-1">DZD</small></span></div>
-      </div>
-      </div>
-    </div>
-</div>
-{% endfor %}
-
 <div class="page-title-overlap bg-dark pt-4">
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
         <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
@@ -140,13 +86,13 @@
                         <a class="text-nowrap" href="{% url 'main-shop-home' %}"><i class="ci-home"></i>Home</a>
                     </li>
                     <li class="breadcrumb-item text-nowrap">
-                        <a href="#">Orders</a>
+                        <a href="#">Booked products</a>
                     </li>
                 </ol>
             </nav>
         </div>
         <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-            <h1 class="h3 text-light mb-0">My orders</h1>
+            <h1 class="h3 text-light mb-0">My booked products</h1>
         </div>
     </div>
 </div>
@@ -166,7 +112,6 @@
                             {% endif %}
                         </div>
                         <!--end thumbnail -->
-
                         <div class="ps-md-3">
                             <h3 class="fs-base mb-0">
                                 {% if user.first_name %}
@@ -193,7 +138,7 @@
                     </div>
                     <ul class="list-unstyled mb-0">
                         <li class="border-bottom mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="{% url 'account-orders-page' %}">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'account-orders-page' %}">
                                 <i class="ci-bag opacity-60 me-2"></i>Orders<span class="fs-sm text-muted ms-auto">{{ user.order.all.count }}</span>
                             </a>
                         </li>
@@ -203,7 +148,7 @@
                             </a>
                         </li>
                         <li class="mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'booked-products-page' %}">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="{% url 'booked-products-page' %}">
                                 <i class="ci-book opacity-60 me-2"></i>Booked<span class="fs-sm text-muted ms-auto">{{ user.booked.all.count }}</span>
                             </a>
                         </li>
@@ -252,41 +197,37 @@
                     <i class="ci-sign-out me-2"></i>Sign out
                 </a>
             </div>
-            <!-- Orders list-->
-            <div class="table-responsive fs-md mb-4">
-                <table class="table table-hover mb-0">
-                    <thead>
-                    <tr>
-                        <th>Order #</th>
-                        <th>Date Purchased</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {% for order in orders %}
-                      <tr>
-                        <td class="py-3">
-                            <a class="nav-link-style fw-medium fs-sm" href="#order_{{ order.order_ref }}_details" data-bs-toggle="modal">{{ order.order_ref }}</a>
-                        </td>
-                        <td class="py-3">{{ order.created_at|date:"d/m/Y" }}</td>
-                        <td class="py-3"><span class="badge bg-info m-0">{{ order.status }}</span></td>
-                        <td class="py-3">
-                            {{ order.final_price|floatformat:"2g" }}<small class="ms-2 text-muted">DZD</small>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+
+            {% for product in booked_products %}
+            <!-- Item-->
+            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+              <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+                  <a class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;">
+                      <img src="{% get_media_prefix %}{{ product.thumb }}" alt="Product">
+                  </a>
+
+                  <div class="pt-2">
+                      <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
+                      <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }}</div>
+                      <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }}</div>
+                      <div class="fs-lg text-accent pt-2">{{ product.price|floatformat:"2g" }}<small class="ms-1">DZD</small></div>
+                  </div>
+                  
+              </div>
+                <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+                    <button class="btn btn-outline-danger btn-sm" type="button"><i class="ci-trash me-2"></i>Remove</button>
+                </div>
             </div>
+            {% endfor %}
+
             <!-- Pagination-->
             <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
 
-                {% if orders.has_other_pages %}
+                {% if booked_products.has_other_pages %}
                 <ul class="pagination">
-                    {% if orders.has_previous %}
+                    {% if booked_products.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ orders.previous_page_number }}">
+                        <a class="page-link" href="?page={{ booked_products.previous_page_number }}">
                             <i class="ci-arrow-left me-2"></i>Prev
                         </a>
                     </li>
@@ -295,10 +236,10 @@
 
                 <ul class="pagination">
                     <li class="page-item d-sm-none">
-                        <span class="page-link page-link-static">{{ orders.number }} / {{ orders.paginator.num_pages }}</span>
+                        <span class="page-link page-link-static">{{ booked_products.number }} / {{ booked_products.paginator.num_pages }}</span>
                     </li>
-                    {% for i in orders.paginator.page_range %}
-                    {% if orders.number == i %}
+                    {% for i in booked_products.paginator.page_range %}
+                    {% if booked_products.number == i %}
                     <li class="page-item active d-none d-sm-block" aria-current="page">
                         <span class="page-link">{{ i }}<span class="visually-hidden">(current)</span></span>
                     </li>
@@ -311,9 +252,9 @@
                 </ul>
 
                 <ul class="pagination">
-                    {% if orders.has_next %}
+                    {% if booked_products.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ orders.next_page_number }}">Next
+                        <a class="page-link" href="?page={{ booked_products.next_page_number }}">Next
                             <i class="ci-arrow-right ms-2"></i>
                         </a>
                     </li>
