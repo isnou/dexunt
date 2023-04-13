@@ -131,13 +131,13 @@ def booked_products_page(request):
         booked_product.available = False
         if products.filter(sku=booked_product.product_sku).exists():
             product = products.get(sku=booked_product.product_sku)
-            if booked_product.size_sku == 'main':
+            if booked_product.size_sku == booked_product.product_sku:
                 if product.quantity > 0:
                     booked_product.available = True
             else:
                 if product.size.all().filter(sku=booked_product.size_sku).exists():
-                    product = product.size.all().get(sku=booked_product.size_sku)
-                    if product.quantity > 0:
+                    product_size = product.size.all().get(sku=booked_product.size_sku)
+                    if product_size.quantity > 0:
                         booked_product.available = True
         booked_product.save()
 
