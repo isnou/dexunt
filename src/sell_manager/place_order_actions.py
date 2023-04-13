@@ -83,7 +83,6 @@ def regular(request):
         if request.user.is_authenticated:
             request.user.order.add(new_order)
 
-
         context = {
             'new_order': new_order,
         }

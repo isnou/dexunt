@@ -77,7 +77,7 @@ def account_orders_page(request):
     orders = request.user.order.all()
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(orders, 2)
+    paginator = Paginator(orders, 8)
     try:
         orders = paginator.page(page)
     except PageNotAnInteger:
