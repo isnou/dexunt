@@ -189,14 +189,6 @@ def book_it(request, sku, size_sku):
             user.booked.add(product_to_book)
             request.session['book_it_message'] = 'success'
 
-
-
-        if not user.booked.filter(product_sku=product_to_book.product_sku).exists():
-            user.booked.add(product_to_book)
-            request.session['book_it_message'] = 'success'
-        else:
-            request.session['book_it_message'] = 'exists'
-
         return redirect('single-product' ,sku ,size_sku)
 
     else:
