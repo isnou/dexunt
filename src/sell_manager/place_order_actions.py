@@ -72,11 +72,13 @@ def regular(request):
             new_order.product.add(product)
             if request.user.is_authenticated:
                 if product.size_sku == 'main':
-                    selected_product = request.user.booked.all().get(product_sku=product.product_sku)
-                    selected_product.delete()
+                    if request.user.booked.all().filter(product_sku=product.product_sku).exists:
+                        selected_product = request.user.booked.all().get(product_sku=product.product_sku)
+                        selected_product.delete()
                 else:
-                    selected_product = request.user.booked.all().get(size_sku=product.size_sku)
-                    selected_product.delete()
+                    if request.user.booked.all().filter(size_sku=product.size_sku).exists():
+                        selected_product = request.user.booked.all().get(size_sku=product.size_sku)
+                        selected_product.delete()
 
         cart.delete()
 
