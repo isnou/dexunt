@@ -75,7 +75,7 @@ def regular(request):
                     selected_product = request.user.booked.all().get(product_sku=product.product_sku)
                     selected_product.delete()
                 else:
-                    selected_product = user.booked.all().get(size_sku=product.size_sku)
+                    selected_product = request.user.booked.all().get(size_sku=product.size_sku)
                     selected_product.delete()
 
         cart.delete()
