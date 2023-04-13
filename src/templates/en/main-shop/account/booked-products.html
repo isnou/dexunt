@@ -214,11 +214,11 @@
                       {% endif %}
 
                       {% if product.available %}
-                      <div class="text-accent pt-2">
+                      <div class="fs-sm text-accent pt-2">
                           <a href="{% url 'single-product' product.product_sku product.size_sku %}">Product now available </a>
                       </div>
                       {% else %}
-                      <div class="text-muted pt-2">
+                      <div class="fs-sm text-muted pt-2">
                           <a href="{% url 'single-product' product.product_sku 'main' %}">Product still unavailable </a>
                       </div>
                       {% endif %}
