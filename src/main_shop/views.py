@@ -26,7 +26,6 @@ def main_shop_home(request):
     }
     return render(request, url, context)
 
-
 def change_language(request, language):
     if language == 'en':
         request.session['language'] = 'en'
@@ -35,7 +34,6 @@ def change_language(request, language):
     if language == 'ar':
         request.session['language'] = 'ar'
     return redirect('main-shop-home')
-
 
 def product(request, sku, size_sku):
     direction = request.session.get('language')
@@ -91,7 +89,6 @@ def product(request, sku, size_sku):
         'wish_it_message': wish_it_message,
     }
     return render(request, url, context)
-
 
 def grid_shop(request, action, ref):
     direction = request.session.get('language')
