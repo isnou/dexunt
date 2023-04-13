@@ -70,11 +70,19 @@ def regular(request):
 
         for product in cart.product.all():
             new_order.product.add(product)
+            if request.user.is_authenticated:
+                if product.size_sku == 'main':
+                    selected_product = request.user.booked.all().get(product_sku=product.product_sku)
+                    selected_product.delete()
+                else:
+                    selected_product = user.booked.all().get(size_sku=product.size_sku)
+                    selected_product.delete()
 
         cart.delete()
 
         if request.user.is_authenticated:
             request.user.order.add(new_order)
+
 
         context = {
             'new_order': new_order,

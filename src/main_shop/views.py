@@ -124,7 +124,6 @@ def grid_shop(request, action, ref):
     }
     return render(request, url, context)
 
-
 def book_it(request, sku, size_sku):
     if request.user.is_authenticated:
         user = request.user
@@ -175,7 +174,6 @@ def book_it(request, sku, size_sku):
                                      )
             product_to_book.save()
 
-
         if user.booked.filter(product_sku=product_to_book.product_sku).exists():
             if size_sku == 'main':
                 request.session['book_it_message'] = 'exists'
@@ -204,7 +202,6 @@ def un_book_it(request, sku, size_sku):
             selected_product = user.booked.all().get(size_sku=size_sku)
             selected_product.delete()
         return redirect('booked-products-page')
-
 
 def wish_it(request, sku, size_sku):
     if request.user.is_authenticated:
