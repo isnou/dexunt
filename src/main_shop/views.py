@@ -177,7 +177,7 @@ def book_it(request, sku, size_sku):
 
 
         if user.booked.filter(product_sku=product_to_book.product_sku).exists():
-            if size_sku=='main':
+            if size_sku == 'main':
                 request.session['book_it_message'] = 'exists'
             else:
                 if user.booked.filter(size_sku=size_sku).exists():
