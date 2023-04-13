@@ -72,7 +72,7 @@ def regular(request):
             new_order.product.add(product)
             if request.user.is_authenticated:
                 if product.size_sku == 'main':
-                    if request.user.booked.all().filter(product_sku=product.product_sku).exists:
+                    if request.user.booked.all().filter(product_sku=product.product_sku).exists():
                         selected_product = request.user.booked.all().get(product_sku=product.product_sku)
                         selected_product.delete()
                 else:
