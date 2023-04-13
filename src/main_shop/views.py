@@ -188,7 +188,7 @@ def book_it(request, sku, size_sku):
         else:
             user.booked.add(product_to_book)
             request.session['book_it_message'] = 'success'
-            
+
 
 
         if not user.booked.filter(product_sku=product_to_book.product_sku).exists():
@@ -205,7 +205,7 @@ def book_it(request, sku, size_sku):
 def un_book_it(request, sku, size_sku):
     if request.user.is_authenticated:
         user = request.user
-        if not size_sku == 'main':
+        if size_sku == 'main':
             selected_product = user.booked.all().get(product_sku=sku)
             selected_product.delete()
         else:
