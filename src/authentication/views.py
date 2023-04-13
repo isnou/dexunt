@@ -164,7 +164,7 @@ def wished_products_page(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/account/wished-products.html"
 
-    wished_products = request.user.booked.all()
+    wished_products = request.user.wished.all()
 
     page = request.GET.get('page', 1)
     paginator = Paginator(wished_products, 2)
@@ -174,7 +174,6 @@ def wished_products_page(request):
         wished_products = paginator.page(1)
     except EmptyPage:
         wished_products = paginator.page(paginator.num_pages)
-
 
     context = {
         'wished_products': wished_products,
