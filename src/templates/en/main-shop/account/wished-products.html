@@ -212,6 +212,10 @@
                       {% if product.en_detail %}
                       <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }}</div>
                       {% endif %}
+
+                      <div class="fs-sm text-muted pt-2">
+                          <a href="{% url 'single-product' product.product_sku product.size_sku %}">See offers </a>
+                      </div>
                   </div>
 
               </div>
