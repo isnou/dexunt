@@ -245,13 +245,13 @@
             <!--desktop top-bar-->
             <div class="d-none d-md-block ms-3 text-nowrap">
               {% if user.is_authenticated %}
-              <a class="topbar-link d-none d-md-inline-block" href="#">
+              <a class="topbar-link d-none d-md-inline-block" href="{% url 'booked-products-page' %}">
                 <i class="ci-book mt-n1"></i>Booked
                 {% if user.booked.all.count %}
                 ({{ user.booked.all.count }})
                 {% endif %}
               </a>
-              <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="#">
+              <a class="topbar-link ms-3 border-start border-light ps-3 d-none d-md-inline-block" href="{% url 'wished-products-page' %}">
                 <i class="ci-heart mt-n1"></i>Wishlist
                 {% if user.wished.all.count %}
                 ({{ user.wished.all.count }})
