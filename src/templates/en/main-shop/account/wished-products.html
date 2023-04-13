@@ -1,0 +1,280 @@
+{% extends "en/main-shop/account/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+
+<!-- english version -->
+
+<!-- title -->
+{% block title %}
+<title>
+    Dexunt - Account - Booked products
+</title>
+{% endblock %}
+
+
+<!--cart-->
+{% block cart %}
+<div class="navbar-tool dropdown ms-3">
+    {% if cart.product.all.count %}
+    <a class="navbar-tool-icon-box bg-secondary" href="{% url 'cart-home' 'show_cart' %}">
+        <span class="navbar-tool-label">{{ cart.product.all.count }}</span>
+        <i class="navbar-tool-icon ci-cart"></i>
+    </a>
+    {% else %}
+    <a class="navbar-tool-icon-box bg-secondary" href="#">
+        <i class="navbar-tool-icon ci-cart"></i>
+    </a>
+    {% endif %}
+    <!--cart dropdown-->
+    {% if cart.product.all.count %}
+    <div class="dropdown-menu dropdown-menu-end">
+        <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
+            <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
+                {% for cart_product in cart.product.all %}
+                <form action="{% url 'cart-home' 'remove_product_from_cart' %}" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="size_sku" value='{{ cart_product.size_sku }}'>
+                    <input type="hidden" name="product_sku" value='{{ cart_product.product_sku }}'>
+
+                    <div class="widget-cart-item py-2 border-bottom">
+                        <button class="btn-close text-danger" type="submit" aria-label="Remove">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <div class="d-flex align-items-center">
+                            <a class="d-block flex-shrink-0" href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">
+                                <img src="{% get_media_prefix %}{{ cart_product.thumb }}" width="64" alt="Product">
+                            </a>
+                            <div class="ps-2">
+                                <h6 class="widget-product-title"><a href="{% url 'single-product' cart_product.product_sku cart_product.size_sku %}">{{ cart_product.en_name|title }}</a></h6>
+                                <div class="widget-product-meta">
+                                    <span class="text-accent me-2">{{ cart_product.price|floatformat:"2g" }}<small>DZD</small></span>
+                                    <span class="text-muted">x {{ cart_product.quantity }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% endfor %}
+            </div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                <div class="fs-sm me-2 py-2">
+                    <span class="text-muted">Subtotal:</span>
+                    <span class="text-accent fs-base ms-1">{{ cart.sub_total_price|floatformat:"2g" }}<small>DZD</small></span>
+                </div>
+            </div>
+            <a class="btn btn-primary btn-sm d-block w-100" href="{% url 'cart-home' 'show_cart' %}">
+                <i class="ci-card me-2 fs-base align-middle"></i>Checkout
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    <!--end cart dropdown-->
+</div>
+{% endblock %}
+
+<!--content-->
+{% block content %}
+<div class="page-title-overlap bg-dark pt-4">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                    <li class="breadcrumb-item">
+                        <a class="text-nowrap" href="{% url 'main-shop-home' %}"><i class="ci-home"></i>Home</a>
+                    </li>
+                    <li class="breadcrumb-item text-nowrap">
+                        <a href="#">Wished products</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">My wished products</h1>
+        </div>
+    </div>
+</div>
+<div class="container pb-5 mb-2 mb-md-4">
+    <div class="row">
+        <!-- Sidebar-->
+        <aside class="col-lg-4 pt-4 pt-lg-0 pe-xl-5">
+            <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
+                <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
+                    <div class="d-md-flex align-items-center">
+                        <!--thumbnail -->
+                        <div class="img-thumbnail rounded position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0">
+                            {% if user.profile_photo %}
+                            <img class="rounded" src="{% get_media_prefix %}{{ user.profile_photo }}" alt="{{ user.username }}" style="width: 90px;height: 100px;">
+                            {% else %}
+                            <img class="rounded" src="{% static 'manager/media/svg/avatars/blank-dark.svg' %}" alt="no pictures" style="width: 90px;height: 100px;">
+                            {% endif %}
+                        </div>
+                        <!--end thumbnail -->
+                        <div class="ps-md-3">
+                            <h3 class="fs-base mb-0">
+                                {% if user.first_name %}
+                                {{ user.first_name|title }}
+                                {% else %}
+                                no first name
+                                {% endif %}
+
+                                {% if user.last_name %}
+                                {{ user.last_name|title }}
+                                {% else %}
+                                no last name
+                                {% endif %}
+                            </h3>
+                            <small>
+                                <span class="text-danger fs-sm">account not activated !</span>
+                            </small>
+                        </div>
+                    </div><a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="account-orders.html#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="ci-menu me-2"></i>Account menu</a>
+                </div>
+                <div class="d-lg-block collapse" id="account-menu">
+                    <div class="bg-secondary px-4 py-3">
+                        <h3 class="fs-sm mb-0 text-muted">Dashboard</h3>
+                    </div>
+                    <ul class="list-unstyled mb-0">
+                        <li class="border-bottom mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'account-orders-page' %}">
+                                <i class="ci-bag opacity-60 me-2"></i>Orders<span class="fs-sm text-muted ms-auto">{{ user.order.all.count }}</span>
+                            </a>
+                        </li>
+                        <li class="border-bottom mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="{% url 'wished-products-page' %}">
+                                <i class="ci-heart opacity-60 me-2"></i>Wishlist<span class="fs-sm text-muted ms-auto">{{ user.wished.all.count }}</span>
+                            </a>
+                        </li>
+                        <li class="mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'booked-products-page' %}">
+                                <i class="ci-book opacity-60 me-2"></i>Booked<span class="fs-sm text-muted ms-auto">{{ user.booked.all.count }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="bg-secondary px-4 py-3">
+                        <h3 class="fs-sm mb-0 text-muted">Account settings</h3>
+                    </div>
+                    <ul class="list-unstyled mb-0">
+                        <li class="border-bottom mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'account-profile-page' %}">
+                                <i class="ci-user opacity-60 me-2"></i>Profile info
+                            </a>
+                        </li>
+                        <li class="mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'change-password' %}">
+                                <i class="ci-locked opacity-60 me-2"></i>Change password
+                            </a>
+                        </li>
+                        <li class="mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-payment.html">
+                                <i class="ci-card opacity-60 me-2"></i>Payments
+                            </a>
+                        </li>
+
+                        <li class="d-lg-none border-top mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'user-logout' %}">
+                                <i class="ci-sign-out opacity-60 me-2"></i>Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <!-- Content  -->
+        <section class="col-lg-8">
+            <!-- Toolbar-->
+            <div class="d-flex justify-content-between align-items-center pt-lg-2 pb-4 pb-lg-5 mb-lg-3">
+                <div class="d-flex align-items-center">
+                    {% if user.points %}
+                    <label class="d-none d-lg-block fs-sm text-light text-nowrap opacity-75 me-2">You have: {{ user.points }} points</label>
+                    <label class="d-lg-none fs-sm text-nowrap opacity-75 me-2">{{ user.points }} points</label>
+                    {% endif %}
+                </div>
+
+                <a class="btn btn-primary btn-sm d-none d-lg-inline-block" href="{% url 'user-logout' %}">
+                    <i class="ci-sign-out me-2"></i>Sign out
+                </a>
+            </div>
+
+            {% for product in wished_products %}
+            <!-- Item-->
+            <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+              <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+                  <a class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;">
+                      <img src="{% get_media_prefix %}{{ product.thumb }}" alt="Product">
+                  </a>
+
+                  <div class="pt-2">
+                      <h3 class="product-title fs-base mb-2"><a href="#">{{ product.en_name|title }}</a></h3>
+                      <div class="fs-sm"><span class="text-muted me-2">Option:</span> {{ product.en_spec }}</div>
+                      {% if product.en_detail %}
+                      <div class="fs-sm"><span class="text-muted me-2">Detail:</span> {{ product.en_detail }}</div>
+                      {% endif %}
+
+                      {% if product.available %}
+                      <div class="fs-sm text-accent pt-2">
+                          <a href="{% url 'single-product' product.product_sku product.size_sku %}">Product now available </a>
+                      </div>
+                      {% else %}
+                      <div class="fs-sm text-muted pt-2">
+                          <a href="{% url 'single-product' product.product_sku product.size_sku %}">Product still unavailable </a>
+                      </div>
+                      {% endif %}
+                  </div>
+
+              </div>
+                <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+                    <a class="btn btn-outline-danger btn-sm" type="button" href="{% url 'un-book-it' product.product_sku product.size_sku %}"><i class="ci-trash me-2"></i>Remove</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Pagination-->
+            <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
+
+                {% if wished_products.has_other_pages %}
+                <ul class="pagination">
+                    {% if wished_products.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ wished_products.previous_page_number }}">
+                            <i class="ci-arrow-left me-2"></i>Prev
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="pagination">
+                    <li class="page-item d-sm-none">
+                        <span class="page-link page-link-static">{{ wished_products.number }} / {{ wished_products.paginator.num_pages }}</span>
+                    </li>
+                    {% for i in wished_products.paginator.page_range %}
+                    {% if wished_products.number == i %}
+                    <li class="page-item active d-none d-sm-block" aria-current="page">
+                        <span class="page-link">{{ i }}<span class="visually-hidden">(current)</span></span>
+                    </li>
+                    {% else %}
+                    <li class="page-item d-none d-sm-block">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <ul class="pagination">
+                    {% if wished_products.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ wished_products.next_page_number }}">Next
+                            <i class="ci-arrow-right ms-2"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+
+            </nav>
+        </section>
+    </div>
+</div>
+{% endblock %}}

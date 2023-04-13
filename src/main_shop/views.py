@@ -265,3 +265,10 @@ def wish_it(request, sku, size_sku):
 
     else:
         return redirect ('login-page')
+
+def un_wish_it(request, sku):
+    if request.user.is_authenticated:
+        user = request.user
+        selected_product = user.wished.all().get(product_sku=sku)
+        selected_product.delete()
+        return redirect('wished-products-page')
