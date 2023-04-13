@@ -174,16 +174,23 @@ def book_it(request, sku, size_sku):
                                      ar_spec=selected_product.ar_spec,
                                      )
             product_to_book.save()
-        if not user.booked.filter(product_sku=product_to_book.product_sku).exists():
-            if not product_to_book.size_sku == 'main':
-                user.booked.add(product_to_book)
-                request.session['book_it_message'] = 'success'
+
+
+        if user.booked.filter(product_sku=product_to_book.product_sku).exists():
+            if product_to_book.size_sku=='main':
+                request.session['book_it_message'] = 'exists'
             else:
-                if not user.booked.filter(size_sku=product_to_book.size_sku).exists():
-                    user.booked.add(product_to_book)
-                    request.session['book_it_message'] = 'success'
-                else:
+                if user.booked.filter(size_sku=product_to_book.size_sku).exists():
                     request.session['book_it_message'] = 'exists'
+        else:
+            user.booked.add(product_to_book)
+            request.session['book_it_message'] = 'success'
+            
+
+
+        if not user.booked.filter(product_sku=product_to_book.product_sku).exists():
+            user.booked.add(product_to_book)
+            request.session['book_it_message'] = 'success'
         else:
             request.session['book_it_message'] = 'exists'
 
