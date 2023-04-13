@@ -214,25 +214,17 @@
                       {% endif %}
 
                       {% if product.available %}
-                      {% if not product.en_detail %}
                       <div class="fs-sm text-accent pt-2">
-                          <a href="{% url 'single-product' product.product_sku 'main' %}">Product now available </a>
+                          <a href="{% url 'single-product' product.product_sku product.size_sku %}">Product now available </a>
                       </div>
                       {% else %}
-                      <div class="fs-sm text-accent pt-2">
-                          <a href="{% url 'single-product' product.product_sku product.size_sku %}">Product now available size</a>
-                      </div>
-                      {% endif %}
-                      {% else %}
-                      {% if not product.en_detail %}
                       <div class="fs-sm text-muted pt-2">
+                          {% if product.product_sku == product.size_sku %}
                           <a href="{% url 'single-product' product.product_sku 'main' %}">Product still unavailable </a>
+                          {% else %}
+                          <a href="{% url 'single-product' product.product_sku product.size_sku %}">Product still unavailable </a>
+                          {% endif %}
                       </div>
-                      {% else %}
-                      <div class="fs-sm text-muted pt-2">
-                          <a href="{% url 'single-product' product.product_sku product.size_sku %}">Product still unavailable size</a>
-                      </div>
-                      {% endif %}
                       {% endif %}
                   </div>
 
