@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'django_user_agents',
     'phonenumber_field',
     'mathfilters',
-    'sell_manager',
-    'shop_manager',
-    'main_shop',
+    'content',
+    'products',
+    'sales',
 ]
 
 MIDDLEWARE = [
@@ -71,8 +71,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'shop_manager.context_processors.shop_manager_content',
-                'main_shop.context_processors.main_shop_content',
             ],
         },
     },

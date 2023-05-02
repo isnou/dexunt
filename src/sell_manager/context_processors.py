@@ -1,1 +1,0 @@
-# from shop_manager.models import Product
