@@ -3,6 +3,7 @@ from add_ons import functions
 
 
 def home_page(request):
+    request.session['language'] = 'en-us'
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
 
