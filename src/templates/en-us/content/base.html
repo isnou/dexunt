@@ -29,23 +29,9 @@
           <span> Super Value Deals - Save more with coupons</span>
         </div>
         <div class="col-6 text-end d-none d-md-block">
-          <div class="dropdown">
-            <a class="dropdown-toggle text-decoration-none  text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              English
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item " href="#">
-                  Français
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item " href="#">
-                  العربية
-                </a>
-              </li>
-            </ul>
-          </div>
+          <a href="#" class="text-reset d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#change_language_modal">
+            <i class="feather-icon icon-map-pin me-2"></i>Language - Langue - اللغة
+          </a>
         </div>
       </div>
     </div>
@@ -1817,6 +1803,27 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+
+<!-- change language modal -->
+<div class="modal fade" id="change_language_modal" tabindex="-1" aria-labelledby="change_language_label"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="mb-5 d-flex align-items-center justify-content-between">
+          <h1 class="modal-title fs-5" id="change_language_label">Choose your language</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class=" w-100 ">
+        </div>
+        <div class="my-10 text-center">
+        </div>
+      </div>
     </div>
   </div>
 </div>
