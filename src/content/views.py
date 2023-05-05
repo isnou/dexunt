@@ -7,7 +7,7 @@ def home_page(request):
         request.session['language'] = 'en-us'
 
     direction = request.session.get('language')
-    url = direction + "/content/home-page.html"
+    url = direction + "/home/main-page.html"
 
     context = {
     }
