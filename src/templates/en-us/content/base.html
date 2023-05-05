@@ -47,7 +47,7 @@
           <span class="ms-1 me-1">
             |
           </span>
-          <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#">
+          <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#track_my_order_modal">
             Track my order
             <i class="feather-icon icon-map-pin ms-2"></i>
           </a>
@@ -79,25 +79,17 @@
                 </span>
               </div>
             </form>
-
-
-
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center w-100 d-lg-none">
-          <a class="navbar-brand mb-0" href="../index.html">
-            <img src="../assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">
+          <a class="navbar-brand mb-0" href="{% url 'home-page' %}">
+            <img src="{% static 'home-page/images/logo/logo.png' %}" alt="dexunt-logo">
           </a>
 
           <div class="d-flex align-items-center lh-1">
             <div class="list-inline me-4">
               <div class="list-inline-item">
 
-                <!-- Button trigger modal -->
-                <a href="index-4.html#" class="text-reset d-none d-md-block " data-bs-toggle="modal"
-                   data-bs-target="#locationSecondModal">
-                  <i class="feather-icon icon-map-pin me-2"></i>Set A Location
-                </a>
               </div>
 
               <div class="list-inline-item ">
@@ -1789,15 +1781,15 @@
 
 
 
-<!-- Location Modal -->
-<div class="modal fade" id="locationSecondModal" tabindex="-1" aria-labelledby="locationSecondModalLabel"
+<!-- track my order modal -->
+<div class="modal fade" id="track_my_order_modal" tabindex="-1" aria-labelledby="track_my_order_modal_label"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
       <div class="modal-body">
         <div class="mb-5 d-flex align-items-center justify-content-between">
-          <h1 class="modal-title fs-5" id="locationSecondModalLabel">Add Your Location</h1>
+          <h1 class="modal-title fs-5" id="track_my_order_modal_label">Add Your Location</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class=" w-100 ">
