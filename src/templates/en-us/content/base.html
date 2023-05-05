@@ -99,7 +99,7 @@
             <div class="list-inline me-4">
               <!-- mobile sign in button -->
               <div class="list-inline-item">
-                <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#registerModal">
+                <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#sign_in_modal">
                   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </a>
               </div>
@@ -222,7 +222,7 @@
         <div class="list-inline ms-auto d-lg-block d-none">
           <!-- desk sign in button -->
           <div class="list-inline-item me-3">
-            <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#registerModal">
+            <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#sign_in_modal">
               <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </a>
           </div>
@@ -1751,8 +1751,6 @@
 
 </nav>
 
-
-
 <!-- track my order modal -->
 <div class="modal fade" id="track_my_order_modal" tabindex="-1" aria-labelledby="track_my_order_modal_label"
   aria-hidden="true">
@@ -1789,7 +1787,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- change language modal -->
 <div class="modal fade" id="change_language_modal" tabindex="-1" aria-labelledby="change_language_label"
@@ -1829,17 +1826,15 @@
   </div>
 </div>
 
-<!-- Register Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+<!-- sign in modal -->
+<div class="modal fade" id="sign_in_modal" tabindex="-1" aria-labelledby="sign_in_modal_label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content  bg-light">
       <div class="modal-header bg-white">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Register via Phone Number</h1>
+        <h1 class="modal-title fs-5" id="sign_in_modal_label">Sign in</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
-
         <div class="row justify-content-center">
           <div class="col-lg-8 col-12">
             <div class="py-6">
@@ -1852,7 +1847,6 @@
                   <button type="submit" class="btn btn-primary">Next</button>
                 </div>
               </form>
-
               <div class="mt-4">
                 <small>
                   <a href="index-4.html#">Terms of Service</a>
@@ -1862,11 +1856,12 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </div>
+
+
       <main>
          <!-- section -->
          <section class="py-lg-16 py-10"
