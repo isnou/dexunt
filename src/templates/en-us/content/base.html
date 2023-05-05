@@ -1831,15 +1831,28 @@
           <h1 class="modal-title fs-5" id="change_language_label"></h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        
+
         <div class=" w-100 ">
           <div class="text-center text-md-center fs-5 mb-5">
-            pour le français <a href="#"> cliquez ici </a>
+            pour le français <button form="french_language_form" > cliquez ici </button>
           </div>
           <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
              للغة العربية <a href="#"> اضغط هنا </a>
           </div>
         </div>
+
+        <form action="#" id="french_language_form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="language" value='fr-FR'>
+          <input type="hidden" name="page" value='home-page'>
+        </form>
+
+        <form action="#" id="arabic_language_form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="language" value='ar-DZ'>
+          <input type="hidden" name="page" value='home-page'>
+        </form>
+
       </div>
     </div>
   </div>
