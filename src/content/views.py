@@ -12,3 +12,12 @@ def home_page(request):
     context = {
     }
     return render(request, url, context)
+
+def change_language(request):
+    if request.method == 'POST':
+        language = request.POST.get('language', False)
+        page = request.POST.get('page', False)
+        request.session['language'] = language
+
+        if page == 'home-page':
+            return redirect('home-page')
