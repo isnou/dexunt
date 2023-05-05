@@ -1836,20 +1836,20 @@
           <div class="text-center text-md-center fs-5 mb-5">
             Pour le français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
           </div>
-          <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
+          <div class="text-center text-md-center fs-5 mb-5">
             For english <button form="english_language_form" class="btn btn-ghost-info"> Click here </button>
           </div>
         </div>
 
         <form action="{% url 'change-language' %}" id="french_language_form" method="post">
           {% csrf_token %}
-          <input type="hidden" name="language" value='fr-FR'>
+          <input type="hidden" name="language" value='fr-fr'>
           <input type="hidden" name="page" value='home-page'>
         </form>
 
         <form action="{% url 'change-language' %}" id="english_language_form" method="post">
           {% csrf_token %}
-          <input type="hidden" name="language" value='en-US'>
+          <input type="hidden" name="language" value='en-us'>
           <input type="hidden" name="page" value='home-page'>
         </form>
 

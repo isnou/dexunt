@@ -1843,13 +1843,13 @@
 
         <form action="{% url 'change-language' %}" id="french_language_form" method="post">
           {% csrf_token %}
-          <input type="hidden" name="language" value='fr-FR'>
+          <input type="hidden" name="language" value='fr-fr'>
           <input type="hidden" name="page" value='home-page'>
         </form>
 
         <form action="{% url 'change-language' %}" id="arabic_language_form" method="post">
           {% csrf_token %}
-          <input type="hidden" name="language" value='ar-DZ'>
+          <input type="hidden" name="language" value='ar-dz'>
           <input type="hidden" name="page" value='home-page'>
         </form>
 
