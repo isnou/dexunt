@@ -36,7 +36,7 @@
 <body>
 <!-- navigation -->
 <header class="border-bottom border-bottom-lg-0">
-  <!-- language & tracking navbar -->
+  <!-- language & tracking topbar -->
   <div class="py-2 mb-5 bg-dark">
     <div class="container">
       <div class="row">
@@ -56,17 +56,16 @@
       </div>
     </div>
   </div>
-  <!-- end language & tracking navbar -->
+  <!-- end language & tracking topbar -->
 
   <div class="container mb-5">
     <div class="row w-100 align-items-center gx-3">
 
       <div class="col-xl-7 col-lg-8">
-        <!-- desk search & logo navbar -->
+        <!-- desk search & logo -->
         <div class="d-flex align-items-center">
           <a class="navbar-brand d-none d-lg-block" href="{% url 'home-page' %}">
             <img src="{% static 'home-page/images/logo/logo.png' %}" alt="dexunt-logo">
-            desk
           </a>
           <div class=" w-100 ms-4  d-none d-lg-block ">
             <form action="index-4.html#">
@@ -86,11 +85,12 @@
             </form>
           </div>
         </div>
-        <!-- end desk search & logo navbar -->
+        <!-- end desk search & logo -->
+
+        <!-- tablet search & logo -->
         <div class="d-flex justify-content-between align-items-center w-100 d-lg-none">
           <a class="navbar-brand mb-0" href="{% url 'home-page' %}">
             <img src="{% static 'home-page/images/logo/logo.png' %}" alt="dexunt-logo">
-            medium
           </a>
 
           <div class="d-flex align-items-center lh-1">
@@ -215,8 +215,9 @@
 
           </div>
         </div>
-
+        <!-- end tablet search & logo -->
       </div>
+
       <div class="col-xl-5 col-lg-4 d-flex align-items-center ">
 
         <div class="list-inline ms-auto d-lg-block d-none">
@@ -227,7 +228,8 @@
           <div class="list-inline-item me-3">
             <a href="index-4.html#!" class="text-reset" data-bs-toggle="modal" data-bs-target="#registerModal">
               Register
-            </a></div>
+            </a>
+          </div>
           <div class="list-inline-item me-3">
             <div class="dropdown d-none d-xl-block ">
               <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
@@ -339,6 +341,7 @@
 
             <a href="signin.html" class="btn btn-dark d-none d-xl-block">
               Sign In
+              desk
             </a>
 
           </div>
