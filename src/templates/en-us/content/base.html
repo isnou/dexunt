@@ -220,13 +220,14 @@
 
       <div class="col-xl-5 col-lg-4 d-flex align-items-center ">
         <div class="list-inline ms-auto d-lg-block d-none">
-          <div class="list-inline-item me-3">
-          </div>
+          <!-- desk sign in button -->
           <div class="list-inline-item me-3">
             <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#registerModal">
               Register
             </a>
           </div>
+          <!-- end desk sign in button -->
+
           <!-- desk dropdown cart -->
           <div class="list-inline-item me-3">
             <div class="dropdown d-none d-md-block ">
@@ -336,13 +337,14 @@
             </div>
           </div>
           <!-- end desk dropdown cart -->
-          <div class="list-inline-item">
-            <a href="signin.html" class="btn btn-dark d-none d-xl-block">
-              <!-- only desk -->
-              Sign In
-            </a>
 
+          <!-- only desk example -->
+          <div class="list-inline-item">
+            <a href="#" class="btn btn-dark d-none d-xl-block">
+              example
+            </a>
           </div>
+          <!-- end only desk example -->
         </div>
       </div>
 
@@ -353,8 +355,10 @@
 <div class="navbar p-0">
   <div class="offcanvas offcanvas-start p-4 p-lg-0 " id="navbar-default">
     <div class="d-flex justify-content-between align-items-center mb-4 d-block d-lg-none">
-      <a href="../index.html"><img src="../assets/images/logo/freshcart-logo.svg"
-                                   alt="eCommerce HTML Template"></a>
+      <a href="{% url 'home-page' %}">
+        <img src="{% static 'home-page/images/logo/logo.png' %}" alt="dexunt-logo">
+      </a>
+
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="d-block d-lg-none mb-3 ">
