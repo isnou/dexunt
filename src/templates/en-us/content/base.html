@@ -2,7 +2,9 @@
 {% load static %}
 <html lang="en">
 <head>
-  <title>FreshCart - eCommerce HTML Template</title>
+  <!-- title block -->
+  {% block title %} {% endblock %}
+
   <link rel="stylesheet" href="{% static 'home-page/libs/tiny-slider/dist/tiny-slider.css' %}"/>
   <link rel="stylesheet" href="{% static 'home-page/libs/slick-carousel/slick/slick.css' %}"/>
   <link rel="stylesheet" href="{% static 'home-page/libs/slick-carousel/slick/slick-theme.css' %}"/>
@@ -11,15 +13,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-M8S4MT3EYG');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M8S4MT3EYG');
+  </script>
 
   <!-- Favicon icon-->
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'home-page/images/favicon/favicon.png' %}">
@@ -991,116 +992,8 @@
 
 </nav>
 
-<!-- track my order modal -->
-<div class="modal fade" id="track_my_order_modal" tabindex="-1" aria-labelledby="track_my_order_modal_label"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <div class="mb-5 d-flex align-items-center justify-content-between">
-          <h1 class="modal-title fs-5" id="track_my_order_modal_label"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class=" w-100 ">
-
-          <div class="mb-4">
-            <h1 class="mt-3 mb-0 h4">Order tracking</h1>
-            <small>Put your order reference </small>
-          </div>
-          <form>
-            <div class="row g-3">
-              <div class="col">
-                <label for="order_code" class="visually-hidden">Order Code</label>
-                <input type="text" class="form-control" id="order_code"
-                       placeholder="#6F4HU8I" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
-              </div>
-              <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Check</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="my-10 text-center">
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- change language modal -->
-<div class="modal fade" id="change_language_modal" tabindex="-1" aria-labelledby="change_language_label"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <div class="mb-5 d-flex align-items-center justify-content-between">
-          <h1 class="modal-title fs-5" id="change_language_label"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class=" w-100 ">
-          <div class="text-center text-md-center fs-5 mb-5">
-            Pour le français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
-          </div>
-          <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
-            للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
-          </div>
-        </div>
-
-        <form action="{% url 'change-language' %}" id="french_language_form" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="language" value='fr-fr'>
-          <input type="hidden" name="page" value='home-page'>
-        </form>
-
-        <form action="{% url 'change-language' %}" id="arabic_language_form" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="language" value='ar-dz'>
-          <input type="hidden" name="page" value='home-page'>
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- sign in modal -->
-<div class="modal fade" id="sign_in_modal" tabindex="-1" aria-labelledby="sign_in_modal_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content  bg-light">
-      <div class="modal-header bg-white">
-        <h1 class="modal-title fs-5" id="sign_in_modal_label">Sign in</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 col-12">
-            <div class="py-6">
-              <h4 class="fs-6 mb-4">Enter your phone number to Signup or Register</h4>
-              <form>
-                <div class="input-phone mb-2">
-                  <input type="tel" maxlength="10" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
-                </div>
-                <div class="d-grid">
-                  <button type="submit" class="btn btn-primary">Next</button>
-                </div>
-              </form>
-              <div class="mt-4">
-                <small>
-                  <a href="index-4.html#">Terms of Service</a>
-                  <a href="index-4.html#" class="ms-3">Privacy Policy</a>
-                </small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- modals block -->
+{% block modals %} {% endblock %}
 
 
       <main>
