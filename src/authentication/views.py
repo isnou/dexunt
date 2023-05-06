@@ -257,6 +257,11 @@ def change_password(request):
 
     return render(request, url, {'change_password_form': change_password_form})
 
+@login_required
+def router(request):
+    if request.user.role == 'admin':
+        return redirect('management-page', 'show')
+
 def user_logout(request):
     logout(request)
-    return redirect('main-shop-home')
+    return redirect('home-page')
