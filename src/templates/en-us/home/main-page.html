@@ -96,7 +96,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-10 col-10">
             <div class="py-6">
-              <form action="{% url 'account-login' %}" method="post">
+              <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 <div class="mb-8">
                   <input type="text" id="username" class="form-control form-control-lg" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
