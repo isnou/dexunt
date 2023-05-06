@@ -25,16 +25,17 @@ def management_page(request, action):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
 
-    nav_side = action
-    context = {
-        'nav_side': nav_side
-    }
-
     if action == 'statistics':
         url = direction + "/management/admin/statistics.html"
+        context = {
+            'nav_side': action
+        }
         return render(request, url, context)
     if action == 'products':
         url = direction + "/management/admin/products.html"
+        context = {
+            'nav_side': action
+        }
         return render(request, url, context)
 
 
