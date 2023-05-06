@@ -25,7 +25,7 @@ def account_login(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect('account-orders-page')
+                return redirect('management-page')
             else:
                 login_form = LoginForm()
                 signup_form = SignupForm()
