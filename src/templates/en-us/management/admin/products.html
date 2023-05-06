@@ -14,6 +14,7 @@
       </ol>
     </nav>
     <h1 class="page-header-title">Products</h1>
+    <h6 class="page-header-title">You have {{ all_products.all.count }} </h6>
   </div>
 
   <div class="col-sm-auto">
@@ -52,7 +53,7 @@
     <!-- end filters -->
   </div>
   <!-- end header -->
-
+  {% if all_products.all.count %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -90,18 +91,22 @@
           <td>60</td>
           <td>2</td>
           <td>
-            <button type="button" class="btn btn-white btn-icon">
-              <i class="bi-eye"></i>
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ selected_user.id }}">
+              <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View & Edit"></i>
             </button>
+
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
+              <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+            </button>
+
           </td>
         </tr>
-
-
       </tbody>
     </table>
   </div>
   <!-- end table -->
-
+  {% else %}
+  {% endif %}
   <!-- footer -->
   <div class="card-footer">
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">

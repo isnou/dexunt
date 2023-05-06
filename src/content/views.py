@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
+from products.models import Product
 
 
 
@@ -33,9 +34,11 @@ def management_page(request, action):
         return render(request, url, context)
     if action == 'products':
         url = direction + "/management/admin/products.html"
+        all_products = Product.object.all()
         context = {
             'nav_side': action,
-            'show': 'all_products_table'
+            'show': 'all_products_table',
+            'all_products': all_products
         }
         return render(request, url, context)
 
