@@ -537,20 +537,11 @@
             </div>
             <!-- End Statistics -->
 
-            <!-- Products -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'management-page' 'products' %}" data-placement="left">
-                <i class="bi-box-seam nav-icon"></i>
-                <span class="nav-link-title">Products</span>
-              </a>
-            </div>
-            <!-- End Products -->
-
-            <!-- Users Title -->
-            <span class="dropdown-header mt-4">Users</span>
+            <!-- Management Title -->
+            <span class="dropdown-header mt-4">Management</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
             <div class="navbar-nav nav-compact"></div>
-            <!-- End Users Title -->
+            <!-- End Management Title -->
 
             <!-- Customers -->
             <div class="nav-item">
@@ -570,11 +561,14 @@
             </div>
             <!-- End Stores -->
 
-            <!-- Sales Title -->
-            <span class="dropdown-header mt-4">Sales</span>
-            <small class="bi-three-dots nav-subtitle-replacer"></small>
-            <div class="navbar-nav nav-compact"></div>
-            <!-- End Sales Title -->
+            <!-- Products -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'management-page' 'products' %}" data-placement="left">
+                <i class="bi-box-seam nav-icon"></i>
+                <span class="nav-link-title">Products</span>
+              </a>
+            </div>
+            <!-- End Products -->
 
             <!-- Orders -->
             <div class="nav-item">
