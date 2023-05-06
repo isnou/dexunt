@@ -261,7 +261,7 @@ def router(request):
     if request.user.role == 'admin':
         return redirect('management-page', 'show')
     else:
-        return redirect('account-logout')
+        return redirect('logout')
 
 def account_logout(request):
     logout(request)
