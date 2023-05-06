@@ -34,7 +34,7 @@ def management_page(request, action):
         return render(request, url, context)
     if action == 'products':
         url = direction + "/management/admin/products.html"
-        all_products = Product.object.all()
+        all_products = Product.objects.all()
         context = {
             'nav_side': action,
             'show': 'all_products_table',
