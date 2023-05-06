@@ -28,7 +28,7 @@ def management_page(request, action):
         url = direction + "/management/admin-page.html"
 
         context = {
-            
+
         }
         return render(request, url, context)
 
