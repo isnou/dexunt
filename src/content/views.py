@@ -25,7 +25,7 @@ def management_page(request, action):
         if not request.session.get('language', None):
             request.session['language'] = 'en-us'
         direction = request.session.get('language')
-        url = direction + "/management/admin-page.html"
+        url = direction + "/management/admin/main-page.html"
 
         context = {
 
