@@ -9,7 +9,7 @@ from django.contrib.auth import update_session_auth_hash
 
 
 
-def user_login(request):
+def account_login(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
@@ -260,7 +260,9 @@ def change_password(request):
 def router(request):
     if request.user.role == 'admin':
         return redirect('management-page', 'show')
+    else:
+        return redirect('account-logout')
 
-def user_logout(request):
+def account_logout(request):
     logout(request)
     return redirect('home-page')
