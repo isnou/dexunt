@@ -510,7 +510,7 @@
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
         <!-- Tovana Logo -->
-        <a class="navbar-brand" href="{% url 'management-page' %}" aria-label="Front">
+        <a class="navbar-brand" href="{% url 'management-page' 'view' %}" aria-label="Front">
 
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
@@ -531,7 +531,7 @@
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <!-- Dashboard -->
             <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'dashboard' %} active {% endif %}" href="{% url 'management-page' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'dashboard' %} active {% endif %}" href="{% url 'management-page' 'view' %}" data-placement="left">
                   <i class="bi-clipboard-data nav-icon"></i>
                   <span class="nav-link-title">Dashboard</span>
                 </a>
@@ -549,7 +549,7 @@
 
               <!-- Users -->
               <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="{% url 'management-page' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="{% url 'management-page' 'view' %}" data-placement="left">
                   <i class="bi-people nav-icon"></i>
                   <span class="nav-link-title">Users</span>
                 </a>
