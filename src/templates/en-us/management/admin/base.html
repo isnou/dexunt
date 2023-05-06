@@ -509,7 +509,7 @@
   <aside class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered bg-white  ">
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
-        <!-- Tovana Logo -->
+        <!-- Dexunt Logo -->
         <a class="navbar-brand" href="{% url 'management-page' 'view' %}" aria-label="Front">
 
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
@@ -517,7 +517,7 @@
           <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
           <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="dark">
         </a>
-        <!-- End Tovana Logo -->
+        <!-- End Dexunt Logo -->
 
         <!-- Navbar Vertical Toggle -->
         <button type="button" class="js-navbar-vertical-aside-toggle-invoker navbar-aside-toggler">
@@ -531,9 +531,9 @@
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <!-- Dashboard -->
             <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'dashboard' %} active {% endif %}" href="{% url 'management-page' 'view' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'stat' %} active {% endif %}" href="{% url 'management-page' 'view' %}" data-placement="left">
                   <i class="bi-clipboard-data nav-icon"></i>
-                  <span class="nav-link-title">Dashboard</span>
+                  <span class="nav-link-title">Stat</span>
                 </a>
             </div>
             <!-- End Dashboard -->
