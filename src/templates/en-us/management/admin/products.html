@@ -14,7 +14,7 @@
       </ol>
     </nav>
     <h1 class="page-header-title">Products</h1>
-    <h6 class="text-muted">You have {{ all_products.all.count }} </h6>
+    <h6 class="text-muted">You have {{ all_products.all.count }} products</h6>
   </div>
 
   <div class="col-sm-auto">
@@ -44,13 +44,10 @@
     </div>
     <!-- end search -->
 
-    <!-- filters -->
+    <!-- title bar -->
     <div class="d-grid d-sm-flex gap-2">
-      <button class="btn btn-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEcommerceProductFilter" aria-controls="offcanvasEcommerceProductFilter">
-        <i class="bi-filter me-1"></i> Filters
-      </button>
     </div>
-    <!-- end filters -->
+    <!-- end title bar -->
   </div>
   <!-- end header -->
   {% if all_products.all.count %}
@@ -105,8 +102,7 @@
     </table>
   </div>
   <!-- end table -->
-  {% else %}
-  {% endif %}
+
   <!-- footer -->
   <div class="card-footer">
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
@@ -147,6 +143,19 @@
     <!-- End Row -->
   </div>
   <!-- end footer -->
+  {% else %}
+  <!-- footer -->
+  <div class="card-footer">
+    <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+          <span class="me-2">your inventory is empty please add products</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end footer -->
+  {% endif %}
 </div>
 {% endif %}
 {% endblock %}
