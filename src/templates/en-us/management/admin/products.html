@@ -18,9 +18,9 @@
   </div>
 
   <div class="col-sm-auto">
-    <a class="btn btn-light" href="#">
-      <i class="bi-plus-lg me-1"></i> add new product
-    </a>
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_produtc_modal">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="add new product"></i>
+    </button>
   </div>
 </div>
 {% endblock %}
@@ -144,7 +144,6 @@
   </div>
   <!-- end footer -->
   {% else %}
-  <!-- footer -->
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
@@ -152,7 +151,6 @@
       </div>
     </div>
   </div>
-  <!-- end footer -->
   {% endif %}
 </div>
 {% endif %}
