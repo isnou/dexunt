@@ -118,10 +118,10 @@
     <div class="navbar-nav-wrap">
       <!-- Dexunt Logo -->
       <a class="navbar-brand" href="{% url 'home-page' %}" aria-label="Front">
-        <img class="navbar-brand-logo" src="{% static 'landing_page/tovana_img/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
-        <img class="navbar-brand-logo" src="{% static 'landing_page/tovana_img/logo_black.png' %}" alt="Logo" data-hs-theme-appearance="dark">
-        <img class="navbar-brand-logo-mini" src="{% static 'landing_page/tovana_img/icon.png' %}" alt="Logo" data-hs-theme-appearance="default">
-        <img class="navbar-brand-logo-mini" src="{% static 'landing_page/tovana_img/icon_black.png' %}" alt="Logo" data-hs-theme-appearance="dark">
+        <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
+        <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
+        <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
+        <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="dark">
       </a>
       <!-- End Dexunt Logo -->
       <div class="navbar-nav-wrap-content-start">
@@ -546,18 +546,27 @@
 
             <div id="navbarVerticalMenuPagesMenu">
 
-              <!-- Consumers -->
+              <!-- Customers -->
               <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'consumers' %} active {% endif %}" href="{% url 'management-page' 'statistics' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'customers' %} active {% endif %}" href="{% url 'management-page' 'customers' %}" data-placement="left">
                   <i class="bi-people nav-icon"></i>
-                  <span class="nav-link-title">Consumers</span>
+                  <span class="nav-link-title">Customers</span>
                 </a>
               </div>
-              <!-- End Consumers -->
+              <!-- End Customers -->
+
+              <!-- Stores -->
+              <div class="nav-item">
+                <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="{% url 'management-page' 'stores' %}" data-placement="left">
+                  <i class="bi-shop-window nav-icon"></i>
+                  <span class="nav-link-title">Stores</span>
+                </a>
+              </div>
+              <!-- End Stores -->
 
               <!-- Products -->
               <div class="nav-item">
-                <a class="nav-link " href="#" data-placement="left">
+                <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'management-page' 'products' %}" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
                   <span class="nav-link-title">Products</span>
                 </a>
