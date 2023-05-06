@@ -259,7 +259,7 @@ def change_password(request):
 @login_required
 def router(request):
     if request.user.role == 'admin':
-        return redirect('management-page', 'show')
+        return redirect('management-page', 'statistics')
     else:
         return redirect('logout')
 
