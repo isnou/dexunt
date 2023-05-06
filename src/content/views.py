@@ -21,7 +21,7 @@ def home_page(request):
 
 
 def management_page(request, action):
-    if action == 'show':
+    if action == 'statistics':
         if not request.session.get('language', None):
             request.session['language'] = 'en-us'
         direction = request.session.get('language')
