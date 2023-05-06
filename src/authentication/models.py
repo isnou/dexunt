@@ -15,13 +15,7 @@ class User(AbstractUser):
     province = models.CharField(max_length=200, blank=True, null=True)
     municipality = models.CharField(max_length=200, blank=True, null=True)
     activated_account = models.BooleanField(default=False)
-
-    # --------------------------------- user activities ----------------------------------------
-    #order = models.ManyToManyField(Order, blank=True)
-    #cart = models.ManyToManyField(UserCart, blank=True)
-    #server = models.ManyToManyField(Server, blank=True)
-    #wished = models.ManyToManyField(Wished, blank=True)
-    #booked = models.ManyToManyField(Booked, blank=True)
+    user_token = models.CharField(max_length=24, unique=True, null=True)
 
 
     def save(self, *args, **kwargs):

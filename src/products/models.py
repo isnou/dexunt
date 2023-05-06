@@ -4,10 +4,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Feature(models.Model):
-    # --------------------------------- feature types ------------------------------------------
-    en_title = models.CharField(max_length=150, blank=True, null=True)
-    fr_title = models.CharField(max_length=150, blank=True, null=True)
-    ar_title = models.CharField(max_length=150, blank=True, null=True)
+    # --------------------------------- feature title ------------------------------------------
+    en_title = models.CharField(max_length=100, blank=True, null=True)
+    fr_title = models.CharField(max_length=100, blank=True, null=True)
+    ar_title = models.CharField(max_length=100, blank=True, null=True)
     # --------------------------------- feature value ------------------------------------------
     en_value = models.TextField(max_length=500, null=True)
     fr_value = models.TextField(max_length=500, null=True)
@@ -16,9 +16,22 @@ class Feature(models.Model):
     def __str__(self):
         return self.en_title
 
+class Review(models.Model):
+    # --------------------------------- feature types ------------------------------------------
+    client_name = models.CharField(max_length=100, blank=True, null=True)
+    content = models.CharField(max_length=500, blank=True, null=True)
+    rates = models.IntegerField(default=0)
+    # --------------------------------- technical details --------------------------------------
+    show = models.BooleanField(default=True)
+    user_token = models.CharField(max_length=24, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.client_name
+
 class Album(models.Model):
     file_name = models.CharField(max_length=500, blank=True, default='product-image')
-    image = models.ImageField(upload_to='shop-manager/product/')
+    image = models.ImageField(upload_to='products-photos/all-products/')
 
     class Meta:
         verbose_name_plural = "Album"
@@ -26,53 +39,33 @@ class Album(models.Model):
     def __str__(self):
         return self.file_name
 
-class Set(models.Model):
+class Option(models.Model):
     # --------------------------------- product identification ---------------------------------
     en_value = models.CharField(max_length=200, blank=True, null=True)
     fr_value = models.CharField(max_length=200, blank=True, null=True)
     ar_value = models.CharField(max_length=200, blank=True, null=True)
-    thumb = models.ImageField(upload_to='shop-manager/size/', blank=True, null=True)
+    # --------------------------------- media --------------------------------------------------
+    image = models.ImageField(upload_to='products-photos/product-options/', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
+    has_image = models.BooleanField(default=False)
+    show = models.BooleanField(default=True)
+    product_token = models.CharField(max_length=24, null=True)
+    review = models.ManyToManyField(Review, blank=True)
+    sale = models.IntegerField(default=0)
     upc = models.CharField(max_length=20, unique=True, null=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    review_rate = models.IntegerField(default=0)
-    sell_rate = models.IntegerField(default=0)
+    # --------------------------------- inventory information ----------------------------------
+    cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    quantity = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
-    quantity = models.IntegerField(default=0)
     max_quantity = models.IntegerField(default=0)
-    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    sell_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
-    def __str__(self):
-        return self.en_value
-
-class Size(models.Model):
-    # --------------------------------- product identification ---------------------------------
-    en_value = models.CharField(max_length=200, blank=True, null=True)
-    fr_value = models.CharField(max_length=200, blank=True, null=True)
-    ar_value = models.CharField(max_length=200, blank=True, null=True)
-    # --------------------------------- technical details --------------------------------------
-    upc = models.CharField(max_length=20, unique=True, null=True)
-    sku = models.CharField(max_length=20, unique=True, null=True)
-    tag = models.CharField(max_length=500, blank=True, default='tag')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    review_rate = models.IntegerField(default=0)
-    sell_rate = models.IntegerField(default=0)
-    # --------------------------------- showcase information -----------------------------------
-    delivery_quotient = models.IntegerField(default=100)
-    points = models.IntegerField(default=0)
-    quantity = models.IntegerField(default=0)
-    max_quantity = models.IntegerField(default=0)
-    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    sell_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    def reviews(self):
+        return "\n".join([p.client_name for p in self.review.all()])
 
     def __str__(self):
         return self.en_value
@@ -85,25 +78,23 @@ class Variant(models.Model):
     # --------------------------------- media --------------------------------------------------
     album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
-    upc = models.CharField(max_length=20, unique=True, null=True)
-    sku = models.CharField(max_length=20, unique=True, null=True)
+    availability = models.BooleanField(default=True)
+    product_token = models.CharField(max_length=24, null=True)
+    like = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
-    size = models.ManyToManyField(Size, blank=True)
-    set = models.ManyToManyField(Set, blank=True)
-    quantity = models.IntegerField(default=0)
-    buy_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    sell_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    discount_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    option = models.ManyToManyField(Option, blank=True)
     feature = models.ManyToManyField(Feature, blank=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
 
     def features(self):
         return "\n".join([p.en_title for p in self.feature.all()])
 
-    def sizes(self):
-        return "\n".join([p.value for p in self.size.all()])
-
-    def sets(self):
-        return "\n".join([p.value for p in self.set.all()])
+    def options(self):
+        return "\n".join([p.en_value for p in self.option.all()])
 
     def __str__(self):
         return self.en_spec
@@ -113,12 +104,17 @@ class Product(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- media --------------------------------------------------
+    selected_image = models.ImageField(upload_to='products-photos/selected-products/', blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    sku = models.CharField(max_length=20, unique=True, null=True)
+    product_token = models.CharField(max_length=24, unique=True, null=True)
+    like = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
     # --------------------------------- showcase information -----------------------------------
     variant = models.ManyToManyField(Variant, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
-    model = models.CharField(max_length=80, blank=True, null=True)
     en_description = models.CharField(max_length=800, blank=True, null=True)
     fr_description = models.CharField(max_length=800, blank=True, null=True)
     ar_description = models.CharField(max_length=800, blank=True, null=True)
