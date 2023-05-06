@@ -537,14 +537,14 @@
             </div>
             <!-- End Statistics -->
 
-            <span class="dropdown-header mt-4">Management</span>
+            <!-- Users Section Title -->
+            <span class="dropdown-header mt-4">Users</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
+            <div class="navbar-nav nav-compact"></div>
+            <!-- End Users Section Title -->
 
-            <!-- Collapse -->
-            <div class="navbar-nav nav-compact">
-            </div>
-
-            <div id="navbarVerticalMenuPagesMenu">
+            <!-- Users Section Content -->
+            <div id="navbarVerticalMenuUsers">
 
               <!-- Customers -->
               <div class="nav-item">
@@ -592,49 +592,38 @@
               <!-- End Coupons -->
 
             </div>
-            <!-- End Collapse -->
+            <!-- End Users Section Content -->
 
-            <span class="dropdown-header mt-4">Landing Page</span>
+            <!-- Sales Section Title -->
+            <span class="dropdown-header mt-4">Sales</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
+            <div class="navbar-nav nav-compact"></div>
+            <!-- End Sales Section Title -->
 
-            <!-- Terms & Condition -->
-            <div class="nav-item">
-              <a class="nav-link " href="#" data-placement="left">
-                <i class="bi-info-lg nav-icon"></i>
-                <span class="nav-link-title">Terms & Condition </span>
-              </a>
-            </div>
-            <!-- End Terms & Condition -->
+            <!-- Sales Section Content -->
+            <div id="navbarVerticalMenuPagesSales">
 
-            <!-- Policy -->
-            <div class="nav-item">
-              <a class="nav-link " href="#" data-placement="left">
-                <i class="bi-incognito nav-icon"></i>
-                <span class="nav-link-title">Policy </span>
-              </a>
-            </div>
-            <!-- End Policy -->
+              <!-- Orders -->
+              <div class="nav-item">
+                <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'management-page' 'orders' %}" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Orders</span>
+                </a>
+              </div>
+              <!-- End Orders -->
 
-            <!-- Blog -->
-            <div class="nav-item">
-              <a class="nav-link " href="#" data-placement="left">
-                <i class="bi-pc-display nav-icon"></i>
-                <span class="nav-link-title">Blog </span>
-              </a>
+              <!-- Coupons -->
+              <div class="nav-item">
+                <a class="nav-link {% if nav_side == 'coupons' %} active {% endif %}" href="{% url 'management-page' 'coupons' %}" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Coupons</span>
+                </a>
+              </div>
+              <!-- End Coupons -->
             </div>
-            <!-- End Blog -->
-
-            <!-- FAQs -->
-            <div class="nav-item">
-              <a class="nav-link " href="#" data-placement="left">
-                <i class="bi-question-square nav-icon"></i>
-                <span class="nav-link-title">FAQs </span>
-              </a>
-            </div>
-            <!-- End FAQs -->
+            <!-- End Sales Section Content -->
 
           </div>
-
         </div>
         <!-- End Content -->
 
