@@ -1,0 +1,26 @@
+{% extends "en-us/management/admin/base.html" %}
+{% load static %}
+
+<!-- title -->
+{% block title %}<title>Dexunt | eCommerce & Logistic | Admin Page | Dashboard</title>{% endblock %}
+
+<!-- header -->
+{% block page_header %}
+<div class="row align-items-end">
+  <div class="col-sm mb-2 mb-sm-0">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-no-gutter">
+        <li class="breadcrumb-item active" aria-current="page">statistics</li>
+      </ol>
+    </nav>
+    <h1 class="page-header-title">Statistics</h1>
+  </div>
+
+  <div class="col-sm-auto">
+    <a class="btn btn-light" href="{% url 'home-page' %}">
+      <i class="bi-eye-fill me-1"></i> home page
+    </a>
+  </div>
+</div>
+{% endblock %}
+
