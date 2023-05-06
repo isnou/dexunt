@@ -10,7 +10,7 @@ from shop_manager.models import Product
 
 
 
-def login_page(request):
+def user_login(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
