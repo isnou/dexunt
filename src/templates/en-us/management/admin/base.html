@@ -510,7 +510,7 @@
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
         <!-- Tovana Logo -->
-        <a class="navbar-brand" href="{% url 'home-page' %}" aria-label="Front">
+        <a class="navbar-brand" href="{% url 'management-page' %}" aria-label="Front">
 
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
@@ -529,14 +529,14 @@
         <!-- Content -->
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-            <!-- Home -->
+            <!-- Dashboard -->
             <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'content' %} active {% endif %}" href="{% url 'home-page' %}" data-placement="left">
-                  <i class="bi-house-door nav-icon"></i>
-                  <span class="nav-link-title">Content</span>
+                <a class="nav-link {% if nav_side == 'dashboard' %} active {% endif %}" href="{% url 'management-page' %}" data-placement="left">
+                  <i class="bi-clipboard-data nav-icon"></i>
+                  <span class="nav-link-title">Dashboard</span>
                 </a>
             </div>
-            <!-- End Home -->
+            <!-- End Dashboard -->
 
             <span class="dropdown-header mt-4">Management</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
@@ -549,7 +549,7 @@
 
               <!-- Users -->
               <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="{% url 'home-page' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="{% url 'management-page' %}" data-placement="left">
                   <i class="bi-people nav-icon"></i>
                   <span class="nav-link-title">Users</span>
                 </a>
