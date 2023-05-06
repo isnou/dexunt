@@ -87,8 +87,8 @@
 <!-- sign in modal -->
 <div class="modal fade" id="sign_in_modal" tabindex="-1" aria-labelledby="sign_in_modal_label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content  bg-light">
-      <div class="modal-header bg-white">
+    <div class="modal-content">
+      <div class="modal-header">
         <h1 class="modal-title fs-5" id="sign_in_modal_label">Sign in</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -96,19 +96,26 @@
         <div class="row justify-content-center">
           <div class="col-lg-8 col-12">
             <div class="py-6">
-              <h4 class="fs-6 mb-4">Enter your phone number to Signup or Register</h4>
+              <h4 class="fs-6 mb-4">Enter your credentials please</h4>
               <form>
-                <div class="input-phone mb-2">
-                  <input type="tel" maxlength="10" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+                <div class="mb-3">
+                  <label class="form-label" for="username">Username</label>
+                  <input type="text" id="username" class="form-control form-control-lg" placeholder="Large input">
                 </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="password">Password</label>
+                  <input type="password" id="password" class="form-control" value="passwordexample">
+                </div>
+                
                 <div class="d-grid">
-                  <button type="submit" class="btn btn-primary">Next</button>
+                  <button type="submit" class="btn btn-primary">login</button>
                 </div>
               </form>
               <div class="mt-4">
                 <small>
-                  <a href="index-4.html#">Terms of Service</a>
-                  <a href="index-4.html#" class="ms-3">Privacy Policy</a>
+                  <a href="#">Terms of Service</a>
+                  <a href="#" class="ms-3">Privacy Policy</a>
                 </small>
               </div>
             </div>
