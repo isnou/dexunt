@@ -34,7 +34,8 @@ def management_page(request, action):
     if action == 'products':
         url = direction + "/management/admin/products.html"
         context = {
-            'nav_side': action
+            'nav_side': action,
+            'show': 'all_products_table'
         }
         return render(request, url, context)
 
