@@ -21,16 +21,17 @@ def home_page(request):
 
 
 def management_page(request, action):
-    if action == 'statistics':
-        if not request.session.get('language', None):
-            request.session['language'] = 'en-us'
-        direction = request.session.get('language')
-        url = direction + "/management/admin/statistics.html"
-        nav_side = 'statistics'
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
 
-        context = {
-            'nav_side':nav_side
-        }
+    nav_side = action
+    context = {
+        'nav_side': nav_side
+    }
+    
+    if action == 'statistics':
+        url = direction + "/management/admin/statistics.html"
         return render(request, url, context)
 
 
