@@ -84,12 +84,12 @@
     </div>
   </div>
 </div>
-<!-- sign in modal -->
-<div class="modal fade" id="sign_in_modal" tabindex="-1" aria-labelledby="sign_in_modal_label" aria-hidden="true">
+<!-- login modal -->
+<div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modal_label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="sign_in_modal_label">Login</h1>
+        <h1 class="modal-title fs-5" id="login_modal_label">Login</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -114,6 +114,44 @@
                   You don't have an account ?
                   <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#register_modal">Register</a>
                   ,it's free.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- register modal -->
+<div class="modal fade" id="register_modal" tabindex="-1" aria-labelledby="register_modal_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="register_modal_label">Register</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-10">
+            <div class="py-6">
+              <form>
+                <div class="mb-8">
+                  <input type="text" class="form-control form-control-lg" placeholder="Username" required>
+                </div>
+
+                <div class="mb-8">
+                  <input type="password" class="form-control form-control-lg" placeholder="Password" required>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">submit</button>
+                </div>
+              </form>
+              <div class="mt-4">
+                <small>
+                  Already have an account ?
+                  <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
                 </small>
               </div>
             </div>
