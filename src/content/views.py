@@ -29,7 +29,7 @@ def management_page(request, action):
     context = {
         'nav_side': nav_side
     }
-    
+
     if action == 'statistics':
         url = direction + "/management/admin/statistics.html"
         return render(request, url, context)
