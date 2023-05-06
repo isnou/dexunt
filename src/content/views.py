@@ -27,9 +27,12 @@ def management_page(request, action):
         direction = request.session.get('language')
         url = direction + "/management/admin-page.html"
 
+        context = {
+            
+        }
         return render(request, url, context)
 
-    
+
 def change_language(request):
     if request.method == 'POST':
         language = request.POST.get('language', False)
