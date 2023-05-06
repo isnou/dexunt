@@ -33,6 +33,9 @@ def management_page(request, action):
     if action == 'statistics':
         url = direction + "/management/admin/statistics.html"
         return render(request, url, context)
+    if action == 'products':
+        url = direction + "/management/admin/products.html"
+        return render(request, url, context)
 
 
 def change_language(request):
