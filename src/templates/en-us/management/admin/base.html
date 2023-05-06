@@ -537,73 +537,62 @@
             </div>
             <!-- End Statistics -->
 
-            <!-- Users Section Title -->
+            <!-- Products -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'management-page' 'products' %}" data-placement="left">
+                <i class="bi-box-seam nav-icon"></i>
+                <span class="nav-link-title">Products</span>
+              </a>
+            </div>
+            <!-- End Products -->
+
+            <!-- Users Title -->
             <span class="dropdown-header mt-4">Users</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
             <div class="navbar-nav nav-compact"></div>
-            <!-- End Users Section Title -->
+            <!-- End Users Title -->
 
-            <!-- Users Section Content -->
-            <div id="navbarVerticalMenuUsers">
-
-              <!-- Customers -->
-              <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'customers' %} active {% endif %}" href="{% url 'management-page' 'customers' %}" data-placement="left">
-                  <i class="bi-people nav-icon"></i>
-                  <span class="nav-link-title">Customers</span>
-                </a>
-              </div>
-              <!-- End Customers -->
-
-              <!-- Stores -->
-              <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="{% url 'management-page' 'stores' %}" data-placement="left">
-                  <i class="bi-shop-window nav-icon"></i>
-                  <span class="nav-link-title">Stores</span>
-                </a>
-              </div>
-              <!-- End Stores -->
-
-              <!-- Products -->
-              <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'management-page' 'products' %}" data-placement="left">
-                  <i class="bi-box-seam nav-icon"></i>
-                  <span class="nav-link-title">Products</span>
-                </a>
-              </div>
-              <!-- End Products -->
+            <!-- Customers -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'customers' %} active {% endif %}" href="{% url 'management-page' 'customers' %}" data-placement="left">
+                <i class="bi-people nav-icon"></i>
+                <span class="nav-link-title">Customers</span>
+              </a>
             </div>
-            <!-- End Users Section Content -->
+            <!-- End Customers -->
 
-            <!-- Sales Section Title -->
+            <!-- Stores -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="{% url 'management-page' 'stores' %}" data-placement="left">
+                <i class="bi-shop-window nav-icon"></i>
+                <span class="nav-link-title">Stores</span>
+              </a>
+            </div>
+            <!-- End Stores -->
+
+            <!-- Sales Title -->
             <span class="dropdown-header mt-4">Sales</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
             <div class="navbar-nav nav-compact"></div>
-            <!-- End Sales Section Title -->
+            <!-- End Sales Title -->
 
-            <!-- Sales Section Content -->
-            <div id="navbarVerticalMenuPagesSales">
-
-              <!-- Orders -->
-              <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'management-page' 'orders' %}" data-placement="left">
-                  <i class="bi-cart nav-icon"></i>
-                  <span class="nav-link-title">Orders <span class="badge bg-primary rounded-pill ms-1">3</span></span>
-                </a>
-              </div>
-              <!-- End Orders -->
-
-              <!-- Coupons -->
-              <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'coupons' %} active {% endif %}" href="{% url 'management-page' 'coupons' %}" data-placement="left">
-                  <i class="bi-ticket-detailed nav-icon"></i>
-                  <span class="nav-link-title">Coupons</span>
-                </a>
-              </div>
-              <!-- End Coupons -->
+            <!-- Orders -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'management-page' 'orders' %}" data-placement="left">
+                <i class="bi-cart nav-icon"></i>
+                <span class="nav-link-title">Orders <span class="badge bg-primary rounded-pill ms-1">3</span></span>
+              </a>
             </div>
-            <!-- End Sales Section Content -->
+            <!-- End Orders -->
 
+            <!-- Coupons -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'coupons' %} active {% endif %}" href="{% url 'management-page' 'coupons' %}" data-placement="left">
+                <i class="bi-ticket-detailed nav-icon"></i>
+                <span class="nav-link-title">Coupons</span>
+              </a>
+            </div>
+            <!-- End Coupons -->
           </div>
         </div>
         <!-- End Content -->
