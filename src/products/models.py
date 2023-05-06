@@ -80,6 +80,7 @@ class Variant(models.Model):
     # --------------------------------- technical details --------------------------------------
     availability = models.BooleanField(default=True)
     product_token = models.CharField(max_length=24, null=True)
+    user_token = models.CharField(max_length=24, null=True)
     like = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
