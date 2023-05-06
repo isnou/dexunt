@@ -572,25 +572,6 @@
                 </a>
               </div>
               <!-- End Products -->
-
-              <!-- Orders -->
-              <div class="nav-item">
-                <a class="nav-link " href="#" data-placement="left">
-                  <i class="bi-cart nav-icon"></i>
-                  <span class="nav-link-title">Orders <span class="badge bg-primary rounded-pill ms-1">3</span></span>
-                </a>
-              </div>
-              <!-- End Orders -->
-
-              <!-- Coupons -->
-              <div class="nav-item">
-                <a class="nav-link " href="#" data-placement="left">
-                  <i class="bi-ticket-detailed nav-icon"></i>
-                  <span class="nav-link-title">Coupons </span>
-                </a>
-              </div>
-              <!-- End Coupons -->
-
             </div>
             <!-- End Users Section Content -->
 
@@ -606,8 +587,8 @@
               <!-- Orders -->
               <div class="nav-item">
                 <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'management-page' 'orders' %}" data-placement="left">
-                  <i class="bi-box-seam nav-icon"></i>
-                  <span class="nav-link-title">Orders</span>
+                  <i class="bi-cart nav-icon"></i>
+                  <span class="nav-link-title">Orders <span class="badge bg-primary rounded-pill ms-1">3</span></span>
                 </a>
               </div>
               <!-- End Orders -->
@@ -615,7 +596,7 @@
               <!-- Coupons -->
               <div class="nav-item">
                 <a class="nav-link {% if nav_side == 'coupons' %} active {% endif %}" href="{% url 'management-page' 'coupons' %}" data-placement="left">
-                  <i class="bi-box-seam nav-icon"></i>
+                  <i class="bi-ticket-detailed nav-icon"></i>
                   <span class="nav-link-title">Coupons</span>
                 </a>
               </div>
