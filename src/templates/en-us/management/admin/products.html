@@ -31,139 +31,90 @@
     <div class="modal-content">
       <!-- Header -->
       <div class="modal-close">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
       <!-- End Header -->
 
       <!-- Body -->
       <div class="modal-body">
         <!-- Patient -->
         <div id="add_new_product_modal_title">
-          <!-- login title -->
+          <!-- title -->
           <div class="text-center mb-7">
-                <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
+                <h2>Add new product</h2>
               </div>
-          <!-- end login title -->
+          <!-- end title -->
           <form action="#" class="js-validate need-validate" novalidate method="post">
-                {% csrf_token %}
-                <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
 
-                <div class="row col-sm-divider mb-3">
-                  <div class="col-sm text-end">
-                    <!-- first name -->
-                    <div class="input-group input-group-borderless mb-2">
-                      <span class="input-group-text" id="first_name_{{ selected_user.id }}">First Name</span>
-                      {% if selected_user.first_name %}
-                      <input type="text" class="form-control" aria-label="first_name_{{ selected_user.id }}" aria-describedby="first_name_{{ selected_user.id }}" name="first_name" value="{{ selected_user.first_name }}" placeholder="john">
-                      {% else %}
-                      <input type="text" class="form-control" aria-label="first_name_{{ selected_user.id }}" aria-describedby="first_name_{{ selected_user.id }}" name="first_name" placeholder="john">
-                      {% endif %}
-                    </div>
-                    <!-- end first name -->
-
-                    <!-- last name -->
-                    <div class="input-group input-group-borderless mb-2">
-                      <span class="input-group-text" id="last_name_{{ selected_user.id }}">Last Name</span>
-                      {% if selected_user.last_name %}
-                      <input type="text" class="form-control" aria-label="last_name_{{ selected_user.id }}" aria-describedby="last_name_{{ selected_user.id }}" name="last_name" value="{{ selected_user.last_name }}" placeholder="doe">
-                      {% else %}
-                      <input type="text" class="form-control" aria-label="last_name_{{ selected_user.id }}" aria-describedby="last_name_{{ selected_user.id }}" name="last_name" placeholder="doe">
-                      {% endif %}
-                    </div>
-                    <!-- end last name -->
-
-                    <!-- email -->
-                    <div class="input-group input-group-borderless mb-2">
-                      <span class="input-group-text" id="email_{{ selected_user.id }}">E Mail</span>
-                      <input type="text" class="form-control" aria-label="email_{{ selected_user.id }}" aria-describedby="email_{{ selected_user.id }}" name="email" value="{{ selected_user.email }}" placeholder="jhon.doe@site.com" disabled>
-                    </div>
-                    <!-- end email -->
-
-                    <!-- gender -->
-                    <div class="mb-2">
-                      <div class="input-group input-group-merge input-group-hover-light">
-                        <div class="input-group-prepend input-group-text">
-                          Gender
-                        </div>
-                        <select class="form-select text-center" name="gender">
-                          <option value="{{ selected_user.gender }}">{{ selected_user.gender|title }}</option>
-                          {% if selected_user.gender == 'male' %}
-                          <option value="female">Female</option>
-                          {% endif %}
-                          {% if selected_user.gender == 'female' %}
-                          <option value="male">Male</option>
-                          {% endif %}
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end gender -->
-
-                    <!-- address -->
-                    <div class="input-group input-group-borderless mb-2">
-                      <span class="input-group-text" id="address_1_{{ selected_user.id }}">Address 1</span>
-                      {% if selected_user.address_1 %}
-                      <input type="text" class="form-control" aria-label="address_1_{{ selected_user.id }}" aria-describedby="address_1_{{ selected_user.id }}" name="address_1" value="{{ selected_user.address_1 }}" placeholder="7463 Bayport St">
-                      {% else %}
-                      <input type="text" class="form-control" aria-label="address_1_{{ selected_user.id }}" aria-describedby="address_1_{{ selected_user.id }}" name="address_1" placeholder="7463 Bayport St">
-                      {% endif %}
-                    </div>
-                    <!-- end address -->
-
-                    <!-- address 2 -->
-                    <div class="input-group input-group-borderless mb-2">
-                      <span class="input-group-text" id="address_2_{{ selected_user.id }}">Address 2</span>
-                      {% if selected_user.address_2 %}
-                      <input type="text" class="form-control" aria-label="address_2_{{ selected_user.id }}" aria-describedby="address_2_{{ selected_user.id }}" name="address_2" value="{{ selected_user.address_2 }}" placeholder="Boynton Beach">
-                      {% else %}
-                      <input type="text" class="form-control" aria-label="address_2_{{ selected_user.id }}" aria-describedby="address_2_{{ selected_user.id }}" name="address_2" placeholder="Boynton Beach">
-                      {% endif %}
-                    </div>
-                    <!-- end address 2 -->
-
-                    <!-- phone number -->
-                    <div class="input-group input-group-borderless mb-2">
-                      <span class="input-group-text" id="phone_number_{{ selected_user.id }}">Phone Number</span>
-                      {% if selected_user.phone_number %}
-                      <input type="tel" class="form-control" aria-label="phone_number_{{ selected_user.id }}" aria-describedby="phone_number_{{ selected_user.id }}" name="phone_number" value="{{ selected_user.phone_number }}" placeholder="+1 (609) 972-22-22">
-                      {% else %}
-                      <input type="tel" class="form-control" aria-label="phone_number_{{ selected_user.id }}" aria-describedby="phone_number_{{ selected_user.id }}" name="phone_number" placeholder="+1 (609) 972-22-22">
-                      {% endif %}
-                    </div>
-                    <!-- end phone number -->
-                  </div>
-
-                  <div class="col-sm text-start">
-
-                  </div>
+            <div class="row col-sm-divider mb-3">
+              <div class="col-sm text-end">
+                <!-- product english title -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text" id="en_title">Product english title</span>
+                  <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="en_title" placeholder="john">
                 </div>
-                <!-- convert user -->
-                <div class="mb-3 mt-3">
-                  <select class="form-control text-center" name="role">
-                    <option value="{{ selected_user.role }}">{{ selected_user.role|title }}</option>
-                    {% if selected_user.role == 'patient' %}
-                    <option value="clinician">Clinician</option>
-                    <option value="researcher">Researcher</option>
-                    {% endif %}
+                <!-- end product english title -->
 
-                    {% if selected_user.role == 'clinician' %}
-                    <option value="patient">Patient</option>
-                    <option value="researcher">Researcher</option>
-                    {% endif %}
-
-                    {% if selected_user.role == 'researcher' %}
-                    <option value="patient">Patient</option>
-                    <option value="clinician">Clinician</option>
-                    {% endif %}
-                  </select>
+                <!-- product french title -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text" id="fr_title">Product french title</span>
+                  <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="fr_title" placeholder="john">
                 </div>
-                <!-- end convert user -->
+                <!-- end product french title -->
 
-                <!-- submit -->
-                <div class="d-grid mb-4">
-                  <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+                <!-- product arabic title -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text" id="ar_title">Product arabic title</span>
+                  <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="ar_title" placeholder="john" dir="rtl">
                 </div>
-                <!-- end submit -->
-              </form>
+                <!-- end product arabic title -->
+
+                <!-- last name -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text" id="last_name_{{ selected_user.id }}">Last Name</span>
+                  {% if selected_user.last_name %}
+                  <input type="text" class="form-control" aria-label="last_name_{{ selected_user.id }}" aria-describedby="last_name_{{ selected_user.id }}" name="last_name" value="{{ selected_user.last_name }}" placeholder="doe">
+                  {% else %}
+                  <input type="text" class="form-control" aria-label="last_name_{{ selected_user.id }}" aria-describedby="last_name_{{ selected_user.id }}" name="last_name" placeholder="doe">
+                  {% endif %}
+                </div>
+                <!-- end last name -->
+              </div>
+
+              <div class="col-sm text-start">
+
+              </div>
+            </div>
+            <!-- convert user -->
+            <div class="mb-3 mt-3">
+              <select class="form-control text-center" name="role">
+                <option value="{{ selected_user.role }}">{{ selected_user.role|title }}</option>
+                {% if selected_user.role == 'patient' %}
+                <option value="clinician">Clinician</option>
+                <option value="researcher">Researcher</option>
+                {% endif %}
+
+                {% if selected_user.role == 'clinician' %}
+                <option value="patient">Patient</option>
+                <option value="researcher">Researcher</option>
+                {% endif %}
+
+                {% if selected_user.role == 'researcher' %}
+                <option value="patient">Patient</option>
+                <option value="clinician">Clinician</option>
+                {% endif %}
+              </select>
+            </div>
+            <!-- end convert user -->
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
         </div>
         <!-- End Patient -->
       </div>
