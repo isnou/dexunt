@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
+from add_ons import functions
 
 
 class Feature(models.Model):
@@ -128,3 +129,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.en_title
+
+    def save(self, *args, **kwargs):
+        super().save()
+
+        if self.product_token:
+            self.product_token = functions.serial_number_generator(24)
