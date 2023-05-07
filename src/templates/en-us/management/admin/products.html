@@ -71,16 +71,12 @@
                 </div>
                 <!-- end product arabic title -->
 
-                <!-- last name -->
+                <!-- product brand -->
                 <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text" id="last_name_{{ selected_user.id }}">Last Name</span>
-                  {% if selected_user.last_name %}
-                  <input type="text" class="form-control" aria-label="last_name_{{ selected_user.id }}" aria-describedby="last_name_{{ selected_user.id }}" name="last_name" value="{{ selected_user.last_name }}" placeholder="doe">
-                  {% else %}
-                  <input type="text" class="form-control" aria-label="last_name_{{ selected_user.id }}" aria-describedby="last_name_{{ selected_user.id }}" name="last_name" placeholder="doe">
-                  {% endif %}
+                  <span class="input-group-text" id="brand">brand</span>
+                  <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="brand" placeholder="OomCu">
                 </div>
-                <!-- end last name -->
+                <!-- end product brand -->
               </div>
 
               <div class="col-sm text-start">
