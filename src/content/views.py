@@ -3,6 +3,7 @@ from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from products.models import Product
+from products.forms import ProductForm
 
 
 
@@ -35,12 +36,16 @@ def management_page(request, action):
     if action == 'products':
         url = direction + "/management/admin/products.html"
         all_products = Product.objects.all()
+        product_form = ProductForm()
         context = {
             'nav_side': action,
             'show': 'all_products_table',
-            'all_products': all_products
+            'all_products': all_products,
+            'product_form': product_form,
         }
         return render(request, url, context)
+    if action == 'add_new_product':
+        return redirect('home-page')
 
 
 def change_language(request):

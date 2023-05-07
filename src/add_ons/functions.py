@@ -1,5 +1,4 @@
-import random
-import string
+import random, string
 
 
 def serial_number_generator(length):
