@@ -83,27 +83,27 @@
 
               </div>
             </div>
-            <!-- convert user -->
+            <!-- product presentation photo -->
             <div class="mb-3 mt-3">
-              <select class="form-control text-center" name="role">
-                <option value="{{ selected_user.role }}">{{ selected_user.role|title }}</option>
-                {% if selected_user.role == 'patient' %}
-                <option value="clinician">Clinician</option>
-                <option value="researcher">Researcher</option>
-                {% endif %}
+              <div class="col">
+                <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
+                    <div class="col-sm text-center">
+                      <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader">
+                        <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}">
 
-                {% if selected_user.role == 'clinician' %}
-                <option value="patient">Patient</option>
-                <option value="researcher">Researcher</option>
-                {% endif %}
-
-                {% if selected_user.role == 'researcher' %}
-                <option value="patient">Patient</option>
-                <option value="clinician">Clinician</option>
-                {% endif %}
-              </select>
+                        <input type="file" class="js-file-attach avatar-uploader-input" name="image" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
+                            "textTarget": "#product_presentation_photo",
+                            "mode": "image",
+                            "targetAttr": "src",
+                            "allowTypes": [".png", ".jpeg", ".jpg"]
+                         }' required>
+                        <span class="invalid-feedback text-center">Please upload an image.</span>
+                      </label>
+                    </div>
+                </span>
+              </div>
             </div>
-            <!-- end convert user -->
+            <!-- end product presentation photo -->
 
             <!-- submit -->
             <div class="d-grid mb-4">
