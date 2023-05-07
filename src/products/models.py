@@ -134,4 +134,5 @@ class Product(models.Model):
         super().save()
 
         if self.product_token:
-            self.product_token = functions.serial_number_generator(24)
+            generated_token = self.product_token
+            generated_token.save(functions.serial_number_generator(24))
