@@ -45,7 +45,11 @@ def management_page(request, action):
         }
         return render(request, url, context)
     if action == 'add_new_product':
-        return redirect('home-page')
+        if request.method == 'POST':
+            completed_product_form = ProductForm(request.POST, request.FILES)
+            if completed_product_form.is_valid():
+                completed_product_form.save()
+                return redirect('management-page', 'products')
 
 
 def change_language(request):
