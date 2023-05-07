@@ -49,51 +49,51 @@
             <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
 
             <div class="row mb-4">
-              <!-- product presentation photo -->
-                <div class="mb-3 mt-3">
-                  <div class="col text-center">
-                    <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 100%;width: 100%;">
-                      <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 60%;">
-                      <input type="file" class="js-file-attach avatar-uploader-input" name="image" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
-                          "textTarget": "#product_presentation_photo",
-                          "mode": "image",
-                          "targetAttr": "src",
-                          "allowTypes": [".png", ".jpeg", ".jpg"]
-                          }' required>
-                      <span class="invalid-feedback text-center">Please upload an image.</span>
-                    </label>
-                  </div>
-                </div>
-                <!-- end product presentation photo -->
-
-                <!-- product english title -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text" id="en_title">english title</span>
-                  <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="en_title" placeholder="Deluxe Toy Box">
-                </div>
-                <!-- end product english title -->
-
-                <!-- product french title -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text" id="fr_title">french title</span>
-                  <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="fr_title" placeholder="Coffre à jouets Deluxe">
-                </div>
-                <!-- end product french title -->
-
-                <!-- product arabic title -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text" id="ar_title">arabic title</span>
-                  <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="ar_title" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
-                </div>
-                <!-- end product arabic title -->
-
-                <!-- product brand -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text" id="brand">brand</span>
-                  <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="brand" placeholder="OomCu">
-                </div>
-                <!-- end product brand -->
+              <!-- product english title -->
+              <div class="input-group input-group-borderless mb-2">
+                <span class="input-group-text" id="en_title">english title</span>
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="en_title" placeholder="Deluxe Toy Box">
               </div>
+              <!-- end product english title -->
+
+              <!-- product french title -->
+              <div class="input-group input-group-borderless mb-2">
+                <span class="input-group-text" id="fr_title">french title</span>
+                <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="fr_title" placeholder="Coffre à jouets Deluxe">
+              </div>
+              <!-- end product french title -->
+
+              <!-- product arabic title -->
+              <div class="input-group input-group-borderless mb-2">
+                <span class="input-group-text" id="ar_title">arabic title</span>
+                <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="ar_title" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
+              </div>
+              <!-- end product arabic title -->
+
+              <!-- product brand -->
+              <div class="input-group input-group-borderless mb-2">
+                <span class="input-group-text" id="brand">brand</span>
+                <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="brand" placeholder="OomCu">
+              </div>
+              <!-- end product brand -->
+
+              <!-- product presentation photo -->
+              <div class="mb-3 mt-3">
+                <div class="col text-center">
+                  <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 100%;width: 100%;">
+                    <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 40%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="image" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
+                        "textTarget": "#product_presentation_photo",
+                        "mode": "image",
+                        "targetAttr": "src",
+                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                        }' required>
+                    <span class="invalid-feedback text-center">Please upload an image.</span>
+                  </label>
+                </div>
+              </div>
+              <!-- end product presentation photo -->
+            </div>
 
             <!-- submit -->
             <div class="d-grid mb-4">
