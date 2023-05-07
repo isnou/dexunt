@@ -86,21 +86,16 @@
             <!-- product presentation photo -->
             <div class="mb-3 mt-3">
               <div class="col text-center">
-
-
-                      <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader">
-                        <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}">
-
-                        <input type="file" class="js-file-attach avatar-uploader-input" name="image" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
-                            "textTarget": "#product_presentation_photo",
-                            "mode": "image",
-                            "targetAttr": "src",
-                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                         }' required>
-                        <span class="invalid-feedback text-center">Please upload an image.</span>
-                      </label>
-
-                
+                <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader">
+                  <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}">
+                  <input type="file" class="js-file-attach avatar-uploader-input" name="image" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
+                      "textTarget": "#product_presentation_photo",
+                      "mode": "image",
+                      "targetAttr": "src",
+                      "allowTypes": [".png", ".jpeg", ".jpg"]
+                      }' required>
+                  <span class="invalid-feedback text-center">Please upload an image.</span>
+                </label>
               </div>
             </div>
             <!-- end product presentation photo -->
