@@ -202,8 +202,8 @@
       </thead>
 
       <tbody>
+      {% for product in all_products.all %}
         <tr>
-          {% for product in all_products.all %}
           <td class="table-column-pe-0">
           </td>
           <td class="table-column-ps-0">
@@ -226,10 +226,9 @@
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
               <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
             </button>
-
           </td>
-          {% endfor %}
         </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
