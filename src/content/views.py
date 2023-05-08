@@ -72,7 +72,7 @@ def products_menu(request, action):
     if action == 'view_product':
         if request.method == 'POST':
             url = direction + "/management/admin/products.html"
-            product_id = request.POST.get('product_id', False)
+            product_id = request.POST.get('selected_product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             context = {
