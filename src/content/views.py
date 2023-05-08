@@ -63,6 +63,13 @@ def products_menu(request, action):
             if completed_product_form.is_valid():
                 completed_product_form.save()
                 return redirect('products-menu', 'main')
+    if action == 'delete_product':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_product.delete()
+            return redirect('products-menu', 'main')
+
 
 
 def change_language(request):
