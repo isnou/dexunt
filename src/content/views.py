@@ -33,7 +33,7 @@ def statistics_menu(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-
+    # ----- main page ------------
     if action == 'main':
         url = direction + "/management/admin/statistics.html"
         context = {
@@ -45,7 +45,7 @@ def products_menu(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-
+    # ----- main page ------------
     if action == 'main':
         url = direction + "/management/admin/products.html"
         all_products = Product.objects.all()
@@ -57,19 +57,21 @@ def products_menu(request, action):
             'product_form': product_form,
         }
         return render(request, url, context)
+    # -----
     if action == 'add_new_product':
         if request.method == 'POST':
             completed_product_form = ProductForm(request.POST, request.FILES)
             if completed_product_form.is_valid():
                 completed_product_form.save()
                 return redirect('products-menu', 'main')
+    # -----
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
             return redirect('products-menu', 'main')
-        
+    # ----- product page ---------
     if action == 'view_product':
         if request.method == 'POST':
             url = direction + "/management/admin/products.html"
@@ -86,8 +88,8 @@ def products_menu(request, action):
             return render(request, url, context)
         else:
             url = direction + "/management/admin/products.html"
-            product_id = request.session.get('selected_product_id')
-            request.session['selected_product_id'] = None
+            product_id = request.session.get('product_id_token')
+            request.session['product_id_token'] = None
 
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
@@ -98,17 +100,15 @@ def products_menu(request, action):
                 'selected_product_form': selected_product_form,
             }
             return render(request, url, context)
-
+    # -----
     if action == 'edit_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
-            request.session['selected_product_id'] = product_id
+            request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('products-menu', 'view_product')
-
-
 
 def change_language(request):
     if request.method == 'POST':
