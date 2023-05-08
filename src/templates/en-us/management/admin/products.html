@@ -452,7 +452,7 @@
       <div class="card-body">
         <form action="{% url 'products-menu' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <input type="hidden" name="product_token" value='{{ selected_product.product_token }}'>
+          <input type="hidden" name="selected_product_id" value='{{ selected_product.id }}'>
 
             <div class="row mb-4">
               <span class="divider-center mb-2">Main Informations</span>

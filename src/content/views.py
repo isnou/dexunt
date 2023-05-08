@@ -72,13 +72,13 @@ def products_menu(request, action):
     if action == 'view_product':
         if request.method == 'POST':
             url = direction + "/management/admin/products.html"
-            if request.session.get('product_token', None):
-                product_token = request.session.get('product_token')
-                selected_product = Product.objects.all().get(product_token=product_token)
-                request.session['product_token'] = None
+            if request.session.get('selected_product_id', None):
+                product_id = request.session.get('selected_product_id')
+                request.session['selected_product_id'] = None
             else:
                 product_id = request.POST.get('product_id', False)
-                selected_product = Product.objects.all().get(id=product_id)
+                
+            selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             context = {
                 'nav_side': 'products',
@@ -89,9 +89,9 @@ def products_menu(request, action):
             return render(request, url, context)
     if action == 'edit_product':
         if request.method == 'POST':
-            product_token = request.POST.get('product_token', False)
-            request.session['product_token'] = product_token
-            selected_product = Product.objects.all().get(product_token=product_token)
+            selected_product_id = request.POST.get('selected_product_id', False)
+            request.session['selected_product_id'] = selected_product_id
+            selected_product = Product.objects.all().get(id=selected_product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('products-menu', 'view_product')
