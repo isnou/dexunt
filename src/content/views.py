@@ -69,7 +69,8 @@ def products_menu(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
             return redirect('products-menu', 'main')
-    if action == 'edit_product':
+    if action == 'view_product':
+        product_form = ProductForm()
         if request.method == 'POST':
             url = direction + "/management/admin/products.html"
             product_id = request.POST.get('product_id', False)
@@ -78,8 +79,16 @@ def products_menu(request, action):
                 'nav_side': 'products',
                 'show': 'selected_product',
                 'selected_product': selected_product,
+                'product_form': product_form,
             }
             return render(request, url, context)
+    if action == 'edit_product':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            product_form = ProductForm(request.POST, instance=selected_product)
+            product_form.save()
+            return redirect('products-menu', 'main')
 
 
 
