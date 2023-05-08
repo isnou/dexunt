@@ -72,12 +72,11 @@ def products_menu(request, action):
     if action == 'view_product':
         if request.method == 'POST':
             url = direction + "/management/admin/products.html"
-            if not request.session.get('selected_product_id', None):
-                product_id = request.POST.get('product_id', False)
-                request.session['selected_product_id'] = product_id
-            else:
+            if request.session.get('selected_product_id', None):
                 product_id = request.session.get('selected_product_id')
                 request.session['selected_product_id'] = None
+            else:
+                product_id = request.POST.get('product_id', False)
 
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
