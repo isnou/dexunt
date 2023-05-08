@@ -18,7 +18,6 @@
     <h1 class="page-header-title">Products</h1>
     <h6 class="text-muted">You have {{ all_products.all.count }} products</h6>
   </div>
-
   <div class="col-sm-auto">
     <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_product_modal">
       <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new product"></i>
@@ -32,15 +31,16 @@
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item"><a href="{% url 'products-menu' 'main' %}">products</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'products-menu' 'main' %}">Products</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ selected_product.en_title }}</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">Selected Product</h1>
-    <h6 class="text-muted">{{ selected_product.en_title }}</h6>
+    <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
   </div>
-
   <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_variant_modal">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new variant"></i>
+    </button>
   </div>
   {% endif %}
   <!-- end selected product  -->
