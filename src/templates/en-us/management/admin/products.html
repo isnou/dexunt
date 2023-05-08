@@ -458,29 +458,25 @@
 
               <!-- product english title -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="en_title" style="width: 25%;">english title</span>
-                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box">
+                <input type="text" class="form-control" name="{{ selected_product_form.en_title.name }}" value="{{ selected_product.en_title }}">
               </div>
               <!-- end product english title -->
 
               <!-- product french title -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="fr_title" style="width: 25%;">french title</span>
-                <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="{{ product_form.fr_title.name }}" placeholder="Coffre à jouets Deluxe">
+                <input type="text" class="form-control" name="{{ selected_product_form.fr_title.name }}" value="{{ selected_product.fr_title }}">
               </div>
               <!-- end product french title -->
 
               <!-- product arabic title -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="ar_title" style="width: 25%;">arabic title</span>
-                <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="{{ product_form.ar_title.name }}" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
+                <input type="text" class="form-control" name="{{ selected_product_form.ar_title.name }}" value="{{ selected_product.ar_title }}" dir="rtl">
               </div>
               <!-- end product arabic title -->
 
               <!-- product brand -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
-                <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
+                <input type="text" class="form-control" name="{{ selected_product_form.brand.name }}" value="{{ selected_product.brand }}">
               </div>
               <!-- end product brand -->
 
@@ -489,10 +485,10 @@
               <!-- product presentation photo -->
               <div class="mb-3 mt-3">
                 <div class="col text-center">
-                  <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 100%;width: 100%;">
-                    <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 40%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ product_form.selected_image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
-                        "textTarget": "#product_presentation_photo",
+                  <label class="avatar avatar-xxl avatar-uploader" for="selected_product_presentation_photo_uploader" style="height: 100%;width: 100%;">
+                    <img id="selected_product_presentation_photo" class="avatar-img" src="{% get_media_prefix %}{{ product.selected_image }}" style="width: 40%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ selected_product_form.selected_image.name }}" id="selected_product_presentation_photo_uploader" data-hs-file-attach-options='{
+                        "textTarget": "#selected_product_presentation_photo",
                         "mode": "image",
                         "targetAttr": "src",
                         "allowTypes": [".png", ".jpeg", ".jpg"]
@@ -507,22 +503,19 @@
 
               <!-- product english description -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="en_description" style="width: 25%;">english description</span>
-                <textarea class="form-control" aria-label="en_description" aria-describedby="en_description" name="{{ product_form.en_description.name }}" placeholder="" rows="4"></textarea>
+                <textarea class="form-control" name="{{ selected_product_form.en_description.name }}" placeholder="{{ selected_product.en_description }}" rows="4"></textarea>
               </div>
               <!-- end product english description -->
 
               <!-- product french description -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="fr_description" style="width: 25%;">french description</span>
-                <textarea class="form-control" aria-label="fr_description" aria-describedby="fr_description" name="{{ product_form.fr_description.name }}" placeholder="" rows="4"></textarea>
+                <textarea class="form-control" name="{{ selected_product_form.fr_description.name }}" placeholder="{{ selected_product.fr_description }}" rows="4"></textarea>
               </div>
               <!-- end product french description -->
 
               <!-- product arabic description -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="ar_description" style="width: 25%;">arabic description</span>
-                <textarea class="form-control" aria-label="ar_description" aria-describedby="ar_description" name="{{ product_form.ar_description.name }}" placeholder="" rows="4" dir="rtl"></textarea>
+                <textarea class="form-control" name="{{ selected_product_form.ar_description.name }}" placeholder="{{ selected_product.ar_description }}" rows="4" dir="rtl"></textarea>
               </div>
               <!-- end product arabic description -->
 
@@ -530,22 +523,19 @@
 
               <!-- product english note -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="en_note" style="width: 25%;">english note</span>
-                <textarea class="form-control" aria-label="en_note" aria-describedby="en_note" name="{{ product_form.en_note.name }}" placeholder="" rows="2"></textarea>
+                <textarea class="form-control" name="{{ selected_product_form.en_note.name }}" placeholder="{{ selected_product.en_note }}" rows="2"></textarea>
               </div>
               <!-- end product english note -->
 
               <!-- product french note -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="fr_note" style="width: 25%;">french note</span>
-                <textarea class="form-control" aria-label="fr_note" aria-describedby="fr_note" name="{{ product_form.fr_note.name }}" placeholder="" rows="2"></textarea>
+                <textarea class="form-control" name="{{ selected_product_form.fr_note.name }}" placeholder="{{ selected_product.fr_note }}" rows="2"></textarea>
               </div>
               <!-- end product french note -->
 
               <!-- product arabic note -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="ar_note" style="width: 25%;">arabic note</span>
-                <textarea class="form-control" aria-label="ar_note" aria-describedby="ar_note" name="{{ product_form.ar_note.name }}" placeholder="" rows="2" dir="rtl"></textarea>
+                <textarea class="form-control" name="{{ selected_product_form.ar_note.name }}" placeholder="{{ selected_product.ar_note }}" rows="2" dir="rtl"></textarea>
               </div>
               <!-- end product arabic note -->
             </div>
