@@ -77,7 +77,7 @@ def products_menu(request, action):
                 request.session['selected_product_id'] = None
             else:
                 product_id = request.POST.get('product_id', False)
-                
+
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             context = {
@@ -89,9 +89,9 @@ def products_menu(request, action):
             return render(request, url, context)
     if action == 'edit_product':
         if request.method == 'POST':
-            selected_product_id = request.POST.get('selected_product_id', False)
-            request.session['selected_product_id'] = selected_product_id
-            selected_product = Product.objects.all().get(id=selected_product_id)
+            product_id = request.POST.get('product_id', False)
+            request.session['selected_product_id'] = product_id
+            selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('products-menu', 'view_product')
