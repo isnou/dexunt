@@ -77,7 +77,6 @@ def products_menu(request, action):
                 request.session['selected_product_id'] = None
             else:
                 product_id = request.POST.get('product_id', False)
-
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             context = {
