@@ -7,6 +7,8 @@
 <!-- header -->
 {% block page_header %}
 <div class="row align-items-end">
+  <!-- all products  -->
+  {% if show == 'all_products' %}
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
@@ -22,6 +24,26 @@
       <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new product"></i>
     </button>
   </div>
+  {% endif %}
+  <!-- end all products  -->
+
+  <!-- selected product  -->
+  {% if show == 'selected_product' %}
+  <div class="col-sm mb-2 mb-sm-0">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-no-gutter">
+        <li class="breadcrumb-item"><a href="{% url 'products-menu' 'main' %}">products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ selected_product.en_title }}</li>
+      </ol>
+    </nav>
+    <h1 class="page-header-title">Selected Product</h1>
+    <h6 class="text-muted">{{ selected_product.en_title }}</h6>
+  </div>
+
+  <div class="col-sm-auto">
+  </div>
+  {% endif %}
+  <!-- end selected product  -->
 </div>
 
 
@@ -163,7 +185,8 @@
 
 <!-- product content -->
 {% block product %}
-{% if show == 'all_products_table' %}
+<!-- all products  -->
+{% if show == 'all_products' %}
 <div class="card">
   <!-- header -->
   <div class="card-header card-header-content-md-between">
@@ -209,6 +232,13 @@
         {% csrf_token %}
         <input type="hidden" name="product_id" value='{{ product.id }}'>
       </form>
+
+      <!-- edit product form -->
+      <form action="{% url 'products-menu' 'edit_product' %}" id="edit_product_form_{{ product.id }}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value='{{ product.id }}'>
+      </form>
+
       <!-- end product forms list -->
 
       <!-- products list -->
@@ -232,9 +262,9 @@
         <td>{{ product.variant.all.count }}</td>
         <!-- product actions -->
         <td>
-          <!-- edit product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_product_modal_{{ product.id }}">
-            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          <!-- view & edit product -->
+          <button class="btn btn-primary" form="edit_product_form_{{ product.id }}">
+            <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View & Edit"></i>
           </button>
 
           <!-- delete product -->
@@ -264,6 +294,7 @@
           </div>
         </div>
       </div>
+
       <!-- end products actions modals -->
       {% endfor %}
       </tbody>
@@ -322,4 +353,11 @@
   {% endif %}
 </div>
 {% endif %}
+<!-- end all products  -->
+
+<!-- selected product  -->
+{% if show == 'selected_product' %}
+
+{% endif %}
+<!-- end selected product  -->
 {% endblock %}

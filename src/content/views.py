@@ -52,7 +52,7 @@ def products_menu(request, action):
         product_form = ProductForm()
         context = {
             'nav_side': 'products',
-            'show': 'all_products_table',
+            'show': 'all_products',
             'all_products': all_products,
             'product_form': product_form,
         }
@@ -69,6 +69,17 @@ def products_menu(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
             return redirect('products-menu', 'main')
+    if action == 'edit_product':
+        if request.method == 'POST':
+            url = direction + "/management/admin/products.html"
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            context = {
+                'nav_side': 'products',
+                'show': 'selected_product',
+                'selected_product': selected_product,
+            }
+            return render(request, url, context)
 
 
 
