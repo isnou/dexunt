@@ -36,21 +36,7 @@
       </ol>
     </nav>
     <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
-
-    <div class="input-group input-group-merge">
-      <input type="text" id="product_token_tooltip" class="form-control" value="{{ selected_product.product_token }}">
-
-      <a class="js-clipboard input-group-append input-group-text" href="javascript:;" data-bs-toggle="tooltip" title="Copy Token!"
-         data-hs-clipboard-options='{
-           "type": "tooltip",
-           "successText": "Copied!",
-           "contentTarget": "#product_token_tooltip"
-         }'>
-        <i class="bi-clipboard"></i>
-      </a>
-    </div>
-
-
+    <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
   </div>
   <div class="col-sm-auto">
   </div>
