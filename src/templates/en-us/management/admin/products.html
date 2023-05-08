@@ -36,11 +36,9 @@
       </ol>
     </nav>
     <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
+    <h6 class="text-muted">{{ selected_product.product_token }}</h6>
   </div>
   <div class="col-sm-auto">
-    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_variant_modal">
-      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new variant"></i>
-    </button>
   </div>
   {% endif %}
   <!-- end selected product  -->
