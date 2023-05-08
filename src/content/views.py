@@ -23,22 +23,35 @@ def home_page(request):
 
 
 def management_page(request, action):
+    if action == 'statistics':
+        return redirect('statistics-menu', 'main')
+    if action == 'products':
+        return redirect('products-menu', 'main')
+
+
+def statistics_menu(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
 
-    if action == 'statistics':
+    if action == 'main':
         url = direction + "/management/admin/statistics.html"
         context = {
-            'nav_side': action
+            'nav_side': 'statistics'
         }
         return render(request, url, context)
-    if action == 'products':
+
+def products_menu(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+
+    if action == 'main':
         url = direction + "/management/admin/products.html"
         all_products = Product.objects.all()
         product_form = ProductForm()
         context = {
-            'nav_side': action,
+            'nav_side': 'products',
             'show': 'all_products_table',
             'all_products': all_products,
             'product_form': product_form,
@@ -49,7 +62,7 @@ def management_page(request, action):
             completed_product_form = ProductForm(request.POST, request.FILES)
             if completed_product_form.is_valid():
                 completed_product_form.save()
-                return redirect('management-page', 'products')
+                return redirect('products-menu', 'main')
 
 
 def change_language(request):

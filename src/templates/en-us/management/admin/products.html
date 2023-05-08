@@ -45,7 +45,7 @@
               </div>
           <!-- end title -->
 
-          <form action="{% url 'management-page' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          <form action="{% url 'products-menu' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="row mb-4">
