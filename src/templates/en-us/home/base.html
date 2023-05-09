@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbar-dropdown">
           <ul class="navbar-nav">
 
-            
+
             <li class="nav-item">
               {% if user.is_authenticated %}
               <a class="btn btn-ghost-secondary btn-sm btn-icon" href="{% url 'router' %}">
@@ -65,8 +65,8 @@
 
             <li class="nav-item">
               <button type="button" class="btn btn-ghost-secondary btn-sm btn-icon" data-bs-toggle="offcanvas" data-bs-target="#shopping_cart" aria-controls="shopping_cart">
-                <i class="bi bi-bag" style="font-size: 1.3rem;"></i>
-                <span class="position-absolute top-40 start-100 translate-middle badge rounded-pill bg-secondary">1</span>
+                <i class="bi bi-cart" style="font-size: 1.3rem;"></i>
+                <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="top: 10px;right: -10px;">1</span>
               </button>
             </li>
 
