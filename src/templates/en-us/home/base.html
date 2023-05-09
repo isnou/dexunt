@@ -26,232 +26,50 @@
 
 <body>
   <!-------------  Navbar  ------------>
-  <header id="header" class="header header-abs-top-lg header-show-hide-lg header-show-hide-md"
-          data-hs-header-options='{
-            "fixMoment": 1000,
-            "fixEffect": "slide"
-          }'>
+  <header id="header" class="navbar navbar-expand-lg navbar-end navbar-light sticky-top bg-white">
+    <div class="container">
+      <nav class="js-mega-menu navbar-nav-wrap">
+        <!-- Tovana Logo -->
+        <a class="navbar-brand" href="{% url 'home-page' %}" aria-label="Front">
+          <img class="navbar-brand-logo" src="{% static 'management/logo/logo.png' %}" alt="Logo">
+        </a>
+        <!-- End Tovana Logo -->
 
-    <div class="header-section">
-      <!-- Topbar -->
-      <div class="container header-hide-content pt-2">
-        <div class="d-flex align-items-center">
-          <!-- Language -->
-          <div class="hs-unfold">
-            <a class="js-hs-unfold-invoker dropdown-nav-link dropdown-toggle d-flex align-items-center" href="javascript:;"
-               data-hs-unfold-options='{
-                "target": "#languageDropdown",
-                "type": "css-animation",
-                "event": "hover",
-                "hideOnScroll": "true"
-               }'>
-              <img class="dropdown-item-icon mr-2" src="../../assets/vendor/flag-icon-css/flags/4x3/us.svg" alt="SVG">
-              <span class="d-inline-block d-sm-none">US</span>
-              <span class="d-none d-sm-inline-block">United States</span>
-            </a>
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-dropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-default">
+            <i class="bi-list"></i>
+          </span>
+          <span class="navbar-toggler-toggled">
+            <i class="bi-x"></i>
+          </span>
+        </button>
+        <!-- End Toggler -->
 
-            <div id="languageDropdown" class="hs-unfold-content dropdown-menu">
-              <a class="dropdown-item active" href="#">English</a>
-              <a class="dropdown-item" href="#">Deutsch</a>
-              <a class="dropdown-item" href="#">Español‎</a>
-            </div>
-          </div>
-          <!-- End Language -->
-
-          <div class="ml-auto">
-            <!-- Jump To -->
-            <div class="hs-unfold d-sm-none mr-2">
-              <a class="js-hs-unfold-invoker dropdown-nav-link dropdown-toggle d-flex align-items-center" href="javascript:;"
-                 data-hs-unfold-options='{
-                  "target": "#jumpToDropdown",
-                  "type": "css-animation",
-                  "event": "hover",
-                  "hideOnScroll": "true"
-                 }'>
-                Jump to
+        <!-- Titles -->
+        <div class="collapse navbar-collapse" id="navbar-dropdown">
+          <ul class="navbar-nav">
+            <!-- navbar title Cart & Account -->
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+              <a class="btn btn-ghost-secondary btn-sm btn-icon" href="{% url 'router' %}">
+                <i class="bi bi-person-fill" style="font-size: 1.5rem;"></i>
               </a>
+              {% else %}
+              <a class="btn btn-ghost-secondary btn-sm btn-icon" type="button" data-bs-toggle="modal" data-bs-target="#account_modal">
+                <i class="bi bi-person" style="font-size: 1.5rem;"></i>
+              </a>
+              {% endif %}
 
-              <div id="jumpToDropdown" class="hs-unfold-content dropdown-menu">
-                <a class="dropdown-item" href="#">Help</a>
-                <a class="dropdown-item" href="#">Contacts</a>
-              </div>
-            </div>
-            <!-- End Jump To -->
-
-            <!-- Links -->
-            <div class="nav nav-sm nav-y-0 d-none d-sm-flex ml-sm-auto">
-              <a class="nav-link" href="#">Help</a>
-              <a class="nav-link" href="#">Contacts</a>
-            </div>
-            <!-- End Links -->
-          </div>
-
-          <ul class="list-inline ml-2 mb-0">
-            <!-- Shopping Cart -->
-            <li class="list-inline-item">
-              <div class="hs-unfold">
-                <a class="js-hs-unfold-invoker btn btn-xs btn-icon btn-ghost-secondary" href="javascript:;"
-                   data-hs-unfold-options='{
-                    "target": "#shoppingCartDropdown",
-                    "type": "css-animation",
-                    "event": "hover",
-                    "hideOnScroll": "true"
-                   }'>
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-
-                <div id="shoppingCartDropdown" class="hs-unfold-content dropdown-menu dropdown-menu-right text-center p-7" style="min-width: 250px;">
-                  <figure class="max-w-9rem mx-auto mb-3">
-                    <img class="img-fluid" src="../../assets/svg/illustrations/empty-cart.svg" alt="SVG">
-                  </figure>
-                  <span class="d-block">Your Cart is Empty</span>
-                </div>
-              </div>
+              <button type="button" class="btn btn-ghost-secondary btn-sm btn-icon" data-bs-toggle="offcanvas" data-bs-target="#shopping_cart" aria-controls="shopping_cart">
+                <i class="bi bi-bag" style="font-size: 1.3rem;"></i>
+                <span class="position-absolute top-40 start-100 translate-middle badge rounded-pill bg-secondary">1</span>
+              </button>
             </li>
-            <!-- End Shopping Cart -->
           </ul>
         </div>
-      </div>
-      <!-- End Topbar -->
-
-      <div id="logoAndNav" class="container">
-        <!-- Nav -->
-        <nav class="js-mega-menu navbar navbar-expand-lg">
-          <!-- Logo -->
-          <a class="navbar-brand" href="#" aria-label="Front">
-            <img src="../../assets/svg/logos/logo.svg" alt="Logo">
-          </a>
-          <!-- End Logo -->
-
-          <!-- Responsive Toggle Button -->
-          <button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle"
-                  aria-label="Toggle navigation"
-                  aria-expanded="false"
-                  aria-controls="navBar"
-                  data-toggle="collapse"
-                  data-target="#navBar">
-            <span class="navbar-toggler-default">
-              <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z"/>
-              </svg>
-            </span>
-            <span class="navbar-toggler-toggled">
-              <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
-              </svg>
-            </span>
-          </button>
-          <!-- End Responsive Toggle Button -->
-
-          <!-- Navigation -->
-          <div id="navBar" class="collapse navbar-collapse">
-            <div class="navbar-body header-abs-top-inner">
-              <ul class="navbar-nav">
-                <!-- Pages -->
-                <li class="hs-has-sub-menu navbar-nav-item">
-                  <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Pages</a>
-                  <!-- Pages - Submenu -->
-                  <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-                    <!-- Company -->
-                    <div class="hs-has-sub-menu">
-                      <a id="navLinkPagesCompany" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesCompany">Company</a>
-
-                      <div id="navSubmenuPagesCompany" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesCompany" style="min-width: 230px;">
-                        <a class="dropdown-item" href="#">About Agency</a>
-                        <a class="dropdown-item" href="#">Services Agency</a>
-                        <a class="dropdown-item" href="#">Customers</a>
-                        <a class="dropdown-item" href="#">Customer story</a>
-                        <a class="dropdown-item" href="#">Careers</a>
-                        <a class="dropdown-item" href="#">Careers Single</a>
-                        <a class="dropdown-item" href="#">Hire Us</a>
-                      </div>
-                    </div>
-                    <!-- Company -->
-
-                    <!-- Portfolio -->
-                    <div class="hs-has-sub-menu">
-                      <a id="navLinkPagesPortfolio" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesPortfolio">Portfolio</a>
-
-                      <div id="navSubmenuPagesPortfolio" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesPortfolio" style="min-width: 230px;">
-                        <a class="dropdown-item" href="#">Grid</a>
-                        <a class="dropdown-item" href="#">Masonry</a>
-                        <a class="dropdown-item" href="#">Modern</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Case Studies Branding</a>
-                        <a class="dropdown-item" href="#">Case Studies Product</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Single Page List</a>
-                        <a class="dropdown-item" href="#">Single Page Grid</a>
-                        <a class="dropdown-item" href="#">Single Page Masonry</a>
-                      </div>
-                    </div>
-                    <!-- End Portfolio -->
-
-                    <!-- Login -->
-                    <div class="hs-has-sub-menu">
-                      <a id="navLinkPagesLogin" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesLogin">Login & Signup</a>
-
-                      <div id="navSubmenuPagesLogin" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesLogin" style="min-width: 230px;">
-                        <a class="dropdown-item" href="#">Login</a>
-                        <a class="dropdown-item" href="#">Signup</a>
-                        <a class="dropdown-item" href="#">Recover Account</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Login Simple</a>
-                        <a class="dropdown-item" href="#">Signup Simple</a>
-                        <a class="dropdown-item" href="#">Recover Account Simple</a>
-                      </div>
-                    </div>
-                    <!-- Signup -->
-
-                    <!-- Contacts -->
-                    <div class="hs-has-sub-menu">
-                      <a id="navLinkContactsServices" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuContactsServices">Contacts</a>
-
-                      <div id="navSubmenuContactsServices" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkContactsServices" style="min-width: 230px;">
-                        <a class="dropdown-item" href="#">Contacts Agency</a>
-                        <a class="dropdown-item" href="#">Contacts Start-Up</a>
-                      </div>
-                    </div>
-                    <!-- Contacts -->
-
-                    <!-- Utilities -->
-                    <div class="hs-has-sub-menu">
-                      <a id="navLinkPagesUtilities" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesUtilities">Utilities</a>
-
-                      <div id="navSubmenuPagesUtilities" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesUtilities" style="min-width: 230px;">
-                        <a class="dropdown-item" href="#">Pricing</a>
-                        <a class="dropdown-item" href="#">FAQ</a>
-                        <a class="dropdown-item" href="#">Terms & Conditions</a>
-                        <a class="dropdown-item" href="#">Privacy & Policy</a>
-                      </div>
-                    </div>
-                    <!-- Utilities -->
-
-                    <!-- Specialty -->
-                    <div class="hs-has-sub-menu">
-                      <a id="navLinkPagesSpecialty" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuPagesSpecialty">Specialty</a>
-
-                      <div id="navSubmenuPagesSpecialty" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkPagesSpecialty" style="min-width: 230px;">
-                        <a class="dropdown-item" href="#">Cover Page</a>
-                        <a class="dropdown-item" href="#">Coming Soon</a>
-                        <a class="dropdown-item" href="#">Maintenance Mode</a>
-                        <a class="dropdown-item" href="#">Status</a>
-                        <a class="dropdown-item" href="#">Invoice</a>
-                        <a class="dropdown-item" href="#">Error 404</a>
-                      </div>
-                    </div>
-                    <!-- Specialty -->
-                  </div>
-                  <!-- End Pages - Submenu -->
-                </li>
-                <!-- End Pages -->
-              </ul>
-            </div>
-          </div>
-          <!-- End Navigation -->
-        </nav>
-        <!-- End Nav -->
-      </div>
+        <!-- End Titles -->
+      </nav>
     </div>
   </header>
   <!-------------  End Navbar  -------->
@@ -278,6 +96,7 @@
       </div>
     </div>
     {% endif %}
+    
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
