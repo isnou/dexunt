@@ -48,30 +48,17 @@
         <div id="topbarNavDropdown" class="navbar-nav-wrap-collapse collapse navbar-collapse">
           <ul class="navbar-nav" style="place-content: center;">
             <!-- Docs -->
-            <li class="js-mega-menu nav-item">
-              <!-- Language -->
-        <div class="hs-unfold">
-          <a class="js-hs-unfold-invoker dropdown-nav-link dropdown-toggle d-flex align-items-center" href="javascript:;"
-             data-hs-unfold-options='{
-              "target": "#languageDropdown",
-              "type": "css-animation",
-              "event": "hover",
-              "hideOnScroll": "true"
-             }'>
-            <img class="dropdown-item-icon mr-2" src="../../assets/vendor/flag-icon-css/flags/4x3/us.svg" alt="SVG">
-            <span class="d-inline-block d-sm-none">US</span>
-            <span class="d-none d-sm-inline-block">United States</span>
-          </a>
+            <li class="hs-has-sub-menu nav-item">
+              <a id="portfolioMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
 
-          <div id="languageDropdown" class="hs-unfold-content dropdown-menu">
-            <a class="dropdown-item active" href="#">English</a>
-            <a class="dropdown-item" href="#">Deutsch</a>
-            <a class="dropdown-item" href="#">Español‎</a>
-          </div>
-        </div>
-        <!-- End Language -->
-
-
+              <!-- Mega Menu -->
+              <div class="hs-sub-menu dropdown-menu" aria-labelledby="portfolioMegaMenu" style="min-width: 14rem;">
+                <a class="dropdown-item" href="#">Grid</a>
+                <a class="dropdown-item" href="#">Product Article</a>
+                <a class="dropdown-item" href="#">Case Studies: Branding</a>
+                <a class="dropdown-item" href="#">Case Studies: Product</a>
+              </div>
+              <!-- End Mega Menu -->
             </li>
             <!-- End Docs -->
           </ul>
