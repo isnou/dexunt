@@ -49,18 +49,28 @@
           <ul class="navbar-nav" style="place-content: center;">
             <!-- Docs -->
             <li class="js-mega-menu nav-item">
-              <!-- Dropdown -->
-              <div class="btn-group">
-                <a class="hs-mega-menu-invoker nav-link nav-link-toggle" id="dropdownMenuButtonHoverAnimation" aria-expanded="false" href="javascript:;" aria-haspopup="true">
-                  Language
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonHoverAnimation">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div>
-              <!-- End Dropdown -->
+              <!-- Language -->
+        <div class="hs-unfold">
+          <a class="js-hs-unfold-invoker dropdown-nav-link dropdown-toggle d-flex align-items-center" href="javascript:;"
+             data-hs-unfold-options='{
+              "target": "#languageDropdown",
+              "type": "css-animation",
+              "event": "hover",
+              "hideOnScroll": "true"
+             }'>
+            <img class="dropdown-item-icon mr-2" src="../../assets/vendor/flag-icon-css/flags/4x3/us.svg" alt="SVG">
+            <span class="d-inline-block d-sm-none">US</span>
+            <span class="d-none d-sm-inline-block">United States</span>
+          </a>
+
+          <div id="languageDropdown" class="hs-unfold-content dropdown-menu">
+            <a class="dropdown-item active" href="#">English</a>
+            <a class="dropdown-item" href="#">Deutsch</a>
+            <a class="dropdown-item" href="#">Español‎</a>
+          </div>
+        </div>
+        <!-- End Language -->
+
 
             </li>
             <!-- End Docs -->
