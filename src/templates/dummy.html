@@ -1883,3 +1883,61 @@
 <script src="{% static 'home-page/js/vendors/increment-value.js' %}"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+<header id="header" class="navbar navbar-expand-lg navbar-end navbar-light sticky-top bg-white">
+    <div class="container">
+      <nav class="js-mega-menu navbar-nav-wrap">
+        <!-- Tovana Logo -->
+        <a class="navbar-brand" href="{% url 'home-page' %}" aria-label="Front">
+          <img class="navbar-brand-logo" src="{% static 'management/logo/logo.png' %}" alt="Logo">
+        </a>
+        <!-- End Tovana Logo -->
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-dropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-default">
+            <i class="bi-list"></i>
+          </span>
+          <span class="navbar-toggler-toggled">
+            <i class="bi-x"></i>
+          </span>
+        </button>
+        <!-- End Toggler -->
+
+        <!-- Titles -->
+        <div class="collapse navbar-collapse" id="navbar-dropdown">
+          <ul class="navbar-nav">
+            <!-- navbar title Cart & Account -->
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+              <a class="btn btn-ghost-secondary btn-sm btn-icon" href="{% url 'router' %}">
+                <i class="bi bi-person-fill" style="font-size: 1.5rem;"></i>
+              </a>
+              {% else %}
+              <a class="btn btn-ghost-secondary btn-sm btn-icon" type="button" data-bs-toggle="modal" data-bs-target="#account_modal">
+                <i class="bi bi-person" style="font-size: 1.5rem;"></i>
+              </a>
+              {% endif %}
+
+              <button type="button" class="btn btn-ghost-secondary btn-sm btn-icon" data-bs-toggle="offcanvas" data-bs-target="#shopping_cart" aria-controls="shopping_cart">
+                <i class="bi bi-bag" style="font-size: 1.3rem;"></i>
+                <span class="position-absolute top-40 start-100 translate-middle badge rounded-pill bg-secondary">1</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- End Titles -->
+      </nav>
+    </div>
+  </header>
