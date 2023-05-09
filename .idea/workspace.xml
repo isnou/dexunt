@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
+      <change afterPath="$PROJECT_DIR$/site/public/static/management/favicon/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/site/public/static/management/logo/logo-white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/site/public/static/management/logo/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/templates/en-us/home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/home/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,16 +34,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/en-us/management"
+    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/site/public/static/management"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/site/public/static/management" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management" />
       <recent name="$PROJECT_DIR$/src/templates/fr-fr/content" />
       <recent name="$PROJECT_DIR$/src/templates/ar-dz/content" />
       <recent name="$PROJECT_DIR$/src/sales" />
-      <recent name="$PROJECT_DIR$/src/products" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin" />
