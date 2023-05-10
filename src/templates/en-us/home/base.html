@@ -516,6 +516,49 @@
       },
     });
 
+      // INITIALIZATION OF AOS
+      // =======================================================
+      AOS.init({
+        duration: 650,
+        once: true
+      });
+
+      // INITIALIZATION OF SWIPER
+      // =======================================================
+      var swiper = new Swiper('.js-swiper-software-hero',{
+        preloaderClass: 'custom-swiper-lazy-preloader',
+        slidesPerView: 1,
+        pagination: {
+          el: '.js-swiper-software-hero-pagination',
+          dynamicBullets: true,
+          clickable: true,
+        },
+        breakpoints: {
+          380: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          580: {
+            slidesPerView: 3,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 15,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
+        },
+        on: {
+          'imagesReady': function (swiper) {
+            const preloader = swiper.el.querySelector('.js-swiper-software-hero-preloader')
+            preloader.parentNode.removeChild(preloader)
+          }
+        }
+      });
+
 
       // INITIALIZATION OF COUNTDOWN
       // =======================================================
@@ -540,46 +583,5 @@
       })
     })()
   </script>
-
-  <!-- JS Plugins Init. -->
-  <script>
-  (function() {
-    // INITIALIZATION OF SWIPER
-    // =======================================================
-    var swiper = new Swiper('.js-swiper-software-hero',{
-      preloaderClass: 'custom-swiper-lazy-preloader',
-      slidesPerView: 1,
-      pagination: {
-        el: '.js-swiper-software-hero-pagination',
-        dynamicBullets: true,
-        clickable: true,
-      },
-      breakpoints: {
-        380: {
-          slidesPerView: 2,
-          spaceBetween: 15,
-        },
-        580: {
-          slidesPerView: 3,
-          spaceBetween: 15,
-        },
-        768: {
-          slidesPerView: 4,
-          spaceBetween: 15,
-        },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 30,
-        },
-      },
-      on: {
-        'imagesReady': function (swiper) {
-          const preloader = swiper.el.querySelector('.js-swiper-software-hero-preloader')
-          preloader.parentNode.removeChild(preloader)
-        }
-      }
-    });
-  })()
-</script>
 </body>
 </html>
