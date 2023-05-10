@@ -108,6 +108,118 @@
         </div>
         <!-- End Title & Description -->
 
+        <!-- Swiper Slider -->
+        <div class="js-swiper-software-hero swiper zi-2">
+          <div class="swiper-wrapper">
+            <!-- Slide -->
+            <div class="swiper-slide my-2">
+              <!-- Card -->
+              <div class="card card-sm card-transition shadow-sm">
+                <img class="card-img-top" src="../assets/img/400x200/img1.jpg" alt="Image Description">
+
+                <div class="card-body">
+                  <h4 class="card-title">Atlassian</h4>
+                  <p class="card-text small">Developer tools</p>
+
+                  <div class="d-grid">
+                    <a class="btn btn-primary btn-sm" href="#">Install</a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+            <!-- End Slide -->
+
+            <!-- Slide -->
+            <div class="swiper-slide my-2">
+              <!-- Card -->
+              <div class="card card-sm card-transition shadow-sm">
+                <img class="card-img-top" src="../assets/img/400x200/img2.jpg" alt="Image Description">
+
+                <div class="card-body">
+                  <h4 class="card-title">Asana</h4>
+                  <p class="card-text small">Productivity</p>
+
+                  <div class="d-grid">
+                    <a class="btn btn-primary btn-sm" href="#">Install</a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+            <!-- End Slide -->
+
+            <!-- Slide -->
+            <div class="swiper-slide my-2">
+              <!-- Card -->
+              <div class="card card-sm card-transition shadow-sm">
+                <img class="card-img-top" src="../assets/img/400x200/img3.jpg" alt="Image Description">
+
+                <div class="card-body">
+                  <h4 class="card-title">Slack</h4>
+                  <p class="card-text small">Collaboration tool</p>
+
+                  <div class="d-grid">
+                    <a class="btn btn-primary btn-sm" href="#">Install</a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+            <!-- End Slide -->
+
+            <!-- Slide -->
+            <div class="swiper-slide my-2">
+              <!-- Card -->
+              <div class="card card-sm card-transition shadow-sm">
+                <img class="card-img-top" src="../assets/img/400x200/img4.jpg" alt="Image Description">
+
+                <div class="card-body">
+                  <h4 class="card-title">Spotify</h4>
+                  <p class="card-text small">Streaming service</p>
+
+                  <div class="d-grid">
+                    <a class="btn btn-primary btn-sm" href="#">Install</a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+            <!-- End Slide -->
+
+            <!-- Slide -->
+            <div class="swiper-slide my-2">
+              <!-- Card -->
+              <div class="card card-sm card-transition shadow-sm">
+                <img class="card-img-top" src="../assets/img/400x200/img5.jpg" alt="Image Description">
+
+                <div class="card-body">
+                  <h4 class="card-title">DigitalOcean</h4>
+                  <p class="card-text small">Cloud infrastructure</p>
+
+                  <div class="d-grid">
+                    <a class="btn btn-primary btn-sm" href="#">Install</a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+            <!-- End Slide -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="js-swiper-software-hero-pagination swiper-pagination d-lg-none"></div>
+
+          <!-- Preloader -->
+          <div class="js-swiper-software-hero-preloader swiper-preloader">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <!-- End Preloader -->
+        </div>
+        <!-- ENd Swiper Slider -->
+
         <!-- SVG Shape -->
         <figure class="position-absolute zi-n1" style="top: -35rem; left: 50rem; width: 62rem; height: 62rem;">
           <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 260 260">
@@ -310,5 +422,46 @@
       })
     })()
   </script>
+
+  <!-- JS Plugins Init. -->
+  <script>
+  (function() {
+    // INITIALIZATION OF SWIPER
+    // =======================================================
+    var swiper = new Swiper('.js-swiper-software-hero',{
+      preloaderClass: 'custom-swiper-lazy-preloader',
+      slidesPerView: 1,
+      pagination: {
+        el: '.js-swiper-software-hero-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      },
+      breakpoints: {
+        380: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
+        580: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 15,
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 30,
+        },
+      },
+      on: {
+        'imagesReady': function (swiper) {
+          const preloader = swiper.el.querySelector('.js-swiper-software-hero-preloader')
+          preloader.parentNode.removeChild(preloader)
+        }
+      }
+    });
+  })()
+</script>
 </body>
 </html>
