@@ -159,11 +159,12 @@ def products_menu(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
+            request.session['product_id_token'] = product_id
             context = {
                 'nav_side': 'products',
                 'show': 'selected_variant',
                 'selected_variant': selected_variant,
-                'selected_product': selected_product,
+                'selected_product': selected_product
             }
             return render(request, url, context)
         else:
@@ -174,6 +175,7 @@ def products_menu(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
+            request.session['product_id_token'] = product_id
             context = {
                 'nav_side': 'products',
                 'show': 'selected_variant',
