@@ -461,7 +461,7 @@
 <div class="row">
   {% if selected_product.variant.all.count %}
   <div class="col-lg-8 mb-3 mb-lg-0">
-
+    {% for variant in selected_product.variant.all %}
     <div class="card">
       <!-- Header -->
       <div class="card-header">
@@ -475,7 +475,7 @@
         <div class="table-responsive">
           <table id="all_variants_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
-            {% for variant in selected_product.variant.all %}
+
             <!-- variant forms list -->
             <!-- delete variant form -->
             <form action="{% url 'products-menu' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
@@ -560,7 +560,6 @@
             </div>
 
             <!-- end variants actions modals -->
-            {% endfor %}
             </tbody>
           </table>
         </div>
@@ -568,6 +567,7 @@
       </div>
       <!-- Body -->
     </div>
+    {% endfor %}
   </div>
   {% endif %}
 
