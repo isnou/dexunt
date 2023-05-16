@@ -470,6 +470,15 @@
           <div class="flex-grow-1">
             <h5 class="text-inherit mb-0">{{ variant.en_spec }}</h5>
           </div>
+
+          <!-- image count -->
+          <span class="text-muted">Album :{{ variant.album.all.count }}|</span>
+          <!-- availability -->
+          <span class="text-muted">{{ variant.availability }}|</span>
+          <!-- options -->
+          <span class="text-muted">Options :{{ variant.option.all.count }}|</span>
+          <!-- features -->
+          <span class="text-muted">Features :{{ variant.feature.all.count }}</span>
         </div>
         <!-- end title -->
 
@@ -527,14 +536,6 @@
                   </div>
                 </a>
               </td>
-              <!-- image count -->
-              <td>{{ variant.album.all.count }}</td>
-              <!-- availability -->
-              <td>{{ variant.availability }}</td>
-              <!-- options -->
-              <td>Options :{{ variant.option.all.count }}</td>
-              <!-- features -->
-              <td>Features :{{ variant.feature.all.count }}</td>
               <!-- price -->
               <td>Price :{{ variant.price|floatformat:"2g" }} DZD</td>
               <!-- discount -->
