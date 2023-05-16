@@ -134,6 +134,7 @@ def products_menu(request, action):
                                        ar_spec=ar_spec,
                                        price=price,
                                        discount=discount)
+            selected_variant.product_token = selected_product.product_token
             selected_variant.save()
             selected_product.variant.add(selected_variant)
 

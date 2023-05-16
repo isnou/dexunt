@@ -79,7 +79,7 @@ class Variant(models.Model):
     # --------------------------------- media --------------------------------------------------
     album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
-    availability = models.BooleanField(default=True)
+    availability = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, null=True)
     user_token = models.CharField(max_length=24, null=True)
     like = models.IntegerField(default=0)
