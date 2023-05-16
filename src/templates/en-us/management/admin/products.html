@@ -48,12 +48,11 @@
 
   <!-- selected variant  -->
   {% if show == 'selected_variant' %}
-  <form action="{% url 'products-menu' 'view_product' %}" id="view_product_form" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-  </form>
-
   <div class="col-sm mb-2 mb-sm-0">
+    <form action="{% url 'products-menu' 'view_product' %}" id="view_product_form" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+    </form>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
         <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'main' %}">Products</a></li>
@@ -64,16 +63,9 @@
     <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
     <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
   </div>
-  <div class="col-sm-auto">
-    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_variant_modal">
-      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new variant"></i>
-    </button>
-  </div>
   {% endif %}
   <!-- end selected variant  -->
 </div>
-
-
 
 <!-- add new product modal -->
 <div id="add_new_product_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_new_product_modal_title" aria-hidden="true">
@@ -717,6 +709,39 @@
 
       <!-- Body -->
       <div class="card-body">
+        <form action="{% url 'products-menu' 'edit_variant' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Main Informations</span>
+
+              <!-- variant english spec -->
+              <div class="input-group mb-2">
+                <input type="text" class="form-control" name="en_spec" value="{{ selected_variant.en_spec }}">
+              </div>
+              <!-- end variant english spec -->
+
+              <!-- variant french spec -->
+              <div class="input-group mb-2">
+                <input type="text" class="form-control" name="fr_spec" value="{{ selected_variant.fr_spec }}">
+              </div>
+              <!-- end variant french spec -->
+
+              <!-- variant arabic spec -->
+              <div class="input-group mb-2">
+                <input type="text" class="form-control" name="ar_spec" value="{{ selected_variant.ar_spec }}" dir="rtl">
+              </div>
+              <!-- end variant arabic spec -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
       </div>
       <!-- Body -->
     </div>
@@ -775,7 +800,6 @@
             </form>
           </span>
         </div>
-
       </div>
     </div>
   </div>
