@@ -757,24 +757,26 @@
               <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
               <input type="hidden" name="album_id" value='{{ album.id }}'>
 
-              <div class="col-sm text-center">
-                <!-- input image -->
-                <label class="avatar avatar-xxl avatar-uploader" for="add_image">
-                <img id="editAvatarImgModal" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}">
 
-                <input type="file" class="js-file-attach avatar-uploader-input" name="image" data-hs-file-attach-options='{
-                            "textTarget": "#editAvatarImgModal",
-                            "mode": "image",
-                            "targetAttr": "src",
-                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                         }' required>
-                <span class="invalid-feedback text-center">Please upload an image.</span>
-              </label>
-                <!-- end input image -->
-                <button type="submit" class="btn btn-white form-control-sm" >
-                  <i class="bi bi-plus-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
-                </button>
-              </div>
+                <div class="col text-center">
+                  <label class="avatar avatar-xxl avatar-uploader" for="selected_variant_presentation_photo_uploader" style="height: 100%;width: 100%;">
+                    <img id="selected_variant_presentation_photo" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}" style="width: 40%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ selected_product_form.selected_image.name }}" id="selected_variant_presentation_photo_uploader" data-hs-file-attach-options='{
+                        "textTarget": "#selected_variant_presentation_photo",
+                        "mode": "image",
+                        "targetAttr": "src",
+                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                        }'>
+                  </label>
+
+                  <button type="submit" class="btn btn-white form-control-sm" >
+                    <i class="bi bi-plus-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
+                  </button>
+
+                </div>
+
+
+
             </form>
           </span>
         </div>
