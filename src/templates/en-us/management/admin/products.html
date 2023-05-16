@@ -39,6 +39,9 @@
     <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
   </div>
   <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_variant_modal">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new variant"></i>
+    </button>
   </div>
   {% endif %}
   <!-- end selected product  -->
@@ -179,6 +182,84 @@
   </div>
 </div>
 <!-- end add new product modal -->
+
+<!-- add new variant modal -->
+<div id="add_new_variant_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_new_variant_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Patient -->
+        <div id="add_new_variant_modal_title">
+          <!-- title -->
+          <div class="text-center mb-7">
+                <h2>Add new variant</h2>
+              </div>
+          <!-- end title -->
+
+          <form action="{% url 'products-menu' 'add_new_variant' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Main Informations</span>
+
+              <!-- product english spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_spec" style="width: 25%;">english spec</span>
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_spec" name="en_spec" placeholder="Blue">
+              </div>
+              <!-- end product english spec -->
+
+              <!-- product french spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_spec" style="width: 25%;">french spec</span>
+                <input type="text" class="form-control" aria-label="fr_spec" aria-describedby="fr_spec" name="fr_spec" placeholder="Bleu">
+              </div>
+              <!-- end product french spec -->
+
+              <!-- product arabic spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_spec" style="width: 25%;">arabic spec</span>
+                <input type="text" class="form-control" aria-label="ar_spec" aria-describedby="ar_spec" name="ar_spec" placeholder="أزرق" dir="rtl">
+              </div>
+              <!-- end product arabic spec -->
+
+              <!-- product price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="price" style="width: 25%;">price</span>
+                <input type="text" class="form-control" aria-label="price" aria-describedby="price" name="price" placeholder="3000">
+              </div>
+              <!-- end product price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
+                <input type="text" class="form-control" aria-label="discount" aria-describedby="discount" name="discount" placeholder="2500">
+              </div>
+              <!-- end product discount -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+        <!-- End Patient -->
+      </div>
+      <!-- End Body -->
+    </div>
+  </div>
+</div>
+<!-- end add new variant modal -->
 {% endblock %}
 
 <!-- product content -->
@@ -207,6 +288,7 @@
     <!-- end title bar -->
   </div>
   <!-- end header -->
+
   {% if all_products.all.count %}
   <!-- table -->
   <div class="table-responsive">
@@ -440,20 +522,6 @@
       </div>
       <!-- Body -->
     </div>
-  </div>
-  {% else %}
-  <div class="col-lg-8 mb-3 mb-lg-0">
-    <div class="card">
-      <!-- Header -->
-      <div class="card-header">
-        <h4 class="card-header-title">Create variant</h4>
-      </div>
-      <!-- End Header -->
-
-      <!-- Body -->
-      <div class="card-body">
-    </div>
-  </div>
   </div>
   {% endif %}
 

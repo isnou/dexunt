@@ -109,6 +109,14 @@ def products_menu(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('products-menu', 'view_product')
+    # -----
+    if action == 'add_new_variant':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            request.session['product_id_token'] = product_id
+            selected_product = Product.objects.all().get(id=product_id)
+
+            return redirect('products-menu', 'view_product')
 
 def change_language(request):
     if request.method == 'POST':
