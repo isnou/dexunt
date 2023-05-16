@@ -715,8 +715,7 @@
           <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
 
             <div class="row mb-4">
-              <span class="divider-center mb-2">Main Informations</span>
-
+              <span class="divider-center mb-2">Specs</span>
               <!-- variant english spec -->
               <div class="input-group mb-2">
                 <input type="text" class="form-control" name="en_spec" value="{{ selected_variant.en_spec }}">
@@ -731,9 +730,25 @@
 
               <!-- variant arabic spec -->
               <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic spec</span>
                 <input type="text" class="form-control" name="ar_spec" value="{{ selected_variant.ar_spec }}" dir="rtl">
               </div>
               <!-- end variant arabic spec -->
+
+              <span class="divider-center mb-2">Prices</span>
+              <!-- variant price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">price</span>
+                <input type="text" class="form-control" name="price" placeholder="{{ selected_variant.price }}">
+              </div>
+              <!-- end variant price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">discount</span>
+                <input type="text" class="form-control" name="discount" placeholder="{{ selected_variant.discount }}">
+              </div>
+              <!-- end product discount -->
             </div>
 
             <!-- submit -->
