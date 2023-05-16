@@ -711,7 +711,7 @@
     <div class="card">
       <!-- Header -->
       <div class="card-header">
-        <h4 class="card-header-title">Variants</h4>
+        <h4 class="card-header-title">Variant Details</h4>
       </div>
       <!-- End Header -->
 
@@ -725,9 +725,60 @@
   <div class="col-lg-4">
     <div class="card">
       <div class="card-header">
+        <h4 class="card-header-title">Variant Photos</h4>
       </div>
 
       <div class="card-body">
+        {% if selected_variant.album.all.count %}
+        {% for album in selected_variant.album.all %}
+        <div class="col">
+          <form action="{% url 'products-menu' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+            <input type="hidden" name="album_id" value='{{ album.id }}'>
+          </form>
+
+          <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
+            <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}">
+
+            <button class="btn btn-white btn-icon" form="delete_image_{{ album.id }}">
+              <i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+            </button>
+          </span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="col">
+          <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
+            <form action="{% url 'products-menu' 'add_image' %}" id="add_image" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+              <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+              <input type="hidden" name="album_id" value='{{ album.id }}'>
+
+              <div class="col-sm text-center">
+                <!-- input image -->
+                <label class="avatar avatar-xxl avatar-uploader" for="add_image">
+                <img id="editAvatarImgModal" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}">
+
+                <input type="file" class="js-file-attach avatar-uploader-input" name="image" data-hs-file-attach-options='{
+                            "textTarget": "#editAvatarImgModal",
+                            "mode": "image",
+                            "targetAttr": "src",
+                            "allowTypes": [".png", ".jpeg", ".jpg"]
+                         }' required>
+                <span class="invalid-feedback text-center">Please upload an image.</span>
+              </label>
+                <!-- end input image -->
+                <button type="submit" class="btn btn-white form-control-sm" >
+                  <i class="bi bi-plus-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
+                </button>
+              </div>
+            </form>
+          </span>
+        </div>
+
       </div>
     </div>
   </div>
