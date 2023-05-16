@@ -477,13 +477,13 @@
         <div class="d-grid d-sm-flex gap-2">
           <!-- view variant -->
           <button class="btn btn-white btn-icon" form="view_variant_form_{{ selected_product.id }}_{{ variant.id }}">
-                  <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
-                </button>
+            <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
+          </button>
 
-                <!-- delete variant -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
-                  <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-                </button>
+          <!-- delete variant -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
         </div>
         <!-- end title bar -->
       </div>
@@ -532,13 +532,15 @@
               <!-- availability -->
               <td>{{ variant.availability }}</td>
               <!-- options -->
-              <td>{{ variant.option.all.count }}</td>
+              <td>Options :{{ variant.option.all.count }}</td>
               <!-- features -->
-              <td>{{ variant.feature.all.count }}</td>
+              <td>Features :{{ variant.feature.all.count }}</td>
               <!-- price -->
-              <td>{{ variant.price|floatformat:"2g" }} DZD</td>
+              <td>Price :{{ variant.price|floatformat:"2g" }} DZD</td>
               <!-- discount -->
-              <td>{{ variant.discount|floatformat:"2g" }} DZD</td>
+              {% if variant.discount %}
+              <td>Discount :{{ variant.discount|floatformat:"2g" }} DZD</td>
+              {% endif %}
             </tr>
             <!-- end products list -->
 
