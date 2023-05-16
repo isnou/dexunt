@@ -107,7 +107,7 @@ def products_menu(request, action):
             product_id = request.POST.get('product_id', False)
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ProductForm(request.POST, instance=selected_product)
+            selected_product_form = ProductForm(request.POST, request.FILES, instance=selected_product)
             selected_product_form.save()
             return redirect('products-menu', 'view_product')
     # -----
