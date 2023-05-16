@@ -474,14 +474,14 @@
             {% for variant in selected_product.variant.all %}
             <!-- variant forms list -->
             <!-- delete variant form -->
-            <form action="{% url 'products-menu' 'delete_product' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
+            <form action="{% url 'products-menu' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
               <input type="hidden" name="variant_id" value='{{ variant.id }}'>
             </form>
 
             <!-- view variant form -->
-            <form action="{% url 'products-menu' 'view_product' %}" id="view_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
+            <form action="{% url 'products-menu' 'view_variant' %}" id="view_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
               <input type="hidden" name="variant_id" value='{{ variant.id }}'>
