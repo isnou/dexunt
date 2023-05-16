@@ -703,7 +703,7 @@
     <div class="card">
       <!-- Header -->
       <div class="card-header">
-        <h4 class="card-header-title">Variant Details</h4>
+        <h4 class="card-header-title">Information</h4>
       </div>
       <!-- End Header -->
 
@@ -762,14 +762,15 @@
       </div>
       <!-- Body -->
     </div>
-  </div>
 
-  <div class="col-lg-4">
     <div class="card">
+      <!-- Header -->
       <div class="card-header">
-        <h4 class="card-header-title">Variant Photos</h4>
+        <h4 class="card-header-title">Photos</h4>
       </div>
+      <!-- End Header -->
 
+      <!-- Body -->
       <div class="card-body">
         {% if selected_variant.album.all.count %}
         {% for album in selected_variant.album.all %}
@@ -817,6 +818,18 @@
             </form>
           </span>
         </div>
+      </div>
+      <!-- Body -->
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-header-title">Options</h4>
+      </div>
+
+      <div class="card-body">
       </div>
     </div>
   </div>
