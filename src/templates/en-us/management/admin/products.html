@@ -773,7 +773,6 @@
       <!-- Body -->
       <div class="card-body">
         <div class="row">
-          {% if selected_variant.album.all.count %}
           {% for album in selected_variant.album.all %}
           <div class="col">
             <form action="{% url 'products-menu' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
@@ -791,7 +790,6 @@
             </span>
           </div>
           {% endfor %}
-          {% endif %}
           <div class="col">
             <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
               <form action="{% url 'products-menu' 'add_image' %}" id="add_image" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
