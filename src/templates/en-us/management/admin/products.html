@@ -464,8 +464,28 @@
     {% for variant in selected_product.variant.all %}
     <div class="card">
       <!-- Header -->
-      <div class="card-header">
-        <h4 class="card-header-title">Variants</h4>
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-2 mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">{{ variant.en_spec }}</h5>
+          </div>
+        </div>
+        <!-- end title -->
+
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- view variant -->
+          <button class="btn btn-white btn-icon" form="view_variant_form_{{ selected_product.id }}_{{ variant.id }}">
+                  <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
+                </button>
+
+                <!-- delete variant -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
+                  <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                </button>
+        </div>
+        <!-- end title bar -->
       </div>
       <!-- End Header -->
 
@@ -495,8 +515,6 @@
 
             <!-- variants list -->
             <tr>
-              <td class="table-column-pe-0">
-              </td>
               <!-- variant title and image -->
               <td class="table-column-ps-0">
                 <a class="d-flex align-items-center" href="#">
@@ -506,9 +524,6 @@
                     {% else %}
                     <img class="avatar avatar-lg" src="{% static 'home-page/images/custom/no-image.png' %}" alt="no image">
                     {% endif %}
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h5 class="text-inherit mb-0">{{ variant.en_spec }}</h5>
                   </div>
                 </a>
               </td>
@@ -524,18 +539,6 @@
               <td>{{ variant.price|floatformat:"2g" }} DZD</td>
               <!-- discount -->
               <td>{{ variant.discount|floatformat:"2g" }} DZD</td>
-              <!-- actions -->
-              <td>
-                <!-- view variant -->
-                <button class="btn btn-white btn-icon" form="view_variant_form_{{ selected_product.id }}_{{ variant.id }}">
-                  <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
-                </button>
-
-                <!-- delete variant -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
-                  <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-                </button>
-              </td>
             </tr>
             <!-- end products list -->
 
