@@ -739,7 +739,7 @@
           </form>
 
           <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
-            <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 40%;">
+            <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}">
 
             <button class="btn btn-white btn-icon mt-2" form="delete_image_{{ album.id }}">
               <i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
@@ -756,7 +756,7 @@
               <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
 
               <div class="col text-center">
-                <label class="avatar avatar-xxl avatar-uploader" for="selected_variant_presentation_photo_uploader" style="height: 100%;width: 100%;">
+                <label class="avatar avatar-xxl avatar-uploader" for="selected_variant_presentation_photo_uploader" style="width: 100%;">
                   <img id="selected_variant_presentation_photo" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}" style="width: 40%;">
                   <input type="file" class="js-file-attach avatar-uploader-input" name="image" id="selected_variant_presentation_photo_uploader" data-hs-file-attach-options='{
                       "textTarget": "#selected_variant_presentation_photo",
