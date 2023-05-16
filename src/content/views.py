@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from products.models import Product
+from products.models import Product, Variant
 from products.forms import ProductForm
 
 
@@ -113,8 +113,29 @@ def products_menu(request, action):
     if action == 'add_new_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
+
+            en_spec = request.POST.get('en_spec', False)
+            fr_spec = request.POST.get('fr_spec', False)
+            ar_spec = request.POST.get('ar_spec', False)
+            price = request.POST.get('price', False)
+            discount = request.POST.get('discount', False)
+
+            if price:
+                price = int(price)
+            if discount:
+                discount = int(discount)
+                if discount > price:
+                    discount = None
+
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
+            selected_variant = Variant(en_spec=en_spec,
+                                       fr_spec=fr_spec,
+                                       ar_spec=ar_spec,
+                                       price=price,
+                                       discount=discount)
+            selected_variant.save()
+            selected_product.variant.add(selected_variant)
 
             return redirect('products-menu', 'view_product')
 
