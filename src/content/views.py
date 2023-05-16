@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from products.models import Product, Variant
+from products.models import Product, Variant, Album
 from products.forms import ProductForm
 
 
@@ -169,13 +169,12 @@ def products_menu(request, action):
             return render(request, url, context)
         else:
             url = direction + "/management/admin/products.html"
-            product_id = request.POST.get('product_id', False)
+            product_id = request.session.get('product_id_token')
             variant_id = request.session.get('variant_id_token')
             request.session['variant_id_token'] = None
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
-            request.session['product_id_token'] = product_id
             context = {
                 'nav_side': 'products',
                 'show': 'selected_variant',
@@ -183,6 +182,19 @@ def products_menu(request, action):
                 'selected_product': selected_product,
             }
             return render(request, url, context)
+    if action == 'add_image':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+            image = request.FILES.get('image', False)
+
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            request.session['variant_id_token'] = variant_id
+            album = Album(image=image,
+                          )
+            album.save()
+            selected_variant.album.add(album)
+
+            return redirect('products-menu', 'view_variant')
 
 
 def change_language(request):
