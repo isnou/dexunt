@@ -45,7 +45,34 @@
   </div>
   {% endif %}
   <!-- end selected product  -->
+
+  <!-- selected variant  -->
+  {% if show == 'selected_variant' %}
+  <form action="{% url 'products-menu' 'view_product' %}" id="view_product_form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  </form>
+
+  <div class="col-sm mb-2 mb-sm-0">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-no-gutter">
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'main' %}">Products</a></li>
+        <li class="breadcrumb-item"><button class="breadcrumb-link" form="view_product_form">{{ selected_product.en_title }}</button></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ selected_variant.en_spec }}</li>
+      </ol>
+    </nav>
+    <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
+    <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
+  </div>
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_variant_modal">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new variant"></i>
+    </button>
+  </div>
+  {% endif %}
+  <!-- end selected variant  -->
 </div>
+
 
 
 <!-- add new product modal -->
@@ -676,4 +703,36 @@
 </div>
 {% endif %}
 <!-- end selected product  -->
+
+<!-- selected variant  -->
+{% if show == 'selected_variant' %}
+<div class="row">
+  <div class="col-lg-8 mb-3 mb-lg-0">
+    <div class="card">
+      <!-- Header -->
+      <div class="card-header">
+        <h4 class="card-header-title">Variants</h4>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="card-body">
+      </div>
+      <!-- Body -->
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+      </div>
+
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!-- end selected variant  -->
+
 {% endblock %}

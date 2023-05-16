@@ -41,6 +41,7 @@ def statistics_menu(request, action):
         }
         return render(request, url, context)
 
+
 def products_menu(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -139,6 +140,7 @@ def products_menu(request, action):
             selected_product.variant.add(selected_variant)
 
             return redirect('products-menu', 'view_product')
+    # -----
     if action == 'delete_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -148,6 +150,38 @@ def products_menu(request, action):
 
             request.session['product_id_token'] = product_id
             return redirect('products-menu', 'view_product')
+    # ----- variant page ---------
+    if action == 'view_variant':
+        if request.method == 'POST':
+            url = direction + "/management/admin/products.html"
+            product_id = request.POST.get('product_id', False)
+            variant_id = request.POST.get('variant_id', False)
+
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            selected_product = Product.objects.all().get(id=product_id)
+            context = {
+                'nav_side': 'products',
+                'show': 'selected_variant',
+                'selected_variant': selected_variant,
+                'selected_product': selected_product,
+            }
+            return render(request, url, context)
+        else:
+            url = direction + "/management/admin/products.html"
+            product_id = request.POST.get('product_id', False)
+            variant_id = request.session.get('variant_id_token')
+            request.session['variant_id_token'] = None
+
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            selected_product = Product.objects.all().get(id=product_id)
+            context = {
+                'nav_side': 'products',
+                'show': 'selected_variant',
+                'selected_variant': selected_variant,
+                'selected_product': selected_product,
+            }
+            return render(request, url, context)
+
 
 def change_language(request):
     if request.method == 'POST':
