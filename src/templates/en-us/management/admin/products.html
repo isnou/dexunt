@@ -474,14 +474,14 @@
             {% for variant in selected_product.variant.all %}
             <!-- variant forms list -->
             <!-- delete variant form -->
-            <form action="{% url 'products-menu' 'delete_product' %}" id="delete_variant_form_{{ variant.id }}" method="post">
+            <form action="{% url 'products-menu' 'delete_product' %}" id="delete_variant_form_{{ product.id }}_{{ variant.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="product_id" value='{{ product.id }}'>
               <input type="hidden" name="variant_id" value='{{ variant.id }}'>
             </form>
 
             <!-- view variant form -->
-            <form action="{% url 'products-menu' 'view_product' %}" id="view_variant_form_{{ variant.id }}" method="post">
+            <form action="{% url 'products-menu' 'view_product' %}" id="view_variant_form_{{ product.id }}_{{ variant.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="product_id" value='{{ product.id }}'>
               <input type="hidden" name="variant_id" value='{{ variant.id }}'>
@@ -522,40 +522,40 @@
               <td>{{ variant.discount|floatformat:"2g" }} DZD</td>
               <!-- actions -->
               <td>
-                <!-- view product -->
-                <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
+                <!-- view variant -->
+                <button class="btn btn-white btn-icon" form="view_variant_form_{{ product.id }}_{{ variant.id }}">
                   <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
                 </button>
 
-                <!-- delete product -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
+                <!-- delete variant -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ product.id }}_{{ variant.id }}">
                   <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
               </td>
             </tr>
             <!-- end products list -->
 
-            <!-- products actions modals -->
-            <!-- delete product modal -->
-            <div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_product_modal_title_{{ product.id }}" aria-hidden="true">
+            <!-- variants actions modals -->
+            <!-- delete variant modal -->
+            <div id="delete_product_modal_{{ product.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_variant_modal_title_{{ product.id }}_{{ variant.id }}" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="delete_product_modal_title_{{ product.id }}"></h5>
+                    <h5 class="modal-title" id="delete_variant_modal_title_{{ product.id }}_{{ variant.id }}"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body text-center">
-                    <p>click yes to delete {{ product.en_title }}.</p>
+                    <p>click yes to delete {{ variant.en_spec }}.</p>
                   </div>
                   <div class="modal-footer" style="align-self: center;">
                     <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" form="delete_product_form_{{ product.id }}">Yes</button>
+                    <button class="btn btn-primary" form="delete_variant_form_{{ product.id }}_{{ variant.id }}">Yes</button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- end products actions modals -->
+            <!-- end variants actions modals -->
             {% endfor %}
             </tbody>
           </table>
