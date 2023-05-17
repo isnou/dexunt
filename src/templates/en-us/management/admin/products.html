@@ -974,9 +974,10 @@
   </div>
 
   {% if selected_variant.option.all.count %}
-  {% for option in selected_variant.option.all %}
+
   <div class="col-lg-6">
-    <div class="card">
+    {% for option in selected_variant.option.all %}
+    <div class="card mb-2">
       <div class="card-header">
         <h4 class="card-header-title">{{ option.en_value }}</h4>
       </div>
@@ -1101,8 +1102,9 @@
           </form>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
+
   {% endif %}
 </div>
 {% endif %}
