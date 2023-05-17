@@ -197,18 +197,22 @@ def products_menu(request, action):
             price = request.POST.get('price', False)
             discount = request.POST.get('discount', False)
 
+            selected_variant = Variant.objects.all().get(id=variant_id)
+
             if price:
-                price = int(price)
+                if not price == selected_variant.price:
+                    price = int(price)
             else:
                 price = None
             if discount:
-                discount = int(discount)
+                if not discount == selected_variant.discount:
+                    discount = int(discount)
                 if discount > price:
                     discount = None
             else:
                 discount = None
 
-            selected_variant = Variant.objects.all().get(id=variant_id)
+
             selected_variant.en_spec = en_spec
             selected_variant.fr_spec = fr_spec
             selected_variant.ar_spec = ar_spec
