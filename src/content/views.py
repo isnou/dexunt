@@ -423,7 +423,8 @@ def products_menu(request, action):
             else:
                 points = 0
 
-            selected_option.image = image
+            if image:
+                selected_option.image = image
             selected_option.en_value = en_value
             selected_option.fr_value = fr_value
             selected_option.ar_value = ar_value
