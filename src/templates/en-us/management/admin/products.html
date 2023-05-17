@@ -1115,7 +1115,11 @@
             <!-- product discount -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">discount</span>
+              {% if option.discount %}
               <input type="text" class="form-control" name="discount" value="{{ option.discount }}">
+              {% else %}
+              <input type="text" class="form-control" name="discount" placeholder="no discount">
+              {% endif %}
               <span class="input-group-text" style="width: 5%;">DZD</span>
             </div>
             <!-- end product discount -->
