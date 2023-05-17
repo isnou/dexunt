@@ -208,7 +208,7 @@ def products_menu(request, action):
                 price = None
 
             if discount:
-                if discount[:-3] == '.00':
+                if discount[len(discount)-3:] == '.00':
                     discount = int(discount[:-3])
                 else:
                     discount = int(discount)
