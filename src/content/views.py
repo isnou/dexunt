@@ -361,7 +361,7 @@ def products_menu(request, action):
             points = request.POST.get('points', False)
 
             selected_option = Option.objects.all().get(id=option_id)
-            
+
             if cost:
                 if cost[len(cost)-3:] == '.00':
                     cost = int(cost[:-3])
@@ -426,7 +426,7 @@ def products_menu(request, action):
             selected_option.image = image
             selected_option.en_value = en_value
             selected_option.fr_value = fr_value
-            selected_option.image = ar_value
+            selected_option.ar_value = ar_value
             selected_option.cost = cost
             selected_option.price = price
             selected_option.discount = discount
