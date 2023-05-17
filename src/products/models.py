@@ -64,6 +64,8 @@ class Option(models.Model):
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
     max_quantity = models.IntegerField(default=0)
+    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def reviews(self):
         return "\n".join([p.client_name for p in self.review.all()])
@@ -106,8 +108,12 @@ class Product(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
+
+    def get_image_path(self):
+        return self.en_title
+
     # --------------------------------- media --------------------------------------------------
-    selected_image = models.ImageField(upload_to='products-photos/selected-products/', blank=True, null=True)
+    selected_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     product_token = models.CharField(max_length=24, unique=True, null=True)
     like = models.IntegerField(default=0)
@@ -123,13 +129,15 @@ class Product(models.Model):
     en_note = models.CharField(max_length=500, blank=True, null=True)
     fr_note = models.CharField(max_length=500, blank=True, null=True)
     ar_note = models.CharField(max_length=500, blank=True, null=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def variants(self):
         return "\n".join([p.en_spec for p in self.variant.all()])
 
-    def __str__(self):
-        return self.en_title
-
     def save(self, *args, **kwargs):
         self.product_token = functions.serial_number_generator(24)
         super().save()
+
+    def __str__(self):
+        return self.en_title
