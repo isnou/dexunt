@@ -200,12 +200,12 @@ def products_menu(request, action):
             selected_variant = Variant.objects.all().get(id=variant_id)
 
             if price:
-                if not price.get_type() == 'int':
+                if not price.type() == 'int':
                     price = int(price)
             else:
                 price = None
             if discount:
-                if not discount.get_type() == 'int':
+                if not discount.type() == 'int':
                     discount = int(discount)
                 if discount > price:
                     discount = None
