@@ -110,7 +110,7 @@ class Product(models.Model):
     ar_title = models.CharField(max_length=200, blank=True, null=True)
 
     def get_image_path(self, filename):
-        return self.en_title
+        return self.en_title.lower()
 
     # --------------------------------- media --------------------------------------------------
     selected_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
