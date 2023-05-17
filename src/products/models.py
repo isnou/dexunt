@@ -32,7 +32,9 @@ class Review(models.Model):
 
 class Album(models.Model):
     file_name = models.CharField(max_length=500, blank=True, default='product-image')
-    image = models.ImageField(upload_to='products-photos/all-products/')
+    def get_image_path(self, filename):
+        return self.file_name.lower()
+    image = models.ImageField(upload_to=get_image_path)
 
     class Meta:
         verbose_name_plural = "Album"
@@ -46,7 +48,9 @@ class Option(models.Model):
     fr_value = models.CharField(max_length=200, blank=True, null=True)
     ar_value = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- media --------------------------------------------------
-    image = models.ImageField(upload_to='products-photos/product-options/', blank=True, null=True)
+    def get_image_path(self, filename):
+        return self.en_value.lower()
+    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     has_image = models.BooleanField(default=False)
     show = models.BooleanField(default=True)
@@ -108,11 +112,9 @@ class Product(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
-
+    # --------------------------------- media --------------------------------------------------
     def get_image_path(self, filename):
         return self.en_title.lower()
-
-    # --------------------------------- media --------------------------------------------------
     selected_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     product_token = models.CharField(max_length=24, unique=True, null=True)

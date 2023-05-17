@@ -182,6 +182,14 @@ def products_menu(request, action):
                 'selected_product': selected_product,
             }
             return render(request, url, context)
+    # -----
+    if action == 'edit_variant':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+
+            request.session['variant_id_token'] = variant_id
+            return redirect('products-menu', 'view_variant')
+    # -----
     if action == 'add_image':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -189,12 +197,14 @@ def products_menu(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             request.session['variant_id_token'] = variant_id
-            album = Album(image=image,
+            album = Album(file_name=selected_variant.en_spec,
+                          image=image,
                           )
             album.save()
             selected_variant.album.add(album)
 
             return redirect('products-menu', 'view_variant')
+    # -----
     if action == 'delete_image':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -205,6 +215,7 @@ def products_menu(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
+
 
 
 def change_language(request):
