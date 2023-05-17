@@ -988,10 +988,8 @@
   </div>
   {% endif %}
 </div>
-<div class="row">
-
-  {% if selected_variant.option.all.count %}
-
+{% if selected_variant.option.all.count %}
+<div class="row mt-2">
   <div class="col">
     {% for option in selected_variant.option.all %}
     <div class="card mb-2">
@@ -1005,8 +1003,6 @@
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
           <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
           <input type="hidden" name="option_id" value='{{ option.id }}'>
-
-
 
           <div class="row mb-4">
             {% if option.has_image %}
@@ -1034,7 +1030,7 @@
               <!-- option english -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english option</span>
-                <input type="text" class="form-control" name="en_value" placeholder="Full" required>
+                <input type="text" class="form-control" name="en_value" value="{{ option.en_value }}" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english -->
@@ -1042,14 +1038,14 @@
               <!-- option french -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french option</span>
-                <input type="text" class="form-control" name="fr_value" placeholder="Complet">
+                <input type="text" class="form-control" name="fr_value" value="{{ option.fr_value }}">
               </div>
               <!-- end option french -->
 
               <!-- product arabic spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic option</span>
-                <input type="text" class="form-control" name="ar_value" placeholder="مكتمل" dir="rtl">
+                <input type="text" class="form-control" name="ar_value" value="{{ option.ar_value }}" dir="rtl">
               </div>
               <!-- end product arabic spec -->
 
@@ -1058,7 +1054,7 @@
               <!-- product cost -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">cost</span>
-                <input type="text" class="form-control" name="cost" placeholder="2000" required>
+                <input type="text" class="form-control" name="cost" value="{{ option.cost }}" required>
                 <span class="input-group-text" style="width: 5%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -1067,7 +1063,7 @@
               <!-- product price -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">price</span>
-                <input type="text" class="form-control" name="price" placeholder="3000" required>
+                <input type="text" class="form-control" name="price" value="{{ option.price }}" required>
                 <span class="input-group-text" style="width: 5%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -1076,7 +1072,7 @@
               <!-- product discount -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">discount</span>
-                <input type="text" class="form-control" name="discount" placeholder="2500">
+                <input type="text" class="form-control" name="discount" value="{{ option.discount }}">
                 <span class="input-group-text" style="width: 5%;">DZD</span>
               </div>
               <!-- end product discount -->
@@ -1086,14 +1082,14 @@
               <!-- product quantity -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">quantity</span>
-                <input type="text" class="form-control" name="quantity" placeholder="40">
+                <input type="text" class="form-control" name="quantity" value="{{ option.quantity }}">
               </div>
               <!-- end product quantity -->
 
               <!-- product max quantity -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">sell quantity</span>
-                <input type="text" class="form-control" name="max_quantity" placeholder="3">
+                <input type="text" class="form-control" name="max_quantity" value="{{ option.max_quantity }}">
               </div>
               <!-- end product max quantity -->
 
@@ -1102,7 +1098,7 @@
               <!-- product delivery quotient -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">delivery quotient</span>
-                <input type="text" class="form-control" name="delivery_quotient" placeholder="34">
+                <input type="text" class="form-control" name="delivery_quotient" value="{{ option.delivery_quotient }}">
                 <span class="input-group-text" style="width: 5%;">%</span>
               </div>
               <!-- end product delivery quotient -->
@@ -1110,7 +1106,7 @@
               <!-- product gift points -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">gift points</span>
-                <input type="text" class="form-control" name="points" placeholder="300">
+                <input type="text" class="form-control" name="points" placeholder="{{ option.points }}">
                 <span class="input-group-text" style="width: 5%;">GP</span>
               </div>
               <!-- end product gift points -->
@@ -1126,10 +1122,8 @@
     </div>
     {% endfor %}
   </div>
-
-  {% endif %}
-
 </div>
+{% endif %}
 {% endif %}
 <!-- end selected variant  -->
 
