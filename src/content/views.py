@@ -400,7 +400,7 @@ def products_menu(request, action):
                 else:
                     max_quantity = int(max_quantity)
             else:
-                max_quantity = o
+                max_quantity = 0
 
             if delivery_quotient:
                 if delivery_quotient[len(delivery_quotient)-3:] == '.00':
