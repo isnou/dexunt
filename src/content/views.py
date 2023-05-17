@@ -319,12 +319,15 @@ def products_menu(request, action):
                             cost=cost,
                             price=price,
                             discount=discount,
-                            quantity=quantity,
-                            max_quantity=max_quantity,
-                            points=points,
                             )
             if delivery_quotient:
                 option.delivery_quotient = delivery_quotient
+            if quantity:
+                option.quantity = quantity
+            if max_quantity:
+                option.max_quantity = max_quantity
+            if points:
+                option.points = points
             option.save()
             selected_variant.option.add(option)
 
