@@ -109,7 +109,7 @@ class Product(models.Model):
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
 
-    def get_image_path(self):
+    def get_image_path(self, filename):
         return self.en_title
 
     # --------------------------------- media --------------------------------------------------
