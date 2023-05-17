@@ -343,6 +343,102 @@ def products_menu(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
+    # -----
+    if action == 'edit_option':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+            option_id = request.POST.get('option_id', False)
+            image = request.FILES.get('option_image', False)
+            en_value = request.POST.get('en_value', False)
+            fr_value = request.POST.get('fr_value', False)
+            ar_value = request.POST.get('ar_value', False)
+            cost = request.POST.get('cost', False)
+            price = request.POST.get('price', False)
+            discount = request.POST.get('discount', False)
+            quantity = request.POST.get('quantity', False)
+            max_quantity = request.POST.get('max_quantity', False)
+            delivery_quotient = request.POST.get('delivery_quotient', False)
+            points = request.POST.get('points', False)
+
+            selected_option = Option.objects.all().get(id=option_id)
+            
+            if cost:
+                if cost[len(cost)-3:] == '.00':
+                    cost = int(cost[:-3])
+                else:
+                    cost = int(cost)
+            else:
+                cost = None
+
+            if price:
+                if price[len(price)-3:] == '.00':
+                    price = int(price[:-3])
+                else:
+                    price = int(price)
+            else:
+                price = None
+
+            if discount:
+                if discount[len(discount)-3:] == '.00':
+                    discount = int(discount[:-3])
+                else:
+                    discount = int(discount)
+            else:
+                discount = None
+
+            if quantity:
+                if quantity[len(quantity)-3:] == '.00':
+                    quantity = int(quantity[:-3])
+                else:
+                    quantity = int(quantity)
+            else:
+                quantity = None
+
+            if max_quantity:
+                if max_quantity[len(max_quantity)-3:] == '.00':
+                    max_quantity = int(max_quantity[:-3])
+                else:
+                    max_quantity = int(max_quantity)
+            else:
+                max_quantity = None
+
+            if delivery_quotient:
+                if delivery_quotient[len(delivery_quotient)-3:] == '.00':
+                    delivery_quotient = int(delivery_quotient[:-3])
+
+                    if delivery_quotient > 100:
+                        delivery_quotient = 100
+                    if delivery_quotient < 0:
+                        delivery_quotient = 0
+                else:
+                    delivery_quotient = int(delivery_quotient)
+            else:
+                delivery_quotient = None
+
+            if points:
+                if points[len(points)-3:] == '.00':
+                    points = int(points[:-3])
+                else:
+                    points = int(points)
+            else:
+                points = None
+
+            selected_option.image = image
+            selected_option.en_value = en_value
+            selected_option.fr_value = fr_value
+            selected_option.image = ar_value
+            selected_option.cost = cost
+            selected_option.price = price
+            selected_option.discount = discount
+            selected_option.quantity = quantity
+            selected_option.max_quantity = max_quantity
+            selected_option.delivery_quotient = delivery_quotient
+            selected_option.points = points
+
+            selected_option.save()
+
+            request.session['variant_id_token'] = variant_id
+            return redirect('products-menu', 'view_variant')
 
 
 def change_language(request):
