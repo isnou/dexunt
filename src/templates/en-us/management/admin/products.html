@@ -96,7 +96,8 @@
               <!-- product english title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="en_title" style="width: 25%;">english title</span>
-                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box">
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box" required>
+                <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english title -->
 
@@ -232,7 +233,8 @@
               <!-- product english spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="en_spec" style="width: 25%;">english spec</span>
-                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_spec" name="en_spec" placeholder="Blue">
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_spec" name="en_spec" placeholder="Blue" required>
+                <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english spec -->
 
@@ -255,7 +257,8 @@
               <!-- product price -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="price" style="width: 25%;">price</span>
-                <input type="text" class="form-control" aria-label="price" aria-describedby="price" name="price" placeholder="3000">
+                <input type="text" class="form-control" aria-label="price" aria-describedby="price" name="price" placeholder="3000" required>
+                <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product price -->
 
@@ -593,7 +596,8 @@
 
               <!-- product english title -->
               <div class="input-group mb-2">
-                <input type="text" class="form-control" name="{{ selected_product_form.en_title.name }}" value="{{ selected_product.en_title }}">
+                <input type="text" class="form-control" name="{{ selected_product_form.en_title.name }}" value="{{ selected_product.en_title }}" required>
+                <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english title -->
 
@@ -767,7 +771,8 @@
             <!-- variant english spec -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">english spec</span>
-              <input type="text" class="form-control" name="en_spec" value="{{ selected_variant.en_spec }}">
+              <input type="text" class="form-control" name="en_spec" value="{{ selected_variant.en_spec }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
             </div>
             <!-- end variant english spec -->
 
@@ -789,7 +794,8 @@
             <!-- variant price -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">price</span>
-              <input type="text" class="form-control" name="price" value="{{ selected_variant.price }}">
+              <input type="text" class="form-control" name="price" value="{{ selected_variant.price }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
             </div>
             <!-- end variant price -->
 
