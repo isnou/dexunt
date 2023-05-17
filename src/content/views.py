@@ -262,7 +262,7 @@ def products_menu(request, action):
         if request.method == 'POST':
             product_id = request.session.get('product_id_token')
             variant_id = request.POST.get('variant_id', False)
-            image = request.FILES.get('image', False)
+            image = request.FILES.get('option_image', False)
             en_value = request.POST.get('en_value', False)
             fr_value = request.POST.get('fr_value', False)
             ar_value = request.POST.get('ar_value', False)
