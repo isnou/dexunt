@@ -53,7 +53,7 @@ class Option(models.Model):
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     has_image = models.BooleanField(default=False)
-    show = models.BooleanField(default=True)
+    is_activated = models.BooleanField(default=True)
     product_token = models.CharField(max_length=24, null=True)
     review = models.ManyToManyField(Review, blank=True)
     sale = models.IntegerField(default=0)
