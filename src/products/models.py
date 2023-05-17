@@ -31,7 +31,7 @@ class Review(models.Model):
         return self.client_name
 
 class Album(models.Model):
-    file_name = models.CharField(max_length=500, blank=True, default='product-image')
+    file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
         return self.file_name.lower()
     image = models.ImageField(upload_to=get_image_path)

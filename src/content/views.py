@@ -196,12 +196,14 @@ def products_menu(request, action):
     # -----
     if action == 'add_image':
         if request.method == 'POST':
+            product_id = request.session.get('product_id_token')
             variant_id = request.POST.get('variant_id', False)
             image = request.FILES.get('image', False)
 
+            selected_product = Product.objects.all().get(id=product_id)
             selected_variant = Variant.objects.all().get(id=variant_id)
             request.session['variant_id_token'] = variant_id
-            album = Album(file_name=selected_variant.en_spec,
+            album = Album(file_name= selected_product.en_title + '/' + selected_variant.en_spec,
                           image=image,
                           )
             album.save()
