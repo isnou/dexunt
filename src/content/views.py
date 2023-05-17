@@ -332,6 +332,17 @@ def products_menu(request, action):
             selected_variant.option.add(option)
 
             return redirect('products-menu', 'view_variant')
+    # -----
+    if action == 'delete_option':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+            option_id = request.POST.get('option_id', False)
+
+            option = Option.objects.all().get(id=option_id)
+            option.delete()
+
+            request.session['variant_id_token'] = variant_id
+            return redirect('products-menu', 'view_variant')
 
 
 def change_language(request):
