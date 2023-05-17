@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from products.models import Product, Variant, Album
+from products.models import Product, Variant, Option, Album
 from products.forms import ProductForm
 
 
@@ -257,7 +257,77 @@ def products_menu(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
+    # -----
+    if action == 'add_option':
+        if request.method == 'POST':
+            product_id = request.session.get('product_id_token')
+            variant_id = request.POST.get('variant_id', False)
+            image = request.FILES.get('image', False)
+            en_value = request.POST.get('en_value', False)
+            fr_value = request.POST.get('fr_value', False)
+            ar_value = request.POST.get('ar_value', False)
+            cost = request.POST.get('cost', False)
+            price = request.POST.get('price', False)
+            discount = request.POST.get('discount', False)
+            quantity = request.POST.get('quantity', False)
+            max_quantity = request.POST.get('max_quantity', False)
+            delivery_quotient = request.POST.get('delivery_quotient', False)
+            points = request.POST.get('points', False)
 
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            request.session['variant_id_token'] = variant_id
+            if image:
+                has_image = True
+            else:
+                has_image = False
+            if cost:
+                cost = int(cost)
+            else:
+                cost = None
+            if price:
+                price = int(price)
+            else:
+                price = None
+            if discount:
+                discount = int(discount)
+            else:
+                discount = None
+            if quantity:
+                quantity = int(quantity)
+            else:
+                quantity = None
+            if max_quantity:
+                max_quantity = int(max_quantity)
+            else:
+                max_quantity = None
+            if delivery_quotient:
+                delivery_quotient = int(delivery_quotient)
+            else:
+                delivery_quotient = None
+            if points:
+                points = int(points)
+            else:
+                points = None
+
+            option = Option(file_name= selected_product.en_title + '/' + selected_variant.en_spec + '/' + en_value,
+                            image=image,
+                            has_image=has_image,
+                            en_value=en_value,
+                            fr_value=fr_value,
+                            ar_value=ar_value,
+                            cost=cost,
+                            price=price,
+                            discount=discount,
+                            quantity=quantity,
+                            max_quantity=max_quantity,
+                            delivery_quotient=delivery_quotient,
+                            points=points,
+                            )
+            option.save()
+            selected_variant.option.add(option)
+
+            return redirect('products-menu', 'view_variant')
 
 
 def change_language(request):
