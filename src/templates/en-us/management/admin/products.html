@@ -994,10 +994,51 @@
     {% for option in selected_variant.option.all %}
     <div class="card mb-2">
       <div class="card-header">
-        <h4 class="card-header-title">{{ option.en_value }}</h4>
+
+        <!-- title -->
+        <div class="mb-2 mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">{{ option.en_value }}</h5>
+          </div>
+        </div>
+        <!-- end title -->
+
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- delete variant -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
+        </div>
+        <!-- end title bar -->
+
+        <div id="delete_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="delete_option_modal_title_{{ option.id }}_{{ variant.id }}"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <p>click yes to delete {{ variant.en_spec }}.</p>
+                  </div>
+                  <div class="modal-footer" style="align-self: center;">
+                    <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" form="delete_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
       </div>
 
       <div class="card-body">
+        <form action="{% url 'products-menu' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+          <input type="hidden" name="option_id" value='{{ option.id }}'>
+
+        </form>
         <form action="{% url 'products-menu' 'edit_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
@@ -1025,99 +1066,99 @@
             <!-- end product presentation photo -->
             {% endif %}
 
-              <span class="divider-center mb-2">Option value</span>
+            <span class="divider-center mb-2">Option value</span>
 
-              <!-- option english -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english option</span>
-                <input type="text" class="form-control" name="en_value" value="{{ option.en_value }}" required>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end product english -->
-
-              <!-- option french -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french option</span>
-                <input type="text" class="form-control" name="fr_value" value="{{ option.fr_value }}">
-              </div>
-              <!-- end option french -->
-
-              <!-- product arabic spec -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic option</span>
-                <input type="text" class="form-control" name="ar_value" value="{{ option.ar_value }}" dir="rtl">
-              </div>
-              <!-- end product arabic spec -->
-
-              <span class="divider-center mb-2">Prices</span>
-
-              <!-- product cost -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">cost</span>
-                <input type="text" class="form-control" name="cost" value="{{ option.cost }}" required>
-                <span class="input-group-text" style="width: 5%;">DZD</span>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end product cost -->
-
-              <!-- product price -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">price</span>
-                <input type="text" class="form-control" name="price" value="{{ option.price }}" required>
-                <span class="input-group-text" style="width: 5%;">DZD</span>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end product price -->
-
-              <!-- product discount -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">discount</span>
-                <input type="text" class="form-control" name="discount" value="{{ option.discount }}">
-                <span class="input-group-text" style="width: 5%;">DZD</span>
-              </div>
-              <!-- end product discount -->
-
-              <span class="divider-center mb-2">Quantities</span>
-
-              <!-- product quantity -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">quantity</span>
-                <input type="text" class="form-control" name="quantity" value="{{ option.quantity }}">
-              </div>
-              <!-- end product quantity -->
-
-              <!-- product max quantity -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">sell quantity</span>
-                <input type="text" class="form-control" name="max_quantity" value="{{ option.max_quantity }}">
-              </div>
-              <!-- end product max quantity -->
-
-              <span class="divider-center mb-2">Internal Informations</span>
-
-              <!-- product delivery quotient -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">delivery quotient</span>
-                <input type="text" class="form-control" name="delivery_quotient" value="{{ option.delivery_quotient }}">
-                <span class="input-group-text" style="width: 5%;">%</span>
-              </div>
-              <!-- end product delivery quotient -->
-
-              <!-- product gift points -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">gift points</span>
-                <input type="text" class="form-control" name="points" value="{{ option.points }}">
-                <span class="input-group-text" style="width: 5%;">GP</span>
-              </div>
-              <!-- end product gift points -->
+            <!-- option english -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">english option</span>
+              <input type="text" class="form-control" name="en_value" value="{{ option.en_value }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
             </div>
+            <!-- end product english -->
 
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            <!-- option french -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">french option</span>
+              <input type="text" class="form-control" name="fr_value" value="{{ option.fr_value }}">
             </div>
-            <!-- end submit -->
-          </form>
+            <!-- end option french -->
+
+            <!-- product arabic spec -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">arabic option</span>
+              <input type="text" class="form-control" name="ar_value" value="{{ option.ar_value }}" dir="rtl">
+            </div>
+            <!-- end product arabic spec -->
+
+            <span class="divider-center mb-2">Prices</span>
+
+            <!-- product cost -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">cost</span>
+              <input type="text" class="form-control" name="cost" value="{{ option.cost }}" required>
+              <span class="input-group-text" style="width: 5%;">DZD</span>
+              <span class="invalid-feedback text-center">required field.</span>
+            </div>
+            <!-- end product cost -->
+
+            <!-- product price -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">price</span>
+              <input type="text" class="form-control" name="price" value="{{ option.price }}" required>
+              <span class="input-group-text" style="width: 5%;">DZD</span>
+              <span class="invalid-feedback text-center">required field.</span>
+            </div>
+            <!-- end product price -->
+
+            <!-- product discount -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">discount</span>
+              <input type="text" class="form-control" name="discount" value="{{ option.discount }}">
+              <span class="input-group-text" style="width: 5%;">DZD</span>
+            </div>
+            <!-- end product discount -->
+
+            <span class="divider-center mb-2">Quantities</span>
+
+            <!-- product quantity -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">quantity</span>
+              <input type="text" class="form-control" name="quantity" value="{{ option.quantity }}">
+            </div>
+            <!-- end product quantity -->
+
+            <!-- product max quantity -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">sell quantity</span>
+              <input type="text" class="form-control" name="max_quantity" value="{{ option.max_quantity }}">
+            </div>
+            <!-- end product max quantity -->
+
+            <span class="divider-center mb-2">Internal Informations</span>
+
+            <!-- product delivery quotient -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">delivery quotient</span>
+              <input type="text" class="form-control" name="delivery_quotient" value="{{ option.delivery_quotient }}">
+              <span class="input-group-text" style="width: 5%;">%</span>
+            </div>
+            <!-- end product delivery quotient -->
+
+            <!-- product gift points -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">gift points</span>
+              <input type="text" class="form-control" name="points" value="{{ option.points }}">
+              <span class="input-group-text" style="width: 5%;">GP</span>
+            </div>
+            <!-- end product gift points -->
+          </div>
+
+          <!-- submit -->
+          <div class="d-grid mb-4">
+            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+          </div>
+          <!-- end submit -->
+        </form>
       </div>
     </div>
     {% endfor %}
