@@ -121,12 +121,10 @@ def products_menu(request, action):
             price = request.POST.get('price', False)
             discount = request.POST.get('discount', False)
 
-            if price:
-                price = int(price)
-            if discount:
-                discount = int(discount)
-                if discount > price:
-                    discount = None
+            price = int(price)
+            discount = int(discount)
+            if discount > price:
+                discount = None
 
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
