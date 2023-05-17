@@ -796,7 +796,11 @@
             <!-- product discount -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">discount</span>
+              {% if selected_variant.discount %}
               <input type="text" class="form-control" name="discount" value="{{ selected_variant.discount }}">
+              {% else %}
+              <input type="text" class="form-control" name="discount" placeholder="no discount">
+              {% endif %}
             </div>
             <!-- end product discount -->
           </div>
