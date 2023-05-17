@@ -845,7 +845,7 @@
 <!-- selected variant  -->
 {% if show == 'selected_variant' %}
 <div class="row">
-  <div class="col-lg-6 mb-3 mb-lg-0">
+  <div class="col-lg-8 mb-3 mb-lg-0">
     <div class="card mb-2">
       <!-- Header -->
       <div class="card-header">
@@ -972,12 +972,27 @@
       <!-- Body -->
     </div>
   </div>
+
+  {% if selected_variant.feature.all.count %}
+  <div class="col-lg-4">
+    <div class="card mb-2">
+      <div class="card-header">
+        <h4 class="card-header-title">Features</h4>
+      </div>
+
+      <div class="card-body">
+        {% for feature in selected_variant.feature.all %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
 </div>
 <div class="row">
-  
+
   {% if selected_variant.option.all.count %}
 
-  <div class="col-lg-6">
+  <div class="col">
     {% for option in selected_variant.option.all %}
     <div class="card mb-2">
       <div class="card-header">
