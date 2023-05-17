@@ -201,11 +201,15 @@ def products_menu(request, action):
 
             if price:
                 if not price[:-3] == '.00':
+                    price = int(price)
+                else:
                     price = int(price[:-3])
             else:
                 price = None
             if discount:
                 if not discount[:-3] == '.00':
+                    discount = int(discount)
+                else:
                     discount = int(discount[:-3])
                 if discount > price:
                     discount = None
