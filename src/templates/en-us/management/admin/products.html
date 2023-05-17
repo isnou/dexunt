@@ -983,29 +983,34 @@
       </div>
 
       <div class="card-body">
-        <form action="{% url 'products-menu' 'add_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+        <form action="{% url 'products-menu' 'edit_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+          <input type="hidden" name="option_id" value='{{ option.id }}'>
 
-            <div class="row mb-4">
-              <span class="divider-center mb-2">Image</span>
 
-              <!-- product presentation photo -->
-              <div class="mb-3">
-                <div class="col text-center">
-                  <label class="avatar avatar-xxl avatar-uploader" for="option_presentation_photo_uploader" style="height: 100%;width: 100%;">
-                    <img id="option_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 40%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="option_image" id="option_presentation_photo_uploader" data-hs-file-attach-options='{
-                        "textTarget": "#option_presentation_photo",
-                        "mode": "image",
-                        "targetAttr": "src",
-                        "allowTypes": [".png", ".jpeg", ".jpg"]
-                        }'>
-                  </label>
-                </div>
+
+          <div class="row mb-4">
+            {% if option.image %}
+            <span class="divider-center mb-2">Image</span>
+
+            <!-- product presentation photo -->
+            <div class="mb-3">
+              <div class="col text-center">
+                <label class="avatar avatar-xxl avatar-uploader" for="option_presentation_photo_uploader_{{ option.id }}" style="height: 100%;width: 100%;">
+                  <img id="option_presentation_photo_{{ option.id }}" class="avatar-img" src="{% get_media_prefix %}{{ option.image }}" style="width: 40%;">
+                  <input type="file" class="js-file-attach avatar-uploader-input" name="option_image" id="option_presentation_photo_uploader_{{ option.id }}" data-hs-file-attach-options='{
+                      "textTarget": "#option_presentation_photo_{{ option.id }}",
+                      "mode": "image",
+                      "targetAttr": "src",
+                      "allowTypes": [".png", ".jpeg", ".jpg"]
+                      }'>
+                </label>
               </div>
-              <!-- end product presentation photo -->
+            </div>
+            <!-- end product presentation photo -->
+            {% endif %}
 
               <span class="divider-center mb-2">Option value</span>
 
