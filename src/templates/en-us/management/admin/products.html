@@ -1004,12 +1004,33 @@
 
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
-          <!-- delete variant -->
+          <!-- delete option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
             <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
+          <!-- end delete option button -->
         </div>
         <!-- end title bar -->
+
+        <!-- delete option modal -->
+        <div id="delete_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="delete_option_modal_title_{{ option.id }}_{{ variant.id }}"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center">
+                <p>click yes to delete {{ option.en_value }}.</p>
+              </div>
+              <div class="modal-footer" style="align-self: center;">
+                <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary" form="delete_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end delete option modal -->
       </div>
 
       <div class="card-body">
