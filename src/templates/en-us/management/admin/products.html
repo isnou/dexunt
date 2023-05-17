@@ -63,6 +63,11 @@
     <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
     <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
   </div>
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_option">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add option"></i>
+    </button>
+  </div>
   {% endif %}
   <!-- end selected variant  -->
 </div>
@@ -284,6 +289,117 @@
   </div>
 </div>
 <!-- end add new variant modal -->
+
+<!-- add option modal -->
+<div id="add_option" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_option_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Patient -->
+        <div id="add_option_modal_title">
+          <!-- title -->
+          <div class="text-center mb-7">
+            <h2>Add option</h2>
+          </div>
+          <!-- end title -->
+
+          <form action="{% url 'products-menu' 'add_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Image</span>
+
+              <!-- product presentation photo -->
+              <div class="mb-3">
+                <div class="col text-center">
+                  <label class="avatar avatar-xxl avatar-uploader" for="option_presentation_photo_uploader" style="height: 100%;width: 100%;">
+                    <img id="option_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 40%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="option_image" id="option_presentation_photo_uploader" data-hs-file-attach-options='{
+                        "textTarget": "#option_presentation_photo",
+                        "mode": "image",
+                        "targetAttr": "src",
+                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                        }'>
+                  </label>
+                </div>
+              </div>
+              <!-- end product presentation photo -->
+
+              <span class="divider-center mb-2">Option value</span>
+
+              <!-- option english -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english option</span>
+                <input type="text" class="form-control" name="en_value" placeholder="Full" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product english -->
+
+              <!-- option french -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french option</span>
+                <input type="text" class="form-control" name="fr_value" placeholder="Complet">
+              </div>
+              <!-- end option french -->
+
+              <!-- product arabic spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic option</span>
+                <input type="text" class="form-control" name="ar_value" placeholder="مكتمل" dir="rtl">
+              </div>
+              <!-- end product arabic spec -->
+
+              <span class="divider-center mb-2">Prices</span>
+
+              <!-- product cost -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">cost</span>
+                <input type="text" class="form-control" name="cost" placeholder="2000" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product cost -->
+
+              <!-- product price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">price</span>
+                <input type="text" class="form-control" name="price" placeholder="3000" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">discount</span>
+                <input type="text" class="form-control" name="discount" placeholder="2500">
+              </div>
+              <!-- end product discount -->
+
+              <span class="divider-center mb-2">Quantities</span>
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+        <!-- End Patient -->
+      </div>
+      <!-- End Body -->
+    </div>
+  </div>
+</div>
+<!-- end add option modal -->
 {% endblock %}
 
 <!-- product content -->
