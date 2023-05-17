@@ -191,6 +191,32 @@ def products_menu(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
 
+            en_spec = request.POST.get('en_spec', False)
+            fr_spec = request.POST.get('fr_spec', False)
+            ar_spec = request.POST.get('ar_spec', False)
+            price = request.POST.get('price', False)
+            discount = request.POST.get('discount', False)
+
+            if price:
+                price = int(price)
+            else:
+                price = None
+            if discount:
+                discount = int(discount)
+                if discount > price:
+                    discount = None
+            else:
+                discount = None
+
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            selected_variant.en_spec = en_spec
+            selected_variant.fr_spec = fr_spec
+            selected_variant.ar_spec = ar_spec
+            selected_variant.price = price
+            selected_variant.discount = discount
+
+            selected_variant.save()
+
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
     # -----
