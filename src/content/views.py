@@ -368,7 +368,7 @@ def products_menu(request, action):
                 else:
                     cost = int(cost)
             else:
-                cost = None
+                cost = 0
 
             if price:
                 if price[len(price)-3:] == '.00':
@@ -376,7 +376,7 @@ def products_menu(request, action):
                 else:
                     price = int(price)
             else:
-                price = None
+                price = 0
 
             if discount:
                 if discount[len(discount)-3:] == '.00':
@@ -384,7 +384,7 @@ def products_menu(request, action):
                 else:
                     discount = int(discount)
             else:
-                discount = None
+                discount = 0
 
             if quantity:
                 if quantity[len(quantity)-3:] == '.00':
@@ -392,7 +392,7 @@ def products_menu(request, action):
                 else:
                     quantity = int(quantity)
             else:
-                quantity = None
+                quantity = 0
 
             if max_quantity:
                 if max_quantity[len(max_quantity)-3:] == '.00':
@@ -400,7 +400,7 @@ def products_menu(request, action):
                 else:
                     max_quantity = int(max_quantity)
             else:
-                max_quantity = None
+                max_quantity = o
 
             if delivery_quotient:
                 if delivery_quotient[len(delivery_quotient)-3:] == '.00':
@@ -413,7 +413,7 @@ def products_menu(request, action):
                 else:
                     delivery_quotient = int(delivery_quotient)
             else:
-                delivery_quotient = None
+                delivery_quotient = 100
 
             if points:
                 if points[len(points)-3:] == '.00':
@@ -421,7 +421,7 @@ def products_menu(request, action):
                 else:
                     points = int(points)
             else:
-                points = None
+                points = 0
 
             selected_option.image = image
             selected_option.en_value = en_value
