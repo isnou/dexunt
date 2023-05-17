@@ -200,17 +200,19 @@ def products_menu(request, action):
             selected_variant = Variant.objects.all().get(id=variant_id)
 
             if price:
-                if not price[:-3] == '.00':
-                    price = int(price)
-                else:
+                if price[:-3] == '.00':
                     price = int(price[:-3])
+                else:
+                    price = int(price)
             else:
                 price = None
+                
             if discount:
-                if not discount[:-3] == '.00':
-                    discount = int(discount)
-                else:
+                if discount[:-3] == '.00':
                     discount = int(discount[:-3])
+                else:
+                    discount = int(discount)
+
                 if discount > price:
                     discount = None
             else:
