@@ -448,7 +448,7 @@
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
           <!-- convert option button -->
-          <button type="button" class="btn btn-white btn-icon" form="convert_option_form_{{ option.id }}_{{ variant.id }}">
+          <button class="btn btn-white btn-icon" form="convert_option_form_{{ option.id }}_{{ variant.id }}">
             {% if option.has_image %}
             <i class="bi-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
             {% else %}
@@ -539,6 +539,14 @@
 
                       <!-- convert option form -->
                       <form action="{% url 'products-menu' 'convert_option' %}" id="convert_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+                        <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+                        <input type="hidden" name="option_id" value='{{ option.id }}'>
+                      </form>
+
+                      <!-- delete option form -->
+                      <form action="{% url 'products-menu' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
                         {% csrf_token %}
                         <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
                         <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -670,15 +678,6 @@
                         </div>
                         <!-- end submit -->
                       </form>
-
-                      <!-- delete option form -->
-                      <form action="{% url 'products-menu' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-                        <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-                        <input type="hidden" name="option_id" value='{{ option.id }}'>
-                      </form>
-
                     </div>
                     <!-- End Patient -->
                   </div>
