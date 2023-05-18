@@ -723,9 +723,9 @@
   </div>
 
   <!-- features -->
-  {% if selected_variant.feature.all.count %}
+  {% for feature in selected_variant.feature.all %}
   <div class="col-lg-4">
-    {% for feature in selected_variant.feature.all %}
+
     <div class="card mb-2">
       <div class="card-header card-header-content-md-between">
         <!-- title -->
@@ -841,9 +841,9 @@
         </div>
       </div>
     </div>
-    {% endfor %}
+
   </div>
-  {% endif %}
+  {% endfor %}
 </div>
 <!-- end selected variant  -->
 
