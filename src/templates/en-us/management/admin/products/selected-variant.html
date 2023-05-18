@@ -848,6 +848,14 @@
           </div>
         </div>
         <!-- end delete feature modal -->
+
+        <!-- delete feature form -->
+        <form action="{% url 'products-menu' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+          <input type="hidden" name="feature_id" value='{{ feature.id }}'>
+        </form>
       </div>
 
       <div class="card-body">
