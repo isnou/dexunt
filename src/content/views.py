@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from products.models import Product, Variant, Option, Album
+from products.models import Product, Variant, Option, Feature, Album
 from products.forms import ProductForm
 
 
@@ -442,6 +442,32 @@ def products_menu(request, action):
             selected_option.save()
 
             request.session['variant_id_token'] = variant_id
+            return redirect('products-menu', 'view_variant')
+    if action == 'add_feature':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+
+            en_title = request.POST.get('en_title', False)
+            fr_title = request.POST.get('fr_title', False)
+            ar_title = request.POST.get('ar_title', False)
+            en_value = request.POST.get('en_value', False)
+            fr_value = request.POST.get('fr_value', False)
+            ar_value = request.POST.get('ar_value', False)
+
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            request.session['variant_id_token'] = variant_id
+
+
+            feature = Feature(en_title=en_title,
+                              fr_title=fr_title,
+                              ar_title=ar_title,
+                              en_value=en_value,
+                              fr_value=fr_value,
+                              ar_value=ar_value,
+                              )
+            feature.save()
+            selected_variant.feature.add(feature)
+
             return redirect('products-menu', 'view_variant')
 
 
