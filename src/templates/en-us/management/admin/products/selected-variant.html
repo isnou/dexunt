@@ -409,24 +409,17 @@
 
   {% if selected_variant.feature.all.count %}
   <div class="col-lg-4">
+    {% for feature in selected_variant.feature.all %}
     <div class="card mb-2">
       <div class="card-header">
-        <h4 class="card-header-title">Features</h4>
+        <h4 class="card-header-title">{{ feature.en_title }}</h4>
+        <button class="btn btn-white btn-icon" form="edit_feature_{{ feature.id }}">
+          <i class="bi-arrow-clockwise" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i>
+        </button>
       </div>
 
       <div class="card-body">
-        {% for feature in selected_variant.feature.all %}
         <div id="mb-2">
-          <!-- title -->
-          <div class="text-center mb-7">
-            <h2>{{ feature.en_title }}</h2>
-
-            <button class="btn btn-white btn-icon" form="edit_feature_{{ feature.id }}">
-              <i class="bi-arrow-clockwise" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i>
-            </button>
-          </div>
-          <!-- end title -->
-
           <form action="{% url 'products-menu' 'edit_feature' %}" id="edit_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
@@ -489,9 +482,9 @@
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
           </form>
         </div>
-        {% endfor %}
       </div>
     </div>
+    {% endfor %}
   </div>
   {% endif %}
 </div>
