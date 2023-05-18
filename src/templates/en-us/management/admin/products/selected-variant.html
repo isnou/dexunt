@@ -433,10 +433,27 @@
       </div>
       <!-- Body -->
     </div>
+    {% for option in selected_variant.option.all %}
     <div class="card">
       <!-- Header -->
-      <div class="card-header">
-        <h4 class="card-header-title">Information</h4>
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-2 mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">{{ option.en_value }}</h5>
+          </div>
+        </div>
+        <!-- end title -->
+
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- delete option button -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
+          <!-- end delete option button -->
+        </div>
+        <!-- end title bar -->
       </div>
       <!-- End Header -->
 
@@ -445,6 +462,7 @@
       </div>
       <!-- Body -->
     </div>
+    {% endfor %}
   </div>
 
   {% if selected_variant.feature.all.count %}
