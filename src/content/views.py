@@ -282,13 +282,19 @@ def products_menu(request, action):
             else:
                 cost = None
             if price:
-                price = int(price)
+                if price[len(price)-3:] == '.00':
+                    price = int(price[:-3])
+                else:
+                    price = int(price)
             else:
-                price = None
+                price = 0
             if discount:
-                discount = int(discount)
+                if discount[len(discount)-3:] == '.00':
+                    discount = int(discount[:-3])
+                else:
+                    discount = int(discount)
             else:
-                discount = None
+                discount = 0
             if quantity:
                 quantity = int(quantity)
             else:
