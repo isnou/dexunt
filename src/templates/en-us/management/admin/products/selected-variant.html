@@ -196,7 +196,6 @@
 
       <!-- Body -->
       <div class="modal-body">
-        <!-- Patient -->
         <div id="add_variant_modal_title">
           <!-- title -->
           <div class="text-center mb-7">
@@ -267,7 +266,6 @@
             <!-- end submit -->
           </form>
         </div>
-        <!-- End Patient -->
       </div>
       <!-- End Body -->
     </div>
@@ -418,6 +416,76 @@
 
       <div class="card-body">
         {% for feature in selected_variant.feature.all %}
+        <div id="mb-2">
+          <!-- title -->
+          <div class="text-center mb-7">
+            <h2>{{ feature.en_title }}</h2>
+          </div>
+          <!-- end title -->
+
+          <form action="{% url 'products-menu' 'edit_feature' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+            <div class="row mb-4">
+
+              <span class="divider-center mb-2">Feature title</span>
+
+              <!-- feature english title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english title</span>
+                <input type="text" class="form-control" name="feature_en_title" value="{{ feature.en_title }}" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end feature english title -->
+
+              <!-- feature french title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french title</span>
+                <input type="text" class="form-control" name="feature_fr_title" value="{{ feature.fr_title }}">
+              </div>
+              <!-- end feature french title -->
+
+              <!-- feature arabic title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic title</span>
+                <input type="text" class="form-control" name="feature_ar_title" value="{{ feature.ar_title }}" dir="rtl">
+              </div>
+              <!-- end feature arabic title -->
+
+              <span class="divider-center mb-2">Feature value</span>
+
+              <!-- feature english value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english value</span>
+                <input type="text" class="form-control" name="feature_en_value" value="{{ feature.en_value }}" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end feature english value -->
+
+              <!-- feature french value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french value</span>
+                <input type="text" class="form-control" name="feature_fr_value" value="{{ feature.fr_value }}">
+              </div>
+              <!-- end feature french value -->
+
+              <!-- feature arabic value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic value</span>
+                <input type="text" class="form-control" name="feature_ar_value" value="{{ feature.ar_value }}" dir="rtl">
+              </div>
+              <!-- end feature arabic value -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
         {% endfor %}
       </div>
     </div>
