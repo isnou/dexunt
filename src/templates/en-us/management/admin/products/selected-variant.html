@@ -405,6 +405,7 @@
             </div>
           </div>
           {% endfor %}
+          {% if selected_variant.album.all.count < 4 %}
           <div class="col">
             <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
               <form action="{% url 'products-menu' 'add_image' %}" id="add_image" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
@@ -433,6 +434,7 @@
               </form>
             </span>
           </div>
+          {% endif %}
         </div>
       </div>
       <!-- Body -->
