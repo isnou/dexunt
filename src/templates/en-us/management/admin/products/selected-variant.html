@@ -495,8 +495,8 @@
               {% endif %}
 
               <!-- sell quantity -->
-              {% if option.sell_quantity %}
-              <td>Sell Quantity :{{ option.sell_quantity }}</td>
+              {% if option.max_quantity %}
+              <td>Sell Quantity :{{ option.max_quantity }}</td>
               {% else %}
               <td>No sell quantity defined</td>
               {% endif %}
@@ -534,7 +534,7 @@
                         <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
                         <input type="hidden" name="option_id" value='{{ option.id }}'>
                       </form>
-                      
+
                       <form action="{% url 'products-menu' 'edit_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
