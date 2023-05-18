@@ -375,6 +375,7 @@
 <!-- selected variant  -->
 <div class="row">
   <div class="col-lg-8 mb-3 mb-lg-0">
+    <!-- photos -->
     <div class="card mb-2">
       <!-- Header -->
       <div class="card-header">
@@ -393,13 +394,14 @@
               <input type="hidden" name="album_id" value='{{ album.id }}'>
             </form>
 
-            <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
-              <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}">
+            <span class="avatar avatar-xxl avatar-4x3 text-center mb-2">
+              <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 45%;">
+            </span>
+
 
               <button class="btn btn-white btn-icon mt-2" form="delete_image_{{ album.id }}">
                 <i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
               </button>
-            </span>
           </div>
           {% endfor %}
           <div class="col">
@@ -433,6 +435,8 @@
       </div>
       <!-- Body -->
     </div>
+
+    <!-- options -->
     {% for option in selected_variant.option.all %}
     <div class="card mb-2">
       <!-- Header -->
@@ -714,6 +718,7 @@
     {% endfor %}
   </div>
 
+  <!-- features -->
   {% if selected_variant.feature.all.count %}
   <div class="col-lg-4">
     {% for feature in selected_variant.feature.all %}
