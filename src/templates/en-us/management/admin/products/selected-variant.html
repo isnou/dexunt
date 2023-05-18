@@ -728,7 +728,7 @@
     <div class="card mb-2">
       <div class="card-header card-header-content-md-between">
         <!-- title -->
-        <div class="mb-2 mb-md-0">
+        <div class="mb-md-0">
           <div class="flex-grow-1">
             <h5 class="text-inherit mb-0">Feature</h5>
           </div>
@@ -848,14 +848,6 @@
           </div>
         </div>
         <!-- end delete feature modal -->
-
-        <!-- delete feature form -->
-        <form action="{% url 'products-menu' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
-          {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-          <input type="hidden" name="feature_id" value='{{ feature.id }}'>
-        </form>
       </div>
 
       <div class="card-body">
@@ -874,6 +866,14 @@
         </div>
         <!-- end table -->
       </div>
+
+      <!-- delete feature form -->
+      <form action="{% url 'products-menu' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+          <input type="hidden" name="feature_id" value='{{ feature.id }}'>
+        </form>
     </div>
     {% endfor %}
   </div>
