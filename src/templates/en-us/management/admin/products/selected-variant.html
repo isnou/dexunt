@@ -7,28 +7,31 @@
 <!-- header -->
 {% block page_header %}
 <div class="row align-items-end">
-    <!-- selected variant  -->
-    <div class="col-sm mb-2 mb-sm-0">
-        <form action="{% url 'products-menu' 'view_product' %}" id="view_product_form" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-        </form>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb breadcrumb-no-gutter">
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'main' %}">Products</a></li>
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'view_product' %}">{{ selected_product.en_title }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ selected_variant.en_spec }}</li>
-          </ol>
-        </nav>
-        <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
-        <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
-    </div>
-    <div class="col-sm-auto">
-        <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_option">
-            <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add option"></i>
-        </button>
-    </div>
-    <!-- end selected variant  -->
+  <!-- selected variant  -->
+  <div class="col-sm mb-2 mb-sm-0">
+    <form action="{% url 'products-menu' 'view_product' %}" id="view_product_form" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+    </form>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-no-gutter">
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'main' %}">Products</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'view_product' %}">{{ selected_product.en_title }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ selected_variant.en_spec }}</li>
+      </ol>
+    </nav>
+    <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
+    <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
+  </div>
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
+      <i class="bi-node-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add feature"></i>
+    </button>
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_option">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add option"></i>
+    </button>
+  </div>
+  <!-- end selected variant  -->
 </div>
 
 <!-- add option modal -->
