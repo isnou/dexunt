@@ -48,12 +48,11 @@ def products_menu(request, action):
     direction = request.session.get('language')
     # ----- main page ------------
     if action == 'main':
-        url = direction + "/management/admin/products.html"
+        url = direction + "/management/admin/products/products-list.html"
         all_products = Product.objects.all()
         product_form = ProductForm()
         context = {
             'nav_side': 'products',
-            'show': 'all_products',
             'all_products': all_products,
             'product_form': product_form,
         }
@@ -75,7 +74,7 @@ def products_menu(request, action):
     # ----- product page ---------
     if action == 'view_product':
         if request.method == 'POST':
-            url = direction + "/management/admin/products-selected-product.html"
+            url = direction + "/management/admin/products/selected-product.html"
             product_id = request.POST.get('product_id', False)
 
             selected_product = Product.objects.all().get(id=product_id)
@@ -87,7 +86,7 @@ def products_menu(request, action):
             }
             return render(request, url, context)
         else:
-            url = direction + "/management/admin/products-selected-product.html"
+            url = direction + "/management/admin/products/selected-product.html"
             product_id = request.session.get('product_id_token')
             request.session['product_id_token'] = None
 
@@ -155,7 +154,7 @@ def products_menu(request, action):
     # ----- variant page ---------
     if action == 'view_variant':
         if request.method == 'POST':
-            url = direction + "/management/admin/products-selected-variant.html"
+            url = direction + "/management/admin/products/selected-variant.html"
             product_id = request.POST.get('product_id', False)
             variant_id = request.POST.get('variant_id', False)
 
@@ -169,7 +168,7 @@ def products_menu(request, action):
             }
             return render(request, url, context)
         else:
-            url = direction + "/management/admin/products-selected-variant.html"
+            url = direction + "/management/admin/products/selected-variant.html"
             product_id = request.session.get('product_id_token')
             variant_id = request.session.get('variant_id_token')
             request.session['variant_id_token'] = None
