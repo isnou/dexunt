@@ -463,6 +463,7 @@
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+            <input type="hidden" name="feature_id" value='{{ feature.id }}'>
 
             <div class="row mb-4">
 
@@ -519,6 +520,7 @@
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+            <input type="hidden" name="feature_id" value='{{ feature.id }}'>
           </form>
         </div>
       </div>
