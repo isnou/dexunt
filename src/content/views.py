@@ -75,20 +75,19 @@ def products_menu(request, action):
     # ----- product page ---------
     if action == 'view_product':
         if request.method == 'POST':
-            url = direction + "/management/admin/products.html"
+            url = direction + "/management/admin/products-selected-product.html"
             product_id = request.POST.get('product_id', False)
 
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             context = {
                 'nav_side': 'products',
-                'show': 'selected_product',
                 'selected_product': selected_product,
                 'selected_product_form': selected_product_form,
             }
             return render(request, url, context)
         else:
-            url = direction + "/management/admin/products.html"
+            url = direction + "/management/admin/products-selected-product.html"
             product_id = request.session.get('product_id_token')
             request.session['product_id_token'] = None
 
@@ -96,7 +95,6 @@ def products_menu(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             context = {
                 'nav_side': 'products',
-                'show': 'selected_product',
                 'selected_product': selected_product,
                 'selected_product_form': selected_product_form,
             }
@@ -157,7 +155,7 @@ def products_menu(request, action):
     # ----- variant page ---------
     if action == 'view_variant':
         if request.method == 'POST':
-            url = direction + "/management/admin/products.html"
+            url = direction + "/management/admin/products-selected-variant.html"
             product_id = request.POST.get('product_id', False)
             variant_id = request.POST.get('variant_id', False)
 
@@ -166,13 +164,12 @@ def products_menu(request, action):
             request.session['product_id_token'] = product_id
             context = {
                 'nav_side': 'products',
-                'show': 'selected_variant',
                 'selected_variant': selected_variant,
                 'selected_product': selected_product
             }
             return render(request, url, context)
         else:
-            url = direction + "/management/admin/products.html"
+            url = direction + "/management/admin/products-selected-variant.html"
             product_id = request.session.get('product_id_token')
             variant_id = request.session.get('variant_id_token')
             request.session['variant_id_token'] = None
@@ -181,7 +178,6 @@ def products_menu(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             context = {
                 'nav_side': 'products',
-                'show': 'selected_variant',
                 'selected_variant': selected_variant,
                 'selected_product': selected_product,
             }
