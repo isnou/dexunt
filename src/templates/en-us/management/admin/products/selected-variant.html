@@ -24,15 +24,110 @@
     <h6><strong>Token |</strong><span class="text-muted ms-1">{{ selected_product.product_token }}</span></h6>
   </div>
   <div class="col-sm-auto">
+    <!-- edit variant button -->
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_variant">
+      <i class="bi-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="edit variant"></i>
+    </button>
+    <!-- end edit variant button -->
+
+    <!-- add feature button -->
     <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
       <i class="bi-node-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add feature"></i>
     </button>
+    <!-- end add feature button -->
+
+    <!-- add option button -->
     <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_option">
       <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add option"></i>
     </button>
+    <!-- end add option button -->
   </div>
   <!-- end selected variant  -->
 </div>
+
+<!-- edit variant modal -->
+<div id="edit_variant" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="edit_variant_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Patient -->
+        <div id="edit_variant_modal_title">
+          <!-- title -->
+          <div class="text-center mb-7">
+            <h2>Edit variant</h2>
+          </div>
+          <!-- end title -->
+
+          <form action="{% url 'products-menu' 'edit_variant' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Specs</span>
+              <!-- variant english spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english spec</span>
+                <input type="text" class="form-control" name="en_spec" value="{{ selected_variant.en_spec }}" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end variant english spec -->
+
+              <!-- variant french spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french spec</span>
+                <input type="text" class="form-control" name="fr_spec" value="{{ selected_variant.fr_spec }}">
+              </div>
+              <!-- end variant french spec -->
+
+              <!-- variant arabic spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic spec</span>
+                <input type="text" class="form-control" name="ar_spec" value="{{ selected_variant.ar_spec }}" dir="rtl">
+              </div>
+              <!-- end variant arabic spec -->
+
+              <span class="divider-center mb-2">Prices</span>
+              <!-- variant price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">price</span>
+                <input type="text" class="form-control" name="price" value="{{ selected_variant.price }}" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end variant price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">discount</span>
+                {% if selected_variant.discount %}
+                <input type="text" class="form-control" name="discount" value="{{ selected_variant.discount }}">
+                {% else %}
+                <input type="text" class="form-control" name="discount" placeholder="no discount">
+                {% endif %}
+              </div>
+              <!-- end product discount -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+        <!-- End Patient -->
+      </div>
+      <!-- End Body -->
+    </div>
+  </div>
+</div>
+<!-- end edit variant modal -->
 
 <!-- add option modal -->
 <div id="add_option" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_option_modal_title" aria-hidden="true">
