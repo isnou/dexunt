@@ -724,25 +724,25 @@
 
   <!-- features -->
   <div class="col-lg-4">
+    
     {% for feature in selected_variant.feature.all %}
     <div class="card mb-2">
       <div class="card-header card-header-content-md-between">
         <!-- title -->
         <div class="mb-2 mb-md-0">
           <div class="flex-grow-1">
-            <h5 class="text-inherit mb-0">Feature</h5>
+            <h5 class="text-inherit mb-0">{{ feature.en_title }}</h5>
           </div>
         </div>
         <!-- end title -->
 
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
-
-          <!-- edit feature button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
-            <i class="bi-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          <!-- refresh feature button -->
+          <button class="btn btn-white btn-icon" form="edit_feature_{{ feature.id }}">
+            <i class="bi-arrow-clockwise" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i>
           </button>
-          <!-- end edit feature button -->
+          <!-- end refresh feature button -->
 
           <!-- delete option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
@@ -771,19 +771,12 @@
           </div>
         </div>
         <!-- end delete feature modal -->
+      </div>
 
-        <!-- edit feature modal -->
-        <div id="edit_feature_modal_{{ feature.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="edit_feature_modal_title_{{ feature.id }}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="edit_feature_modal_title_{{ feature.id }}"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-
-              <div class="modal-body text-center">
-                <form action="{% url 'products-menu' 'edit_feature' %}" id="edit_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
-                  {% csrf_token %}
+      <div class="card-body">
+        <div id="mb-2">
+          <form action="{% url 'products-menu' 'edit_feature' %}" id="edit_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
             <input type="hidden" name="feature_id" value='{{ feature.id }}'>
@@ -838,27 +831,14 @@
               </div>
               <!-- end feature arabic value -->
             </div>
-
-                  <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-
           </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end edit feature modal -->
-
-        <form action="{% url 'products-menu' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'products-menu' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
             <input type="hidden" name="feature_id" value='{{ feature.id }}'>
           </form>
-
+        </div>
       </div>
     </div>
     {% endfor %}
