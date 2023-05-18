@@ -451,13 +451,11 @@
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
             <i class="bi-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
-          <!-- end edit option button -->
 
           <!-- delete option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
             <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
-          <!-- end delete option button -->
         </div>
         <!-- end title bar -->
       </div>
@@ -465,62 +463,152 @@
 
       <!-- Body -->
       <div class="card-body">
-
         <!-- table -->
         <div class="table-responsive">
           <table id="all_variants_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
             <tr>
               <!-- option title and image -->
+              {% if option.has_image %}
               <td class="table-column-ps-0">
                 <a class="d-flex align-items-center" href="#">
                   <div class="flex-shrink-0">
-                    {% if option.has_image %}
                     <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}" alt="option image">
-                    {% else %}
-                    <img class="avatar avatar-lg" src="{% static 'home-page/images/custom/no-image.png' %}" alt="no image">
-                    {% endif %}
                   </div>
                 </a>
               </td>
+              {% endif %}
+
               <!-- price -->
               <td>Price :{{ option.price|floatformat:"2g" }} DZD</td>
+
               <!-- discount -->
               {% if option.discount %}
               <td>Discount :{{ option.discount|floatformat:"2g" }} DZD</td>
               {% endif %}
+
               <!-- quantity -->
+              {% if option.quantity %}
               <td>Quantity :{{ option.quantity }}</td>
-              <!-- quantity -->
+              {% else %}
+              <td>No quantity defined</td>
+              {% endif %}
+
+              <!-- sell quantity -->
+              {% if option.sell_quantity %}
               <td>Sell Quantity :{{ option.sell_quantity }}</td>
+              {% else %}
+              <td>No sell quantity defined</td>
+              {% endif %}
+
               <!-- delivery -->
               <td>Delivery Quotient:{{ option.delivery_quotient }} %</td>
-              <!-- delivery -->
+
+              <!-- gift points -->
               <td>Gift Points:{{ option.points }} GP</td>
             </tr>
-            <!-- end products list -->
 
-            <!-- variants actions modals -->
-            <!-- delete variant modal -->
-            <div id="delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
+            <!-- edit option modal -->
+            <div id="edit_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="edit_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
+              <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}"></h5>
+                  <!-- Header -->
+                  <div class="modal-close">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body text-center">
-                    <p>click yes to delete {{ variant.en_spec }}.</p>
+                  <!-- End Header -->
+
+                  <!-- Body -->
+                  <div class="modal-body">
+                    <!-- Patient -->
+                    <div id="edit_option_modal_title_{{ option.id }}_{{ variant.id }}">
+                      <!-- title -->
+                      <div class="text-center mb-7">
+                        <h2>Edit {{ option.en_value }}</h2>
+                      </div>
+                      <!-- end title -->
+
+                      <form action="{% url 'products-menu' 'edit_variant' %}" class="js-validate need-validate" novalidate method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+                        <div class="row mb-4">
+                          <span class="divider-center mb-2">Specs</span>
+                          <!-- variant english spec -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">english spec</span>
+                            <input type="text" class="form-control" name="en_spec" value="{{ selected_variant.en_spec }}" required>
+                            <span class="invalid-feedback text-center">required field.</span>
+                          </div>
+                          <!-- end variant english spec -->
+
+                          <!-- variant french spec -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">french spec</span>
+                            <input type="text" class="form-control" name="fr_spec" value="{{ selected_variant.fr_spec }}">
+                          </div>
+                          <!-- end variant french spec -->
+
+                          <!-- variant arabic spec -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">arabic spec</span>
+                            <input type="text" class="form-control" name="ar_spec" value="{{ selected_variant.ar_spec }}" dir="rtl">
+                          </div>
+                          <!-- end variant arabic spec -->
+
+                          <span class="divider-center mb-2">Prices</span>
+                          <!-- variant price -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">price</span>
+                            <input type="text" class="form-control" name="price" value="{{ selected_variant.price }}" required>
+                            <span class="invalid-feedback text-center">required field.</span>
+                          </div>
+                          <!-- end variant price -->
+
+                          <!-- product discount -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">discount</span>
+                            {% if selected_variant.discount %}
+                            <input type="text" class="form-control" name="discount" value="{{ selected_variant.discount }}">
+                            {% else %}
+                            <input type="text" class="form-control" name="discount" placeholder="no discount">
+                            {% endif %}
+                          </div>
+                          <!-- end product discount -->
+                        </div>
+
+                        <!-- submit -->
+                        <div class="d-grid mb-4">
+                          <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+                        </div>
+                        <!-- end submit -->
+                      </form>
+                    </div>
+                    <!-- End Patient -->
                   </div>
-                  <div class="modal-footer" style="align-self: center;">
-                    <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" form="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}">Yes</button>
-                  </div>
+                  <!-- End Body -->
                 </div>
               </div>
             </div>
 
-            <!-- end variants actions modals -->
+            <!-- delete option modal -->
+            <div id="delete_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="delete_option_modal_title_{{ option.id }}_{{ variant.id }}"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <p>click yes to delete {{ option.en_value }}.</p>
+                  </div>
+                  <div class="modal-footer" style="align-self: center;">
+                    <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" form="delete_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             </tbody>
           </table>
         </div>
@@ -676,26 +764,6 @@
           <!-- end delete option button -->
         </div>
         <!-- end title bar -->
-
-        <!-- delete option modal -->
-        <div id="delete_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="delete_option_modal_title_{{ option.id }}_{{ variant.id }}"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-center">
-                <p>click yes to delete {{ option.en_value }}.</p>
-              </div>
-              <div class="modal-footer" style="align-self: center;">
-                <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-primary" form="delete_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end delete option modal -->
       </div>
 
       <div class="card-body">
