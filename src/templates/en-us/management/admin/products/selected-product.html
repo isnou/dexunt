@@ -320,6 +320,29 @@
                 <textarea class="form-control" name="{{ selected_product_form.ar_note.name }}" placeholder="{{ selected_product.ar_note }}" rows="2" dir="rtl"></textarea>
               </div>
               <!-- end product arabic note -->
+
+              <span class="divider-center mb-2">Prices</span>
+              <!-- product price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">price</span>
+                <input type="text" class="form-control" name="{{ selected_product_form.ar_note.price }}" value="{{ selected_product.price }}" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">discount</span>
+                {% if selected_product.discount %}
+                <input type="text" class="form-control" name="{{ selected_product_form.ar_note.discount }}" value="{{ selected_product.discount }}">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                {% else %}
+                <input type="text" class="form-control" name="{{ selected_product_form.ar_note.discount }}" placeholder="no discount">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                {% endif %}
+              </div>
+              <!-- end product discount -->
             </div>
 
             <!-- submit -->
