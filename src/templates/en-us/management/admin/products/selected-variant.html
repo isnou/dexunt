@@ -748,7 +748,6 @@
         <div id="edit_feature_modal_{{ feature.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="edit_feature_modal_title_{{ feature.id }}" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-
               <div class="modal-header">
                 <h5 class="modal-title" id="edit_feature_modal_title_{{ feature.id }}">Edit feature</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -768,7 +767,7 @@
                     <!-- feature english title -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">english</span>
-                      <input type="text" class="form-control" name="feature_en_title" value="{{ feature.en_title }}" required>
+                      <input type="text" class="form-control" name="{{ feature_form.en_name.name }}" value="{{ feature.en_name }}" required>
                       <span class="invalid-feedback text-center">required field.</span>
                     </div>
                     <!-- end feature english title -->
@@ -776,14 +775,14 @@
                     <!-- feature french title -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">french</span>
-                      <input type="text" class="form-control" name="feature_fr_title" value="{{ feature.fr_title }}">
+                      <input type="text" class="form-control" name="{{ feature_form.fr_name.name }}" value="{{ feature.fr_name }}">
                     </div>
                     <!-- end feature french title -->
 
                     <!-- feature arabic title -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">arabic</span>
-                      <input type="text" class="form-control" name="feature_ar_title" value="{{ feature.ar_title }}" dir="rtl">
+                      <input type="text" class="form-control" name="{{ feature_form.ar_name.name }}" value="{{ feature.ar_name }}" dir="rtl">
                     </div>
                     <!-- end feature arabic title -->
 
@@ -792,7 +791,7 @@
                     <!-- feature english value -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">english</span>
-                      <input type="text" class="form-control" name="feature_en_value" value="{{ feature.en_value }}" required>
+                      <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" value="{{ feature.en_content }}" required>
                       <span class="invalid-feedback text-center">required field.</span>
                     </div>
                     <!-- end feature english value -->
@@ -800,14 +799,14 @@
                     <!-- feature french value -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">french</span>
-                      <input type="text" class="form-control" name="feature_fr_value" value="{{ feature.fr_value }}">
+                      <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" value="{{ feature.fr_content }}">
                     </div>
                     <!-- end feature french value -->
 
                     <!-- feature arabic value -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">arabic</span>
-                      <input type="text" class="form-control" name="feature_ar_value" value="{{ feature.ar_value }}" dir="rtl">
+                      <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" value="{{ feature.ar_content }}" dir="rtl">
                     </div>
                     <!-- end feature arabic value -->
                   </div>
@@ -831,9 +830,9 @@
             <tbody>
             <tr>
               <!-- feature title -->
-              <td>{{ feature.en_title }}</td>
+              <td>{{ feature.en_name }}</td>
               <!-- feature value -->
-              <td>{{ feature.en_value }}</td>
+              <td>{{ feature.en_content }}</td>
             </tr>
             </tbody>
           </table>

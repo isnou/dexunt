@@ -279,25 +279,11 @@ def products_menu(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             feature_id = request.POST.get('feature_id', False)
-
-            en_title = request.POST.get('feature_en_title', False)
-            fr_title = request.POST.get('feature_fr_title', False)
-            ar_title = request.POST.get('feature_ar_title', False)
-            en_value = request.POST.get('feature_en_value', False)
-            fr_value = request.POST.get('feature_fr_value', False)
-            ar_value = request.POST.get('feature_ar_value', False)
-
             selected_feature = Feature.objects.all().get(id=feature_id)
 
-            selected_feature.en_title = en_title
-            selected_feature.fr_title = fr_title
-            selected_feature.ar_title = ar_title
-
-            selected_feature.en_value = en_value
-            selected_feature.fr_value = fr_value
-            selected_feature.ar_value = ar_value
-
             selected_feature.save()
+            selected_feature_form = FeatureForm(request.POST, instance=selected_feature)
+            selected_feature_form.save()
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
