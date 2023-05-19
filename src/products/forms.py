@@ -23,6 +23,14 @@ class FeatureForm(ModelForm):
         fields = ('en_name', 'fr_name', 'ar_name', 'en_content', 'fr_content', 'ar_content')
 
 class OptionForm(ModelForm):
+    image = forms.ImageField(required=False)
+    fr_value = forms.CharField(required=False)
+    ar_value = forms.CharField(required=False)
+    discount = forms.IntegerField(required=False)
+    points = forms.IntegerField(required=False)
+    delivery_quotient = forms.IntegerField(required=False)
+    max_quantity = forms.IntegerField(required=False)
+    quantity = forms.IntegerField(required=False)
     class Meta:
         model = Option
         fields = ('image', 'en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points',
