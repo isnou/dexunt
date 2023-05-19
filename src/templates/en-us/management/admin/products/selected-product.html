@@ -49,7 +49,7 @@
               <!-- product english spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="en_spec" style="width: 25%;">english spec</span>
-                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_spec" name="en_spec" placeholder="Blue" required>
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_spec" name="{{ selected_product_form.variant.en_spec.name }}" placeholder="Blue" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english spec -->
@@ -57,14 +57,14 @@
               <!-- product french spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="fr_spec" style="width: 25%;">french spec</span>
-                <input type="text" class="form-control" aria-label="fr_spec" aria-describedby="fr_spec" name="fr_spec" placeholder="Bleu">
+                <input type="text" class="form-control" aria-label="fr_spec" aria-describedby="fr_spec" name="{{ selected_product_form.variant.fr_spec.name }}" placeholder="Bleu">
               </div>
               <!-- end product french spec -->
 
               <!-- product arabic spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="ar_spec" style="width: 25%;">arabic spec</span>
-                <input type="text" class="form-control" aria-label="ar_spec" aria-describedby="ar_spec" name="ar_spec" placeholder="أزرق" dir="rtl">
+                <input type="text" class="form-control" aria-label="ar_spec" aria-describedby="ar_spec" name="{{ selected_product_form.variant.ar_spec.name }}" placeholder="أزرق" dir="rtl">
               </div>
               <!-- end product arabic spec -->
 
@@ -73,7 +73,7 @@
               <!-- product price -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="price" style="width: 25%;">price</span>
-                <input type="text" class="form-control" aria-label="price" aria-describedby="price" name="price" placeholder="3000" required>
+                <input type="text" class="form-control" aria-label="price" aria-describedby="price" name="{{ selected_product_form.variant.price.name }}" placeholder="3000" required>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -82,7 +82,7 @@
               <!-- product discount -->
               <div class="input-group mb-2">
                 <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
-                <input type="text" class="form-control" aria-label="discount" aria-describedby="discount" name="discount" placeholder="2500">
+                <input type="text" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ selected_product_form.variant.discount.name }}" placeholder="2500">
                 <span class="input-group-text" style="width: 20%;">DZD</span>
               </div>
               <!-- end product discount -->
@@ -110,7 +110,6 @@
   <div class="col-lg-8 mb-3 mb-lg-0">
     {% for variant in selected_product.variant.all %}
     <div class="card mb-2">
-      <!-- Header -->
       <div class="card-header card-header-content-md-between">
         <!-- title -->
         <div class="mb-2 mb-md-0">
@@ -143,9 +142,7 @@
         </div>
         <!-- end title bar -->
       </div>
-      <!-- End Header -->
 
-      <!-- Body -->
       <div class="card-body">
         <!-- table -->
         <div class="table-responsive">
@@ -218,12 +215,12 @@
         </div>
         <!-- end table -->
       </div>
-      <!-- Body -->
     </div>
     {% endfor %}
   </div>
   {% endif %}
 
+  <!-- edit product form -->
   <div class="col-lg-4">
     <div class="card">
       <div class="card-header">
