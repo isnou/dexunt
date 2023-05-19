@@ -15,7 +15,7 @@ class Feature(models.Model):
     ar_content = models.TextField(max_length=500, null=True)
 
     def __str__(self):
-        return self.en_title
+        return self.en_name
 
 class Review(models.Model):
     # --------------------------------- feature types ------------------------------------------

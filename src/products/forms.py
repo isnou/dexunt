@@ -5,7 +5,8 @@ from .models import Product ,Variant ,Feature ,Option
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ('en_title', 'fr_title', 'ar_title', 'selected_image', 'brand', 'en_description', 'fr_description', 'ar_description', 'en_note', 'fr_note', 'ar_note', 'price', 'discount')
+        fields = ('en_title', 'fr_title', 'ar_title', 'selected_image', 'brand', 'en_description', 'fr_description',
+                  'ar_description', 'en_note', 'fr_note', 'ar_note', 'price', 'discount')
 
 class VariantForm(ModelForm):
     class Meta:
@@ -24,4 +25,5 @@ class FeatureForm(ModelForm):
 class OptionForm(ModelForm):
     class Meta:
         model = Option
-        fields = ('en_value', 'fr_value', 'ar_value')
+        fields = ('en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'delivery_quotient', 'points',
+                  'max_quantity', 'quantity')
