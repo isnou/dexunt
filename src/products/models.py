@@ -6,13 +6,13 @@ from add_ons import functions
 
 class Feature(models.Model):
     # --------------------------------- feature title ------------------------------------------
-    en_title = models.CharField(max_length=100, blank=True, null=True)
-    fr_title = models.CharField(max_length=100, blank=True, null=True)
-    ar_title = models.CharField(max_length=100, blank=True, null=True)
+    en_name = models.CharField(max_length=100, blank=True, null=True)
+    fr_name = models.CharField(max_length=100, blank=True, null=True)
+    ar_name = models.CharField(max_length=100, blank=True, null=True)
     # --------------------------------- feature value ------------------------------------------
-    en_value = models.TextField(max_length=500, null=True)
-    fr_value = models.TextField(max_length=500, null=True)
-    ar_value = models.TextField(max_length=500, null=True)
+    en_content = models.TextField(max_length=500, null=True)
+    fr_content = models.TextField(max_length=500, null=True)
+    ar_content = models.TextField(max_length=500, null=True)
 
     def __str__(self):
         return self.en_title
