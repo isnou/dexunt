@@ -99,12 +99,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/content/views.py</url>
-          <line>114</line>
+          <line>112</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/content/views.py</url>
-          <line>83</line>
+          <line>81</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
