@@ -255,8 +255,10 @@ def products_menu(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
-            new_feature = Feature().save()
-            selected_feature_form = FeatureForm(request.POST, request.FILES, instance=new_feature)
+            new_feature = Feature(en_title='unlinked feature',
+                                  )
+            new_feature.save()
+            selected_feature_form = FeatureForm(request.POST, instance=new_feature)
             selected_feature_form.save()
             selected_variant.feature.add(new_feature)
             request.session['variant_id_token'] = variant_id
