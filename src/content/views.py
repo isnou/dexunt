@@ -121,11 +121,7 @@ def products_menu(request, action):
             new_variant.save()
 
             selected_variant_form = VariantForm(request.POST, instance=new_variant)
-            if selected_variant_form.is_valid():
-                selected_variant_form.save()
-            else:
-                new_variant.en_spec = selected_variant_form.errors
-                new_variant.save()
+            selected_variant_form.save()
 
             selected_product.variant.add(new_variant)
             return redirect('products-menu', 'view_product')

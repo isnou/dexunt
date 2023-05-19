@@ -9,4 +9,4 @@ class ProductForm(ModelForm):
 class VariantForm(ModelForm):
     class Meta:
         model = Variant
-        fields = ('en_spec', 'fr_spec', 'ar_spec', 'product_token', 'price', 'discount')
+        fields = ('en_spec', 'fr_spec', 'ar_spec', 'price', 'discount')
