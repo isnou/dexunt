@@ -185,41 +185,9 @@ def products_menu(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
 
-            en_spec = request.POST.get('en_spec', False)
-            fr_spec = request.POST.get('fr_spec', False)
-            ar_spec = request.POST.get('ar_spec', False)
-            price = request.POST.get('price', False)
-            discount = request.POST.get('discount', False)
-
             selected_variant = Variant.objects.all().get(id=variant_id)
-
-            if price:
-                if price[len(price)-3:] == '.00':
-                    price = int(price[:-3])
-                else:
-                    price = int(price)
-            else:
-                price = None
-
-            if discount:
-                if discount[len(discount)-3:] == '.00':
-                    discount = int(discount[:-3])
-                else:
-                    discount = int(discount)
-
-                if discount > price:
-                    discount = None
-            else:
-                discount = None
-
-
-            selected_variant.en_spec = en_spec
-            selected_variant.fr_spec = fr_spec
-            selected_variant.ar_spec = ar_spec
-            selected_variant.price = price
-            selected_variant.discount = discount
-
-            selected_variant.save()
+            selected_variant_form = VariantForm(request.POST, instance=selected_variant)
+            selected_variant_form.save()
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
