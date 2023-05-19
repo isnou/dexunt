@@ -72,7 +72,7 @@
               <!-- variant english spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english spec</span>
-                <input type="text" class="form-control" name="en_spec" value="{{ selected_variant.en_spec }}" required>
+                <input type="text" class="form-control" name="{{ variant_form.en_spec.name }}" value="{{ selected_variant.en_spec }}" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end variant english spec -->
@@ -80,14 +80,14 @@
               <!-- variant french spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french spec</span>
-                <input type="text" class="form-control" name="fr_spec" value="{{ selected_variant.fr_spec }}">
+                <input type="text" class="form-control" name="{{ variant_form.fr_spec.name }}" value="{{ selected_variant.fr_spec }}">
               </div>
               <!-- end variant french spec -->
 
               <!-- variant arabic spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic spec</span>
-                <input type="text" class="form-control" name="ar_spec" value="{{ selected_variant.ar_spec }}" dir="rtl">
+                <input type="text" class="form-control" name="{{ variant_form.ar_spec.name }}" value="{{ selected_variant.ar_spec }}" dir="rtl">
               </div>
               <!-- end variant arabic spec -->
 
@@ -95,7 +95,7 @@
               <!-- variant price -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">price</span>
-                <input type="text" class="form-control" name="price" value="{{ selected_variant.price }}" required>
+                <input type="text" class="form-control" name="{{ variant_form.price.name }}" value="{{ selected_variant.price }}" required>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -105,10 +105,10 @@
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">discount</span>
                 {% if selected_variant.discount %}
-                <input type="text" class="form-control" name="discount" value="{{ selected_variant.discount }}">
+                <input type="text" class="form-control" name="{{ variant_form.discount.name }}" value="{{ selected_variant.discount }}">
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 {% else %}
-                <input type="text" class="form-control" name="discount" placeholder="no discount">
+                <input type="text" class="form-control" name="{{ variant_form.discount.name }}" placeholder="no discount">
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 {% endif %}
               </div>

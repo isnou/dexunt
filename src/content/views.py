@@ -24,9 +24,6 @@ def home_page(request):
 
 def management_page(request, action):
     if action == 'statistics':
-        for variant in Variant.objects.all():
-            if not variant.en_spec:
-                variant.delete()
         return redirect('statistics-menu', 'main')
     if action == 'products':
         return redirect('products-menu', 'main')
@@ -97,10 +94,12 @@ def products_menu(request, action):
 
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
+            variant_form = VariantForm()
             context = {
                 'nav_side': 'products',
                 'selected_product': selected_product,
                 'selected_product_form': selected_product_form,
+                'variant_form': variant_form,
             }
             return render(request, url, context)
     # -----
@@ -148,10 +147,12 @@ def products_menu(request, action):
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
             request.session['product_id_token'] = product_id
+            variant_form = VariantForm()
             context = {
                 'nav_side': 'products',
                 'selected_variant': selected_variant,
-                'selected_product': selected_product
+                'selected_product': selected_product,
+                'variant_form': variant_form
             }
             return render(request, url, context)
         else:
@@ -162,10 +163,12 @@ def products_menu(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
+            variant_form = VariantForm()
             context = {
                 'nav_side': 'products',
                 'selected_variant': selected_variant,
                 'selected_product': selected_product,
+                'variant_form': variant_form,
             }
             return render(request, url, context)
     # -----
