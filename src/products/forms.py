@@ -15,3 +15,7 @@ class FeatureForm(ModelForm):
     class Meta:
         model = Feature
         fields = ('en_title', 'fr_title', 'ar_title', 'en_value', 'fr_value', 'ar_value')
+
+class OptionForm(ModelForm):
+    class Meta:
+        model = Option
