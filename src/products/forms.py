@@ -19,3 +19,4 @@ class FeatureForm(ModelForm):
 class OptionForm(ModelForm):
     class Meta:
         model = Option
+        fields = __all__
