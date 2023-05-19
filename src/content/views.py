@@ -289,7 +289,7 @@ def products_menu(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             option_id = request.POST.get('option_id', False)
-            selected_option = Feature.objects.all().get(id=option_id)
+            selected_option = Option.objects.all().get(id=option_id)
 
             selected_option_form = OptionForm(request.POST, instance=selected_option)
             selected_option_form.save()
