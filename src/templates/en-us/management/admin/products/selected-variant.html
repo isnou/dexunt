@@ -291,7 +291,7 @@
               <!-- feature english title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english title</span>
-                <input type="text" class="form-control" name="feature_en_title" placeholder="Manufacturing material" required>
+                <input type="text" class="form-control" name="{{ feature_form.en_title.name }}" placeholder="Manufacturing material" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end feature english title -->
@@ -299,14 +299,14 @@
               <!-- feature french title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french title</span>
-                <input type="text" class="form-control" name="feature_fr_title" placeholder="Matière de fabrication">
+                <input type="text" class="form-control" name="{{ feature_form.fr_title.name }}" placeholder="Matière de fabrication">
               </div>
               <!-- end feature french title -->
 
               <!-- feature arabic title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic title</span>
-                <input type="text" class="form-control" name="feature_ar_title" placeholder="مادة التصنيع" dir="rtl">
+                <input type="text" class="form-control" name="{{ feature_form.ar_title.name }}" placeholder="مادة التصنيع" dir="rtl">
               </div>
               <!-- end feature arabic title -->
 
@@ -315,7 +315,7 @@
               <!-- feature english value -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english value</span>
-                <input type="text" class="form-control" name="feature_en_value" placeholder="Wood" required>
+                <input type="text" class="form-control" name="{{ feature_form.en_value.name }}" placeholder="Wood" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end feature english value -->
@@ -323,14 +323,14 @@
               <!-- feature french value -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french value</span>
-                <input type="text" class="form-control" name="feature_fr_value" placeholder="Bois">
+                <input type="text" class="form-control" name="{{ feature_form.fr_value.name }}" placeholder="Bois">
               </div>
               <!-- end feature french value -->
 
               <!-- feature arabic value -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic value</span>
-                <input type="text" class="form-control" name="feature_ar_value" placeholder="خشب" dir="rtl">
+                <input type="text" class="form-control" name="{{ feature_form.ar_value.name }}" placeholder="خشب" dir="rtl">
               </div>
               <!-- end feature arabic value -->
             </div>
@@ -351,19 +351,14 @@
 
 <!-- product content -->
 {% block product %}
-
 <!-- selected variant  -->
 <div class="row">
   <div class="col-lg-8 mb-3 mb-lg-0">
     <!-- photos -->
     <div class="card mb-2">
-      <!-- Header -->
       <div class="card-header">
         <h4 class="card-header-title">Photos</h4>
       </div>
-      <!-- End Header -->
-
-      <!-- Body -->
       <div class="card-body">
         <div class="row">
           {% for album in selected_variant.album.all %}
@@ -417,9 +412,7 @@
           {% endif %}
         </div>
       </div>
-      <!-- Body -->
     </div>
-
     <!-- options -->
     {% for option in selected_variant.option.all %}
     <div class="card mb-2">
@@ -831,7 +824,6 @@
         </div>
         <!-- end delete feature modal -->
       </div>
-
       <div class="card-body">
         <!-- table -->
         <div class="table-responsive">
@@ -848,7 +840,6 @@
         </div>
         <!-- end table -->
       </div>
-
       <!-- delete feature form -->
       <form action="{% url 'products-menu' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
@@ -861,5 +852,4 @@
   </div>
 </div>
 <!-- end selected variant  -->
-
 {% endblock %}

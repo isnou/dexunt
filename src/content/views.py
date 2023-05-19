@@ -3,7 +3,7 @@ from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from products.models import Product, Variant, Option, Feature, Album
-from products.forms import ProductForm, VariantForm
+from products.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 
 
 
@@ -148,11 +148,15 @@ def products_menu(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             request.session['product_id_token'] = product_id
             variant_form = VariantForm()
+            feature_form = FeatureForm()
+            option_form = OptionForm()
             context = {
                 'nav_side': 'products',
                 'selected_variant': selected_variant,
                 'selected_product': selected_product,
-                'variant_form': variant_form
+                'variant_form': variant_form,
+                'feature_form': feature_form,
+                'option_form': option_form,
             }
             return render(request, url, context)
         else:
@@ -164,11 +168,15 @@ def products_menu(request, action):
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
             variant_form = VariantForm()
+            feature_form = FeatureForm()
+            option_form = OptionForm()
             context = {
                 'nav_side': 'products',
                 'selected_variant': selected_variant,
                 'selected_product': selected_product,
                 'variant_form': variant_form,
+                'feature_form': feature_form,
+                'option_form': option_form,
             }
             return render(request, url, context)
     # -----
@@ -239,6 +247,55 @@ def products_menu(request, action):
 
             album = Album.objects.all().get(id=album_id)
             album.delete()
+
+            request.session['variant_id_token'] = variant_id
+            return redirect('products-menu', 'view_variant')
+    # -----
+    if action == 'add_feature':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            new_feature = Feature().save()
+            selected_feature_form = FeatureForm(request.POST, request.FILES, instance=new_feature)
+            selected_feature_form.save()
+            selected_variant.feature.add(new_feature)
+            request.session['variant_id_token'] = variant_id
+            return redirect('products-menu', 'view_variant')
+    # -----
+    if action == 'delete_feature':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+            feature_id = request.POST.get('feature_id', False)
+
+            selected_feature = Feature.objects.all().get(id=feature_id)
+            selected_feature.delete()
+
+            request.session['variant_id_token'] = variant_id
+            return redirect('products-menu', 'view_variant')
+    # -----
+    if action == 'edit_feature':
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+            feature_id = request.POST.get('feature_id', False)
+
+            en_title = request.POST.get('feature_en_title', False)
+            fr_title = request.POST.get('feature_fr_title', False)
+            ar_title = request.POST.get('feature_ar_title', False)
+            en_value = request.POST.get('feature_en_value', False)
+            fr_value = request.POST.get('feature_fr_value', False)
+            ar_value = request.POST.get('feature_ar_value', False)
+
+            selected_feature = Feature.objects.all().get(id=feature_id)
+
+            selected_feature.en_title = en_title
+            selected_feature.fr_title = fr_title
+            selected_feature.ar_title = ar_title
+
+            selected_feature.en_value = en_value
+            selected_feature.fr_value = fr_value
+            selected_feature.ar_value = ar_value
+
+            selected_feature.save()
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
@@ -444,71 +501,6 @@ def products_menu(request, action):
             else:
                 option.has_image = True
             option.save()
-
-            request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
-    # -----
-    if action == 'add_feature':
-        if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-
-            en_title = request.POST.get('feature_en_title', False)
-            fr_title = request.POST.get('feature_fr_title', False)
-            ar_title = request.POST.get('feature_ar_title', False)
-            en_value = request.POST.get('feature_en_value', False)
-            fr_value = request.POST.get('feature_fr_value', False)
-            ar_value = request.POST.get('feature_ar_value', False)
-
-            selected_variant = Variant.objects.all().get(id=variant_id)
-            request.session['variant_id_token'] = variant_id
-
-
-            feature = Feature(en_title=en_title,
-                              fr_title=fr_title,
-                              ar_title=ar_title,
-                              en_value=en_value,
-                              fr_value=fr_value,
-                              ar_value=ar_value,
-                              )
-            feature.save()
-            selected_variant.feature.add(feature)
-
-            return redirect('products-menu', 'view_variant')
-    # -----
-    if action == 'delete_feature':
-        if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-            feature_id = request.POST.get('feature_id', False)
-
-            selected_feature = Feature.objects.all().get(id=feature_id)
-            selected_feature.delete()
-
-            request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
-    # -----
-    if action == 'edit_feature':
-        if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-            feature_id = request.POST.get('feature_id', False)
-
-            en_title = request.POST.get('feature_en_title', False)
-            fr_title = request.POST.get('feature_fr_title', False)
-            ar_title = request.POST.get('feature_ar_title', False)
-            en_value = request.POST.get('feature_en_value', False)
-            fr_value = request.POST.get('feature_fr_value', False)
-            ar_value = request.POST.get('feature_ar_value', False)
-
-            selected_feature = Feature.objects.all().get(id=feature_id)
-
-            selected_feature.en_title = en_title
-            selected_feature.fr_title = fr_title
-            selected_feature.ar_title = ar_title
-
-            selected_feature.en_value = en_value
-            selected_feature.fr_value = fr_value
-            selected_feature.ar_value = ar_value
-
-            selected_feature.save()
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')

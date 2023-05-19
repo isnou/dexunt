@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Product ,Variant ,Album ,Feature ,Option
+from .models import Product ,Variant ,Feature ,Option
 
 class ProductForm(ModelForm):
     class Meta:
@@ -10,3 +10,8 @@ class VariantForm(ModelForm):
     class Meta:
         model = Variant
         fields = ('en_spec', 'fr_spec', 'ar_spec', 'price', 'discount')
+
+class FeatureForm(ModelForm):
+    class Meta:
+        model = Feature
+        fields = ('en_title', 'fr_title', 'ar_title', 'en_value', 'fr_value', 'ar_value')
