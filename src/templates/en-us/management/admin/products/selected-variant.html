@@ -152,7 +152,7 @@
                 <div class="col text-center">
                   <label class="avatar avatar-xxl avatar-uploader" for="option_presentation_photo_uploader" style="width: 50%; height: 50%;">
                     <img id="option_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 50%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ option_form.selected_image.name }}" id="option_presentation_photo_uploader" data-hs-file-attach-options='{
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ option_form.image.name }}" id="option_presentation_photo_uploader" data-hs-file-attach-options='{
                         "textTarget": "#option_presentation_photo",
                         "mode": "image",
                         "targetAttr": "src",
@@ -550,7 +550,7 @@
                             <div class="col text-center">
                               <label class="avatar avatar-xxl avatar-uploader" for="option_presentation_photo_uploader_{{ option.id }}" style="width: 50%; height: 50%;">
                                 <img id="option_presentation_photo_{{ option.id }}" class="avatar-img" src="{% get_media_prefix %}{{ option.image }}" style="width: 50%;">
-                                <input type="file" class="js-file-attach avatar-uploader-input" name="{{ option_form.selected_image.name }}" id="option_presentation_photo_uploader_{{ option.id }}" data-hs-file-attach-options='{
+                                <input type="file" class="js-file-attach avatar-uploader-input" name="{{ option_form.image.name }}" id="option_presentation_photo_uploader_{{ option.id }}" data-hs-file-attach-options='{
                                     "textTarget": "#option_presentation_photo_{{ option.id }}",
                                     "mode": "image",
                                     "targetAttr": "src",

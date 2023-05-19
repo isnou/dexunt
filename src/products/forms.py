@@ -25,5 +25,5 @@ class FeatureForm(ModelForm):
 class OptionForm(ModelForm):
     class Meta:
         model = Option
-        fields = ('selected_image', 'en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points',
+        fields = ('image', 'en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points',
                   'delivery_quotient', 'max_quantity', 'quantity')
