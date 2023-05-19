@@ -1,4 +1,4 @@
-from django.forms import ModelForm, forms
+from django.forms import ModelForm
 from .models import Product ,Variant ,Feature ,Option
 
 class ProductForm(ModelForm):
