@@ -24,6 +24,8 @@ def home_page(request):
 
 def management_page(request, action):
     if action == 'statistics':
+        for feature in Feature.objects.all():
+            feature.delete()
         return redirect('statistics-menu', 'main')
     if action == 'products':
         return redirect('products-menu', 'main')
