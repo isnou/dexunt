@@ -14,7 +14,7 @@ class VariantForm(ModelForm):
 class FeatureForm(ModelForm):
     class Meta:
         model = Feature
-        fields = ('en_title', 'fr_title', 'ar_title', 'en_value', 'fr_value', 'ar_value')
+        fields = ('en_name', 'fr_name', 'ar_name', 'en_content', 'fr_content', 'ar_content')
 
 class OptionForm(ModelForm):
     class Meta:
