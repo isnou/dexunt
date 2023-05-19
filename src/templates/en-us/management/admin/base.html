@@ -558,11 +558,29 @@
             <!-- Products -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'management-page' 'products' %}" data-placement="left">
-                <i class="bi-box-seam nav-icon"></i>
+                <i class="bi-handbag nav-icon"></i>
                 <span class="nav-link-title">Products</span>
               </a>
             </div>
             <!-- End Products -->
+
+            <!-- Packages -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'packages' %} active {% endif %}" href="{% url 'management-page' 'packages' %}" data-placement="left">
+                <i class="bi-box-seam nav-icon"></i>
+                <span class="nav-link-title">Packages</span>
+              </a>
+            </div>
+            <!-- End Packages -->
+
+            <!-- Gifts -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'gifts' %} active {% endif %}" href="{% url 'management-page' 'gifts' %}" data-placement="left">
+                <i class="bi-gift nav-icon"></i>
+                <span class="nav-link-title">Gifts</span>
+              </a>
+            </div>
+            <!-- End Gifts -->
 
             <!-- Orders -->
             <div class="nav-item">
@@ -572,15 +590,6 @@
               </a>
             </div>
             <!-- End Orders -->
-
-            <!-- Coupons -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'coupons' %} active {% endif %}" href="{% url 'management-page' 'coupons' %}" data-placement="left">
-                <i class="bi-ticket nav-icon"></i>
-                <span class="nav-link-title">Coupons</span>
-              </a>
-            </div>
-            <!-- End Coupons -->
           </div>
         </div>
         <!-- End Content -->
