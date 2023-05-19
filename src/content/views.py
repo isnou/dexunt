@@ -4,7 +4,7 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from products.models import Product, Variant, Option, Feature, Album
 from products.forms import ProductForm, VariantForm, FeatureForm, OptionForm
-from account.models import User
+from authentication.models import User
 
 
 
