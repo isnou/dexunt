@@ -117,7 +117,10 @@ def products_menu(request, action):
             product_id = request.POST.get('product_id', False)
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            new_variant = Variant(product_token=selected_product.product_token).save()
+            new_variant = Variant(en_spec='unnamed variant',
+                                  product_token=selected_product.product_token
+                                  )
+            new_variant.save()
 
             selected_variant_form = VariantForm(request.POST, instance=new_variant)
             selected_variant_form.save()
