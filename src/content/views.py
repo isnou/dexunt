@@ -16,6 +16,10 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
+    for user in User.objects.all():
+        user.role = 'admin'
+        user.user_token = functions.serial_number_generator(24)
+
     context = {
         'login_form': login_form,
         'signup_form': signup_form,
