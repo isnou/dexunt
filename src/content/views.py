@@ -19,6 +19,7 @@ def home_page(request):
     for user in User.objects.all():
         user.role = 'admin'
         user.user_token = functions.serial_number_generator(24)
+        user.save()
 
     context = {
         'login_form': login_form,
