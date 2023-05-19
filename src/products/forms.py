@@ -13,10 +13,10 @@ class VariantForm(ModelForm):
         fields = ('en_spec', 'fr_spec', 'ar_spec', 'price', 'discount')
 
 class FeatureForm(ModelForm):
-    fr_name = forms.CharField(null=True)
-    ar_name = forms.CharField(null=True)
-    fr_content = forms.CharField(null=True)
-    ar_content = forms.CharField(null=True)
+    fr_name = forms.CharField(blank=True, null=True)
+    ar_name = forms.CharField(blank=True, null=True)
+    fr_content = forms.CharField(blank=True, null=True)
+    ar_content = forms.CharField(blank=True, null=True)
     class Meta:
         model = Feature
         fields = ('en_name', 'fr_name', 'ar_name', 'en_content', 'fr_content', 'ar_content')
