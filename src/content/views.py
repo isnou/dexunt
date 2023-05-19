@@ -3,7 +3,7 @@ from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from products.models import Product, Variant, Option, Feature, Album
-from products.forms import ProductForm
+from products.forms import ProductForm, VariantForm
 
 
 
@@ -51,10 +51,12 @@ def products_menu(request, action):
         url = direction + "/management/admin/products/products-list.html"
         all_products = Product.objects.all()
         product_form = ProductForm()
+        variant_form = VariantForm()
         context = {
             'nav_side': 'products',
             'all_products': all_products,
             'product_form': product_form,
+            'variant_form': variant_form,
         }
         return render(request, url, context)
     # -----
@@ -111,10 +113,36 @@ def products_menu(request, action):
     if action == 'add_new_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
+
+            en_spec = request.POST.get('en_spec', False)
+            fr_spec = request.POST.get('fr_spec', False)
+            ar_spec = request.POST.get('ar_spec', False)
+            price = request.POST.get('price', False)
+            discount = request.POST.get('discount', False)
+
+            if price:
+                price = int(price)
+            else:
+                price = None
+            if discount:
+                discount = int(discount)
+                if discount > price:
+                    discount = None
+            else:
+                discount = None
+
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ProductForm(request.POST, request.FILES, instance=selected_product)
-            selected_product_form.save()
+            selected_variant = Variant(en_spec=en_spec,
+                                       fr_spec=fr_spec,
+                                       ar_spec=ar_spec,
+                                       price=price,
+                                       discount=discount,
+                                       )
+            selected_variant.product_token = selected_product.product_token
+            selected_variant.save()
+            selected_product.variant.add(selected_variant)
+
             return redirect('products-menu', 'view_product')
     # -----
     if action == 'delete_variant':
