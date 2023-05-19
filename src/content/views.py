@@ -121,7 +121,7 @@ def products_menu(request, action):
 
             selected_variant_form = VariantForm(request.POST, instance=new_variant)
             selected_variant_form.save()
-            
+
             selected_product.variant.add(new_variant)
             return redirect('products-menu', 'view_product')
     # -----
