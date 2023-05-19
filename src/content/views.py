@@ -113,36 +113,10 @@ def products_menu(request, action):
     if action == 'add_new_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
-
-            en_spec = request.POST.get('en_spec', False)
-            fr_spec = request.POST.get('fr_spec', False)
-            ar_spec = request.POST.get('ar_spec', False)
-            price = request.POST.get('price', False)
-            discount = request.POST.get('discount', False)
-
-            if price:
-                price = int(price)
-            else:
-                price = None
-            if discount:
-                discount = int(discount)
-                if discount > price:
-                    discount = None
-            else:
-                discount = None
-
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            selected_variant = Variant(en_spec=en_spec,
-                                       fr_spec=fr_spec,
-                                       ar_spec=ar_spec,
-                                       price=price,
-                                       discount=discount,
-                                       )
-            selected_variant.product_token = selected_product.product_token
-            selected_variant.save()
-            selected_product.variant.add(selected_variant)
-
+            selected_product_form = ProductForm(request.POST, request.FILES, instance=selected_product)
+            selected_product_form.save()
             return redirect('products-menu', 'view_product')
     # -----
     if action == 'delete_variant':

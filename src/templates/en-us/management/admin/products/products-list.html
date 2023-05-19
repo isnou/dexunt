@@ -29,22 +29,15 @@
 <div id="add_new_product_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_new_product_modal_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <!-- Header -->
       <div class="modal-close">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <!-- End Header -->
 
-      <!-- Body -->
       <div class="modal-body">
-        <!-- Patient -->
         <div id="add_new_product_modal_title">
-          <!-- title -->
           <div class="text-center mb-7">
-                <h2>Add new product</h2>
-              </div>
-          <!-- end title -->
-
+            <h2>Add new product</h2>
+          </div>
           <form action="{% url 'products-menu' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
@@ -172,9 +165,7 @@
             <!-- end submit -->
           </form>
         </div>
-        <!-- End Patient -->
       </div>
-      <!-- End Body -->
     </div>
   </div>
 </div>
