@@ -96,6 +96,7 @@
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">price</span>
                 <input type="text" class="form-control" name="price" value="{{ selected_variant.price }}" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end variant price -->
@@ -105,8 +106,10 @@
                 <span class="input-group-text" style="width: 25%;">discount</span>
                 {% if selected_variant.discount %}
                 <input type="text" class="form-control" name="discount" value="{{ selected_variant.discount }}">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
                 {% else %}
                 <input type="text" class="form-control" name="discount" placeholder="no discount">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
                 {% endif %}
               </div>
               <!-- end product discount -->
@@ -137,8 +140,6 @@
           <div class="text-center mb-7">
             <h2>Add option</h2>
           </div>
-
-
           <form action="{% url 'products-menu' 'add_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>

@@ -34,13 +34,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Patient -->
         <div id="add_new_variant_modal_title">
-          <!-- title -->
           <div class="text-center mb-7">
             <h2>Add new variant</h2>
           </div>
-          <!-- end title -->
 
           <form action="{% url 'products-menu' 'add_new_variant' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
@@ -77,6 +74,7 @@
               <div class="input-group mb-2">
                 <span class="input-group-text" id="price" style="width: 25%;">price</span>
                 <input type="text" class="form-control" aria-label="price" aria-describedby="price" name="price" placeholder="3000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product price -->
@@ -85,6 +83,7 @@
               <div class="input-group mb-2">
                 <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
                 <input type="text" class="form-control" aria-label="discount" aria-describedby="discount" name="discount" placeholder="2500">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
               </div>
               <!-- end product discount -->
             </div>
@@ -96,7 +95,6 @@
             <!-- end submit -->
           </form>
         </div>
-        <!-- End Patient -->
       </div>
     </div>
   </div>

@@ -71,9 +71,6 @@ class Option(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
-    def reviews(self):
-        return "\n".join([p.client_name for p in self.review.all()])
-
     def __str__(self):
         return self.en_value
 
@@ -85,6 +82,7 @@ class Variant(models.Model):
     # --------------------------------- media --------------------------------------------------
     album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
+    is_activated = models.BooleanField(default=True)
     availability = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, null=True)
     user_token = models.CharField(max_length=24, null=True)
@@ -96,13 +94,6 @@ class Variant(models.Model):
     feature = models.ManyToManyField(Feature, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-
-
-    def features(self):
-        return "\n".join([p.en_title for p in self.feature.all()])
-
-    def options(self):
-        return "\n".join([p.en_value for p in self.option.all()])
 
     def __str__(self):
         return self.en_spec
@@ -117,6 +108,8 @@ class Product(models.Model):
         return self.en_title.lower()
     selected_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
+    is_activated = models.BooleanField(default=True)
+    availability = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, unique=True, null=True)
     like = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
@@ -133,9 +126,6 @@ class Product(models.Model):
     ar_note = models.CharField(max_length=500, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-
-    def variants(self):
-        return "\n".join([p.en_spec for p in self.variant.all()])
 
     def save(self, *args, **kwargs):
         self.product_token = functions.serial_number_generator(24)
