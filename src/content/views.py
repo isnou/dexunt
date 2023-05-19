@@ -24,6 +24,9 @@ def home_page(request):
 
 def management_page(request, action):
     if action == 'statistics':
+        for variant in Variant.objects.all():
+            if not variant.en_spec:
+                variant.delete()
         return redirect('statistics-menu', 'main')
     if action == 'products':
         return redirect('products-menu', 'main')
@@ -60,9 +63,9 @@ def products_menu(request, action):
     # -----
     if action == 'add_new_product':
         if request.method == 'POST':
-            completed_product_form = ProductForm(request.POST, request.FILES)
-            if completed_product_form.is_valid():
-                completed_product_form.save()
+            new_product_form = ProductForm(request.POST, request.FILES)
+            if new_product_form.is_valid():
+                new_product_form.save()
                 return redirect('products-menu', 'main')
     # -----
     if action == 'delete_product':
