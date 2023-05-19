@@ -81,10 +81,12 @@ def products_menu(request, action):
 
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
+            variant_form = VariantForm()
             context = {
                 'nav_side': 'products',
                 'selected_product': selected_product,
                 'selected_product_form': selected_product_form,
+                'variant_form': variant_form,
             }
             return render(request, url, context)
         else:
@@ -115,8 +117,12 @@ def products_menu(request, action):
             product_id = request.POST.get('product_id', False)
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ProductForm(request.POST, request.FILES, instance=selected_product)
-            selected_product_form.save()
+            new_variant = Variant().save()
+
+            selected_variant_form = VariantForm(request.POST, instance=new_variant)
+            selected_variant_form.save()
+
+            selected_product.variant.add(new_variant)
             return redirect('products-menu', 'view_product')
     # -----
     if action == 'delete_variant':
