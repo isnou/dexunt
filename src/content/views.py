@@ -119,7 +119,7 @@ def products_menu(request, action):
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
             new_variant = Variant(en_spec='unlinked variant',
-                                  product_token=selected_product.product_token
+                                  product_token=selected_product.product_token,
                                   )
             new_variant.save()
 
@@ -250,7 +250,6 @@ def products_menu(request, action):
             feature_id = request.POST.get('feature_id', False)
             selected_feature = Feature.objects.all().get(id=feature_id)
 
-            selected_feature.save()
             selected_feature_form = FeatureForm(request.POST, instance=selected_feature)
             selected_feature_form.save()
 
@@ -261,82 +260,18 @@ def products_menu(request, action):
         if request.method == 'POST':
             product_id = request.session.get('product_id_token')
             variant_id = request.POST.get('variant_id', False)
-            image = request.FILES.get('option_image', False)
-            en_value = request.POST.get('en_value', False)
-            fr_value = request.POST.get('fr_value', False)
-            ar_value = request.POST.get('ar_value', False)
-            cost = request.POST.get('cost', False)
-            price = request.POST.get('price', False)
-            discount = request.POST.get('discount', False)
-            quantity = request.POST.get('quantity', False)
-            max_quantity = request.POST.get('max_quantity', False)
-            delivery_quotient = request.POST.get('delivery_quotient', False)
-            points = request.POST.get('points', False)
-
             selected_product = Product.objects.all().get(id=product_id)
             selected_variant = Variant.objects.all().get(id=variant_id)
+
+            new_option = Option(file_name= selected_product.en_title + '/' + selected_variant.en_spec,
+                                product_token=selected_product.product_token,
+                                )
+            new_option.save()
+            selected_option_form = OptionForm(request.POST, request.FILES, instance=new_option)
+            selected_option_form.save()
+            selected_variant.option.add(new_option)
+
             request.session['variant_id_token'] = variant_id
-            if image:
-                has_image = True
-            else:
-                has_image = False
-            if cost:
-                cost = int(cost)
-            else:
-                cost = None
-            if price:
-                if price[len(price)-3:] == '.00':
-                    price = int(price[:-3])
-                else:
-                    price = int(price)
-            else:
-                price = 0
-            if discount:
-                if discount[len(discount)-3:] == '.00':
-                    discount = int(discount[:-3])
-                else:
-                    discount = int(discount)
-            else:
-                discount = 0
-            if quantity:
-                quantity = int(quantity)
-            else:
-                quantity = None
-            if max_quantity:
-                max_quantity = int(max_quantity)
-            else:
-                max_quantity = None
-            if delivery_quotient:
-                delivery_quotient = int(delivery_quotient)
-            else:
-                delivery_quotient = None
-            if points:
-                points = int(points)
-            else:
-                points = None
-
-            option = Option(file_name= selected_product.en_title + '/' + selected_variant.en_spec + '/' + en_value,
-                            image=image,
-                            has_image=has_image,
-                            en_value=en_value,
-                            fr_value=fr_value,
-                            ar_value=ar_value,
-                            product_token=selected_product.product_token,
-                            cost=cost,
-                            price=price,
-                            discount=discount,
-                            )
-            if delivery_quotient:
-                option.delivery_quotient = delivery_quotient
-            if quantity:
-                option.quantity = quantity
-            if max_quantity:
-                option.max_quantity = max_quantity
-            if points:
-                option.points = points
-            option.save()
-            selected_variant.option.add(option)
-
             return redirect('products-menu', 'view_variant')
     # -----
     if action == 'delete_option':
@@ -354,95 +289,10 @@ def products_menu(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             option_id = request.POST.get('option_id', False)
-            image = request.FILES.get('option_image', False)
-            en_value = request.POST.get('en_value', False)
-            fr_value = request.POST.get('fr_value', False)
-            ar_value = request.POST.get('ar_value', False)
-            cost = request.POST.get('cost', False)
-            price = request.POST.get('price', False)
-            discount = request.POST.get('discount', False)
-            quantity = request.POST.get('quantity', False)
-            max_quantity = request.POST.get('max_quantity', False)
-            delivery_quotient = request.POST.get('delivery_quotient', False)
-            points = request.POST.get('points', False)
+            selected_option = Feature.objects.all().get(id=option_id)
 
-            selected_option = Option.objects.all().get(id=option_id)
-
-            if cost:
-                if cost[len(cost)-3:] == '.00':
-                    cost = int(cost[:-3])
-                else:
-                    cost = int(cost)
-            else:
-                cost = 0
-
-            if price:
-                if price[len(price)-3:] == '.00':
-                    price = int(price[:-3])
-                else:
-                    price = int(price)
-            else:
-                price = 0
-
-            if discount:
-                if discount[len(discount)-3:] == '.00':
-                    discount = int(discount[:-3])
-                else:
-                    discount = int(discount)
-            else:
-                discount = 0
-
-            if quantity:
-                if quantity[len(quantity)-3:] == '.00':
-                    quantity = int(quantity[:-3])
-                else:
-                    quantity = int(quantity)
-            else:
-                quantity = 0
-
-            if max_quantity:
-                if max_quantity[len(max_quantity)-3:] == '.00':
-                    max_quantity = int(max_quantity[:-3])
-                else:
-                    max_quantity = int(max_quantity)
-            else:
-                max_quantity = 0
-
-            if delivery_quotient:
-                if delivery_quotient[len(delivery_quotient)-3:] == '.00':
-                    delivery_quotient = int(delivery_quotient[:-3])
-
-                    if delivery_quotient > 100:
-                        delivery_quotient = 100
-                    if delivery_quotient < 0:
-                        delivery_quotient = 0
-                else:
-                    delivery_quotient = int(delivery_quotient)
-            else:
-                delivery_quotient = 100
-
-            if points:
-                if points[len(points)-3:] == '.00':
-                    points = int(points[:-3])
-                else:
-                    points = int(points)
-            else:
-                points = 0
-
-            if image:
-                selected_option.image = image
-            selected_option.en_value = en_value
-            selected_option.fr_value = fr_value
-            selected_option.ar_value = ar_value
-            selected_option.cost = cost
-            selected_option.price = price
-            selected_option.discount = discount
-            selected_option.quantity = quantity
-            selected_option.max_quantity = max_quantity
-            selected_option.delivery_quotient = delivery_quotient
-            selected_option.points = points
-
-            selected_option.save()
+            selected_option_form = OptionForm(request.POST, instance=selected_option)
+            selected_option_form.save()
 
             request.session['variant_id_token'] = variant_id
             return redirect('products-menu', 'view_variant')
