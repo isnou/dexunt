@@ -16,6 +16,8 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
+    User.objects.all().delete()
+
     context = {
         'login_form': login_form,
         'signup_form': signup_form,
