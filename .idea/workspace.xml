@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/content/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dexunt/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dexunt/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/products/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_manager/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sales/views.py" beforeDir="false" />
-    </list>
+    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
