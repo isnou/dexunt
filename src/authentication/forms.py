@@ -1,8 +1,7 @@
 from django import forms
 from .models import User
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.core.validators import RegexValidator
 from phonenumber_field.modelfields import PhoneNumberField
 
