@@ -14,9 +14,6 @@ class Feature(models.Model):
     fr_content = models.TextField(max_length=500, null=True)
     ar_content = models.TextField(max_length=500, null=True)
 
-    def __str__(self):
-        return self.en_name
-
 class Review(models.Model):
     # --------------------------------- feature types ------------------------------------------
     client_name = models.CharField(max_length=100, blank=True, null=True)
@@ -27,9 +24,6 @@ class Review(models.Model):
     user_token = models.CharField(max_length=24, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.client_name
-
 class Album(models.Model):
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
@@ -38,9 +32,6 @@ class Album(models.Model):
 
     class Meta:
         verbose_name_plural = "Album"
-
-    def __str__(self):
-        return self.file_name
 
 class Option(models.Model):
     # --------------------------------- product identification ---------------------------------
@@ -71,9 +62,6 @@ class Option(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
-    def __str__(self):
-        return self.en_value
-
 class Variant(models.Model):
     # --------------------------------- product specs ------------------------------------------
     en_spec = models.CharField(max_length=200, blank=True, null=True)
@@ -94,9 +82,6 @@ class Variant(models.Model):
     feature = models.ManyToManyField(Feature, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-
-    def __str__(self):
-        return self.en_spec
 
 class Product(models.Model):
     # --------------------------------- product identification ---------------------------------
@@ -130,6 +115,3 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.product_token = functions.serial_number_generator(24)
         super().save()
-
-    def __str__(self):
-        return self.en_title
