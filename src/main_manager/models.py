@@ -62,6 +62,12 @@ class Option(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        if self.discount:
+            if self.price < self.discount:
+                self.discount = None
+        super().save()
+
 class Variant(models.Model):
     # --------------------------------- product specs ------------------------------------------
     en_spec = models.CharField(max_length=200, blank=True, null=True)
@@ -82,6 +88,12 @@ class Variant(models.Model):
     feature = models.ManyToManyField(Feature, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.discount:
+            if self.price < self.discount:
+                self.discount = None
+        super().save()
 
 class Product(models.Model):
     # --------------------------------- product identification ---------------------------------
@@ -113,5 +125,8 @@ class Product(models.Model):
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        self.product_token = functions.serial_number_generator(24)
+        self.product_token = functions.serial_number_generator(24).upper()
+        if self.discount:
+            if self.price < self.discount:
+                self.discount = None
         super().save()
