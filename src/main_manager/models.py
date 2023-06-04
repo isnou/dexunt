@@ -63,6 +63,9 @@ class Option(models.Model):
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def save(self, *args, **kwargs):
+        if self.cost:
+            if self.price < self.cost:
+                self.cost = None
         if self.discount:
             if self.price < self.discount:
                 self.discount = None
