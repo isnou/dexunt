@@ -42,9 +42,8 @@ INSTALLED_APPS = [
     'django_user_agents',
     'phonenumber_field',
     'mathfilters',
-    'content',
-    'products',
-    'sales',
+    'main_home',
+    'main_manager',
 ]
 
 MIDDLEWARE = [
