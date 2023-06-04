@@ -1,0 +1,1 @@
+from main_manager.models import Product, Variant, Option, Feature, Album
