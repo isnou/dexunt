@@ -7,15 +7,15 @@ from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
 
-def statistics(request, action):
+def admin_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     # ----- main page ------------
     if action == 'main':
-        url = direction + "/management/admin/statistics.html"
+        url = direction + "/management/admin/home.html"
         context = {
-            'nav_side': 'statistics'
+            'nav_side': 'home'
         }
         return render(request, url, context)
 

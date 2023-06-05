@@ -117,7 +117,7 @@
   <header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
     <div class="navbar-nav-wrap">
       <!-- Dexunt Logo -->
-      <a class="navbar-brand" href="{% url 'statistics' 'main' %}" aria-label="Front">
+      <a class="navbar-brand" href="{% url 'admin-home' 'main' %}" aria-label="Front">
         <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
         <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
         <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
@@ -505,7 +505,7 @@
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
         <!-- Dexunt Logo -->
-        <a class="navbar-brand" href="{% url 'statistics' 'main' %}" aria-label="Front">
+        <a class="navbar-brand" href="{% url 'admin-home' 'main' %}" aria-label="Front">
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
           <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
@@ -523,14 +523,14 @@
         <!-- Content -->
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-            <!-- Statistics -->
+            <!-- Admin Home -->
             <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'statistics' %} active {% endif %}" href="{% url 'statistics' 'main' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'home' %} active {% endif %}" href="{% url 'admin-home' 'main' %}" data-placement="left">
                   <i class="bi-clipboard-data nav-icon"></i>
-                  <span class="nav-link-title">Statistics</span>
+                  <span class="nav-link-title">Home</span>
                 </a>
             </div>
-            <!-- End Statistics -->
+            <!-- End Admin Home -->
 
             <!-- Management Title -->
             <span class="dropdown-header mt-4">management</span>
