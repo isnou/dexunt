@@ -13,7 +13,7 @@ def manage_showcase(request, action):
     direction = request.session.get('language')
     # ----- main page ------------
     if action == 'main':
-        url = direction + "/management/admin/showcase/select.html"
+        url = direction + "/management/admin/showcase/grid.html"
         context = {
             'nav_side': 'showcase'
         }
@@ -26,7 +26,7 @@ def manage_products(request, action):
     direction = request.session.get('language')
     # ----- main page ------------
     if action == 'main':
-        url = direction + "/management/admin/products/products-list.html"
+        url = direction + "/management/admin/products/list.html"
         all_products = Product.objects.all()
         product_form = ProductForm()
         context = {
@@ -52,7 +52,7 @@ def manage_products(request, action):
     # ----- product page ---------
     if action == 'view_product':
         if request.method == 'POST':
-            url = direction + "/management/admin/products/selected-product.html"
+            url = direction + "/management/admin/products/selected.html"
             product_id = request.POST.get('product_id', False)
 
             selected_product = Product.objects.all().get(id=product_id)
@@ -66,7 +66,7 @@ def manage_products(request, action):
             }
             return render(request, url, context)
         else:
-            url = direction + "/management/admin/products/selected-product.html"
+            url = direction + "/management/admin/products/selected.html"
             product_id = request.session.get('product_id_token')
             request.session['product_id_token'] = None
 
