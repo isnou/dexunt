@@ -6,6 +6,20 @@ from main_manager.models import Product, Variant, Option, Feature, Album
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
+
+def manage_showcase(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # ----- main page ------------
+    if action == 'main':
+        url = direction + "/management/admin/showcase/select.html"
+        context = {
+            'nav_side': 'showcase'
+        }
+        return render(request, url, context)
+
+
 def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'

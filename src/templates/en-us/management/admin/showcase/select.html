@@ -1,0 +1,344 @@
+{% extends "en-us/management/admin/base.html" %}
+{% load static %}
+
+<!-- title -->
+{% block title %}<title>Dexunt | eCommerce & Logistic | Management | Showcase</title>{% endblock %}
+
+<!-- header -->
+{% block page_header %}
+<div class="row align-items-end">
+  <!-- all products  -->
+  <div class="col-sm mb-2 mb-sm-0">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-no-gutter">
+        <li class="breadcrumb-item active" aria-current="page">products</li>
+      </ol>
+    </nav>
+    <h1 class="page-header-title">Products</h1>
+    <h6 class="text-muted">You have {{ all_products.all.count }} products</h6>
+  </div>
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_product_modal">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new product"></i>
+    </button>
+  </div>
+  <!-- end all products  -->
+</div>
+
+<!-- add new product modal -->
+<div id="add_new_product_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_new_product_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add new product</h2>
+          </div>
+          <form action="{% url 'products-menu' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Main Informations</span>
+
+              <!-- product english title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_title" style="width: 25%;">english title</span>
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product english title -->
+
+              <!-- product french title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_title" style="width: 25%;">french title</span>
+                <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="{{ product_form.fr_title.name }}" placeholder="Coffre à jouets Deluxe">
+              </div>
+              <!-- end product french title -->
+
+              <!-- product arabic title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_title" style="width: 25%;">arabic title</span>
+                <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="{{ product_form.ar_title.name }}" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
+              </div>
+              <!-- end product arabic title -->
+
+              <!-- product brand -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
+                <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
+              </div>
+              <!-- end product brand -->
+
+              <span class="divider-center mb-2">Presentation photo</span>
+
+              <!-- product presentation photo -->
+              <div class="mb-3 mt-3">
+                <div class="col text-center">
+                  <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 70%;width: 70%;">
+                    <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 70%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ product_form.selected_image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
+                        "textTarget": "#product_presentation_photo",
+                        "mode": "image",
+                        "targetAttr": "src",
+                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                        }' required>
+                    <span class="invalid-feedback text-center">Please upload an image.</span>
+                  </label>
+                </div>
+              </div>
+              <!-- end product presentation photo -->
+
+              <span class="divider-center mb-2">Descriptions</span>
+
+              <!-- product english description -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_description" style="width: 25%;">english</span>
+                <textarea class="form-control" aria-label="en_description" aria-describedby="en_description" name="{{ product_form.en_description.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product english description -->
+
+              <!-- product french description -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_description" style="width: 25%;">french</span>
+                <textarea class="form-control" aria-label="fr_description" aria-describedby="fr_description" name="{{ product_form.fr_description.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product french description -->
+
+              <!-- product arabic description -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_description" style="width: 25%;">arabic</span>
+                <textarea class="form-control" aria-label="ar_description" aria-describedby="ar_description" name="{{ product_form.ar_description.name }}" placeholder="" rows="4" dir="rtl"></textarea>
+              </div>
+              <!-- end product arabic description -->
+
+              <span class="divider-center mb-2">Notes</span>
+
+              <!-- product english note -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_note" style="width: 25%;">english</span>
+                <textarea class="form-control" aria-label="en_note" aria-describedby="en_note" name="{{ product_form.en_note.name }}" placeholder="" rows="2"></textarea>
+              </div>
+              <!-- end product english note -->
+
+              <!-- product french note -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_note" style="width: 25%;">french</span>
+                <textarea class="form-control" aria-label="fr_note" aria-describedby="fr_note" name="{{ product_form.fr_note.name }}" placeholder="" rows="2"></textarea>
+              </div>
+              <!-- end product french note -->
+
+              <!-- product arabic note -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_note" style="width: 25%;">arabic</span>
+                <textarea class="form-control" aria-label="ar_note" aria-describedby="ar_note" name="{{ product_form.ar_note.name }}" placeholder="" rows="2" dir="rtl"></textarea>
+              </div>
+              <!-- end product arabic note -->
+
+              <span class="divider-center mb-2">Prices</span>
+
+              <!-- product price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="price" style="width: 25%;">price</span>
+                <input type="number" class="form-control" aria-label="price" aria-describedby="price" name="{{ product_form.price.name }}" placeholder="3000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
+                <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ product_form.discount.name }}" placeholder="2500">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end product discount -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add new product modal -->
+{% endblock %}
+
+<!-- product content -->
+{% block product %}
+<!-- all products  -->
+<div class="card">
+  <!-- header -->
+  <div class="card-header card-header-content-md-between">
+    <!-- search -->
+    <div class="mb-2 mb-md-0">
+      <form>
+        <div class="input-group input-group-merge input-group-flush">
+          <div class="input-group-prepend input-group-text">
+            <i class="bi-search"></i>
+          </div>
+          <input id="datatableSearch" type="search" class="form-control" placeholder="Search users" aria-label="Search users">
+        </div>
+      </form>
+    </div>
+    <!-- end search -->
+
+    <!-- title bar -->
+    <div class="d-grid d-sm-flex gap-2">
+    </div>
+    <!-- end title bar -->
+  </div>
+  <!-- end header -->
+
+  {% if all_products.all.count %}
+  <!-- table -->
+  <div class="table-responsive">
+    <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="table-column-pe-0">
+          </th>
+          <th class="table-column-ps-0">Product</th>
+          <th>Vendor</th>
+          <th>Variants</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      {% for product in all_products.all %}
+      <!-- product forms list -->
+      <!-- delete product form -->
+      <form action="{% url 'products-menu' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value='{{ product.id }}'>
+      </form>
+
+      <!-- view product form -->
+      <form action="{% url 'products-menu' 'view_product' %}" id="view_product_form_{{ product.id }}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value='{{ product.id }}'>
+      </form>
+
+      <!-- end product forms list -->
+
+      <!-- products list -->
+      <tr>
+        <td class="table-column-pe-0">
+        </td>
+        <!-- product title and image -->
+        <td class="table-column-ps-0">
+          <a class="d-flex align-items-center" href="#">
+            <div class="flex-shrink-0">
+              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.selected_image }}" alt="Image Description">
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h5 class="text-inherit mb-0">{{ product.en_title }}</h5>
+            </div>
+          </a>
+        </td>
+        <!-- product brand -->
+        <td>{{ product.brand }}</td>
+        <!-- product variants count -->
+        <td>{{ product.variant.all.count }}</td>
+        <!-- product actions -->
+        <td>
+          <!-- view product -->
+          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
+            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          </button>
+
+          <!-- delete product -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
+        </td>
+      </tr>
+      <!-- end products list -->
+
+      <!-- products actions modals -->
+      <!-- delete product modal -->
+      <div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_product_modal_title_{{ product.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="delete_product_modal_title_{{ product.id }}"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <p>click yes to delete {{ product.en_title }}.</p>
+            </div>
+            <div class="modal-footer" style="align-self: center;">
+              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+              <button class="btn btn-primary" form="delete_product_form_{{ product.id }}">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end products actions modals -->
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- end table -->
+
+  <!-- footer -->
+  <div class="card-footer">
+    <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+          <span class="me-2">Showing:</span>
+
+          <!-- Select -->
+          <div class="tom-select-custom">
+            <select id="datatableEntries" class="js-select form-select form-select-borderless w-auto" autocomplete="off" data-hs-tom-select-options='{
+                      "searchInDropdown": false,
+                      "hideSearch": true
+                    }'>
+              <option value="12">12</option>
+              <option value="14" selected>14</option>
+              <option value="16">16</option>
+              <option value="18">18</option>
+            </select>
+          </div>
+          <!-- End Select -->
+
+          <span class="text-secondary me-2">of</span>
+
+          <!-- Pagination Quantity -->
+          <span id="datatableWithPaginationInfoTotalQty"></span>
+        </div>
+      </div>
+      <!-- End Col -->
+
+      <div class="col-sm-auto">
+        <div class="d-flex justify-content-center justify-content-sm-end">
+          <!-- Pagination -->
+          <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+        </div>
+      </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Row -->
+  </div>
+  <!-- end footer -->
+  {% else %}
+  <div class="card-footer">
+    <div class="row text-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        Your inventory is empty .
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<!-- end all products  -->
+{% endblock %}
