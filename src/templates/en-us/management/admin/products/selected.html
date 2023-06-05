@@ -11,7 +11,7 @@
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'main' %}">Products</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'manage-products' 'main' %}">Products</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ selected_product.en_title }}</li>
       </ol>
     </nav>
@@ -39,7 +39,7 @@
             <h2>Add new variant</h2>
           </div>
 
-          <form action="{% url 'products-menu' 'add_new_variant' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'manage-products' 'add_new_variant' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
@@ -155,14 +155,14 @@
 
             <!-- variant forms list -->
             <!-- delete variant form -->
-            <form action="{% url 'products-menu' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
+            <form action="{% url 'manage-products' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
               <input type="hidden" name="variant_id" value='{{ variant.id }}'>
             </form>
 
             <!-- view variant form -->
-            <form action="{% url 'products-menu' 'view_variant' %}" id="view_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
+            <form action="{% url 'manage-products' 'view_variant' %}" id="view_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
               <input type="hidden" name="variant_id" value='{{ variant.id }}'>
@@ -232,7 +232,7 @@
       </div>
 
       <div class="card-body">
-        <form action="{% url 'products-menu' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+        <form action="{% url 'manage-products' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 

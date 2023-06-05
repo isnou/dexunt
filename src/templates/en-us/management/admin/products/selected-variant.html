@@ -9,14 +9,14 @@
 <div class="row align-items-end">
   <!-- selected variant  -->
   <div class="col-sm mb-2 mb-sm-0">
-    <form action="{% url 'products-menu' 'view_product' %}" id="view_product_form" method="post">
+    <form action="{% url 'manage-products' 'view_product' %}" id="view_product_form" method="post">
       {% csrf_token %}
       <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
     </form>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'main' %}">Products</a></li>
-        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'products-menu' 'view_product' %}">{{ selected_product.en_title }}</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'manage-products' 'main' %}">Products</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'manage-products' 'view_product' %}">{{ selected_product.en_title }}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ selected_variant.en_spec }}</li>
       </ol>
     </nav>
@@ -63,7 +63,7 @@
           <div class="text-center mb-7">
             <h2>Edit variant</h2>
           </div>
-          <form action="{% url 'products-menu' 'edit_variant' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'manage-products' 'edit_variant' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
 
@@ -139,7 +139,7 @@
           <div class="text-center mb-7">
             <h2>Add option</h2>
           </div>
-          <form action="{% url 'products-menu' 'add_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          <form action="{% url 'manage-products' 'add_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -279,7 +279,7 @@
           <div class="text-center mb-7">
             <h2>Add feature</h2>
           </div>
-          <form action="{% url 'products-menu' 'add_feature' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'manage-products' 'add_feature' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -363,7 +363,7 @@
         <div class="row">
           {% for album in selected_variant.album.all %}
           <div class="col">
-            <form action="{% url 'products-menu' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
+            <form action="{% url 'manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
               <input type="hidden" name="album_id" value='{{ album.id }}'>
@@ -383,7 +383,7 @@
           {% if selected_variant.album.all.count < 4 %}
           <div class="col">
             <span class="avatar avatar-xxl avatar-4x3 text-center mb-4">
-              <form action="{% url 'products-menu' 'add_image' %}" id="add_image" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+              <form action="{% url 'manage-products' 'add_image' %}" id="add_image" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
                 <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -519,7 +519,7 @@
                       <!-- end title -->
 
                       <!-- convert option form -->
-                      <form action="{% url 'products-menu' 'convert_option' %}" id="convert_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
+                      <form action="{% url 'manage-products' 'convert_option' %}" id="convert_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
                         {% csrf_token %}
                         <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
                         <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -527,7 +527,7 @@
                       </form>
 
                       <!-- delete option form -->
-                      <form action="{% url 'products-menu' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
+                      <form action="{% url 'manage-products' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
                         {% csrf_token %}
                         <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
                         <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -535,7 +535,7 @@
                       </form>
 
                       <!-- edit option form -->
-                      <form action="{% url 'products-menu' 'edit_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                      <form action="{% url 'manage-products' 'edit_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
                         <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -754,7 +754,7 @@
               </div>
 
               <div class="modal-body">
-                <form action="{% url 'products-menu' 'edit_feature' %}" class="js-validate need-validate" novalidate method="post">
+                <form action="{% url 'manage-products' 'edit_feature' %}" class="js-validate need-validate" novalidate method="post">
                   {% csrf_token %}
                   <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
                   <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -840,7 +840,7 @@
         <!-- end table -->
       </div>
       <!-- delete feature form -->
-      <form action="{% url 'products-menu' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
+      <form action="{% url 'manage-products' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
           <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
