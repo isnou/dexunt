@@ -195,118 +195,170 @@
                 <div class="row mb-4">
                   <span class="divider-center mb-2">Select from the list</span>
 
-                  <!-- product english title -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="en_title" style="width: 25%;">english title</span>
-                    <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box" required>
-                    <span class="invalid-feedback text-center">required field.</span>
-                  </div>
-                  <!-- end product english title -->
+                  <!-- List Group -->
+                  <ul class="list-group list-group-flush navbar-card-list-group">
+                    <!-- Item -->
+                    <li class="list-group-item form-check-select">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="notificationCheck1" checked>
+                              <label class="form-check-label" for="notificationCheck1"></label>
+                              <span class="form-check-stretched-bg"></span>
+                            </div>
+                            <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+                          </div>
+                        </div>
+                        <!-- End Col -->
 
-                  <!-- product french title -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="fr_title" style="width: 25%;">french title</span>
-                    <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="{{ product_form.fr_title.name }}" placeholder="Coffre à jouets Deluxe">
-                  </div>
-                  <!-- end product french title -->
+                        <div class="col ms-n2">
+                          <h5 class="mb-1">Brian Warner</h5>
+                          <p class="text-body fs-5">changed an issue from "In Progress" to <span class="badge bg-success">Review</span></p>
+                        </div>
+                        <!-- End Col -->
 
-                  <!-- product arabic title -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="ar_title" style="width: 25%;">arabic title</span>
-                    <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="{{ product_form.ar_title.name }}" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
-                  </div>
-                  <!-- end product arabic title -->
+                        <small class="col-auto text-muted text-cap">2hr</small>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
 
-                  <!-- product brand -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
-                    <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
-                  </div>
-                  <!-- end product brand -->
+                      <a class="stretched-link" href="#"></a>
+                    </li>
+                    <!-- End Item -->
 
-                  <span class="divider-center mb-2">Presentation photo</span>
+                    <!-- Item -->
+                    <li class="list-group-item form-check-select">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="notificationCheck2" checked>
+                              <label class="form-check-label" for="notificationCheck2"></label>
+                              <span class="form-check-stretched-bg"></span>
+                            </div>
+                            <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
+                              <span class="avatar-initials">K</span>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Col -->
 
-                  <!-- product presentation photo -->
-                  <div class="mb-3 mt-3">
-                    <div class="col text-center">
-                      <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 70%;width: 70%;">
-                        <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 70%;">
-                        <input type="file" class="js-file-attach avatar-uploader-input" name="{{ product_form.selected_image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
-                            "textTarget": "#product_presentation_photo",
-                            "mode": "image",
-                            "targetAttr": "src",
-                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                            }' required>
-                        <span class="invalid-feedback text-center">Please upload an image.</span>
-                      </label>
-                    </div>
-                  </div>
-                  <!-- end product presentation photo -->
+                        <div class="col ms-n2">
+                          <h5 class="mb-1">Klara Hampton</h5>
+                          <p class="text-body fs-5">mentioned you in a comment</p>
+                          <blockquote class="blockquote blockquote-sm">
+                            Nice work, love! You really nailed it. Keep it up!
+                          </blockquote>
+                        </div>
+                        <!-- End Col -->
 
-                  <span class="divider-center mb-2">Descriptions</span>
+                        <small class="col-auto text-muted text-cap">10hr</small>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
 
-                  <!-- product english description -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="en_description" style="width: 25%;">english</span>
-                    <textarea class="form-control" aria-label="en_description" aria-describedby="en_description" name="{{ product_form.en_description.name }}" placeholder="" rows="4"></textarea>
-                  </div>
-                  <!-- end product english description -->
+                      <a class="stretched-link" href="#"></a>
+                    </li>
+                    <!-- End Item -->
 
-                  <!-- product french description -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="fr_description" style="width: 25%;">french</span>
-                    <textarea class="form-control" aria-label="fr_description" aria-describedby="fr_description" name="{{ product_form.fr_description.name }}" placeholder="" rows="4"></textarea>
-                  </div>
-                  <!-- end product french description -->
+                    <!-- Item -->
+                    <li class="list-group-item form-check-select">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="notificationCheck3" checked>
+                              <label class="form-check-label" for="notificationCheck3"></label>
+                              <span class="form-check-stretched-bg"></span>
+                            </div>
+                            <div class="avatar avatar-sm avatar-circle">
+                              <img class="avatar-img" src="../assets/img/160x160/img10.jpg" alt="Image Description">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Col -->
 
-                  <!-- product arabic description -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="ar_description" style="width: 25%;">arabic</span>
-                    <textarea class="form-control" aria-label="ar_description" aria-describedby="ar_description" name="{{ product_form.ar_description.name }}" placeholder="" rows="4" dir="rtl"></textarea>
-                  </div>
-                  <!-- end product arabic description -->
+                        <div class="col ms-n2">
+                          <h5 class="mb-1">Ruby Walter</h5>
+                          <p class="text-body fs-5">joined the Slack group HS Team</p>
+                        </div>
+                        <!-- End Col -->
 
-                  <span class="divider-center mb-2">Notes</span>
+                        <small class="col-auto text-muted text-cap">3dy</small>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
 
-                  <!-- product english note -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="en_note" style="width: 25%;">english</span>
-                    <textarea class="form-control" aria-label="en_note" aria-describedby="en_note" name="{{ product_form.en_note.name }}" placeholder="" rows="2"></textarea>
-                  </div>
-                  <!-- end product english note -->
+                      <a class="stretched-link" href="#"></a>
+                    </li>
+                    <!-- End Item -->
 
-                  <!-- product french note -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="fr_note" style="width: 25%;">french</span>
-                    <textarea class="form-control" aria-label="fr_note" aria-describedby="fr_note" name="{{ product_form.fr_note.name }}" placeholder="" rows="2"></textarea>
-                  </div>
-                  <!-- end product french note -->
+                    <!-- Item -->
+                    <li class="list-group-item form-check-select">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="notificationCheck4">
+                              <label class="form-check-label" for="notificationCheck4"></label>
+                              <span class="form-check-stretched-bg"></span>
+                            </div>
+                            <div class="avatar avatar-sm avatar-circle">
+                              <img class="avatar-img" src="../assets/svg/brands/google-icon.svg" alt="Image Description">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Col -->
 
-                  <!-- product arabic note -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="ar_note" style="width: 25%;">arabic</span>
-                    <textarea class="form-control" aria-label="ar_note" aria-describedby="ar_note" name="{{ product_form.ar_note.name }}" placeholder="" rows="2" dir="rtl"></textarea>
-                  </div>
-                  <!-- end product arabic note -->
+                        <div class="col ms-n2">
+                          <h5 class="mb-1">from Google</h5>
+                          <p class="text-body fs-5">Start using forms to capture the information of prospects visiting your Google website</p>
+                        </div>
+                        <!-- End Col -->
 
-                  <span class="divider-center mb-2">Prices</span>
+                        <small class="col-auto text-muted text-cap">17dy</small>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
 
-                  <!-- product price -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="price" style="width: 25%;">price</span>
-                    <input type="number" class="form-control" aria-label="price" aria-describedby="price" name="{{ product_form.price.name }}" placeholder="3000" required>
-                    <span class="input-group-text" style="width: 20%;">DZD</span>
-                    <span class="invalid-feedback text-center">required field.</span>
-                  </div>
-                  <!-- end product price -->
+                      <a class="stretched-link" href="#"></a>
+                    </li>
+                    <!-- End Item -->
 
-                  <!-- product discount -->
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
-                    <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ product_form.discount.name }}" placeholder="2500">
-                    <span class="input-group-text" style="width: 20%;">DZD</span>
-                  </div>
-                  <!-- end product discount -->
+                    <!-- Item -->
+                    <li class="list-group-item form-check-select">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="notificationCheck5">
+                              <label class="form-check-label" for="notificationCheck5"></label>
+                              <span class="form-check-stretched-bg"></span>
+                            </div>
+                            <div class="avatar avatar-sm avatar-circle">
+                              <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col ms-n2">
+                          <h5 class="mb-1">Sara Villar</h5>
+                          <p class="text-body fs-5">completed <i class="bi-journal-bookmark-fill text-primary"></i> FD-7 task</p>
+                        </div>
+                        <!-- End Col -->
+
+                        <small class="col-auto text-muted text-cap">2mn</small>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
+
+                      <a class="stretched-link" href="#"></a>
+                    </li>
+                    <!-- End Item -->
+                  </ul>
+                  <!-- End List Group -->
                 </div>
 
                 <!-- submit -->
