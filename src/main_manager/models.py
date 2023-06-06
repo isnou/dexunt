@@ -107,6 +107,13 @@ class Variant(models.Model):
             self.is_available = True
         else:
             self.is_available = False
+
+        deactivate = True
+        for option in self.option.all():
+            if option.is_activated:
+                deactivate = False
+        if deactivate:
+            self.is_activated = False
         super().save()
 
 class Product(models.Model):
@@ -147,12 +154,19 @@ class Product(models.Model):
         super().save()
 
     def check_availability(self):
-        activate = False
+        availability = False
         for variant in self.variant.all():
             if variant.is_available:
-                activate = True
-        if activate:
+                availability = True
+        if availability:
             self.is_available = True
         else:
             self.is_available = False
+            
+        deactivate = True
+        for option in self.option.all():
+            if option.is_activated:
+                deactivate = False
+        if deactivate:
+            self.is_activated = False
         super().save()
