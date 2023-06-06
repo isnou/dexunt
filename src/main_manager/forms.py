@@ -22,4 +22,4 @@ class OptionForm(ModelForm):
     class Meta:
         model = Option
         fields = ('image', 'en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points',
-                  'delivery_quotient', 'max_quantity', 'quantity')
+                  'delivery_quotient', 'max_quantity', 'quantity', 'is_activated')
