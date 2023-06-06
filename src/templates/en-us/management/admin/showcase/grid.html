@@ -58,18 +58,11 @@
 
           <div class="d-flex justify-content-center">
             <div class="avatar-group avatar-group-sm avatar-circle card-avatar-group">
-              <a class="avatar" href="user-profile-projects.html#" data-bs-toggle="tooltip" data-bs-placement="top" title="Finch Hoot">
-                <img class="avatar-img" src="assets/img/160x160/img5.jpg" alt="Image Description">
+              {% for product in all_products.all %}
+              <a class="avatar" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Finch Hoot">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ product.selected_image }}" alt="Image Description">
               </a>
-              <a class="avatar avatar-soft-dark" href="user-profile-projects.html#" data-bs-toggle="tooltip" data-bs-placement="top" title="Bob Bardly">
-                <span class="avatar-initials">B</span>
-              </a>
-              <a class="avatar" href="user-profile-projects.html#" data-bs-toggle="tooltip" data-bs-placement="top" title="Clarice Boone">
-                <img class="avatar-img" src="assets/img/160x160/img7.jpg" alt="Image Description">
-              </a>
-              <a class="avatar avatar-soft-dark" href="user-profile-projects.html#" data-bs-toggle="tooltip" data-bs-placement="top" title="Adam Keep">
-                <span class="avatar-initials">A</span>
-              </a>
+              {% endfor %}
             </div>
           </div>
 
@@ -79,18 +72,13 @@
         <div class="card-footer">
           <div class="row col-divider">
             <div class="col">
-              <span class="h4">19</span>
-              <span class="d-block fs-5">Tasks</span>
+              <span class="h4">{{ published_products.count }}</span>
+              <span class="d-block fs-5">Published</span>
             </div>
 
             <div class="col">
-              <span class="h4">33</span>
-              <span class="d-block fs-5">Completed</span>
-            </div>
-
-            <div class="col">
-              <span class="h4">10</span>
-              <span class="d-block fs-5">Days left</span>
+              <span class="h4">{{ unpublished_products.count }}</span>
+              <span class="d-block fs-5">Unpublished</span>
             </div>
           </div>
         </div>
@@ -152,13 +140,18 @@
         <div class="card-footer">
           <div class="row col-divider">
             <div class="col">
-              <span class="h4">{{ published_products.count }}</span>
-              <span class="d-block fs-5">Published</span>
+              <span class="h4">19</span>
+              <span class="d-block fs-5">Tasks</span>
             </div>
 
             <div class="col">
-              <span class="h4">{{ unpublished_products.count }}</span>
-              <span class="d-block fs-5">Unpublished</span>
+              <span class="h4">33</span>
+              <span class="d-block fs-5">Completed</span>
+            </div>
+
+            <div class="col">
+              <span class="h4">10</span>
+              <span class="d-block fs-5">Days left</span>
             </div>
           </div>
         </div>
