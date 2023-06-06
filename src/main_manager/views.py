@@ -26,8 +26,10 @@ def manage_showcase(request, action):
     # ----- main page ------------
     if action == 'main':
         url = direction + "/management/admin/showcase/grid.html"
+        all_products = Product.objects.all()
         context = {
-            'nav_side': 'showcase'
+            'nav_side': 'showcase',
+            'all_products': all_products,
         }
         return render(request, url, context)
 

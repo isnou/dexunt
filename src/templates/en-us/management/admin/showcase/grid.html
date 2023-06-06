@@ -197,6 +197,7 @@
 
                   <!-- List Group -->
                   <ul class="list-group list-group-flush navbar-card-list-group">
+                    {% for product in all_products.all %}
                     <!-- Item -->
                     <li class="list-group-item form-check-select">
                       <div class="row">
@@ -207,14 +208,14 @@
                               <label class="form-check-label" for="notificationCheck1"></label>
                               <span class="form-check-stretched-bg"></span>
                             </div>
-                            <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+                            <img class="avatar avatar-sm avatar-circle" src="{% get_media_prefix %}{{ product.selected_image }}" alt="Image Description">
                           </div>
                         </div>
                         <!-- End Col -->
 
                         <div class="col ms-n2">
-                          <h5 class="mb-1">Brian Warner</h5>
-                          <p class="text-body fs-5">changed an issue from "In Progress" to <span class="badge bg-success">Review</span></p>
+                          <h5 class="mb-1">{{ product.en_title }}</h5>
+                          <p class="text-body fs-5">{{ product.brand }}</p>
                         </div>
                         <!-- End Col -->
 
@@ -226,6 +227,7 @@
                       <a class="stretched-link" href="#"></a>
                     </li>
                     <!-- End Item -->
+                    {% for product in all_products.all %}
 
                     <!-- Item -->
                     <li class="list-group-item form-check-select">
