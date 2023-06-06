@@ -45,6 +45,7 @@ def manage_showcase(request, action):
                 selected_product = Product.objects.all().get(id=product_id)
                 selected_product.is_activated = True
                 selected_product.save()
+                selected_product.check_availability()
             return redirect('manage-showcase', 'main')
 
 
