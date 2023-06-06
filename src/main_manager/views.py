@@ -38,10 +38,13 @@ def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    # ----- main page ------------
+    # --------------- all products ---------------- #
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         all_products = Product.objects.all()
+        for product in all_products:
+            product.check_availability()
+
         product_form = ProductForm()
         context = {
             'nav_side': 'products',
@@ -63,14 +66,17 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
             return redirect('products-menu', 'main')
-    # ----- product page ---------
+    # --------------- selected product ------------ #
     if action == 'view_product':
         if request.method == 'POST':
             url = direction + "/management/admin/products/selected.html"
             product_id = request.POST.get('product_id', False)
 
             selected_product = Product.objects.all().get(id=product_id)
+
             selected_product_form = ProductForm(request.POST, instance=selected_product)
+            selected_product.check_availability()
+
             variant_form = VariantForm()
             context = {
                 'nav_side': 'products',
@@ -129,7 +135,7 @@ def manage_products(request, action):
 
             request.session['product_id_token'] = product_id
             return redirect('products-menu', 'view_product')
-    # ----- variant page ---------
+    # --------------- selected variant ------------ #
     if action == 'view_variant':
         if request.method == 'POST':
             url = direction + "/management/admin/products/selected-variant.html"
@@ -138,6 +144,10 @@ def manage_products(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
+
+            selected_product.check_availability()
+            selected_variant.check_availability()
+
             request.session['product_id_token'] = product_id
             variant_form = VariantForm()
             feature_form = FeatureForm()
