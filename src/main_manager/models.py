@@ -149,7 +149,7 @@ class Product(models.Model):
     def check_availability(self):
         activate = False
         for variant in self.variant.all():
-            if variant.is_activated:
+            if variant.is_available:
                 activate = True
         if activate:
             self.is_available = True
