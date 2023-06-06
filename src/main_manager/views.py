@@ -42,6 +42,7 @@ def manage_products(request, action):
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         all_products = Product.objects.all()
+
         for product in all_products:
             product.check_availability()
 
