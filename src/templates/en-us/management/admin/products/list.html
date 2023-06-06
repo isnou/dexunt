@@ -248,9 +248,17 @@
         <td>{{ product.brand }}</td>
         <!-- product info -->
         <td>
-          {{ product.variant.all.count }}
-          {{ product.is_available }}
-          {{ product.is_activated }}
+          {% if product.variant.all.count %}
+          <span class="badge bg-secondary">{{ product.variant.all.count }}</span>
+          {% endif %}
+
+          {% if product.is_available %}
+          <span class="badge bg-danger">unavailable</span>
+          {% endif %}
+
+          {% product.is_activated %}
+          <span class="badge bg-warning">deactivated</span>
+          {% endif %}
         </td>
         <!-- product actions -->
         <td>
