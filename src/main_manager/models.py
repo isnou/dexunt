@@ -80,7 +80,7 @@ class Variant(models.Model):
     album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
     is_activated = models.BooleanField(default=False)
-    availability = models.BooleanField(default=False)
+    is_available = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, null=True)
     user_token = models.CharField(max_length=24, null=True)
     like = models.IntegerField(default=0)
@@ -104,9 +104,9 @@ class Variant(models.Model):
             if option.is_activated:
                 quantity += option.quantity
         if quantity:
-            self.availability = True
+            self.is_available = True
         else:
-            self.availability = False
+            self.is_available = False
         super().save()
 
 class Product(models.Model):
@@ -120,7 +120,7 @@ class Product(models.Model):
     selected_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     is_activated = models.BooleanField(default=False)
-    availability = models.BooleanField(default=False)
+    is_available = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, unique=True, null=True)
     like = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
@@ -152,7 +152,7 @@ class Product(models.Model):
             if variant.is_activated:
                 activate = True
         if activate:
-            self.availability = True
+            self.is_available = True
         else:
-            self.availability = False
+            self.is_available = False
         super().save()
