@@ -169,6 +169,10 @@ def manage_products(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
+
+            selected_product.check_availability()
+            selected_variant.check_availability()
+
             variant_form = VariantForm()
             feature_form = FeatureForm()
             option_form = OptionForm()
