@@ -22,6 +22,7 @@
 {% block showcase %}
 <div class="row justify-content-lg-center">
   <div class="row row-cols-1 row-cols-md-2">
+    <!-- all products showcase -->
     <div class="col mb-3 mb-lg-5">
       <div class="card card-hover-shadow text-center h-100">
         <div class="card-progress-wrap">
@@ -36,14 +37,9 @@
             </div>
             <div class="col-auto">
               <div class="dropdown">
-                <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-plus-lg"></i>
-                </button>
-
-                <div class="dropdown-menu dropdown-menu-end">
-                  <a class="dropdown-item" href="#">Add product</a>
-                  <div class="dropdown-divider"></div>
-                </div>
+                <a class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" data-bs-toggle="modal" data-bs-target="#add_product_modal">
+                  <i class="bi-three-dots-vertical"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -101,7 +97,7 @@
       </div>
     </div>
 
-
+    <!-- flash showcase -->
     <div class="col mb-3 mb-lg-5">
       <div class="card card-hover-shadow text-center h-100">
         <div class="card-progress-wrap">
@@ -176,6 +172,43 @@
               <span class="h4">10</span>
               <span class="d-block fs-5">Days left</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- add product modal -->
+    <div class="modal fade" id="add_product_modal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <div class="mb-5 d-flex align-items-center justify-content-between">
+              <h1 class="modal-title fs-5" id="change_language_label"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class=" w-100 ">
+              <div class="text-center text-md-center fs-5 mb-5">
+                Pour le français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
+              </div>
+              <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
+                للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
+              </div>
+            </div>
+
+            <form action="{% url 'change-language' %}" id="french_language_form" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="language" value='fr-fr'>
+              <input type="hidden" name="page" value='home-page'>
+            </form>
+
+            <form action="{% url 'change-language' %}" id="arabic_language_form" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="language" value='ar-dz'>
+              <input type="hidden" name="page" value='home-page'>
+            </form>
+
           </div>
         </div>
       </div>
