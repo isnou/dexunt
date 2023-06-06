@@ -37,8 +37,8 @@
             </div>
             <div class="col-auto">
               <div class="dropdown">
-                <a class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" data-bs-toggle="modal" data-bs-target="#add_product_modal">
-                  <i class="bi-three-dots-vertical"></i>
+                <a class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" data-bs-toggle="modal" data-bs-target="#link_new_product">
+                  <i class="bi-plus-lg" data-bs-toggle="tooltip" data-bs-placement="left" title="link a new product" ></i>
                 </a>
               </div>
             </div>
@@ -177,42 +177,150 @@
       </div>
     </div>
 
-    <!-- add product modal -->
-    <div class="modal fade" id="add_product_modal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-          <div class="modal-body">
-            <div class="mb-5 d-flex align-items-center justify-content-between">
-              <h1 class="modal-title fs-5" id="change_language_label"></h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class=" w-100 ">
-              <div class="text-center text-md-center fs-5 mb-5">
-                Pour le français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
-              </div>
-              <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
-                للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
-              </div>
-            </div>
-
-            <form action="{% url 'change-language' %}" id="french_language_form" method="post">
-              {% csrf_token %}
-              <input type="hidden" name="language" value='fr-fr'>
-              <input type="hidden" name="page" value='home-page'>
-            </form>
-
-            <form action="{% url 'change-language' %}" id="arabic_language_form" method="post">
-              {% csrf_token %}
-              <input type="hidden" name="language" value='ar-dz'>
-              <input type="hidden" name="page" value='home-page'>
-            </form>
-
+    <!-- link new product modal -->
+    <div id="link_new_product" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add new product</h2>
           </div>
+          <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Main Informations</span>
+
+              <!-- product english title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_title" style="width: 25%;">english title</span>
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product english title -->
+
+              <!-- product french title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_title" style="width: 25%;">french title</span>
+                <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="{{ product_form.fr_title.name }}" placeholder="Coffre à jouets Deluxe">
+              </div>
+              <!-- end product french title -->
+
+              <!-- product arabic title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_title" style="width: 25%;">arabic title</span>
+                <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="{{ product_form.ar_title.name }}" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
+              </div>
+              <!-- end product arabic title -->
+
+              <!-- product brand -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
+                <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
+              </div>
+              <!-- end product brand -->
+
+              <span class="divider-center mb-2">Presentation photo</span>
+
+              <!-- product presentation photo -->
+              <div class="mb-3 mt-3">
+                <div class="col text-center">
+                  <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 70%;width: 70%;">
+                    <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 70%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ product_form.selected_image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
+                        "textTarget": "#product_presentation_photo",
+                        "mode": "image",
+                        "targetAttr": "src",
+                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                        }' required>
+                    <span class="invalid-feedback text-center">Please upload an image.</span>
+                  </label>
+                </div>
+              </div>
+              <!-- end product presentation photo -->
+
+              <span class="divider-center mb-2">Descriptions</span>
+
+              <!-- product english description -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_description" style="width: 25%;">english</span>
+                <textarea class="form-control" aria-label="en_description" aria-describedby="en_description" name="{{ product_form.en_description.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product english description -->
+
+              <!-- product french description -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_description" style="width: 25%;">french</span>
+                <textarea class="form-control" aria-label="fr_description" aria-describedby="fr_description" name="{{ product_form.fr_description.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product french description -->
+
+              <!-- product arabic description -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_description" style="width: 25%;">arabic</span>
+                <textarea class="form-control" aria-label="ar_description" aria-describedby="ar_description" name="{{ product_form.ar_description.name }}" placeholder="" rows="4" dir="rtl"></textarea>
+              </div>
+              <!-- end product arabic description -->
+
+              <span class="divider-center mb-2">Notes</span>
+
+              <!-- product english note -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_note" style="width: 25%;">english</span>
+                <textarea class="form-control" aria-label="en_note" aria-describedby="en_note" name="{{ product_form.en_note.name }}" placeholder="" rows="2"></textarea>
+              </div>
+              <!-- end product english note -->
+
+              <!-- product french note -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_note" style="width: 25%;">french</span>
+                <textarea class="form-control" aria-label="fr_note" aria-describedby="fr_note" name="{{ product_form.fr_note.name }}" placeholder="" rows="2"></textarea>
+              </div>
+              <!-- end product french note -->
+
+              <!-- product arabic note -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_note" style="width: 25%;">arabic</span>
+                <textarea class="form-control" aria-label="ar_note" aria-describedby="ar_note" name="{{ product_form.ar_note.name }}" placeholder="" rows="2" dir="rtl"></textarea>
+              </div>
+              <!-- end product arabic note -->
+
+              <span class="divider-center mb-2">Prices</span>
+
+              <!-- product price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="price" style="width: 25%;">price</span>
+                <input type="number" class="form-control" aria-label="price" aria-describedby="price" name="{{ product_form.price.name }}" placeholder="3000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
+                <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ product_form.discount.name }}" placeholder="2500">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end product discount -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
   </div>
 </div>
 {% endblock %}
