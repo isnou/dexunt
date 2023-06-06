@@ -58,14 +58,14 @@ def manage_products(request, action):
             new_product_form = ProductForm(request.POST, request.FILES)
             if new_product_form.is_valid():
                 new_product_form.save()
-                return redirect('products-menu', 'main')
+                return redirect('manage-products', 'main')
     # -----
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
-            return redirect('products-menu', 'main')
+            return redirect('manage-products', 'main')
     # --------------- selected product ------------ #
     if action == 'view_product':
         if request.method == 'POST':
@@ -108,7 +108,7 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, request.FILES, instance=selected_product)
             selected_product_form.save()
-            return redirect('products-menu', 'view_product')
+            return redirect('manage-products', 'view_product')
     # -----
     if action == 'add_new_variant':
         if request.method == 'POST':
@@ -124,7 +124,7 @@ def manage_products(request, action):
             selected_variant_form.save()
 
             selected_product.variant.add(new_variant)
-            return redirect('products-menu', 'view_product')
+            return redirect('manage-products', 'view_product')
     # -----
     if action == 'delete_variant':
         if request.method == 'POST':
@@ -134,7 +134,7 @@ def manage_products(request, action):
             selected_variant.delete()
 
             request.session['product_id_token'] = product_id
-            return redirect('products-menu', 'view_product')
+            return redirect('manage-products', 'view_product')
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         if request.method == 'POST':
@@ -191,7 +191,7 @@ def manage_products(request, action):
             selected_variant_form.save()
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'add_image':
         if request.method == 'POST':
@@ -208,7 +208,7 @@ def manage_products(request, action):
             album.save()
             selected_variant.album.add(album)
 
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'delete_image':
         if request.method == 'POST':
@@ -219,7 +219,7 @@ def manage_products(request, action):
             album.delete()
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'add_feature':
         if request.method == 'POST':
@@ -232,7 +232,7 @@ def manage_products(request, action):
             selected_feature_form.save()
             selected_variant.feature.add(new_feature)
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'delete_feature':
         if request.method == 'POST':
@@ -243,7 +243,7 @@ def manage_products(request, action):
             selected_feature.delete()
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'edit_feature':
         if request.method == 'POST':
@@ -255,7 +255,7 @@ def manage_products(request, action):
             selected_feature_form.save()
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'add_option':
         if request.method == 'POST':
@@ -273,7 +273,7 @@ def manage_products(request, action):
             selected_variant.option.add(new_option)
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'delete_option':
         if request.method == 'POST':
@@ -284,7 +284,7 @@ def manage_products(request, action):
             option.delete()
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'edit_option':
         if request.method == 'POST':
@@ -296,7 +296,7 @@ def manage_products(request, action):
             selected_option_form.save()
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
     # -----
     if action == 'convert_option':
         if request.method == 'POST':
@@ -311,4 +311,4 @@ def manage_products(request, action):
             option.save()
 
             request.session['variant_id_token'] = variant_id
-            return redirect('products-menu', 'view_variant')
+            return redirect('manage-products', 'view_variant')
