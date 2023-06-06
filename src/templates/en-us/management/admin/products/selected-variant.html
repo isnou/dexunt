@@ -421,7 +421,15 @@
         <!-- title -->
         <div class="mb-2 mb-md-0">
           <div class="flex-grow-1">
-            <h5 class="text-inherit mb-0">Option {% if option.has_image %} with image {% endif %}</h5>
+            <h5 class="text-inherit mb-0">Option {% if option.has_image %} with image {% endif %} : {{ option.en_value }}</h5>
+
+            {% if not option.quantity %}
+            <span class="badge bg-danger">unavailable</span>
+            {% endif %}
+
+            {% if not option.is_activated %}
+            <span class="badge bg-warning">deactivated</span>
+            {% endif %}
           </div>
         </div>
         <!-- end title -->
@@ -463,7 +471,7 @@
               <td class="table-column-ps-0">
                 <a class="d-flex align-items-center" href="#">
                   <div class="flex-shrink-0">
-                    <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}" alt="option image">
+                    <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}">
                   </div>
                 </a>
               </td>
@@ -480,16 +488,10 @@
               <!-- quantity -->
               {% if option.quantity %}
               <td>Quantity :{{ option.quantity }}</td>
-              {% else %}
-              <td>No quantity defined</td>
               {% endif %}
 
               <!-- sell quantity -->
-              {% if option.max_quantity %}
               <td>Sell Quantity :{{ option.max_quantity }}</td>
-              {% else %}
-              <td>No sell quantity defined</td>
-              {% endif %}
 
               <!-- delivery -->
               <td>Delivery Quotient:{{ option.delivery_quotient }} %</td>

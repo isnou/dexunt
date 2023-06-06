@@ -162,7 +162,7 @@ class Product(models.Model):
             self.is_available = True
         else:
             self.is_available = False
-            
+
         deactivate = True
         for variant in self.variant.all():
             if variant.is_activated:
