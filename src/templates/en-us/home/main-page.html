@@ -741,9 +741,9 @@
                     </div>
                     <div class="d-flex justify-content-between mt-4">
                         <div>
-                            <span class="text-dark">{{ variant.price|floatformat:"2g" }} DZD</span>
-                            {% if variant.discount %}
-                            <span class="text-decoration-line-through text-muted">{{ variant.discount|floatformat:"2g" }} DZD</span>
+                            <span class="text-dark">{{ product.price|floatformat:"2g" }} DZD</span>
+                            {% if product.discount %}
+                            <span class="text-decoration-line-through text-muted">{{ product.discount|floatformat:"2g" }} DZD</span>
                             {% endif %}
                         </div>
                         <div>
