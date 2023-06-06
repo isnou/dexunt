@@ -159,18 +159,18 @@
         <div class="card-footer">
           <div class="row col-divider">
             <div class="col">
-              <span class="h4">19</span>
-              <span class="d-block fs-5">Tasks</span>
+              <span class="h4">{{ all_products.count }}</span>
+              <span class="d-block fs-5">All</span>
             </div>
 
             <div class="col">
-              <span class="h4">33</span>
-              <span class="d-block fs-5">Completed</span>
+              <span class="h4">{{ published_products.count }}</span>
+              <span class="d-block fs-5">Published</span>
             </div>
 
             <div class="col">
-              <span class="h4">10</span>
-              <span class="d-block fs-5">Days left</span>
+              <span class="h4">{{ unpublished_products.count }}</span>
+              <span class="d-block fs-5">Unpublished</span>
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@
                 <div class="row mb-4">
                   <span class="divider-center mb-2">Select from the list</span>
                   <ul class="list-group list-group-flush navbar-card-list-group">
-                    {% for product in all_products.all %}
+                    {% for product in unpublished_products.all %}
                     <li class="list-group-item form-check-select">
                       <div class="row">
                         <div class="col-auto">

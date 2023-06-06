@@ -27,9 +27,14 @@ def manage_showcase(request, action):
     if action == 'main':
         url = direction + "/management/admin/showcase/grid.html"
         all_products = Product.objects.all()
+
+        published_products = all_products.exclude(is_activated=True)
+        unpublished_products = all_products.exclude(is_activated=False)
         context = {
             'nav_side': 'showcase',
             'all_products': all_products,
+            'published_products': published_products,
+            'unpublished_products': unpublished_products,
         }
         return render(request, url, context)
 
