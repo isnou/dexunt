@@ -207,8 +207,7 @@
           </th>
           <th class="table-column-ps-0">Product</th>
           <th>Vendor</th>
-          <th>Variants</th>
-          <th>Availability</th>
+          <th></th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -247,10 +246,12 @@
         </td>
         <!-- product brand -->
         <td>{{ product.brand }}</td>
-        <!-- product variants count -->
-        <td>{{ product.variant.all.count }}</td>
-        <!-- product availability -->
-        <td>{{ product.is_available }}</td>
+        <!-- product info -->
+        <td>
+          {{ product.variant.all.count }}
+          {{ product.is_available }}
+          {{ product.is_activated }}
+        </td>
         <!-- product actions -->
         <td>
           <!-- view product -->
