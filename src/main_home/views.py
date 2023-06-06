@@ -16,9 +16,14 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
+    all_products = Product.objects.all()
+
+    published_products = all_products.filter(is_activated=True)
+
     context = {
         'login_form': login_form,
         'signup_form': signup_form,
+        'published_products': published_products,
     }
     return render(request, url, context)
 
