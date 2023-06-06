@@ -23,7 +23,7 @@ def manage_showcase(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    # ----- main page ------------
+    # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/showcase/grid.html"
         all_products = Product.objects.all()
@@ -37,6 +37,16 @@ def manage_showcase(request, action):
             'unpublished_products': unpublished_products,
         }
         return render(request, url, context)
+    # -----
+    if action == 'publish_products':
+        if request.method == 'POST':
+            product_ids = request.POST.getlist('product_ids')
+            for product_id in product_ids:
+                selected_product = Product.objects.all().get(id=product_id)
+                selected_product.is_activated = True
+                selected_product.save()
+            return redirect('manage-showcase', 'main')
+
 
 
 def manage_products(request, action):
