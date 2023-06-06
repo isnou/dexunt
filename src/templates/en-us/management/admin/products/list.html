@@ -252,7 +252,7 @@
           <span class="badge bg-secondary">{{ product.variant.all.count }}</span>
           {% endif %}
 
-          {% if product.is_available %}
+          {% if if product.is_available %}
           <span class="badge bg-danger">unavailable</span>
           {% endif %}
 
