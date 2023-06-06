@@ -113,6 +113,23 @@
                 {% endif %}
               </div>
               <!-- end product discount -->
+
+
+              {% if selected_variant.is_activated %}
+              <span class="divider-center mb-2">Activate product</span>
+              {% else %}
+              <span class="divider-center mb-2">Deactivate product</span>
+              {% endif %}
+              <!-- product activation -->
+              <div class="form-check form-switch mb-4">
+                {% if selected_product.is_activated %}
+                <input type="checkbox" name="{{ variant_form.is_activated.name }}" class="form-check-input" checked>
+                {% else %}
+                <input type="checkbox" name="{{ variant_form.is_activated.name }}" class="form-check-input">
+                {% endif %}
+              </div>
+              <!-- end product activation -->
+
             </div>
             <!-- submit -->
             <div class="d-grid mb-4">
