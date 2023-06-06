@@ -164,8 +164,8 @@ class Product(models.Model):
             self.is_available = False
             
         deactivate = True
-        for option in self.option.all():
-            if option.is_activated:
+        for variant in self.variant.all():
+            if variant.is_activated:
                 deactivate = False
         if deactivate:
             self.is_activated = False
