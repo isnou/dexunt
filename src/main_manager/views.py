@@ -313,7 +313,7 @@ def manage_products(request, action):
             option_id = request.POST.get('option_id', False)
             selected_option = Option.objects.all().get(id=option_id)
 
-            selected_option_form = OptionForm(request.POST, instance=selected_option)
+            selected_option_form = OptionForm(request.POST, request.FILES, instance=selected_option)
             selected_option_form.save()
 
             request.session['variant_id_token'] = variant_id
