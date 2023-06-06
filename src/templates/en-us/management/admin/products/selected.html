@@ -344,6 +344,17 @@
                 {% endif %}
               </div>
               <!-- end product discount -->
+
+              <!-- product activation -->
+              <div class="form-check form-switch mb-4">
+                {% if selected_product.is_activated %}
+                <input type="checkbox" name="{{ selected_product_form.is_activated.name }}" class="form-check-input" checked>
+                {% else %}
+                <input type="checkbox" name="{{ selected_product_form.is_activated.name }}" class="form-check-input">
+                {% endif %}
+                <label class="form-check-label">Checked</label>
+              </div>
+              <!-- end product activation -->
             </div>
 
             <!-- submit -->
