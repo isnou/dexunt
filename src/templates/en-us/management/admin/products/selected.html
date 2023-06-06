@@ -121,14 +121,20 @@
             <h5 class="text-inherit mb-0">{{ variant.en_spec }}</h5>
           </div>
 
-          <!-- image count -->
-          <span class="text-muted">Album :{{ variant.album.all.count }}|</span>
-          <!-- availability -->
-          <span class="text-muted">{{ variant.is_available }}|</span>
-          <!-- options -->
-          <span class="text-muted">Options :{{ variant.option.all.count }}|</span>
-          <!-- features -->
-          <span class="text-muted">Features :{{ variant.feature.all.count }}</span>
+
+          {% if variant.album.all.count %}
+          <span class="badge bg-secondary">Has {{ variant.album.all.count }} photos</span>
+          {% else %}
+          <span class="badge bg-danger">Has no photos</span>
+          {% endif %}
+
+          {% if not variant.is_available %}
+          <span class="badge bg-danger">unavailable</span>
+          {% endif %}
+
+          {% if not variant.is_activated %}
+          <span class="badge bg-warning">deactivated</span>
+          {% endif %}
         </div>
         <!-- end title -->
 
@@ -352,7 +358,7 @@
               {% endif %}
               <!-- product activation -->
               <div class="text-center">
-                
+
               <div class="form-check form-switch mb-4">
                 {% if selected_product.is_activated %}
                 <input type="checkbox" name="{{ selected_product_form.is_activated.name }}" class="form-check-input" checked>
