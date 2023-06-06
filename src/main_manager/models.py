@@ -45,7 +45,7 @@ class Option(models.Model):
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     has_image = models.BooleanField(default=False)
-    is_activated = models.BooleanField(default=True)
+    is_activated = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, null=True)
     review = models.ManyToManyField(Review, blank=True)
     sale = models.IntegerField(default=0)
@@ -79,7 +79,7 @@ class Variant(models.Model):
     # --------------------------------- media --------------------------------------------------
     album = models.ManyToManyField(Album, blank=True)
     # --------------------------------- technical details --------------------------------------
-    is_activated = models.BooleanField(default=True)
+    is_activated = models.BooleanField(default=False)
     availability = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, null=True)
     user_token = models.CharField(max_length=24, null=True)
@@ -98,6 +98,17 @@ class Variant(models.Model):
                 self.discount = None
         super().save()
 
+    def check_availability(self):
+        quantity = 0
+        for option in self.option.all():
+            if option.is_activated:
+                quantity += option.quantity
+        if quantity:
+            self.availability = True
+        else:
+            self.availability = False
+        super().save()
+
 class Product(models.Model):
     # --------------------------------- product identification ---------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
@@ -108,7 +119,7 @@ class Product(models.Model):
         return self.en_title.lower()
     selected_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    is_activated = models.BooleanField(default=True)
+    is_activated = models.BooleanField(default=False)
     availability = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, unique=True, null=True)
     like = models.IntegerField(default=0)
@@ -128,8 +139,20 @@ class Product(models.Model):
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        self.product_token = functions.serial_number_generator(24).upper()
+        if not self.product_token:
+            self.product_token = functions.serial_number_generator(24).upper()
         if self.discount:
             if self.price < self.discount:
                 self.discount = None
+        super().save()
+
+    def check_availability(self):
+        activate = False
+        for variant in self.variant.all():
+            if variant.is_activated:
+                activate = True
+        if activate:
+            self.availability = True
+        else:
+            self.availability = False
         super().save()
