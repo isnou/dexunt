@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Product ,Variant ,Feature ,Option
+from .models import Product ,Variant ,Feature ,Option ,FlashProduct
 
 class ProductForm(ModelForm):
     class Meta:
@@ -23,3 +23,13 @@ class OptionForm(ModelForm):
         model = Option
         fields = ('image', 'en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points',
                   'delivery_quotient', 'max_quantity', 'quantity', 'is_activated')
+
+class FlashForm(ModelForm):
+    class Meta:
+        model = Option
+        fields = ('en_title', 'fr_title', 'ar_title', 'en_spec', 'fr_spec', 'ar_spec', 'en_value', 'fr_value',
+                  'ar_value', 'image', 'valid_until', 'cost', 'quantity', 'price', 'discount')
+
+
+
+

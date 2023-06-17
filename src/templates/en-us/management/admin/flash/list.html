@@ -45,12 +45,12 @@
                 {% for variant in product.variant.all %}
                 {% for option in variant.option.all %}
 
-          <form action="{% url 'manage-flash' 'link_products' %}" id="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" value="{{ product.id }}" name="product_id">
-            <input type="hidden" value="{{ variant.id }}" name="variant_id">
-            <input type="hidden" value="{{ option.id }}" name="option_id">
-          </form>
+                <form action="{% url 'manage-flash' 'link_products' %}" id="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}" class="js-validate need-validate" novalidate method="post">
+                  {% csrf_token %}
+                  <input type="hidden" value="{{ product.id }}" name="product_id">
+                  <input type="hidden" value="{{ variant.id }}" name="variant_id">
+                  <input type="hidden" value="{{ option.id }}" name="option_id">
+                </form>
 
                 <li class="list-group-item form-check-select">
                   <div class="row">
@@ -141,13 +141,6 @@
         {% csrf_token %}
         <input type="hidden" name="product_id" value='{{ product.id }}'>
       </form>
-
-      <!-- view product form -->
-      <form action="{% url 'manage-products' 'view_product' %}" id="view_product_form_{{ product.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="product_id" value='{{ product.id }}'>
-      </form>
-
       <!-- end product forms list -->
 
       <!-- products list -->
@@ -203,7 +196,7 @@
                     <!-- product english title -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">english title</span>
-                      <input type="text" class="form-control" name="{{ product_form.en_title.name }}" value="{{ product.en_title }}" required>
+                      <input type="text" class="form-control" name="{{ flash_form.en_title.name }}" value="{{ product.en_title }}" required>
                       <span class="invalid-feedback text-center">required field.</span>
                     </div>
                     <!-- end product english title -->
@@ -211,14 +204,14 @@
                     <!-- product french title -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">french title</span>
-                      <input type="text" class="form-control" name="{{ product_form.fr_title.name }}" value="{{ product.fr_title }}">
+                      <input type="text" class="form-control" name="{{ flash_form.fr_title.name }}" value="{{ product.fr_title }}">
                     </div>
                     <!-- end product french title -->
 
                     <!-- product arabic title -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">arabic title</span>
-                      <input type="text" class="form-control" name="{{ product_form.ar_title.name }}" value="{{ product.ar_title }}" dir="rtl">
+                      <input type="text" class="form-control" name="{{ flash_form.ar_title.name }}" value="{{ product.ar_title }}" dir="rtl">
                     </div>
                     <!-- end product arabic title -->
 
@@ -229,7 +222,7 @@
                       <div class="col text-center">
                         <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 70%;width: 70%;">
                           <img id="product_presentation_photo" class="avatar-img" src="{% get_media_prefix %}{{ product.image }}" style="width: 70%;">
-                          <input type="file" class="js-file-attach avatar-uploader-input" name="{{ product_form.selected_image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
+                          <input type="file" class="js-file-attach avatar-uploader-input" name="{{ flash_form.image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
                               "textTarget": "#product_presentation_photo",
                               "mode": "image",
                               "targetAttr": "src",
@@ -241,28 +234,51 @@
                     </div>
                     <!-- end product presentation photo -->
 
-                    <span class="divider-center mb-2">Descriptions</span>
+                    <span class="divider-center mb-2">Variant & Option</span>
 
-                    <!-- product english description -->
+                    <!-- product english variant -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="en_description" style="width: 25%;">english</span>
-                      <textarea class="form-control" aria-label="en_description" aria-describedby="en_description" name="{{ product_form.en_description.name }}" placeholder="" rows="4"></textarea>
+                      <span class="input-group-text" style="width: 25%;">english variant</span>
+                      <input type="text" class="form-control" name="{{ flash_form.en_spec.name }}" value="{{ product.en_spec }}" required>
+                      <span class="invalid-feedback text-center">required field.</span>
                     </div>
-                    <!-- end product english description -->
+                    <!-- end product english variant -->
 
-                    <!-- product french description -->
+                    <!-- product french variant -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="fr_description" style="width: 25%;">french</span>
-                      <textarea class="form-control" aria-label="fr_description" aria-describedby="fr_description" name="{{ product_form.fr_description.name }}" placeholder="" rows="4"></textarea>
+                      <span class="input-group-text" style="width: 25%;">french variant</span>
+                      <input type="text" class="form-control" name="{{ flash_form.fr_spec.name }}" value="{{ product.fr_spec }}">
                     </div>
-                    <!-- end product french description -->
+                    <!-- end product french variant -->
 
-                    <!-- product arabic description -->
+                    <!-- product arabic variant -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="ar_description" style="width: 25%;">arabic</span>
-                      <textarea class="form-control" aria-label="ar_description" aria-describedby="ar_description" name="{{ product_form.ar_description.name }}" placeholder="" rows="4" dir="rtl"></textarea>
+                      <span class="input-group-text" style="width: 25%;">arabic variant</span>
+                      <input type="text" class="form-control" name="{{ flash_form.ar_spec.name }}" value="{{ product.ar_spec }}" dir="rtl">
                     </div>
-                    <!-- end product arabic description -->
+                    <!-- end product arabic variant -->
+
+                    <!-- product english option -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" style="width: 25%;">english option</span>
+                      <input type="text" class="form-control" name="{{ flash_form.en_option.name }}" value="{{ product.en_option }}" required>
+                      <span class="invalid-feedback text-center">required field.</span>
+                    </div>
+                    <!-- end product english option -->
+
+                    <!-- product french option -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" style="width: 25%;">french option</span>
+                      <input type="text" class="form-control" name="{{ flash_form.fr_option.name }}" value="{{ product.fr_option }}">
+                    </div>
+                    <!-- end product french option -->
+
+                    <!-- product arabic option -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" style="width: 25%;">arabic option</span>
+                      <input type="text" class="form-control" name="{{ flash_form.ar_option.name }}" value="{{ product.ar_option }}" dir="rtl">
+                    </div>
+                    <!-- end product arabic option -->
 
                     <span class="divider-center mb-2">Notes</span>
 
