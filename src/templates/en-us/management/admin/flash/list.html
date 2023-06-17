@@ -188,7 +188,7 @@
                 <div class="text-center mb-7">
                   <h2>Edit product</h2>
                 </div>
-                <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                <form action="{% url 'manage-flash' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                   {% csrf_token %}
 
                   <div class="row mb-4">
@@ -215,13 +215,6 @@
                       <input type="text" class="form-control" name="{{ product_form.ar_title.name }}" value="{{ product.ar_title }}" dir="rtl">
                     </div>
                     <!-- end product arabic title -->
-
-                    <!-- product brand -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
-                      <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
-                    </div>
-                    <!-- end product brand -->
 
                     <span class="divider-center mb-2">Presentation photo</span>
 
@@ -306,7 +299,28 @@
                       <span class="input-group-text" style="width: 20%;">DZD</span>
                     </div>
                     <!-- end product discount -->
+
+
+                <!-- coupon valid until -->
+                <div class="form-group mb-4">
+                  <div id="projectDeadlineNewProjectFlatpickr" class="js-flatpickr flatpickr-custom input-group"
+                       data-hs-flatpickr-options='{
+                       "appendTo": "#projectDeadlineNewProjectFlatpickr",
+                       "enableTime": true,
+                       "dateFormat": "Y-m-d H:i",
+                       "time_24hr": true,
+                       "minDate": "today",
+                       "wrap": true
+                       }'>
+                    <div class="input-group-prepend input-group-text" style="width: 15%;">
+                      Expiration
+                    </div>
+                    <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ coupon_form.valid_until.name }}" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="select a date or leave empty" data-input>
                   </div>
+                </div>
+                <!-- end coupon valid until -->
+                  </div>
+                  
 
                   <!-- submit -->
                   <div class="d-grid mb-4">
