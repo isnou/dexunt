@@ -187,7 +187,7 @@
                 <div class="text-center mb-7">
                   <h2>{{ product.en_title }}</h2>
                 </div>
-                <form action="{% url 'manage-flash' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                <form action="{% url 'manage-flash' 'edit_product' %}" id="edit_form_{{ product.id }}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <input type="hidden" value="{{ product.id }}" name="product_id">
 
@@ -221,10 +221,10 @@
                     <!-- product presentation photo -->
                     <div class="mb-3 mt-3">
                       <div class="col text-center">
-                        <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 70%;width: 70%;">
-                          <img id="product_presentation_photo" class="avatar-img" src="{% get_media_prefix %}{{ product.image }}" style="width: 70%;">
-                          <input type="file" class="js-file-attach avatar-uploader-input" name="{{ flash_form.image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
-                              "textTarget": "#product_presentation_photo",
+                        <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader_{{ product.id }}" style="height: 70%;width: 70%;">
+                          <img id="product_presentation_photo_{{ product.id }}" class="avatar-img" src="{% get_media_prefix %}{{ product.image }}" style="width: 70%;">
+                          <input type="file" class="js-file-attach avatar-uploader-input" name="{{ flash_form.image.name }}" id="product_presentation_photo_uploader_{{ product.id }}" data-hs-file-attach-options='{
+                              "textTarget": "#product_presentation_photo_{{ product.id }}",
                               "mode": "image",
                               "targetAttr": "src",
                               "allowTypes": [".png", ".jpeg", ".jpg"]
@@ -283,15 +283,15 @@
 
                     <!-- product quantity -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="quantity" style="width: 25%;">quantity</span>
-                      <input type="number" class="form-control" aria-label="quantity" aria-describedby="quantity" name="{{ flash_form.quantity.name }}" value="{{ product.quantity }}">
+                      <span class="input-group-text" style="width: 25%;">quantity</span>
+                      <input type="number" class="form-control" name="{{ flash_form.quantity.name }}" value="{{ product.quantity }}">
                     </div>
                     <!-- end product quantity -->
 
                     <!-- product cost -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="cost" style="width: 25%;">cost</span>
-                      <input type="number" class="form-control" aria-label="cost" aria-describedby="cost" value="{{ product.cost }}" readonly>
+                      <span class="input-group-text" style="width: 25%;">cost</span>
+                      <input type="number" class="form-control" value="{{ product.cost }}" readonly>
                       <span class="input-group-text" style="width: 20%;">DZD</span>
                       <span class="invalid-feedback text-center">required field.</span>
                     </div>
@@ -299,8 +299,8 @@
 
                     <!-- product price -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="price" style="width: 25%;">price</span>
-                      <input type="number" class="form-control" aria-label="price" aria-describedby="price" value="{{ product.price }}" readonly>
+                      <span class="input-group-text" style="width: 25%;">price</span>
+                      <input type="number" class="form-control" value="{{ product.price }}" readonly>
                       <span class="input-group-text" style="width: 20%;">DZD</span>
                       <span class="invalid-feedback text-center">required field.</span>
                     </div>
@@ -308,8 +308,8 @@
 
                     <!-- product discount -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
-                      <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ flash_form.discount.name }}" value="{{ product.discount }}">
+                      <span class="input-group-text" style="width: 25%;">discount</span>
+                      <input type="number" class="form-control" name="{{ flash_form.discount.name }}" value="{{ product.discount }}">
                       <span class="input-group-text" style="width: 20%;">DZD</span>
                     </div>
                     <!-- end product discount -->
@@ -336,7 +336,7 @@
                   </div>
                   <!-- submit -->
                   <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+                    <button form="edit_form_{{ product.id }}" class="btn btn-primary form-control-lg">Confirm</button>
                   </div>
                   <!-- end submit -->
                 </form>
