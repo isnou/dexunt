@@ -364,7 +364,7 @@ def manage_flash(request, action):
             else:
                 album = selected_variant.album.all()[:1]
                 image = album.image
-                
+
             FlashProduct(en_title=selected_product.en_title,
                          fr_title=selected_product.fr_title,
                          ar_title=selected_product.ar_title,
