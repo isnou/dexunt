@@ -186,7 +186,7 @@
             <div class="modal-body">
               <div>
                 <div class="text-center mb-7">
-                  <h2>Edit product</h2>
+                  <h2>Edit {{ product.en_title }}</h2>
                 </div>
                 <form action="{% url 'manage-flash' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                   {% csrf_token %}
@@ -300,8 +300,8 @@
                     </div>
                     <!-- end product discount -->
 
-                    <!-- coupon valid until -->
-                      <div class="form-group mb-4">
+                    <!-- offer valid until -->
+                    <div class="form-group mb-4">
                       <div id="projectDeadlineNewProjectFlatpickr" class="js-flatpickr flatpickr-custom input-group"
                            data-hs-flatpickr-options='{
                            "appendTo": "#projectDeadlineNewProjectFlatpickr",
@@ -311,13 +311,14 @@
                            "minDate": "today",
                            "wrap": true
                            }'>
-                        <div class="input-group-prepend input-group-text" style="width: 15%;">
+                        <div class="input-group-prepend input-group-text" style="width: 25%;">
                           Expiration
                         </div>
                         <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ coupon_form.valid_until.name }}" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="select a date or leave empty" data-input>
                       </div>
                     </div>
-                    <!-- end coupon valid until -->
+                    <!-- end offer valid until -->
+
                   </div>
 
 
