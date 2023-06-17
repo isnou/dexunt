@@ -197,7 +197,7 @@
   </div>
   <!-- end header -->
 
-  {% if all_products.all.count %}
+  {% if all_flash_products.all.count %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -213,7 +213,7 @@
       </thead>
 
       <tbody>
-      {% for product in all_products.all %}
+      {% for product in all_flash_products.all %}
       <!-- product forms list -->
       <!-- delete product form -->
       <form action="{% url 'manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
