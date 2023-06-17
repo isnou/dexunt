@@ -187,7 +187,7 @@
                 <div class="text-center mb-7">
                   <h2>{{ product.en_title }}</h2>
                 </div>
-                <form action="{% url 'manage-flash' 'edit_product' %}" id="edit_form_{{ product.id }}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                <form action="{% url 'manage-flash' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <input type="hidden" value="{{ product.id }}" name="product_id">
 
@@ -336,7 +336,7 @@
                   </div>
                   <!-- submit -->
                   <div class="d-grid mb-4">
-                    <button form="edit_form_{{ product.id }}" class="btn btn-primary form-control-lg">Confirm</button>
+                    <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
                   </div>
                   <!-- end submit -->
                 </form>
