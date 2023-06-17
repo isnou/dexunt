@@ -300,27 +300,26 @@
                     </div>
                     <!-- end product discount -->
 
-
-                <!-- coupon valid until -->
-                <div class="form-group mb-4">
-                  <div id="projectDeadlineNewProjectFlatpickr" class="js-flatpickr flatpickr-custom input-group"
-                       data-hs-flatpickr-options='{
-                       "appendTo": "#projectDeadlineNewProjectFlatpickr",
-                       "enableTime": true,
-                       "dateFormat": "Y-m-d H:i",
-                       "time_24hr": true,
-                       "minDate": "today",
-                       "wrap": true
-                       }'>
-                    <div class="input-group-prepend input-group-text" style="width: 15%;">
-                      Expiration
+                    <!-- coupon valid until -->
+                      <div class="form-group mb-4">
+                      <div id="projectDeadlineNewProjectFlatpickr" class="js-flatpickr flatpickr-custom input-group"
+                           data-hs-flatpickr-options='{
+                           "appendTo": "#projectDeadlineNewProjectFlatpickr",
+                           "enableTime": true,
+                           "dateFormat": "Y-m-d H:i",
+                           "time_24hr": true,
+                           "minDate": "today",
+                           "wrap": true
+                           }'>
+                        <div class="input-group-prepend input-group-text" style="width: 15%;">
+                          Expiration
+                        </div>
+                        <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ coupon_form.valid_until.name }}" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="select a date or leave empty" data-input>
+                      </div>
                     </div>
-                    <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ coupon_form.valid_until.name }}" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="select a date or leave empty" data-input>
+                    <!-- end coupon valid until -->
                   </div>
-                </div>
-                <!-- end coupon valid until -->
-                  </div>
-                  
+
 
                   <!-- submit -->
                   <div class="d-grid mb-4">
