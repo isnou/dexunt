@@ -342,7 +342,6 @@ def manage_flash(request, action):
         all_products = Product.objects.all()
         all_flash_products = FlashProduct.objects.all()
 
-
         context = {
             'nav_side': 'flash',
             'all_products': all_products,
@@ -352,15 +351,16 @@ def manage_flash(request, action):
     # -----
     if action == 'link_products':
         if request.method == 'POST':
-            product_id = request.POST.get('product_id')
-            selected_product = Product.objects.all().get(id=product_id)
-            FlashProduct(en_title=selected_product.en_title,
-                         fr_title=selected_product.fr_title,
-                         ar_title=selected_product.ar_title,
-                         image=selected_product.selected_image,
-                         product_token=selected_product.product_token,
-                         price=selected_product.price,
-                         ).save()
+            product_ids = request.POST.getlist('product_ids')
+            for product_id in product_ids:
+                selected_product = Product.objects.all().get(id=product_id)
+                FlashProduct(en_title=selected_product.en_title,
+                             fr_title=selected_product.fr_title,
+                             ar_title=selected_product.ar_title,
+                             image=selected_product.selected_image,
+                             product_token=selected_product.product_token,
+                             price=selected_product.price,
+                             ).save()
             return redirect('manage-flash', 'main')
     if action == 'delete_product':
         if request.method == 'POST':
