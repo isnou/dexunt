@@ -362,7 +362,7 @@ def manage_flash(request, action):
             if selected_option.has_image:
                 image = selected_option.image
             else:
-                image = selected_variant.album.all()[:1].image
+                image = selected_variant.album[:1].image
 
             FlashProduct(en_title=selected_product.en_title,
                          fr_title=selected_product.fr_title,
