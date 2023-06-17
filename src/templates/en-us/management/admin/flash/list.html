@@ -49,7 +49,7 @@
                     <div class="col-auto">
                       <div class="d-flex align-items-center">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" value="{{ product.id }}" name="product_id">
+                          <input class="form-check-input" type="checkbox" value="{{ product.id }}" name="product_ids">
                           <label class="form-check-label"></label>
                           <span class="form-check-stretched-bg"></span>
                         </div>
@@ -64,7 +64,7 @@
 
                     <small class="col-auto text-muted text-cap">2hr</small>
                   </div>
-                  <button type="submit" class="stretched-link"></button>
+                  <a class="stretched-link"></a>
                 </li>
                 {% endfor %}
               </ul>
