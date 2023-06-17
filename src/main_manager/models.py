@@ -199,6 +199,7 @@ class FlashProduct(models.Model):
     valid_until = models.DateTimeField(blank=True, null=True)
     is_activated = models.BooleanField(default=True)
     # --------------------------------- showcase information -----------------------------------
+    quantity = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
@@ -211,6 +212,8 @@ class FlashProduct(models.Model):
     def clean(self):
         if self.valid_until <= timezone.now():
             self.is_activated = False
-            super().save()
+        if self.quantity == 0:
+            self.is_activated = False
+        super().save()
 
 
