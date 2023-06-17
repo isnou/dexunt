@@ -189,6 +189,7 @@
                 </div>
                 <form action="{% url 'manage-flash' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                   {% csrf_token %}
+                  <input type="hidden" value="{{ product.id }}" name="product_id">
 
                   <div class="row mb-4">
                     <span class="divider-center mb-2">Main Informations</span>
@@ -333,8 +334,6 @@
                     <!-- end offer valid until -->
 
                   </div>
-
-
                   <!-- submit -->
                   <div class="d-grid mb-4">
                     <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
