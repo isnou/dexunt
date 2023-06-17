@@ -341,7 +341,7 @@ def manage_flash(request, action):
         url = direction + "/management/admin/flash/list.html"
         all_products = Product.objects.all()
         all_flash_products = FlashProduct.objects.all()
-        
+
 
         context = {
             'nav_side': 'flash',
