@@ -239,8 +239,7 @@
                     <!-- product english variant -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">english variant</span>
-                      <input type="text" class="form-control" name="{{ flash_form.en_spec.name }}" value="{{ product.en_spec }}" required>
-                      <span class="invalid-feedback text-center">required field.</span>
+                      <input type="text" class="form-control" name="{{ flash_form.en_spec.name }}" value="{{ product.en_spec }}">
                     </div>
                     <!-- end product english variant -->
 
@@ -261,54 +260,46 @@
                     <!-- product english option -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">english option</span>
-                      <input type="text" class="form-control" name="{{ flash_form.en_option.name }}" value="{{ product.en_option }}" required>
-                      <span class="invalid-feedback text-center">required field.</span>
+                      <input type="text" class="form-control" name="{{ flash_form.en_value.name }}" value="{{ product.en_value }}">
                     </div>
                     <!-- end product english option -->
 
                     <!-- product french option -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">french option</span>
-                      <input type="text" class="form-control" name="{{ flash_form.fr_option.name }}" value="{{ product.fr_option }}">
+                      <input type="text" class="form-control" name="{{ flash_form.fr_value.name }}" value="{{ product.fr_value }}">
                     </div>
                     <!-- end product french option -->
 
                     <!-- product arabic option -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" style="width: 25%;">arabic option</span>
-                      <input type="text" class="form-control" name="{{ flash_form.ar_option.name }}" value="{{ product.ar_option }}" dir="rtl">
+                      <input type="text" class="form-control" name="{{ flash_form.ar_value.name }}" value="{{ product.ar_value }}" dir="rtl">
                     </div>
                     <!-- end product arabic option -->
 
-                    <span class="divider-center mb-2">Notes</span>
+                    <span class="divider-center mb-2">Sell Info</span>
 
-                    <!-- product english note -->
+                    <!-- product quantity -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="en_note" style="width: 25%;">english</span>
-                      <textarea class="form-control" aria-label="en_note" aria-describedby="en_note" name="{{ product_form.en_note.name }}" placeholder="" rows="2"></textarea>
+                      <span class="input-group-text" id="quantity" style="width: 25%;">quantity</span>
+                      <input type="number" class="form-control" aria-label="quantity" aria-describedby="quantity" name="{{ flash_form.quantity.name }}" value="{{ product.quantity }}">
                     </div>
-                    <!-- end product english note -->
+                    <!-- end product quantity -->
 
-                    <!-- product french note -->
+                    <!-- product cost -->
                     <div class="input-group mb-2">
-                      <span class="input-group-text" id="fr_note" style="width: 25%;">french</span>
-                      <textarea class="form-control" aria-label="fr_note" aria-describedby="fr_note" name="{{ product_form.fr_note.name }}" placeholder="" rows="2"></textarea>
+                      <span class="input-group-text" id="cost" style="width: 25%;">cost</span>
+                      <input type="number" class="form-control" aria-label="cost" aria-describedby="cost" value="{{ product.cost }}" readonly>
+                      <span class="input-group-text" style="width: 20%;">DZD</span>
+                      <span class="invalid-feedback text-center">required field.</span>
                     </div>
-                    <!-- end product french note -->
-
-                    <!-- product arabic note -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" id="ar_note" style="width: 25%;">arabic</span>
-                      <textarea class="form-control" aria-label="ar_note" aria-describedby="ar_note" name="{{ product_form.ar_note.name }}" placeholder="" rows="2" dir="rtl"></textarea>
-                    </div>
-                    <!-- end product arabic note -->
-
-                    <span class="divider-center mb-2">Prices</span>
+                    <!-- end product cost -->
 
                     <!-- product price -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" id="price" style="width: 25%;">price</span>
-                      <input type="number" class="form-control" aria-label="price" aria-describedby="price" name="{{ product_form.price.name }}" placeholder="3000" required>
+                      <input type="number" class="form-control" aria-label="price" aria-describedby="price" value="{{ product.price }}" readonly>
                       <span class="input-group-text" style="width: 20%;">DZD</span>
                       <span class="invalid-feedback text-center">required field.</span>
                     </div>
@@ -317,7 +308,7 @@
                     <!-- product discount -->
                     <div class="input-group mb-2">
                       <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
-                      <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ product_form.discount.name }}" placeholder="2500">
+                      <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ flash_form.discount.name }}" value="{{ product.discount }}">
                       <span class="input-group-text" style="width: 20%;">DZD</span>
                     </div>
                     <!-- end product discount -->
@@ -336,7 +327,7 @@
                         <div class="input-group-prepend input-group-text" style="width: 25%;">
                           Expiration
                         </div>
-                        <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ coupon_form.valid_until.name }}" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="select a date or leave empty" data-input>
+                        <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ flash_form.valid_until.name }}" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="select a date or leave empty" data-input>
                       </div>
                     </div>
                     <!-- end offer valid until -->
