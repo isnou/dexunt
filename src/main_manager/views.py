@@ -362,4 +362,10 @@ def manage_flash(request, action):
                              price=selected_product.price,
                              ).save()
             return redirect('manage-flash', 'main')
+    if action == 'delete_product':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = FlashProduct.objects.all().get(id=product_id)
+            selected_product.delete()
+            return redirect('manage-flash', 'main')
 

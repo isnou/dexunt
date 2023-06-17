@@ -131,7 +131,7 @@
       {% for product in all_flash_products.all %}
       <!-- product forms list -->
       <!-- delete product form -->
-      <form action="{% url 'manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
+      <form action="{% url 'manage-flash' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="product_id" value='{{ product.id }}'>
       </form>
