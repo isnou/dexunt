@@ -120,10 +120,10 @@
         <tr>
           <th scope="col" class="table-column-pe-0">
           </th>
-          <th class="table-column-ps-0">Product</th>
-          <th>Vendor</th>
+          <th class="table-column-ps-0"></th>
           <th></th>
-          <th>Actions</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -159,22 +159,8 @@
             </div>
           </a>
         </td>
-        <!-- product brand -->
-        <td>{{ product.brand }}</td>
-        <!-- product info -->
-        <td>
-          {% if product.variant.all.count %}
-          <span class="badge bg-secondary">{{ product.variant.all.count }}</span>
-          {% endif %}
-
-          {% if not product.is_available %}
-          <span class="badge bg-danger">unavailable</span>
-          {% endif %}
-
-          {% if not product.is_activated %}
-          <span class="badge bg-warning">deactivated</span>
-          {% endif %}
-        </td>
+        <td>{{ product.en_spec }}</td>
+        <td>{{ product.en_value }}</td>
         <!-- product actions -->
         <td>
           <!-- view product -->
