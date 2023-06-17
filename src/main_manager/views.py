@@ -351,16 +351,36 @@ def manage_flash(request, action):
     # -----
     if action == 'link_products':
         if request.method == 'POST':
-            product_ids = request.POST.getlist('product_ids')
-            for product_id in product_ids:
-                selected_product = Product.objects.all().get(id=product_id)
-                FlashProduct(en_title=selected_product.en_title,
-                             fr_title=selected_product.fr_title,
-                             ar_title=selected_product.ar_title,
-                             image=selected_product.selected_image,
-                             product_token=selected_product.product_token,
-                             price=selected_product.price,
-                             ).save()
+            product_id = request.POST.get('product_id')
+            variant_id = request.POST.get('variant_id')
+            option_id = request.POST.get('option_id')
+
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            selected_option = Option.objects.all().get(id=option_id)
+
+            if selected_option.has_image:
+                image = selected_option.image
+            else:
+                image = selected_variant.album.all()[:1].image
+
+            FlashProduct(en_title=selected_product.en_title,
+                         fr_title=selected_product.fr_title,
+                         ar_title=selected_product.ar_title,
+
+                         en_spec=selected_variant.en_spec,
+                         fr_spec=selected_variant.fr_spec,
+                         ar_spec=selected_variant.ar_spec,
+
+                         en_value=selected_option.en_value,
+                         fr_value=selected_option.fr_value,
+                         ar_value=selected_option.ar_value,
+
+                         image=image,
+                         product_token=selected_product.product_token,
+                         cost=selected_option.cost,
+                         price=selected_product.price,
+                         ).save()
             return redirect('manage-flash', 'main')
     if action == 'delete_product':
         if request.method == 'POST':
