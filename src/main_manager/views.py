@@ -349,3 +349,17 @@ def manage_flash(request, action):
         }
         return render(request, url, context)
     # -----
+    if action == 'link_products':
+        if request.method == 'POST':
+            product_ids = request.POST.getlist('product_ids')
+            for product_id in product_ids:
+                selected_product = Product.objects.all().get(id=product_id)
+                FlashProduct(en_title=selected_product.en_title,
+                             fr_title=selected_product.fr_title,
+                             ar_title=selected_product.ar_title,
+                             image=selected_product.selected_image,
+                             product_token=selected_product.product_token,
+                             price=selected_product.price,
+                             ).save()
+            return redirect('manage-flash', 'main')
+

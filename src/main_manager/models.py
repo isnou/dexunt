@@ -189,8 +189,6 @@ class FlashProduct(models.Model):
     fr_value = models.CharField(max_length=200, blank=True, null=True)
     ar_value = models.CharField(max_length=200, blank=True, null=True)
 
-    feature = models.ManyToManyField(Feature, blank=True)
-
     # --------------------------------- media --------------------------------------------------
     def get_image_path(self, filename):
         return self.en_title.lower()

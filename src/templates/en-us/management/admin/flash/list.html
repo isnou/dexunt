@@ -42,7 +42,7 @@
           <div class="text-center mb-7">
             <h2>Link a product</h2>
           </div>
-          <form action="{% url 'manage-showcase' 'publish_products' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          <form action="{% url 'manage-flash' 'link_products' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="row mb-4">
