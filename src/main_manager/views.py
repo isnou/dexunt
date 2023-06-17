@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from main_manager.models import Product, Variant, Option, Feature, Album
+from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
@@ -338,25 +338,14 @@ def manage_flash(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/admin/showcase/grid.html"
+        url = direction + "/management/admin/flash/list.html"
         all_products = Product.objects.all()
+        all_flash_products = FlashProduct.objects.all()
 
-        published_products = all_products.exclude(is_activated=False)
-        unpublished_products = all_products.exclude(is_activated=True)
         context = {
-            'nav_side': 'showcase',
+            'nav_side': 'flash',
             'all_products': all_products,
-            'published_products': published_products,
-            'unpublished_products': unpublished_products,
+            'all_flash_products': all_flash_products,
         }
         return render(request, url, context)
     # -----
-    if action == 'publish_products':
-        if request.method == 'POST':
-            product_ids = request.POST.getlist('product_ids')
-            for product_id in product_ids:
-                selected_product = Product.objects.all().get(id=product_id)
-                selected_product.is_activated = True
-                selected_product.save()
-                selected_product.check_availability()
-            return redirect('manage-showcase', 'main')
