@@ -43,14 +43,20 @@
               <ul class="list-group list-group-flush navbar-card-list-group">
                 {% for product in all_products.all %}
 
-          <form action="{% url 'manage-flash' 'link_products' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" value="{{ product.id }}" name="product_id">
-            
+                <form action="{% url 'manage-flash' 'link_products' %}" id="select_{{ product.id }}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="hidden" value="{{ product.id }}" name="product_id">
+                </form>
+
                 <li class="list-group-item form-check-select">
                   <div class="row">
                     <div class="col-auto">
                       <div class="d-flex align-items-center">
+                        <div class="form-check">
+
+                          <label class="form-check-label"></label>
+                          <span class="form-check-stretched-bg"></span>
+                        </div>
                         <img class="avatar avatar-sm avatar-circle" src="{% get_media_prefix %}{{ product.selected_image }}">
                       </div>
                     </div>
@@ -59,14 +65,12 @@
                       <h5 class="mb-1">{{ product.en_title }}</h5>
                       <p class="text-body fs-5">{{ product.brand }}</p>
                     </div>
-
+                    
                     <small class="col-auto text-muted text-cap">2hr</small>
                   </div>
-                  <button type="submit" class="stretched-link"></button>
+                  <button class="stretched-link" form="select_{{ product.id }}" ></button>
                 </li>
 
-
-            </form>
                 {% endfor %}
               </ul>
             </div>
