@@ -159,13 +159,13 @@
             </div>
           </a>
         </td>
-        <td>{{ product.en_spec }}</td>
-        <td>{{ product.en_value }}</td>
+        <td>{{ product.en_spec }} {{ product.en_value }}</td>
+        <td>{{ product.valid_until }}</td>
         <!-- product actions -->
         <td>
-          <!-- view product -->
-          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
-            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          <!-- edit product -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ product.id }}">
+            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit"></i>
           </button>
 
           <!-- delete product -->
@@ -177,6 +177,149 @@
       <!-- end products list -->
 
       <!-- products actions modals -->
+      <div id="edit_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-close">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="text-center mb-7">
+                  <h2>Edit product</h2>
+                </div>
+                <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+
+                  <div class="row mb-4">
+                    <span class="divider-center mb-2">Main Informations</span>
+
+                    <!-- product english title -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" style="width: 25%;">english title</span>
+                      <input type="text" class="form-control" name="{{ product_form.en_title.name }}" value="{{ product.en_title }}" required>
+                      <span class="invalid-feedback text-center">required field.</span>
+                    </div>
+                    <!-- end product english title -->
+
+                    <!-- product french title -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" style="width: 25%;">french title</span>
+                      <input type="text" class="form-control" name="{{ product_form.fr_title.name }}" value="{{ product.fr_title }}">
+                    </div>
+                    <!-- end product french title -->
+
+                    <!-- product arabic title -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" style="width: 25%;">arabic title</span>
+                      <input type="text" class="form-control" name="{{ product_form.ar_title.name }}" value="{{ product.ar_title }}" dir="rtl">
+                    </div>
+                    <!-- end product arabic title -->
+
+                    <!-- product brand -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
+                      <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
+                    </div>
+                    <!-- end product brand -->
+
+                    <span class="divider-center mb-2">Presentation photo</span>
+
+                    <!-- product presentation photo -->
+                    <div class="mb-3 mt-3">
+                      <div class="col text-center">
+                        <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 70%;width: 70%;">
+                          <img id="product_presentation_photo" class="avatar-img" src="{% get_media_prefix %}{{ product.image }}" style="width: 70%;">
+                          <input type="file" class="js-file-attach avatar-uploader-input" name="{{ product_form.selected_image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
+                              "textTarget": "#product_presentation_photo",
+                              "mode": "image",
+                              "targetAttr": "src",
+                              "allowTypes": [".png", ".jpeg", ".jpg"]
+                              }' required>
+                          <span class="invalid-feedback text-center">Please upload an image.</span>
+                        </label>
+                      </div>
+                    </div>
+                    <!-- end product presentation photo -->
+
+                    <span class="divider-center mb-2">Descriptions</span>
+
+                    <!-- product english description -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="en_description" style="width: 25%;">english</span>
+                      <textarea class="form-control" aria-label="en_description" aria-describedby="en_description" name="{{ product_form.en_description.name }}" placeholder="" rows="4"></textarea>
+                    </div>
+                    <!-- end product english description -->
+
+                    <!-- product french description -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="fr_description" style="width: 25%;">french</span>
+                      <textarea class="form-control" aria-label="fr_description" aria-describedby="fr_description" name="{{ product_form.fr_description.name }}" placeholder="" rows="4"></textarea>
+                    </div>
+                    <!-- end product french description -->
+
+                    <!-- product arabic description -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="ar_description" style="width: 25%;">arabic</span>
+                      <textarea class="form-control" aria-label="ar_description" aria-describedby="ar_description" name="{{ product_form.ar_description.name }}" placeholder="" rows="4" dir="rtl"></textarea>
+                    </div>
+                    <!-- end product arabic description -->
+
+                    <span class="divider-center mb-2">Notes</span>
+
+                    <!-- product english note -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="en_note" style="width: 25%;">english</span>
+                      <textarea class="form-control" aria-label="en_note" aria-describedby="en_note" name="{{ product_form.en_note.name }}" placeholder="" rows="2"></textarea>
+                    </div>
+                    <!-- end product english note -->
+
+                    <!-- product french note -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="fr_note" style="width: 25%;">french</span>
+                      <textarea class="form-control" aria-label="fr_note" aria-describedby="fr_note" name="{{ product_form.fr_note.name }}" placeholder="" rows="2"></textarea>
+                    </div>
+                    <!-- end product french note -->
+
+                    <!-- product arabic note -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="ar_note" style="width: 25%;">arabic</span>
+                      <textarea class="form-control" aria-label="ar_note" aria-describedby="ar_note" name="{{ product_form.ar_note.name }}" placeholder="" rows="2" dir="rtl"></textarea>
+                    </div>
+                    <!-- end product arabic note -->
+
+                    <span class="divider-center mb-2">Prices</span>
+
+                    <!-- product price -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="price" style="width: 25%;">price</span>
+                      <input type="number" class="form-control" aria-label="price" aria-describedby="price" name="{{ product_form.price.name }}" placeholder="3000" required>
+                      <span class="input-group-text" style="width: 20%;">DZD</span>
+                      <span class="invalid-feedback text-center">required field.</span>
+                    </div>
+                    <!-- end product price -->
+
+                    <!-- product discount -->
+                    <div class="input-group mb-2">
+                      <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
+                      <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ product_form.discount.name }}" placeholder="2500">
+                      <span class="input-group-text" style="width: 20%;">DZD</span>
+                    </div>
+                    <!-- end product discount -->
+                  </div>
+
+                  <!-- submit -->
+                  <div class="d-grid mb-4">
+                    <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+                  </div>
+                  <!-- end submit -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- delete product modal -->
       <div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_product_modal_title_{{ product.id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -195,7 +338,6 @@
           </div>
         </div>
       </div>
-
       <!-- end products actions modals -->
       {% endfor %}
       </tbody>
