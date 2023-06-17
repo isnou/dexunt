@@ -3,7 +3,7 @@ from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
-from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
+from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm
 from authentication.models import User
 
 
@@ -341,11 +341,13 @@ def manage_flash(request, action):
         url = direction + "/management/admin/flash/list.html"
         all_products = Product.objects.all()
         all_flash_products = FlashProduct.objects.all()
+        flash_form = FlashForm()
 
         context = {
             'nav_side': 'flash',
             'all_products': all_products,
             'all_flash_products': all_flash_products,
+            'flash_form': flash_form,
         }
         return render(request, url, context)
     # -----
