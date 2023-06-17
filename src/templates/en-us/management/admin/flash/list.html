@@ -48,6 +48,8 @@
           <form action="{% url 'manage-flash' 'link_products' %}" id="link_product_{{ product.id }}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" value="{{ product.id }}" name="product_id">
+            <input type="hidden" value="{{ variant.id }}" name="variant_id">
+            <input type="hidden" value="{{ option.id }}" name="option_id">
           </form>
 
                 <li class="list-group-item form-check-select">
@@ -59,13 +61,14 @@
                           <label class="form-check-label"></label>
                           <span class="form-check-stretched-bg"></span>
                         </div>
-                        <img class="avatar avatar-sm avatar-circle" src="{% get_media_prefix %}{{ variant.album.all.0.image }}">
+                        <img class="avatar avatar-sm avatar-square" src="{% get_media_prefix %}{{ variant.album.all.0.image }}">
                       </div>
                     </div>
 
                     <div class="col ms-n2">
-                      <h5 class="mb-1">{{ product.en_title }} {{ variant.en_spec }} {{ option.en_value }}</h5>
-                      <p class="text-body fs-5">{{ product.brand }}</p>
+                      <h6 class="mb-1">{{ product.en_title }}</h6>
+                      <p class="text-body fs-6">{{ variant.en_spec }} {{ option.en_value }}</p>
+                      <p class="text-body fs-6">{{ product.brand }}</p>
                     </div>
 
                     <small class="col-auto text-muted text-cap">2hr</small>
