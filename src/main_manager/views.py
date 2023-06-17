@@ -48,8 +48,6 @@ def manage_showcase(request, action):
                 selected_product.check_availability()
             return redirect('manage-showcase', 'main')
 
-
-
 def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'

@@ -3,17 +3,7 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from add_ons import functions
 
-
-class Feature(models.Model):
-    # --------------------------------- feature title ------------------------------------------
-    en_name = models.CharField(max_length=100, blank=True, null=True)
-    fr_name = models.CharField(max_length=100, blank=True, null=True)
-    ar_name = models.CharField(max_length=100, blank=True, null=True)
-    # --------------------------------- feature value ------------------------------------------
-    en_content = models.TextField(max_length=500, null=True)
-    fr_content = models.TextField(max_length=500, null=True)
-    ar_content = models.TextField(max_length=500, null=True)
-
+# -------------------- features -------------------- #
 class Review(models.Model):
     # --------------------------------- feature types ------------------------------------------
     client_name = models.CharField(max_length=100, blank=True, null=True)
@@ -33,6 +23,18 @@ class Album(models.Model):
     class Meta:
         verbose_name_plural = "Album"
 
+class Feature(models.Model):
+    # --------------------------------- feature title ------------------------------------------
+    en_name = models.CharField(max_length=100, blank=True, null=True)
+    fr_name = models.CharField(max_length=100, blank=True, null=True)
+    ar_name = models.CharField(max_length=100, blank=True, null=True)
+    # --------------------------------- feature value ------------------------------------------
+    en_content = models.TextField(max_length=500, null=True)
+    fr_content = models.TextField(max_length=500, null=True)
+    ar_content = models.TextField(max_length=500, null=True)
+
+
+# ---------------- regular showcase ---------------- #
 class Option(models.Model):
     # --------------------------------- product identification ---------------------------------
     en_value = models.CharField(max_length=200, blank=True, null=True)
@@ -170,3 +172,47 @@ class Product(models.Model):
         if deactivate:
             self.is_activated = False
         super().save()
+
+
+# ----------------- flash showcase ---------------- #
+class FlashProduct(models.Model):
+    # --------------------------------- product identification ---------------------------------
+    en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.CharField(max_length=200, blank=True, null=True)
+    ar_title = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- product specs ------------------------------------------
+    en_spec = models.CharField(max_length=200, blank=True, null=True)
+    fr_spec = models.CharField(max_length=200, blank=True, null=True)
+    ar_spec = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- product option -----------------------------------------
+    en_value = models.CharField(max_length=200, blank=True, null=True)
+    fr_value = models.CharField(max_length=200, blank=True, null=True)
+    ar_value = models.CharField(max_length=200, blank=True, null=True)
+
+    feature = models.ManyToManyField(Feature, blank=True)
+
+    # --------------------------------- media --------------------------------------------------
+    def get_image_path(self, filename):
+        return self.en_title.lower()
+
+    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    # --------------------------------- technical details --------------------------------------
+    product_token = models.CharField(max_length=24, null=True)
+    valid_until = models.DateTimeField(blank=True, null=True)
+    is_activated = models.BooleanField(default=True)
+    # --------------------------------- showcase information -----------------------------------
+    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.discount:
+            if self.price < self.discount:
+                self.discount = None
+        super().save()
+
+    def clean(self):
+        if self.valid_until <= timezone.now():
+            self.is_activated = False
+            super().save()
+
+

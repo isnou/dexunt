@@ -6,8 +6,6 @@ from main_manager.models import Product, Variant, Option, Feature, Album
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
-
-
 def home_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -26,7 +24,6 @@ def home_page(request):
         'published_products': published_products,
     }
     return render(request, url, context)
-
 
 def change_language(request):
     if request.method == 'POST':
