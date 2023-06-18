@@ -130,6 +130,8 @@
           <th></th>
           <th></th>
           <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -158,8 +160,26 @@
             </div>
           </a>
         </td>
-        <td>{{ product.en_spec }} {{ product.en_value }}</td>
+        <td>{{ product.en_spec }}</td>
+        <td>{{ product.en_value }}</td>
         <td>{{ product.valid_until }}</td>
+        <td>
+          <span class="d-block fs-6"><small>Price:
+            DZD {{ product.price }}</small>
+          </span>
+
+          <span class="d-block fs-6"><small>Cost:
+            DZD {{ product.cost }}</small>
+          </span>
+
+          <span class="d-block fs-6"><small>Discount:
+            DZD {{ product.discount }}</small>
+          </span>
+
+          <span class="d-block fs-6"><small>Quantity:
+            {{ product.quantity }}</small>
+          </span>
+        </td>
         <!-- product actions -->
         <td>
           <!-- edit product -->
