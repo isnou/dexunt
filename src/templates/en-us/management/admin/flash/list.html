@@ -192,6 +192,7 @@
       <!-- end products list -->
 
       <!-- products actions modals -->
+      <!-- edit product modal -->
       <div id="edit_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -328,6 +329,14 @@
                       <span class="input-group-text" style="width: 20%;">DZD</span>
                     </div>
                     <!-- end product discount -->
+
+                    <!-- activate -->
+                    {% if product.is_activated %}
+                    <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input" checked>
+                    {% else %}
+                    <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input">
+                    {% endif %}
+                    <!-- end activate -->
 
                     <!-- offer valid until -->
                     <div class="form-group mb-4">
