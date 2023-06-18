@@ -331,11 +331,13 @@
                     <!-- end product discount -->
 
                     <!-- activate -->
+                    <div class="input-group mb-2">
                     {% if product.is_activated %}
                     <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input" checked>
                     {% else %}
                     <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input">
                     {% endif %}
+                      </div>
                     <!-- end activate -->
 
                     <!-- offer valid until -->
