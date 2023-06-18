@@ -333,6 +333,22 @@
                         <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ flash_form.valid_until.name }}" placeholder="select a date or leave empty" data-input>
                       </div>
                       {% else %}
+                      <div id="empty_date_pickr_{{ product.id }}" class="js-flatpickr flatpickr-custom input-group"
+                           data-hs-flatpickr-options='{
+                           "appendTo": "#empty_date_pickr_{{ product.id }}",
+                           "enableTime": true,
+                           "dateFormat": "Y-m-d H:i",
+                           "time_24hr": true,
+                           "minDate": "today",
+                           "defaultDate": "today",
+                           "wrap": true
+                           }'>
+
+                        <div class="input-group-prepend input-group-text" style="width: 25%;">
+                          Expiration
+                        </div>
+                        <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ flash_form.valid_until.name }}" placeholder="select a date or leave empty" data-input>
+                      </div>
                       {% endif %}
                     </div>
                     <!-- end offer valid until -->
