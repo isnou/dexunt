@@ -322,7 +322,7 @@
                            "dateFormat": "Y-m-d H:i",
                            "time_24hr": true,
                            "minDate": "today",
-                           "defaultDate": "{{ product.valid_until }}",
+                           "defaultDate": "{{ product.valid_until|date:"Y-m-d" }} {{ product.valid_until|time:"H:i" }}",
                            "wrap": true
                            }'>
                         <div class="input-group-prepend input-group-text" style="width: 25%;">
