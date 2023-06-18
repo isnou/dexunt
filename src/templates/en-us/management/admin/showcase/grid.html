@@ -119,16 +119,16 @@
           <div class="mb-4">
             <h2 class="mb-1">Flash Sales</h2>
 
-            <span class="fs-5">You have (2) registred products</span>
+            <span class="fs-5">You have ({{ all_flash_products.count }}) registred products</span>
           </div>
 
           <small class="card-subtitle">Last added products</small>
 
           <div class="d-flex justify-content-center">
             <div class="avatar-group avatar-group-sm avatar-circle card-avatar-group">
-              {% for product in all_products.all %}
-              <a class="avatar" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Finch Hoot">
-                <img class="avatar-img" src="{% get_media_prefix %}{{ product.selected_image }}" alt="Image Description">
+              {% for product in all_flash_products.all %}
+              <a class="avatar" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ product.en_title }}{{ product.en_spec }}{{ product.en_value }}">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
               </a>
               {% endfor %}
             </div>
@@ -140,18 +140,13 @@
         <div class="card-footer">
           <div class="row col-divider">
             <div class="col">
-              <span class="h4">19</span>
-              <span class="d-block fs-5">Tasks</span>
+              <span class="h4">{{ published_flash_products.count }}</span>
+              <span class="d-block fs-5">Published</span>
             </div>
 
             <div class="col">
-              <span class="h4">33</span>
-              <span class="d-block fs-5">Completed</span>
-            </div>
-
-            <div class="col">
-              <span class="h4">10</span>
-              <span class="d-block fs-5">Days left</span>
+              <span class="h4">{{ unpublished_flash_products.count }}</span>
+              <span class="d-block fs-5">Available</span>
             </div>
           </div>
         </div>
@@ -166,7 +161,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div id="add_new_product_modal_title">
+            <div>
               <div class="text-center mb-7">
                 <h2>Link a new product</h2>
               </div>
@@ -177,6 +172,66 @@
                   <span class="divider-center mb-2">Select from the list</span>
                   <ul class="list-group list-group-flush navbar-card-list-group">
                     {% for product in unpublished_products.all %}
+                    <li class="list-group-item form-check-select">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="{{ product.id }}" name="product_ids">
+                              <label class="form-check-label"></label>
+                              <span class="form-check-stretched-bg"></span>
+                            </div>
+                            <img class="avatar avatar-sm avatar-circle" src="{% get_media_prefix %}{{ product.selected_image }}" alt="Image Description">
+                          </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col ms-n2">
+                          <h5 class="mb-1">{{ product.en_title }}</h5>
+                          <p class="text-body fs-5">{{ product.brand }}</p>
+                        </div>
+                        <!-- End Col -->
+
+                        <small class="col-auto text-muted text-cap">2hr</small>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
+
+                      <a class="stretched-link" href="#"></a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+
+                <div class="d-grid mb-4">
+                  <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- activate a flash product modal -->
+    <div id="activate_a_flash_product" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-close">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="text-center mb-7">
+                <h2>Link a new product</h2>
+              </div>
+              <form action="{% url 'manage-showcase' 'publish_flash_products' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row mb-4">
+                  <span class="divider-center mb-2">Select from the list</span>
+                  <ul class="list-group list-group-flush navbar-card-list-group">
+                    {% for product in unpublished_flash_products.all %}
                     <li class="list-group-item form-check-select">
                       <div class="row">
                         <div class="col-auto">
