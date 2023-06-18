@@ -315,6 +315,7 @@
 
                     <!-- offer valid until -->
                     <div class="form-group mb-4">
+                      {% if product.valid_until %}
                       <div id="date_pickr_{{ product.id }}" class="js-flatpickr flatpickr-custom input-group"
                            data-hs-flatpickr-options='{
                            "appendTo": "#date_pickr_{{ product.id }}",
@@ -325,11 +326,14 @@
                            "defaultDate": "{{ product.valid_until|date:"Y-m-d" }} {{ product.valid_until|time:"H:i" }}",
                            "wrap": true
                            }'>
+
                         <div class="input-group-prepend input-group-text" style="width: 25%;">
                           Expiration
                         </div>
-                        <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ flash_form.valid_until.name }}" placeholder="select a date" data-input required>
+                        <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ flash_form.valid_until.name }}" placeholder="select a date or leave empty" data-input>
                       </div>
+                      {% else %}
+                      {% endif %}
                     </div>
                     <!-- end offer valid until -->
 
