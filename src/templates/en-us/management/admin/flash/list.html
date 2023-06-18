@@ -331,14 +331,14 @@
                     <!-- end product discount -->
 
                     <!-- activate -->
-                    <div class="form-check form-switch mb-4">
-                      {% if product.is_activated %}
-                      <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input" checked>
-                      <label class="form-check-label">Deactivate</label>
-                      {% else %}
-                      <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input">
-                      <label class="form-check-label">Activate</label>
-                      {% endif %}
+                    <div class="input-group mt-4">
+                      <div class="form-check form-switch mb-4">
+                        {% if product.is_activated %}
+                        <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input" checked>
+                        {% else %}
+                        <input type="checkbox" name="{{ flash_form.is_activated.name }}" class="form-check-input">
+                        {% endif %}
+                      </div>
                     </div>
                     <!-- end activate -->
 
