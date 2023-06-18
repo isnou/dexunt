@@ -197,7 +197,7 @@ class FlashProduct(models.Model):
     # --------------------------------- technical details --------------------------------------
     product_token = models.CharField(max_length=24, null=True)
     valid_until = models.DateTimeField(blank=True, null=True)
-    is_activated = models.BooleanField(default=True)
+    is_activated = models.BooleanField(default=False)
     cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
