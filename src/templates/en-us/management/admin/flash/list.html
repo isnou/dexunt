@@ -163,6 +163,7 @@
         <td>
           <h6 class="text-inherit mb-0"><small>Valid until :{{ product.valid_until }}</small> </h6>
           <span class="d-block fs-6"><small>Quantity :{{ product.quantity }}</small> </span>
+          {% if not product.is_activated %} <span class="badge bg-secondary">deactivated</span> {% endif %}
         </td>
         <td>
           <span class="d-block fs-6"><small>Price:
