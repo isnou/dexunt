@@ -17,7 +17,7 @@ def home_page(request):
     all_products = Variant.objects.all()
     all_flash_products = FlashProduct.objects.all()
 
-    published_products = all_products.filter(is_activated=True)
+    published_products = all_products.filter(is_activated=True).order_by('?')
     published_flash_products = all_flash_products.exclude(is_activated=False).order_by('?')[:3]
 
     context = {
