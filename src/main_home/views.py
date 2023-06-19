@@ -14,8 +14,15 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
-    all_products = Product.objects.all()
-    all_flash_products = FlashProduct.objects.all()
+    try:
+        all_products = Product.objects.all()
+    except Product.DoesNotExist:
+        raise Http404("No products")
+
+    try:
+        all_flash_products = FlashProduct.objects.all()
+    except FlashProduct.DoesNotExist:
+        raise Http404("No flash products")
 
     published_products = all_products.filter(is_activated=True)
     published_flash_products = all_flash_products.exclude(is_activated=False).order_by('?')[:3]
