@@ -78,6 +78,10 @@ class Variant(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- product specs ------------------------------------------
+    en_spec = models.CharField(max_length=200, blank=True, null=True)
+    fr_spec = models.CharField(max_length=200, blank=True, null=True)
+    ar_spec = models.CharField(max_length=200, blank=True, null=True)
 
 class Product(models.Model):
     # --------------------------------- product identification ---------------------------------
