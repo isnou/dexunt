@@ -74,6 +74,10 @@ class Option(models.Model):
         super().save()
 
 class Variant(models.Model):
+    # --------------------------------- product identification ---------------------------------
+    en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.CharField(max_length=200, blank=True, null=True)
+    ar_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- product specs ------------------------------------------
     en_spec = models.CharField(max_length=200, blank=True, null=True)
     fr_spec = models.CharField(max_length=200, blank=True, null=True)
@@ -89,6 +93,7 @@ class Variant(models.Model):
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     # --------------------------------- showcase information -----------------------------------
+    brand = models.CharField(max_length=80, blank=True, null=True)
     option = models.ManyToManyField(Option, blank=True)
     feature = models.ManyToManyField(Feature, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
@@ -123,17 +128,8 @@ class Product(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
-    # --------------------------------- media --------------------------------------------------
-    def get_image_path(self, filename):
-        return self.en_title.lower()
-    selected_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
-    is_activated = models.BooleanField(default=False)
-    is_available = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, unique=True, null=True)
-    like = models.IntegerField(default=0)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now=True)
     # --------------------------------- showcase information -----------------------------------
     variant = models.ManyToManyField(Variant, blank=True)
@@ -144,35 +140,11 @@ class Product(models.Model):
     en_note = models.CharField(max_length=500, blank=True, null=True)
     fr_note = models.CharField(max_length=500, blank=True, null=True)
     ar_note = models.CharField(max_length=500, blank=True, null=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.product_token:
             self.product_token = functions.serial_number_generator(24).upper()
-        if self.discount:
-            if self.price < self.discount:
-                self.discount = None
         super().save()
-
-    def check_availability(self):
-        availability = False
-        for variant in self.variant.all():
-            if variant.is_available:
-                availability = True
-        if availability:
-            self.is_available = True
-        else:
-            self.is_available = False
-
-        deactivate = True
-        for variant in self.variant.all():
-            if variant.is_activated:
-                deactivate = False
-        if deactivate:
-            self.is_activated = False
-        super().save()
-
 
 # ----------------- flash showcase ---------------- #
 class FlashProduct(models.Model):
