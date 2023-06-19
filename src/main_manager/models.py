@@ -73,6 +73,56 @@ class Option(models.Model):
                 self.discount = None
         super().save()
 
+class Variant(models.Model):
+    # --------------------------------- product identification ---------------------------------
+    en_title = models.CharField(max_length=200, blank=True, null=True)
+    fr_title = models.CharField(max_length=200, blank=True, null=True)
+    ar_title = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- product specs ------------------------------------------
+    en_spec = models.CharField(max_length=200, blank=True, null=True)
+    fr_spec = models.CharField(max_length=200, blank=True, null=True)
+    ar_spec = models.CharField(max_length=200, blank=True, null=True)
+    # --------------------------------- media --------------------------------------------------
+    album = models.ManyToManyField(Album, blank=True)
+    # --------------------------------- technical details --------------------------------------
+    is_activated = models.BooleanField(default=False)
+    is_available = models.BooleanField(default=False)
+    product_token = models.CharField(max_length=24, null=True)
+    user_token = models.CharField(max_length=24, null=True)
+    like = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
+    # --------------------------------- showcase information -----------------------------------
+    brand = models.CharField(max_length=80, blank=True, null=True)
+    option = models.ManyToManyField(Option, blank=True)
+    feature = models.ManyToManyField(Feature, blank=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.discount:
+            if self.price < self.discount:
+                self.discount = None
+        super().save()
+
+    def check_availability(self):
+        quantity = 0
+        for option in self.option.all():
+            if option.is_activated:
+                quantity += option.quantity
+        if quantity:
+            self.is_available = True
+        else:
+            self.is_available = False
+
+        deactivate = True
+        for option in self.option.all():
+            if option.is_activated:
+                deactivate = False
+        if deactivate:
+            self.is_activated = False
+        super().save()
+
 class Product(models.Model):
     # --------------------------------- product identification ---------------------------------
     en_title = models.CharField(max_length=200, blank=True, null=True)
@@ -82,6 +132,7 @@ class Product(models.Model):
     product_token = models.CharField(max_length=24, unique=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     # --------------------------------- showcase information -----------------------------------
+    variant = models.ManyToManyField(Variant, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
     en_description = models.CharField(max_length=800, blank=True, null=True)
     fr_description = models.CharField(max_length=800, blank=True, null=True)
