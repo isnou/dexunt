@@ -307,44 +307,6 @@
                 <textarea class="form-control" name="{{ selected_product_form.ar_note.name }}" placeholder="{{ selected_product.ar_note }}" rows="2" dir="rtl"></textarea>
               </div>
               <!-- end product arabic note -->
-
-              <span class="divider-center mb-2">Prices</span>
-              <!-- product price -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">price</span>
-                <input type="number" class="form-control" name="{{ selected_product_form.price.name }}" value="{{ selected_product.price }}" required>
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end product price -->
-
-              <!-- product discount -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">discount</span>
-                {% if selected_product.discount %}
-                <input type="number" class="form-control" name="{{ selected_product_form.discount.name }}" value="{{ selected_product.discount }}">
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                {% else %}
-                <input type="number" class="form-control" name="{{ selected_product_form.discount.name }}" placeholder="no discount">
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                {% endif %}
-              </div>
-              <!-- end product discount -->
-
-              {% if selected_product.is_activated %}
-              <span class="divider-center mb-2">Activate product</span>
-              {% else %}
-              <span class="divider-center mb-2">Deactivate product</span>
-              {% endif %}
-              <!-- product activation -->
-              <div class="form-check form-switch mb-4">
-                {% if selected_product.is_activated %}
-                <input type="checkbox" name="{{ selected_product_form.is_activated.name }}" class="form-check-input" checked>
-                {% else %}
-                <input type="checkbox" name="{{ selected_product_form.is_activated.name }}" class="form-check-input">
-                {% endif %}
-              </div>
-              <!-- end product activation -->
             </div>
 
             <!-- submit -->
