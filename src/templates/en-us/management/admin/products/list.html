@@ -218,11 +218,13 @@
         <!-- product info -->
         <td>
           {% for variant in product.variant.all %}
+          {% for option in variant.option.all %}
           <span class="text-body">
             <small>
-              {{ variant.en_title }} - {{ variant.en_spec }}
+              {{ variant.en_spec }} {{ option.en_value }}
             </small>
           </span>
+          {% endfor %}
           {% endfor %}
         </td>
         <!-- product actions -->
