@@ -219,11 +219,11 @@
           <span class="d-block text-body fs-6">
             <small>
               {{ variant.en_spec }} - {{ option.en_value }}
-              {% if not option.is_activated %}
+              {% if not variant.is_activated %}
               <span class="badge bg-warning">not activated</span>
               {% endif %}
 
-              {% if not option.is_available %}
+              {% if not variant.is_available %}
               <span class="badge bg-danger">not available</span>
               {% endif %}
             </small>
