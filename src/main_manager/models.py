@@ -88,23 +88,6 @@ class Product(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
-    # --------------------------------- technical details --------------------------------------
-    product_token = models.CharField(max_length=24, unique=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    # --------------------------------- showcase information -----------------------------------
-    variant = models.ManyToManyField(Variant, blank=True)
-    brand = models.CharField(max_length=80, blank=True, null=True)
-    en_description = models.CharField(max_length=800, blank=True, null=True)
-    fr_description = models.CharField(max_length=800, blank=True, null=True)
-    ar_description = models.CharField(max_length=800, blank=True, null=True)
-    en_note = models.CharField(max_length=500, blank=True, null=True)
-    fr_note = models.CharField(max_length=500, blank=True, null=True)
-    ar_note = models.CharField(max_length=500, blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.product_token:
-            self.product_token = functions.serial_number_generator(24).upper()
-        super().save()
 
 # ----------------- flash showcase ---------------- #
 class FlashProduct(models.Model):
