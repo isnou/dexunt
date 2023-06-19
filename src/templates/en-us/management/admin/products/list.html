@@ -199,7 +199,7 @@
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="#">
             <div class="flex-shrink-0">
-              {% if product.variant.all.album.all.count %}
+              {% if product.variant.all.0.album.all.count %}
               <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.variant.all.0.album.all.0.image }}">
               {% else %}
               <span class="badge bg-warning">no images</span>
