@@ -17,7 +17,6 @@ class User(AbstractUser):
     activated_account = models.BooleanField(default=False)
     user_token = models.CharField(max_length=24, unique=True, null=True)
 
-
     def save(self, *args, **kwargs):
         super().save()
 

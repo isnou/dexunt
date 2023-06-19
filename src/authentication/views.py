@@ -258,7 +258,7 @@ def change_password(request):
 
 @login_required
 def router(request):
-    if request.user.role == 'admin':
+    if request.user.is_admin:
         return redirect('admin-home', 'main')
     else:
         return redirect('logout')
