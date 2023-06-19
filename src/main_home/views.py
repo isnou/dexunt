@@ -15,7 +15,7 @@ def home_page(request):
     signup_form = SignupForm()
 
     try:
-        all_products = Product.objects.all()
+        all_products = Variant.objects.all()
     except Product.DoesNotExist:
         raise Http404("No products")
 
@@ -24,7 +24,7 @@ def home_page(request):
     except FlashProduct.DoesNotExist:
         raise Http404("No flash products")
 
-
+    published_products = all_products.filter(is_activated=True)
     published_flash_products = all_flash_products.exclude(is_activated=False).order_by('?')[:3]
 
     context = {
