@@ -26,7 +26,7 @@ def manage_showcase(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/showcase/grid.html"
-        all_products = Product.objects.all()
+        all_products = Variant.objects.all()
         all_flash_products = FlashProduct.objects.all()
 
         published_products = all_products.exclude(is_activated=False)
