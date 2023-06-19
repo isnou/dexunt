@@ -142,7 +142,10 @@ def manage_products(request, action):
             product_id = request.POST.get('product_id', False)
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            new_variant = Variant(en_spec='unlinked variant',
+            new_variant = Variant(en_title=selected_product.en_title,
+                                  fr_title=selected_product.fr_title,
+                                  ar_title=selected_product.ar_title,
+                                  en_spec='unlinked variant',
                                   product_token=selected_product.product_token,
                                   )
             new_variant.save()
