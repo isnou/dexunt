@@ -20,7 +20,7 @@ def home_page(request):
             q.ar_title = p.ar_title
             q.brand = p.brand
             q.save()
-            
+
     all_products = Product.objects.all()
     all_flash_products = FlashProduct.objects.all()
 

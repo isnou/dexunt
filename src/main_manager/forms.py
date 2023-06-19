@@ -5,8 +5,8 @@ from .models import Product ,Variant ,Feature ,Option ,FlashProduct
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ('en_title', 'fr_title', 'ar_title', 'selected_image', 'brand', 'en_description', 'fr_description',
-                  'ar_description', 'en_note', 'fr_note', 'ar_note', 'price', 'discount', 'is_activated')
+        fields = ('en_title', 'fr_title', 'ar_title', 'brand', 'en_description', 'fr_description', 'ar_description',
+                  'en_note', 'fr_note', 'ar_note')
 
 class VariantForm(ModelForm):
     class Meta:
