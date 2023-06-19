@@ -99,7 +99,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/main_manager/views.py</url>
-          <line>411</line>
+          <line>407</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
