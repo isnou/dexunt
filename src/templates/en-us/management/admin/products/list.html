@@ -37,7 +37,7 @@
           <div class="text-center mb-7">
             <h2>Add new product</h2>
           </div>
-          <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
 
             <div class="row mb-4">
@@ -71,25 +71,6 @@
                 <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
               </div>
               <!-- end product brand -->
-
-              <span class="divider-center mb-2">Presentation photo</span>
-
-              <!-- product presentation photo -->
-              <div class="mb-3 mt-3">
-                <div class="col text-center">
-                  <label class="avatar avatar-xxl avatar-uploader" for="product_presentation_photo_uploader" style="height: 70%;width: 70%;">
-                    <img id="product_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 70%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ product_form.selected_image.name }}" id="product_presentation_photo_uploader" data-hs-file-attach-options='{
-                        "textTarget": "#product_presentation_photo",
-                        "mode": "image",
-                        "targetAttr": "src",
-                        "allowTypes": [".png", ".jpeg", ".jpg"]
-                        }' required>
-                    <span class="invalid-feedback text-center">Please upload an image.</span>
-                  </label>
-                </div>
-              </div>
-              <!-- end product presentation photo -->
 
               <span class="divider-center mb-2">Descriptions</span>
 

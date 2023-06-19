@@ -268,24 +268,6 @@
               </div>
               <!-- end product brand -->
 
-              <span class="divider-center mb-2">Presentation photo</span>
-
-              <!-- product presentation photo -->
-              <div class="mb-3 mt-3">
-                <div class="col text-center">
-                  <label class="avatar avatar-xxl avatar-uploader" for="selected_product_presentation_photo_uploader" style="height: 100%;width: 100%;">
-                    <img id="selected_product_presentation_photo" class="avatar-img" src="{% get_media_prefix %}{{ selected_product.selected_image }}" style="width: 40%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ selected_product_form.selected_image.name }}" id="selected_product_presentation_photo_uploader" data-hs-file-attach-options='{
-                        "textTarget": "#selected_product_presentation_photo",
-                        "mode": "image",
-                        "targetAttr": "src",
-                        "allowTypes": [".png", ".jpeg", ".jpg"]
-                        }'>
-                  </label>
-                </div>
-              </div>
-              <!-- end product presentation photo -->
-
               <span class="divider-center mb-2">Description</span>
 
               <!-- product english description -->

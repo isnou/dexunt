@@ -26,7 +26,7 @@ def manage_showcase(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/showcase/grid.html"
-        all_products = Product.objects.all()
+        all_products = Variant.objects.all()
         all_flash_products = FlashProduct.objects.all()
 
         published_products = all_products.exclude(is_activated=False)
@@ -73,11 +73,8 @@ def manage_products(request, action):
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         all_products = Product.objects.all()
-
-        for product in all_products:
-            product.check_availability()
-
         product_form = ProductForm()
+
         context = {
             'nav_side': 'products',
             'all_products': all_products,
@@ -87,7 +84,7 @@ def manage_products(request, action):
     # -----
     if action == 'add_new_product':
         if request.method == 'POST':
-            new_product_form = ProductForm(request.POST, request.FILES)
+            new_product_form = ProductForm(request.POST)
             if new_product_form.is_valid():
                 new_product_form.save()
                 return redirect('manage-products', 'main')
@@ -105,9 +102,7 @@ def manage_products(request, action):
             product_id = request.POST.get('product_id', False)
 
             selected_product = Product.objects.all().get(id=product_id)
-
             selected_product_form = ProductForm(request.POST, instance=selected_product)
-            selected_product.check_availability()
 
             variant_form = VariantForm()
             context = {
@@ -138,7 +133,7 @@ def manage_products(request, action):
             product_id = request.POST.get('product_id', False)
             request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ProductForm(request.POST, request.FILES, instance=selected_product)
+            selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('manage-products', 'view_product')
     # -----
