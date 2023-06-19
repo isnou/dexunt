@@ -136,7 +136,7 @@ class Product(models.Model):
     sale = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now=True)
     # --------------------------------- showcase information -----------------------------------
-    variant = models.ForeignKey("Variant", on_delete=models.CASCADE, null=True)
+    variant = models.ManyToManyField(Variant, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
     en_description = models.CharField(max_length=800, blank=True, null=True)
     fr_description = models.CharField(max_length=800, blank=True, null=True)
@@ -157,7 +157,7 @@ class Product(models.Model):
 
     def check_availability(self):
         availability = False
-        for variant in self.variant:
+        for variant in self.variant.all():
             if variant.is_available:
                 availability = True
         if availability:
@@ -166,7 +166,7 @@ class Product(models.Model):
             self.is_available = False
 
         deactivate = True
-        for variant in self.variant:
+        for variant in self.variant.all():
             if variant.is_activated:
                 deactivate = False
         if deactivate:
