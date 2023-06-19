@@ -13,15 +13,7 @@ def home_page(request):
     url = direction + "/home/main-page.html"
     login_form = LoginForm()
     signup_form = SignupForm()
-
-    for p in Album.objects.all():
-        p.delete()
-    for p in Option.objects.all():
-        p.delete()
-    for p in Feature.objects.all():
-        p.delete()
-    for p in Variant.objects.all():
-        p.delete()
+    
     all_products = Product.objects.all()
     all_flash_products = FlashProduct.objects.all()
 
