@@ -19,6 +19,7 @@ def home_page(request):
 
     for p in all_products:
         p.clean()
+
     for f in all_flash_products:
         f.clean()
 
