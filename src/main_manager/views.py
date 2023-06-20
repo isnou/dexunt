@@ -145,6 +145,7 @@ def manage_products(request, action):
             new_variant = Variant(en_title=selected_product.en_title,
                                   fr_title=selected_product.fr_title,
                                   ar_title=selected_product.ar_title,
+                                  brand=selected_product.brand,
                                   en_spec='unlinked variant',
                                   product_token=selected_product.product_token,
                                   )

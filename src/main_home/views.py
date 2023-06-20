@@ -13,6 +13,11 @@ def home_page(request):
     url = direction + "/home/main-page.html"
     login_form = LoginForm()
     signup_form = SignupForm()
+    
+    for p in Product.objects.all():
+        for v in p.variant.all():
+            v.brand=p.brand
+            p.save()
 
     all_products = Variant.objects.all()
     all_flash_products = FlashProduct.objects.all()
