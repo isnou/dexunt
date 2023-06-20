@@ -378,9 +378,9 @@ def manage_flash(request, action):
                 album = selected_variant.album.all()[0]
                 image = album.image
 
-            FlashProduct(en_title=selected_product.en_title,
-                         fr_title=selected_product.fr_title,
-                         ar_title=selected_product.ar_title,
+            FlashProduct(en_title=selected_variant.en_title,
+                         fr_title=selected_variant.fr_title,
+                         ar_title=selected_variant.ar_title,
 
                          en_spec=selected_variant.en_spec,
                          fr_spec=selected_variant.fr_spec,
@@ -392,6 +392,7 @@ def manage_flash(request, action):
 
                          image=image,
                          product_token=selected_product.product_token,
+                         upc=selected_option.upc,
                          cost=selected_option.cost,
                          price=selected_product.price,
                          ).save()

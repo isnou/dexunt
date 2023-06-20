@@ -65,6 +65,8 @@ class Option(models.Model):
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def save(self, *args, **kwargs):
+        if not self.upc:
+            self.upc = functions.serial_number_generator(20).upper()
         if self.cost:
             if self.price < self.cost:
                 self.cost = None
@@ -130,7 +132,6 @@ class Product(models.Model):
     ar_title = models.CharField(max_length=200, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
     product_token = models.CharField(max_length=24, unique=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True)
     # --------------------------------- showcase information -----------------------------------
     variant = models.ManyToManyField(Variant, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
@@ -160,13 +161,13 @@ class FlashProduct(models.Model):
     en_value = models.CharField(max_length=200, blank=True, null=True)
     fr_value = models.CharField(max_length=200, blank=True, null=True)
     ar_value = models.CharField(max_length=200, blank=True, null=True)
-
     # --------------------------------- media --------------------------------------------------
     def get_image_path(self, filename):
         return self.en_title.lower()
 
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- technical details --------------------------------------
+    upc = models.CharField(max_length=20, blank=True, null=True)
     product_token = models.CharField(max_length=24, null=True)
     valid_until = models.DateTimeField(blank=True, null=True)
     is_activated = models.BooleanField(default=False)
