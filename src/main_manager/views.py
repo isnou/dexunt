@@ -50,10 +50,10 @@ def manage_showcase(request, action):
         if request.method == 'POST':
             product_ids = request.POST.getlist('product_ids')
             for product_id in product_ids:
-                selected_product = Product.objects.all().get(id=product_id)
+                selected_product = Variant.objects.all().get(id=product_id)
                 selected_product.is_activated = True
                 selected_product.save()
-                selected_product.check_availability()
+                selected_product.clean()
             return redirect('manage-showcase', 'main')
     if action == 'publish_flash_products':
         if request.method == 'POST':
@@ -174,7 +174,7 @@ def manage_products(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
-            selected_variant.check_availability()
+            selected_variant.clean()
 
             request.session['product_id_token'] = product_id
             variant_form = VariantForm()
@@ -197,7 +197,7 @@ def manage_products(request, action):
 
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_product = Product.objects.all().get(id=product_id)
-            selected_variant.check_availability()
+            selected_variant.clean()
 
             variant_form = VariantForm()
             feature_form = FeatureForm()

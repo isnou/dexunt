@@ -107,7 +107,7 @@ class Variant(models.Model):
                 self.discount = None
         super().save()
 
-    def check_availability(self):
+    def clean(self):
         quantity = 0
         for option in self.option.all():
             if option.is_activated:
@@ -187,6 +187,8 @@ class FlashProduct(models.Model):
         if self.valid_until <= timezone.now():
             self.is_activated = False
         if self.quantity == 0:
+            self.is_activated = False
+        if not self.discount:
             self.is_activated = False
         super().save()
 
