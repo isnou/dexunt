@@ -422,7 +422,7 @@ def manage_flash(request, action):
 
             if quantity >= initial_option_quantity:
                 selected_option.quantity=0
-                selected_product=initial_option_quantity
+                selected_product.quantity=initial_option_quantity
             else:
                 selected_product.quantity=quantity
                 selected_option.quantity -= quantity
