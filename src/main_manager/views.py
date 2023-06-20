@@ -99,10 +99,13 @@ def manage_products(request, action):
 
             for variant in selected_product.variant.all():
                 for option in variant.option.all():
-                    if not FlashProduct.objects.all().filter(upc=option.upc).exists():
+                    if FlashProduct.objects.all().filter(upc=option.upc).exists():
                         if not FlashProduct.objects.all().get(upc=option.upc).is_activated:
                             option.is_activated = True
                             option.save()
+                    else:
+                        option.is_activated = True
+                        option.save()
                 variant.clean()
 
             return redirect('manage-products', 'main')
