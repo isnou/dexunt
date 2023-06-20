@@ -15,15 +15,15 @@ def home_page(request):
     signup_form = SignupForm()
 
     all_products = Variant.objects.all()[:10]
-    all_flash_products = FlashProduct.objects.all()[:10]
+    all_flash_products = FlashProduct.objects.all().order_by('?')[:10]
 
     for p in all_products:
         p.clean()
     for f in all_flash_products:
         f.clean()
 
-    published_products = all_products.filter(is_activated=True).order_by('?')
-    published_flash_products = all_flash_products.exclude(is_activated=False).order_by('?')[:3]
+    published_products = all_products.filter(is_activated=True)
+    published_flash_products = all_flash_products.exclude(is_activated=False)[:3]
 
     context = {
         'login_form': login_form,
