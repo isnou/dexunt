@@ -414,11 +414,11 @@ def manage_flash(request, action):
             selected_option = Option.objects.all().get(upc=selected_product.upc)
 
             if quantity > selected_option.quantity:
-                selected_product.quantity=quantity
-                selected_option.quantity-=quantity
-            else:
                 selected_product.quantity=selected_option.quantity
                 selected_option.quantity=0
+            else:
+                selected_product.quantity=quantity
+                selected_option.quantity-=quantity
 
             selected_product.save()
             selected_option.save()
