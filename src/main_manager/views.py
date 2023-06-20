@@ -401,12 +401,17 @@ def manage_flash(request, action):
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = FlashProduct.objects.all().get(id=product_id)
+            selected_option = Option.objects.all().get(upc=selected_product.upc)
+            selected_option.quantity += selected_product.quantity
+            selected_option.save()
             selected_product.delete()
             return redirect('manage-flash', 'main')
     if action == 'edit_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = FlashProduct.objects.all().get(id=product_id)
+            selected_option = Option.objects.all().get(upc=selected_product.upc)
+
             flash_form = FlashForm(request.POST, request.FILES, instance=selected_product)
             if flash_form.is_valid():
                 flash_form.save()
