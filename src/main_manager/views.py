@@ -394,7 +394,7 @@ def manage_flash(request, action):
                          product_token=selected_product.product_token,
                          upc=selected_option.upc,
                          cost=selected_option.cost,
-                         price=selected_product.price,
+                         price=selected_option.price,
                          ).save()
             return redirect('manage-flash', 'main')
     if action == 'delete_product':
