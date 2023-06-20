@@ -92,7 +92,7 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
             return redirect('manage-products', 'main')
-    if action == 'activate_product':
+    if action == 'clean_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
@@ -102,6 +102,9 @@ def manage_products(request, action):
                     if FlashProduct.objects.all().filter(upc=option.upc).exists():
                         if not FlashProduct.objects.all().get(upc=option.upc).is_activated:
                             option.is_activated = True
+                            option.save()
+                        else:
+                            option.is_activated = False
                             option.save()
                     else:
                         option.is_activated = True
