@@ -11,7 +11,7 @@ def admin_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    # ----- main page ------------
+    # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/home.html"
         context = {
@@ -45,7 +45,6 @@ def manage_showcase(request, action):
             'unpublished_flash_products': unpublished_flash_products,
         }
         return render(request, url, context)
-    # -----
     if action == 'publish_products':
         if request.method == 'POST':
             product_ids = request.POST.getlist('product_ids')
@@ -69,7 +68,7 @@ def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    # --------------- all products ---------------- #
+    # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         all_products = Product.objects.all()
@@ -81,14 +80,12 @@ def manage_products(request, action):
             'product_form': product_form,
         }
         return render(request, url, context)
-    # -----
     if action == 'add_new_product':
         if request.method == 'POST':
             new_product_form = ProductForm(request.POST)
             if new_product_form.is_valid():
                 new_product_form.save()
                 return redirect('manage-products', 'main')
-    # -----
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -127,7 +124,6 @@ def manage_products(request, action):
                 'variant_form': variant_form,
             }
             return render(request, url, context)
-    # -----
     if action == 'edit_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -136,7 +132,6 @@ def manage_products(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('manage-products', 'view_product')
-    # -----
     if action == 'add_new_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -156,7 +151,6 @@ def manage_products(request, action):
 
             selected_product.variant.add(new_variant)
             return redirect('manage-products', 'view_product')
-    # -----
     if action == 'delete_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -212,7 +206,6 @@ def manage_products(request, action):
                 'option_form': option_form,
             }
             return render(request, url, context)
-    # -----
     if action == 'edit_variant':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -223,7 +216,6 @@ def manage_products(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'add_image':
         if request.method == 'POST':
             product_id = request.session.get('product_id_token')
@@ -240,7 +232,6 @@ def manage_products(request, action):
             selected_variant.album.add(album)
 
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'delete_image':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -251,7 +242,6 @@ def manage_products(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'add_feature':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -264,7 +254,6 @@ def manage_products(request, action):
             selected_variant.feature.add(new_feature)
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'delete_feature':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -275,7 +264,6 @@ def manage_products(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'edit_feature':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -287,7 +275,6 @@ def manage_products(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'add_option':
         if request.method == 'POST':
             product_id = request.session.get('product_id_token')
@@ -305,7 +292,6 @@ def manage_products(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'delete_option':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -316,7 +302,6 @@ def manage_products(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'edit_option':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -328,7 +313,6 @@ def manage_products(request, action):
 
             request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
-    # -----
     if action == 'convert_option':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -362,7 +346,6 @@ def manage_flash(request, action):
             'flash_form': flash_form,
         }
         return render(request, url, context)
-    # -----
     if action == 'link_products':
         if request.method == 'POST':
             product_id = request.POST.get('product_id')

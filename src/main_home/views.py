@@ -14,13 +14,13 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
-    for p in Product.objects.all():
-        for v in p.variant.all():
-            v.brand=p.brand
-            v.save()
-
     all_products = Variant.objects.all()
     all_flash_products = FlashProduct.objects.all()
+
+    for p in all_products:
+        p.clean()
+    for f in all_flash_products:
+        f.clean()
 
     published_products = all_products.filter(is_activated=True).order_by('?')
     published_flash_products = all_flash_products.exclude(is_activated=False).order_by('?')[:3]
