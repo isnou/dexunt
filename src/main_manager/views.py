@@ -414,7 +414,7 @@ def manage_flash(request, action):
             selected_product = FlashProduct.objects.all().get(id=product_id)
             selected_option = Option.objects.all().get(upc=selected_product.upc)
 
-            if quantity > selected_option.quantity:
+            if quantity >= selected_option.quantity:
                 selected_product.quantity = selected_option.quantity
                 selected_option.quantity = 0
             else:
