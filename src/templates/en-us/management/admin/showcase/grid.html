@@ -58,7 +58,7 @@
             <div class="avatar-group avatar-group-sm avatar-circle card-avatar-group">
               {% for product in all_products.all %}
               <a class="avatar" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ product.en_title }}">
-                <img class="avatar-img" src="{% get_media_prefix %}{{ product.selected_image }}">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ product.all.0.album.all.0.image }}">
               </a>
               {% endfor %}
             </div>
