@@ -92,6 +92,20 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
             return redirect('manage-products', 'main')
+    if action == 'activate_product':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+
+            for variant in selected_product.variant.all():
+                for option in variant.option.all():
+                    if not FlashProduct.objects.all().get(upc=option.upc).exists():
+                        if not FlashProduct.objects.all().get(upc=option.upc).is_activated:
+                            option.is_activated = True
+                            option.save()
+                variant.clean()
+            
+            return redirect('manage-products', 'main')
     # --------------- selected product ------------ #
     if action == 'view_product':
         if request.method == 'POST':
