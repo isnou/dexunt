@@ -419,7 +419,10 @@ def manage_flash(request, action):
                 selected_option.quantity=0
             else:
                 selected_product.quantity=quantity
-                selected_option.quantity-=quantity
+                if selected_product.quantity > selected_option.quantity:
+                    selected_option.quantity-=quantity
+                else:
+                    selected_option.quantity += quantity
 
             selected_product.save()
             selected_option.is_activated = False
