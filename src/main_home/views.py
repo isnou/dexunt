@@ -14,8 +14,8 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
-    all_products = Variant.objects.all()
-    all_flash_products = FlashProduct.objects.all()
+    all_products = Variant.objects.all()[:10]
+    all_flash_products = FlashProduct.objects.all()[:10]
 
     for p in all_products:
         p.clean()
