@@ -414,21 +414,14 @@ def manage_flash(request, action):
             selected_product = FlashProduct.objects.all().get(id=product_id)
             selected_option = Option.objects.all().get(upc=selected_product.upc)
 
-            initial_option_quantity = selected_option.quantity
-
-
-            selected_option.quantity += selected_product.quantity
-            selected_product.quantity = 0
-
-            if quantity >= initial_option_quantity:
-                selected_option.quantity=0
-                selected_product.quantity=initial_option_quantity
+            if quantity >= selected_option.quantity:
+                selected_product.quantity = selected_option.quantity
             else:
-                selected_product.quantity=quantity
-                selected_option.quantity -= quantity
+                selected_product.quantity = quantity
 
             selected_product.save()
-            selected_option.is_activated = False
+            if selected_product.quantity and selected_option.is_activated:
+                selected_option.is_activated = False
             selected_option.save()
 
             flash_form = FlashForm(request.POST, request.FILES, instance=selected_product)
