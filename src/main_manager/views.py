@@ -409,7 +409,7 @@ def manage_flash(request, action):
     if action == 'edit_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
-            quantity = request.POST.get('quantity', False)
+            quantity = int(request.POST.get('quantity', False))
             selected_product = FlashProduct.objects.all().get(id=product_id)
             selected_option = Option.objects.all().get(upc=selected_product.upc)
 
