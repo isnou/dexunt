@@ -75,11 +75,6 @@ def manage_products(request, action):
         all_products = Product.objects.all()
         product_form = ProductForm()
 
-        for p in all_products:
-            for v in p.variant.all():
-                for o in v.option.all():
-                    o.save()
-
         context = {
             'nav_side': 'products',
             'all_products': all_products,
