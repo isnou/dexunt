@@ -106,6 +106,7 @@ def manage_products(request, action):
                     else:
                         option.is_activated = True
                         option.save()
+                variant.is_activated = True
                 variant.clean()
 
             return redirect('manage-products', 'main')
