@@ -24,7 +24,7 @@ def home_page(request):
         f.clean()
 
     published_products = all_products[:10]
-    published_flash_products = all_flash_products[:3]
+    published_flash_products = all_flash_products[:4]
 
     context = {
         'login_form': login_form,
