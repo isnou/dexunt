@@ -76,11 +76,11 @@
             <!-- hr -->
             <hr class="my-6">
             <div class="mb-5">
+              <div class="row">
               {% if selected_variant.option.all.count > 1 %}
               {% for option in selected_variant.option.all %}
 
               {% if option.has_image %}
-
               <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1">
                 <div class="card mb-3 card-lift">
                   <div class="card-body text-center py-6">
@@ -91,15 +91,14 @@
                   </div>
                 </div>
               </a>
-
-
-
               {% else %}
               <button type="button" href="#{{ option.en_value }}" class="btn btn-outline-secondary">{{ option.en_value }}</button>
               {% endif %}
 
               {% endfor %}
               {% endif %}
+              </div>
+
             </div>
             <div>
 
