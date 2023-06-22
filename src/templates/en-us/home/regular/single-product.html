@@ -123,7 +123,7 @@
                 {% for option in selected_variant.option.all %}
 
                 {% if option.is_activated %}
-                <a href="{% url 'product-router' product.id option.id 'no' 'regular_product' %}" class="text-decoration-none text-inherit" tabindex="-1">
+                <a href="{% url 'product-router' selected_variant.id option.id 'no' 'regular_product' %}" class="text-decoration-none text-inherit" tabindex="-1">
                   <div class="col card card-lift">
                     <div class="card-body text-center py-2">
                       {% if option.has_image %}
