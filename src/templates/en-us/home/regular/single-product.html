@@ -103,7 +103,7 @@
             <!-- hr -->
             <hr class="my-6">
             <div class="mb-5">
-              <div class="row row-cols-sm-3 mb-3">
+              <div class="row row-cols-sm-{{ selected_variant.option.all.count }} mb-3">
                 {% if selected_variant.option.all.count > 1 %}
                 {% for option in selected_variant.option.all %}
 
@@ -132,7 +132,6 @@
                   </div>
                 </div>
                 {% endif %}
-
 
                 {% endfor %}
                 {% endif %}
