@@ -80,7 +80,7 @@
               <div class="row row-cols-sm-{{ selected_product.variant.all.count }} mb-3">
                 {% for variant in selected_product.variant.all %}
                 {% if variant.is_activated %}
-                <a href="{% url 'regular-single-product-page' variant.id 'main' %}" class="text-decoration-none text-inherit" tabindex="-1">
+                <a href="{% url 'regular-single-product-page' product.id 0 'main' 'main' %}" class="text-decoration-none text-inherit" tabindex="-1">
                   <div class="col card {% if variant.id == selected_variant.id %} border border-danger border-3 {% else %} card-lift {% endif %}">
                     <div class="card-body text-center py-2">
                       <img src="{% get_media_prefix %}{{ variant.album.all.0.image }}"  class="rounded" width="56" height="56">
@@ -138,7 +138,7 @@
               </div>
 
             </div>
-            
+
             <div class="mt-3 row justify-content-start g-2 align-items-center">
 
               <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
