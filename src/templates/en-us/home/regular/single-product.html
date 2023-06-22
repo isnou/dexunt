@@ -77,7 +77,7 @@
             <!-- hr -->
             <hr class="my-6">
             <div class="mb-5">
-              <div class="row row-cols-sm-3 mb-3">
+              <div class="row row-cols-sm-{{ selected_product.variant.all.count }} mb-3">
                 {% for variant in selected_product.variant.all %}
                 {% if variant.is_activated %}
                 <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1">
