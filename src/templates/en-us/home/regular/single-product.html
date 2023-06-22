@@ -54,7 +54,11 @@
             <!-- content -->
             <a href="shop-single-2.html#!" class="mb-4 d-block">{{ selected_variant.brand }}</a>
             <!-- heading -->
-            <h2 class="mb-1">{{ selected_variant.en_title }} {{ selected_variant.en_spec }}</h2>
+            <h2 class="mb-1">{{ selected_variant.en_title }} {{ selected_variant.en_spec }}
+              {% if selected_variant.option.all.count == 1 %}
+              {{ selected_variant.option.all.o.en_value }}
+              {% endif %}
+            </h2>
             <div class="mb-4">
               <!-- rating -->
               <!-- rating --> <small class="text-warning"> <i class="bi bi-star-fill"></i>
@@ -63,16 +67,21 @@
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-half"></i></small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a></div>
             <div class="fs-4">
-              <!-- price --><span class="fw-bold text-dark">$32</span> <span
-                class="text-decoration-line-through text-muted">$35</span><span><small class="fs-6 ms-2 text-danger">26%
-                  Off</small></span>
+              {% if selected_variant.discount %}
+              <span class="fw-bold text-dark">DZD {{ selected_variant.discount }}</span>
+              <span class="text-decoration-line-through text-muted">DZD {{ selected_variant.price }}</span>
+              {% else %}
+              <span class="fw-bold text-dark">DZD {{ selected_variant.price }}</span>
+              {% endif %}
             </div>
             <!-- hr -->
             <hr class="my-6">
-            <div class="mb-5"><button type="button" class="btn btn-outline-secondary">250g</button>
-              <!-- btn --> <button type="button" class="btn btn-outline-secondary">500g</button>
-              <!-- btn --> <button type="button" class="btn btn-outline-secondary">1kg</button></div>
-              <div>
+            <div class="mb-5">
+              <button type="button" class="btn btn-outline-secondary">250g</button>
+              <button type="button" class="btn btn-outline-secondary">500g</button>
+              <button type="button" class="btn btn-outline-secondary">1kg</button>
+            </div>
+            <div>
 
 
                 <!-- input -->
