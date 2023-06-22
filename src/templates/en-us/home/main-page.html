@@ -227,7 +227,7 @@
                     <div class="text-center position-relative">
                         {% if not product.is_available %}
                         <div class=" position-absolute top-0 start-0">
-                            <span class="badge bg-danger">Out Of Stock</span>
+                            <span class="badge bg-gray-400">Out Of Stock</span>
                         </div>
                         {% endif %}
                         <a href="{% url 'product-router' product.id 0 'no' 'regular_product' %}">
