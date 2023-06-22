@@ -76,9 +76,9 @@
             <!-- hr -->
             <hr class="my-6">
             <div class="mb-5">
-              <button type="button" class="btn btn-outline-secondary">250g</button>
-              <button type="button" class="btn btn-outline-secondary">500g</button>
-              <button type="button" class="btn btn-outline-secondary">1kg</button>
+              {% if selected_variant.option.all.count > 1 %}
+              <button type="button" class="btn btn-outline-secondary">{{ selected_variant.option.all.0.en_value }}</button>
+              {% endif %}
             </div>
             <div>
 
