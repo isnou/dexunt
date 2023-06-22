@@ -194,13 +194,28 @@
                 <tbody>
                   <tr>
                     <td>Product Code:</td>
-                    <td>FBB00255</td>
+                    <td>{{ selected_product.product_token }}</td>
 
                   </tr>
                   <tr>
                     <td>Availability:</td>
-                    <td>In Stock</td>
+                    {% if selected_option %}
 
+                    {% if selected_option.quantity %}
+                    <td>In Stock</td>
+                    {% else %}
+                    <td>Out Of Stock</td>
+                    {% endif %}
+
+                    {% else %}
+
+                    {% if selected_variant.is_available %}
+                    <td>In Stock</td>
+                    {% else %}
+                    <td>Out Of Stock</td>
+                    {% endif %}
+
+                    {% endif %}
                   </tr>
                   <tr>
                     <td>Type:</td>
