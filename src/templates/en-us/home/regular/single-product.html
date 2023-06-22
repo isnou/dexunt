@@ -54,18 +54,17 @@
             <!-- content -->
             <a href="shop-single-2.html#!" class="mb-4 d-block">{{ selected_variant.brand }}</a>
             <!-- heading -->
-            <h2 class="mb-1">{{ selected_variant.en_title }} {{ selected_variant.en_spec }}
-              {% if selected_variant.option.all.count == 1 %}
-              {{ selected_variant.option.all.0.en_value }}
-              {% endif %}
-            </h2>
+            <h2 class="mb-1">{{ selected_variant.en_title }} {{ selected_variant.en_spec }}</h2>
+
+            {% if selected_variant.option.all.count == 1 %}
+            <span class="fw-bold text-muted mb-1">{{ selected_variant.option.all.0.en_value }}</span>
+            {% endif %}
+
             <div class="mb-4">
-              <!-- rating -->
-              <!-- rating --> <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i></small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a></div>
+              <small class="text-warning">
+                <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+              </small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a></div>
             <div class="fs-4">
               {% if selected_variant.discount %}
               <span class="fw-bold text-dark">DZD {{ selected_variant.discount }}</span>
