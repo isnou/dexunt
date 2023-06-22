@@ -42,21 +42,11 @@
 
           </div>
           <div class="slider slider-nav mt-4">
+            {% for album in selected_variant.album.all %}
             <div>
-              <img src="../assets/images/products/product-single-img-1.jpg" alt="" class="w-100 rounded">
+              <img src="{% get_media_prefix %}{{ album.image }}" alt="" class="w-100 rounded">
             </div>
-              <div>
-              <img src="../assets/images/products/product-single-img-2.jpg" alt="" class="w-100 rounded">
-            </div>
-              <div>
-              <img src="../assets/images/products/product-single-img-3.jpg" alt="" class="w-100 rounded">
-            </div>
-              <div>
-              <img src="../assets/images/products/product-single-img-1.jpg" alt="" class="w-100 rounded">
-            </div>
-              <div>
-              <img src="../assets/images/products/product-single-img-4.jpg" alt="" class="w-100 rounded">
-            </div>
+            {% endfor %}
           </div>
         </div>
 
