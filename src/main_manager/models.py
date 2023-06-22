@@ -53,7 +53,6 @@ class Option(models.Model):
     sale = models.IntegerField(default=0)
     upc = models.CharField(max_length=20, unique=True, null=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
-    created_at = models.DateTimeField(auto_now_add=True)
     # --------------------------------- inventory information ----------------------------------
     cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=0)
@@ -94,6 +93,7 @@ class Variant(models.Model):
     like = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
+    created_at = models.DateTimeField(blank=True, null=True)
     # --------------------------------- showcase information -----------------------------------
     brand = models.CharField(max_length=80, blank=True, null=True)
     option = models.ManyToManyField(Option, blank=True)
@@ -123,6 +123,10 @@ class Variant(models.Model):
                 deactivate = False
         if deactivate:
             self.is_activated = False
+        super().save()
+
+    def reset(self):
+        self.created_at = timezone.now()
         super().save()
 
 class Product(models.Model):
