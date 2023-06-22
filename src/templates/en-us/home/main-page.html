@@ -230,7 +230,7 @@
                             <span class="badge bg-danger">Discount</span>
                         </div>
                         {% endif %}
-                        <a href="{% url 'product-router' product.id 0 'main' 'single_product' %}">
+                        <a href="{% url 'product-router' product.id 0 'no' 'regular_product' %}">
                             <img src="{% get_media_prefix %}{{ product.album.all.0.image }}" class="mb-3 img-fluid">
                         </a>
                     </div>

@@ -57,8 +57,7 @@ def product_router(request, product_id, option_id, user_token, action):
     direction = request.session.get('language')
     url = direction + "/home/regular/single-product.html"
 
-    if action == 'single_product':
-
+    if action == 'regular_product':
         context = {
             'selected_option': selected_option,
             'selected_variant': selected_variant,
