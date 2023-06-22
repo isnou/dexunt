@@ -14,7 +14,7 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
-    all_products = Variant.objects.all().filter(is_activated=True).order_by('?')[:15]
+    all_products = Variant.objects.all().filter(is_activated=True)[:15]
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
 
     for p in all_products:
