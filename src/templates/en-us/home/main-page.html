@@ -225,9 +225,9 @@
             <div class="card card-product border-0">
                 <div class="card-body">
                     <div class="text-center position-relative">
-                        {% if product.discount %}
+                        {% if not product.is_available %}
                         <div class=" position-absolute top-0 start-0">
-                            <span class="badge bg-danger">Discount</span>
+                            <span class="badge bg-danger">Out Of Stock</span>
                         </div>
                         {% endif %}
                         <a href="{% url 'product-router' product.id 0 'no' 'regular_product' %}">
