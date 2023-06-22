@@ -76,11 +76,14 @@
             <!-- hr -->
             <hr class="my-6">
             <div class="mb-5">
-
               <div class="row row-cols-sm-3 mb-3">
                 {% if selected_variant.option.all.count > 1 %}
                 {% for option in selected_variant.option.all %}
-                <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1">
+                {% if option.is_activated %}
+                {% else %}
+                  {% endif %}
+                <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1" aria-disabled="true">
+
                   <div class="col card card-lift">
                     <div class="card-body text-center py-2">
                       {% if option.has_image %}
@@ -91,6 +94,8 @@
                     </div>
                   </div>
                 </a>
+
+
                 {% endfor %}
                 {% endif %}
               </div>
