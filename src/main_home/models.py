@@ -16,9 +16,13 @@ class SelectedProduct(models.Model):
     option_id = models.PositiveIntegerField(blank=True, null=True)
     variant_id = models.PositiveIntegerField(blank=True, null=True)
 
-    en_name = models.CharField(max_length=600, blank=True, null=True)
-    fr_name = models.CharField(max_length=600, blank=True, null=True)
-    ar_name = models.CharField(max_length=600, blank=True, null=True)
+    en_name = models.CharField(max_length=400, blank=True, null=True)
+    fr_name = models.CharField(max_length=400, blank=True, null=True)
+    ar_name = models.CharField(max_length=400, blank=True, null=True)
+
+    en_detail = models.CharField(max_length=400, blank=True, null=True)
+    fr_detail = models.CharField(max_length=400, blank=True, null=True)
+    ar_detail = models.CharField(max_length=400, blank=True, null=True)
 
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=1)

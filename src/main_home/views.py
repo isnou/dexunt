@@ -42,3 +42,18 @@ def change_language(request):
 
         if page == 'home-page':
             return redirect('home-page')
+
+def regular_single_product(request, product_id, user_token):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    url = direction + "/home/regular/single-product.html"
+
+    selected_variant = Variant.objects.all().get(id=product_id)
+    selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
+
+    context = {
+        'selected_variant': selected_variant,
+        'selected_product': selected_product,
+    }
+    return render(request, url, context)
