@@ -34,7 +34,7 @@
             {% if selected_option %}
             {% if selected_option.has_image %}
             <div>
-              <div class="zoom" onmousemove="zoom(event)" style="background-image: url('{% get_media_prefix %}{{ album.image }}')">
+              <div class="zoom" onmousemove="zoom(event)" style="background-image: url('{% get_media_prefix %}{{ selected_option.image }}')">
                 <img src="{% get_media_prefix %}{{ selected_option.image }}" alt="">
               </div>
             </div>
@@ -51,14 +51,6 @@
           </div>
 
           <div class="slider slider-nav mt-4">
-            {% if selected_option %}
-            {% if selected_option.has_image %}
-            <div>
-              <img src="{% get_media_prefix %}{{ selected_option.image }}" alt="" class="w-100 rounded">
-            </div>
-            {% endif %}
-            {% endif %}
-
             {% for album in selected_variant.album.all %}
             <div>
               <img src="{% get_media_prefix %}{{ album.image }}" alt="" class="w-100 rounded">
