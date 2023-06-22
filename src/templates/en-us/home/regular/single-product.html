@@ -78,7 +78,13 @@
             <div class="mb-5">
               {% if selected_variant.option.all.count > 1 %}
               {% for option in selected_variant.option.all %}
+              
+              {% if option.has_image %}
+              <img src="{% get_media_prefix %}{{ option.image }}" alt="" class="w-100 rounded">
+              {% else %}
               <button type="button" href="#{{ option.en_value }}" class="btn btn-outline-secondary">{{ option.en_value }}</button>
+              {% endif %}
+
               {% endfor %}
               {% endif %}
             </div>
