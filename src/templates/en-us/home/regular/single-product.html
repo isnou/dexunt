@@ -33,7 +33,7 @@
           <div class="slider slider-for">
             {% for album in selected_variant.album.all %}
             <div>
-              <div class="zoom" onmousemove="zoom(event)" style="background-image: url{% get_media_prefix %}{{ album.image }}">
+              <div class="zoom" onmousemove="zoom(event)" style="background-image: url('{% get_media_prefix %}{{ album.image }}')">
                 <img src="{% get_media_prefix %}{{ album.image }}" alt="">
               </div>
             </div>
