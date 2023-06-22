@@ -76,27 +76,24 @@
             <!-- hr -->
             <hr class="my-6">
             <div class="mb-5">
-              <div class="row">
-              {% if selected_variant.option.all.count > 1 %}
-              {% for option in selected_variant.option.all %}
 
-              {% if option.has_image %}
-              <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1">
-                <div class="col-sm-3 card mb-3 card-lift">
-                  <div class="card-body text-center py-6">
-                    <div class="my-5">
-                      <img src="{% get_media_prefix %}{{ option.image }}"  class="rounded" width="56" height="56">
+              <div class="row row-cols-sm-3 mb-3">
+                {% if selected_variant.option.all.count > 1 %}
+                {% for option in selected_variant.option.all %}
+                <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1">
+                  <div class="col card card-lift">
+                    <div class="card-body text-center py-6">
+                      {% if option.has_image %}
+                      <div class="my-5">
+                        <img src="{% get_media_prefix %}{{ option.image }}"  class="rounded" width="56" height="56">
+                      </div>
+                      {% endif %}
+                      <div class="text-truncate">{{ option.en_value }}</div>
                     </div>
-                    <div class="text-truncate">{{ option.en_value }}</div>
                   </div>
-                </div>
-              </a>
-              {% else %}
-              <button type="button" href="#{{ option.en_value }}" class="btn btn-outline-secondary">{{ option.en_value }}</button>
-              {% endif %}
-
-              {% endfor %}
-              {% endif %}
+                </a>
+                {% endfor %}
+                {% endif %}
               </div>
 
             </div>
