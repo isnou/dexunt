@@ -82,11 +82,22 @@
                 <i class="bi bi-star-half"></i>
               </small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a></div>
             <div class="fs-4">
+              {% if selected_option %}
+              {% if selected_option.discount %}
+              <span class="text-decoration-line-through text-muted"><small>DZD {{ selected_option.price }}</small></span>
+              <span class="fw-bold text-dark">DZD {{ selected_option.discount }}</span>
+              {% else %}
+              <span class="fw-bold text-dark">DZD {{ selected_option.price }}</span>
+              {% endif %}
+
+              {% else %}
+
               {% if selected_variant.discount %}
               <span class="text-decoration-line-through text-muted"><small>DZD {{ selected_variant.price }}</small></span>
               <span class="fw-bold text-dark">DZD {{ selected_variant.discount }}</span>
               {% else %}
               <span class="fw-bold text-dark">DZD {{ selected_variant.price }}</span>
+              {% endif %}
               {% endif %}
             </div>
 
