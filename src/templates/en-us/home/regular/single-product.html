@@ -31,6 +31,16 @@
       <div class="row">
         <div class="col-md-6">
           <div class="slider slider-for">
+            {% if selected_option %}
+            {% if selected_option.has_image %}
+            <div>
+              <div class="zoom" onmousemove="zoom(event)" style="background-image: url('{% get_media_prefix %}{{ album.image }}')">
+                <img src="{% get_media_prefix %}{{ selected_option.image }}" alt="">
+              </div>
+            </div>
+            {% endif %}
+            {% endif %}
+
             {% for album in selected_variant.album.all %}
             <div>
               <div class="zoom" onmousemove="zoom(event)" style="background-image: url('{% get_media_prefix %}{{ album.image }}')">
@@ -60,6 +70,10 @@
             <span class="fw-bold text-muted mb-1">{{ selected_variant.option.all.0.en_value }}</span>
             {% endif %}
 
+            {% if selected_option %}
+            <span class="fw-bold text-muted mb-1">{{ selected_option.en_value }}</span>
+            {% endif %}
+
             <div class="mb-4">
               <small class="text-warning">
                 <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
@@ -73,6 +87,7 @@
               <span class="fw-bold text-dark">DZD {{ selected_variant.price }}</span>
               {% endif %}
             </div>
+
             {% if selected_product.variant.all.count > 1 %}
             <!-- hr -->
             <hr class="my-6">
@@ -108,7 +123,7 @@
                 {% for option in selected_variant.option.all %}
 
                 {% if option.is_activated %}
-                <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1">
+                <a href="{% url 'product-router' product.id option.id 'no' 'regular_product' %}" class="text-decoration-none text-inherit" tabindex="-1">
                   <div class="col card card-lift">
                     <div class="card-body text-center py-2">
                       {% if option.has_image %}
