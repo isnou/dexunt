@@ -78,9 +78,22 @@
             <div class="mb-5">
               {% if selected_variant.option.all.count > 1 %}
               {% for option in selected_variant.option.all %}
-              
+
               {% if option.has_image %}
-              <img src="{% get_media_prefix %}{{ option.image }}" alt="" class="w-100 rounded">
+
+              <a href="shop-grid.html" class="text-decoration-none text-inherit" tabindex="-1">
+                <div class="card mb-3 card-lift">
+                  <div class="card-body text-center py-6">
+                    <div class="my-5">
+                      <img src="{% get_media_prefix %}{{ option.image }}"  class="rounded" width="56" height="56">
+                    </div>
+                    <div class="text-truncate">{{ option.en_value }}</div>
+                  </div>
+                </div>
+              </a>
+
+
+
               {% else %}
               <button type="button" href="#{{ option.en_value }}" class="btn btn-outline-secondary">{{ option.en_value }}</button>
               {% endif %}
