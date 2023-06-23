@@ -445,21 +445,21 @@
             </tr>
             <tr>
               <!-- title -->
-              <td>English title :{{ description.en_title }}</td>
+              <td>{{ description.en_title|title }} :</td>
               <!-- content -->
-              <td>English content :{{ description.en_content }}</td>
+              <td>{{ description.en_content }}</td>
             </tr>
             <tr>
               <!-- title -->
-              <td>French title :{{ description.fr_title }}</td>
+              <td>{{ description.fr_title|title }} :</td>
               <!-- content -->
-              <td>French content :{{ description.fr_content }}</td>
+              <td>{{ description.fr_content }}</td>
             </tr>
             <tr>
-              <!-- title -->
-              <td>Arabic title :{{ description.ar_title }}</td>
               <!-- content -->
-              <td>Arabic content :{{ description.ar_content }}</td>
+              <td>{{ description.ar_content }}</td>
+              <!-- title -->
+              <td>:{{ description.ar_title }}</td>
             </tr>
 
             <!-- edit description modal -->
@@ -484,98 +484,97 @@
 
                       <!-- edit option form -->
                       <form action="{% url 'manage-products' 'edit_description' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
-            {% csrf_token %}
-            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+                        <div class="row mb-4">
+                          <span class="divider-center mb-2">Image</span>
+                          <!-- description photo -->
+                          {% if description.image %}
+                          <div class="mb-3">
+                            <div class="col text-center">
+                              <label class="avatar avatar-xxl avatar-uploader" for="description_existing_photo_uploader_{{ description.id }}" style="width: 50%; height: 50%;">
+                                <img id="description_existing_photo_{{ description.id }}" class="avatar-img" src="{% get_media_prefix %}{{ description.image }}" style="width: 50%;">
+                                <input type="file" class="js-file-attach avatar-uploader-input" name="{{ description_form.image.name }}" id="description_existing_photo_uploader_{{ description.id }}" data-hs-file-attach-options='{
+                                    "textTarget": "#description_existing_photo_{{ description.id }}",
+                                    "mode": "image",
+                                    "targetAttr": "src",
+                                    "allowTypes": [".png", ".jpeg", ".jpg"]
+                                    }'>
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="mb-3">
+                            <div class="col text-center">
+                              <label class="avatar avatar-xxl avatar-uploader" for="description_photo_uploader_{{ description.id }}" style="width: 50%; height: 50%;">
+                                <img id="description_photo_{{ description.id }}" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 50%;">
+                                <input type="file" class="js-file-attach avatar-uploader-input" name="{{ description_form.image.name }}" id="description_photo_uploader_{{ description.id }}" data-hs-file-attach-options='{
+                                    "textTarget": "#description_photo_{{ description.id }}",
+                                    "mode": "image",
+                                    "targetAttr": "src",
+                                    "allowTypes": [".png", ".jpeg", ".jpg"]
+                                    }'>
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                          <!-- end description photo -->
 
-            <div class="row mb-4">
-              <span class="divider-center mb-2">Image</span>
-              <!-- description photo -->
-              {% if description.image %}
-              <div class="mb-3">
-                <div class="col text-center">
-                  <label class="avatar avatar-xxl avatar-uploader" for="description_existing_photo_uploader_{{ description.id }}" style="width: 50%; height: 50%;">
-                    <img id="description_existing_photo_{{ description.id }}" class="avatar-img" src="{% get_media_prefix %}{{ description.image }}" style="width: 50%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ description_form.image.name }}" id="description_existing_photo_uploader_{{ description.id }}" data-hs-file-attach-options='{
-                        "textTarget": "#description_existing_photo_{{ description.id }}",
-                        "mode": "image",
-                        "targetAttr": "src",
-                        "allowTypes": [".png", ".jpeg", ".jpg"]
-                        }'>
-                  </label>
-                </div>
-              </div>
-              {% else %}
-              <div class="mb-3">
-                <div class="col text-center">
-                  <label class="avatar avatar-xxl avatar-uploader" for="description_photo_uploader_{{ description.id }}" style="width: 50%; height: 50%;">
-                    <img id="description_photo_{{ description.id }}" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 50%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ description_form.image.name }}" id="description_photo_uploader_{{ description.id }}" data-hs-file-attach-options='{
-                        "textTarget": "#description_photo_{{ description.id }}",
-                        "mode": "image",
-                        "targetAttr": "src",
-                        "allowTypes": [".png", ".jpeg", ".jpg"]
-                        }'>
-                  </label>
-                </div>
-              </div>
-              {% endif %}
-              <!-- end description photo -->
+                          <span class="divider-center mb-2">Title</span>
 
-              <span class="divider-center mb-2">Title</span>
+                          <!-- english title -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">english</span>
+                            <input type="text" class="form-control" name="{{ description_form.en_title.name }}" value="{{ description.en_title }}" required>
+                            <span class="invalid-feedback text-center">required field.</span>
+                          </div>
+                          <!-- end english title -->
 
-              <!-- english title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <input type="text" class="form-control" name="{{ description_form.en_title.name }}" value="{{ description.en_title }}" required>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end english title -->
+                          <!-- french title -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">french</span>
+                            <input type="text" class="form-control" name="{{ description_form.fr_title.name }}" value="{{ description.fr_title }}">
+                          </div>
+                          <!-- end french title -->
 
-              <!-- french title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <input type="text" class="form-control" name="{{ description_form.fr_title.name }}" value="{{ description.fr_title }}">
-              </div>
-              <!-- end french title -->
+                          <!-- arabic title -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">arabic</span>
+                            <input type="text" class="form-control" name="{{ description_form.ar_title.name }}" value="{{ description.ar_title }}" dir="rtl">
+                          </div>
+                          <!-- end arabic title -->
 
-              <!-- arabic title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <input type="text" class="form-control" name="{{ description_form.ar_title.name }}" value="{{ description.ar_title }}" dir="rtl">
-              </div>
-              <!-- end arabic title -->
+                          <span class="divider-center mb-2">Content</span>
 
-              <span class="divider-center mb-2">Content</span>
+                          <!-- product english content -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">english</span>
+                            <textarea class="form-control" name="{{ description_form.en_content.name }}" placeholder="{{ description.en_content }}" rows="4"></textarea>
+                          </div>
+                          <!-- end product english description -->
 
-              <!-- product english content -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <textarea class="form-control" name="{{ description_form.en_content.name }}" placeholder="{{ description.en_content }}" rows="4"></textarea>
-              </div>
-              <!-- end product english description -->
+                          <!-- product french content -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">french</span>
+                            <textarea class="form-control" name="{{ description_form.fr_content.name }}" placeholder="{{ description.fr_content }}" rows="4"></textarea>
+                          </div>
+                          <!-- end product french content -->
 
-              <!-- product french content -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <textarea class="form-control" name="{{ description_form.fr_content.name }}" placeholder="{{ description.fr_content }}" rows="4"></textarea>
-              </div>
-              <!-- end product french content -->
+                          <!-- product arabic content -->
+                          <div class="input-group mb-2">
+                            <span class="input-group-text" style="width: 25%;">arabic</span>
+                            <textarea class="form-control" name="{{ description_form.ar_content.name }}" placeholder="{{ description.ar_title }}" rows="4" dir="rtl"></textarea>
+                          </div>
+                          <!-- end product arabic content -->
+                        </div>
 
-              <!-- product arabic content -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <textarea class="form-control" name="{{ description_form.ar_content.name }}" placeholder="{{ description.ar_title }}" rows="4" dir="rtl"></textarea>
-              </div>
-              <!-- end product arabic content -->
-            </div>
-
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-          </form>
+                        <!-- submit -->
+                        <div class="d-grid mb-4">
+                          <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+                        </div>
+                        <!-- end submit -->
+                      </form>
 
 
                     </div>
