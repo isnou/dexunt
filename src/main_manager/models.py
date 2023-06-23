@@ -3,7 +3,8 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from add_ons import functions
 
-# -------------------- features -------------------- #
+# --------------------- detail --------------------- #
+
 class Review(models.Model):
     # --------------------------------- feature types ------------------------------------------
     client_name = models.CharField(max_length=100, blank=True, null=True)
@@ -32,6 +33,21 @@ class Feature(models.Model):
     en_content = models.TextField(max_length=500, null=True)
     fr_content = models.TextField(max_length=500, null=True)
     ar_content = models.TextField(max_length=500, null=True)
+
+class Description(models.Model):
+    # --------------------------------- feature title ------------------------------------------
+    en_title = models.CharField(max_length=100, blank=True, null=True)
+    fr_title = models.CharField(max_length=100, blank=True, null=True)
+    ar_title = models.CharField(max_length=100, blank=True, null=True)
+    # --------------------------------- feature value ------------------------------------------
+    en_content = models.TextField(max_length=500, null=True)
+    fr_content = models.TextField(max_length=500, null=True)
+    ar_content = models.TextField(max_length=500, null=True)
+    # --------------------------------- media --------------------------------------------------
+    file_name = models.CharField(max_length=500, blank=True)
+    def get_image_path(self, filename):
+        return self.file_name.lower()
+    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
 
 # ---------------- regular showcase ---------------- #
@@ -137,11 +153,9 @@ class Product(models.Model):
     # --------------------------------- technical details --------------------------------------
     product_token = models.CharField(max_length=24, unique=True, null=True)
     # --------------------------------- showcase information -----------------------------------
-    variant = models.ManyToManyField(Variant, blank=True)
     brand = models.CharField(max_length=80, blank=True, null=True)
-    en_description = models.CharField(max_length=800, blank=True, null=True)
-    fr_description = models.CharField(max_length=800, blank=True, null=True)
-    ar_description = models.CharField(max_length=800, blank=True, null=True)
+    variant = models.ManyToManyField(Variant, blank=True)
+    description = models.ManyToManyField(Description, blank=True)
     en_note = models.CharField(max_length=500, blank=True, null=True)
     fr_note = models.CharField(max_length=500, blank=True, null=True)
     ar_note = models.CharField(max_length=500, blank=True, null=True)
