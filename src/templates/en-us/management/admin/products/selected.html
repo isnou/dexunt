@@ -485,7 +485,7 @@
                       <!-- edit option form -->
                       <form action="{% url 'manage-products' 'edit_description' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+                        <input type="hidden" name="description_id" value='{{ description.id }}'>
 
                         <div class="row mb-4">
                           <span class="divider-center mb-2">Image</span>
@@ -613,7 +613,7 @@
 
     <form action="{% url 'manage-products' 'delete_description' %}" id="delete_description_form_{{ description.id }}" class="js-validate need-validate" novalidate method="post">
       {% csrf_token %}
-      <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+      <input type="hidden" name="description_id" value='{{ description.id }}'>
     </form>
     {% endfor %}
   </div>
