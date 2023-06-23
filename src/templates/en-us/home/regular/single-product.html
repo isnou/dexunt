@@ -137,17 +137,7 @@
 
                 {% if option.is_activated %}
                 <a href="{% url 'product-router' selected_variant.id option.id 'no' 'regular_product' %}" class="text-decoration-none text-inherit" tabindex="-1">
-                  <div class="col card
-                  {% if option.id == selected_option.id %}
-                  {% if option.has_image %}
-                  border border-gray-300 border-3
-                  {% else %}
-                  border-0 bg-light
-                  {% endif %}
-                  {% else %}
-                  card-lift
-                  {% endif %}">
-
+                  <div class="col card {% if option.id == selected_option.id %} {% if option.has_image %} border border-gray-300 border-3 {% else %} border-0 bg-light {% endif %} {% else %} card-lift {% endif %}">
                     <div class="card-body text-center py-2">
                       {% if option.has_image %}
                       <img src="{% get_media_prefix %}{{ option.image }}"  class="rounded" width="56" height="56">
@@ -179,7 +169,7 @@
 
             <div class="mt-3 row justify-content-start g-2 align-items-center">
               {% if selected_variant.option.all.count == 1 %}
-              <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
+              <div class="col d-grid">
                 {% if selected_variant.is_available %}
                 <button type="button" class="btn btn-primary">
                   <i class="feather-icon icon-shopping-bag me-2"></i>Add to cart
@@ -190,13 +180,9 @@
                 </button>
                 {% endif %}
               </div>
-              <div class="col-md-4 col-4">
-                <a class="btn btn-light " href="shop-single-2.html#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                <a class="btn btn-light " href="shop-wishlist.html" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="feather-icon icon-heart"></i></a>
-              </div>
               {% else %}
               {% if selected_option %}
-              <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
+              <div class="col d-grid">
                 {% if selected_option.quantity %}
                 <button type="button" class="btn btn-primary">
                   <i class="feather-icon icon-shopping-bag me-2"></i>Add to cart
@@ -206,10 +192,6 @@
                   <i class="feather-icon icon-bell me-2"></i>Book it
                 </button>
                 {% endif %}
-              </div>
-              <div class="col-md-4 col-4">
-                <a class="btn btn-light " href="shop-single-2.html#" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                <a class="btn btn-light " href="shop-wishlist.html" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="feather-icon icon-heart"></i></a>
               </div>
               {% else %}
               <div class="alert alert-warning text-center" role="alert">
