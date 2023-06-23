@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
-from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm
+from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
+from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
 from authentication.models import User
 
 
@@ -115,36 +115,26 @@ def manage_products(request, action):
             return redirect('manage-products', 'main')
     # --------------- selected product ------------ #
     if action == 'view_product':
+        url = direction + "/management/admin/products/selected.html"
         if request.method == 'POST':
-            url = direction + "/management/admin/products/selected.html"
             product_id = request.POST.get('product_id', False)
-
-            selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ProductForm(request.POST, instance=selected_product)
-
-            variant_form = VariantForm()
-            context = {
-                'nav_side': 'products',
-                'selected_product': selected_product,
-                'selected_product_form': selected_product_form,
-                'variant_form': variant_form,
-            }
-            return render(request, url, context)
         else:
-            url = direction + "/management/admin/products/selected.html"
             product_id = request.session.get('product_id_token')
             request.session['product_id_token'] = None
 
-            selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ProductForm(request.POST, instance=selected_product)
-            variant_form = VariantForm()
-            context = {
-                'nav_side': 'products',
-                'selected_product': selected_product,
-                'selected_product_form': selected_product_form,
-                'variant_form': variant_form,
-            }
-            return render(request, url, context)
+        selected_product = Product.objects.all().get(id=product_id)
+        selected_product_form = ProductForm(request.POST, instance=selected_product)
+
+        variant_form = VariantForm()
+        description_form = DescriptionForm()
+        context = {
+            'nav_side': 'products',
+            'selected_product': selected_product,
+            'selected_product_form': selected_product_form,
+            'variant_form': variant_form,
+            'description_form': description_form,
+        }
+        return render(request, url, context)
     if action == 'edit_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -181,52 +171,64 @@ def manage_products(request, action):
 
             request.session['product_id_token'] = product_id
             return redirect('manage-products', 'view_product')
-    # --------------- selected variant ------------ #
-    if action == 'view_variant':
+    if action == 'add_description':
         if request.method == 'POST':
-            url = direction + "/management/admin/products/selected-variant.html"
             product_id = request.POST.get('product_id', False)
-            variant_id = request.POST.get('variant_id', False)
-
-            selected_variant = Variant.objects.all().get(id=variant_id)
+            request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
-            selected_variant.clean()
+            new_description = Description(file_name=selected_product.en_title,
+                                          )
+            new_description.save()
+            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=new_description)
+            selected_description_form.save()
+            selected_product.description.add(new_description)
+            return redirect('manage-products', 'view_product')
+    if action == 'delete_description':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            description_id = request.POST.get('description_id', False)
+            selected_description = Description.objects.all().get(id=description_id)
+            selected_description.delete()
 
             request.session['product_id_token'] = product_id
-            variant_form = VariantForm()
-            feature_form = FeatureForm()
-            option_form = OptionForm()
-            context = {
-                'nav_side': 'products',
-                'selected_variant': selected_variant,
-                'selected_product': selected_product,
-                'variant_form': variant_form,
-                'feature_form': feature_form,
-                'option_form': option_form,
-            }
-            return render(request, url, context)
+            return redirect('manage-products', 'view_product')
+    if action == 'edit_description':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            description_id = request.POST.get('description_id', False)
+            request.session['product_id_token'] = product_id
+            selected_description = Description.objects.all().get(id=description_id)
+            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=selected_description)
+            selected_description_form.save()
+            return redirect('manage-products', 'view_product')
+    # --------------- selected variant ------------ #
+    if action == 'view_variant':
+        url = direction + "/management/admin/products/selected-variant.html"
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            variant_id = request.POST.get('variant_id', False)
+            request.session['product_id_token'] = product_id
         else:
-            url = direction + "/management/admin/products/selected-variant.html"
             product_id = request.session.get('product_id_token')
             variant_id = request.session.get('variant_id_token')
             request.session['variant_id_token'] = None
 
-            selected_variant = Variant.objects.all().get(id=variant_id)
-            selected_product = Product.objects.all().get(id=product_id)
-            selected_variant.clean()
+        selected_variant = Variant.objects.all().get(id=variant_id)
+        selected_product = Product.objects.all().get(id=product_id)
+        selected_variant.clean()
 
-            variant_form = VariantForm()
-            feature_form = FeatureForm()
-            option_form = OptionForm()
-            context = {
-                'nav_side': 'products',
-                'selected_variant': selected_variant,
-                'selected_product': selected_product,
-                'variant_form': variant_form,
-                'feature_form': feature_form,
-                'option_form': option_form,
-            }
-            return render(request, url, context)
+        variant_form = VariantForm()
+        feature_form = FeatureForm()
+        option_form = OptionForm()
+        context = {
+            'nav_side': 'products',
+            'selected_variant': selected_variant,
+            'selected_product': selected_product,
+            'variant_form': variant_form,
+            'feature_form': feature_form,
+            'option_form': option_form,
+        }
+        return render(request, url, context)
     if action == 'edit_variant':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
