@@ -125,3 +125,8 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         }
         return render(request, url, context)
 
+    if action == 'delete_product_from_home':
+        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        selected_product.delete()
+        return redirect('home-page')
+
