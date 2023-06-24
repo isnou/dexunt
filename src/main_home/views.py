@@ -73,7 +73,7 @@ def shopping_cart_page(request, action):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     selected_cart = get_cart(request)
-    
+
     if action == 'main':
         url = direction + "/home/regular/shopping-cart.html"
 
@@ -89,7 +89,7 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         selected_variant = Variant.objects.all().get(id=product_id)
         selected_option = Option.objects.all().get(id=option_id)
         add_product_to_cart(selected_cart, selected_variant, selected_option)
-        return redirect('shopping-cart-page' 'main')
+        return redirect('shopping-cart-page', 'main')
 
     if action == 'add_quantity':
         selected_product = SelectedProduct.objects.all().get(id=product_id)
@@ -99,7 +99,7 @@ def shopping_cart(request, product_id, option_id, user_token, action):
                 selected_product.quantity += 1
                 selected_product.save()
                 selected_cart.update_prices()
-        return redirect('shopping-cart-page' 'main')
+        return redirect('shopping-cart-page', 'main')
 
     if action == 'remove_quantity':
         selected_product = SelectedProduct.objects.all().get(id=product_id)
@@ -107,13 +107,13 @@ def shopping_cart(request, product_id, option_id, user_token, action):
             selected_product.quantity -= 1
             selected_product.save()
             selected_cart.update_prices()
-        return redirect('shopping-cart-page' 'main')
+        return redirect('shopping-cart-page', 'main')
 
     if action == 'delete_product':
         selected_product = SelectedProduct.objects.all().get(id=product_id)
         selected_product.delete()
         selected_cart.update_prices()
-        return redirect('shopping-cart-page' 'main')
+        return redirect('shopping-cart-page', 'main')
 
     if action == 'delete_product_from_home':
         selected_product = SelectedProduct.objects.all().get(id=product_id)
