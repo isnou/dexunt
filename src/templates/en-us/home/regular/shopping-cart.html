@@ -103,50 +103,39 @@
               <!-- heading -->
               <h2 class="h5 mb-4">Summary</h2>
               <div class="card mb-2">
-                <!-- list group -->
                 <ul class="list-group list-group-flush">
-                  <!-- list group item -->
                   <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="me-auto">
                       <div>Subtotal</div>
-
                     </div>
                     <span>{{ selected_cart.sub_total_price|floatformat:"2g" }} <small>DZD</small></span>
                   </li>
 
-                  <!-- list group item -->
                   <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="me-auto">
                       <div class="fw-bold">Total</div>
-
                     </div>
                     <span class="fw-bold">{{ selected_cart.sub_total_price|floatformat:"2g" }} <small>DZD</small></span>
                   </li>
                 </ul>
-
               </div>
               <div class="d-grid mb-1 mt-4">
-                <!-- btn -->
                 <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
-                  Go to Checkout <small><span class="fw-bold">{{ selected_cart.sub_total_price|floatformat:"0g" }} <small>DZD</small></span></small></button>
+                  Go to Checkout <small><span class="fw-bold">{{ selected_cart.sub_total_price|floatformat:"0g" }} <small>DZD</small></span></small>
+                </button>
               </div>
-              <!-- text -->
-              <p><small>By placing your order, you agree to be bound by the Freshcart <a href="shop-cart.html#!">Terms of Service</a>
-                  and <a href="shop-cart.html#!">Privacy Policy.</a> </small></p>
 
-              <!-- heading -->
               <div class="mt-8">
-                <h2 class="h5 mb-3">Add Promo or Gift Card</h2>
+                <h2 class="h5 mb-3">Add Promo</h2>
                 <form>
                   <div class="mb-2">
-                    <!-- input -->
                     <label for="giftcard" class="form-label sr-only">Email address</label>
                     <input type="text" class="form-control" id="giftcard" placeholder="Promo or Gift Card">
-
                   </div>
-                  <!-- btn -->
-                  <div class="d-grid"><button type="submit" class="btn btn-outline-dark mb-1">Redeem</button></div>
-                  <p class="text-muted mb-0"> <small>Terms & Conditions apply</small></p>
+
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-dark mb-1">Submit</button>
+                  </div>
                 </form>
               </div>
             </div>
