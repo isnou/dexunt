@@ -73,6 +73,13 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     selected_cart = get_cart(request)
+    if action == 'main':
+        url = direction + "/home/regular/shopping-cart.html"
+
+        context = {
+            'selected_cart': selected_cart,
+        }
+        return render(request, url, context)
 
     if action == 'add_regular_product':
         url = direction + "/home/regular/shopping-cart.html"
