@@ -74,11 +74,14 @@
                   </div>
 
                   <div class="col-3 col-md-3 col-lg-2">
-                    <div class="input-group input-spinner  ">
-                      <input type="button" value="-" class="button-minus  btn  btn-sm " data-field="quantity">
-                      <input type="number" step="1" max="10" value="{{ product.quantity }}" name="quantity" class="quantity-field form-control-sm form-input   ">
-                      <input type="button" value="+" class="button-plus btn btn-sm " data-field="quantity">
+
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                      <button type="button" class="button-minus  btn  btn-sm">Left</button>
+                      <input type="number" value="{{ product.quantity }}" readonly>
+                      <button type="button" class="button-plus btn btn-sm">Right</button>
                     </div>
+
+                    
                   </div>
 
                   <div class="col-2 text-lg-end text-start text-md-end col-md-2">
