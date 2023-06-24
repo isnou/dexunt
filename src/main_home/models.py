@@ -240,8 +240,6 @@ def add_product_to_cart(cart, variant, option):
         else:
             cart_product.price = option.price
         cart_product.save()
-
         cart.product.add(cart_product)
 
-    cart.save()
     cart.update_prices()
