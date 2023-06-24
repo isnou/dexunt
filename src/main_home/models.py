@@ -208,8 +208,8 @@ def get_cart(request):
     return selected_cart
 
 def add_product_to_cart(cart, variant, option):
-    if cart.product.all().filter(token=variant.product_token).exists():
-        selected_cart_product = cart.product.all().get(token=variant.product_token)
+    if cart.product.all().filter(option_id=option.id).exists():
+        selected_cart_product = cart.product.all().get(option_id=option.id)
         selected_cart_product.quantity += 1
         selected_cart_product.save()
     else:
