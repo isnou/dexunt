@@ -263,7 +263,7 @@
                   </div>
                   <div>
                     <span>Total:</span>
-                    <span class="text-success"><small>DZD</small> {{ selected_cart.total_price|floatformat:"2g" }}</span>
+                    <span class="text-success">{{ selected_cart.total_price|floatformat:"2g" }} <small>DZD</small></span>
 
                   </div>
                 </div>
@@ -278,7 +278,7 @@
                         <a href="shop-single.html" class="text-inherit">
                           <h6 class="mb-0">{{ product.en_name }} {{ product.en_detail }}</h6>
                         </a>
-                        <small class="text-muted">{{ product.quantity }} x DZD {{ product.total_price|floatformat:"2g" }}</small>
+                        <small class="text-muted">{{ product.quantity }} x {{ product.total_price|floatformat:"2g" }} <small>DZD</small></small>
                       </div>
                       <div class="text-end col-lg-2">
                         <a href="index-4.html#" class="text-inherit" aria-label="Close"><i class="bi bi-x fs-4"></i></a>
