@@ -63,7 +63,7 @@
                     <a href="shop-single.html" class="text-inherit"><h6 class="mb-0">{{ product.en_name }} </h6></a>
                     <span><small class="text-muted">{{ product.en_detail }}</small></span>
                     <div class="mt-2 small lh-1">
-                      <a href="shop-cart.html#!" class="text-decoration-none text-inherit">
+                      <a href="{% url 'shopping-cart' product.id product.id 'no' 'delete_product' %}" class="text-decoration-none text-inherit">
                         <span class="me-1 align-text-bottom">
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

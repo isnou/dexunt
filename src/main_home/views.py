@@ -113,3 +113,14 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         }
         return render(request, url, context)
 
+    if action == 'delete_product':
+        url = direction + "/home/regular/shopping-cart.html"
+        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        selected_product.image.delete()
+        selected_product.delete()
+
+        context = {
+            'selected_cart': selected_cart,
+        }
+        return render(request, url, context)
+
