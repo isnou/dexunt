@@ -500,7 +500,7 @@ def manage_shipping(request, action):
             province_id = request.POST.get('province_id', False)
             request.session['province_id_token'] = province_id
             selected_province = Province.objects.all().get(id=province_id)
-            new_municipality = Municipality().save()
+            new_municipality = Municipality()
             selected_municipality_form = MunicipalityForm(request.POST, instance=new_municipality)
             selected_municipality_form.save()
 
