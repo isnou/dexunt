@@ -60,9 +60,9 @@
                   <div class="col-3 col-md-2">
                     <img src="{% get_media_prefix %}{{ product.image }}" class="img-fluid">
                   </div>
+
                   <div class="col-4 col-md-5">
                     <a href="shop-single.html" class="text-inherit"><h6 class="mb-0">{{ product.en_name }}</h6></a>
-                    <span><small class="text-muted">{{ product.en_detail }}</small></span>
                     <span><small class="text-muted">{{ product.en_detail }}</small></span>
                     <span class="fw-bold">{{ product.total_price|floatformat:"0g" }} <small>DZD</small></span>
                   </div>
@@ -92,7 +92,6 @@
                         <span class="text-muted">Remove</span>
                       </a>
                     </div>
-
                   </div>
                 </div>
               </li>
