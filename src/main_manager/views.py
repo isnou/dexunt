@@ -495,6 +495,17 @@ def manage_shipping(request, action):
             'municipality_form': municipality_form,
         }
         return render(request, url, context)
+    if action == 'add_municipality':
+        if request.method == 'POST':
+            province_id = request.POST.get('province_id', False)
+            request.session['province_id_token'] = province_id
+            selected_province = Province.objects.all().get(id=province_id)
+            new_municipality = Municipality().save()
+            selected_municipality_form = MunicipalityForm(request.POST, instance=new_municipality)
+            selected_municipality_form.save()
+
+            selected_province.municipaalaity.add(new_municipality)
+            return redirect('manage-shipping', 'view_province')
 
 
 
