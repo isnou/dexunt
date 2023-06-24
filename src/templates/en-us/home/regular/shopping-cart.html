@@ -55,6 +55,10 @@
                 {% csrf_token %}
               </form>
 
+              <form action="{% url 'shopping-cart' product.id product.id 'no' 'delete_product' %}" id="delete_form_{{ product.id }}" novalidate method="post">
+                {% csrf_token %}
+              </form>
+
               <li class="list-group-item py-3 py-lg-0 px-0 border-bottom">
                 <div class="row align-items-center">
                   <div class="col-3 col-md-2">
@@ -69,17 +73,19 @@
 
                   <div class="col-5 col-md-5 col-lg-3">
                     <div class="input-group">
-                      <button class="btn btn-outline-secondary" form="remove_quantity_form_{{ product.id }}"><i class="bi bi-dash-lg"></i></button>
-                      <input type="text" class="form-control text-center" value="{{ product.quantity }}" readonly>
                       {% if not product.quantity == 1 %}
-                      <button class="btn btn-outline-secondary" form="add_quantity_form_{{ product.id }}"><i class="bi bi-plus-lg"></i></button>
+                      <button class="btn btn-outline-secondary" form="remove_quantity_form_{{ product.id }}"><i class="bi bi-dash-lg"></i></button>
                       {% else %}
-                      <a href="{% url 'shopping-cart' product.id product.id 'no' 'delete_product' %}" class="text-decoration-none text-inherit">
-                        <span class="me-1 align-text-bottom">
-                          <i class="bi bi-trash"></i>
-                        </span>
-                      </a>
+                      <button class="btn btn-outline-secondary" form="delete_form_{{ product.id }}"><i class="bi bi-trash"></i></button>
                       {% endif %}
+
+
+
+                      <input type="text" class="form-control text-center" value="{{ product.quantity }}" readonly>
+
+
+                      <button class="btn btn-outline-secondary" form="add_quantity_form_{{ product.id }}"><i class="bi bi-plus-lg"></i></button>
+
                     </div>
                   </div>
                 </div>
