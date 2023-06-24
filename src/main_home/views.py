@@ -87,8 +87,11 @@ def shopping_cart(request, product_id, option_id, user_token, action):
     if action == 'add_quantity':
         url = direction + "/home/regular/shopping-cart.html"
         selected_product = SelectedProduct.objects.all().get(id=product_id)
-        selected_product.quantity += 1
-        selected_product.save()
+        selected_option = Option.objects.all().get(id=selected_product.option_id)
+        if selected_option.quantity > selected_product.quantity:
+            if selected_option.max_quantity > selected_product.quantity:
+                selected_product.quantity += 1
+                selected_product.save()
 
         context = {
             'selected_cart': selected_cart,
@@ -98,8 +101,10 @@ def shopping_cart(request, product_id, option_id, user_token, action):
     if action == 'remove_quantity':
         url = direction + "/home/regular/shopping-cart.html"
         selected_product = SelectedProduct.objects.all().get(id=product_id)
-        selected_product.quantity -= 1
-        selected_product.save()
+        
+        if selected_product.quantity > 0:
+            selected_product.quantity -= 1
+            selected_product.save()
 
         context = {
             'selected_cart': selected_cart,
