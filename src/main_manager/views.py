@@ -437,3 +437,16 @@ def manage_flash(request, action):
                 flash_form.save()
                 return redirect('manage-flash', 'main')
 
+def manage_shipping(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/admin/shipping/province.html"
+
+        context = {
+            'nav_side': 'shipping',
+        }
+        return render(request, url, context)
+
