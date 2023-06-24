@@ -25,8 +25,8 @@
   <!-- end all products  -->
 </div>
 
-<!-- add new product modal -->
-<div id="add_new_product_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_new_product_modal_title" aria-hidden="true">
+<!-- add province modal -->
+<div id="add_province" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-close">
@@ -35,42 +35,35 @@
       <div class="modal-body">
         <div id="add_new_product_modal_title">
           <div class="text-center mb-7">
-            <h2>Add new product</h2>
+            <h2>Add province</h2>
           </div>
-          <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'manage-shipping' 'add_province' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
 
             <div class="row mb-4">
               <span class="divider-center mb-2">Main Informations</span>
 
-              <!-- product english title -->
+              <!-- product english name -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="en_title" style="width: 25%;">english title</span>
-                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box" required>
+                <span class="input-group-text" style="width: 25%;">english name</span>
+                <input type="text" class="form-control" name="{{ province_form.en_name.name }}" placeholder="Algiers" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
-              <!-- end product english title -->
+              <!-- end product english name -->
 
-              <!-- product french title -->
+              <!-- product french name -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="fr_title" style="width: 25%;">french title</span>
-                <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="{{ product_form.fr_title.name }}" placeholder="Coffre à jouets Deluxe">
+                <span class="input-group-text" style="width: 25%;">french name</span>
+                <input type="text" class="form-control" name="{{ province_form.fr_name.name }}" placeholder="Alger">
               </div>
-              <!-- end product french title -->
+              <!-- end product french name -->
 
-              <!-- product arabic title -->
+              <!-- product arabic name -->
               <div class="input-group mb-2">
-                <span class="input-group-text" id="ar_title" style="width: 25%;">arabic title</span>
-                <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="{{ product_form.ar_title.name }}" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
+                <span class="input-group-text" style="width: 25%;">arabic name</span>
+                <input type="text" class="form-control" name="{{ province_form.ar_name.name }}" placeholder="الجزائر" dir="rtl">
               </div>
-              <!-- end product arabic title -->
-
-              <!-- product brand -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
-                <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
-              </div>
-              <!-- end product brand -->
+              <!-- end product arabic name -->
             </div>
 
             <!-- submit -->
@@ -84,12 +77,12 @@
     </div>
   </div>
 </div>
-<!-- end add new product modal -->
+<!-- end add province modal -->
 {% endblock %}
 
 <!-- product content -->
 {% block content %}
-<!-- all products  -->
+<!-- all provinces  -->
 <div class="card">
   <!-- header -->
   <div class="card-header card-header-content-md-between">
@@ -113,7 +106,7 @@
   </div>
   <!-- end header -->
 
-  {% if all_products.all.count %}
+  {% if all_provinces.all.count %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -121,32 +114,25 @@
         <tr>
           <th scope="col" class="table-column-pe-0">
           </th>
-          <th class="table-column-ps-0">Product</th>
-          <th>Vendor</th>
-          <th></th>
+          <th class="table-column-ps-0">Province</th>
+          <th>Municipalities</th>
           <th>Actions</th>
         </tr>
       </thead>
 
       <tbody>
-      {% for product in all_products.all %}
+      {% for province in all_provinces.all %}
       <!-- product forms list -->
-      <!-- delete product form -->
-      <form action="{% url 'manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
+      <!-- delete province form -->
+      <form action="{% url 'manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="product_id" value='{{ product.id }}'>
+        <input type="hidden" name="province_id" value='{{ province.id }}'>
       </form>
 
-      <!-- delete product form -->
-      <form action="{% url 'manage-products' 'clean_product' %}" id="clean_product_form_{{ product.id }}" method="post">
+      <!-- view province form -->
+      <form action="{% url 'manage-shipping' 'view_province' %}" id="view_form_{{ province.id }}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="product_id" value='{{ product.id }}'>
-      </form>
-
-      <!-- view product form -->
-      <form action="{% url 'manage-products' 'view_product' %}" id="view_product_form_{{ product.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="product_id" value='{{ product.id }}'>
+        <input type="hidden" name="province_id" value='{{ province.id }}'>
       </form>
 
       <!-- end product forms list -->
@@ -157,56 +143,35 @@
         </td>
         <!-- product title and image -->
         <td class="table-column-ps-0">
-          <a class="d-flex align-items-center" href="#">
-            <div class="flex-shrink-0">
-              {% if product.variant.all.0.album.all.count %}
-              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.variant.all.0.album.all.0.image }}">
-              {% else %}
-              <span class="badge bg-warning">no images</span>
-              {% endif %}
-            </div>
-            <div class="flex-grow-1 ms-3">
-              <h5 class="text-inherit me-2">{{ product.en_title }}</h5>
-            </div>
-          </a>
-        </td>
-        <!-- product brand -->
-        <td>{{ product.brand }}</td>
-        <!-- product info -->
-        <td>
-          {% for variant in product.variant.all %}
-          {% for option in variant.option.all %}
-          <span class="d-block text-body fs-6">
-            <small>
-              {{ variant.en_spec }} - {{ option.en_value }}
-              {% if not option.is_activated or not variant.is_activated %}
-              <span class="badge bg-warning">not activated</span>
-              {% endif %}
 
-              {% if not option.quantity %}
-              <span class="badge bg-danger">not available</span>
-              {% else %}
-               ({{ option.quantity }}) available
-              {% endif %}
-            </small>
+          <span class="d-block text-inherit fs-6">
+            {{ province.en_name }}
           </span>
-          {% endfor %}
-          {% endfor %}
+          <span class="d-block text-inherit fs-6">
+            {{ province.fr_name }}
+          </span>
+          <span class="d-block text-inherit fs-6">
+            {{ province.ar_name }}
+          </span>
+
+
+
+        </td>
+
+        <td>
+          <span class="d-block text-body fs-6">
+            {{ province.municipality.all.count }}
+          </span>
         </td>
         <!-- product actions -->
         <td>
-          <!-- clean product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#clean_product_modal_{{ product.id }}">
-            <i class="bi-magic" data-bs-toggle="tooltip" data-bs-placement="top" title="Clean"></i>
-          </button>
-
-          <!-- view product -->
-          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
+          <!-- view province -->
+          <button class="btn btn-white btn-icon" form="view_form_{{ province.id }}">
             <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
 
-          <!-- delete product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
+          <!-- delete province -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ province.id }}">
             <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
         </td>
@@ -216,7 +181,7 @@
       <!-- products actions modals -->
 
       <!-- delete product modal -->
-      <div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+      <div id="delete_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -224,30 +189,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-              <p>click yes to delete {{ product.en_title }}.</p>
+              <p>click yes to delete {{ province.en_name }}.</p>
             </div>
             <div class="modal-footer" style="align-self: center;">
               <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" form="delete_product_form_{{ product.id }}">Yes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- clean product modal -->
-      <div id="clean_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-              <p>click yes to clean {{ product.en_title }}.</p>
-            </div>
-            <div class="modal-footer" style="align-self: center;">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" form="clean_product_form_{{ product.id }}">Yes</button>
+              <button class="btn btn-primary" form="delete_form_{{ province.id }}">Yes</button>
             </div>
           </div>
         </div>
@@ -304,11 +250,11 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        Your inventory is empty .
+        No province registred .
       </div>
     </div>
   </div>
   {% endif %}
 </div>
-<!-- end all products  -->
+<!-- end all provinces  -->
 {% endblock %}

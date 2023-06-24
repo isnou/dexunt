@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
 from main_home.forms import ProvinceForm, MunicipalityForm
+from main_home.models import Province, Municipality
 from authentication.models import User
 
 
@@ -445,11 +446,55 @@ def manage_shipping(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/shipping/province.html"
+        all_provinces = Province.objects.all()
         province_form = ProvinceForm()
 
         context = {
             'nav_side': 'shipping',
+            'all_provinces': all_provinces,
             'province_form': province_form,
         }
         return render(request, url, context)
+    if action == 'add_province':
+        if request.method == 'POST':
+            province_form = ProvinceForm(request.POST)
+            if province_form.is_valid():
+                province_form.save()
+                return redirect('manage-shipping', 'main')
+    if action == 'edit_province':
+        if request.method == 'POST':
+            province_id = request.POST.get('province_id', False)
+            selected_province = Province.objects.all().get(id=province_id)
+            province_form = ProvinceForm(request.POST, instance=selected_province)
+            if province_form.is_valid():
+                province_form.save()
+                return redirect('manage-shipping', 'main')
+    if action == 'delete_province':
+        if request.method == 'POST':
+            province_id = request.POST.get('province_id', False)
+            selected_province = Province.objects.all().get(id=province_id)
+            selected_province.delete()
+            return redirect('manage-shipping', 'main')
+    # --------------- selected province ------------ #
+    if action == 'view_province':
+        url = direction + "/management/admin/shipping/selected_province.html"
+        if request.method == 'POST':
+            province_id = request.POST.get('province_id', False)
+        else:
+            province_id = request.session.get('province_id_token')
+            request.session['province_id_token'] = None
+
+        selected_province = Province.objects.all().get(id=province_id)
+        selected_province_form = ProvinceForm(request.POST, instance=selected_province)
+
+        municipality_form = MunicipalityForm()
+        context = {
+            'nav_side': 'shipping',
+            'selected_province': selected_province,
+            'selected_province_form': selected_province_form,
+            'municipality_form': municipality_form,
+        }
+        return render(request, url, context)
+
+
 
