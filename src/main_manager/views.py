@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
-from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
+from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
+from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
+from main_home.forms import ProvinceForm, MunicipalityForm
 from authentication.models import User
 
 
@@ -444,9 +445,11 @@ def manage_shipping(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/shipping/province.html"
+        province_form = ProvinceForm()
 
         context = {
             'nav_side': 'shipping',
+            'province_form': province_form,
         }
         return render(request, url, context)
 
