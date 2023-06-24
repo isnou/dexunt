@@ -40,7 +40,7 @@
           </div>
           <form action="{% url 'manage-shipping' 'add_municipality' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
-            <input type="hidden" name="selected_province_id" value='{{ selected_province.id }}'>
+            <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
 
             <div class="row mb-4">
               <span class="divider-center mb-2">Main Informations</span>
