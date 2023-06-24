@@ -504,7 +504,7 @@ def manage_shipping(request, action):
             selected_municipality_form = MunicipalityForm(request.POST, instance=new_municipality)
             selected_municipality_form.save()
 
-            selected_province.municipaalaity.add(new_municipality)
+            selected_province.municipality.add(new_municipality)
             return redirect('manage-shipping', 'view_province')
 
 
