@@ -38,11 +38,11 @@
                         <div class="col-lg-3 col-3 text-center me-2">
                             <img src="{% get_media_prefix %}{{ product.image }}" class="icon-xxl">
                         </div>
-                        <div class="col-lg-7 col-7">
+                        <div class="col-lg-7 col-6">
                             <a href="shop-single.html" class="text-inherit">
                                 <h6 class="mb-0">{{ product.en_name }}</h6>
                             </a>
-                            <small class="text-muted">{{ product.total_price|floatformat:"2g" }} <small>DZD</small></small>
+                            <small class="text-muted">{{ product.quantity }} x {{ product.price|floatformat:"2g" }} <small>DZD</small></small>
                         </div>
                         <div class="text-end col-lg-2 col-2">
                             <a href="index-4.html#" class="text-inherit" aria-label="Close"><i class="bi bi-x fs-4"></i></a>
