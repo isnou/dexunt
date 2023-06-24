@@ -206,3 +206,42 @@ def get_cart(request):
             selected_cart = Cart(user_token=request.user.user_token)
             selected_cart.save()
     return selected_cart
+
+def add_product_to_cart(cart, variant, option):
+    if cart.product.all().filter(token=variant.product_token).exists():
+        selected_cart_product = cart.product.all().get(token=variant.product_token)
+        selected_cart_product.quantity += 1
+        selected_cart_product.save()
+    else:
+        if option.has_image:
+            image = option.image
+        else:
+            album = variant.album.all()[0]
+            image = album.image
+
+        cart_product = SelectedProduct(delivery=option.delivery_quotient,
+                                       points=option.points,
+
+                                       file_name= 'cart' + variant.en_title + '/' + variant.en_spec + '/' + option.en_value,
+                                       image=image,
+
+                                       token=variant.product_token,
+                                       option_id=option.id,
+                                       variant_id=variant.id,
+                                       en_name=variant.en_title,
+                                       fr_name=variant.fr_title,
+                                       ar_name=variant.ar_title,
+                                       en_detail= variant.en_spec + '-' + option.en_value,
+                                       fr_detail= variant.fr_spec + '-' + option.fr_value,
+                                       ar_detail= variant.ar_spec + '-' + option.ar_value,
+                                       )
+        if option.discount:
+            cart_product.price = option.discount
+        else:
+            cart_product.price = option.price
+        cart_product.save()
+
+        cart.product.add(cart_product)
+
+    cart.save()
+    cart.update_prices()
