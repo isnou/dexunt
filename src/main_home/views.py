@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
+from models import Cart, SelectedProduct
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
@@ -66,21 +67,19 @@ def product_router(request, product_id, option_id, user_token, action):
         return render(request, url, context)
 
 def shopping_cart(request, product_id, option_id, user_token, action):
-    selected_variant = Variant.objects.all().get(id=product_id)
-    selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
-    selected_option = Option.objects.all().get(id=option_id)
-
-
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    url = direction + "/home/regular/shopping-cart.html"
 
-    if action == 'regular_product':
+    if action == 'add_regular_product':
+        url = direction + "/home/regular/shopping-cart.html"
+        selected_cart = functions.get_cart(request)
+        selected_variant = Variant.objects.all().get(id=product_id)
+        selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
+        selected_option = Option.objects.all().get(id=option_id)
+
         context = {
-            'selected_option': selected_option,
-            'selected_variant': selected_variant,
-            'selected_product': selected_product,
+            'selected_cart': selected_cart,
         }
         return render(request, url, context)
 

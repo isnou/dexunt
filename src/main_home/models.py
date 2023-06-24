@@ -13,6 +13,7 @@ class SelectedProduct(models.Model):
         return self.file_name.lower()
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     # --------------------------------- info ---------------------------------------------------
+    token = models.CharField(max_length=24, null=True)
     option_id = models.PositiveIntegerField(blank=True, null=True)
     variant_id = models.PositiveIntegerField(blank=True, null=True)
 
