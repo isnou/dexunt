@@ -84,3 +84,25 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         }
         return render(request, url, context)
 
+    if action == 'add_quantity':
+        url = direction + "/home/regular/shopping-cart.html"
+        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        selected_product.quantity += 1
+        selected_product.save()
+
+        context = {
+            'selected_cart': selected_cart,
+        }
+        return render(request, url, context)
+
+    if action == 'remove_quantity':
+        url = direction + "/home/regular/shopping-cart.html"
+        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        selected_product.quantity -= 1
+        selected_product.save()
+
+        context = {
+            'selected_cart': selected_cart,
+        }
+        return render(request, url, context)
+
