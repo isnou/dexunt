@@ -118,13 +118,11 @@
         {% csrf_token %}
         <input type="hidden" name="province_id" value='{{ province.id }}'>
       </form>
-
       <!-- view province form -->
       <form action="{% url 'manage-shipping' 'view_province' %}" id="view_form_{{ province.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="province_id" value='{{ province.id }}'>
       </form>
-
       <!-- end product forms list -->
 
       <!-- products list -->
@@ -161,7 +159,6 @@
       <!-- end products list -->
 
       <!-- products actions modals -->
-
       <!-- delete product modal -->
       <div id="delete_modal_{{ province.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -180,7 +177,6 @@
           </div>
         </div>
       </div>
-
       <!-- end products actions modals -->
       {% endfor %}
       </tbody>
