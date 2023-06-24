@@ -85,7 +85,7 @@ class Cart(models.Model):
 
     def update_prices(self):
         new_price = 0
-        for product in self.cart_product.all():
+        for product in self.product.all():
             new_price += product.total_price
         self.sub_total_price = new_price
         self.total_price = new_price
