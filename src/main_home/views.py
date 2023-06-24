@@ -101,8 +101,8 @@ def shopping_cart(request, product_id, option_id, user_token, action):
     if action == 'remove_quantity':
         url = direction + "/home/regular/shopping-cart.html"
         selected_product = SelectedProduct.objects.all().get(id=product_id)
-        
-        if selected_product.quantity > 0:
+
+        if selected_product.quantity > 1:
             selected_product.quantity -= 1
             selected_product.save()
 
