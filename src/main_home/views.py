@@ -119,6 +119,7 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         url = direction + "/home/regular/shopping-cart.html"
         selected_product = SelectedProduct.objects.all().get(id=product_id)
         selected_product.delete()
+        selected_cart.update_prices()
 
         context = {
             'selected_cart': selected_cart,
@@ -128,5 +129,6 @@ def shopping_cart(request, product_id, option_id, user_token, action):
     if action == 'delete_product_from_home':
         selected_product = SelectedProduct.objects.all().get(id=product_id)
         selected_product.delete()
+        selected_cart.update_prices()
         return redirect('home-page')
 
