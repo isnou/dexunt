@@ -89,7 +89,7 @@
                   </div>
 
                   <div class="col-2 text-lg-end text-start text-md-end col-md-2">
-                    <span class="fw-bold"><small>DZD</small> {{ product.total_price|floatformat:"0g" }}</span>
+                    <span class="fw-bold">{{ product.total_price|floatformat:"0g" }} <small>DZD</small></span>
                   </div>
                 </div>
               </li>
@@ -121,7 +121,7 @@
                       <div>Subtotal</div>
 
                     </div>
-                    <span>DZD {{ selected_cart.sub_total_price|floatformat:"2g" }}</span>
+                    <span>{{ selected_cart.sub_total_price|floatformat:"2g" }} <small>DZD</small></span>
                   </li>
 
                   <!-- list group item -->
@@ -130,7 +130,7 @@
                       <div class="fw-bold">Total</div>
 
                     </div>
-                    <span class="fw-bold">DZD {{ selected_cart.sub_total_price|floatformat:"2g" }}</span>
+                    <span class="fw-bold">{{ selected_cart.sub_total_price|floatformat:"2g" }} <small>DZD</small></span>
                   </li>
                 </ul>
 
@@ -138,7 +138,7 @@
               <div class="d-grid mb-1 mt-4">
                 <!-- btn -->
                 <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
-                  Go to Checkout <small><span class="fw-bold"><small>DZD</small> {{ selected_cart.sub_total_price|floatformat:"0g" }}</span></small></button>
+                  Go to Checkout <small><span class="fw-bold">{{ selected_cart.sub_total_price|floatformat:"0g" }} <small>DZD</small></span></small></button>
               </div>
               <!-- text -->
               <p><small>By placing your order, you agree to be bound by the Freshcart <a href="shop-cart.html#!">Terms of Service</a>
