@@ -92,6 +92,7 @@ def shopping_cart(request, product_id, option_id, user_token, action):
             if selected_option.max_quantity > selected_product.quantity:
                 selected_product.quantity += 1
                 selected_product.save()
+                selected_cart.update_prices()
 
         context = {
             'selected_cart': selected_cart,
@@ -105,6 +106,7 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         if selected_product.quantity > 1:
             selected_product.quantity -= 1
             selected_product.save()
+            selected_cart.update_prices()
 
         context = {
             'selected_cart': selected_cart,
