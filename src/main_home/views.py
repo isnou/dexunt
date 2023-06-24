@@ -11,6 +11,7 @@ def home_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
+    selected_cart = get_cart(request)
     url = direction + "/home/main-page.html"
     login_form = LoginForm()
     signup_form = SignupForm()
@@ -30,6 +31,7 @@ def home_page(request):
     context = {
         'login_form': login_form,
         'signup_form': signup_form,
+        'selected_cart': selected_cart,
         'published_products': published_products,
         'published_flash_products': published_flash_products,
     }
