@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Cart, SelectedProduct, get_cart
+from .models import Cart, SelectedProduct, get_cart, add_product_to_cart
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
@@ -76,7 +76,7 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         url = direction + "/home/regular/shopping-cart.html"
         selected_variant = Variant.objects.all().get(id=product_id)
         selected_option = Option.objects.all().get(id=option_id)
-        
+
         add_product_to_cart(selected_cart, selected_variant, selected_option)
 
         context = {
