@@ -176,7 +176,6 @@ class Municipality(models.Model):
     class Meta:
         verbose_name_plural = "Municipalities"
 
-
 class Province(models.Model):
     # --------------------------------- shipping details ---------------------------------------
     en_name = models.CharField(max_length=200, blank=True, null=True)
@@ -184,3 +183,26 @@ class Province(models.Model):
     ar_name = models.CharField(max_length=200, blank=True, null=True)
 
     municipality = models.ManyToManyField(Municipality, blank=True)
+
+# ----------------------------------- Functions ------------------------------- #
+def get_cart(request):
+    if not request.user.is_authenticated:
+        if not request.session.get('cart_ref', None):
+            selected_cart = Cart()
+            selected_cart.save()
+            request.session['cart_ref'] = selected_cart.ref
+        else:
+            ref = request.session.get('cart_ref')
+            if Cart.objects.all().filter(ref=ref).exists():
+                selected_cart = Cart.objects.all().get(ref=ref)
+            else:
+                selected_cart = Cart()
+                selected_cart.save()
+                request.session['cart_ref'] = selected_cart.ref
+    else:
+        if Cart.objects.all().filter(user_token=request.user.user_token).exists():
+            selected_cart = Cart.objects.all().get(user_token=request.user.user_token)
+        else:
+            selected_cart = Cart(user_token=request.user.user_token)
+            selected_cart.save()
+    return selected_cart
