@@ -62,6 +62,18 @@
                   <div class="col-4 col-md-5">
                     <a href="shop-single.html" class="text-inherit"><h6 class="mb-0">{{ product.en_name }} </h6></a>
                     <span><small class="text-muted">{{ product.en_detail }}</small></span>
+                    <span class="fw-bold">{{ product.total_price|floatformat:"0g" }} <small>DZD</small></span>
+                  </div>
+
+                  <div class="col-5 col-md-5 col-lg-3">
+                    <div class="input-group">
+                      <button class="btn btn-outline-secondary" form="remove_quantity_form_{{ product.id }}"><i class="bi bi-dash-lg"></i></button>
+                      <input type="text" class="form-control text-center" value="{{ product.quantity }}" readonly>
+                      <button class="btn btn-outline-secondary" form="add_quantity_form_{{ product.id }}"><i class="bi bi-plus-lg"></i></button>
+                    </div>
+                  </div>
+
+                  <div class="col-2 text-lg-end text-start text-md-end col-md-2">
                     <div class="mt-2 small lh-1">
                       <a href="{% url 'shopping-cart' product.id product.id 'no' 'delete_product' %}" class="text-decoration-none text-inherit">
                         <span class="me-1 align-text-bottom">
@@ -78,18 +90,7 @@
                         <span class="text-muted">Remove</span>
                       </a>
                     </div>
-                  </div>
 
-                  <div class="col-5 col-md-5 col-lg-3">
-                    <div class="input-group">
-                      <button class="btn btn-outline-secondary" form="remove_quantity_form_{{ product.id }}"><i class="bi bi-dash-lg"></i></button>
-                      <input type="text" class="form-control text-center" value="{{ product.quantity }}" readonly>
-                      <button class="btn btn-outline-secondary" form="add_quantity_form_{{ product.id }}"><i class="bi bi-plus-lg"></i></button>
-                    </div>
-                  </div>
-
-                  <div class="col-2 text-lg-end text-start text-md-end col-md-2">
-                    <span class="fw-bold">{{ product.total_price|floatformat:"0g" }} <small>DZD</small></span>
                   </div>
                 </div>
               </li>
