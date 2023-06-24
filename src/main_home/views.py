@@ -68,7 +68,7 @@ def product_router(request, product_id, option_id, user_token, action):
         }
         return render(request, url, context)
 
-def shopping_cart(request, product_id, option_id, user_token, action):
+def shopping_cart_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
@@ -81,20 +81,14 @@ def shopping_cart(request, product_id, option_id, user_token, action):
         }
         return render(request, url, context)
 
+def shopping_cart(request, product_id, option_id, user_token, action):
     if action == 'add_regular_product':
-        url = direction + "/home/regular/shopping-cart.html"
         selected_variant = Variant.objects.all().get(id=product_id)
         selected_option = Option.objects.all().get(id=option_id)
-
         add_product_to_cart(selected_cart, selected_variant, selected_option)
-
-        context = {
-            'selected_cart': selected_cart,
-        }
-        return render(request, url, context)
+        return redirect('shopping-cart-page' 'main')
 
     if action == 'add_quantity':
-        url = direction + "/home/regular/shopping-cart.html"
         selected_product = SelectedProduct.objects.all().get(id=product_id)
         selected_option = Option.objects.all().get(id=selected_product.option_id)
         if selected_option.quantity > selected_product.quantity:
@@ -102,40 +96,24 @@ def shopping_cart(request, product_id, option_id, user_token, action):
                 selected_product.quantity += 1
                 selected_product.save()
                 selected_cart.update_prices()
-
-        context = {
-            'selected_cart': selected_cart,
-        }
-        return render(request, url, context)
+        return redirect('shopping-cart-page' 'main')
 
     if action == 'remove_quantity':
-        url = direction + "/home/regular/shopping-cart.html"
         selected_product = SelectedProduct.objects.all().get(id=product_id)
-
         if selected_product.quantity > 1:
             selected_product.quantity -= 1
             selected_product.save()
             selected_cart.update_prices()
-
-        context = {
-            'selected_cart': selected_cart,
-        }
-        return render(request, url, context)
+        return redirect('shopping-cart-page' 'main')
 
     if action == 'delete_product':
-        url = direction + "/home/regular/shopping-cart.html"
         selected_product = SelectedProduct.objects.all().get(id=product_id)
         selected_product.delete()
         selected_cart.update_prices()
-
-        context = {
-            'selected_cart': selected_cart,
-        }
-        return render(request, url, context)
+        return redirect('shopping-cart-page' 'main')
 
     if action == 'delete_product_from_home':
         selected_product = SelectedProduct.objects.all().get(id=product_id)
         selected_product.delete()
         selected_cart.update_prices()
         return redirect('home-page')
-
