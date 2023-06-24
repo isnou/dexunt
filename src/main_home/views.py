@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from models import Cart, SelectedProduct
+from .models import Cart, SelectedProduct
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
