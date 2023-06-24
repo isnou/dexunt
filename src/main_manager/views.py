@@ -397,6 +397,7 @@ def manage_flash(request, action):
                          fr_value=selected_option.fr_value,
                          ar_value=selected_option.ar_value,
 
+                         file_name= 'flash' + selected_variant.en_title + '/' + selected_variant.en_spec + '/' + selected_option.en_value,
                          image=image,
                          product_token=selected_product.product_token,
                          upc=selected_option.upc,

@@ -70,13 +70,14 @@ def shopping_cart(request, product_id, option_id, user_token, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
+    selected_cart = get_cart(request)
 
     if action == 'add_regular_product':
         url = direction + "/home/regular/shopping-cart.html"
-        selected_cart = get_cart(request)
         selected_variant = Variant.objects.all().get(id=product_id)
-        selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
         selected_option = Option.objects.all().get(id=option_id)
+        
+        add_product_to_cart(selected_cart, selected_variant, selected_option)
 
         context = {
             'selected_cart': selected_cart,
