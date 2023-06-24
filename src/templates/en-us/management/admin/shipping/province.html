@@ -110,16 +110,6 @@
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col" class="table-column-pe-0">
-          </th>
-          <th class="table-column-ps-0">Province</th>
-          <th>Municipalities</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
       <tbody>
       {% for province in all_provinces.all %}
       <!-- product forms list -->
@@ -143,28 +133,24 @@
         </td>
         <!-- product title and image -->
         <td class="table-column-ps-0">
-
           <span class="d-block text-inherit fs-6">
-            {{ province.en_name }}
+            English name : {{ province.en_name }}
           </span>
           <span class="d-block text-inherit fs-6">
-            {{ province.fr_name }}
+            French name : {{ province.fr_name }}
           </span>
           <span class="d-block text-inherit fs-6">
-            {{ province.ar_name }}
+            Arabic name : {{ province.ar_name }}
           </span>
-
-
-
         </td>
 
         <td>
           <span class="d-block text-body fs-6">
-            {{ province.municipality.all.count }}
+            Municipality :{{ province.municipality.all.count }}
           </span>
         </td>
         <!-- product actions -->
-        <td>
+        <td class="text-end">
           <!-- view province -->
           <button class="btn btn-white btn-icon" form="view_form_{{ province.id }}">
             <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
