@@ -148,7 +148,7 @@
       {% if all_coupons.all.count %}
       {% for coupon in all_coupons %}
       <!-- Table Forms -->
-      <form action="{% url 'coupon-manager' 'delete_coupon' %}" id="delete_coupon_form_{{ coupon.id }}" method="post">
+      <form action="{% url 'manage-coupon' 'delete_coupon' %}" id="delete_coupon_form_{{ coupon.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="coupon_id" value='{{ coupon.id }}'>
         <input type="hidden" name="route" value='active_coupons'>
