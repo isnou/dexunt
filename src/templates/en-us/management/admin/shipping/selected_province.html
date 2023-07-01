@@ -208,15 +208,17 @@
         </td>
 
         <td>
-          <span class="d-block text-body fs-6">
-            time :{{ municipality.en_home_delivery_time }} | price :{{ municipality.en_home_delivery_time }}
-          </span>
+          <h6 class="text-inherit mb-0">{{ municipality.home_delivery_price }}</h6>
+          <span class="d-block fs-6"><small>{{ municipality.en_home_delivery_time }}</small></span>
+          <span class="d-block fs-6"><small>{{ municipality.fr_home_delivery_time }}</small></span>
+          <span class="d-block fs-6"><small>{{ municipality.ar_home_delivery_time }}</small></span>
         </td>
 
         <td>
-          <span class="d-block text-body fs-6">
-            time :{{ municipality.en_desk_delivery_time }} | price :{{ municipality.en_desk_delivery_time }}
-          </span>
+          <h6 class="text-inherit mb-0">{{ municipality.desk_delivery_price }}</h6>
+          <span class="d-block fs-6"><small>{{ municipality.en_desk_delivery_time }}</small></span>
+          <span class="d-block fs-6"><small>{{ municipality.fr_desk_delivery_time }}</small></span>
+          <span class="d-block fs-6"><small>{{ municipality.ar_desk_delivery_time }}</small></span>
         </td>
         <!-- province actions -->
         <td class="text-end">
