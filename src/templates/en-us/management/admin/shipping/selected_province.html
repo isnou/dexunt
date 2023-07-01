@@ -191,6 +191,7 @@
       <!-- delete municipality form -->
       <form action="{% url 'manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
         {% csrf_token %}
+        <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
         <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
       </form>
 
