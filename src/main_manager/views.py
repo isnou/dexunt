@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from add_ons import functions
+from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
