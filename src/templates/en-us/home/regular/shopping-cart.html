@@ -149,13 +149,13 @@
 
                   <div class="mb-2">
                     <input type="text" class="form-control" name="coupon_code" placeholder="Promo or Gift Card" required>
+                    <span class="invalid-feedback text-center">required field.</span>
                   </div>
                   {% if coupon_message %}
                   <p class="text-muted mb-0"> <small>{{ coupon_message }}.</small></p>
                   {% else %}
                   <p class="text-muted mb-0"> <small>With Percentage Coupons, More You Buy More You Save.</small></p>
                   {% endif %}
-
                   <div class="d-grid">
                     <button type="submit" class="btn btn-outline-dark mb-1">Submit</button>
                   </div>
