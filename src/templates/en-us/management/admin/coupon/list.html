@@ -176,7 +176,11 @@
           <span class="d-block fs-5">{{ coupon.created_at }}</span>
         </td>
         <td>
+          {% if coupon.is_active %}
           <span class="d-block fs-5">{{ coupon.valid_until }}</span>
+          {% else %}
+          <span class="d-block fs-5">expired</span>
+          {% endif %}
         </td>
         <td>
           <a type="button" class="text-body link-dark" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ coupon.id }}">
