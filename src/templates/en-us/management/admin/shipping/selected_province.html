@@ -175,6 +175,16 @@
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="table-column-pe-0"></th>
+          <th class="table-column-ps-0"></th>
+          <th>Delivery to home</th>
+          <th>Delivery to desk</th>
+          <th></th>
+        </tr>
+      </thead>
+
       <tbody>
       {% for municipality in selected_province.municipality.all %}
 
@@ -194,6 +204,18 @@
             {{ municipality.en_name|title }} <i class="bi-dash"></i>
             {{ municipality.fr_name|title }} <i class="bi-dash"></i>
             {{ municipality.ar_name }}
+          </span>
+        </td>
+
+        <td>
+          <span class="d-block text-body fs-6">
+            time :{{ municipality.en_home_delivery_time }} | price :{{ municipality.en_home_delivery_time }}
+          </span>
+        </td>
+
+        <td>
+          <span class="d-block text-body fs-6">
+            time :{{ municipality.en_desk_delivery_time }} | price :{{ municipality.en_desk_delivery_time }}
           </span>
         </td>
         <!-- province actions -->
