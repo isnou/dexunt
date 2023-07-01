@@ -244,3 +244,17 @@ def add_product_to_cart(cart, variant, option):
         cart.product.add(cart_product)
 
     cart.update_prices()
+
+def apply_coupon(request, selected_cart, coupon_code):
+    if Coupon.objects.all().filter(code=coupon_code).exists():
+        coupon = Coupon.objects.all().get(code=coupon_code)
+        if coupon.is_active:
+            request.session['coupon_message'] = 'success'
+            selected_cart.coupon_code = coupon.code
+            selected_cart.coupon_type = coupon.type
+            selected_cart.coupon_value = coupon.value
+            selected_cart.update_prices()
+        else:
+            request.session['coupon_message'] = 'expired'
+    else:
+        request.session['coupon_message'] = 'wrong'
