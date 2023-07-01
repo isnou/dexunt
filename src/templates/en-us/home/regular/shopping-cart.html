@@ -128,7 +128,7 @@
               <div class="mt-8">
                 <form action="{% url 'shopping-cart' 0 0 'no' 'apply_coupon' %}" class="js-validate need-validate" novalidate method="post">
                   {% csrf_token %}
-                  
+
                   {{ coupon_message }}
                   <div class="mb-2">
                     <input type="text" class="form-control" name="coupon_code" placeholder="Promo or Gift Card">
