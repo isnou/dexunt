@@ -502,10 +502,32 @@ def manage_shipping(request, action):
             selected_province = Province.objects.all().get(id=province_id)
             new_municipality = Municipality()
             selected_municipality_form = MunicipalityForm(request.POST, instance=new_municipality)
-            selected_municipality_form.save()
+            if selected_municipality_form.is_valid():
+                selected_municipality_form.save()
+                selected_province.municipality.add(new_municipality)
+                return redirect('manage-shipping', 'view_province')
+            
+    if action == 'edit_municipality':
+        if request.method == 'POST':
+            municipality_id = request.POST.get('municipality_id', False)
+            province_id = request.POST.get('province_id', False)
+            request.session['province_id_token'] = province_id
+            selected_municipality = Municipality.objects.all().get(id=municipality_id)
+            municipality_form = MunicipalityForm(request.POST, instance=selected_municipality)
+            if municipality_form.is_valid():
+                municipality_form.save()
+                return redirect('manage-shipping', 'view_province')
+    if action == 'delete_municipality':
+        if request.method == 'POST':
+            municipality_id = request.POST.get('municipality_id', False)
+            province_id = request.POST.get('province_id', False)
+            request.session['province_id_token'] = province_id
+            selected_municipality = Municipality.objects.all().get(id=municipality_id)
+            selected_municipality.delete()
 
-            selected_province.municipality.add(new_municipality)
             return redirect('manage-shipping', 'view_province')
+
+
 
 
 
