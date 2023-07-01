@@ -112,7 +112,6 @@
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
       {% for province in all_provinces.all %}
-      <!-- product forms list -->
       <!-- delete province form -->
       <form action="{% url 'manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
         {% csrf_token %}
@@ -123,13 +122,12 @@
         {% csrf_token %}
         <input type="hidden" name="province_id" value='{{ province.id }}'>
       </form>
-      <!-- end product forms list -->
 
-      <!-- products list -->
+      <!-- provinces list -->
       <tr>
         <td class="table-column-pe-0">
         </td>
-        <!-- product title and image -->
+        <!-- province info -->
         <td class="table-column-ps-0">
           <span class="d-block text-dark fs-5">
             {{ province.en_name|title }} <i class="bi-dash"></i>
@@ -143,7 +141,7 @@
             {{ province.municipality.all.count }}
           </span>
         </td>
-        <!-- product actions -->
+        <!-- province actions -->
         <td class="text-end">
           <!-- view province -->
           <button class="btn btn-white btn-icon" form="view_form_{{ province.id }}">
@@ -158,8 +156,8 @@
       </tr>
       <!-- end products list -->
 
-      <!-- products actions modals -->
-      <!-- delete product modal -->
+      <!-- provinces actions modals -->
+      <!-- delete province modal -->
       <div id="delete_modal_{{ province.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -177,7 +175,7 @@
           </div>
         </div>
       </div>
-      <!-- end products actions modals -->
+      <!-- end provinces actions modals -->
       {% endfor %}
       </tbody>
     </table>
