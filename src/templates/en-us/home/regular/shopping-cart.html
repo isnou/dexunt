@@ -148,7 +148,7 @@
                   {% csrf_token %}
 
                   <div class="mb-2">
-                    <input type="text" class="form-control" name="coupon_code" placeholder="Promo or Gift Card">
+                    <input type="text" class="form-control" name="coupon_code" placeholder="Promo or Gift Card" required>
                   </div>
                   {% if coupon_message %}
                   <p class="text-muted mb-0"> <small>{{ coupon_message }}.</small></p>
