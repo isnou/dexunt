@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from add_ons import functions
-
+from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
@@ -564,6 +564,7 @@ def manage_coupon(request, action):
             'nav_side': 'coupon',
             'coupon_form': coupon_form,
             'all_coupons': all_coupons,
+            'time': timezone.now()
         }
         return render(request, url, context)
     if action == 'add_new_coupon':
