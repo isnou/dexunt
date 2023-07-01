@@ -557,8 +557,8 @@ def manage_coupon(request, action):
         except Coupon.DoesNotExist:
             raise Http404("No coupons")
 
-        for coupon in all_coupons:
-            coupon.clean()
+        for c in all_coupons:
+            c.clean()
 
         context = {
             'nav_side': 'coupon',
