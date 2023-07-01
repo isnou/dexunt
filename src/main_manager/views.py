@@ -16,8 +16,22 @@ def admin_home(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/home.html"
+        all_products = Variant.objects.all()
+        all_flash_products = FlashProduct.objects.all()
+
+        published_products = all_products.exclude(is_activated=False)
+        unpublished_products = all_products.exclude(is_activated=True)
+
+        published_flash_products = all_flash_products.exclude(is_activated=False)
+        unpublished_flash_products = all_flash_products.exclude(is_activated=True)
         context = {
-            'nav_side': 'home'
+            'nav_side': 'home',
+            'all_products': all_products,
+            'all_flash_products': all_flash_products,
+            'published_products': published_products,
+            'unpublished_products': unpublished_products,
+            'published_flash_products': published_flash_products,
+            'unpublished_flash_products': unpublished_flash_products,
         }
         return render(request, url, context)
 
@@ -506,7 +520,6 @@ def manage_shipping(request, action):
                 selected_municipality_form.save()
                 selected_province.municipality.add(new_municipality)
                 return redirect('manage-shipping', 'view_province')
-
     if action == 'edit_municipality':
         if request.method == 'POST':
             province_id = request.POST.get('province_id', False)
