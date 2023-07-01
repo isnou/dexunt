@@ -144,7 +144,7 @@
               </div>
 
               <div class="mt-8">
-                <form action="{% url 'shopping-cart' 0 0 'no' 'apply_coupon' %}" class="js-validate need-validate" novalidate method="post">
+                <form action="{% url 'shopping-cart' 0 0 'no' 'apply_coupon' %}" class="need-validate" novalidate method="post">
                   {% csrf_token %}
 
                   <div class="mb-2">
