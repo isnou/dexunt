@@ -506,7 +506,7 @@ def manage_shipping(request, action):
                 selected_municipality_form.save()
                 selected_province.municipality.add(new_municipality)
                 return redirect('manage-shipping', 'view_province')
-            
+
     if action == 'edit_municipality':
         if request.method == 'POST':
             municipality_id = request.POST.get('municipality_id', False)
