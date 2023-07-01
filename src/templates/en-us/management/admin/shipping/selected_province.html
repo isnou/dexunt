@@ -145,9 +145,9 @@
 <!-- end add municipality modal -->
 {% endblock %}
 
-<!-- product content -->
+<!-- province content -->
 {% block content %}
-<!-- all products  -->
+<!-- all municipalities  -->
 <div class="card">
   <!-- header -->
   <div class="card-header card-header-content-md-between">
@@ -171,7 +171,7 @@
   </div>
   <!-- end header -->
 
-  {% if all_flash_products.all.count %}
+  {% if selected_province.municipality.all.count %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -187,7 +187,7 @@
       </thead>
 
       <tbody>
-      {% for product in all_flash_products.all %}
+      {% for municipality in selected_province.municipality.all %}
       <!-- product forms list -->
       <!-- delete product form -->
       <form action="{% url 'manage-flash' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
@@ -517,11 +517,11 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        Your inventory is empty .
+        No municipalities .
       </div>
     </div>
   </div>
   {% endif %}
 </div>
-<!-- end all products  -->
+<!-- end all municipalities  -->
 {% endblock %}
