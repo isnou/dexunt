@@ -145,8 +145,8 @@
 
       <tbody>
 
-      {% if active_coupons.all.count %}
-      {% for coupon in active_coupons %}
+      {% if all_coupons.all.count %}
+      {% for coupon in all_coupons %}
       <!-- Table Forms -->
       <form action="{% url 'coupon-manager' 'delete_coupon' %}" id="delete_coupon_form_{{ coupon.id }}" method="post">
         {% csrf_token %}
