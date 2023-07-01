@@ -4,8 +4,8 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
-from main_home.forms import ProvinceForm, MunicipalityForm
-from main_home.models import Province, Municipality
+from main_home.forms import ProvinceForm, MunicipalityForm, CouponForm
+from main_home.models import Province, Municipality, Coupon
 from authentication.models import User
 
 
@@ -541,6 +541,43 @@ def manage_shipping(request, action):
             selected_municipality.delete()
 
             return redirect('manage-shipping', 'view_province')
+
+def manage_coupon(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/admin/coupon/list.html"
+        coupon_form = CouponForm()
+
+        try:
+            all_coupons = Coupon.objects.all()
+        except Coupon.DoesNotExist:
+            raise Http404("No coupons")
+
+        for coupon in all_coupons:
+            coupon.clean()
+
+        context = {
+            'nav_side': 'coupon',
+            'coupon_form': coupon_form,
+            'all_coupons': all_coupons,
+        }
+        return render(request, url, context)
+    if action == 'add_new_coupon':
+        if request.method == 'POST':
+            coupon_form = CouponForm(request.POST)
+            coupon_form.save()
+
+            return redirect('manage-coupon', 'main')
+    if action == 'delete_coupon':
+        if request.method == 'POST':
+            coupon_id = request.POST.get('coupon_id', False)
+            selected_coupon = Coupon.objects.all().get(id=coupon_id)
+            selected_coupon.delete()
+
+            return redirect('manage-coupon', 'main')
 
 
 

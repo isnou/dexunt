@@ -4,7 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from add_ons import functions
 
 # --------------------- detail --------------------- #
-
 class Review(models.Model):
     # --------------------------------- feature types ------------------------------------------
     client_name = models.CharField(max_length=100, blank=True, null=True)
@@ -48,7 +47,6 @@ class Description(models.Model):
     def get_image_path(self, filename):
         return self.file_name.lower()
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
-
 
 # ---------------- regular showcase ---------------- #
 class Option(models.Model):

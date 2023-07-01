@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Province, Municipality
+from .models import Province, Municipality, Coupon
 
 class ProvinceForm(ModelForm):
     class Meta:
@@ -14,5 +14,9 @@ class MunicipalityForm(ModelForm):
                   'en_desk_delivery_time', 'fr_desk_delivery_time', 'ar_desk_delivery_time', 'desk_delivery_price',
                   'en_name', 'fr_name', 'ar_name',)
 
+class CouponForm(ModelForm):
+    class Meta:
+        model = Coupon
+        fields = ('type', 'quantity', 'valid_until', 'code', 'value')
 
 
