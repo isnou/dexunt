@@ -144,11 +144,11 @@
               </div>
 
               <div class="mt-8">
-                <form action="{% url 'shopping-cart' 0 0 'no' 'apply_coupon' %}" class="was-validated" novalidate method="post">
+                <form action="{% url 'shopping-cart' 0 0 'no' 'apply_coupon' %}" class="needs-validation" novalidate method="post">
                   {% csrf_token %}
 
                   <div class="mb-2">
-                    <input type="text" class="form-control is-invalid" name="coupon_code" placeholder="Promo or Gift Card" required>
+                    <input type="text" class="form-control" name="coupon_code" placeholder="Promo or Gift Card" required>
                     <span class="invalid-feedback text-center">required field.</span>
                   </div>
                   {% if coupon_message %}
