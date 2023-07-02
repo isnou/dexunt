@@ -143,6 +143,5 @@ def order_page(request, action):
 
         context = {
             'selected_cart': selected_cart,
-            'coupon_message': coupon_message,
         }
         return render(request, url, context)
