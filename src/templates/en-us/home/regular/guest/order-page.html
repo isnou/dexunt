@@ -45,7 +45,66 @@
         <!-- row -->
         <div class="row">
           <div class="col-lg-7 col-md-12">
-            <!-- accordion -->
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <!-- heading one -->
+                  <a href="shop-checkout.html#" class="fs-5 text-inherit collapsed h4"  data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                    <i class="feather-icon icon-map-pin me-2 text-muted"></i>Add delivery address
+                  </a>
+                  <!-- btn -->
+                  <a href="shop-checkout.html#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#addAddressModal">Add a new address </a>
+                  <!-- collapse -->
+                </div>
+
+
+                  <div class="mt-5">
+                    <div class="row">
+                      <div class="col-lg-6 col-12 mb-4">
+                        <!-- form -->
+                        <div class="card card-body p-6 ">
+                          <div class="form-check mb-4">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" checked>
+                            <label class="form-check-label text-dark" for="homeRadio">
+                              Home
+                            </label>
+                          </div>
+                          <!-- address -->
+                          <address> <strong>Jitu Chauhan</strong> <br>
+
+                            4450 North Avenue Oakland, <br>
+
+                            Nebraska, United States,<br>
+
+                            <abbr title="Phone">P: 402-776-1106</abbr></address>
+                          <span class="text-danger">Default address </span>
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-12 mb-4">
+                        <!-- input -->
+                        <div class="card card-body p-6 ">
+                          <div class="form-check mb-4">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" >
+                            <label class="form-check-label text-dark" for="officeRadio">
+                              Office
+                            </label>
+                          </div>
+                          <address> <strong>Nitu Chauhan</strong> <br> 3853 Coal Road, <br>
+                            Tannersville, Pennsylvania, 18372, USA,<br>
+
+                            <abbr title="Phone">P: 402-776-1106</abbr>
+                          </address>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+
+          <div class="col-lg-7 col-md-12">
             <div class="accordion accordion-flush" id="accordionFlushExample">
               <!-- accordion item -->
               <div class="accordion-item py-4">
@@ -1180,7 +1239,6 @@
 
 
             </div>
-
           </div>
 
           <div class="col-12 col-md-12 offset-lg-1 col-lg-4">
@@ -1196,15 +1254,12 @@
                       <div class="col-5 col-md-5">
                         <h6 class="mb-0">{{ product.en_name }}</h6>
                         <span><small class="text-muted">{{ product.en_detail }}</small></span>
-
                       </div>
                       <div class="col-2 col-md-2 text-center text-muted">
                         <span>{{ product.quantity }}</span>
-
                       </div>
                       <div class="col-3 text-lg-end text-start text-md-end col-md-3">
                         <span class="fw-bold">{{ product.total_price|floatformat:"0g" }} <small>DZD</small></span>
-
                       </div>
                     </div>
 
@@ -1249,8 +1304,6 @@
 
             </div>
           </div>
-
-
         </div>
       </div>
 
