@@ -156,10 +156,11 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
-            super().save()
+        super().save()
 
     def update_prices(self):
-        self.total_price = self.sub_total_price + self.delivery_price
+        if self.delivery_price:
+            self.total_price = self.sub_total_price + self.delivery_price
         super().save()
 
 # ------------------------------------- Shipping ------------------------------ #
