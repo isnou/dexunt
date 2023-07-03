@@ -108,7 +108,7 @@ class Cart(models.Model):
 
 class Order(models.Model):
     # --------------------------------- order technical informations ---------------------------
-    cart_ref = models.CharField(max_length=12, blank=True, null=True)
+    cart_ref = models.CharField(max_length=20, blank=True, null=True)
     ref = models.CharField(max_length=6, unique=True, null=True)
     type = models.CharField(max_length=200, default='REGULAR')
     # -- order_types : REGULAR - BOX
