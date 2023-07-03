@@ -108,16 +108,16 @@ class Cart(models.Model):
 
 class Order(models.Model):
     # --------------------------------- order technical informations ---------------------------
+    cart_ref = models.CharField(max_length=12, blank=True, null=True)
     order_ref = models.CharField(max_length=12, unique=True, null=True)
     type = models.CharField(max_length=200, default='REGULAR')
     # -- order_types : REGULAR - BOX
 
+    status = models.CharField(max_length=100, default='UNFULFILLED')
+    # -- status : UNFULFILLED - FULFILLED -
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    status = models.CharField(max_length=100, default='FULFILLED')
-    # -- status : FULFILLED -
-
     # --------------------------------- client info --------------------------------------------
     product = models.ManyToManyField(SelectedProduct, blank=True)
     client_name = models.CharField(max_length=300, blank=True, null=True)

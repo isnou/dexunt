@@ -4,6 +4,7 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Cart, SelectedProduct, get_cart, add_product_to_cart
 from .models import Coupon, apply_coupon
+from .models import Province, Municipality
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
@@ -134,6 +135,7 @@ def order_page(request, action):
     selected_cart = get_cart(request)
 
     request.session['coupon_message'] = None
+    provinces = Province.objects.all()
 
     if action == 'main':
         if not request.user.is_authenticated:
@@ -143,5 +145,6 @@ def order_page(request, action):
 
         context = {
             'selected_cart': selected_cart,
+            'provinces': provinces,
         }
         return render(request, url, context)

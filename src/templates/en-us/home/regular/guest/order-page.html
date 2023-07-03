@@ -56,10 +56,10 @@
 
                 <div class="col-12">
                   <select class="form-select">
-                    <option selected=""> India</option>
-                    <option value="1">UK</option>
-                    <option value="2">USA</option>
-                    <option value="3">UAE</option>
+                    <option selected="">your province</option>
+                    {% for province in provinces %}
+                    <option value='{{ province.id }}'>{{ province.en_name }}</option>
+                    {% endfor %}
                   </select>
                 </div>
 
