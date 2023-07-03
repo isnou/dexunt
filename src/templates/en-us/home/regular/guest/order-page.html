@@ -92,23 +92,6 @@
                     </address>
                   </div>
                 </div>
-                <!-- third address -->
-                <div class="col-lg-6 col-12 mb-4">
-                  <div class="card card-body p-6 ">
-                    <div class="form-check mb-4">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" >
-                      <label class="form-check-label text-dark">
-                        Office
-                      </label>
-                    </div>
-
-                    <address>
-                      <strong>Nitu Chauhan</strong> <br> 3853 Coal Road, <br>
-                      Tannersville, Pennsylvania, 18372, USA,<br>
-                      <abbr title="Phone">P: 402-776-1106</abbr>
-                    </address>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -204,22 +187,16 @@
               </li>
             </ul>
 
-
             <div class="mt-5">
-                    <label for="DeliveryInstructions" class="form-label sr-only">Delivery instructions</label>
-                    <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions "></textarea>
-                    <p class="form-text">Add instructions for how you want your order shopped and/or delivered</p>
-                    <div class="mt-5 d-flex justify-content-end">
-                      <a href="shop-checkout.html#" class="btn btn-outline-gray-400 text-muted"
-                        data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                        aria-controls="flush-collapseTwo">Prev</a>
-                      <a href="shop-checkout.html#" class="btn btn-primary ms-2"  data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseFour" aria-expanded="false"
-                        aria-controls="flush-collapseFour">Next</a>
-                    </div>
-                  </div>
-
+              <label for="DeliveryInstructions" class="form-label sr-only">Delivery instructions</label>
+              <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions "></textarea>
+              <p class="form-text">Add instructions for how you want your order shopped and/or delivered</p>
+              <div class="mt-5 d-flex justify-content-end">
+                <a href="shop-checkout.html#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">Prev</a>
+                <a href="shop-checkout.html#" class="btn btn-primary ms-2"  data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">Next</a>
               </div>
+            </div>
+          </div>
 
           <div class="col-12 col-md-12 offset-lg-1 col-lg-4">
             <div class="mt-4 mt-lg-0">
@@ -442,6 +419,91 @@
                 </small>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- new address modal -->
+<div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- modal body -->
+      <div class="modal-body p-6">
+        <div class="d-flex justify-content-between mb-5">
+          <!-- heading -->
+          <div>
+            <h5 class="h6 mb-1" id="addAddressModalLabel">New Shipping Address</h5>
+            <p class="small mb-0">Add new shipping address for your order delivery.</p>
+          </div>
+          <div>
+            <!-- button -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row g-3">
+          <!-- col -->
+          <div class="col-12">
+            <input type="text" class="form-control" placeholder="First name" aria-label="First name" required="">
+          </div>
+          <!-- col -->
+          <div class="col-12">
+            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required="">
+          </div>
+          <!-- col -->
+          <div class="col-12">
+
+            <input type="text" class="form-control" placeholder="Address Line 1">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="Address Line 2">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="City">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <select class="form-select">
+              <option selected=""> India</option>
+              <option value="1">UK</option>
+              <option value="2">USA</option>
+              <option value="3">UAE</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <select class="form-select">
+              <option selected="">Gujarat</option>
+              <option value="1">Northern Ireland</option>
+              <option value="2"> Alaska</option>
+              <option value="3">Abu Dhabi</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="Zip Code">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="Business Name">
+          </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <!-- label -->
+              <label class="form-check-label" for="flexCheckDefault">
+                Set as Default
+              </label>
+            </div>
+          </div>
+          <!-- button -->
+          <div class="col-12 text-end">
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="button">Save Address</button>
           </div>
         </div>
       </div>
