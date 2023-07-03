@@ -113,7 +113,7 @@
                 {% endfor %}
             </ul>
             <div class="mt-2 d-grid">
-                <a href="index-4.html#" class="btn btn-primary">Checkout</a>
+                <a href="{% url 'order-page' 'main' %}" class="btn btn-primary">Checkout</a>
                 <a href="{% url 'shopping-cart-page' 'main' %}" class="btn btn-light mt-2">View Cart</a>
             </div>
         </div>
