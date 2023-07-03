@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/en-us/home/regular/partials/municipality.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/en-us/home/regular/partials/prices.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/en-us/home/regular/partials/total.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main_home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main_home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_home/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/templates/en-us/home/regular/guest/order-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/home/regular/guest/order-page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,16 +46,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/en-us/home/regular/member"
+    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/en-us/home/regular/partials"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/partials" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/member" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/guest" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/coupon" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/shipping" />
-      <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/flash" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/products" />
@@ -102,6 +106,11 @@
           <url>file://$PROJECT_DIR$/src/main_manager/views.py</url>
           <line>565</line>
           <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main_home/views.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
