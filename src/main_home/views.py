@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Cart, SelectedProduct, get_cart, add_product_to_cart, get_order
+from .models import Cart, SelectedProduct, get_cart, add_product_to_cart, get_order, place_order
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
@@ -186,14 +186,11 @@ def order_page(request, action):
     if action == 'load_summary':
         municipality_id = request.session.get('municipality_id_token')
         municipality = Municipality.objects.all().get(id=municipality_id)
-
         delivery_type = request.GET.get('delivery_type')
-
         if delivery_type == 'home':
             selected_order.delivery_type = 'HOME'
             selected_order.delivery_price = municipality.home_delivery_price
             selected_order.update_prices()
-
         if delivery_type == 'desk':
             selected_order.delivery_type = 'DESK'
             selected_order.delivery_price = municipality.desk_delivery_price
@@ -203,3 +200,7 @@ def order_page(request, action):
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
+    if action == 'place_order':
+        place_order(request, selected_cart, selected_order)
+        
+        return redirect('home-page')
