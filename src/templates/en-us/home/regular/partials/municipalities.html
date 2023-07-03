@@ -1,4 +1,4 @@
-<select class="form-select" name="municipality_id" hx-get="{% url 'order-page' 'load_prices' %}" hx-trigger="change" hx-target="#prices">
+<select class="form-select" name="municipality_id" hx-get="{% url 'order-page' 'load_prices' %}" hx-trigger="change" hx-target="#prices" required>
     <option value="">Municipality</option>
     {% if province %}
     {% for municipality in province.municipality.all %}
@@ -7,3 +7,4 @@
     {% endif %}
     <option value='other'>Other {{province_id}}</option>
 </select>
+<span class="invalid-feedback text-start">choose your province.</span>

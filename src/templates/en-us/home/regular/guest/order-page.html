@@ -42,7 +42,7 @@
       <div class="row">
         <!-- checkout info -->
         <div class="col-lg-7 col-md-12">
-          <form action="{% url 'order-page' 'place_order' %}" id="order_form" method="post">
+          <form action="{% url 'order-page' 'place_order' %}" id="order_form" class="needs-validation" novalidate method="post">
             {% csrf_token %}
             <div class="mb-4">
               <div class="row g-3">
@@ -52,6 +52,7 @@
                   {% else %}
                   <input type="text" class="form-control" name="full_name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
                   {% endif %}
+                  <span class="invalid-feedback text-start">enter your name please.</span>
                 </div>
 
                 <div class="col-12">
@@ -60,16 +61,18 @@
                   {% else %}
                   <input class="form-control" type="tel" name="phone" placeholder="Phone number" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="change">
                   {% endif %}
+                  <span class="invalid-feedback text-start">enter your phone number please.</span>
                 </div>
 
                 <div class="col-12">
-                  <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities">
+                  <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
                     <option selected="">Province</option>
                     {% for province in provinces %}
                     <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
                     {% endfor %}
                     <option value='other'>Other</option>
                   </select>
+                  <span class="invalid-feedback text-start">choose your municipality.</span>
                 </div>
 
                 <div class="col-12" id="municipalities">
