@@ -146,9 +146,19 @@ def order_page(request, action):
 
         context = {
             'selected_cart': selected_cart,
+            'selected_order': selected_order,
             'provinces': provinces,
         }
         return render(request, url, context)
+
+    if action == 'load_client_name':
+        full_name = request.GET.get('full_name')
+        selected_order.client_name = full_name
+        selected_order.save()
+    if action == 'load_client_phone':
+        phone = request.GET.get('phone')
+        selected_order.client_phone = phone
+        selected_order.save()
     if action == 'load_municipalities':
         province_id = request.GET.get('province_id')
         province = Province.objects.all().get(id=province_id)
@@ -158,7 +168,6 @@ def order_page(request, action):
 
         sub_context = {
             'province': province,
-            'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/municipalities.html', sub_context)
     if action == 'load_prices':
