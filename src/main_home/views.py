@@ -177,7 +177,7 @@ def order_page(request, action):
     if action == 'prepare_order':
         municipality_id = request.session.get('municipality_id_token')
         request.session['municipality_id_token'] = None
-        municipality = Municipality.objects.all().get(id=municipality_id)
+        municipality = Municipality.objects.all().get(id=11)
 
         delivery_type = request.GET.get('delivery_type')
 
