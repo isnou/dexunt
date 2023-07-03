@@ -159,11 +159,12 @@ class Order(models.Model):
         super().save()
 
     def update_prices(self):
-        if self.delivery_price:
-            self.total_price = self.sub_total_price + self.delivery_price
-        else:
-            self.total_price = self.sub_total_price
+        if self.coupon_type == 'subtractive':
+            self.total_price = self.sub_total_price - self.coupon_value + self.delivery_price
+        if self.coupon_type == 'percentage':
+            self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100) + self.delivery_price
         super().save()
+
 
 # ------------------------------------- Shipping ------------------------------ #
 class Municipality(models.Model):
@@ -298,7 +299,7 @@ def get_order(request, selected_cart):
     selected_order.coupon_code = selected_cart.coupon_code
     selected_order.coupon_type = selected_cart.coupon_type
     selected_order.coupon_value = selected_cart.coupon_value
-    selected_order.sub_total_price = selected_cart.total_price
+    selected_order.sub_total_price = selected_cart.sub_total_price
 
     selected_order.update_prices()
 
