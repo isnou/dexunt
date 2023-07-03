@@ -165,7 +165,7 @@ def order_page(request, action):
         municipality_id = request.GET.get('municipality_id')
 
         municipality = Municipality.objects.all().get(id=municipality_id)
-        request.session['municipality_id_token'] = municipality.id
+        request.session['municipality_id_token'] = municipality_id
 
         selected_order.municipality = municipality.en_name
         selected_order.update_prices()
@@ -174,11 +174,7 @@ def order_page(request, action):
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/prices.html', sub_context)
-    if action == 'prepare_order':
-        municipality_id = request.session.get('municipality_id_token')
-        request.session['municipality_id_token'] = None
-        municipality = Municipality.objects.all().get(id=11)
-
+    if action == 'load_summary':
 
         sub_context = {
             'selected_order': selected_order,
