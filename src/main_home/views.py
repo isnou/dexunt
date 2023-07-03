@@ -175,8 +175,21 @@ def order_page(request, action):
         }
         return render(request, direction + '/home/regular/partials/prices.html', sub_context)
     if action == 'load_summary':
-        selected_order.delivery_price = 100
-        selected_order.update_prices()
+        municipality_id = request.session.get('municipality_id_token')
+        request.session['municipality_id_token'] = None
+        municipality = Municipality.objects.all().get(id=municipality_id)
+
+        delivery_type = request.GET.get('delivery_type')
+
+        if delivery_type == 'home':
+            selected_order.delivery_type = 'HOME'
+            selected_order.delivery_price = municipality.home_delivery_price
+            selected_order.update_prices()
+
+        if delivery_type == 'desk':
+            selected_order.delivery_type = 'DESK'
+            selected_order.delivery_price = municipality.desk_delivery_price
+            selected_order.update_prices()
 
         sub_context = {
             'selected_order': selected_order,
