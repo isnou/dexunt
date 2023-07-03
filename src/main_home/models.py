@@ -315,3 +315,15 @@ def get_order(request, selected_cart):
     selected_order.update_prices()
 
     return selected_order
+
+def place_order(request, selected_cart, selected_order):
+    for p in selected_cart.product.all():
+        selected_order.product.add(p)
+    selected_order.status = 'FULFILLED'
+    selected_order.update_prices()
+    selected_cart.reset()
+    selected_cart.delete()
+
+    request.session['municipality_id_token'] = None
+    request.session['order_ref'] = None
+    request.session['cart_ref'] = None

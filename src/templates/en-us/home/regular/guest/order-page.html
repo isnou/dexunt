@@ -42,7 +42,7 @@
       <div class="row">
         <!-- checkout info -->
         <div class="col-lg-7 col-md-12">
-          <form action="#" id="order_form" class="needs-validation" novalidate method="post">
+          <form action="{% url 'order-page' 'place_order' %}" id="order_form" class="needs-validation" novalidate method="post">
             {% csrf_token %}
             <div class="mb-4">
               <div class="row g-3">
