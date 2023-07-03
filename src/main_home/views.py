@@ -156,9 +156,11 @@ def order_page(request, action):
         }
         return render(request, direction + '/home/regular/partials/municipalities.html', sub_context)
     if action == 'load_prices':
+        province_id = request.GET.get('province_id')
         municipality_id = request.GET.get('municipality_id')
         municipality = Municipality.objects.all().get(id=municipality_id)
         sub_context = {
+            'province_id': province_id,
             'municipality': municipality,
         }
         return render(request, direction + '/home/regular/partials/prices.html', sub_context)
