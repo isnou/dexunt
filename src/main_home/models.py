@@ -270,51 +270,29 @@ def apply_coupon(request, selected_cart, coupon_code):
     selected_cart.coupon_value = value
     selected_cart.update_prices()
 
-def get_order(request, selected_cart, name, phone, selected_province, selected_municipality, delivery_type):
+def get_order(request, selected_cart):
     if not request.user.is_authenticated:
         if not request.session.get('order_ref', None):
-            selected_order = Order(cart_ref=selected_cart.ref,
-                                   client_name=name,
-                                   client_phone=phone,
-                                   province=selected_province.en_name,
-                                   municipality=selected_municipality.en_name)
+            selected_order = Order(cart_ref=selected_cart.ref,)
             request.session['order_ref'] = selected_order.ref
         else:
             ref = request.session.get('order_ref')
             if Order.objects.all().filter(ref=ref).exists():
                 selected_order = Order.objects.all().get(ref=ref)
             else:
-                selected_order = Order(cart_ref=selected_cart.ref,
-                                       client_name=name,
-                                       client_phone=phone,
-                                       province=selected_province.en_name,
-                                       municipality=selected_municipality.en_name)
+                selected_order = Order(cart_ref=selected_cart.ref,)
                 request.session['order_ref'] = selected_order.ref
     else:
         if Order.objects.all().filter(user_token=request.user.user_token).exists():
             selected_order = Order.objects.all().get(user_token=request.user.user_token)
         else:
             selected_order = Order(user_token=request.user.user_token,
-                                   cart_ref=selected_cart.ref,
-                                   client_name=name,
-                                   client_phone=phone,
-                                   province=selected_province.en_name,
-                                   municipality=selected_municipality.en_name)
+                                   cart_ref=selected_cart.ref,)
+
     selected_order.coupon_code = selected_cart.coupon_code
     selected_order.coupon_type = selected_cart.coupon_type
     selected_order.coupon_value = selected_cart.coupon_value
-    selected_order.province = selected_province.en_name
-    selected_order.municipality = selected_municipality.en_name
-
-    if delivery_type == 'home':
-        selected_order.delivery_type = 'HOME'
-        selected_order.delivery_price = selected_municipality.home_delivery_price
-
-    if delivery_type == 'desk':
-        selected_order.delivery_type = 'DESK'
-        selected_order.delivery_price = selected_municipality.desk_delivery_price
 
     selected_order.save()
-    selected_order.update_prices()
 
     return selected_order

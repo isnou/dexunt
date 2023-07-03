@@ -151,30 +151,44 @@ def order_page(request, action):
     if action == 'load_municipalities':
         province_id = request.GET.get('province_id')
         province = Province.objects.all().get(id=province_id)
+        selected_order = get_order(request, selected_cart)
+        selected_order.province = province.en_name
+        selected_order.update_prices()
         sub_context = {
             'province': province,
+            'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/municipalities.html', sub_context)
     if action == 'load_prices':
-        province_id = request.GET.get('province_id')
         municipality_id = request.GET.get('municipality_id')
+        request.session['municipality_id_token'] = municipality_id
         municipality = Municipality.objects.all().get(id=municipality_id)
+        selected_order = get_order(request, selected_cart)
+        selected_order.municipality = municipality.en_name
+        selected_order.update_prices()
         sub_context = {
-            'province_id': province_id,
             'municipality': municipality,
+            'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/prices.html', sub_context)
     if action == 'prepare_order':
-        full_name = request.GET.get('full_name')
-        phone = request.GET.get('phone')
-        province_id = request.GET.get('province_id')
-        municipality_id = request.GET.get('municipality_id')
-        delivery_type = request.GET.get('delivery_type')
-
-        province = Province.objects.all().get(id=province_id)
+        municipality_id = request.session.get('municipality_id_token')
+        request.session['municipality_id_token'] = None
         municipality = Municipality.objects.all().get(id=municipality_id)
 
-        selected_order = get_order(request, selected_cart, full_name, phone, province, municipality, delivery_type)
+        delivery_type = request.GET.get('delivery_type')
+        selected_order = get_order(request, selected_cart)
+
+        if delivery_type == 'home':
+            selected_order.delivery_type = 'HOME'
+            selected_order.delivery_price = municipality.home_delivery_price
+            selected_order.update_prices()
+            
+        if delivery_type == 'desk':
+            selected_order.delivery_type = 'DESK'
+            selected_order.delivery_price = municipality.desk_delivery_price
+            selected_order.update_prices()
+
         sub_context = {
             'selected_order': selected_order,
         }
