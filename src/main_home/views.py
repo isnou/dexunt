@@ -192,6 +192,7 @@ def order_page(request, action):
             selected_order.update_prices()
 
         sub_context = {
+            'selected_cart': selected_cart,
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
