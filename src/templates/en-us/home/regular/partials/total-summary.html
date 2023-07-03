@@ -1,23 +1,23 @@
 <li class="list-group-item px-4 py-3">
-  <div class="d-flex align-items-center justify-content-between   mb-2">
+  <div class="d-flex align-items-center justify-content-between mb-2">
     <div>Subtotal</div>
     <div class="fw-bold"> {{ selected_order.sub_total_price|floatformat:"0g" }} <small>DZD</small></div>
   </div>
 
-  <div class="d-flex align-items-center justify-content-between  mb-2">
+  <div class="d-flex align-items-center justify-content-between mb-2">
     <div>Delivery</div>
     <div class="fw-bold">{{ selected_order.delivery_price|floatformat:"0g" }} <small>DZD</small></div>
   </div>
 
   {% if selected_order.coupon_type == 'subtractive' %}
-  <div class="d-flex align-items-center justify-content-between   mb-2">
+  <div class="d-flex align-items-center justify-content-between mb-2">
     <div>Discount</div>
     <div class="fw-bold">{{ selected_order.coupon_value|floatformat:"0g" }} <small>DZD</small></div>
   </div>
   {% endif %}
 
   {% if selected_order.coupon_type == 'percentage' %}
-  <div class="d-flex align-items-center justify-content-between   mb-2">
+  <div class="d-flex align-items-center justify-content-between mb-2">
     <div>Discount</div>
     <div class="fw-bold">{{ selected_order.coupon_value|floatformat:"0g" }} <small>%</small></div>
   </div>

@@ -20,12 +20,13 @@
                 <label class="form-check-label" for="desk">
                     <span>Delivery to desk</span>
                 </label>
+                <span class="invalid-feedback text-start">choose a delivery type.</span>
             </div>
         </div>
         <div class="col-3 text-center">{{ municipality.en_desk_delivery_time }}</div>
         <div class="col-3 text-center">{{ municipality.desk_delivery_price|floatformat:"0g" }} <small>DZD</small></div>
     </li>
 
-    <span class="invalid-feedback text-start">choose a delivery type.</span>
+
 </ul>
 {% endif %}
