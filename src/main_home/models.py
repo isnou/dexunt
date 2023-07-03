@@ -274,6 +274,7 @@ def get_order(request, selected_cart):
     if not request.user.is_authenticated:
         if not request.session.get('order_ref', None):
             selected_order = Order(cart_ref=selected_cart.ref,)
+            selected_order.save()
             request.session['order_ref'] = selected_order.ref
         else:
             ref = request.session.get('order_ref')
@@ -281,6 +282,7 @@ def get_order(request, selected_cart):
                 selected_order = Order.objects.all().get(ref=ref)
             else:
                 selected_order = Order(cart_ref=selected_cart.ref,)
+                selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
         if Order.objects.all().filter(user_token=request.user.user_token).exists():
@@ -288,11 +290,12 @@ def get_order(request, selected_cart):
         else:
             selected_order = Order(user_token=request.user.user_token,
                                    cart_ref=selected_cart.ref,)
+            selected_order.save()
 
     selected_order.coupon_code = selected_cart.coupon_code
     selected_order.coupon_type = selected_cart.coupon_type
     selected_order.coupon_value = selected_cart.coupon_value
 
-    selected_order.save()
+    selected_order.update_prices()
 
     return selected_order
