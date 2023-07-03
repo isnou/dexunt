@@ -161,6 +161,8 @@ class Order(models.Model):
     def update_prices(self):
         if self.delivery_price:
             self.total_price = self.sub_total_price + self.delivery_price
+        else:
+            self.total_price = self.sub_total_price
         super().save()
 
 # ------------------------------------- Shipping ------------------------------ #
