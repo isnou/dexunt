@@ -58,8 +58,9 @@
                   <select class="form-select">
                     <option selected="">your province</option>
                     {% for province in provinces %}
-                    <option value='{{ province.id }}'>{{ province.en_name }}</option>
+                    <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
                     {% endfor %}
+                    <option value='other'>Other</option>
                   </select>
                 </div>
 
