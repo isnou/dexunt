@@ -159,19 +159,19 @@ class Order(models.Model):
         super().save()
 
     def update_prices(self):
-        if not self.coupon_type:
+        if not self.coupon_value:
             self.total_price = self.sub_total_price
-        if self.delivery_price:
-            if self.coupon_type == 'subtractive':
-                self.total_price = self.sub_total_price - self.coupon_value + self.delivery_price
-            if self.coupon_type == 'percentage':
-                self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100) + self.delivery_price
         else:
-            if self.coupon_type == 'subtractive':
-                self.total_price = self.sub_total_price - self.coupon_value
-            if self.coupon_type == 'percentage':
-                self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
-
+            if self.delivery_price:
+                if self.coupon_type == 'subtractive':
+                    self.total_price = self.sub_total_price - self.coupon_value + self.delivery_price
+                if self.coupon_type == 'percentage':
+                    self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100) + self.delivery_price
+            else:
+                if self.coupon_type == 'subtractive':
+                    self.total_price = self.sub_total_price - self.coupon_value
+                if self.coupon_type == 'percentage':
+                    self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
 
 # ------------------------------------- Shipping ------------------------------ #
