@@ -129,7 +129,7 @@ class Order(models.Model):
     # --------------------------------- order info ---------------------------------------------
     points = models.IntegerField(default=0)
     coupon_code = models.CharField(max_length=20, blank=True, null=True)
-    coupon_value = models.IntegerField(default=0)
+    coupon_value = models.IntegerField(default=0, null=True)
     coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
     # -- coupon_types :  SUBTRACTION - PERCENTAGE
 
