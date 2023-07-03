@@ -96,14 +96,9 @@ class Cart(models.Model):
             self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
 
-    def reset(self):
+    def delete_products(self):
         for product in self.product.all():
             product.delete()
-        self.sub_total_price = None
-        self.total_price = None
-        self.coupon_type = None
-        self.coupon_code = None
-        self.coupon_value = None
         super().save()
 
 class Order(models.Model):
