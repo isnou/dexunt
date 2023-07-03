@@ -48,17 +48,17 @@
               <div class="row g-3">
                 <div class="col-12">
                   {% if selected_order.client_name %}
-                  <input type="text" class="form-control" name="full_name" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
+                  <input type="text" class="form-control" name="full_name" value="{{ selected_order.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
                   {% else %}
-                  <input type="text" class="form-control" name="full_name" value="{{ selected_order.client_name }}" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
+                  <input type="text" class="form-control" name="full_name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
                   {% endif %}
                 </div>
 
                 <div class="col-12">
                   {% if selected_order.client_phone %}
-                  <input class="form-control" type="tel" name="phone" placeholder="Phone number" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="change">
-                  {% else %}
                   <input class="form-control" type="tel" name="phone" placeholder="Phone number" value="{{ selected_order.client_phone }}" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="change">
+                  {% else %}
+                  <input class="form-control" type="tel" name="phone" placeholder="Phone number" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="change">
                   {% endif %}
                 </div>
 
