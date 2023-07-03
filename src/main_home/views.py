@@ -133,6 +133,7 @@ def order_page(request, action):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     selected_cart = get_cart(request)
+    selected_order = get_order(request, selected_cart)
 
     request.session['coupon_message'] = None
     provinces = Province.objects.all()
@@ -152,8 +153,6 @@ def order_page(request, action):
         province_id = request.GET.get('province_id')
         province = Province.objects.all().get(id=province_id)
 
-        selected_order = get_order(request, selected_cart)
-
         selected_order.province = province.en_name
         selected_order.update_prices()
 
@@ -166,7 +165,7 @@ def order_page(request, action):
         municipality_id = request.GET.get('municipality_id')
         request.session['municipality_id_token'] = municipality_id
         municipality = Municipality.objects.all().get(id=municipality_id)
-        selected_order = get_order(request, selected_cart)
+
         selected_order.municipality = municipality.en_name
         selected_order.update_prices()
         sub_context = {
@@ -180,7 +179,6 @@ def order_page(request, action):
         municipality = Municipality.objects.all().get(id=municipality_id)
 
         delivery_type = request.GET.get('delivery_type')
-        selected_order = get_order(request, selected_cart)
 
         if delivery_type == 'home':
             selected_order.delivery_type = 'HOME'
