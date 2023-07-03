@@ -159,7 +159,7 @@ class Order(models.Model):
         super().save()
 
     def update_prices(self):
-        if self.coupon_value:
+        if not self.coupon_value:
             if self.delivery_price:
                 self.total_price = self.sub_total_price + self.delivery_price
             else:
