@@ -321,7 +321,6 @@ def place_order(request, selected_cart, selected_order):
         selected_order.product.add(p)
     selected_order.status = 'FULFILLED'
     selected_order.update_prices()
-    selected_cart.reset()
     selected_cart.delete()
 
     request.session['municipality_id_token'] = None
