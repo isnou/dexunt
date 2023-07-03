@@ -109,7 +109,7 @@ class Cart(models.Model):
 class Order(models.Model):
     # --------------------------------- order technical informations ---------------------------
     cart_ref = models.CharField(max_length=12, blank=True, null=True)
-    order_ref = models.CharField(max_length=12, unique=True, null=True)
+    ref = models.CharField(max_length=6, unique=True, null=True)
     type = models.CharField(max_length=200, default='REGULAR')
     # -- order_types : REGULAR - BOX
 
@@ -118,6 +118,7 @@ class Order(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    user_token = models.CharField(max_length=24, blank=True, null=True)
     # --------------------------------- client info --------------------------------------------
     product = models.ManyToManyField(SelectedProduct, blank=True)
     client_name = models.CharField(max_length=300, blank=True, null=True)
@@ -132,11 +133,11 @@ class Order(models.Model):
     coupon_type = models.CharField(max_length=100, default='SUBTRACTION')
     # -- coupon_types :  SUBTRACTION - PERCENTAGE
 
-    shipping_type = models.CharField(max_length=100, default='TO_HOME')
-    # -- shipping_types :  TO-HOME - TO-DESK
+    delivery_type = models.CharField(max_length=100, default='HOME')
+    # -- delivery_types :  TO-HOME - TO-DESK
 
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    shipping_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # --------------------------------- options ------------------------------------------------
     additional_information = models.CharField(max_length=500, blank=True, null=True)
@@ -153,9 +154,13 @@ class Order(models.Model):
     quantity_issue = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        if not self.order_ref:
-            self.order_ref = functions.serial_number_generator(12).upper()
+        if not self.ref:
+            self.ref = functions.serial_number_generator(6).upper()
             super().save()
+
+    def update_prices(self):
+        self.total_price = self.sub_total_price + self.shipping_price
+        super().save()
 
 # ------------------------------------- Shipping ------------------------------ #
 class Municipality(models.Model):
@@ -264,3 +269,52 @@ def apply_coupon(request, selected_cart, coupon_code):
     selected_cart.coupon_type = type
     selected_cart.coupon_value = value
     selected_cart.update_prices()
+
+def get_order(request, selected_cart, name, phone, selected_province, selected_municipality, delivery_type):
+    if not request.user.is_authenticated:
+        if not request.session.get('order_ref', None):
+            selected_order = Order(cart_ref=selected_cart.ref,
+                                   client_name=name,
+                                   client_phone=phone,
+                                   province=selected_province.en_name,
+                                   municipality=selected_municipality.en_name)
+            request.session['order_ref'] = selected_order.ref
+        else:
+            ref = request.session.get('order_ref')
+            if Order.objects.all().filter(ref=ref).exists():
+                selected_order = Order.objects.all().get(ref=ref)
+            else:
+                selected_order = Order(cart_ref=selected_cart.ref,
+                                       client_name=name,
+                                       client_phone=phone,
+                                       province=selected_province.en_name,
+                                       municipality=selected_municipality.en_name)
+                request.session['order_ref'] = selected_order.ref
+    else:
+        if Order.objects.all().filter(user_token=request.user.user_token).exists():
+            selected_order = Order.objects.all().get(user_token=request.user.user_token)
+        else:
+            selected_order = Order(user_token=request.user.user_token,
+                                   cart_ref=selected_cart.ref,
+                                   client_name=name,
+                                   client_phone=phone,
+                                   province=selected_province.en_name,
+                                   municipality=selected_municipality.en_name)
+    selected_order.coupon_code = selected_cart.coupon_code
+    selected_order.coupon_type = selected_cart.coupon_type
+    selected_order.coupon_value = selected_cart.coupon_value
+    selected_order.province = selected_province.en_name
+    selected_order.municipality = selected_municipality.en_name
+
+    if delivery_type == 'home':
+        selected_order.delivery_type = 'HOME'
+        selected_order.delivery_price = selected_municipality.home_delivery_price
+
+    if delivery_type == 'desk':
+        selected_order.delivery_type = 'DESK'
+        selected_order.delivery_price = selected_municipality.desk_delivery_price
+
+    selected_order.save()
+    selected_order.update_prices()
+
+    return selected_order

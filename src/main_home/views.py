@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Cart, SelectedProduct, get_cart, add_product_to_cart
+from .models import Cart, SelectedProduct, get_cart, add_product_to_cart, get_order
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
@@ -162,4 +162,18 @@ def order_page(request, action):
             'municipality': municipality,
         }
         return render(request, direction + '/home/regular/partials/prices.html', sub_context)
+    if action == 'prepare_order':
+        full_name = request.GET.get('full_name')
+        phone = request.GET.get('phone')
+        province_id = request.GET.get('province_id')
+        municipality_id = request.GET.get('municipality_id')
+        delivery_type = request.GET.get('delivery_type')
 
+        province = Province.objects.all().get(id=province_id)
+        municipality = Municipality.objects.all().get(id=municipality_id)
+
+        selected_order = get_order(request, selected_cart, full_name, phone, province, municipality, delivery_type)
+        sub_context = {
+            'selected_order': selected_order,
+        }
+        return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
