@@ -176,7 +176,6 @@ def order_page(request, action):
         return render(request, direction + '/home/regular/partials/prices.html', sub_context)
     if action == 'load_summary':
         municipality_id = request.session.get('municipality_id_token')
-        request.session['municipality_id_token'] = None
         municipality = Municipality.objects.all().get(id=municipality_id)
 
         delivery_type = request.GET.get('delivery_type')
