@@ -148,3 +148,10 @@ def order_page(request, action):
             'provinces': provinces,
         }
         return render(request, url, context)
+    if action == 'load_municipalities':
+        province_id = request.GET.get('province_id')
+        province = Province.objects.all().get(id=province_id)
+        sub_context = {
+            'province': province,
+        }
+        return render(request, direction + '/home/regular/partials/municipalities.html', sub_context)

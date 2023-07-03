@@ -55,8 +55,8 @@
                 </div>
 
                 <div class="col-12">
-                  <select class="form-select">
-                    <option selected="">your province</option>
+                  <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities">
+                    <option selected="">Province</option>
                     {% for province in provinces %}
                     <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
                     {% endfor %}
@@ -64,7 +64,7 @@
                   </select>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12" id="municipalities">
                   <select class="form-select">
                     <option selected="">Gujarat</option>
                     <option value="1">Northern Ireland</option>
