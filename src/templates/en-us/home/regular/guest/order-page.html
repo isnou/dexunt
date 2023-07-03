@@ -41,32 +41,23 @@
     <div>
       <div class="row">
         <div class="col-lg-7 col-md-12">
-          <div class="mb-4">
-            
-        <div class="row g-3">
-          <!-- col -->
-          <div class="col-12">
-            <input type="text" class="form-control" placeholder="First name" aria-label="First name" required="">
-          </div>
-          <!-- col -->
-          <div class="col-12">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required="">
-          </div>
-          <!-- col -->
-          <div class="col-12">
+          <form action="{% url 'order-page' 'main' %}" id="order_form" method="post">
+            {% csrf_token %}
 
-            <input type="text" class="form-control" placeholder="Address Line 1">
-          </div>
+          <div class="mb-4">
+
+
+
+        <div class="row g-3">
           <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Address Line 2">
+            <input type="text" class="form-control" placeholder="Full name" aria-label="Full name" required>
           </div>
+
           <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="City">
+            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required>
           </div>
+
           <div class="col-12">
-            <!-- button -->
             <select class="form-select">
               <option selected=""> India</option>
               <option value="1">UK</option>
@@ -74,22 +65,14 @@
               <option value="3">UAE</option>
             </select>
           </div>
+
           <div class="col-12">
-            <!-- button -->
             <select class="form-select">
               <option selected="">Gujarat</option>
               <option value="1">Northern Ireland</option>
               <option value="2"> Alaska</option>
               <option value="3">Abu Dhabi</option>
             </select>
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Zip Code">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Business Name">
           </div>
         </div>
 
@@ -180,6 +163,10 @@
               <a href="shop-checkout.html#" class="btn btn-primary ms-2"  data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">Next</a>
             </div>
           </div>
+
+          </form>
+
+
         </div>
 
         <div class="col-12 col-md-12 offset-lg-1 col-lg-4">
