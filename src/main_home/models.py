@@ -113,8 +113,8 @@ class Order(models.Model):
     type = models.CharField(max_length=200, default='REGULAR')
     # -- order_types : REGULAR - BOX
 
-    status = models.CharField(max_length=100, default='UNFULFILLED')
-    # -- status : UNFULFILLED - FULFILLED -
+    status = models.CharField(max_length=100, default='INCOMPLETE')
+    # -- status : INCOMPLETE - FULFILLED -
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -159,9 +159,7 @@ class Order(models.Model):
         super().save()
 
     def update_prices(self):
-        if not self.coupon_value:
-            self.total_price = self.sub_total_price
-        else:
+        if self.coupon_value:
             if self.delivery_price:
                 if self.coupon_type == 'subtractive':
                     self.total_price = self.sub_total_price - self.coupon_value + self.delivery_price
@@ -172,6 +170,9 @@ class Order(models.Model):
                     self.total_price = self.sub_total_price - self.coupon_value
                 if self.coupon_type == 'percentage':
                     self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
+
+        else:
+            self.total_price = self.sub_total_price
         super().save()
 
 # ------------------------------------- Shipping ------------------------------ #
