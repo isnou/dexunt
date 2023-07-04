@@ -1,4 +1,3 @@
-from account.models import User
 from main_home.models import Order
 
 def orders(request):
