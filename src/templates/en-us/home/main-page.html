@@ -19,6 +19,7 @@
             </span>
             {% endif %}
         </a>
+        {% if selected_cart.product.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5 mb-3">
                 <div>
@@ -58,6 +59,7 @@
                 <a href="{% url 'shopping-cart-page' 'main' %}" class="btn btn-light mt-2">View Cart</a>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 <!-- end mobile dropdown cart -->
@@ -78,6 +80,7 @@
             </span>
             {% endif %}
         </a>
+        {% if selected_cart.product.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
                 <div>
@@ -121,6 +124,7 @@
                 <a href="{% url 'shopping-cart-page' 'main' %}" class="btn btn-light mt-2">View Cart</a>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 <!-- end desk dropdown cart -->
