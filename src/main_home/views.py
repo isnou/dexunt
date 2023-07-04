@@ -202,5 +202,14 @@ def order_page(request, action):
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
     if action == 'place_order':
         place_order(request, selected_cart, selected_order)
+        
+        if not request.user.is_authenticated:
+            url = direction + "/home/regular/guest/checkout-review.html"
+        else:
+            url = direction + "/home/regular/member/checkout-review.html"
 
-        return redirect('home-page')
+        context = {
+            'selected_cart': selected_cart,
+            'selected_order': selected_order,
+        }
+        return render(request, url, context)
