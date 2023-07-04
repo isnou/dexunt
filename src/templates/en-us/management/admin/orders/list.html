@@ -91,24 +91,28 @@
         </td>
         <!-- product title and image -->
         <td class="table-column-ps-0">
+          {% if order.product.all.count == 1 %}
           <a class="d-flex align-items-center" href="#">
-            {% if order.product.all.count == 1 %}
             <div class="flex-shrink-0">
-              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ order.product.all.0.image }}">
+              <img class="avatar avatar-circle avatar-lg" src="{% get_media_prefix %}{{ order.product.all.0.image }}">
             </div>
             <div class="flex-grow-1 ms-3">
               <h5 class="text-inherit me-2">{{ order.product.all.0.en_title }} {{ order.product.all.0.en_detail }}</h5>
             </div>
-            {% else %}
-
-            {% for product in order.product.all %}
-            <a class="avatar" href="{% url 'product-router' product.variant_id 0 'no' 'regular_product' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ product.en_title }}">
-              <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
-            </a>
-            {% endfor %}
-
-            {% endif %}
           </a>
+          {% else %}
+
+          {% for product in order.product.all %}
+          <div class="d-flex justify-content-center">
+            <div class="avatar-group avatar-group-sm avatar-circle card-avatar-group">
+              <a class="avatar" href="{% url 'product-router' product.variant_id 0 'no' 'regular_product' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ product.en_title }}">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+
+          {% endif %}
         </td>
         <!-- product brand -->
         <td>{{ product.brand }}</td>
