@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
 from main_home.forms import ProvinceForm, MunicipalityForm, CouponForm
-from main_home.models import Province, Municipality, Coupon, Orders
+from main_home.models import Province, Municipality, Coupon, Order
 from authentication.models import User
 
 
@@ -461,7 +461,7 @@ def manage_orders(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/orders/list.html"
-        all_orders = Orders.objects.all()
+        all_orders = Order.objects.all()
 
         context = {
             'nav_side': 'orders',
