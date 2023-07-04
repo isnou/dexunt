@@ -89,20 +89,20 @@
       <tr>
         <td class="table-column-pe-0">
         </td>
-        <!-- product title and image -->
+
+        <td>
+          <span class="d-block h5 text-inherit mb-0"># {{ order.ref }}</span>
+          <span class="d-block fs-5 text-body">{{ product.created_at }}</span>
+        </td>
+
         <td class="table-column-ps-0">
           <div class="dropdown">
             <button class="btn btn-ghost-primary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false">
               {{ order.product.all.count }} products
             </button>
             <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
-
-
-
-
               <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-
                   <tbody>
                   {% for product in order.product.all %}
                   <tr>
@@ -128,60 +128,16 @@
                     {% endif %}
                   </tr>
                   {% endfor %}
-
-
                   </tbody>
                 </table>
               </div>
-
-
-
-
             </div>
           </div>
-
-
-
         </td>
-        <!-- product brand -->
-        <td>{{ product.brand }}</td>
-        <!-- product info -->
+
         <td>
-          {% for variant in product.variant.all %}
-          {% for option in variant.option.all %}
-          <span class="d-block text-body fs-6">
-            <small>
-              {{ variant.en_spec }} - {{ option.en_value }}
-              {% if not option.is_activated or not variant.is_activated %}
-              <span class="badge bg-warning">not activated</span>
-              {% endif %}
-
-              {% if not option.quantity %}
-              <span class="badge bg-danger">not available</span>
-              {% else %}
-               ({{ option.quantity }}) available
-              {% endif %}
-            </small>
-          </span>
-          {% endfor %}
-          {% endfor %}
-        </td>
-        <!-- product actions -->
-        <td>
-          <!-- clean product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#clean_product_modal_{{ product.id }}">
-            <i class="bi-magic" data-bs-toggle="tooltip" data-bs-placement="top" title="Clean"></i>
-          </button>
-
-          <!-- view product -->
-          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
-            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-          </button>
-
-          <!-- delete product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
-            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-          </button>
+          <span class="d-block h5 text-inherit mb-0">{{ order.client_name }}</span>
+          <span class="d-block fs-5 text-body">{{ product.client_phone }}</span>
         </td>
       </tr>
       <!-- end products list -->
