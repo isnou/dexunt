@@ -59,6 +59,15 @@
                 <a href="{% url 'shopping-cart-page' 'main' %}" class="btn btn-light mt-2">View Cart</a>
             </div>
         </div>
+        {% else %}
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
+                <div>
+                    <span><i class="feather-icon icon-shopping-cart"></i></span>
+                    Your cart is empty
+                </div>
+            </div>
+        </div>
         {% endif %}
     </div>
 </div>
@@ -122,6 +131,15 @@
             <div class="mt-2 d-grid">
                 <a href="{% url 'order-page' 'main' %}" class="btn btn-primary">Checkout</a>
                 <a href="{% url 'shopping-cart-page' 'main' %}" class="btn btn-light mt-2">View Cart</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
+                <div>
+                    <span><i class="feather-icon icon-shopping-cart"></i></span>
+                    Your cart is empty
+                </div>
             </div>
         </div>
         {% endif %}
