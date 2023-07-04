@@ -2,7 +2,7 @@
 {% load static %}
 
 <!-- title -->
-{% block title %}<title>Dexunt | eCommerce & Logistic | Management | Products</title>{% endblock %}
+{% block title %}<title>Dexunt | eCommerce & Logistic | Management | Orders</title>{% endblock %}
 
 <!-- header -->
 {% block page_header %}
@@ -11,80 +11,14 @@
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item active" aria-current="page">products</li>
+        <li class="breadcrumb-item active" aria-current="page">orders</li>
       </ol>
     </nav>
     <h1 class="page-header-title">Products</h1>
-    <h6 class="text-muted">You have {{ all_products.all.count }} products</h6>
-  </div>
-  <div class="col-sm-auto">
-    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_product_modal">
-      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new product"></i>
-    </button>
+    <h6 class="text-muted">You have {{ all_orders.all.count }} orders</h6>
   </div>
   <!-- end all products  -->
 </div>
-
-<!-- add new product modal -->
-<div id="add_new_product_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_new_product_modal_title" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="add_new_product_modal_title">
-          <div class="text-center mb-7">
-            <h2>Add new product</h2>
-          </div>
-          <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-
-            <div class="row mb-4">
-              <span class="divider-center mb-2">Main Informations</span>
-
-              <!-- product english title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" id="en_title" style="width: 25%;">english title</span>
-                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_title" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box" required>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end product english title -->
-
-              <!-- product french title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" id="fr_title" style="width: 25%;">french title</span>
-                <input type="text" class="form-control" aria-label="fr_title" aria-describedby="fr_title" name="{{ product_form.fr_title.name }}" placeholder="Coffre à jouets Deluxe">
-              </div>
-              <!-- end product french title -->
-
-              <!-- product arabic title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" id="ar_title" style="width: 25%;">arabic title</span>
-                <input type="text" class="form-control" aria-label="ar_title" aria-describedby="ar_title" name="{{ product_form.ar_title.name }}" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
-              </div>
-              <!-- end product arabic title -->
-
-              <!-- product brand -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" id="brand" style="width: 25%;">brand</span>
-                <input type="text" class="form-control" aria-label="brand" aria-describedby="brand" name="{{ product_form.brand.name }}" placeholder="OomCu">
-              </div>
-              <!-- end product brand -->
-            </div>
-
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end add new product modal -->
 {% endblock %}
 
 <!-- product content -->
@@ -100,7 +34,7 @@
           <div class="input-group-prepend input-group-text">
             <i class="bi-search"></i>
           </div>
-          <input id="datatableSearch" type="search" class="form-control" placeholder="Search products" aria-label="Search products">
+          <input id="datatableSearch" type="search" class="form-control" placeholder="Search orders" aria-label="Search orders">
         </div>
       </form>
     </div>
@@ -113,7 +47,7 @@
   </div>
   <!-- end header -->
 
-  {% if all_products.all.count %}
+  {% if all_orders.all.count %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -129,7 +63,7 @@
       </thead>
 
       <tbody>
-      {% for product in all_products.all %}
+      {% for order in all_orders.all %}
       <!-- product forms list -->
       <!-- delete product form -->
       <form action="{% url 'manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
@@ -158,16 +92,22 @@
         <!-- product title and image -->
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="#">
+            {% if order.product.all.count == 1 %}
             <div class="flex-shrink-0">
-              {% if product.variant.all.0.album.all.count %}
-              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.variant.all.0.album.all.0.image }}">
-              {% else %}
-              <span class="badge bg-warning">no images</span>
-              {% endif %}
+              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ order.product.all.0.image }}">
             </div>
             <div class="flex-grow-1 ms-3">
-              <h5 class="text-inherit me-2">{{ product.en_title }}</h5>
+              <h5 class="text-inherit me-2">{{ order.product.all.0.en_title }} {{ order.product.all.0.en_detail }}</h5>
             </div>
+            {% else %}
+            
+            {% for product in order.product.all %}
+            <a class="avatar" href="{% url 'product-router' product.id 0 'no' 'regular_product' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ product.en_title }}">
+              <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
+            </a>
+            {% endfor %}
+
+            {% endif %}
           </a>
         </td>
         <!-- product brand -->
@@ -304,7 +244,7 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        Your inventory is empty .
+        Your don't have orders yet .
       </div>
     </div>
   </div>

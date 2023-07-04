@@ -602,7 +602,7 @@
 
             <!-- Orders -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="#" data-placement="left">
+              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'manage-orders' 'main' %}" data-placement="left">
                 <i class="bi-cart nav-icon"></i>
                 <span class="nav-link-title">Orders
                   {% if new_orders_count %}

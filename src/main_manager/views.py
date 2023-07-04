@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
 from main_home.forms import ProvinceForm, MunicipalityForm, CouponForm
-from main_home.models import Province, Municipality, Coupon
+from main_home.models import Province, Municipality, Coupon, Orders
 from authentication.models import User
 
 
@@ -453,6 +453,21 @@ def manage_flash(request, action):
             if flash_form.is_valid():
                 flash_form.save()
                 return redirect('manage-flash', 'main')
+
+def manage_orders(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/admin/orders/list.html"
+        all_orders = Orders.objects.all()
+
+        context = {
+            'nav_side': 'orders',
+            'all_orders': all_orders,
+        }
+        return render(request, url, context)
 
 def manage_shipping(request, action):
     if not request.session.get('language', None):
