@@ -150,7 +150,6 @@ def order_page(request, action):
             'provinces': provinces,
         }
         return render(request, url, context)
-
     if action == 'load_client_name':
         full_name = request.GET.get('full_name')
         selected_order.client_name = full_name
@@ -202,7 +201,7 @@ def order_page(request, action):
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
     if action == 'place_order':
         place_order(request, selected_cart, selected_order)
-        
+
         if not request.user.is_authenticated:
             url = direction + "/home/regular/guest/checkout-review.html"
         else:
