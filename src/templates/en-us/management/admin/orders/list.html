@@ -46,38 +46,8 @@
     <!-- end title bar -->
   </div>
   <!-- end header -->
-
-  {% if all_orders.all.count %}
-  <!-- table -->
-  <div class="table-responsive">
-    <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-      <tbody>
-      {% for order in all_orders.all %}
-      <!-- order forms list -->
-      <!-- delete order form -->
-      <form action="{% url 'manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="order_id" value='{{ order.id }}'>
-      </form>
-      <!-- end order forms list -->
-
-      <!-- orders list -->
-      <tr>
-        <td class="table-column-pe-0">
-        </td>
-        <!-- order ref & date -->
-        <td>
-          <span class="d-block h5 text-inherit mb-0">#{{ order.ref }}</span>
-          <span class="d-block fs-5 text-body">{{ order.created_at }}</span>
-          <span class="d-block fs-5 text-body">{{ order.updated_at }}</span>
-        </td>
-        <!-- products -->
-        <td class="table-column-ps-0">
-          <div class="dropdown">
-            <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
-              {{ order.product.all.count }} products
-            </button>
-            <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
+  {% for order in all_orders.all %}
+  <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
               <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                   <tbody>
@@ -109,6 +79,39 @@
                 </table>
               </div>
             </div>
+  {% endfor %}
+
+  {% if all_orders.all.count %}
+  <!-- table -->
+  <div class="table-responsive">
+    <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+      <tbody>
+      {% for order in all_orders.all %}
+      <!-- order forms list -->
+      <!-- delete order form -->
+      <form action="{% url 'manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="order_id" value='{{ order.id }}'>
+      </form>
+      <!-- end order forms list -->
+
+      <!-- orders list -->
+      <tr>
+        <td class="table-column-pe-0">
+        </td>
+        <!-- order ref & date -->
+        <td>
+          <span class="d-block h5 text-inherit mb-0">#{{ order.ref }}</span>
+          <span class="d-block fs-5 text-body">{{ order.created_at }}</span>
+          <span class="d-block fs-5 text-body">{{ order.updated_at }}</span>
+        </td>
+        <!-- products -->
+        <td class="table-column-ps-0">
+          <div class="dropdown">
+            <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
+              {{ order.product.all.count }} products
+            </button>
+
           </div>
         </td>
         <!-- client name & client phone -->
