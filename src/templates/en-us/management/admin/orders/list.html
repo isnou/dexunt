@@ -123,17 +123,18 @@
         </td>
         <!-- delivery address & delivery price -->
         <td>
-          <small><span class="d-block fs-5 text-body">{{ order.province|title }} | {{ order.municipality|title }}</span></small>
-          <small><span class="d-block fs-5 text-body">delivery to
-            {% if order.delivery_type == 'HOME' %}
-            home
-            {% endif %}
+          <small>
+            <span class="d-block fs-5 text-body">{{ order.province|title }} | {{ order.municipality|title }} |
+              {% if order.delivery_type == 'HOME' %}
+              to home
+              {% endif %}
 
-            {% if order.delivery_type == 'DESK' %}
-            desk
-            {% endif %}
-          </span></small>
-
+              {% if order.delivery_type == 'DESK' %}
+              to desk
+              {% endif %}
+            </span>
+          </small>
+          
           {% if order.delivery_price %}
           <small><span class="d-block fs-5 text-body">{{ order.delivery_price|floatformat:"0g" }} <small>DZD</small></span></small>
           {% else %}
