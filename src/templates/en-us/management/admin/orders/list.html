@@ -134,11 +134,11 @@
               {% endif %}
             </span>
           </small>
-          
+
           {% if order.delivery_price %}
-          <small><span class="d-block fs-5 text-body">{{ order.delivery_price|floatformat:"0g" }} <small>DZD</small></span></small>
+          <small><span class="d-block fs-5 text-body">delivery price {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small></span></small>
           {% else %}
-          <small><span class="d-block fs-5 text-body">free</span></small>
+          <small><span class="d-block fs-5 text-body">free delivery</span></small>
           {% endif %}
         </td>
         <!-- discount -->
