@@ -207,6 +207,12 @@ def order_page(request, action):
     if action == 'place_order':
         place_order(request, selected_cart, selected_order)
 
+        delivery_q = 0
+        for p in selected_order.product.all():
+            delivery_q += p.delivery
+        delivery_q = delivery_q / selected_order.product.all().count()
+        
+
         if not request.user.is_authenticated:
             url = direction + "/home/regular/guest/checkout-review.html"
         else:
