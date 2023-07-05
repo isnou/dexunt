@@ -125,12 +125,12 @@
         </td>
         <!-- client name & client phone -->
         <td>
-          <span class="d-block h5 text-inherit mb-0">{{ order.client_name }}</span>
-          <span class="d-block fs-5 text-body">{{ order.client_phone }}</span>
+          <span class="d-block h5 text-inherit mb-0">{{ order.client_name|title }}</span>
+          <span class="d-block fs-5 text-body">{{ order.client_phone|title }}</span>
         </td>
         <!-- delivery address & delivery price -->
         <td>
-          <small><span class="d-block fs-5 text-body">{{ order.province }} | {{ order.municipality }}</span></small>
+          <small><span class="d-block fs-5 text-body">{{ order.province|title }} | {{ order.municipality|title }}</span></small>
           {% if order.delivery_type == 'HOME' %}
           <small><span class="d-block fs-5 text-body">delivery to home</span></small>
           {% endif %}
