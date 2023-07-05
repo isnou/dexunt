@@ -113,30 +113,31 @@
             </div>
           </div>
         </td>
-        <!-- client name & client phone -->
+        <!-- name phone & delivery destination -->
         <td>
           <span class="d-block h6 text-start"><small><i class="bi-person ms-2 me-2"></i>{{ order.client_name|title }}</small></span>
           <span class="d-block fs-6 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
+          <span class="d-block fs-6 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.province|title }} | {{ order.municipality|title }}</small></span>
         </td>
-        <!-- delivery address & delivery price -->
+        <!-- delivery price -->
         <td>
-          <small>
-            <span class="d-block fs-5 text-body">{{ order.province|title }} | {{ order.municipality|title }} |
-              {% if order.delivery_type == 'HOME' %}
+          <span class="d-block fs-6 text-body text-start">
+            <small>
+            {% if order.delivery_type == 'HOME' %}
               to home
               {% endif %}
 
               {% if order.delivery_type == 'DESK' %}
               to desk
               {% endif %}
-            </span>
-          </small>
 
-          {% if order.delivery_price %}
-          <small><span class="d-block fs-5 text-body">price {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small></span></small>
-          {% else %}
-          <small><span class="d-block fs-5 text-body">free delivery</span></small>
-          {% endif %}
+              {% if order.delivery_price %}
+              {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
+              {% else %}
+              free
+              {% endif %}
+            </small>
+          </span>
         </td>
         <!-- discount -->
         <td>
