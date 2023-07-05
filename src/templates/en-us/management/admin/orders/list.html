@@ -59,7 +59,6 @@
         {% csrf_token %}
         <input type="hidden" name="order_id" value='{{ order.id }}'>
       </form>
-
       <!-- end order forms list -->
 
       <!-- orders list -->
@@ -181,13 +180,15 @@
       </tr>
       <!-- end orders list -->
       {% endfor %}
+      <tr class="mt-20">
+      </tr>
       </tbody>
     </table>
   </div>
   <!-- end table -->
 
   <!-- footer -->
-  <div class="card-footer mt-8">
+  <div class="card-footer">
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
       <div class="col-sm mb-2 mb-sm-0">
         <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
