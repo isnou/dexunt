@@ -322,15 +322,6 @@ def get_order(request, selected_cart):
 
     return selected_order
 
-def set_delivery_price(selected_order, selected_municipality, delivery_type):
-    if delivery_type == 'HOME':
-        selected_order.delivery_price = selected_municipality.home_delivery_price
-    if delivery_type == 'DESK':
-        selected_order.delivery_price = selected_municipality.desk_delivery_price
-
-    selected_order.delivery_type = delivery_type
-    selected_order.update_prices()
-
 def place_order(request, selected_cart, selected_order):
 
     selected_order.status = 'FULFILLED'
