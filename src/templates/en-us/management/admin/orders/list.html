@@ -51,17 +51,6 @@
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col" class="table-column-pe-0">
-          </th>
-          <th class="table-column-ps-0">Product</th>
-          <th>Vendor</th>
-          <th></th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
       <tbody>
       {% for order in all_orders.all %}
       <!-- product forms list -->
@@ -89,12 +78,12 @@
       <tr>
         <td class="table-column-pe-0">
         </td>
-
+        <!-- order ref & date -->
         <td>
           <span class="d-block h5 text-inherit mb-0"># {{ order.ref }}</span>
           <span class="d-block fs-5 text-body">{{ order.created_at }}</span>
         </td>
-
+        <!-- products -->
         <td class="table-column-ps-0">
           <div class="dropdown">
             <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
@@ -123,7 +112,7 @@
                     </td>
                     {% if product.quantity_issue %}
                     <td>
-                      <span class="legend-indicator bg-success"></span> Quantity issue
+                      <span class="badge bg-warning">no stock</span>
                     </td>
                     {% endif %}
                   </tr>
@@ -134,10 +123,44 @@
             </div>
           </div>
         </td>
-
+        <!-- client name & client phone -->
         <td>
           <span class="d-block h5 text-inherit mb-0">{{ order.client_name }}</span>
           <span class="d-block fs-5 text-body">{{ order.client_phone }}</span>
+        </td>
+        <!-- delivery address & delivery price -->
+        <td>
+          <small><span class="d-block fs-5 text-body">{{ order.province }}|{{ order.municipality }}</span></small>
+          {% if order.delivery_type == 'HOME' %}
+          <small><span class="d-block fs-5 text-body">delivery to home</span></small>
+          {% endif %}
+
+          {% if order.delivery_type == 'DESK' %}
+          <small><span class="d-block fs-5 text-body">delivery to desk</span></small>
+          {% endif %}
+
+          {% if order.delivery_price %}
+          <small><span class="d-block fs-5 text-body">{{ order.delivery_price|floatformat:"2g" }} <small>DZD</small></span></small>
+          {% else %}
+          <small><span class="d-block fs-5 text-body">free</span></small>
+          {% endif %}
+        </td>
+        <!-- order actions -->
+        <td>
+          <!-- clean product -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#clean_product_modal_{{ product.id }}">
+            <i class="bi-magic" data-bs-toggle="tooltip" data-bs-placement="top" title="Clean"></i>
+          </button>
+
+          <!-- view product -->
+          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
+            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          </button>
+
+          <!-- delete product -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
         </td>
       </tr>
       <!-- end products list -->
