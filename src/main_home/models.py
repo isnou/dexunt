@@ -128,11 +128,11 @@ class Order(models.Model):
     coupon_type = models.CharField(max_length=20, blank=True, null=True)
     # -- coupon_types :  SUBTRACTIVE - PERCENTAGE
 
+    delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     delivery_type = models.CharField(max_length=100, default='HOME')
     # -- delivery_types :  TO-HOME - TO-DESK
 
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # --------------------------------- options ------------------------------------------------
     additional_information = models.CharField(max_length=500, blank=True, null=True)
@@ -321,6 +321,16 @@ def get_order(request, selected_cart):
     selected_order.update_prices()
 
     return selected_order
+
+def set_delivery_price(selected_order, selected_municipality, delivery_type):
+    if delivery_type == 'home':
+        selected_order.delivery_type = 'home'
+        selected_order.delivery_price = selected_municipality.home_delivery_price
+        selected_order.update_prices()
+    if delivery_type == 'desk':
+        selected_order.delivery_type = 'desk'
+        selected_order.delivery_price = selected_municipality.desk_delivery_price
+        selected_order.update_prices()
 
 def place_order(request, selected_cart, selected_order):
 
