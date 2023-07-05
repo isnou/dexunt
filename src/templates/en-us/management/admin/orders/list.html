@@ -70,9 +70,6 @@
           <span class="d-block h5 text-inherit mb-0">#{{ order.ref }}</span>
           <span class="d-block fs-5 text-body">{{ order.created_at }}</span>
           <span class="d-block fs-5 text-body">{{ order.updated_at }}</span>
-        </td>
-        <!-- products -->
-        <td class="table-column-ps-0">
           <div class="dropdown">
             <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
               {{ order.product.all.count }} products
@@ -115,6 +112,10 @@
               </div>
             </div>
           </div>
+        </td>
+        <!-- products -->
+        <td class="table-column-ps-0">
+
         </td>
         <!-- client name & client phone -->
         <td>
