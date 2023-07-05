@@ -172,6 +172,11 @@ class Order(models.Model):
                     self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
 
+    def delete_products(self):
+        for product in self.product.all():
+            product.delete()
+        super().save()
+
 # ------------------------------------- Shipping ------------------------------ #
 class Municipality(models.Model):
     # --------------------------------- shipping details ---------------------------------------
