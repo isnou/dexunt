@@ -190,12 +190,12 @@ def order_page(request, action):
         delivery_q = 0
         for p in selected_order.product.all():
             delivery_q += p.delivery
-        delivery_q = delivery_q / selected_order.product.all().count()
+        delivery_q = int(delivery_q / selected_order.product.all().count())
 
         if delivery_type == 'HOME':
-            selected_order.delivery_price = delivery_q
+            selected_order.delivery_price = municipality.home_delivery_price * delivery_q
         if delivery_type == 'DESK':
-            selected_order.delivery_price = delivery_q
+            selected_order.delivery_price = municipality.desk_delivery_price * delivery_q
 
         selected_order.delivery_type = delivery_type
         selected_order.update_prices()
