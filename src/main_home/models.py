@@ -324,11 +324,11 @@ def get_order(request, selected_cart):
 
 def set_delivery_price(selected_order, selected_municipality, delivery_type):
     if delivery_type == 'home':
-        selected_order.delivery_type = 'home'
+        selected_order.delivery_type = 'HOME'
         selected_order.delivery_price = selected_municipality.home_delivery_price
         selected_order.update_prices()
     if delivery_type == 'desk':
-        selected_order.delivery_type = 'desk'
+        selected_order.delivery_type = 'DESK'
         selected_order.delivery_price = selected_municipality.desk_delivery_price
         selected_order.update_prices()
 
