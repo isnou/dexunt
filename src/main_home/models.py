@@ -315,7 +315,7 @@ def get_order(request, selected_cart):
     new_points = 0
     for p in selected_cart.product.all():
         selected_order.product.add(p)
-        new_points += p.points
+        new_points += (p.points * p.quantity)
 
     selected_order.coupon_code = selected_cart.coupon_code
     selected_order.coupon_type = selected_cart.coupon_type
