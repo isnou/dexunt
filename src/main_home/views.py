@@ -201,7 +201,7 @@ def order_page(request, action):
         selected_order.update_prices()
 
         sub_context = {
-            'delivery_q': delivery_q,
+            'delivery_q': 60000,
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
