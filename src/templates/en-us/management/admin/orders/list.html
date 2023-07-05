@@ -125,6 +125,7 @@
         </td>
         <!-- delivery price discount & points -->
         <td>
+          <span class="d-block h4 text-start"><small>{{ order.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
           <span class="d-block fs-4 text-body text-start">
             <small>
               {% if order.delivery_price %}
@@ -167,10 +168,6 @@
               {% endif %}
             </small>
           </span>
-        </td>
-        <!-- total price -->
-        <td>
-          <span class="d-block h5 text-inherit mb-0">{{ order.total_price|floatformat:"0g" }} <small>DZD</small></span>
         </td>
         <!-- status -->
         <td>
