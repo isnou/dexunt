@@ -186,10 +186,15 @@ def order_page(request, action):
         municipality_id = request.session.get('municipality_id_token')
         municipality = Municipality.objects.all().get(id=municipality_id)
         delivery_type = request.GET.get('delivery_type')
-        if delivery_type == 'home':
-            selected_order.delivery_price = municipality.home_delivery_price
-        if delivery_type == 'desk':
-            selected_order.delivery_price = municipality.desk_delivery_price
+        delivery_q = 0
+        for p in selected_order.product.all():
+            delivery_q += p.delivery
+        delivery_q = delivery_q / selected_order.product.all().count()
+            
+        if delivery_type == 'HOME':
+            selected_order.delivery_price = (municipality.home_delivery_price * delivery_q)/100
+        if delivery_type == 'DESK':
+            selected_order.delivery_price = (municipality.desk_delivery_price * delivery_q)/100
 
         selected_order.delivery_type = delivery_type
         selected_order.update_prices()
