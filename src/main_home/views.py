@@ -193,15 +193,15 @@ def order_page(request, action):
         delivery_q = delivery_q / selected_order.product.all().count()
 
         if delivery_type == 'HOME':
-            selected_order.delivery_price = municipality.home_delivery_price * (delivery_q/100)
+            selected_order.delivery_price = municipality.home_delivery_price
         if delivery_type == 'DESK':
-            selected_order.delivery_price = municipality.desk_delivery_price * (delivery_q/100)
+            selected_order.delivery_price = municipality.desk_delivery_price
 
         selected_order.delivery_type = delivery_type
         selected_order.update_prices()
 
         sub_context = {
-            'delivery_q': 60000,
+            'delivery_q': delivery_q,
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
