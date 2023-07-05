@@ -119,48 +119,50 @@
           <span class="d-block fs-6 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
           <span class="d-block fs-6 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.province|title }} | {{ order.municipality|title }}</small></span>
         </td>
-        <!-- delivery price -->
+        <!-- delivery price discount & points -->
         <td>
           <span class="d-block fs-6 text-body text-start">
             <small>
-            {% if order.delivery_type == 'HOME' %}
-              to home
-              {% endif %}
-
-              {% if order.delivery_type == 'DESK' %}
-              to desk
-              {% endif %}
-
               {% if order.delivery_price %}
               {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
               {% else %}
               free
               {% endif %}
+
+              {% if order.delivery_type == 'HOME' %}
+              delivery to home
+              {% endif %}
+
+              {% if order.delivery_type == 'DESK' %}
+              delivery to desk
+              {% endif %}
             </small>
           </span>
-        </td>
-        <!-- discount -->
-        <td>
-          {% if order.coupon_value %}
-          <small><span class="d-block fs-5 text-body">{{ order.coupon_code }}</span></small>
-          {% if order.coupon_type == 'subtractive' %}
-          <small><span class="d-block fs-5 text-body">{{ order.coupon_value|floatformat:"0g" }} <small>DZD</small></span></small>
-          {% endif %}
+          <span class="d-block fs-6 text-body text-start">
+            <small>
+              {% if order.coupon_value %}
+              {{ order.coupon_code }}
+              {% if order.coupon_type == 'subtractive' %}
+              {{ order.coupon_value|floatformat:"0g" }} <small>DZD</small>
+              {% endif %}
 
-          {% if order.coupon_type == 'percentage' %}
-          <small><span class="d-block fs-5 text-body">{{ order.coupon_value }} <small>%</small></span></small>
-          {% endif %}
-          {% else %}
-          <span class="d-block fs-5 text-body">No discount</span>
-          {% endif %}
-        </td>
-        <!-- points -->
-        <td>
-          {% if order.points %}
-          <small><span class="d-block fs-5 text-body">{{ order.points }}</span></small>
-          {% else %}
-          <span class="d-block fs-5 text-body">No points</span>
-          {% endif %}
+              {% if order.coupon_type == 'percentage' %}
+              {{ order.coupon_value }} <small>%</small>
+              {% endif %}
+              {% else %}
+              No discount
+              {% endif %}
+            </small>
+          </span>
+          <span class="d-block fs-6 text-body text-start">
+            <small>
+              {% if order.points %}
+              {{ order.points }} GP
+              {% else %}
+              No points
+              {% endif %}
+            </small>
+          </span>
         </td>
         <!-- total price -->
         <td>
