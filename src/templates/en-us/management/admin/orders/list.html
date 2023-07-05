@@ -78,6 +78,11 @@
               {{ order.product.all.count }} products
             </button>
             <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
+              <!-- title bar -->
+              <div class="d-grid d-sm-flex gap-2">
+                <span class="d-block fs-5 text-body">subtotal : {{ order.sub_total_price|floatformat:"0g" }} <small>DZD</small></span>
+              </div>
+              <!-- end title bar -->
               <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                   <tbody>
