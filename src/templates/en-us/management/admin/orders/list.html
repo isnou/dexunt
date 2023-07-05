@@ -69,10 +69,10 @@
         <td>
           <div class="dropdown">
             <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
-              <span class="d-block h6 text-start"><small><i class="bi-hash"></i>{{ order.ref }}</small></span>
-              <span class="d-block fs-6 text-body text-start"><small>{{ order.created_at }}</small></span>
-              <span class="d-block fs-6 text-body text-start"><small>{{ order.updated_at }}</small></span>
-              <span class="d-block fs-6 text-body text-start"><small>{{ order.product.all.count }} products</small></span>
+              <span class="d-block h4 text-start"><small><i class="bi-hash"></i>{{ order.ref }}</small></span>
+              <span class="d-block fs-4 text-body text-start"><small>{{ order.created_at }}</small></span>
+              <span class="d-block fs-4 text-body text-start"><small>{{ order.updated_at }}</small></span>
+              <span class="d-block fs-4 text-body text-start"><small>{{ order.product.all.count }} products</small></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
               <!-- title bar -->
@@ -115,13 +115,13 @@
         </td>
         <!-- name phone & delivery destination -->
         <td>
-          <span class="d-block h6 text-start"><small><i class="bi-person ms-2 me-2"></i>{{ order.client_name|title }}</small></span>
-          <span class="d-block fs-6 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
-          <span class="d-block fs-6 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.province|title }} | {{ order.municipality|title }}</small></span>
+          <span class="d-block h4 text-start"><small><i class="bi-person ms-2 me-2"></i>{{ order.client_name|title }}</small></span>
+          <span class="d-block fs-4 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
+          <span class="d-block fs-4 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.province|title }} | {{ order.municipality|title }}</small></span>
         </td>
         <!-- delivery price discount & points -->
         <td>
-          <span class="d-block fs-6 text-body text-start">
+          <span class="d-block fs-4 text-body text-start">
             <small>
               {% if order.delivery_price %}
               {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
@@ -138,7 +138,7 @@
               {% endif %}
             </small>
           </span>
-          <span class="d-block fs-6 text-body text-start">
+          <span class="d-block fs-4 text-body text-start">
             <small>
               {% if order.coupon_value %}
               {{ order.coupon_code }}
@@ -154,7 +154,7 @@
               {% endif %}
             </small>
           </span>
-          <span class="d-block fs-6 text-body text-start">
+          <span class="d-block fs-4 text-body text-start">
             <small>
               {% if order.points %}
               {{ order.points }} GP
