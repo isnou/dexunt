@@ -274,10 +274,9 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"> #{{ order.ref }}</h5>
-        <span class="d-block fs-5 text-body"><i class="bi-person"></i> {{ order.client_name|title }} </span>
-        <span class="d-block fs-5 text-body"><i class="bi-cell"></i> {{ order.client_phone|title }} </span>
-        <span class="d-block fs-5 text-body"><i class="bi-money"></i> {{ order.total_price|floatformat:"0g" }} <small>DZD</small></span>
+        <i class="bi bi-hash"></i> <h5 class="modal-title">{{ order.ref }}</h5>
+        <i class="bi-person ms-2 me-2"></i> <span class="d-block fs-5 text-body">{{ order.client_name|title }} </span>
+        <i class="bi-phone ms-2 me-2"></i> <span class="d-block fs-5 text-body">{{ order.client_phone|title }} </span>
 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
