@@ -117,15 +117,9 @@
             </div>
           </div>
         </td>
-        <!-- name phone & delivery destination -->
-        <td>
-          <span class="d-block h4 text-start"><small><i class="bi-person ms-2 me-2"></i>{{ order.client_name|title }}</small></span>
-          <span class="d-block fs-4 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
-          <span class="d-block fs-4 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.province|title }} | {{ order.municipality|title }}</small></span>
-        </td>
         <!-- delivery price discount & points -->
         <td>
-          <span class="d-block h4 text-start"><small>Total price :{{ order.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
+          <span class="d-block h4 text-start"><small>Total Price :{{ order.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
           <span class="d-block fs-4 text-body text-start">
             <small>
               {% if order.delivery_price %}
@@ -168,6 +162,12 @@
               {% endif %}
             </small>
           </span>
+        </td>
+        <!-- name phone & delivery destination -->
+        <td>
+          <span class="d-block h4 text-start"><small><i class="bi-person ms-2 me-2"></i>{{ order.client_name|title }}</small></span>
+          <span class="d-block fs-4 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
+          <span class="d-block fs-4 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.province|title }} | {{ order.municipality|title }}</small></span>
         </td>
         <!-- status -->
         <td>
