@@ -150,12 +150,11 @@
         <td>
           {% if order.coupon_value %}
           <small><span class="d-block fs-5 text-body">{{ order.coupon_code }}</span></small>
-          {{order.coupon_type}}
-          {% if order.coupon_type == 'SUBTRACTION' %}
+          {% if order.coupon_type == 'subtraction' %}
           <small><span class="d-block fs-5 text-body">{{ order.coupon_value|floatformat:"2g" }} <small>DZD</small></span></small>
           {% endif %}
 
-          {% if order.coupon_type == 'PERCENTAGE' %}
+          {% if order.coupon_type == 'percentage' %}
           <small><span class="d-block fs-5 text-body">{{ order.coupon_value }} <small>%</small></span></small>
           {% endif %}
           {% else %}
