@@ -141,7 +141,7 @@
           <span class="d-block fs-4 text-body text-start">
             <small>
               {% if order.coupon_value %}
-              {{ order.coupon_code }}
+              [{{ order.coupon_code }}]
               {% if order.coupon_type == 'subtractive' %}
               {{ order.coupon_value|floatformat:"0g" }} <small>DZD</small>
               {% endif %}
