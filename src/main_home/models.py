@@ -126,7 +126,7 @@ class Order(models.Model):
     coupon_code = models.CharField(max_length=20, blank=True, null=True)
     coupon_value = models.IntegerField(default=0, null=True)
     coupon_type = models.CharField(max_length=20, blank=True, null=True)
-    # -- coupon_types :  SUBTRACTION - PERCENTAGE
+    # -- coupon_types :  SUBTRACTIVE - PERCENTAGE
 
     delivery_type = models.CharField(max_length=100, default='HOME')
     # -- delivery_types :  TO-HOME - TO-DESK
@@ -307,12 +307,15 @@ def get_order(request, selected_cart):
                                    cart_ref=selected_cart.ref,)
             selected_order.save()
 
+    new_points = 0
     for p in selected_cart.product.all():
         selected_order.product.add(p)
+        new_points += p.points
 
     selected_order.coupon_code = selected_cart.coupon_code
     selected_order.coupon_type = selected_cart.coupon_type
     selected_order.coupon_value = selected_cart.coupon_value
+    selected_order.points = new_points
     selected_order.sub_total_price = selected_cart.sub_total_price
 
     selected_order.update_prices()
