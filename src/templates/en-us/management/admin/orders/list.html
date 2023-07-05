@@ -97,7 +97,7 @@
                   {% for product in order.product.all %}
                   <tr>
                     <td>
-                      <a class="d-flex align-items-center" href="{% url 'product-router' product.variant_id product.option_id 'no' 'view_product' %}">
+                      <a class="d-flex align-items-center" href="{% url 'product-router' product.variant_id product.option_id 'no' 'regular_product' %}">
                         <div class="avatar avatar-square">
                           <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
                         </div>
