@@ -158,7 +158,15 @@
           <small><span class="d-block fs-5 text-body">{{ order.coupon_value }} <small>%</small></span></small>
           {% endif %}
           {% else %}
-          <span class="d-block fs-5 text-body">No coupon applied</span>
+          <span class="d-block fs-5 text-body">No discount</span>
+          {% endif %}
+        </td>
+        <!-- discount -->
+        <td>
+          {% if order.points %}
+          <small><span class="d-block fs-5 text-body">{{ order.points }}</span></small>
+          {% else %}
+          <span class="d-block fs-5 text-body">No discount</span>
           {% endif %}
         </td>
         <!-- delivery address & delivery price -->
