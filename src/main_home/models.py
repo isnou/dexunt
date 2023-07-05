@@ -35,6 +35,11 @@ class SelectedProduct(models.Model):
         self.total_price = self.price * self.quantity
         super().save()
 
+    def update_prices(self):
+        if self.price:
+            self.total_price = self.price * self.quantity
+        super().save()
+
 class Coupon(models.Model):
     # --------------------------------- technical details --------------------------------------
     type = models.CharField(default='subtractive', max_length=20, blank=True, null=True)
@@ -260,7 +265,7 @@ def add_product_to_cart(cart, variant, option):
             cart_product.price = option.discount
         else:
             cart_product.price = option.price
-        cart_product.save()
+        cart_product.update_prices()
         cart.product.add(cart_product)
 
     cart.update_prices()
