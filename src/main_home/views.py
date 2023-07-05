@@ -187,13 +187,12 @@ def order_page(request, action):
         municipality = Municipality.objects.all().get(id=municipality_id)
         delivery_type = request.GET.get('delivery_type')
         if delivery_type == 'home':
-            selected_order.delivery_type = 'HOME'
             selected_order.delivery_price = municipality.home_delivery_price
-            selected_order.update_prices()
         if delivery_type == 'desk':
-            selected_order.delivery_type = 'DESK'
             selected_order.delivery_price = municipality.desk_delivery_price
-            selected_order.update_prices()
+
+        selected_order.delivery_type = delivery_type
+        selected_order.update_prices()
 
         sub_context = {
             'selected_order': selected_order,
