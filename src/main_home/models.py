@@ -307,6 +307,9 @@ def get_order(request, selected_cart):
                                    cart_ref=selected_cart.ref,)
             selected_order.save()
 
+    for p in selected_cart.product.all():
+        selected_order.product.add(p)
+        
     selected_order.coupon_code = selected_cart.coupon_code
     selected_order.coupon_type = selected_cart.coupon_type
     selected_order.coupon_value = selected_cart.coupon_value
@@ -317,8 +320,7 @@ def get_order(request, selected_cart):
     return selected_order
 
 def place_order(request, selected_cart, selected_order):
-    for p in selected_cart.product.all():
-        selected_order.product.add(p)
+
     selected_order.status = 'FULFILLED'
     selected_order.update_prices()
     selected_cart.delete()
