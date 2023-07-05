@@ -468,23 +468,6 @@ def manage_orders(request, action):
             'all_orders': all_orders,
         }
         return render(request, url, context)
-    if action == 'show_product':
-        url = direction + "/management/admin/orders/show-product.html"
-
-        selected_variant = Variant.objects.all().get(id=product_id)
-        selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
-
-        if option_id:
-            selected_option = Option.objects.all().get(id=option_id)
-        else:
-            selected_option = None
-
-        context = {
-            'selected_option': selected_option,
-            'selected_variant': selected_variant,
-            'selected_product': selected_product,
-        }
-        return render(request, url, context)
 
 def manage_shipping(request, action):
     if not request.session.get('language', None):

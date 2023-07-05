@@ -71,6 +71,24 @@ def product_router(request, product_id, option_id, user_token, action):
         }
         return render(request, url, context)
 
+    if action == 'view_product':
+        url = direction + "/home/regular/view-product.html"
+
+        selected_variant = Variant.objects.all().get(id=product_id)
+        selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
+
+        if option_id:
+            selected_option = Option.objects.all().get(id=option_id)
+        else:
+            selected_option = None
+
+        context = {
+            'selected_option': selected_option,
+            'selected_variant': selected_variant,
+            'selected_product': selected_product,
+        }
+        return render(request, url, context)
+
 def shopping_cart_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
