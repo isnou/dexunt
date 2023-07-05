@@ -468,6 +468,15 @@ def manage_orders(request, action):
             'all_orders': all_orders,
         }
         return render(request, url, context)
+    if action == 'delete_order':
+        if request.method == 'POST':
+            order_id = request.POST.get('order_id', False)
+            selected_order = Order.objects.all().get(id=order_id)
+            selected_order.delete_products()
+            selected_order.delete()
+            return redirect('manage-orders', 'main')
+
+
 
 def manage_shipping(request, action):
     if not request.session.get('language', None):

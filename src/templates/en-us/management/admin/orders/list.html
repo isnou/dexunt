@@ -53,34 +53,22 @@
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
       {% for order in all_orders.all %}
-      <!-- product forms list -->
-      <!-- delete product form -->
-      <form action="{% url 'manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
+      <!-- order forms list -->
+      <!-- delete order form -->
+      <form action="{% url 'manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="product_id" value='{{ product.id }}'>
+        <input type="hidden" name="order_id" value='{{ order.id }}'>
       </form>
 
-      <!-- delete product form -->
-      <form action="{% url 'manage-products' 'clean_product' %}" id="clean_product_form_{{ product.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="product_id" value='{{ product.id }}'>
-      </form>
+      <!-- end order forms list -->
 
-      <!-- view product form -->
-      <form action="{% url 'manage-products' 'view_product' %}" id="view_product_form_{{ product.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="product_id" value='{{ product.id }}'>
-      </form>
-
-      <!-- end product forms list -->
-
-      <!-- products list -->
+      <!-- orders list -->
       <tr>
         <td class="table-column-pe-0">
         </td>
         <!-- order ref & date -->
         <td>
-          <span class="d-block h5 text-inherit mb-0"># {{ order.ref }}</span>
+          <span class="d-block h5 text-inherit mb-0">#{{ order.ref }}</span>
           <span class="d-block fs-5 text-body">{{ order.created_at }}</span>
           <span class="d-block fs-5 text-body">{{ order.updated_at }}</span>
         </td>
@@ -185,55 +173,13 @@
             <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
 
-          <!-- delete product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
+          <!-- delete order -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
             <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
         </td>
       </tr>
-      <!-- end products list -->
-
-      <!-- products actions modals -->
-
-      <!-- delete product modal -->
-      <div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-              <p>click yes to delete {{ product.en_title }}.</p>
-            </div>
-            <div class="modal-footer" style="align-self: center;">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" form="delete_product_form_{{ product.id }}">Yes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- clean product modal -->
-      <div id="clean_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-              <p>click yes to clean {{ product.en_title }}.</p>
-            </div>
-            <div class="modal-footer" style="align-self: center;">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" form="clean_product_form_{{ product.id }}">Yes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- end products actions modals -->
+      <!-- end orders list -->
       {% endfor %}
       </tbody>
     </table>
@@ -291,4 +237,45 @@
   {% endif %}
 </div>
 <!-- end all products  -->
+
+{% for order in all_orders.all %}
+<!-- delete product modal -->
+<div id="delete_order_modal_{{ order.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete #{{ order.ref }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_order_form_{{ order.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- clean product modal -->
+<div id="clean_product_modal_{{ order.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to clean {{ product.en_title }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="clean_product_form_{{ product.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
 {% endblock %}
