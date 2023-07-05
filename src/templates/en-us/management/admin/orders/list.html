@@ -154,7 +154,6 @@
           {% else %}
           <span class="d-block fs-5 text-body">No discount</span>
           {% endif %}
-          <small><span class="d-block fs-5 text-body">{{ order.total_price|floatformat:"0g" }} <small>DZD</small></span></small>
         </td>
         <!-- points -->
         <td>
@@ -163,6 +162,10 @@
           {% else %}
           <span class="d-block fs-5 text-body">No points</span>
           {% endif %}
+        </td>
+        <!-- total price -->
+        <td>
+          <span class="d-block h5 text-inherit mb-0">{{ order.total_price|floatformat:"0g" }} <small>DZD</small></span>
         </td>
         <!-- status -->
         <td>
