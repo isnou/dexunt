@@ -72,7 +72,11 @@
               <span class="d-block h4 text-start"><small><i class="bi-hash"></i>{{ order.ref }}</small></span>
               <span class="d-block fs-4 text-body text-start"><small>{{ order.created_at }}</small></span>
               <span class="d-block fs-4 text-body text-start"><small>{{ order.updated_at }}</small></span>
+              {% if order.product.all.count == 1 %}
+              <span class="d-block fs-4 text-body text-start"><small>one product</small></span>
+              {% else %}
               <span class="d-block fs-4 text-body text-start"><small>{{ order.product.all.count }} products</small></span>
+              {% endif %}
             </button>
             <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
               <!-- title bar -->
