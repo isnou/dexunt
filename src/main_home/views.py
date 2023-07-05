@@ -193,9 +193,9 @@ def order_page(request, action):
         delivery_q = int(delivery_q / selected_order.product.all().count())
 
         if delivery_type == 'HOME':
-            selected_order.delivery_price = municipality.home_delivery_price * int(delivery_q/100)
+            selected_order.delivery_price = int(delivery_q/100)
         if delivery_type == 'DESK':
-            selected_order.delivery_price = municipality.desk_delivery_price * int(delivery_q/100)
+            selected_order.delivery_price = int(delivery_q/100)
 
         selected_order.delivery_type = delivery_type
         selected_order.update_prices()
