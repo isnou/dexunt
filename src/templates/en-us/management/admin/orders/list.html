@@ -71,9 +71,9 @@
             <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
               <span class="d-block h4 text-start"><small><i class="bi-hash"></i>{{ order.ref }}</small></span>
 
-              <span class="d-block fs-4 text-body text-start"><small>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} | {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}</small></span>
+              <span class="d-block fs-4 text-body text-start"><small>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} , {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}</small></span>
 
-              <span class="d-block fs-4 text-body text-start"><small>{{ order.updated_at|date:'M' }} {{ order.updated_at|date:'d' }} | {{ order.updated_at|time:'H' }}:{{ order.updated_at|time:'i' }}</small></span>
+              <span class="d-block fs-4 text-body text-start"><small>{{ order.updated_at|date:'M' }} {{ order.updated_at|date:'d' }} , {{ order.updated_at|time:'H' }}:{{ order.updated_at|time:'i' }}</small></span>
               {% if order.product.all.count == 1 %}
               <span class="d-block fs-4 text-body text-start"><small>one product</small></span>
               {% else %}
