@@ -137,6 +137,7 @@
         <td>
           {% if order.coupon_value %}
           <small><span class="d-block fs-5 text-body">{{ order.coupon_code }}</span></small>
+          {{ order.coupon_type }}
           {% if order.coupon_type == 'subtraction' %}
           <small><span class="d-block fs-5 text-body">{{ order.coupon_value|floatformat:"0g" }} <small>DZD</small></span></small>
           {% endif %}
