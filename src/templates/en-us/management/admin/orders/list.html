@@ -277,45 +277,39 @@
         <i class="bi-hash"></i> <span class="d-block fs-5 text-body">{{ order.ref }}</span>
         <i class="bi-person ms-2 me-2"></i> <span class="d-block fs-5 text-body">{{ order.client_name|title }} </span>
         <i class="bi-phone ms-2 me-2"></i> <span class="d-block fs-5 text-body">{{ order.client_phone|title }} </span>
-
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-
-        <div class="d-grid d-sm-flex gap-2">
-                <span class="d-block fs-5 text-body">subtotal : {{ order.sub_total_price|floatformat:"0g" }} <small>DZD</small></span>
-              </div>
-              <!-- end title bar -->
-              <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-                  <tbody>
-                  {% for product in order.product.all %}
-                  <tr>
-                    <td>
-                      <a class="d-flex align-items-center" href="{% url 'product-router' product.variant_id product.option_id 'no' 'regular_product' %}">
-                        <div class="avatar avatar-square">
-                          <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
-                        </div>
-                        <div class="ms-3">
-                          <span class="d-block h5 text-inherit mb-0">{{ product.en_name }}</span>
-                          <span class="d-block fs-5 text-body">{{ product.en_detail }}</span>
-                        </div>
-                      </a>
-                    </td>
-                    <td>
-                      <span class="d-block h5 mb-0">{{ product.price|floatformat:"2g" }} <small>DZD</small></span>
-                      <span class="d-block fs-5">quantity: {{ product.quantity }}</span>
-                    </td>
-                    {% if product.quantity_issue %}
-                    <td>
-                      <span class="badge bg-warning">no stock</span>
-                    </td>
-                    {% endif %}
-                  </tr>
-                  {% endfor %}
-                  </tbody>
-                </table>
-              </div>
+        <div class="table-responsive datatable-custom">
+          <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+            <tbody>
+            {% for product in order.product.all %}
+            <tr>
+              <td>
+                <a class="d-flex align-items-center" href="{% url 'product-router' product.variant_id product.option_id 'no' 'regular_product' %}">
+                  <div class="avatar avatar-square">
+                    <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
+                  </div>
+                  <div class="ms-3">
+                    <span class="d-block h5 text-inherit mb-0">{{ product.en_name }}</span>
+                    <span class="d-block fs-5 text-body">{{ product.en_detail }}</span>
+                  </div>
+                </a>
+              </td>
+              <td>
+                <span class="d-block h5 mb-0">{{ product.price|floatformat:"2g" }} <small>DZD</small></span>
+                <span class="d-block fs-5">quantity: {{ product.quantity }}</span>
+              </td>
+              {% if product.quantity_issue %}
+              <td>
+                <span class="badge bg-warning">no stock</span>
+              </td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
