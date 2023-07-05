@@ -65,12 +65,11 @@
       <tr>
         <td class="table-column-pe-0">
         </td>
-        <!-- order ref & date -->
+        <!-- order ref date & products -->
         <td>
-
           <div class="dropdown">
             <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
-              <span class="d-block h6 text-start"><small>#{{ order.ref }}</small></span>
+              <span class="d-block h6 text-start"><small><i class="bi-hash"></i>{{ order.ref }}</small></span>
               <span class="d-block fs-6 text-body text-start"><small>{{ order.created_at }}</small></span>
               <span class="d-block fs-6 text-body text-start"><small>{{ order.updated_at }}</small></span>
               <span class="d-block fs-6 text-body text-start"><small>{{ order.product.all.count }} products</small></span>
@@ -114,14 +113,10 @@
             </div>
           </div>
         </td>
-        <!-- products -->
-        <td class="table-column-ps-0">
-
-        </td>
         <!-- client name & client phone -->
         <td>
-          <span class="d-block h5 text-inherit mb-0">{{ order.client_name|title }}</span>
-          <span class="d-block fs-5 text-body">{{ order.client_phone|title }}</span>
+          <span class="d-block h6 text-start"><small><i class="bi-person ms-2 me-2"></i>{{ order.client_name|title }}</small></span>
+          <span class="d-block fs-6 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
         </td>
         <!-- delivery address & delivery price -->
         <td>
