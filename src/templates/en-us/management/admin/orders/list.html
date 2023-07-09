@@ -47,6 +47,7 @@
   </div>
   <!-- end header -->
 
+  {% if paginate %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -199,13 +200,21 @@
     </table>
   </div>
   <!-- end table -->
+  {% else %}
+  <div class="card-footer">
+    <div class="row text-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        Your don't have orders yet .
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
   <!-- footer -->
   <div class="card-footer">
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
 
 
-      {% if paginate %}
       {% if all_orders.has_other_pages %}
       <ul class="pagination">
         {% if all_orders.has_previous %}
@@ -237,11 +246,6 @@
       </ul>
       {% endif %}
 
-      {% else %}
-      <a href="#"  class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-        <i class="fa fa-rotate-right"></i>
-      </a>
-      {% endif %}
 
 
 
@@ -264,6 +268,8 @@
 </nav>
 <!-- End Pagination -->
 {% endif %}
+
+
     </div>
     <!-- End Row -->
   </div>

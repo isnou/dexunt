@@ -463,6 +463,10 @@ def manage_orders(request, action):
     if action == 'main':
         url = direction + "/management/admin/orders/list.html"
         all_orders = Order.objects.all()
+        if all_orders.count():
+            paginate = True
+        else:
+            paginate = False
 
         page = request.GET.get('page', 1)
         paginator = Paginator(all_orders, 4)
@@ -472,7 +476,7 @@ def manage_orders(request, action):
             all_orders = paginator.page(1)
         except EmptyPage:
             all_orders = paginator.page(paginator.num_pages)
-        paginate = True
+
 
         context = {
             'nav_side': 'orders',
