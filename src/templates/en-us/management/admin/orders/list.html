@@ -52,7 +52,7 @@
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
-      {% for order in all_orders.all %}
+      {% for order in all_orders %}
       <!-- order forms list -->
       <!-- delete order form -->
       <form action="{% url 'manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
