@@ -469,7 +469,7 @@ def manage_orders(request, action):
             paginate = False
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_orders, 2)
+        paginator = Paginator(all_orders, 6)
         try:
             all_orders = paginator.page(page)
         except PageNotAnInteger:
