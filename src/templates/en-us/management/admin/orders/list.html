@@ -47,7 +47,6 @@
   </div>
   <!-- end header -->
 
-  {% if all_orders.all.count %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -200,15 +199,6 @@
     </table>
   </div>
   <!-- end table -->
-  {% else %}
-  <div class="card-footer">
-    <div class="row text-center">
-      <div class="col-sm mb-2 mb-sm-0">
-        Your don't have orders yet .
-      </div>
-    </div>
-  </div>
-  {% endif %}
 
   <!-- footer -->
   <div class="card-footer">
