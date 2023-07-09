@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from add_ons import functions
 from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
@@ -463,9 +464,20 @@ def manage_orders(request, action):
         url = direction + "/management/admin/orders/list.html"
         all_orders = Order.objects.all()
 
+        page = request.GET.get('page', 1)
+        paginator = Paginator(all_orders, 4)
+        try:
+            all_orders = paginator.page(page)
+        except PageNotAnInteger:
+            all_orders = paginator.page(1)
+        except EmptyPage:
+            all_orders = paginator.page(paginator.num_pages)
+        paginate = True
+
         context = {
             'nav_side': 'orders',
             'all_orders': all_orders,
+            'paginate': paginate,
         }
         return render(request, url, context)
     if action == 'delete_order':

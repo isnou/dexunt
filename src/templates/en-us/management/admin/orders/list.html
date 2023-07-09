@@ -204,6 +204,48 @@
   <!-- footer -->
   <div class="card-footer">
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+
+      {% if paginate %}
+      {% if all_orders.has_other_pages %}
+      <ul class="pagination">
+        {% if all_orders.has_previous %}
+        <li class="page-item">
+          <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ all_orders.previous_page_number }}">
+            <i class="fa fa-angle-left"></i>
+          </a>
+        </li>
+        {% endif %}
+        {% for i in all_orders.paginator.page_range %}
+        {% if all_orders.number == i %}
+        <li class="page-item">
+          <a class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">{{ i }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if all_orders.has_next %}
+        <li class="page-item">
+          <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ all_orders.next_page_number }}">
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
+      {% else %}
+      <a href="#"  class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+        <i class="fa fa-rotate-right"></i>
+      </a>
+      {% endif %}
+
+
+      
+      {% if never %}
       <!-- Pagination -->
 <nav aria-label="...">
   <ul class="pagination">
@@ -221,7 +263,7 @@
   </ul>
 </nav>
 <!-- End Pagination -->
-      
+{% endif %}
     </div>
     <!-- End Row -->
   </div>
