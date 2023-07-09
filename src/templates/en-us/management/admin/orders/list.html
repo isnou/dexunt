@@ -213,86 +213,41 @@
   <!-- footer -->
   <div class="card-footer">
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
-      {% if never %}
-      <ul class="pagination">
-        {% if all_orders.has_previous %}
-        <li class="page-item">
-          <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ all_orders.previous_page_number }}">
-            <i class="fa fa-angle-left"></i>
-          </a>
-        </li>
-        {% endif %}
-
-        {% for i in all_orders.paginator.page_range %}
-        {% if all_orders.number == i %}
-        <li class="page-item">
-          <a class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">{{ i }}</a>
-        </li>
-        {% else %}
-        <li class="page-item">
-          <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ i }}">{{ i }}</a>
-        </li>
-        {% endif %}
-        {% endfor %}
-
-        {% if all_orders.has_next %}
-        <li class="page-item">
-          <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="?page={{ all_orders.next_page_number }}">
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-        {% endif %}
-      </ul>
-      {% endif %}
-
-
-
-
       <!-- Pagination -->
-<nav>
-  {% if all_orders.has_other_pages %}
-  <ul class="pagination">
-    {% if all_orders.has_previous %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ all_orders.previous_page_number }}" tabindex="-1">Previous</a>
-    </li>
-    {% endif %}
+      <nav>
+        {% if all_orders.has_other_pages %}
+        <ul class="pagination">
+          {% if all_orders.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ all_orders.previous_page_number }}" tabindex="-1">Previous</a>
+          </li>
+          {% endif %}
 
+          {% for i in all_orders.paginator.page_range %}
+          {% if all_orders.number == i %}
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
 
-    {% for i in all_orders.paginator.page_range %}
-        {% if all_orders.number == i %}
-    <li class="page-item active">
-      <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
-    </li>
-        {% else %}
-        <li class="page-item">
-      <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-    </li>
+          {% if all_orders.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ all_orders.next_page_number }}">Next</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+          </li>
+          {% endif %}
+        </ul>
         {% endif %}
-        {% endfor %}
-
-
-
-
-
-
-
-    {% if all_orders.has_next %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ all_orders.next_page_number }}">Next</a>
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-      <a class="page-link" href="#">Next</a>
-    </li>
-    {% endif %}
-  </ul>
-  {% endif %}
-</nav>
-<!-- End Pagination -->
-
-
-
+      </nav>
+      <!-- End Pagination -->
     </div>
     <!-- End Row -->
   </div>
