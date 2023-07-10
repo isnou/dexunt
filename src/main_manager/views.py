@@ -412,7 +412,8 @@ def manage_orders(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/orders/list.html"
-        all_orders = Order.objects.all()
+        all_orders = Order.objects.all().order_by('updated_at')
+
         if all_orders.count():
             paginate = True
         else:
@@ -440,8 +441,6 @@ def manage_orders(request, action):
             selected_order.delete_products()
             selected_order.delete()
             return redirect('manage-orders', 'main')
-
-
 
 def manage_shipping(request, action):
     if not request.session.get('language', None):
