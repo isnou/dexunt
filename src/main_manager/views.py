@@ -37,51 +37,6 @@ def admin_home(request, action):
         }
         return render(request, url, context)
 
-def manage_showcase(request, action):
-    if not request.session.get('language', None):
-        request.session['language'] = 'en-us'
-    direction = request.session.get('language')
-    # --------------- main page ------------------- #
-    if action == 'main':
-        url = direction + "/management/admin/showcase/grid.html"
-        all_products = Variant.objects.all()
-        all_flash_products = FlashProduct.objects.all()
-
-        published_products = all_products.exclude(is_activated=False)
-        unpublished_products = all_products.exclude(is_activated=True)
-
-        published_flash_products = all_flash_products.exclude(is_activated=False)
-        unpublished_flash_products = all_flash_products.exclude(is_activated=True)
-
-        context = {
-            'nav_side': 'showcase',
-            'all_products': all_products,
-            'all_flash_products': all_flash_products,
-            'published_products': published_products,
-            'unpublished_products': unpublished_products,
-            'published_flash_products': published_flash_products,
-            'unpublished_flash_products': unpublished_flash_products,
-        }
-        return render(request, url, context)
-    if action == 'publish_products':
-        if request.method == 'POST':
-            product_ids = request.POST.getlist('product_ids')
-            for product_id in product_ids:
-                selected_product = Variant.objects.all().get(id=product_id)
-                selected_product.is_activated = True
-                selected_product.save()
-                selected_product.clean()
-            return redirect('manage-showcase', 'main')
-    if action == 'publish_flash_products':
-        if request.method == 'POST':
-            product_ids = request.POST.getlist('product_ids')
-            for product_id in product_ids:
-                selected_product = FlashProduct.objects.all().get(id=product_id)
-                selected_product.is_activated = True
-                selected_product.save()
-                selected_product.clean()
-            return redirect('manage-showcase', 'main')
-
 def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
