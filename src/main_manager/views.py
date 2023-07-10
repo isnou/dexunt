@@ -554,6 +554,7 @@ def manage_shipping(request, action):
         municipality_form = MunicipalityForm()
         context = {
             'nav_side': 'shipping',
+            'selected_province': selected_province,
             'selected_province_municipalities': selected_province_municipalities,
             'paginate': paginate,
             'selected_province_form': selected_province_form,
