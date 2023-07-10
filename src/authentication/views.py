@@ -51,21 +51,12 @@ def account_signup(request):
             login(request, user)
             return redirect('router')
         else:
-            if not request.session.get('language', None):
-                request.session['language'] = 'en-us'
-            direction = request.session.get('language')
-            url = direction + "/home/main-page.html"
-
-            signup_form = SignupForm()
-            context = {
-                'signup_form': signup_form,
-            }
-            return render(request, url, context)
+            return redirect('home-page')
 
 @login_required
 def account_orders_page(request):
     if not request.session.get('language', None):
-        request.session['language'] = 'en-us'
+        request.session['language'] = 'en'
 
     direction = request.session.get('language')
     url = direction + "/main-shop/account/orders-page.html"
