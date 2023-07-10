@@ -521,7 +521,7 @@ def manage_shipping(request, action):
             paginate = False
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_provinces, 1)
+        paginator = Paginator(all_provinces, 6)
         try:
             all_provinces = paginator.page(page)
         except PageNotAnInteger:

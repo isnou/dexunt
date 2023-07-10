@@ -171,7 +171,7 @@
   </div>
   <!-- end header -->
 
-  {% if selected_province.municipality.all.count %}
+  {% if paginate %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -186,7 +186,7 @@
       </thead>
 
       <tbody>
-      {% for municipality in selected_province.municipality.all %}
+      {% for municipality in selected_province_municipalities %}
 
       <!-- delete municipality form -->
       <form action="{% url 'manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
@@ -383,39 +383,41 @@
   <!-- footer -->
   <div class="card-footer">
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
-      <div class="col-sm mb-2 mb-sm-0">
-        <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-          <span class="me-2">Showing:</span>
+      <!-- Pagination -->
+      <nav>
+        {% if selected_province_municipalities.has_other_pages %}
+        <ul class="pagination justify-content-center">
+          {% if selected_province_municipalities.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ all_orders.previous_page_number }}" tabindex="-1">Previous</a>
+          </li>
+          {% endif %}
 
-          <!-- Select -->
-          <div class="tom-select-custom">
-            <select id="datatableEntries" class="js-select form-select form-select-borderless w-auto" autocomplete="off" data-hs-tom-select-options='{
-                      "searchInDropdown": false,
-                      "hideSearch": true
-                    }'>
-              <option value="12">12</option>
-              <option value="14" selected>14</option>
-              <option value="16">16</option>
-              <option value="18">18</option>
-            </select>
-          </div>
-          <!-- End Select -->
+          {% for i in selected_province_municipalities.paginator.page_range %}
+          {% if all_orders.number == i %}
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
 
-          <span class="text-secondary me-2">of</span>
-
-          <!-- Pagination Quantity -->
-          <span id="datatableWithPaginationInfoTotalQty"></span>
-        </div>
-      </div>
-      <!-- End Col -->
-
-      <div class="col-sm-auto">
-        <div class="d-flex justify-content-center justify-content-sm-end">
-          <!-- Pagination -->
-          <nav id="datatablePagination" aria-label="Activity pagination"></nav>
-        </div>
-      </div>
-      <!-- End Col -->
+          {% if selected_province_municipalities.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ selected_province_municipalities.next_page_number }}">Next</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+          </li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </nav>
+      <!-- End Pagination -->
     </div>
     <!-- End Row -->
   </div>
@@ -424,7 +426,7 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        No municipalities .
+        {{ selected_province.en_name }} has no registred municipalities .
       </div>
     </div>
   </div>
