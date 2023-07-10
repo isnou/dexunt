@@ -6,8 +6,8 @@ from django.core.validators import RegexValidator
 from phonenumber_field.modelfields import PhoneNumberField
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=63, label='Username')
-    password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='Password')
+    username = forms.CharField(max_length=60, label='Username')
+    password = forms.CharField(min_length=6, widget=forms.PasswordInput, label='Password')
 
 class SignupForm(UserCreationForm):
     first_name = forms.CharField(required=False)
