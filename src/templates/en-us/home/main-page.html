@@ -165,6 +165,13 @@
               <h1 class="fs-2 mb-1">Welcome to FreshCart</h1>
               <span>Download the app get free food & <span class="text-primary">$30</span> off on your first order.</span>
             </div>
+
+              {% if signup_form.errors %}
+    <div class="alert alert-danger">
+        {{ signup_form.errors }}
+    </div>
+{% endif %}
+
           </div>
           <div class="mt-3 mt-lg-0">
             <a href="index-2.html#" class="btn btn-dark">Download FreshCart App</a>
