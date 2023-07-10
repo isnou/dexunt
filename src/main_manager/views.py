@@ -90,11 +90,25 @@ def manage_products(request, action):
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         all_products = Product.objects.all()
-        product_form = ProductForm()
+        if all_products.count():
+            paginate = True
+        else:
+            paginate = False
 
+        page = request.GET.get('page', 1)
+        paginator = Paginator(all_products, 6)
+        try:
+            all_products = paginator.page(page)
+        except PageNotAnInteger:
+            all_products = paginator.page(1)
+        except EmptyPage:
+            all_products = paginator.page(paginator.num_pages)
+
+        product_form = ProductForm()
         context = {
             'nav_side': 'products',
             'all_products': all_products,
+            'paginate': paginate,
             'product_form': product_form,
         }
         return render(request, url, context)
