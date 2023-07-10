@@ -35,7 +35,7 @@ class User(AbstractUser):
     # --------------------------------- user info ----------------------------------------------
     first_name = models.CharField(max_length=300, blank=True, null=True)
     last_name = models.CharField(max_length=300, blank=True, null=True)
-    phone_number = PhoneNumberField(blank=True)
+    phone_number = PhoneNumberField(blank=True, null=True)
 
     file_name = models.CharField(max_length=300, blank=True, null=True)
     def get_image_path(self, filename):

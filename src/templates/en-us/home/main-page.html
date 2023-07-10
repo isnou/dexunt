@@ -162,6 +162,15 @@
           <div class="d-lg-flex align-items-center">
             <img src="../assets/images/about/about-icons-1.svg" alt="" class="img-fluid">
             <div class="ms-lg-4">
+                
+                {% if message.tags == 'error' %}
+            <!-- bootstrap alert -->
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+
               <h1 class="fs-2 mb-1">Welcome to FreshCart</h1>
               <span>Download the app get free food & <span class="text-primary">$30</span> off on your first order.</span>
             </div>

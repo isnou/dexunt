@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 
 
 
@@ -51,6 +52,8 @@ def account_signup(request):
             login(request, user)
             return redirect('router')
         else:
+            for error in signup_form.errors:
+                messages.error(request, signup_form.errors[error])
             return redirect('home-page')
 
 @login_required
