@@ -98,7 +98,7 @@ def manage_products(request, action):
             paginate = False
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_products, 6)
+        paginator = Paginator(all_products, 4)
         try:
             all_products = paginator.page(page)
         except PageNotAnInteger:
