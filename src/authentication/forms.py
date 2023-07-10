@@ -10,6 +10,8 @@ class LoginForm(forms.Form):
     password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='Password')
 
 class SignupForm(UserCreationForm):
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = ('phone_number', 'first_name', 'last_name')
@@ -21,7 +23,6 @@ class UpdateProfileForm(forms.ModelForm):
 
 class UpdateProfilePhotoForm(forms.ModelForm):
     profile_photo = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-
     class Meta:
         model = get_user_model()
         fields = ['profile_photo']

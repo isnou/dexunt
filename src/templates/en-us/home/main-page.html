@@ -534,45 +534,60 @@
 </div>
 <!-- register modal -->
 <div class="modal fade" id="register_modal" tabindex="-1" aria-labelledby="register_modal_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="register_modal_label">Register</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-10">
-            <div class="py-6">
-              <form>
-                <div class="mb-8">
-                  <input type="text" class="form-control form-control-lg" placeholder="Username" required>
-                </div>
-
-                <div class="mb-8">
-                  <input type="password" class="form-control form-control-lg" placeholder="Password" required>
-                </div>
-
-                <div class="mb-8">
-                  <input type="password" class="form-control form-control-lg" placeholder="Confirm password" required>
-                </div>
-
-                <div class="d-grid">
-                  <button type="submit" class="btn btn-primary">submit</button>
-                </div>
-              </form>
-              <div class="mt-4">
-                <small>
-                  Already have an account ?
-                  <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
-                </small>
-              </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="register_modal_label">Register</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-10">
+                        <div class="py-6">
+                            <form action="#" id="order_form" class="needs-validation" novalidate method="post">
+                                {% csrf_token %}
+                                <div class="mb-8">
+                                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.username.name }}" maxlength="8" placeholder="Username" required>
+                                    <span class="invalid-feedback text-start">enter your name please.</span>
+                                </div>
+
+
+                                <div class="mb-8">
+                                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.first_name.name }}" placeholder="First name">
+                                </div>
+
+                                <div class="mb-8">
+                                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.last_name.name }}" placeholder="Last name">
+                                </div>
+
+                                <div class="mb-8">
+                                    <input type="tel" class="form-control form-control-lg" name="{{ signup_form.phone_number.name }}" placeholder="Phone number" required>
+                                </div>
+
+                                <div class="mb-8">
+                                    <input type="password" class="form-control form-control-lg" name="{{ signup_form.password1.name }}" placeholder="Password" required>
+                                </div>
+
+                                <div class="mb-8">
+                                    <input type="password" class="form-control form-control-lg" name="{{ signup_form.password2.name }}" placeholder="Confirm password" required>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">submit</button>
+                                </div>
+                            </form>
+                            <div class="mt-4">
+                                <small>
+                                    Already have an account ?
+                                    <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <!-- quick view modal -->
 <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
