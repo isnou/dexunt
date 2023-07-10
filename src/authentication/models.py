@@ -2,7 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
 from add_ons import functions
-from django.utils import timezone
+from django.utils import timezone, dateformat
 from PIL import Image
 
 
@@ -54,7 +54,7 @@ class User(AbstractUser):
     amount = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
-        self.file_name = self.user_token + '/' + timezone.now() + '/' + 'profile_photo'
+        self.file_name = self.user_token + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + 'profile_photo'
 
         if not self.user_token:
             self.user_token = functions.serial_number_generator(24).upper()
