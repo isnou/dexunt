@@ -365,7 +365,7 @@ def manage_flash(request, action):
             paginate = False
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_flash_products, 2)
+        paginator = Paginator(all_flash_products, 6)
         try:
             all_flash_products = paginator.page(page)
         except PageNotAnInteger:
