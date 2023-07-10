@@ -46,7 +46,6 @@ class Description(models.Model):
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
         return self.file_name.lower()
-    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
 # ---------------- regular showcase ---------------- #
 class Option(models.Model):

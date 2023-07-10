@@ -8,6 +8,7 @@ from .models import Province, Municipality
 from main_manager.models import Product, Variant, Option, Feature, Album, FlashProduct
 from main_manager.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
+from authentication.forms import SignupForm
 
 def home_page(request):
     if not request.session.get('language', None):
