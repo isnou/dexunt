@@ -46,10 +46,9 @@ def account_login(request):
 def account_signup(request):
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
-        if signup_form.is_valid():
-            user = signup_form.save()
-            login(request, user)
-            return redirect('router')
+        user = signup_form.save()
+        login(request, user)
+        return redirect('router')
 
 @login_required
 def account_orders_page(request):
