@@ -514,6 +514,7 @@ def manage_shipping(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/shipping/provinces.html"
+        request.session['province_id_token'] = None
         all_provinces = Province.objects.all()
         if all_provinces.count():
             paginate = True
@@ -564,7 +565,6 @@ def manage_shipping(request, action):
             province_id = request.POST.get('province_id', False)
         else:
             province_id = request.session.get('province_id_token')
-            request.session['province_id_token'] = None
 
         selected_province = Province.objects.all().get(id=province_id)
         selected_province_municipalities = selected_province.municipality.all()
