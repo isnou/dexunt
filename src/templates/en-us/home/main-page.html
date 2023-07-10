@@ -418,10 +418,13 @@
 
 <!-- navigation modals block -->
 {% block navigation_modals %}
+
+{% if errors %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>{{ message }}</strong>
+    <strong>{{ errors }}</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+{% endif %}
 
 <!-- track my order modal -->
 <div class="modal fade" id="track_my_order_modal" tabindex="-1" aria-labelledby="track_my_order_modal_label"

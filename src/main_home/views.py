@@ -15,6 +15,13 @@ def home_page(request):
     direction = request.session.get('language')
     selected_cart = get_cart(request)
     url = direction + "/home/main-page.html"
+
+    if request.session.get('error_messages'):
+        errors = request.session.get('error_messages')
+        request.session['error_messages'] = None
+    else:
+        errors = None
+
     login_form = LoginForm()
     signup_form = SignupForm()
 
@@ -31,6 +38,7 @@ def home_page(request):
     published_flash_products = all_flash_products[:4]
 
     context = {
+        'errors': errors,
         'login_form': login_form,
         'signup_form': signup_form,
         'selected_cart': selected_cart,
