@@ -594,7 +594,6 @@ def manage_coupon(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/coupon/list.html"
-        coupon_form = CouponForm()
 
         try:
             all_coupons = Coupon.objects.all()
@@ -604,11 +603,26 @@ def manage_coupon(request, action):
         for c in all_coupons:
             c.clean()
 
+        if all_coupons.count():
+            paginate = True
+        else:
+            paginate = False
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(all_coupons, 1)
+        try:
+            all_coupons = paginator.page(page)
+        except PageNotAnInteger:
+            all_coupons = paginator.page(1)
+        except EmptyPage:
+            all_coupons = paginator.page(paginator.num_pages)
+
+        coupon_form = CouponForm()
         context = {
             'nav_side': 'coupon',
-            'coupon_form': coupon_form,
             'all_coupons': all_coupons,
-            'time': timezone.now()
+            'paginate': paginate,
+            'coupon_form': coupon_form,
         }
         return render(request, url, context)
     if action == 'add_new_coupon':
