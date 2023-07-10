@@ -111,36 +111,39 @@
                   </div>
                 </li>
                 {% endfor %}
-
-                <div id="total_summary">
-                  <li class="list-group-item px-4 py-3">
-                    <div class="d-flex align-items-center justify-content-between   mb-2">
-                      <div>Item Subtotal</div>
-                      <div class="fw-bold"> {{ selected_cart.sub_total_price|floatformat:"0g" }} <small>DZD</small></div>
-                    </div>
-
-                    {% if selected_cart.coupon_type == 'subtractive' %}
-                    <div class="d-flex align-items-center justify-content-between   mb-2">
-                      <div>Discount</div>
-                      <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>DZD</small></div>
-                    </div>
-                    {% endif %}
-
-                    {% if selected_cart.coupon_type == 'percentage' %}
-                    <div class="d-flex align-items-center justify-content-between   mb-2">
-                      <div>Discount</div>
-                      <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>%</small></div>
-                    </div>
-                    {% endif %}
-                  </li>
-
-                  <li class="list-group-item px-4 py-3">
-                    <div class="d-flex align-items-center justify-content-between fw-bold">
-                      <div> Total</div><div>{{ selected_cart.total_price|floatformat:"0g" }} <small>DZD</small></div>
-                    </div>
-                  </li>
-                </div>
               </ul>
+
+              <div id="total_summary">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-4 py-3">
+                      <div class="d-flex align-items-center justify-content-between   mb-2">
+                        <div>Item Subtotal</div>
+                        <div class="fw-bold"> {{ selected_cart.sub_total_price|floatformat:"0g" }} <small>DZD</small></div>
+                      </div>
+
+                      {% if selected_cart.coupon_type == 'subtractive' %}
+                      <div class="d-flex align-items-center justify-content-between   mb-2">
+                        <div>Discount</div>
+                        <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>DZD</small></div>
+                      </div>
+                      {% endif %}
+
+                      {% if selected_cart.coupon_type == 'percentage' %}
+                      <div class="d-flex align-items-center justify-content-between   mb-2">
+                        <div>Discount</div>
+                        <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>%</small></div>
+                      </div>
+                      {% endif %}
+                    </li>
+
+                    <li class="list-group-item px-4 py-3">
+                      <div class="d-flex align-items-center justify-content-between fw-bold">
+                        <div> Total</div><div>{{ selected_cart.total_price|floatformat:"0g" }} <small>DZD</small></div>
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+
 
               <div class="px-4 py-4 d-grid">
                 <button class="btn btn-primary btn-lg justify-content-between align-items-center" form="order_form">
