@@ -165,13 +165,6 @@
               <h1 class="fs-2 mb-1">Welcome to FreshCart</h1>
               <span>Download the app get free food & <span class="text-primary">$30</span> off on your first order.</span>
             </div>
-
-              {% if signup_form.errors %}
-    <div class="alert alert-danger">
-        {{ signup_form.errors }}
-    </div>
-{% endif %}
-
           </div>
           <div class="mt-3 mt-lg-0">
             <a href="index-2.html#" class="btn btn-dark">Download FreshCart App</a>
@@ -569,7 +562,7 @@
                                 </div>
 
                                 <div class="mb-8">
-                                    <input type="tel" class="form-control form-control-lg" name="{{ signup_form.phone_number.name }}" placeholder="Phone number" required>
+                                    <input type="tel" class="form-control form-control-lg" name="{{ signup_form.phone_number.name }}" placeholder="Phone number">
                                     <span class="invalid-feedback text-start">please provide a correct phone number.</span>
                                 </div>
 
