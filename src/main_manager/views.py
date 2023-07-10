@@ -98,7 +98,7 @@ def manage_products(request, action):
             paginate = False
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_products, 4)
+        paginator = Paginator(all_products, 6)
         try:
             all_products = paginator.page(page)
         except PageNotAnInteger:
@@ -359,12 +359,26 @@ def manage_flash(request, action):
         url = direction + "/management/admin/flash/list.html"
         all_products = Product.objects.all()
         all_flash_products = FlashProduct.objects.all()
-        flash_form = FlashForm()
+        if all_flash_products.count():
+            paginate = True
+        else:
+            paginate = False
 
+        page = request.GET.get('page', 1)
+        paginator = Paginator(all_flash_products, 2)
+        try:
+            all_flash_products = paginator.page(page)
+        except PageNotAnInteger:
+            all_flash_products = paginator.page(1)
+        except EmptyPage:
+            all_flash_products = paginator.page(paginator.num_pages)
+
+        flash_form = FlashForm()
         context = {
             'nav_side': 'flash',
             'all_products': all_products,
             'all_flash_products': all_flash_products,
+            'paginate': paginate,
             'flash_form': flash_form,
         }
         return render(request, url, context)
