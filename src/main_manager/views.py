@@ -89,6 +89,8 @@ def manage_products(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
+        request.session['variant_id_token'] = None
+        request.session['product_id_token'] = None
         all_products = Product.objects.all()
         if all_products.count():
             paginate = True
@@ -148,11 +150,12 @@ def manage_products(request, action):
     # --------------- selected product ------------ #
     if action == 'view_product':
         url = direction + "/management/admin/products/selected.html"
+        request.session['variant_id_token'] = None
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
+            request.session['product_id_token'] = product_id
         else:
             product_id = request.session.get('product_id_token')
-            request.session['product_id_token'] = None
 
         selected_product = Product.objects.all().get(id=product_id)
         selected_product_form = ProductForm(request.POST, instance=selected_product)
@@ -170,7 +173,6 @@ def manage_products(request, action):
     if action == 'edit_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
-            request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
@@ -178,7 +180,6 @@ def manage_products(request, action):
     if action == 'add_new_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
-            request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
             new_variant = Variant(en_title=selected_product.en_title,
                                   fr_title=selected_product.fr_title,
@@ -196,17 +197,13 @@ def manage_products(request, action):
             return redirect('manage-products', 'view_product')
     if action == 'delete_variant':
         if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant.delete()
-
-            request.session['product_id_token'] = product_id
             return redirect('manage-products', 'view_product')
     if action == 'add_description':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
-            request.session['product_id_token'] = product_id
             selected_product = Product.objects.all().get(id=product_id)
             new_description = Description(file_name=selected_product.en_title,
                                           )
@@ -217,18 +214,13 @@ def manage_products(request, action):
             return redirect('manage-products', 'view_product')
     if action == 'delete_description':
         if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
             description_id = request.POST.get('description_id', False)
             selected_description = Description.objects.all().get(id=description_id)
             selected_description.delete()
-
-            request.session['product_id_token'] = product_id
             return redirect('manage-products', 'view_product')
     if action == 'edit_description':
         if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
             description_id = request.POST.get('description_id', False)
-            request.session['product_id_token'] = product_id
             selected_description = Description.objects.all().get(id=description_id)
             selected_description_form = DescriptionForm(request.POST, request.FILES, instance=selected_description)
             selected_description_form.save()
@@ -239,11 +231,10 @@ def manage_products(request, action):
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             variant_id = request.POST.get('variant_id', False)
-            request.session['product_id_token'] = product_id
+            request.session['variant_id_token'] = variant_id
         else:
             product_id = request.session.get('product_id_token')
             variant_id = request.session.get('variant_id_token')
-            request.session['variant_id_token'] = None
 
         selected_variant = Variant.objects.all().get(id=variant_id)
         selected_product = Product.objects.all().get(id=product_id)
@@ -264,12 +255,10 @@ def manage_products(request, action):
     if action == 'edit_variant':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
-
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant_form = VariantForm(request.POST, instance=selected_variant)
             selected_variant_form.save()
 
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'add_image':
         if request.method == 'POST':
@@ -279,7 +268,6 @@ def manage_products(request, action):
 
             selected_product = Product.objects.all().get(id=product_id)
             selected_variant = Variant.objects.all().get(id=variant_id)
-            request.session['variant_id_token'] = variant_id
             album = Album(file_name= selected_product.en_title + '/' + selected_variant.en_spec,
                           image=image,
                           )
@@ -289,13 +277,10 @@ def manage_products(request, action):
             return redirect('manage-products', 'view_variant')
     if action == 'delete_image':
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
             album_id = request.POST.get('album_id', False)
 
             album = Album.objects.all().get(id=album_id)
             album.delete()
-
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'add_feature':
         if request.method == 'POST':
@@ -307,28 +292,21 @@ def manage_products(request, action):
             selected_feature_form = FeatureForm(request.POST, instance=new_feature)
             selected_feature_form.save()
             selected_variant.feature.add(new_feature)
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'delete_feature':
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
             feature_id = request.POST.get('feature_id', False)
 
             selected_feature = Feature.objects.all().get(id=feature_id)
             selected_feature.delete()
-
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'edit_feature':
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
             feature_id = request.POST.get('feature_id', False)
             selected_feature = Feature.objects.all().get(id=feature_id)
 
             selected_feature_form = FeatureForm(request.POST, instance=selected_feature)
             selected_feature_form.save()
-
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'add_option':
         if request.method == 'POST':
@@ -344,33 +322,24 @@ def manage_products(request, action):
             selected_option_form = OptionForm(request.POST, request.FILES, instance=new_option)
             selected_option_form.save()
             selected_variant.option.add(new_option)
-
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'delete_option':
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
             option_id = request.POST.get('option_id', False)
 
             option = Option.objects.all().get(id=option_id)
             option.delete()
-
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'edit_option':
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
             option_id = request.POST.get('option_id', False)
             selected_option = Option.objects.all().get(id=option_id)
 
             selected_option_form = OptionForm(request.POST, request.FILES, instance=selected_option)
             selected_option_form.save()
-
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
     if action == 'convert_option':
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
             option_id = request.POST.get('option_id', False)
 
             option = Option.objects.all().get(id=option_id)
@@ -379,8 +348,6 @@ def manage_products(request, action):
             else:
                 option.has_image = True
             option.save()
-
-            request.session['variant_id_token'] = variant_id
             return redirect('manage-products', 'view_variant')
 
 def manage_flash(request, action):
@@ -563,6 +530,7 @@ def manage_shipping(request, action):
         url = direction + "/management/admin/shipping/selected_province.html"
         if request.method == 'POST':
             province_id = request.POST.get('province_id', False)
+            request.session['province_id_token'] = province_id
         else:
             province_id = request.session.get('province_id_token')
 
@@ -595,7 +563,6 @@ def manage_shipping(request, action):
     if action == 'add_municipality':
         if request.method == 'POST':
             province_id = request.POST.get('province_id', False)
-            request.session['province_id_token'] = province_id
             selected_province = Province.objects.all().get(id=province_id)
             new_municipality = Municipality()
             selected_municipality_form = MunicipalityForm(request.POST, instance=new_municipality)
@@ -605,9 +572,6 @@ def manage_shipping(request, action):
                 return redirect('manage-shipping', 'view_province')
     if action == 'edit_municipality':
         if request.method == 'POST':
-            province_id = request.POST.get('province_id', False)
-            request.session['province_id_token'] = province_id
-
             municipality_id = request.POST.get('municipality_id', False)
             selected_municipality = Municipality.objects.all().get(id=municipality_id)
             municipality_form = MunicipalityForm(request.POST, instance=selected_municipality)
@@ -616,9 +580,6 @@ def manage_shipping(request, action):
                 return redirect('manage-shipping', 'view_province')
     if action == 'delete_municipality':
         if request.method == 'POST':
-            province_id = request.POST.get('province_id', False)
-            request.session['province_id_token'] = province_id
-
             municipality_id = request.POST.get('municipality_id', False)
             selected_municipality = Municipality.objects.all().get(id=municipality_id)
             selected_municipality.delete()
