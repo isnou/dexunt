@@ -108,7 +108,7 @@ def manage_products(request, action):
         context = {
             'nav_side': 'products',
             'all_products': all_products,
-            'paginate': False,
+            'paginate': paginate,
             'product_form': product_form,
         }
         return render(request, url, context)
@@ -491,7 +491,6 @@ def manage_orders(request, action):
         except EmptyPage:
             all_orders = paginator.page(paginator.num_pages)
 
-
         context = {
             'nav_side': 'orders',
             'all_orders': all_orders,
@@ -514,13 +513,27 @@ def manage_shipping(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/admin/shipping/province.html"
+        url = direction + "/management/admin/shipping/provinces.html"
         all_provinces = Province.objects.all()
-        province_form = ProvinceForm()
+        if all_provinces.count():
+            paginate = True
+        else:
+            paginate = False
 
+        page = request.GET.get('page', 1)
+        paginator = Paginator(all_provinces, 1)
+        try:
+            all_provinces = paginator.page(page)
+        except PageNotAnInteger:
+            all_provinces = paginator.page(1)
+        except EmptyPage:
+            all_provinces = paginator.page(paginator.num_pages)
+
+        province_form = ProvinceForm()
         context = {
             'nav_side': 'shipping',
             'all_provinces': all_provinces,
+            'paginate': paginate,
             'province_form': province_form,
         }
         return render(request, url, context)
@@ -554,12 +567,27 @@ def manage_shipping(request, action):
             request.session['province_id_token'] = None
 
         selected_province = Province.objects.all().get(id=province_id)
-        selected_province_form = ProvinceForm(request.POST, instance=selected_province)
+        selected_province_municipalities = selected_province.municipality.all()
+        if selected_province_municipalities.count():
+            paginate = True
+        else:
+            paginate = False
 
+        page = request.GET.get('page', 1)
+        paginator = Paginator(selected_province_municipalities, 1)
+        try:
+            selected_province_municipalities = paginator.page(page)
+        except PageNotAnInteger:
+            selected_province_municipalities = paginator.page(1)
+        except EmptyPage:
+            selected_province_municipalities = paginator.page(paginator.num_pages)
+
+        selected_province_form = ProvinceForm(request.POST, instance=selected_province)
         municipality_form = MunicipalityForm()
         context = {
             'nav_side': 'shipping',
-            'selected_province': selected_province,
+            'selected_province_municipalities': selected_province_municipalities,
+            'paginate': paginate,
             'selected_province_form': selected_province_form,
             'municipality_form': municipality_form,
         }
