@@ -43,27 +43,13 @@ def account_login(request):
         }
         return render(request, url, context)
 
-def signup_page(request):
-    if not request.session.get('language', None):
-        request.session['language'] = 'en'
-
-    direction = request.session.get('language')
-    url = direction + "/main-shop/account/login-page.html"
-
+def account_signup(request):
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
             user = signup_form.save()
             login(request, user)
-            return redirect('account-orders-page')
-        else:
-            login_form = LoginForm()
-            signup_form = SignupForm()
-            context = {
-                'login_form': login_form,
-                'signup_form': signup_form,
-            }
-            return render(request, url, context)
+            return redirect('router')
 
 @login_required
 def account_orders_page(request):
@@ -259,6 +245,9 @@ def change_password(request):
 @login_required
 def router(request):
     if request.user.is_superuser:
+        return redirect('admin-home', 'main')
+
+    if request.user.role == 'customer':
         return redirect('admin-home', 'main')
     else:
         return redirect('logout')

@@ -17,6 +17,8 @@ class SignupForm(UserCreationForm):
         fields = ('phone_number', 'first_name', 'last_name')
 
 class UpdateProfileForm(forms.ModelForm):
+    username = forms.CharField(max_length=60)
+    password1 = forms.CharField(min_length=6, widget=forms.PasswordInput)
     class Meta:
         model = get_user_model()
         fields = ('username', 'phone_number', 'first_name', 'last_name')
