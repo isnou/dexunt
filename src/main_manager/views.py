@@ -542,7 +542,7 @@ def manage_shipping(request, action):
             paginate = False
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(selected_province_municipalities, 1)
+        paginator = Paginator(selected_province_municipalities, 6)
         try:
             selected_province_municipalities = paginator.page(page)
         except PageNotAnInteger:
@@ -609,7 +609,7 @@ def manage_coupon(request, action):
             paginate = False
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_coupons, 1)
+        paginator = Paginator(all_coupons, 6)
         try:
             all_coupons = paginator.page(page)
         except PageNotAnInteger:
