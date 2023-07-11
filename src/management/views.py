@@ -79,13 +79,13 @@ def manage_products(request, action):
             new_product_form = ProductForm(request.POST)
             if new_product_form.is_valid():
                 new_product_form.save()
-                return redirect('manage-products', 'main')
+                return redirect('admin-manage-products', 'main')
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
-            return redirect('manage-products', 'main')
+            return redirect('admin-manage-products', 'main')
     if action == 'clean_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -106,7 +106,7 @@ def manage_products(request, action):
                 variant.is_activated = True
                 variant.clean()
 
-            return redirect('manage-products', 'main')
+            return redirect('admin-manage-products', 'main')
     # --------------- selected product ------------ #
     if action == 'view_product':
         url = direction + "/management/admin/products/selected.html"
@@ -136,7 +136,7 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
-            return redirect('manage-products', 'view_product')
+            return redirect('admin-manage-products', 'view_product')
     if action == 'add_new_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -154,13 +154,13 @@ def manage_products(request, action):
             selected_variant_form.save()
 
             selected_product.variant.add(new_variant)
-            return redirect('manage-products', 'view_product')
+            return redirect('admin-manage-products', 'view_product')
     if action == 'delete_variant':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant.delete()
-            return redirect('manage-products', 'view_product')
+            return redirect('admin-manage-products', 'view_product')
     if action == 'add_description':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -171,20 +171,20 @@ def manage_products(request, action):
             selected_description_form = DescriptionForm(request.POST, request.FILES, instance=new_description)
             selected_description_form.save()
             selected_product.description.add(new_description)
-            return redirect('manage-products', 'view_product')
+            return redirect('admin-manage-products', 'view_product')
     if action == 'delete_description':
         if request.method == 'POST':
             description_id = request.POST.get('description_id', False)
             selected_description = Description.objects.all().get(id=description_id)
             selected_description.delete()
-            return redirect('manage-products', 'view_product')
+            return redirect('admin-manage-products', 'view_product')
     if action == 'edit_description':
         if request.method == 'POST':
             description_id = request.POST.get('description_id', False)
             selected_description = Description.objects.all().get(id=description_id)
             selected_description_form = DescriptionForm(request.POST, request.FILES, instance=selected_description)
             selected_description_form.save()
-            return redirect('manage-products', 'view_product')
+            return redirect('admin-manage-products', 'view_product')
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"
@@ -219,7 +219,7 @@ def manage_products(request, action):
             selected_variant_form = VariantForm(request.POST, instance=selected_variant)
             selected_variant_form.save()
 
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'add_image':
         if request.method == 'POST':
             product_id = request.session.get('product_id_token')
@@ -234,14 +234,14 @@ def manage_products(request, action):
             album.save()
             selected_variant.album.add(album)
 
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_image':
         if request.method == 'POST':
             album_id = request.POST.get('album_id', False)
 
             album = Album.objects.all().get(id=album_id)
             album.delete()
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'add_feature':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -252,14 +252,14 @@ def manage_products(request, action):
             selected_feature_form = FeatureForm(request.POST, instance=new_feature)
             selected_feature_form.save()
             selected_variant.feature.add(new_feature)
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_feature':
         if request.method == 'POST':
             feature_id = request.POST.get('feature_id', False)
 
             selected_feature = Feature.objects.all().get(id=feature_id)
             selected_feature.delete()
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'edit_feature':
         if request.method == 'POST':
             feature_id = request.POST.get('feature_id', False)
@@ -267,7 +267,7 @@ def manage_products(request, action):
 
             selected_feature_form = FeatureForm(request.POST, instance=selected_feature)
             selected_feature_form.save()
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'add_option':
         if request.method == 'POST':
             product_id = request.session.get('product_id_token')
@@ -282,14 +282,14 @@ def manage_products(request, action):
             selected_option_form = OptionForm(request.POST, request.FILES, instance=new_option)
             selected_option_form.save()
             selected_variant.option.add(new_option)
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
 
             option = Option.objects.all().get(id=option_id)
             option.delete()
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'edit_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
@@ -297,7 +297,7 @@ def manage_products(request, action):
 
             selected_option_form = OptionForm(request.POST, request.FILES, instance=selected_option)
             selected_option_form.save()
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'convert_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
@@ -308,7 +308,7 @@ def manage_products(request, action):
             else:
                 option.has_image = True
             option.save()
-            return redirect('manage-products', 'view_variant')
+            return redirect('admin-manage-products', 'view_variant')
 
 @login_required
 @permission_required('main_manager.delete_option')
@@ -379,7 +379,7 @@ def manage_flash(request, action):
                          cost=selected_option.cost,
                          price=selected_option.price,
                          ).save()
-            return redirect('manage-flash', 'main')
+            return redirect('admin-manage-flash', 'main')
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -389,7 +389,7 @@ def manage_flash(request, action):
             selected_option.is_activated = True
             selected_option.save()
             selected_product.delete()
-            return redirect('manage-flash', 'main')
+            return redirect('admin-manage-flash', 'main')
     if action == 'edit_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -410,7 +410,7 @@ def manage_flash(request, action):
             flash_form = FlashForm(request.POST, request.FILES, instance=selected_product)
             if flash_form.is_valid():
                 flash_form.save()
-                return redirect('manage-flash', 'main')
+                return redirect('admin-manage-flash', 'main')
 
 @login_required
 @permission_required('main_manager.delete_option')
@@ -449,7 +449,7 @@ def manage_orders(request, action):
             selected_order = Order.objects.all().get(id=order_id)
             selected_order.delete_products()
             selected_order.delete()
-            return redirect('manage-orders', 'main')
+            return redirect('admin-manage-orders', 'main')
 
 @login_required
 @permission_required('main_manager.delete_option')
@@ -489,7 +489,7 @@ def manage_shipping(request, action):
             province_form = ProvinceForm(request.POST)
             if province_form.is_valid():
                 province_form.save()
-                return redirect('manage-shipping', 'main')
+                return redirect('admin-manage-shipping', 'main')
     if action == 'edit_province':
         if request.method == 'POST':
             province_id = request.POST.get('province_id', False)
@@ -497,13 +497,13 @@ def manage_shipping(request, action):
             province_form = ProvinceForm(request.POST, instance=selected_province)
             if province_form.is_valid():
                 province_form.save()
-                return redirect('manage-shipping', 'main')
+                return redirect('admin-manage-shipping', 'main')
     if action == 'delete_province':
         if request.method == 'POST':
             province_id = request.POST.get('province_id', False)
             selected_province = Province.objects.all().get(id=province_id)
             selected_province.delete()
-            return redirect('manage-shipping', 'main')
+            return redirect('admin-manage-shipping', 'main')
     # --------------- selected province ------------ #
     if action == 'view_province':
         url = direction + "/management/admin/shipping/selected_province.html"
@@ -549,7 +549,7 @@ def manage_shipping(request, action):
             if selected_municipality_form.is_valid():
                 selected_municipality_form.save()
                 selected_province.municipality.add(new_municipality)
-                return redirect('manage-shipping', 'view_province')
+                return redirect('admin-manage-shipping', 'view_province')
     if action == 'edit_municipality':
         if request.method == 'POST':
             municipality_id = request.POST.get('municipality_id', False)
@@ -557,14 +557,14 @@ def manage_shipping(request, action):
             municipality_form = MunicipalityForm(request.POST, instance=selected_municipality)
             if municipality_form.is_valid():
                 municipality_form.save()
-                return redirect('manage-shipping', 'view_province')
+                return redirect('admin-manage-shipping', 'view_province')
     if action == 'delete_municipality':
         if request.method == 'POST':
             municipality_id = request.POST.get('municipality_id', False)
             selected_municipality = Municipality.objects.all().get(id=municipality_id)
             selected_municipality.delete()
 
-            return redirect('manage-shipping', 'view_province')
+            return redirect('admin-manage-shipping', 'view_province')
 
 @login_required
 @permission_required('main_manager.delete_option')
@@ -611,14 +611,14 @@ def manage_coupon(request, action):
             coupon_form = CouponForm(request.POST)
             coupon_form.save()
 
-            return redirect('manage-coupon', 'main')
+            return redirect('admin-manage-coupon', 'main')
     if action == 'delete_coupon':
         if request.method == 'POST':
             coupon_id = request.POST.get('coupon_id', False)
             selected_coupon = Coupon.objects.all().get(id=coupon_id)
             selected_coupon.delete()
 
-            return redirect('manage-coupon', 'main')
+            return redirect('admin-manage-coupon', 'main')
 
 
 

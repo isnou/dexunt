@@ -234,10 +234,10 @@ def change_password(request):
 @login_required
 def router(request):
     if request.user.is_superuser:
-        return redirect('admin-home', 'main')
+        return redirect('admin-manage-home', 'main')
 
     if request.user.role == 'customer':
-        return redirect('customer-home', 'main')
+        return redirect('admin-manage-home', 'main')
     else:
         return redirect('logout')
 
