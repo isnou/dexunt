@@ -557,13 +557,9 @@
                             <form action="{% url 'signup' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                    <label for="floatingTextarea">Comments</label>
-                                </div>
-                                
-                                <div class="mb-8">
-                                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.username.name }}" maxlength="{{ signup_form.username.field.max_length }}" placeholder="Username" required>
+                                <div class="form-floating mb-8">
+                                    <input type="text" class="form-control" id="signup_username" name="{{ signup_form.username.name }}" maxlength="{{ signup_form.username.field.max_length }}" placeholder="Username">
+                                    <label for="signup_username">User name</label>
                                     <span class="invalid-feedback text-start">please provide a correct username.</span>
                                 </div>
 
