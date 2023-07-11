@@ -579,6 +579,18 @@
                                     <label for="signup_phone">Phone</label>
                                 </div>
 
+
+                                  <div class="form-group g-mb-20">
+    <label class="g-mb-10">Phone masking</label>
+    <div class="input-group g-brd-primary--focus">
+      <input id="inputGroup1_2" class="form-control form-control-md g-brd-right-none rounded-0" type="text" placeholder="(XXX) XXX-XXXX" data-mask="(999) 999-9999">
+      <div class="input-group-append">
+        <span class="input-group-text rounded-0 g-color-gray-dark-v5"><i class="icon-phone"></i></span>
+      </div>
+    </div>
+  </div>
+
+
                                 <div class="form-floating mb-8">
                                     <input type="password" class="form-control" id="signup_password1" name="{{ signup_form.password1.name }}" minlength="{{ signup_form.password1.field.min_length }}" required>
                                     <label for="signup_password1">Password</label>
