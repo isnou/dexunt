@@ -1,4 +1,4 @@
-from main_home.models import Order
+from home.models import Order
 
 def orders(request):
     if request.user.is_authenticated:

@@ -48,7 +48,8 @@ def account_signup(request):
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
             user = signup_form.save()
-            login(request, user)
+            l
+            ogin(request, user)
             return redirect('router')
         else:
             request.session['error_messages'] = signup_form.errors
