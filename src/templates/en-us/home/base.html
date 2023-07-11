@@ -886,7 +886,23 @@
 <!-- HTMX -->
 <script src="{% static 'htmx/htmx.min.js' %}"></script>
 
+<!-- Mask inputs -->
+<script >
+$(document).ready(function(){
+   $(":input").inputmask();
+   $("#phone").inputmask({
+      mask: '+213 (550)-40-00-21',
+      placeholder: ' ',
+      showMaskOnHover: false,
+      showMaskOnFocus: false,
+      onBeforePaste: function (pastedValue, opts) {
+      var processedValue = pastedValue;
+    return processedValue;
+   }
+ });
+});
 
+</script>
 
 <!-- Form Validation JS -->
 <script>
