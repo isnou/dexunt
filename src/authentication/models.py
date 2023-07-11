@@ -48,17 +48,20 @@ class User(AbstractUser):
     municipality = models.CharField(max_length=200, blank=True, null=True)
     activated_account = models.BooleanField(default=False)
     user_token = models.CharField(max_length=24, unique=True, null=True)
-    store_token = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    store_token = models.CharField(max_length=100, unique=True, null=True)
 
     wallet = models.ManyToManyField(Bill, blank=True)
     amount = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user_token
+        return self.username
 
     def save(self, *args, **kwargs):
         if not self.user_token:
             self.user_token = functions.serial_number_generator(24).upper()
+
+        if not self.store_token:
+            self.store_token = functions.serial_number_generator(5).lower()
 
         self.file_name = self.user_token + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + 'profile_photo'
 
