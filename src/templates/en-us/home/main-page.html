@@ -422,7 +422,10 @@
 {% if errors %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <strong>{{ errors.phone_number[1] }}</strong><br>
+    <strong>{{ errors.phone_number.0 }}</strong><br>
+    <strong>{{ errors.username.0 }}</strong><br>
+    <strong>{{ errors.password1.0 }}</strong><br>
+    <strong>{{ errors.password2.0 }}</strong>
 </div>
 {% endif %}
 
