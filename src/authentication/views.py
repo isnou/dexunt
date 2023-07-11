@@ -237,7 +237,7 @@ def router(request):
         return redirect('admin-home', 'main')
 
     if request.user.role == 'customer':
-        return redirect('admin-home', 'main')
+        return redirect('customer-home', 'main')
     else:
         return redirect('logout')
 
