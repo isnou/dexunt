@@ -10,7 +10,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(min_length=6, widget=forms.PasswordInput, label='Password')
 
 class SignupForm(UserCreationForm):
-    username = forms.CharField(max_length=60, unique=True)
+    username = forms.CharField(max_length=60)
     password1 = forms.CharField(min_length=6, widget=forms.PasswordInput)
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
