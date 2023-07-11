@@ -421,6 +421,8 @@
 
 {% if errors %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+    <strong>{{context}}</strong>
     <strong>{{ errors.phone_number }}</strong>
     <strong>{{ errors.username }}</strong>
     <strong>{{ errors.password1 }}</strong>
