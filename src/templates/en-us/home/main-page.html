@@ -557,6 +557,16 @@
                             <form action="{% url 'signup' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                    <label for="floatingTextarea">Comments</label>
+                                </div>
+                                
+                                <div class="mb-8">
+                                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.username.name }}" maxlength="{{ signup_form.username.field.max_length }}" placeholder="Username" required>
+                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
+                                </div>
+
                                 <div class="mb-8">
                                     <input type="text" class="form-control form-control-lg" name="{{ signup_form.first_name.name }}" placeholder="First name">
                                 </div>
@@ -564,10 +574,10 @@
                                 <div class="mb-8">
                                     <input type="text" class="form-control form-control-lg" name="{{ signup_form.last_name.name }}" placeholder="Last name">
                                 </div>
-                                
+
                                 <div class="mb-8">
-                                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.username.name }}" maxlength="{{ signup_form.username.field.max_length }}" placeholder="Username" required>
-                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
+                                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.phone_number.name }}" placeholder="Phone number" required>
+                                    <span class="invalid-feedback text-start">please provide a correct phone number.</span>
                                 </div>
 
                                 <div class="mb-8">
