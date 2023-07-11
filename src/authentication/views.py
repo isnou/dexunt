@@ -20,7 +20,7 @@ def account_login(request):
                 login(request, user)
                 return redirect('router')
             else:
-                request.session['error_messages'] = login_form.errors
+                request.session['error_messages'] = {'login': 'bad credentials !'}
                 return redirect('home-page')
         else:
             return redirect('home-page')
