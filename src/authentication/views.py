@@ -20,10 +20,9 @@ def account_login(request):
                 login(request, user)
                 return redirect('router')
             else:
-                request.session['error_messages'] = signup_form.errors
+                request.session['error_messages'] = login_form.errors
                 return redirect('home-page')
         else:
-            request.session['error_messages'] = signup_form.errors
             return redirect('home-page')
     else:
         return redirect('home-page')
