@@ -15,7 +15,7 @@ class SignupForm(UserCreationForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
     phone_number = PhoneNumberField(required=True)
-    phone_number.error_messages['invalid'] = 'Incorrect Phone Number!'
+    #phone_number.error_messages['invalid'] = 'Incorrect Phone Number!'
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
