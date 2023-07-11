@@ -888,7 +888,27 @@
 
 <!-- Mask inputs -->
 <script >
-$('#signup_phone').mask('(999) 999-9999');
+$(document).ready(function() {
+    $('#signup_form_modal')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                phone_number: {
+                    validators: {
+                        phone: {
+                            message: 'The phone number is not valid'
+                        }
+                    }
+                }
+            }
+        })
+        .find('[name="phone_number"]').mask('099.099.099.099');
+});
 </script>
 
 <!-- Form Validation JS -->
