@@ -514,13 +514,16 @@
                         <div class="py-6">
                             <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
-                                <div class="mb-8">
-                                    <input type="text" id="username" class="form-control form-control-lg" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
+
+                                <div class="form-floating mb-8">
+                                    <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
+                                    <label for="signup_username">Username</label>
                                     <span class="invalid-feedback text-start">please provide a correct username.</span>
                                 </div>
 
-                                <div class="mb-8">
-                                    <input type="password" id="password" class="form-control form-control-lg" name="{{ login_form.password.name }}" minlength="{{ login_form.password.field.min_length }}" placeholder="{{ login_form.password.label }}" required>
+                                <div class="form-floating mb-8">
+                                    <input type="password" class="form-control" id="password" name="{{ login_form.password.name }}" minlength="{{ login_form.password.field.min_length }}" placeholder="{{ login_form.password.label }}" required>
+                                    <label for="signup_password1">Password</label>
                                     <span class="invalid-feedback text-start">please provide a correct password.</span>
                                 </div>
 
