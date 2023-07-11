@@ -53,6 +53,9 @@ class User(AbstractUser):
     wallet = models.ManyToManyField(Bill, blank=True)
     amount = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.user_token
+
     def save(self, *args, **kwargs):
         if not self.user_token:
             self.user_token = functions.serial_number_generator(24).upper()
