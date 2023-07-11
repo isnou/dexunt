@@ -8,14 +8,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
 
-
 def account_login(request):
-    if not request.session.get('language', None):
-        request.session['language'] = 'en'
-
-    direction = request.session.get('language')
-    url = direction + "/main-shop/account/login-page.html"
-
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
@@ -23,25 +16,17 @@ def account_login(request):
                 username=login_form.cleaned_data['username'],
                 password=login_form.cleaned_data['password'],
             )
-            if user is not None:
+            if user:
                 login(request, user)
                 return redirect('router')
             else:
-                login_form = LoginForm()
-                signup_form = SignupForm()
-                context = {
-                    'login_form': login_form,
-                    'signup_form': signup_form,
-                }
-                return render(request, url, context)
+                request.session['error_messages'] = signup_form.errors
+                return redirect('home-page')
+        else:
+            request.session['error_messages'] = signup_form.errors
+            return redirect('home-page')
     else:
-        login_form = LoginForm()
-        signup_form = SignupForm()
-        context = {
-            'login_form': login_form,
-            'signup_form': signup_form,
-        }
-        return render(request, url, context)
+        return redirect('home-page')
 
 def account_signup(request):
     if request.method == 'POST':
@@ -53,6 +38,8 @@ def account_signup(request):
         else:
             request.session['error_messages'] = signup_form.errors
             return redirect('home-page')
+    else:
+        return redirect('home-page')
 
 @login_required
 def account_orders_page(request):
