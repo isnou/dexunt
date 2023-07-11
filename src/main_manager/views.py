@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from add_ons import functions
 from django.utils import timezone
@@ -10,7 +12,8 @@ from main_home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from main_home.models import Province, Municipality, Coupon, Order
 from authentication.models import User
 
-
+@login_required
+@permission_required('authentication.delete_user')
 def admin_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -37,6 +40,8 @@ def admin_home(request, action):
         }
         return render(request, url, context)
 
+@login_required
+@permission_required('authentication.delete_user')
 def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -305,6 +310,8 @@ def manage_products(request, action):
             option.save()
             return redirect('manage-products', 'view_variant')
 
+@login_required
+@permission_required('authentication.delete_user')
 def manage_flash(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -405,6 +412,8 @@ def manage_flash(request, action):
                 flash_form.save()
                 return redirect('manage-flash', 'main')
 
+@login_required
+@permission_required('authentication.delete_user')
 def manage_orders(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -442,6 +451,8 @@ def manage_orders(request, action):
             selected_order.delete()
             return redirect('manage-orders', 'main')
 
+@login_required
+@permission_required('authentication.delete_user')
 def manage_shipping(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -555,6 +566,8 @@ def manage_shipping(request, action):
 
             return redirect('manage-shipping', 'view_province')
 
+@login_required
+@permission_required('authentication.delete_user')
 def manage_coupon(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
