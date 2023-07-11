@@ -60,9 +60,6 @@ class User(AbstractUser):
         if not self.user_token:
             self.user_token = functions.serial_number_generator(24).upper()
 
-        if not self.store_token:
-            self.store_token = functions.serial_number_generator(5).lower()
-
         self.file_name = self.user_token + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + 'profile_photo'
 
         if self.profile_photo:
