@@ -421,9 +421,10 @@
 
 {% if errors %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    {% for field in errors %}
-    <strong>{{ field.error }}</strong>
-    {% endfor %}
+    <strong>{{ errors.phone_number }}</strong>
+    <strong>{{ errors.username }}</strong>
+    <strong>{{ errors.password1 }}</strong>
+    <strong>{{ errors.password2 }}</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endif %}
