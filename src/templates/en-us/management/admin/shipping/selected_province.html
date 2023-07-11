@@ -11,7 +11,7 @@
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'manage-shipping' 'main' %}">provinces</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'admin-manage-shipping' 'main' %}">provinces</a></li>
         <li class="breadcrumb-item active" aria-current="page">municipalities</li>
       </ol>
     </nav>
@@ -38,7 +38,7 @@
           <div class="text-center mb-7">
             <h2>Add municipality</h2>
           </div>
-          <form action="{% url 'manage-shipping' 'add_municipality' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'admin-manage-shipping' 'add_municipality' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
 
@@ -189,7 +189,7 @@
       {% for municipality in selected_province_municipalities %}
 
       <!-- delete municipality form -->
-      <form action="{% url 'manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
+      <form action="{% url 'admin-manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
         <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
@@ -249,7 +249,7 @@
                 <div class="text-center mb-7">
                   <h2>{{ municipality.en_name }}</h2>
                 </div>
-                <form action="{% url 'manage-shipping' 'edit_municipality' %}" class="js-validate need-validate" novalidate method="post">
+                <form action="{% url 'admin-manage-shipping' 'edit_municipality' %}" class="js-validate need-validate" novalidate method="post">
                   {% csrf_token %}
                   <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
                   <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>

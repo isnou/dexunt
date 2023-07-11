@@ -37,7 +37,7 @@
           <div class="text-center mb-7">
             <h2>Add new product</h2>
           </div>
-          <form action="{% url 'manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'admin-manage-products' 'add_new_product' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
 
             <div class="row mb-4">
@@ -132,19 +132,19 @@
       {% for product in all_products %}
       <!-- product forms list -->
       <!-- delete product form -->
-      <form action="{% url 'manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
+      <form action="{% url 'admin-manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="product_id" value='{{ product.id }}'>
       </form>
 
       <!-- delete product form -->
-      <form action="{% url 'manage-products' 'clean_product' %}" id="clean_product_form_{{ product.id }}" method="post">
+      <form action="{% url 'admin-manage-products' 'clean_product' %}" id="clean_product_form_{{ product.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="product_id" value='{{ product.id }}'>
       </form>
 
       <!-- view product form -->
-      <form action="{% url 'manage-products' 'view_product' %}" id="view_product_form_{{ product.id }}" method="post">
+      <form action="{% url 'admin-manage-products' 'view_product' %}" id="view_product_form_{{ product.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="product_id" value='{{ product.id }}'>
       </form>

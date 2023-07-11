@@ -526,7 +526,7 @@
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <!-- Admin Home -->
             <div class="nav-item">
-                <a class="nav-link {% if nav_side == 'home' %} active {% endif %}" href="{% url 'admin-home' 'main' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'home' %} active {% endif %}" href="{% url 'admin-manage-home' 'main' %}" data-placement="left">
                   <i class="bi-clipboard-data nav-icon"></i>
                   <span class="nav-link-title">Home</span>
                 </a>
@@ -558,7 +558,7 @@
 
             <!-- Products -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'manage-products' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'admin-manage-products' 'main' %}" data-placement="left">
                 <i class="bi-handbag nav-icon"></i>
                 <span class="nav-link-title">Products</span>
               </a>
@@ -567,7 +567,7 @@
 
             <!-- Flash -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'flash' %} active {% endif %}" href="{% url 'manage-flash' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'flash' %} active {% endif %}" href="{% url 'admin-manage-flash' 'main' %}" data-placement="left">
                 <i class="bi-stopwatch nav-icon"></i>
                 <span class="nav-link-title">Flash</span>
               </a>
@@ -594,7 +594,7 @@
 
             <!-- Orders -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'manage-orders' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'admin-manage-orders' 'main' %}" data-placement="left">
                 <i class="bi-cart nav-icon"></i>
                 <span class="nav-link-title">Orders
                   {% if new_orders_count %}
@@ -607,7 +607,7 @@
 
             <!-- Shipping -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'shipping' %} active {% endif %}" href="{% url 'manage-shipping' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'shipping' %} active {% endif %}" href="{% url 'admin-manage-shipping' 'main' %}" data-placement="left">
                 <i class="bi-truck nav-icon"></i>
                 <span class="nav-link-title">Shipping</span>
               </a>
@@ -616,7 +616,7 @@
 
             <!-- Coupon -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'coupon' %} active {% endif %}" href="{% url 'manage-coupon' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'coupon' %} active {% endif %}" href="{% url 'admin-manage-coupon' 'main' %}" data-placement="left">
                 <i class="bi-tags nav-icon"></i>
                 <span class="nav-link-title">Coupon</span>
               </a>

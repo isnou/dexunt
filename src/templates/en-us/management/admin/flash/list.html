@@ -45,7 +45,7 @@
                 {% for variant in product.variant.all %}
                 {% for option in variant.option.all %}
 
-                <form action="{% url 'manage-flash' 'link_products' %}" id="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}" class="js-validate need-validate" novalidate method="post">
+                <form action="{% url 'admin-manage-flash' 'link_products' %}" id="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}" class="js-validate need-validate" novalidate method="post">
                   {% csrf_token %}
                   <input type="hidden" value="{{ product.id }}" name="product_id">
                   <input type="hidden" value="{{ variant.id }}" name="variant_id">

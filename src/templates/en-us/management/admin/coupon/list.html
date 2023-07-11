@@ -44,7 +44,7 @@
         </div>
         <!-- end title -->
 
-        <form action="{% url 'manage-coupon' 'add_new_coupon' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'admin-manage-coupon' 'add_new_coupon' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <div class="col-sm text-end">
             <!-- coupon valid until -->
@@ -148,7 +148,7 @@
       {% if paginate %}
       {% for coupon in all_coupons %}
       <!-- Table Forms -->
-      <form action="{% url 'manage-coupon' 'delete_coupon' %}" id="delete_coupon_form_{{ coupon.id }}" method="post">
+      <form action="{% url 'admin-manage-coupon' 'delete_coupon' %}" id="delete_coupon_form_{{ coupon.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="coupon_id" value='{{ coupon.id }}'>
         <input type="hidden" name="route" value='active_coupons'>

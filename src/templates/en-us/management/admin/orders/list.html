@@ -55,7 +55,7 @@
       {% for order in all_orders %}
       <!-- order forms list -->
       <!-- delete order form -->
-      <form action="{% url 'manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
+      <form action="{% url 'admin-manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="order_id" value='{{ order.id }}'>
       </form>

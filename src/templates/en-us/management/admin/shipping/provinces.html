@@ -37,7 +37,7 @@
           <div class="text-center mb-7">
             <h2>Add province</h2>
           </div>
-          <form action="{% url 'manage-shipping' 'add_province' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'admin-manage-shipping' 'add_province' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
 
             <div class="row mb-4">
@@ -113,12 +113,12 @@
       <tbody>
       {% for province in all_provinces %}
       <!-- delete province form -->
-      <form action="{% url 'manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
+      <form action="{% url 'admin-manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="province_id" value='{{ province.id }}'>
       </form>
       <!-- view province form -->
-      <form action="{% url 'manage-shipping' 'view_province' %}" id="view_form_{{ province.id }}" method="post">
+      <form action="{% url 'admin-manage-shipping' 'view_province' %}" id="view_form_{{ province.id }}" method="post">
         {% csrf_token %}
         <input type="hidden" name="province_id" value='{{ province.id }}'>
       </form>
