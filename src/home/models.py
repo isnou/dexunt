@@ -3,34 +3,33 @@ from add_ons import functions
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
-# ------------------------------------- Orders -------------------------------- #
+# ------------------------------- Orders ------------------------------- #
 class SelectedProduct(models.Model):
-    # --------------------------------- collection technical informations ----------------------
+    # ----- Technical ----- #
+    token = models.CharField(max_length=24, null=True)
+    option_id = models.PositiveIntegerField(blank=True, null=True)
+    variant_id = models.PositiveIntegerField(blank=True, null=True)
     delivery = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
-    # --------------------------------- media --------------------------------------------------
+    quantity_issue = models.BooleanField(default=False)
+    # ----- media ----- #
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
         return self.file_name.lower()
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
-    # --------------------------------- info ---------------------------------------------------
-    token = models.CharField(max_length=24, null=True)
-    option_id = models.PositiveIntegerField(blank=True, null=True)
-    variant_id = models.PositiveIntegerField(blank=True, null=True)
-
+    # ----- content ----- #
     en_name = models.CharField(max_length=400, blank=True, null=True)
     fr_name = models.CharField(max_length=400, blank=True, null=True)
     ar_name = models.CharField(max_length=400, blank=True, null=True)
-
+    # ----- #
     en_detail = models.CharField(max_length=400, blank=True, null=True)
     fr_detail = models.CharField(max_length=400, blank=True, null=True)
     ar_detail = models.CharField(max_length=400, blank=True, null=True)
-
+    # ----- #
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=1)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    quantity_issue = models.BooleanField(default=False)
-
+    # ----- functions ----- #
     def save(self, *args, **kwargs):
         self.total_price = self.price * self.quantity
         super().save()

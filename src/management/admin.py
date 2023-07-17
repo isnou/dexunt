@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import Product, Variant, Option, Album, Feature, FlashProduct
 
 
-
 admin.site.register(Product)
 admin.site.register(Variant)
 admin.site.register(Option)

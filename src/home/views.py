@@ -56,7 +56,7 @@ def change_language(request):
         if page == 'home-page':
             return redirect('home-page')
 
-def product_router(request, product_id, option_id, user_token, action):
+def product_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')

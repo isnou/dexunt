@@ -375,7 +375,7 @@
                             <span class="badge bg-gray-400">Out Of Stock</span>
                         </div>
                         {% endif %}
-                        <a href="{% url 'product-router' product.id 0 'no' 'regular_product' %}">
+                        <a href="{% url 'product-page' 'regular_product' %}">
                             <img src="{% get_media_prefix %}{{ product.album.all.0.image }}" class="mb-3 img-fluid">
                         </a>
                     </div>
