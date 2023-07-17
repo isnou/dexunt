@@ -266,13 +266,13 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
-            <!-- nav item -->
+            <!-- nav product details -->
             <li class="nav-item" role="presentation">
               <!-- btn --> <button class="nav-link active" id="product-tab" data-bs-toggle="tab"
                 data-bs-target="#product-tab-pane" type="button" role="tab" aria-controls="product-tab-pane"
                 aria-selected="true">Product Details</button>
             </li>
-            <!-- nav item -->
+            <!-- nav information -->
             <li class="nav-item" role="presentation">
               <!-- btn --> <button class="nav-link" id="details-tab" data-bs-toggle="tab"
                 data-bs-target="#details-tab-pane" type="button" role="tab" aria-controls="details-tab-pane"
@@ -294,7 +294,7 @@
           </ul>
           <!-- tab content -->
           <div class="tab-content" id="myTabContent">
-            <!-- tab pane -->
+            <!-- tab product details -->
             <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
               tabindex="0">
               <div class="my-8">
@@ -314,7 +314,7 @@
                 {% endif %}
               </div>
             </div>
-            <!-- tab pane -->
+            <!-- tab information -->
             <div class="tab-pane fade" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
               <div class="my-8">
                 <div class="row">
@@ -325,6 +325,7 @@
                     <table class="table table-striped">
                       <!-- table -->
                       <tbody>
+                      {% for description in selected_product.description.all %}
                         <tr>
                           <th>Weight</th>
                           <td>1000 Grams</td>
