@@ -64,7 +64,14 @@ def product_page(request, action):
     if action == 'regular_product':
         url = direction + "/home/regular/single-product.html"
 
-        selected_variant = Variant.objects.all().get(id=product_id)
+        if request.method == 'POST':
+            variant_id = request.POST.get('variant_id', False)
+            option_id = request.POST.get('option_id', False)
+        else:
+            variant_id = request.GET.get('variant_id')
+            option_id = request.GET.get('option_id')
+
+        selected_variant = Variant.objects.all().get(id=variant_id)
         selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
 
         if option_id:
