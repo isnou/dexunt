@@ -299,18 +299,19 @@
               tabindex="0">
               <div class="my-8">
                 {% for description in selected_product.description.all %}
-                <div class="mb-5">
+                <div class="mb-6">
                   <!-- text -->
-                  <h4 class="mb-1">{{ description.en_title }}</h4>
-                  <p class="mb-0">{{ description.en_content }}</p>
+                  <h4 class="mb-1">{{ description.en_title|title }}</h4>
+                  <p class="mb-0">{{ description.en_content|capfirst }}</p>
                 </div>
                 {% endfor %}
+
+                {% if selected_product.en_note %}
                 <div>
-                  <h5 class="mb-1">Disclaimer</h5>
-                  <p class="mb-0">Image shown is a representation and may slightly vary from the actual product. Every
-                    effort
-                    is made to maintain accuracy of all information displayed.</p>
+                  <h5 class="mb-1">Note</h5>
+                  <p class="mb-0">{{ selected_product.en_note }}</p>
                 </div>
+                {% endif %}
               </div>
             </div>
             <!-- tab pane -->
