@@ -234,6 +234,10 @@
 
                     {% endif %}
                   </tr>
+                  <tr>
+                    <td>Brand:</td>
+                    <td>{{ selected_variant.brand }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -294,32 +298,13 @@
             <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
               tabindex="0">
               <div class="my-8">
+                {% for description in selected_product.description.all %}
                 <div class="mb-5">
                   <!-- text -->
-                  <h4 class="mb-1">Nutrient Value & Benefits</h4>
-                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus iaculis urna
-                    bibendum
-                    in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc sit. Vel, varius
-                    habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum netus risus adipiscing
-                    sagittis sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h4 class="mb-1">{{ description.en_title }}</h4>
+                  <p class="mb-0">{{ description.en_content }}</p>
                 </div>
-                <div class="mb-5">
-                  <h5 class="mb-1">Storage Tips</h5>
-                  <p class="mb-0">Nisi, tellus iaculis urna bibendum in lacus, integer. Id imperdiet vitae varius sed
-                    magnis eu
-                    nisi nunc sit. Vel, varius habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum
-                    netus risus adipiscing sagittis sed.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                </div>
-                <!-- content -->
-                <div class="mb-5">
-                  <h5 class="mb-1">Unit</h5>
-                  <p class="mb-0">3 units</p>
-                </div>
-                <div class="mb-5">
-                  <h5 class="mb-1">Seller</h5>
-                  <p class="mb-0">DMart Pvt. LTD</p>
-                </div>
+                {% endfor %}
                 <div>
                   <h5 class="mb-1">Disclaimer</h5>
                   <p class="mb-0">Image shown is a representation and may slightly vary from the actual product. Every
