@@ -40,16 +40,16 @@ class SelectedProduct(models.Model):
         super().save()
 
 class Coupon(models.Model):
-    # --------------------------------- technical details --------------------------------------
+    # ----- Technical ----- #
     type = models.CharField(default='subtractive', max_length=20, blank=True, null=True)
-    quantity = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     valid_until = models.DateTimeField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    # --------------------------------- product information ------------------------------------
+    # ----- content ----- #
+    quantity = models.IntegerField(default=1)
     code = models.CharField(max_length=20, unique=True, null=True)
     value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-
+    # ----- functions ----- #
     def save(self, *args, **kwargs):
         if self.type == 'subtractive':
             if self.value < 0:
@@ -69,19 +69,20 @@ class Coupon(models.Model):
         super().save()
 
 class Cart(models.Model):
-    # --------------------------------- technical details --------------------------------------
+    # ----- Technical ----- #
     ref = models.CharField(max_length=20, unique=True, null=True)
     product = models.ManyToManyField(SelectedProduct, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_token = models.CharField(max_length=24, blank=True, null=True)
-    # --------------------------------- product information ------------------------------------
+    # ----- content ----- #
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    # --------------------------------- coupon information -------------------------------------
+    # ----- #
     coupon_code = models.CharField(max_length=20, blank=True, null=True)
     coupon_type = models.CharField(max_length=20, blank=True, null=True)
     coupon_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # ----- functions ----- #
 
     def save(self, *args, **kwargs):
         if not self.ref:
@@ -106,7 +107,7 @@ class Cart(models.Model):
         super().save()
 
 class Order(models.Model):
-    # --------------------------------- order technical informations ---------------------------
+    # ----- Technical ----- #
     cart_ref = models.CharField(max_length=20, blank=True, null=True)
     ref = models.CharField(max_length=6, unique=True, null=True)
     type = models.CharField(max_length=200, default='REGULAR')
@@ -118,7 +119,7 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_token = models.CharField(max_length=24, blank=True, null=True)
-    # --------------------------------- client info --------------------------------------------
+    # ----- content ----- #
     product = models.ManyToManyField(SelectedProduct, blank=True)
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
@@ -151,7 +152,7 @@ class Order(models.Model):
     receiver_name = models.CharField(max_length=300, blank=True, null=True)
     receiver_message = models.CharField(max_length=500, blank=True, null=True)
     quantity_issue = models.BooleanField(default=False)
-
+    # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
