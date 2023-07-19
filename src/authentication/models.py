@@ -43,7 +43,7 @@ class Wallet(models.Model):
 # ---------------------------------------------------------------------- #
 
 # ---------------------------- Custom Data ----------------------------- #
-class CustomData(AbstractUser):
+class CustomData(models.Model):
     # ----- Technical ----- #
     has_photo = models.BooleanField(default=False)
     # ----- #
@@ -108,7 +108,7 @@ class User(AbstractUser):
         null=True
     )
     order = models.ManyToManyField(Order, blank=True)
-    custom_folder = models.ManyToManyField(CustomData, blank=True)
+    custom_data = models.ManyToManyField(CustomData, blank=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=300, blank=True, null=True)
     def get_image_path(self, filename):
