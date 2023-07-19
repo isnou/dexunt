@@ -6,41 +6,80 @@ from django.utils import timezone, dateformat
 from PIL import Image
 
 
-# --------------------- billing --------------------- #
+# ------------------------------- Title -------------------------------- #
+# ----- Technical ----- #
+# ----- relations ----- #
+# ----- media ----- #
+# ----- content ----- #
+# ----- #
+# ----- #
+# ----- functions ----- #
+#                                                                        #
+# ---------------------------------------------------------------------- #
+
+
+# ------------------------------ Billing ------------------------------- #
 class Bill(models.Model):
-    # ---------------------------------- general info ------------------------------------------
+    # ----- Technical ----- #
+    user_token = models.CharField(max_length=24, null=True)
+    # ----- content ----- #
     store = models.CharField(max_length=100, blank=True, null=True)
     title = models.CharField(max_length=500, blank=True, null=True)
     amount = models.IntegerField(default=0)
-    # --------------------------------- technical details --------------------------------------
-    user_token = models.CharField(max_length=24, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
+#                                                                        #
 class Wallet(models.Model):
-    # ---------------------------------- general info ------------------------------------------
-    store = models.CharField(max_length=100, blank=True, null=True)
-    bill = models.ManyToManyField(Bill, blank=True)
-    amount = models.IntegerField(default=0)
-    # --------------------------------- technical details --------------------------------------
+    # ----- Technical ----- #
     user_token = models.CharField(max_length=24, null=True)
-
+    # ----- relations ----- #
+    bill = models.ManyToManyField(Bill, blank=True)
+    # ----- content ----- #
+    store = models.CharField(max_length=100, blank=True, null=True)
+    amount = models.IntegerField(default=0)
+    # ----- functions ----- #
     def update(self):
         self.amount = 0
         for bill in self.bill.all():
             self.amount += bill.amount
         super().save()
+# ---------------------------------------------------------------------- #
 
-# ----------------------- user ---------------------- #
+# ---------------------------- Custom Data ----------------------------- #
+class DataFolder(AbstractUser):
+    # ----- Technical ----- #
+    user_token = models.CharField(max_length=200, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    delivery_date = models.DateField(null=True)
+    # ----- media ----- #
+    file_name = models.CharField(max_length=300, blank=True, null=True)
+    def get_file_path(self, filename):
+        return self.file_name.lower()
+    file = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    # ----- content ----- #
+    # ----- functions ----- #
+# ---------------------------------------------------------------------- #
+
+# -------------------------------- User -------------------------------- #
 class User(AbstractUser):
-    # --------------------------------- user info ----------------------------------------------
-    first_name = models.CharField(max_length=300, blank=True, null=True)
-    last_name = models.CharField(max_length=300, blank=True, null=True)
-    phone_number = PhoneNumberField(blank=True, null=True)
-
+    # ----- Technical ----- #
+    is_customer = models.BooleanField(default=True)
+    is_provider = models.BooleanField(default=False)
+    is_seller = models.BooleanField(default=False)
+    # ----- relations ----- #
+    # ----- media ----- #
     file_name = models.CharField(max_length=300, blank=True, null=True)
     def get_image_path(self, filename):
         return self.file_name.lower()
     profile_photo = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    # ----- content ----- #
+    # ----- #
+    # ----- #
+    # ----- functions ----- #
+    first_name = models.CharField(max_length=300, blank=True, null=True)
+    last_name = models.CharField(max_length=300, blank=True, null=True)
+    phone_number = PhoneNumberField(blank=True, null=True)
+
+
 
     role = models.CharField(max_length=30, verbose_name='role', default='customer')
     points = models.IntegerField(default=0)
