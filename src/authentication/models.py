@@ -101,8 +101,6 @@ class User(AbstractUser):
             new_cart = Cart()
             new_cart.save()
             self.cart = new_cart
-        if not self.store_name:
-            self.store_name = self.username
         if self.profile_photo:
             img = Image.open(self.profile_photo.path)
             if img.height > 200 or img.width > 200:
