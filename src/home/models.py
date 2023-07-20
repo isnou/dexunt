@@ -41,7 +41,7 @@ class SelectedProduct(models.Model):
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
-    type = models.CharField(default='subtractive', max_length=20, blank=True, null=True)
+    is_subtractive = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     valid_until = models.DateTimeField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
@@ -51,10 +51,10 @@ class Coupon(models.Model):
     value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
-        if self.type == 'subtractive':
+        if self.is_subtractive:
             if self.value < 0:
                 self.value = 0
-        elif self.type == 'percentage':
+        else:
             if self.value < 0:
                 self.value = 0
             elif self.value > 100:
@@ -66,6 +66,26 @@ class Coupon(models.Model):
         if self.quantity == 0:
             self.is_active = False
         super().save()
+#                                                                        #
+def apply_coupon(request, selected_cart, coupon_code):
+    code = None
+    value = None
+    is_subtractive = True
+    if Coupon.objects.all().filter(code=coupon_code).exists():
+        coupon = Coupon.objects.all().get(code=coupon_code)
+        if coupon.is_active:
+            request.session['coupon_message'] = 'success'
+            code = coupon.code
+            is_subtractive = coupon.is_subtractive
+            value = coupon.value
+        else:
+            request.session['coupon_message'] = 'expired'
+    else:
+        request.session['coupon_message'] = 'wrong'
+    selected_cart.coupon_code = code
+    selected_cart.has_subtractive_coupon = is_subtractive
+    selected_cart.coupon_value = value
+    selected_cart.update_prices()
 #                                                                        #
 class Cart(models.Model):
     # ----- Technical ----- #
@@ -79,7 +99,7 @@ class Cart(models.Model):
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- #
     coupon_code = models.CharField(max_length=20, blank=True, null=True)
-    coupon_type = models.CharField(max_length=20, blank=True, null=True)
+    has_subtractive_coupon = models.BooleanField(default=True)
     coupon_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
 
@@ -91,11 +111,12 @@ class Cart(models.Model):
         new_price = 0
         for product in self.product.all():
             new_price += product.total_price
+
         self.sub_total_price = new_price
         self.total_price = new_price
-        if self.coupon_type == 'subtractive':
+        if self.has_subtractive_coupon:
             self.total_price = self.sub_total_price - self.coupon_value
-        if self.coupon_type == 'percentage':
+        else:
             self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
     def delete_products(self):
@@ -158,26 +179,6 @@ def add_product_to_cart(cart, variant, option):
 
     cart.update_prices()
 #                                                                        #
-def apply_coupon(request, selected_cart, coupon_code):
-    code = None
-    type = None
-    value = None
-    if Coupon.objects.all().filter(code=coupon_code).exists():
-        coupon = Coupon.objects.all().get(code=coupon_code)
-        if coupon.is_active:
-            request.session['coupon_message'] = 'success'
-            code = coupon.code
-            type = coupon.type
-            value = coupon.value
-        else:
-            request.session['coupon_message'] = 'expired'
-    else:
-        request.session['coupon_message'] = 'wrong'
-    selected_cart.coupon_code = code
-    selected_cart.coupon_type = type
-    selected_cart.coupon_value = value
-    selected_cart.update_prices()
-#                                                                        #
 class Order(models.Model):
     # ----- Technical ----- #
     cart_ref = models.CharField(max_length=20, blank=True, null=True)
@@ -202,8 +203,7 @@ class Order(models.Model):
     points = models.IntegerField(default=0)
     coupon_code = models.CharField(max_length=20, blank=True, null=True)
     coupon_value = models.IntegerField(default=0, null=True)
-    coupon_type = models.CharField(max_length=20, blank=True, null=True)
-    # -- coupon_types :  SUBTRACTIVE - PERCENTAGE
+    has_subtractive_coupon = models.BooleanField(default=True)
 
     delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     delivery_type = models.CharField(max_length=100, default='HOME')
@@ -237,14 +237,14 @@ class Order(models.Model):
                 self.total_price = self.sub_total_price
         else:
             if self.delivery_price:
-                if self.coupon_type == 'subtractive':
+                if self.has_subtractive_coupon:
                     self.total_price = self.sub_total_price - self.coupon_value + self.delivery_price
-                if self.coupon_type == 'percentage':
+                else:
                     self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100) + self.delivery_price
             else:
-                if self.coupon_type == 'subtractive':
+                if self.has_subtractive_coupon:
                     self.total_price = self.sub_total_price - self.coupon_value
-                if self.coupon_type == 'percentage':
+                else:
                     self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
     def delete_products(self):
@@ -280,7 +280,7 @@ def get_order(request, selected_cart):
         new_points += (p.points * p.quantity)
 
     selected_order.coupon_code = selected_cart.coupon_code
-    selected_order.coupon_type = selected_cart.coupon_type
+    selected_order.has_subtractive_coupon = selected_cart.has_subtractive_coupon
     selected_order.coupon_value = selected_cart.coupon_value
     selected_order.points = new_points
     selected_order.sub_total_price = selected_cart.sub_total_price
@@ -290,7 +290,6 @@ def get_order(request, selected_cart):
     return selected_order
 #                                                                        #
 def place_order(request, selected_cart, selected_order):
-
     selected_order.status = 'FULFILLED'
     selected_order.update_prices()
     selected_cart.delete()
