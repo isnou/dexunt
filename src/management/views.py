@@ -46,6 +46,7 @@ def manage_users(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
+    items_by_page = 6
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/users/list.html"
@@ -82,10 +83,10 @@ def manage_users(request, action):
             users_list = paginator.page(paginator.num_pages)
 
         context = {
+            'nav_side': 'users',
             'search_key_word': search_key_word,
             'filtered': filtered,
             'users_list': users_list,
-            'nav_side': nav_side,
         }
         return render(request, url, context)
 
