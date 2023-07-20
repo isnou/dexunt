@@ -85,7 +85,7 @@ class GiftCard(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
     # ----- relations ----- #
-    theme = models.ForeignKey(
+    themes = models.ForeignKey(
         "GiftCardTheme",
         on_delete=models.PROTECT
     )
