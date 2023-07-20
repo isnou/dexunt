@@ -130,12 +130,14 @@ class User(AbstractUser):
         self.file_name = 'profile_photos' + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + self.token + '/'
 
         if not self.wallet:
-            new_wallet = Wallet().save()
+            new_wallet = Wallet()
+            new_wallet.save()
             self.wallet = new_wallet
 
         if not self.cart:
-            new_cart = Cart().save()
-            self.cart.add(new_cart)
+            new_cart = Cart()
+            new_cart.save()
+            self.cart = new_cart
 
         if not self.store_name:
             self.store_name = self.username
