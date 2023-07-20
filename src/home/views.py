@@ -10,6 +10,9 @@ from management.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
 def home_page(request):
+    if request.user.is_authenticated:
+        request.user.save()
+
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
