@@ -1,0 +1,140 @@
+<!-- Table -->
+<div class="table-responsive datatable-custom">
+  <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+    <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Kits</th>
+      <th>Orders</th>
+      <th>Cart</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    {% for selected_user in users_list %}
+    <!-- Table Actions -->
+    <tr>
+      <td>
+        <a class="d-flex align-items-center" href="#">
+          <div class="avatar
+          {% if selected_user.is_patient %} avatar-soft-primary {% endif %}
+          {% if selected_user.is_clinician %} avatar-soft-secondary {% endif %}
+          {% if selected_user.is_researcher %} avatar-soft-dark {% endif %}
+          avatar-circle">
+            <span class="avatar-initials">{{ selected_user.first_name|title|slice:"1" }}{{ selected_user.last_name|title|slice:"1" }}</span>
+          </div>
+          <div class="ms-3">
+            <span class="d-block h5 text-inherit mb-0">{{ selected_user.first_name|title }} {{ selected_user.last_name|title }}</span>
+            <span class="d-block fs-5 text-body">{{ selected_user.email }}</span>
+          </div>
+        </a>
+      </td>
+
+      <td>
+        <span class="d-block fs-5">{{ selected_user.gender }}</span>
+      </td>
+
+      <td>
+        <span class="d-block fs-5">{{ selected_user.kit.all.count }}</span>
+      </td>
+
+      <td>
+        <span class="d-block fs-5">{{ selected_user.order.all.count }}</span>
+      </td>
+
+      <td>
+        {% if selected_user.cart.product.all.count %}
+        {% else %}
+        {% endif %}
+        <span class="d-block fs-5">{{ selected_user.cart.product.all.count }}</span>
+      </td>
+
+
+      <td>
+        {% if selected_user.is_patient %}
+        <span class="d-block fs-5">patient</span>
+        {% endif %}
+        {% if selected_user.is_clinician %}
+        <span class="d-block fs-5">clinician</span>
+        {% endif %}
+        {% if selected_user.is_researcher %}
+        <span class="d-block fs-5">researcher</span>
+        {% endif %}
+      </td>
+
+      <td class="text-end">
+        {% if selected_user.is_confirmed %}
+        <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ selected_user.id }}">
+          <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
+        </a>
+        {% else %}
+        <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ selected_user.id }}">
+          <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
+        </a>
+        {% endif %}
+
+        <a class="text-body me-3" href="{% url 'user-manager' 'select_user' %}?user_id={{ selected_user.id }}">
+          <i class="fa fa-arrow-pointer fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Select"></i>
+        </a>
+
+        <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ selected_user.id }}">
+          <i class="fa fa-pen-to-square fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+        </a>
+
+        <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
+          <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+        </a>
+      </td>
+    </tr>
+    <!-- End Table Actions -->
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!-- End Table -->
+
+<!-- Footer -->
+<div class="card-footer">
+  <!-- Pagination -->
+  <div class="d-flex justify-content-center justify-content-sm-end">
+    <nav>
+      {% if users_list.has_other_pages %}
+      <ul class="pagination justify-content-center">
+        {% if users_list.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ users_list.previous_page_number }}" tabindex="-1">Previous</a>
+        </li>
+        {% endif %}
+
+        {% for i in users_list.paginator.page_range %}
+        {% if users_list.number == i %}
+        <li class="page-item active">
+          <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if users_list.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ users_list.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+    </nav>
+  </div>
+  <!-- End Pagination -->
+</div>
+<!-- End Footer -->

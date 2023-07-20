@@ -10,7 +10,7 @@ from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Desc
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
-from authentication.models import User
+from authentication.models import User, users_filter
 
 @login_required
 @permission_required('main_manager.delete_option')
@@ -39,6 +39,57 @@ def admin_home(request, action):
             'unpublished_flash_products': unpublished_flash_products,
         }
         return render(request, url, context)
+
+@login_required
+@permission_required('main_manager.delete_option')
+def manage_products(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/admin/users/list.html"
+        users_list = User.objects.all().exclude(username=request.user.username)
+
+        if request.GET.get('init', None):
+            request.session['users_key_word']=None
+
+        if request.session.get('users_key_word', None):
+            users_list = users_list.filter(tags__icontains=request.session.get('users_key_word'))
+            search_key_word = request.session.get('users_key_word')
+        else:
+            search_key_word = None
+
+        new_filter = request.GET.get('filter', None)
+        if not request.session.get('users_filter', None):
+            request.session['users_filter'] = 'all'
+
+        users_list = users_filter(request, users_list, new_filter)
+        filtered = request.session.get('users_filter', None)
+
+        if not request.session.get('users-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('users-page')
+            request.session['users-page'] = None
+
+        paginator = Paginator(users_list, items_by_page)
+        try:
+            users_list = paginator.page(page)
+        except PageNotAnInteger:
+            users_list = paginator.page(1)
+        except EmptyPage:
+            users_list = paginator.page(paginator.num_pages)
+
+        context = {
+            'search_key_word': search_key_word,
+            'filtered': filtered,
+            'users_list': users_list,
+            'nav_side': nav_side,
+        }
+        return render(request, url, context)
+
+
 
 @login_required
 @permission_required('main_manager.delete_option')

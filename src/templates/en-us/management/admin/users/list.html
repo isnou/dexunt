@@ -1,0 +1,564 @@
+{% extends "en-us/manager/base.html" %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>
+    TOVANA HEALTH manager | users
+</title>
+{% endblock %}
+
+<!-- header -->
+{% block page_header %}
+<div class="row align-items-end">
+  <div class="col-sm mb-2 mb-sm-0">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-no-gutter">
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'home-manager' 'main' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Users</li>
+      </ol>
+    </nav>
+
+    <h1 class="page-header-title">Users manager</h1>
+  </div>
+  <div class="col-sm-auto">
+  </div>
+</div>
+{% endblock %}
+
+<!-- table -->
+{% block table %}
+<div class="card">
+  <!-- Header -->
+  <div class="card-header card-header-content-md-between">
+    <div class="mb-2 mb-md-0">
+      <!-- Search -->
+        <div class="input-group input-group-merge input-group-flush">
+          <div class="input-group-prepend input-group-text">
+            <i class="bi-search"></i>
+          </div>
+          {% if search_key_word %}
+          <input class="form-control" type="search" name="key_word" value="{{ search_key_word }}" required hx-get="{% url 'user-manager' 'search_users' %}" hx-trigger="keyup changed delay:1s" hx-target="#list">
+          {% else %}
+          <input class="form-control" type="search" name="key_word" placeholder="Search users" required hx-get="{% url 'user-manager' 'search_users' %}" hx-trigger="keyup changed delay:1s" hx-target="#list">
+          {% endif %}
+        </div>
+      <!-- End Search -->
+    </div>
+
+    <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
+      {% if filtered == 'all' %}
+      <button class="btn btn-white btn-sm me-2" disabled>
+        all
+      </button>
+      {% else %}
+      <a href="?filter=all" class="btn btn-white btn-sm me-2">
+        all
+      </a>
+      {% endif %}
+
+      {% if filtered == 'patient' %}
+      <button class="btn btn-white btn-sm me-2" disabled>
+        patient
+      </button>
+      {% else %}
+      <a href="?filter=patient" class="btn btn-white btn-sm me-2">
+        patient
+      </a>
+      {% endif %}
+
+      {% if filtered == 'clinician' %}
+      <button class="btn btn-white btn-sm me-2" disabled>
+        clinician
+      </button>
+      {% else %}
+      <a href="?filter=clinician" class="btn btn-white btn-sm me-2">
+        clinician
+      </a>
+      {% endif %}
+
+      {% if filtered == 'researcher' %}
+      <button class="btn btn-white btn-sm" disabled>
+        researcher
+      </button>
+      {% else %}
+      <a href="?filter=researcher" class="btn btn-white btn-sm">
+        researcher
+      </a>
+      {% endif %}
+
+    </div>
+
+  </div>
+  <!-- End Header -->
+
+  <div id="list">
+    <!-- Table -->
+    <div class="table-responsive datatable-custom">
+      <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+        <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Kits</th>
+          <th>Orders</th>
+          <th>Cart</th>
+          <th>Role</th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for selected_user in users_list %}
+        <!-- Table Actions -->
+        <tr>
+          <td>
+            <a class="d-flex align-items-center" href="#">
+              <div class="avatar
+              {% if selected_user.is_patient %} avatar-soft-primary {% endif %}
+              {% if selected_user.is_clinician %} avatar-soft-secondary {% endif %}
+              {% if selected_user.is_researcher %} avatar-soft-dark {% endif %}
+              avatar-circle">
+                <span class="avatar-initials">{{ selected_user.first_name|title|slice:"1" }}{{ selected_user.last_name|title|slice:"1" }}</span>
+              </div>
+              <div class="ms-3">
+                <span class="d-block h5 text-inherit mb-0">{{ selected_user.first_name|title }} {{ selected_user.last_name|title }}</span>
+                <span class="d-block fs-5 text-body">{{ selected_user.email }}</span>
+              </div>
+            </a>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.gender }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.kit.all.count }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.order.all.count }}</span>
+          </td>
+
+          <td>
+            {% if selected_user.cart.product.all.count %}
+            {% else %}
+            {% endif %}
+            <span class="d-block fs-5">{{ selected_user.cart.product.all.count }}</span>
+          </td>
+
+
+          <td>
+            {% if selected_user.is_patient %}
+            <span class="d-block fs-5">patient</span>
+            {% endif %}
+            {% if selected_user.is_clinician %}
+            <span class="d-block fs-5">clinician</span>
+            {% endif %}
+            {% if selected_user.is_researcher %}
+            <span class="d-block fs-5">researcher</span>
+            {% endif %}
+          </td>
+
+          <td class="text-end">
+            {% if selected_user.is_confirmed %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ selected_user.id }}">
+              <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
+            </a>
+            {% else %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ selected_user.id }}">
+              <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
+            </a>
+            {% endif %}
+
+            <a class="text-body me-3" href="{% url 'user-manager' 'select_user' %}?user_email={{ selected_user.email }}">
+              <i class="fa fa-arrow-pointer fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Select"></i>
+            </a>
+
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ selected_user.id }}">
+              <i class="fa fa-pen-to-square fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+            </a>
+
+            <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
+              <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+            </a>
+          </td>
+        </tr>
+        <!-- End Table Actions -->
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- End Table -->
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center justify-content-sm-end">
+        <nav>
+          {% if users_list.has_other_pages %}
+          <ul class="pagination justify-content-center">
+            {% if users_list.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ users_list.previous_page_number }}" tabindex="-1">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for i in users_list.paginator.page_range %}
+            {% if users_list.number == i %}
+            <li class="page-item active">
+              <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if users_list.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ users_list.next_page_number }}">Next</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Next</a>
+            </li>
+            {% endif %}
+          </ul>
+          {% endif %}
+        </nav>
+      </div>
+      <!-- End Pagination -->
+    </div>
+    <!-- End Footer -->
+  </div>
+
+  {% for selected_user in users_list %}
+  <!-- Table Forms -->
+  <form action="{% url 'user-manager' 'activate_user' %}" id="confirm_user_form_{{ selected_user.id }}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
+    <input type="hidden" name="users_page" value='{{ users_list.number }}'>
+  </form>
+  <form action="{% url 'user-manager' 'deactivate_user' %}" id="pend_user_form_{{ selected_user.id }}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
+    <input type="hidden" name="users_page" value='{{ users_list.number }}'>
+  </form>
+  <form action="{% url 'user-manager' 'delete_user' %}" id="delete_user_form_{{ selected_user.id }}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
+    <input type="hidden" name="users_page" value='{{ users_list.number }}'>
+  </form>
+  <!-- End Table Forms -->
+
+  <!-- Deactivate User Modal -->
+  <div id="deactivate_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>{{ selected_user.email }} will be deactivated, click Yes to confirm.</p>
+        </div>
+        <div class="modal-footer" style="align-self: center;">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" form="pend_user_form_{{ selected_user.id }}">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Deactivate User Modal -->
+
+  <!-- Activate User Modal -->
+  <div id="activate_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>{{ selected_user.email }} will be activated, click Yes to confirm.</p>
+        </div>
+        <div class="modal-footer" style="align-self: center;">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" form="confirm_user_form_{{ selected_user.id }}">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Activate User Modal -->
+
+  <!-- Delete User Modal -->
+  <div id="delete_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete_modal_{{ selected_user.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>{{ selected_user.email }} will be definitely deleted, click Yes to confirm.</p>
+        </div>
+        <div class="modal-footer" style="align-self: center;">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" form="delete_user_form_{{ selected_user.id }}">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Delete User Modal -->
+
+  <!-- View & Edit User Modal -->
+  <div id="edit_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <div class="modal-dialog {% if selected_user.is_patient %} modal-lg {% else %} modal-xl {% endif %}" role="document">
+      <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Patient -->
+        <div>
+          <!-- login title -->
+          <div class="text-center mb-7">
+            <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
+          </div>
+          <!-- end login title -->
+          <form action="{% url 'user-manager' 'edit_user' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
+
+            <div class="row {% if not selected_user.is_patient %} col-sm-divider {% endif %} mb-3">
+              {% if selected_user.is_patient %}
+              <div class="col text-center">
+                <!-- first name -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">First Name</span>
+                  {% if selected_user.first_name %}
+                  <input type="text" class="form-control" name="first_name" value="{{ selected_user.first_name }}" placeholder="john">
+                  {% else %}
+                  <input type="text" class="form-control" name="first_name" placeholder="john">
+                  {% endif %}
+                </div>
+                <!-- end first name -->
+
+                <!-- last name -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">Last Name</span>
+                  {% if selected_user.last_name %}
+                  <input type="text" class="form-control" name="last_name" value="{{ selected_user.last_name }}" placeholder="doe">
+                  {% else %}
+                  <input type="text" class="form-control" name="last_name" placeholder="doe">
+                  {% endif %}
+                </div>
+                <!-- end last name -->
+
+                <!-- email -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">E Mail</span>
+                  <input type="text" class="form-control" name="email" value="{{ selected_user.email }}" placeholder="jhon.doe@site.com" disabled>
+                </div>
+                <!-- end email -->
+
+                <!-- gender -->
+                <div class="mb-2">
+                  <div class="input-group input-group-merge input-group-hover-light">
+                    <div class="input-group-prepend input-group-text">
+                      Gender
+                    </div>
+                    <select class="form-select text-center" name="gender">
+                      <option value="{{ selected_user.gender }}">{{ selected_user.gender|title }}</option>
+                      {% if selected_user.gender == 'male' %}
+                      <option value="female">Female</option>
+                      {% endif %}
+                      {% if selected_user.gender == 'female' %}
+                      <option value="male">Male</option>
+                      {% endif %}
+                    </select>
+                  </div>
+                </div>
+                <!-- end gender -->
+
+                <!-- address -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text" >Address 1</span>
+                  {% if selected_user.address_1 %}
+                  <input type="text" class="form-control" name="address_1" value="{{ selected_user.address_1 }}" placeholder="7463 Bayport St">
+                  {% else %}
+                  <input type="text" class="form-control" name="address_1" placeholder="7463 Bayport St">
+                  {% endif %}
+                </div>
+                <!-- end address -->
+
+                <!-- address 2 -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">Address 2</span>
+                  {% if selected_user.address_2 %}
+                  <input type="text" class="form-control" name="address_2" value="{{ selected_user.address_2 }}" placeholder="Boynton Beach">
+                  {% else %}
+                  <input type="text" class="form-control" name="address_2" placeholder="Boynton Beach">
+                  {% endif %}
+                </div>
+                <!-- end address 2 -->
+
+                <!-- phone number -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">Phone Number</span>
+                  {% if selected_user.phone_number %}
+                  <input type="tel" class="form-control" name="phone_number" value="{{ selected_user.phone_number }}" placeholder="+1 (609) 972-22-22">
+                  {% else %}
+                  <input type="tel" class="form-control" name="phone_number" placeholder="+1 (609) 972-22-22">
+                  {% endif %}
+                </div>
+                <!-- end phone number -->
+              </div>
+              {% endif %}
+
+              {% if selected_user.is_clinician %}
+              <div class="col-sm text-end">
+                <!-- first name -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">First Name</span>
+                  {% if selected_user.first_name %}
+                  <input type="text" class="form-control" name="first_name" value="{{ selected_user.first_name }}" placeholder="john">
+                  {% else %}
+                  <input type="text" class="form-control" name="first_name" placeholder="john">
+                  {% endif %}
+                </div>
+                <!-- end first name -->
+
+                <!-- last name -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">Last Name</span>
+                  {% if selected_user.last_name %}
+                  <input type="text" class="form-control" name="last_name" value="{{ selected_user.last_name }}" placeholder="doe">
+                  {% else %}
+                  <input type="text" class="form-control" name="last_name" placeholder="doe">
+                  {% endif %}
+                </div>
+                <!-- end last name -->
+
+                <!-- email -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">E Mail</span>
+                  <input type="text" class="form-control" name="email" value="{{ selected_user.email }}" placeholder="jhon.doe@site.com" disabled>
+                </div>
+                <!-- end email -->
+
+                <!-- gender -->
+                <div class="mb-2">
+                  <div class="input-group input-group-merge input-group-hover-light">
+                    <div class="input-group-prepend input-group-text">
+                      Gender
+                    </div>
+                    <select class="form-select text-center" name="gender">
+                      <option value="{{ selected_user.gender }}">{{ selected_user.gender|title }}</option>
+                      {% if selected_user.gender == 'male' %}
+                      <option value="female">Female</option>
+                      {% endif %}
+                      {% if selected_user.gender == 'female' %}
+                      <option value="male">Male</option>
+                      {% endif %}
+                    </select>
+                  </div>
+                </div>
+                <!-- end gender -->
+
+                <!-- address -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text" >Address 1</span>
+                  {% if selected_user.address_1 %}
+                  <input type="text" class="form-control" name="address_1" value="{{ selected_user.address_1 }}" placeholder="7463 Bayport St">
+                  {% else %}
+                  <input type="text" class="form-control" name="address_1" placeholder="7463 Bayport St">
+                  {% endif %}
+                </div>
+                <!-- end address -->
+
+                <!-- address 2 -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">Address 2</span>
+                  {% if selected_user.address_2 %}
+                  <input type="text" class="form-control" name="address_2" value="{{ selected_user.address_2 }}" placeholder="Boynton Beach">
+                  {% else %}
+                  <input type="text" class="form-control" name="address_2" placeholder="Boynton Beach">
+                  {% endif %}
+                </div>
+                <!-- end address 2 -->
+
+                <!-- phone number -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">Phone Number</span>
+                  {% if selected_user.phone_number %}
+                  <input type="tel" class="form-control" name="phone_number" value="{{ selected_user.phone_number }}" placeholder="+1 (609) 972-22-22">
+                  {% else %}
+                  <input type="tel" class="form-control" name="phone_number" placeholder="+1 (609) 972-22-22">
+                  {% endif %}
+                </div>
+                <!-- end phone number -->
+
+                <!-- fax -->
+                <div class="input-group input-group-borderless mb-2">
+                  <span class="input-group-text">Fax</span>
+                  {% if selected_user.phone_number %}
+                  <input type="tel" class="form-control" name="fax" value="{{ selected_user.fax }}" placeholder="+1 (609) 972-22-22">
+                  {% else %}
+                  <input type="tel" class="form-control" name="fax" placeholder="+1 (609) 972-22-22">
+                  {% endif %}
+                </div>
+                <!-- end fax -->
+              </div>
+
+              <div class="col-sm text-start">
+
+              </div>
+              {% endif %}
+            </div>
+            <!-- convert user -->
+            <div class="mb-3 mt-3">
+              <select class="form-control text-center" name="role">
+                {% if selected_user.is_patient %}
+                <option value="patient" selected>Patient</option>
+                <option value="clinician">Clinician</option>
+                <option value="researcher">Researcher</option>
+                {% endif %}
+
+                {% if selected_user.is_clinician %}
+                <option value="clinician" selected>Clinician</option>
+                <option value="patient">Patient</option>
+                <option value="researcher">Researcher</option>
+                {% endif %}
+
+                {% if selected_user.is_researcher %}
+                <option value="researcher" selected>Researcher</option>
+                <option value="patient">Patient</option>
+                <option value="clinician">Clinician</option>
+                {% endif %}
+              </select>
+            </div>
+            <!-- end convert user -->
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+        <!-- End Patient -->
+      </div>
+      <!-- End Body -->
+      </div>
+    </div>
+  </div>
+  <!-- End View & Edit User Modal -->
+  {% endfor %}
+</div>
+{% endblock %}
