@@ -17,6 +17,6 @@ class MunicipalityForm(ModelForm):
 class CouponForm(ModelForm):
     class Meta:
         model = Coupon
-        fields = ('type', 'quantity', 'valid_until', 'code', 'value')
+        fields = ('is_subtractive', 'quantity', 'valid_until', 'code', 'value')
 
 

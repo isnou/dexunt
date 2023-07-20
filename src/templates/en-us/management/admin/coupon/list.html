@@ -66,19 +66,12 @@
             </div>
             <!-- end coupon valid until -->
 
-            <!-- coupon type -->
-            <div class="mb-2">
-              <div class="input-group input-group-hover-light">
-                <div class="input-group-prepend input-group-text" style="width: 15%;">
-                  Type
-                </div>
-                <select class="form-select text-center" name="{{ coupon_form.type.name }}">
-                  <option value="subtractive">Subtractive</option>
-                  <option value="percentage">Percentage</option>
-                </select>
+            <!-- is subtractive -->
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input indeterminate-checkbox" name="{{ coupon_form.is_subtractive.name }}" checked>
+                <label class="form-check-label">Regular Coupon <small class="text-body">(deselect for percentage coupons)</small></label>
               </div>
-            </div>
-            <!-- end type -->
+              <!-- end is subtractive -->
 
             <!-- coupon quantity -->
             <div class="input-group mb-4">
@@ -161,11 +154,9 @@
           <span class="d-block fs-5">{{ coupon.code }}</span>
         </td>
         <td>
-          {% if coupon.type == 'subtractive' %}
+          {% if coupon.is_subtractive %}
           <span class="d-block fs-5">{{ coupon.value|floatformat:"0g" }} <small>DZD</small></span>
-          {% endif %}
-
-          {% if coupon.type == 'percentage' %}
+          {% else %}
           <span class="d-block fs-5">{{ coupon.value|floatformat:"0g" }} %</span>
           {% endif %}
         </td>
