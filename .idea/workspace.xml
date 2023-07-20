@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/users/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/users/partial-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/users/selected.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/authentication/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/authentication/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/admin/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/admin/users/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/users/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/admin/users/selected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/users/selected.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,11 +47,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/users" />
       <recent name="$PROJECT_DIR$/src/customer_manager" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/customer" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/orders" />
       <recent name="$PROJECT_DIR$/src/main_manager" />
-      <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/partials" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/products" />
@@ -115,7 +110,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>51</line>
+          <line>52</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
