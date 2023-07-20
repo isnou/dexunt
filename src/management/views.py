@@ -42,7 +42,7 @@ def admin_home(request, action):
 
 @login_required
 @permission_required('main_manager.delete_option')
-def manage_products(request, action):
+def manage_users(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
