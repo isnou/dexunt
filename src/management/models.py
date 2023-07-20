@@ -56,6 +56,7 @@ class Option(models.Model):
     has_image = models.BooleanField(default=False)
     is_activated = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, null=True)
+    provider_token = models.CharField(max_length=24, null=True)
     sale = models.IntegerField(default=0)
     upc = models.CharField(max_length=20, unique=True, null=True)
     tag = models.CharField(max_length=500, blank=True, default='tag')
@@ -97,7 +98,7 @@ class Variant(models.Model):
     is_activated = models.BooleanField(default=False)
     is_available = models.BooleanField(default=False)
     product_token = models.CharField(max_length=24, null=True)
-    user_token = models.CharField(max_length=24, null=True)
+    provider_token = models.CharField(max_length=24, null=True)
     like = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
@@ -150,7 +151,8 @@ class Variant(models.Model):
 #                                                                        #
 class Product(models.Model):
     # ----- Technical ----- #
-    product_token = models.CharField(max_length=24, unique=True, null=True)
+    token = models.CharField(max_length=24, unique=True, null=True)
+    provider_token = models.CharField(max_length=24, null=True)
     # ----- relations ----- #
     variant = models.ManyToManyField(Variant, blank=True)
     description = models.ManyToManyField(Description, blank=True)
@@ -166,12 +168,26 @@ class Product(models.Model):
     brand = models.CharField(max_length=80, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
-        if not self.product_token:
-            self.product_token = functions.serial_number_generator(24).upper()
+        if not self.token:
+            self.token = functions.serial_number_generator(24).upper()
         super().save()
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
+class Store(models.Model):
+    # ----- Technical ----- #
+    token = models.CharField(max_length=20, unique=True, null=True)
+    # ----- relations ----- #
+    product = models.ManyToManyField(Product, blank=True)
+    # ----- content ----- #
+    en_store_name = models.CharField(max_length=240, unique=True, null=True)
+    fr_store_name = models.CharField(max_length=240, unique=True, null=True)
+    ar_store_name = models.CharField(max_length=240, unique=True, null=True)
+    # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.token = functions.serial_number_generator(20).upper()
+#                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #
     upc = models.CharField(max_length=20, blank=True, null=True)
@@ -214,40 +230,6 @@ class FlashProduct(models.Model):
         if not self.discount:
             self.is_activated = False
         super().save()
-#                                                                        #
-class GiftCardTheme(models.Model):
-    # ----- Technical ----- #
-    token = models.CharField(max_length=24, unique=True, null=True)
-    is_available = models.BooleanField(default=False)
-    # ----- relations ----- #
-    album = models.ManyToManyField(Album, blank=True)
-    # ----- content ----- #
-    en_title = models.CharField(max_length=500, blank=True, null=True)
-    fr_title = models.CharField(max_length=500, blank=True, null=True)
-    ar_title = models.CharField(max_length=500, blank=True, null=True)
-    # ----- #
-    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    # ----- functions ----- #
-    def save(self, *args, **kwargs):
-        if not self.token:
-            self.token = functions.serial_number_generator(24).upper()
-        super().save()
-#                                                                        #
-class QRTheme(models.Model):
-    # ----- Technical ----- #
-    token = models.CharField(max_length=24, unique=True, null=True)
-    is_available = models.BooleanField(default=False)
-    url = models.CharField(max_length=400, blank=True, null=True)
-    # ----- content ----- #
-    en_title = models.CharField(max_length=500, blank=True, null=True)
-    fr_title = models.CharField(max_length=500, blank=True, null=True)
-    ar_title = models.CharField(max_length=500, blank=True, null=True)
-    # ----- functions ----- #
-    def save(self, *args, **kwargs):
-        if not self.token:
-            self.token = functions.serial_number_generator(24).upper()
-        super().save()
-#                                                                        #
 # ---------------------------------------------------------------------- #
 
 

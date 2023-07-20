@@ -4,8 +4,8 @@ from django.contrib.auth.models import AbstractUser
 from add_ons import functions
 from django.utils import timezone, dateformat
 from PIL import Image
-from home.models import Cart, Order, SelectedProduct
-from management.models import GiftCardTheme, QRTheme
+from home.models import Cart, Order
+from management.models import Store
 
 
 # ------------------------------- Title -------------------------------- #
@@ -44,70 +44,7 @@ class Wallet(models.Model):
 # ---------------------------------------------------------------------- #
 
 # ---------------------------- Additional ------------------------------ #
-class CustomData(models.Model):
-    # ----- Technical ----- #
-    has_photo = models.BooleanField(default=False)
-    # ----- #
-    user_token = models.CharField(max_length=24, blank=True, null=True)
-    product_token = models.CharField(max_length=24, blank=True, null=True)
-    theme_token = models.CharField(max_length=24, blank=True, null=True)
-    # ----- #
-    created_at = models.DateTimeField(auto_now_add=True)
-    delivery_date = models.DateField(null=True)
-    # ----- #
-    tags = models.CharField(max_length=5000, blank=True, null=True)
-    # ----- media ----- #
-    file_name = models.CharField(max_length=300, blank=True, null=True)
-    def get_file_path(self, filename):
-        return self.file_name.lower()
-    content = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    # ----- content ----- #
-    text_1 = models.CharField(max_length=500, blank=True, null=True)
-    text_2 = models.CharField(max_length=500, blank=True, null=True)
-    text_3 = models.CharField(max_length=500, blank=True, null=True)
-    text_4 = models.CharField(max_length=500, blank=True, null=True)
-    # ----- functions ----- #
-    def save(self, *args, **kwargs):
-        self.file_name = 'custom_photos' + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + self.user_token + '/'
-    def set_tags(self):
-        self.tags = ''
-        if self.text_1:
-            self.tags += (', ' + self.text_1)
-        if self.text_2:
-            self.tags += (', ' + self.text_2)
-        if self.text_3:
-            self.tags += (', ' + self.text_3)
-        if self.text_4:
-            self.tags += (', ' + self.text_4)
-        super().save()
-#                                                                        #
-class GiftCard(models.Model):
-    # ----- Technical ----- #
-    is_activated = models.BooleanField(default=False)
-    # ----- relations ----- #
-    themes = models.ForeignKey(
-        "GiftCardTheme",
-        on_delete=models.PROTECT
-    )
-    product = models.ManyToManyField(SelectedProduct, blank=True)
-    # ----- content ----- #
-    value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    text_1 = models.CharField(max_length=500, blank=True, null=True)
-    # ----- functions ----- #
-    def set_tags(self):
-        self.tags = ''
-        if self.text_1:
-            self.tags += (', ' + self.text_1)
-        if self.text_2:
-            self.tags += (', ' + self.text_2)
-        if self.text_3:
-            self.tags += (', ' + self.text_3)
-        if self.text_4:
-            self.tags += (', ' + self.text_4)
-        super().save()
 
-
-#                                                                        #
 # ---------------------------------------------------------------------- #
 
 # -------------------------------- User -------------------------------- #
@@ -115,6 +52,7 @@ class User(AbstractUser):
     # ----- Technical ----- #
     is_blacklisted = models.BooleanField(default=False)
     is_activated = models.BooleanField(default=True)
+    # ----- #
     is_customer = models.BooleanField(default=True)
     is_provider = models.BooleanField(default=False)
     is_seller = models.BooleanField(default=False)
@@ -124,7 +62,6 @@ class User(AbstractUser):
     tags = models.CharField(max_length=5000, blank=True, null=True)
     points = models.IntegerField(default=0)
     token = models.CharField(max_length=24, unique=True, null=True)
-    store_name = models.CharField(max_length=240, unique=True, null=True)
     # ----- relations ----- #
     wallet = models.OneToOneField(
         Wallet,
@@ -136,8 +73,8 @@ class User(AbstractUser):
         on_delete=models.PROTECT,
         null=True
     )
+    store = models.ManyToManyField(Store, blank=True)
     order = models.ManyToManyField(Order, blank=True)
-    custom_data = models.ManyToManyField(CustomData, blank=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=300, blank=True, null=True)
     def get_image_path(self, filename):

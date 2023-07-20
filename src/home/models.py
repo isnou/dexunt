@@ -189,18 +189,19 @@ class Order(models.Model):
     my_qr = models.BooleanField(default=False)
     gift_card = models.BooleanField(default=False)
     # ----- #
-
     created_at = models.DateTimeField(auto_now_add=True)
     cart_ref = models.CharField(max_length=20, blank=True, null=True)
     ref = models.CharField(max_length=6, unique=True, null=True)
+    quantity_issue = models.BooleanField(default=False)
     # ----- #
+
 
     status = models.CharField(max_length=100, default='INCOMPLETE')
     # -- status : INCOMPLETE - FULFILLED -
 
 
 
-    user_token = models.CharField(max_length=24, blank=True, null=True)
+    provider_token = models.CharField(max_length=24, blank=True, null=True)
     # ----- content ----- #
     product = models.ManyToManyField(SelectedProduct, blank=True)
     client_name = models.CharField(max_length=300, blank=True, null=True)
@@ -223,16 +224,16 @@ class Order(models.Model):
     # --------------------------------- options ------------------------------------------------
 
 
-    theme = models.CharField(max_length=100, default='SIMPLE')
+    #theme = models.CharField(max_length=100, default='SIMPLE')
     # -- themes :  STANDARD - BIRTHDAY - WEDDING - BIRTH
 
-    occasion = models.CharField(max_length=100, default='UNDEFINED')
+    #occasion = models.CharField(max_length=100, default='UNDEFINED')
     # -- occasions :  UNDEFINED - BIRTHDAY - WEDDING - BIRTH
 
 
-    receiver_name = models.CharField(max_length=300, blank=True, null=True)
-    receiver_message = models.CharField(max_length=500, blank=True, null=True)
-    quantity_issue = models.BooleanField(default=False)
+    #receiver_name = models.CharField(max_length=300, blank=True, null=True)
+    #receiver_message = models.CharField(max_length=500, blank=True, null=True)
+
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:

@@ -12,7 +12,6 @@ class VariantForm(ModelForm):
         model = Variant
         fields = ('en_spec', 'fr_spec', 'ar_spec', 'price', 'discount', 'is_activated')
 
-
 class OptionForm(ModelForm):
     class Meta:
         model = Option
