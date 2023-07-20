@@ -123,4 +123,28 @@ class User(AbstractUser):
         if self.store_name:
             self.tags += (', ' + self.store_name)
         super().save()
+#                                                                        #
+def users_filter(request, users_list, new_filter):
+    if new_filter:
+        request.session['users_filter'] = new_filter
+
+    if request.session.get('users_filter', None) == 'all':
+        return users_list
+    if request.session.get('users_filter', None) == 'costumers':
+        return users_list.filter(is_customer=True)
+    if request.session.get('users_filter', None) == 'members':
+        return users_list.filter(is_member=True)
+    if request.session.get('users_filter', None) == 'sellers':
+        return users_list.filter(is_seller=True)
+    if request.session.get('users_filter', None) == 'providers':
+        return users_list.filter(is_provider=True)
+    if request.session.get('users_filter', None) == 'blacklist':
+        return users_list.filter(is_blacklisted=True)
 # ---------------------------------------------------------------------- #
+
+
+
+
+
+
+

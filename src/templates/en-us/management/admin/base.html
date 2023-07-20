@@ -539,7 +539,7 @@
 
             <!-- Users -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="#" data-placement="left">
+              <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="{% url 'admin-manage-users' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-users nav-icon"></i>
                 <span class="nav-link-title">Users</span>
               </a>
