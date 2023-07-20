@@ -236,6 +236,7 @@ def router(request):
     if request.user.is_superuser:
         return redirect('admin-manage-home', 'main')
     else:
+        request.user.save()
         return redirect('admin-manage-home', 'main')
 
 
