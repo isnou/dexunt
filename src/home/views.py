@@ -17,7 +17,7 @@ def home_page(request):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     selected_cart = get_cart(request)
-    url = direction + "/home/main-page.html"
+    url = direction + "/home/main.html"
 
     if request.session.get('error_messages'):
         errors = request.session.get('error_messages')
