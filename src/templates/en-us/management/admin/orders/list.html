@@ -93,7 +93,7 @@
                   {% for product in order.product.all %}
                   <tr>
                     <td>
-                      <a class="d-flex align-items-center" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.variant_id }}%option_id={{product.option_id}}">
+                      <a class="d-flex align-items-center" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.variant_id }}&option_id={{ product.option_id }}">
                         <div class="avatar avatar-square">
                           <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
                         </div>
@@ -292,7 +292,9 @@
             {% for product in order.product.all %}
             <tr>
               <td>
-                <a class="d-flex align-items-center" href="{% url 'product-router' product.variant_id product.option_id 'no' 'regular_product' %}">
+                <a class="d-flex align-items-center" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.variant_id }}&option_id={{ product.option_id }}">
+
+
                   <div class="avatar avatar-square">
                     <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
                   </div>
