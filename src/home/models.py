@@ -111,13 +111,13 @@ class Cart(models.Model):
         new_price = 0
         for product in self.product.all():
             new_price += product.total_price
-
         self.sub_total_price = new_price
         self.total_price = new_price
-        if self.has_subtractive_coupon:
-            self.total_price = self.sub_total_price - self.coupon_value
-        else:
-            self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
+        if self.coupon_value:
+            if self.has_subtractive_coupon:
+                self.total_price = self.sub_total_price - self.coupon_value
+            else:
+                self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
     def delete_products(self):
         for product in self.product.all():
