@@ -267,10 +267,10 @@ def get_order(request, selected_cart):
                 selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
-        if Order.objects.all().filter(user_token=request.user.user_token).exists():
-            selected_order = Order.objects.all().get(user_token=request.user.user_token)
+        if Order.objects.all().filter(user_token=request.user.token).exists():
+            selected_order = Order.objects.all().get(user_token=request.user.token)
         else:
-            selected_order = Order(user_token=request.user.user_token,
+            selected_order = Order(user_token=request.user.user,
                                    cart_ref=selected_cart.ref,)
             selected_order.save()
 
