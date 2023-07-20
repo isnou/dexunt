@@ -527,7 +527,7 @@
             <!-- Admin Home -->
             <div class="nav-item">
                 <a class="nav-link {% if nav_side == 'home' %} active {% endif %}" href="{% url 'admin-manage-home' 'main' %}" data-placement="left">
-                  <i class="bi-clipboard-data nav-icon"></i>
+                  <i class="fa fa-house nav-icon"></i>
                   <span class="nav-link-title">Home</span>
                 </a>
             </div>
@@ -550,7 +550,7 @@
             <!-- Stores -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="#" data-placement="left">
-                <i class="bi-shop nav-icon"></i>
+                <i class="fa fa-store nav-icon"></i>
                 <span class="nav-link-title">Stores</span>
               </a>
             </div>
@@ -559,7 +559,7 @@
             <!-- Products -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'admin-manage-products' 'main' %}" data-placement="left">
-                <i class="bi-handbag nav-icon"></i>
+                <i class="fa fa-cart-flatbed nav-icon"></i>
                 <span class="nav-link-title">Products</span>
               </a>
             </div>
@@ -568,34 +568,16 @@
             <!-- Flash -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'flash' %} active {% endif %}" href="{% url 'admin-manage-flash' 'main' %}" data-placement="left">
-                <i class="bi-stopwatch nav-icon"></i>
+                <i class="fa fa-bolt nav-icon"></i>
                 <span class="nav-link-title">Flash</span>
               </a>
             </div>
             <!-- End Flash -->
 
-            <!-- Packages -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'packages' %} active {% endif %}" href="#" data-placement="left">
-                <i class="bi-box-seam nav-icon"></i>
-                <span class="nav-link-title">Packages</span>
-              </a>
-            </div>
-            <!-- End Packages -->
-
-            <!-- Gifts -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'gifts' %} active {% endif %}" href="#" data-placement="left">
-                <i class="bi-gift nav-icon"></i>
-                <span class="nav-link-title">Gifts</span>
-              </a>
-            </div>
-            <!-- End Gifts -->
-
             <!-- Orders -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'admin-manage-orders' 'main' %}" data-placement="left">
-                <i class="bi-cart nav-icon"></i>
+                <i class="fa fa-cart-shopping nav-icon"></i>
                 <span class="nav-link-title">Orders
                   {% if new_orders_count %}
                   <span class="badge bg-primary rounded-pill ms-1">{{ new_orders_count }}</span>
@@ -608,7 +590,7 @@
             <!-- Shipping -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'shipping' %} active {% endif %}" href="{% url 'admin-manage-shipping' 'main' %}" data-placement="left">
-                <i class="bi-truck nav-icon"></i>
+                <i class="fa fa-truck nav-icon"></i>
                 <span class="nav-link-title">Shipping</span>
               </a>
             </div>
@@ -617,7 +599,7 @@
             <!-- Coupon -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'coupon' %} active {% endif %}" href="{% url 'admin-manage-coupon' 'main' %}" data-placement="left">
-                <i class="bi-tags nav-icon"></i>
+                <i class="fa fa-tags nav-icon"></i>
                 <span class="nav-link-title">Coupon</span>
               </a>
             </div>
