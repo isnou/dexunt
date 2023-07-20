@@ -180,13 +180,13 @@ class Product(models.Model):
                     for o in v.option.all():
                         o.provider_token = provider_token
         super().save()
-
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
 class Store(models.Model):
     # ----- Technical ----- #
     token = models.CharField(max_length=20, unique=True, null=True)
+    provider_token = models.CharField(max_length=24, null=True)
     # ----- relations ----- #
     product = models.ManyToManyField(Product, blank=True)
     # ----- content ----- #

@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Product ,Variant ,Feature ,Option ,FlashProduct, Description
+from .models import Product ,Variant ,Feature ,Option ,FlashProduct, Description, Store
 
 class ProductForm(ModelForm):
     class Meta:
@@ -34,4 +34,7 @@ class DescriptionForm(ModelForm):
         model = Description
         fields = ('en_title', 'fr_title', 'ar_title', 'en_content', 'fr_content', 'ar_content', 'image')
 
-
+class StoreForm(ModelForm):
+    class Meta:
+        model = Store
+        fields = ('en_store_name', 'fr_store_name', 'ar_store_name')
