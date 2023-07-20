@@ -171,6 +171,16 @@ class Product(models.Model):
         if not self.token:
             self.token = functions.serial_number_generator(24).upper()
         super().save()
+    def set_provider(self, provider_token):
+        self.provider_token = provider_token
+        if self.variant.all().count():
+            for v in self.variant.all():
+                v.provider_token = provider_token
+                if v.option.all().count():
+                    for o in v.option.all():
+                        o.provider_token = provider_token
+        super().save()
+
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
