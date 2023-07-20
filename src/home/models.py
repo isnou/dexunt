@@ -270,7 +270,7 @@ def get_order(request, selected_cart):
         if Order.objects.all().filter(user_token=request.user.token).exists():
             selected_order = Order.objects.all().get(user_token=request.user.token)
         else:
-            selected_order = Order(user_token=request.user.user,
+            selected_order = Order(user_token=request.user.token,
                                    cart_ref=selected_cart.ref,)
             selected_order.save()
 
