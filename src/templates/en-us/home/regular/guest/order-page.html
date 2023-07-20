@@ -121,14 +121,12 @@
                         <div class="fw-bold"> {{ selected_cart.sub_total_price|floatformat:"0g" }} <small>DZD</small></div>
                       </div>
 
-                      {% if selected_cart.coupon_type == 'subtractive' %}
+                      {% if selected_cart.has_subtractive_coupon %}
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Discount</div>
                         <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>DZD</small></div>
                       </div>
-                      {% endif %}
-
-                      {% if selected_cart.coupon_type == 'percentage' %}
+                      {% else %}
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Discount</div>
                         <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>%</small></div>

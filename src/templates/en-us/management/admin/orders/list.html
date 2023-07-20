@@ -146,11 +146,9 @@
               <i class="bi-tags ms-2 me-2"></i>
               {% if order.coupon_value %}
               [{{ order.coupon_code }}]
-              {% if order.coupon_type == 'subtractive' %}
+              {% if order.has_subtractive_coupon %}
               {{ order.coupon_value|floatformat:"0g" }} <small>DZD</small>
-              {% endif %}
-
-              {% if order.coupon_type == 'percentage' %}
+              {% else %}
               {{ order.coupon_value }} <small>%</small>
               {% endif %}
               {% else %}
