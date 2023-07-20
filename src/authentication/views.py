@@ -233,7 +233,6 @@ def change_password(request):
 
 @login_required
 def router(request):
-    request.user.save()
     if request.user.is_superuser:
         return redirect('admin-manage-home', 'main')
     else:
