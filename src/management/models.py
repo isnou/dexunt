@@ -129,6 +129,7 @@ class Variant(models.Model):
         for option in self.option.all():
             if option.is_activated:
                 quantity += option.quantity
+
         if quantity:
             self.is_available = True
         else:

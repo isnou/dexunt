@@ -133,6 +133,10 @@ class User(AbstractUser):
             new_wallet = Wallet().save()
             self.wallet = new_wallet
 
+        if not self.cart:
+            new_cart = Cart().save()
+            self.cart = new_cart
+
         if not self.store_name:
             self.store_name = self.username
 

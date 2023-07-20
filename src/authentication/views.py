@@ -235,11 +235,9 @@ def change_password(request):
 def router(request):
     if request.user.is_superuser:
         return redirect('admin-manage-home', 'main')
-
-    if request.user.role == 'customer':
-        return redirect('admin-manage-home', 'main')
     else:
-        return redirect('logout')
+        return redirect('admin-manage-home', 'main')
+
 
 def account_logout(request):
     logout(request)

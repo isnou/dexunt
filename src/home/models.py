@@ -38,7 +38,7 @@ class SelectedProduct(models.Model):
         if self.price:
             self.total_price = self.price * self.quantity
         super().save()
-
+#                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
     type = models.CharField(default='subtractive', max_length=20, blank=True, null=True)
@@ -60,14 +60,13 @@ class Coupon(models.Model):
             elif self.value > 100:
                 self.value = 100
         super().save()
-
     def clean(self):
         if self.valid_until <= timezone.now():
             self.is_active = False
         if self.quantity == 0:
             self.is_active = False
         super().save()
-
+#                                                                        #
 class Cart(models.Model):
     # ----- Technical ----- #
     ref = models.CharField(max_length=20, unique=True, null=True)
@@ -88,7 +87,6 @@ class Cart(models.Model):
         if not self.ref:
             self.ref = functions.serial_number_generator(20).upper()
         super().save()
-
     def update_prices(self):
         new_price = 0
         for product in self.product.all():
@@ -100,12 +98,86 @@ class Cart(models.Model):
         if self.coupon_type == 'percentage':
             self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
-
     def delete_products(self):
         for product in self.product.all():
             product.delete()
         super().save()
+#                                                                        #
+def get_cart(request):
+    if not request.user.is_authenticated:
+        if not request.session.get('cart_ref', None):
+            selected_cart = Cart()
+            selected_cart.save()
+            request.session['cart_ref'] = selected_cart.ref
+        else:
+            ref = request.session.get('cart_ref')
+            if Cart.objects.all().filter(ref=ref).exists():
+                selected_cart = Cart.objects.all().get(ref=ref)
+            else:
+                selected_cart = Cart()
+                selected_cart.save()
+                request.session['cart_ref'] = selected_cart.ref
+    else:
+        selected_cart = request.user.cart
+    return selected_cart
+#                                                                        #
+def add_product_to_cart(cart, variant, option):
+    if cart.product.all().filter(option_id=option.id).exists():
+        selected_cart_product = cart.product.all().get(option_id=option.id)
+        selected_cart_product.quantity += 1
+        selected_cart_product.save()
+    else:
+        if option.has_image:
+            image = option.image
+        else:
+            album = variant.album.all()[0]
+            image = album.image
 
+        cart_product = SelectedProduct(delivery=option.delivery_quotient,
+                                       points=option.points,
+
+                                       file_name= 'cart' + variant.en_title + '/' + variant.en_spec + '/' + option.en_value,
+                                       image=image,
+
+                                       token=variant.product_token,
+                                       option_id=option.id,
+                                       variant_id=variant.id,
+                                       en_name=variant.en_title,
+                                       fr_name=variant.fr_title,
+                                       ar_name=variant.ar_title,
+                                       en_detail= variant.en_spec + '-' + option.en_value,
+                                       fr_detail= variant.fr_spec + '-' + option.fr_value,
+                                       ar_detail= variant.ar_spec + '-' + option.ar_value,
+                                       )
+        if option.discount:
+            cart_product.price = option.discount
+        else:
+            cart_product.price = option.price
+        cart_product.update_prices()
+        cart.product.add(cart_product)
+
+    cart.update_prices()
+#                                                                        #
+def apply_coupon(request, selected_cart, coupon_code):
+    code = None
+    type = None
+    value = None
+    if Coupon.objects.all().filter(code=coupon_code).exists():
+        coupon = Coupon.objects.all().get(code=coupon_code)
+        if coupon.is_active:
+            request.session['coupon_message'] = 'success'
+            code = coupon.code
+            type = coupon.type
+            value = coupon.value
+        else:
+            request.session['coupon_message'] = 'expired'
+    else:
+        request.session['coupon_message'] = 'wrong'
+    selected_cart.coupon_code = code
+    selected_cart.coupon_type = type
+    selected_cart.coupon_value = value
+    selected_cart.update_prices()
+#                                                                        #
 class Order(models.Model):
     # ----- Technical ----- #
     cart_ref = models.CharField(max_length=20, blank=True, null=True)
@@ -157,7 +229,6 @@ class Order(models.Model):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
         super().save()
-
     def update_prices(self):
         if not self.coupon_value:
             if self.delivery_price:
@@ -176,120 +247,11 @@ class Order(models.Model):
                 if self.coupon_type == 'percentage':
                     self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
-
     def delete_products(self):
         for product in self.product.all():
             product.delete()
         super().save()
-
-# ------------------------------------- Shipping ------------------------------ #
-class Municipality(models.Model):
-    # --------------------------------- shipping details ---------------------------------------
-    en_name = models.CharField(max_length=200, blank=True, null=True)
-    fr_name = models.CharField(max_length=200, blank=True, null=True)
-    ar_name = models.CharField(max_length=200, blank=True, null=True)
-
-    en_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    fr_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    ar_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-
-    en_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    fr_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    ar_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-
-    class Meta:
-        verbose_name_plural = "Municipalities"
-
-class Province(models.Model):
-    # --------------------------------- shipping details ---------------------------------------
-    en_name = models.CharField(max_length=200, blank=True, null=True)
-    fr_name = models.CharField(max_length=200, blank=True, null=True)
-    ar_name = models.CharField(max_length=200, blank=True, null=True)
-
-    municipality = models.ManyToManyField(Municipality, blank=True)
-
-# ----------------------------------- Functions ------------------------------- #
-def get_cart(request):
-    if not request.user.is_authenticated:
-        if not request.session.get('cart_ref', None):
-            selected_cart = Cart()
-            selected_cart.save()
-            request.session['cart_ref'] = selected_cart.ref
-        else:
-            ref = request.session.get('cart_ref')
-            if Cart.objects.all().filter(ref=ref).exists():
-                selected_cart = Cart.objects.all().get(ref=ref)
-            else:
-                selected_cart = Cart()
-                selected_cart.save()
-                request.session['cart_ref'] = selected_cart.ref
-    else:
-        if Cart.objects.all().filter(user_token=request.user.user_token).exists():
-            selected_cart = Cart.objects.all().get(user_token=request.user.user_token)
-        else:
-            selected_cart = Cart(user_token=request.user.user_token)
-            selected_cart.save()
-    return selected_cart
-
-def add_product_to_cart(cart, variant, option):
-    if cart.product.all().filter(option_id=option.id).exists():
-        selected_cart_product = cart.product.all().get(option_id=option.id)
-        selected_cart_product.quantity += 1
-        selected_cart_product.save()
-    else:
-        if option.has_image:
-            image = option.image
-        else:
-            album = variant.album.all()[0]
-            image = album.image
-
-        cart_product = SelectedProduct(delivery=option.delivery_quotient,
-                                       points=option.points,
-
-                                       file_name= 'cart' + variant.en_title + '/' + variant.en_spec + '/' + option.en_value,
-                                       image=image,
-
-                                       token=variant.product_token,
-                                       option_id=option.id,
-                                       variant_id=variant.id,
-                                       en_name=variant.en_title,
-                                       fr_name=variant.fr_title,
-                                       ar_name=variant.ar_title,
-                                       en_detail= variant.en_spec + '-' + option.en_value,
-                                       fr_detail= variant.fr_spec + '-' + option.fr_value,
-                                       ar_detail= variant.ar_spec + '-' + option.ar_value,
-                                       )
-        if option.discount:
-            cart_product.price = option.discount
-        else:
-            cart_product.price = option.price
-        cart_product.update_prices()
-        cart.product.add(cart_product)
-
-    cart.update_prices()
-
-def apply_coupon(request, selected_cart, coupon_code):
-    code = None
-    type = None
-    value = None
-    if Coupon.objects.all().filter(code=coupon_code).exists():
-        coupon = Coupon.objects.all().get(code=coupon_code)
-        if coupon.is_active:
-            request.session['coupon_message'] = 'success'
-            code = coupon.code
-            type = coupon.type
-            value = coupon.value
-        else:
-            request.session['coupon_message'] = 'expired'
-    else:
-        request.session['coupon_message'] = 'wrong'
-    selected_cart.coupon_code = code
-    selected_cart.coupon_type = type
-    selected_cart.coupon_value = value
-    selected_cart.update_prices()
-
+#                                                                        #
 def get_order(request, selected_cart):
     if not request.user.is_authenticated:
         if not request.session.get('order_ref', None):
@@ -326,7 +288,7 @@ def get_order(request, selected_cart):
     selected_order.update_prices()
 
     return selected_order
-
+#                                                                        #
 def place_order(request, selected_cart, selected_order):
 
     selected_order.status = 'FULFILLED'
@@ -336,3 +298,36 @@ def place_order(request, selected_cart, selected_order):
     request.session['municipality_id_token'] = None
     request.session['order_ref'] = None
     request.session['cart_ref'] = None
+# ---------------------------------------------------------------------- #
+
+
+# ------------------------------ Shipping ------------------------------ #
+class Municipality(models.Model):
+    # ----- content ----- #
+    en_name = models.CharField(max_length=200, blank=True, null=True)
+    fr_name = models.CharField(max_length=200, blank=True, null=True)
+    ar_name = models.CharField(max_length=200, blank=True, null=True)
+    # ----- #
+    en_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    fr_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    ar_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # ----- #
+    en_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    fr_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    ar_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # ----- functions ----- #
+    class Meta:
+        verbose_name_plural = "Municipalities"
+#                                                                        #
+class Province(models.Model):
+    # ----- content ----- #
+    en_name = models.CharField(max_length=200, blank=True, null=True)
+    fr_name = models.CharField(max_length=200, blank=True, null=True)
+    ar_name = models.CharField(max_length=200, blank=True, null=True)
+    # ----- functions ----- #
+    municipality = models.ManyToManyField(Municipality, blank=True)
+# ---------------------------------------------------------------------- #
+
+
