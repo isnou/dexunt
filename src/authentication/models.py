@@ -135,7 +135,7 @@ class User(AbstractUser):
 
         if not self.cart:
             new_cart = Cart().save()
-            self.cart = new_cart
+            self.cart.add(new_cart)
 
         if not self.store_name:
             self.store_name = self.username
