@@ -5,7 +5,7 @@ from add_ons import functions
 from django.utils import timezone, dateformat
 from PIL import Image
 from home.models import Cart, Order, SelectedProduct
-from management.models import GiftCardTheme, GiftCardProduct, QRTheme
+from management.models import GiftCardTheme, QRTheme
 
 
 # ------------------------------- Title -------------------------------- #
