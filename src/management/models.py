@@ -3,9 +3,6 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from add_ons import functions
 
-
-
-
 # ---------------------------- Requirements ---------------------------- #
 class Review(models.Model):
     # ----- Technical ----- #
@@ -51,6 +48,8 @@ class Description(models.Model):
     def get_image_path(self, filename):
         return self.file_name.lower()
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+# ---------------------------------------------------------------------- #
+
 # ------------------------------ Inventory ----------------------------- #
 class Option(models.Model):
     # ----- Technical ----- #
@@ -90,6 +89,8 @@ class Option(models.Model):
             if self.price < self.discount:
                 self.discount = None
         super().save()
+# ---------------------------------------------------------------------- #
+
 # ------------------------------- Regular ------------------------------ #
 class Variant(models.Model):
     # ----- Technical ----- #
@@ -168,7 +169,9 @@ class Product(models.Model):
         if not self.product_token:
             self.product_token = functions.serial_number_generator(24).upper()
         super().save()
-# ------------------------------ Discount ------------------------------ #
+# ---------------------------------------------------------------------- #
+
+# -------------------------- Special Products -------------------------- #
 class FlashProduct(models.Model):
     # ----- Technical ----- #
     upc = models.CharField(max_length=20, blank=True, null=True)
@@ -211,8 +214,41 @@ class FlashProduct(models.Model):
         if not self.discount:
             self.is_activated = False
         super().save()
+#                                                                        #
+class GiftCardTheme(models.Model):
+    # ----- Technical ----- #
+    token = models.CharField(max_length=24, unique=True, null=True)
+    is_available = models.BooleanField(default=False)
+    # ----- relations ----- #
+    album = models.ManyToManyField(Album, blank=True)
+    # ----- content ----- #
+    en_title = models.CharField(max_length=500, blank=True, null=True)
+    fr_title = models.CharField(max_length=500, blank=True, null=True)
+    ar_title = models.CharField(max_length=500, blank=True, null=True)
+    # ----- #
+    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.token = functions.serial_number_generator(24).upper()
+        super().save()
+#                                                                        #
+class QRTheme(models.Model):
+    # ----- Technical ----- #
+    token = models.CharField(max_length=24, unique=True, null=True)
+    is_available = models.BooleanField(default=False)
+    url = models.CharField(max_length=400, blank=True, null=True)
+    # ----- content ----- #
+    en_title = models.CharField(max_length=500, blank=True, null=True)
+    fr_title = models.CharField(max_length=500, blank=True, null=True)
+    ar_title = models.CharField(max_length=500, blank=True, null=True)
+    # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.token = functions.serial_number_generator(24).upper()
+        super().save()
+#                                                                        #
 # ---------------------------------------------------------------------- #
-
 
 
 # ------------------------------- Title -------------------------------- #

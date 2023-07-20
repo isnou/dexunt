@@ -4,7 +4,8 @@ from django.contrib.auth.models import AbstractUser
 from add_ons import functions
 from django.utils import timezone, dateformat
 from PIL import Image
-from home.models import Cart, Order
+from home.models import Cart, Order, SelectedProduct
+from management.models import GiftCardTheme, GiftCardProduct, QRTheme
 
 
 # ------------------------------- Title -------------------------------- #
@@ -42,7 +43,7 @@ class Wallet(models.Model):
         super().save()
 # ---------------------------------------------------------------------- #
 
-# ---------------------------- Custom Data ----------------------------- #
+# ---------------------------- Additional ------------------------------ #
 class CustomData(models.Model):
     # ----- Technical ----- #
     has_photo = models.BooleanField(default=False)
@@ -63,8 +64,8 @@ class CustomData(models.Model):
     # ----- content ----- #
     text_1 = models.CharField(max_length=500, blank=True, null=True)
     text_2 = models.CharField(max_length=500, blank=True, null=True)
-    text_3 = models.CharField(max_length=1000, blank=True, null=True)
-    text_4 = models.CharField(max_length=1000, blank=True, null=True)
+    text_3 = models.CharField(max_length=500, blank=True, null=True)
+    text_4 = models.CharField(max_length=500, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         self.file_name = 'custom_photos' + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + self.user_token + '/'
@@ -79,6 +80,34 @@ class CustomData(models.Model):
         if self.text_4:
             self.tags += (', ' + self.text_4)
         super().save()
+#                                                                        #
+class GiftCard(models.Model):
+    # ----- Technical ----- #
+    is_activated = models.BooleanField(default=False)
+    # ----- relations ----- #
+    theme = models.ForeignKey(
+        "GiftCardTheme",
+        on_delete=models.PROTECT
+    )
+    product = models.ManyToManyField(SelectedProduct, blank=True)
+    # ----- content ----- #
+    value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    text_1 = models.CharField(max_length=500, blank=True, null=True)
+    # ----- functions ----- #
+    def set_tags(self):
+        self.tags = ''
+        if self.text_1:
+            self.tags += (', ' + self.text_1)
+        if self.text_2:
+            self.tags += (', ' + self.text_2)
+        if self.text_3:
+            self.tags += (', ' + self.text_3)
+        if self.text_4:
+            self.tags += (', ' + self.text_4)
+        super().save()
+
+
+#                                                                        #
 # ---------------------------------------------------------------------- #
 
 # -------------------------------- User -------------------------------- #
@@ -126,22 +155,17 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.token:
             self.token = functions.serial_number_generator(24).upper()
-
         self.file_name = 'profile_photos' + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + self.token + '/'
-
         if not self.wallet:
             new_wallet = Wallet()
             new_wallet.save()
             self.wallet = new_wallet
-
         if not self.cart:
             new_cart = Cart()
             new_cart.save()
             self.cart = new_cart
-
         if not self.store_name:
             self.store_name = self.username
-
         if self.profile_photo:
             img = Image.open(self.profile_photo.path)
             if img.height > 200 or img.width > 200:
