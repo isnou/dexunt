@@ -1,8 +1,8 @@
-{% extends "en-us/management/seller/base.html" %}
+{% extends "en-us/management/member/base.html" %}
 {% load static %}
 
 <!-- title -->
-{% block title %}<title>Dexunt | eCommerce & Logistic | Seller Page | Dashboard</title>{% endblock %}
+{% block title %}<title>Dexunt | eCommerce & Logistic | Member Page | Dashboard</title>{% endblock %}
 
 <!-- header -->
 {% block page_header %}
@@ -13,7 +13,13 @@
         <li class="breadcrumb-item active" aria-current="page">home</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">Seller Home</h1>
+    <h1 class="page-header-title">Member Home</h1>
+  </div>
+
+  <div class="col-sm-auto">
+    <a class="btn btn-light" href="{% url 'home-page' %}">
+      <i class="bi-eye-fill me-1"></i> home page
+    </a>
   </div>
 </div>
 {% endblock %}
