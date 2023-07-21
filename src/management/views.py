@@ -729,3 +729,41 @@ def customer_home(request, action):
 # ---------------------------------------------------------------------- #
 
 
+
+# ----------------------------- Seller ------------------------------- #
+@login_required
+def seller_home(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/seller/home.html"
+
+        context = {
+            'nav_side': 'home',
+        }
+        return render(request, url, context)
+#                                                                        #
+# ---------------------------------------------------------------------- #
+
+
+
+# ----------------------------- Provider ------------------------------- #
+@login_required
+def provider_home(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/provider/home.html"
+
+        context = {
+            'nav_side': 'home',
+        }
+        return render(request, url, context)
+#                                                                        #
+# ---------------------------------------------------------------------- #
+
+

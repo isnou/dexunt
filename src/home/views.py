@@ -9,9 +9,13 @@ from management.models import Product, Variant, Option, Feature, Album, FlashPro
 from management.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
+
 def home_page(request):
     if request.user.is_authenticated:
-        request.user.save()
+        if request.user.is_provider:
+            return redirect('provider-manage-home', 'main')
+        if request.user.is_seller:
+            return redirect('seller-manage-home', 'main')
 
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
