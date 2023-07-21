@@ -241,6 +241,10 @@ class Store(models.Model):
     en_description = models.CharField(max_length=600, blank=True, null=True)
     fr_description = models.CharField(max_length=600, blank=True, null=True)
     ar_description = models.CharField(max_length=600, blank=True, null=True)
+    # ----- #
+    en_address = models.CharField(max_length=300, blank=True, null=True)
+    fr_address = models.CharField(max_length=300, blank=True, null=True)
+    ar_address = models.CharField(max_length=300, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         self.tags = ''
@@ -250,18 +254,28 @@ class Store(models.Model):
             self.tags += (', ' + self.fr_name)
         if self.ar_name:
             self.tags += (', ' + self.ar_name)
+
         if self.en_activity:
             self.tags += (', ' + self.en_activity)
         if self.fr_activity:
             self.tags += (', ' + self.fr_activity)
         if self.ar_activity:
             self.tags += (', ' + self.ar_activity)
+
         if self.en_description:
             self.tags += (', ' + self.en_description)
         if self.fr_description:
             self.tags += (', ' + self.fr_description)
         if self.ar_description:
             self.tags += (', ' + self.ar_description)
+
+        if self.en_address:
+            self.tags += (', ' + self.en_address)
+        if self.fr_address:
+            self.tags += (', ' + self.fr_address)
+        if self.ar_address:
+            self.tags += (', ' + self.ar_address)
+
         if not self.token:
             self.token = functions.serial_number_generator(20).upper()
 
