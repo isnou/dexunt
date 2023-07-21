@@ -11,6 +11,8 @@ from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm 
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
 from authentication.models import User, users_filter, change_role
+from django.contrib.auth.forms import PasswordChangeForm
+from authentication.forms import UpdateProfileForm, UpdateProfilePhotoForm
 
 
 
@@ -891,6 +893,9 @@ def provider_my_store(request, action):
     if action == 'main':
         url = direction + "/management/provider/my-store/home.html"
         store_form = StoreForm()
+        password_form = PasswordChangeForm()
+        update_profile_form = UpdateProfileForm()
+        update_profile_photo_form = UpdateProfilePhotoForm()
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -902,6 +907,9 @@ def provider_my_store(request, action):
             'nav_side': 'my_store',
             'store_form': store_form,
             'errors': errors,
+            'password_form': password_form,
+            'update_profile_form': update_profile_form,
+            'update_profile_photo_form': update_profile_photo_form
         }
         return render(request, url, context)
     if action == 'delete_order':
