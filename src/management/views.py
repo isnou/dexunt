@@ -127,6 +127,56 @@ def manage_users(request, action):
             selected_user = User.objects.all().get(id=user_id)
             change_role(selected_user, role)
             return redirect ('admin-manage-users', 'main')
+    # -- search partial show -- #
+    if action == 'search_users':
+        url = direction + "/management/admin/users/partial-list.html"
+        key_word = request.GET.get('key_word', None)
+
+        if key_word:
+            request.session['users_key_word'] = key_word
+        else:
+            request.session['users_key_word'] = None
+
+        users_list = User.objects.values().filter(tags__icontains=key_word).exclude(username=request.user.username)
+
+        new_filter = request.GET.get('filter', None)
+        if not request.session.get('users_filter', None):
+            request.session['users_filter'] = 'all'
+
+        users_list = users_filter(request, users_list, new_filter)
+
+        if not request.session.get('users-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('users-page')
+            request.session['users-page'] = None
+
+        paginator = Paginator(users_list, items_by_page)
+        try:
+            users_list = paginator.page(page)
+        except PageNotAnInteger:
+            users_list = paginator.page(1)
+        except EmptyPage:
+            users_list = paginator.page(paginator.num_pages)
+
+        context = {
+            'users_list': users_list,
+        }
+        return render(request, url, context)
+    # -- selected item page show -- #
+    if action == 'select_user':
+        url = direction + "/management/admin/users/selected.html"
+        if request.session.get('user_id', None):
+            user_id = request.session.get('user_id')
+            request.session['user_id'] = None
+        else:
+            user_id = request.GET.get('user_id', None)
+        selected_user = User.objects.all().get(id=user_id)
+
+        context = {
+            'selected_user': selected_user,
+        }
+        return render(request, url, context)
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
