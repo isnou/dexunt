@@ -158,16 +158,18 @@
             <span class="d-block fs-5">{{ selected_user.points }}</span>
           </td>
 
-
           <td>
-            {% if selected_user.is_patient %}
-            <span class="d-block fs-5">patient</span>
+            {% if selected_user.is_customer %}
+            <span class="d-block fs-5">customer</span>
             {% endif %}
-            {% if selected_user.is_clinician %}
-            <span class="d-block fs-5">clinician</span>
+            {% if selected_user.is_provider %}
+            <span class="d-block fs-5">provider</span>
             {% endif %}
-            {% if selected_user.is_researcher %}
-            <span class="d-block fs-5">researcher</span>
+            {% if selected_user.is_seller %}
+            <span class="d-block fs-5">seller</span>
+            {% endif %}
+            {% if selected_user.is_member %}
+            <span class="d-block fs-5">member</span>
             {% endif %}
           </td>
 
@@ -186,8 +188,8 @@
               <i class="fa fa-arrow-pointer fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Select"></i>
             </a>
 
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ selected_user.id }}">
-              <i class="fa fa-pen-to-square fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#change_modal_{{ selected_user.id }}">
+              <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
             </a>
 
             <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
@@ -321,10 +323,10 @@
   </div>
   <!-- End Delete User Modal -->
 
-  <!-- View & Edit User Modal -->
-  <div id="edit_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Change Modal -->
+  <div id="change_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
 
-    <div class="modal-dialog {% if selected_user.is_patient %} modal-lg {% else %} modal-xl {% endif %}" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
       <!-- Header -->
       <div class="modal-close">
@@ -341,15 +343,15 @@
             <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
           </div>
           <!-- end login title -->
-          <form action="{% url 'admin-manage-users' 'edit_user' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'admin-manage-users' 'change_user' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
 
-            <div class="row {% if not selected_user.is_patient %} col-sm-divider {% endif %} mb-3">
-              {% if selected_user.is_patient %}
+            <div class="row mb-3">
               <div class="col text-center">
                 <!-- first name -->
                 <div class="input-group input-group-borderless mb-2">
+
                   <span class="input-group-text">First Name</span>
                   {% if selected_user.first_name %}
                   <input type="text" class="form-control" name="first_name" value="{{ selected_user.first_name }}" placeholder="john">
@@ -359,201 +361,13 @@
                 </div>
                 <!-- end first name -->
 
-                <!-- last name -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">Last Name</span>
-                  {% if selected_user.last_name %}
-                  <input type="text" class="form-control" name="last_name" value="{{ selected_user.last_name }}" placeholder="doe">
-                  {% else %}
-                  <input type="text" class="form-control" name="last_name" placeholder="doe">
-                  {% endif %}
+                <div class="form-check mb-3">
+                  <input type="radio" id="formRadio1" class="form-check-input" name="formRadio">
+                  <label class="form-check-label" for="formRadio1">Unchecked</label>
                 </div>
-                <!-- end last name -->
-
-                <!-- email -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">E Mail</span>
-                  <input type="text" class="form-control" name="email" value="{{ selected_user.email }}" placeholder="jhon.doe@site.com" disabled>
-                </div>
-                <!-- end email -->
-
-                <!-- gender -->
-                <div class="mb-2">
-                  <div class="input-group input-group-merge input-group-hover-light">
-                    <div class="input-group-prepend input-group-text">
-                      Gender
-                    </div>
-                    <select class="form-select text-center" name="gender">
-                      <option value="{{ selected_user.gender }}">{{ selected_user.gender|title }}</option>
-                      {% if selected_user.gender == 'male' %}
-                      <option value="female">Female</option>
-                      {% endif %}
-                      {% if selected_user.gender == 'female' %}
-                      <option value="male">Male</option>
-                      {% endif %}
-                    </select>
-                  </div>
-                </div>
-                <!-- end gender -->
-
-                <!-- address -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text" >Address 1</span>
-                  {% if selected_user.address_1 %}
-                  <input type="text" class="form-control" name="address_1" value="{{ selected_user.address_1 }}" placeholder="7463 Bayport St">
-                  {% else %}
-                  <input type="text" class="form-control" name="address_1" placeholder="7463 Bayport St">
-                  {% endif %}
-                </div>
-                <!-- end address -->
-
-                <!-- address 2 -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">Address 2</span>
-                  {% if selected_user.address_2 %}
-                  <input type="text" class="form-control" name="address_2" value="{{ selected_user.address_2 }}" placeholder="Boynton Beach">
-                  {% else %}
-                  <input type="text" class="form-control" name="address_2" placeholder="Boynton Beach">
-                  {% endif %}
-                </div>
-                <!-- end address 2 -->
-
-                <!-- phone number -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">Phone Number</span>
-                  {% if selected_user.phone_number %}
-                  <input type="tel" class="form-control" name="phone_number" value="{{ selected_user.phone_number }}" placeholder="+1 (609) 972-22-22">
-                  {% else %}
-                  <input type="tel" class="form-control" name="phone_number" placeholder="+1 (609) 972-22-22">
-                  {% endif %}
-                </div>
-                <!-- end phone number -->
-              </div>
-              {% endif %}
-
-              {% if selected_user.is_clinician %}
-              <div class="col-sm text-end">
-                <!-- first name -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">First Name</span>
-                  {% if selected_user.first_name %}
-                  <input type="text" class="form-control" name="first_name" value="{{ selected_user.first_name }}" placeholder="john">
-                  {% else %}
-                  <input type="text" class="form-control" name="first_name" placeholder="john">
-                  {% endif %}
-                </div>
-                <!-- end first name -->
-
-                <!-- last name -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">Last Name</span>
-                  {% if selected_user.last_name %}
-                  <input type="text" class="form-control" name="last_name" value="{{ selected_user.last_name }}" placeholder="doe">
-                  {% else %}
-                  <input type="text" class="form-control" name="last_name" placeholder="doe">
-                  {% endif %}
-                </div>
-                <!-- end last name -->
-
-                <!-- email -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">E Mail</span>
-                  <input type="text" class="form-control" name="email" value="{{ selected_user.email }}" placeholder="jhon.doe@site.com" disabled>
-                </div>
-                <!-- end email -->
-
-                <!-- gender -->
-                <div class="mb-2">
-                  <div class="input-group input-group-merge input-group-hover-light">
-                    <div class="input-group-prepend input-group-text">
-                      Gender
-                    </div>
-                    <select class="form-select text-center" name="gender">
-                      <option value="{{ selected_user.gender }}">{{ selected_user.gender|title }}</option>
-                      {% if selected_user.gender == 'male' %}
-                      <option value="female">Female</option>
-                      {% endif %}
-                      {% if selected_user.gender == 'female' %}
-                      <option value="male">Male</option>
-                      {% endif %}
-                    </select>
-                  </div>
-                </div>
-                <!-- end gender -->
-
-                <!-- address -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text" >Address 1</span>
-                  {% if selected_user.address_1 %}
-                  <input type="text" class="form-control" name="address_1" value="{{ selected_user.address_1 }}" placeholder="7463 Bayport St">
-                  {% else %}
-                  <input type="text" class="form-control" name="address_1" placeholder="7463 Bayport St">
-                  {% endif %}
-                </div>
-                <!-- end address -->
-
-                <!-- address 2 -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">Address 2</span>
-                  {% if selected_user.address_2 %}
-                  <input type="text" class="form-control" name="address_2" value="{{ selected_user.address_2 }}" placeholder="Boynton Beach">
-                  {% else %}
-                  <input type="text" class="form-control" name="address_2" placeholder="Boynton Beach">
-                  {% endif %}
-                </div>
-                <!-- end address 2 -->
-
-                <!-- phone number -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">Phone Number</span>
-                  {% if selected_user.phone_number %}
-                  <input type="tel" class="form-control" name="phone_number" value="{{ selected_user.phone_number }}" placeholder="+1 (609) 972-22-22">
-                  {% else %}
-                  <input type="tel" class="form-control" name="phone_number" placeholder="+1 (609) 972-22-22">
-                  {% endif %}
-                </div>
-                <!-- end phone number -->
-
-                <!-- fax -->
-                <div class="input-group input-group-borderless mb-2">
-                  <span class="input-group-text">Fax</span>
-                  {% if selected_user.phone_number %}
-                  <input type="tel" class="form-control" name="fax" value="{{ selected_user.fax }}" placeholder="+1 (609) 972-22-22">
-                  {% else %}
-                  <input type="tel" class="form-control" name="fax" placeholder="+1 (609) 972-22-22">
-                  {% endif %}
-                </div>
-                <!-- end fax -->
-              </div>
-
-              <div class="col-sm text-start">
 
               </div>
-              {% endif %}
             </div>
-            <!-- convert user -->
-            <div class="mb-3 mt-3">
-              <select class="form-control text-center" name="role">
-                {% if selected_user.is_patient %}
-                <option value="patient" selected>Patient</option>
-                <option value="clinician">Clinician</option>
-                <option value="researcher">Researcher</option>
-                {% endif %}
-
-                {% if selected_user.is_clinician %}
-                <option value="clinician" selected>Clinician</option>
-                <option value="patient">Patient</option>
-                <option value="researcher">Researcher</option>
-                {% endif %}
-
-                {% if selected_user.is_researcher %}
-                <option value="researcher" selected>Researcher</option>
-                <option value="patient">Patient</option>
-                <option value="clinician">Clinician</option>
-                {% endif %}
-              </select>
-            </div>
-            <!-- end convert user -->
 
             <!-- submit -->
             <div class="d-grid mb-4">
@@ -568,7 +382,7 @@
       </div>
     </div>
   </div>
-  <!-- End View & Edit User Modal -->
+  <!-- End Change Modal -->
   {% endfor %}
 </div>
 {% endblock %}
