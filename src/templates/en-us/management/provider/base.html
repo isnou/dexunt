@@ -537,72 +537,45 @@
             <small class="bi-three-dots nav-subtitle-replacer"></small>
             <!-- End Management Title -->
 
-            <!-- Users -->
+            <!-- My Store -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="{% url 'admin-manage-users' 'main' %}?init=True" data-placement="left">
-                <i class="fa fa-users nav-icon"></i>
-                <span class="nav-link-title">Users</span>
-              </a>
-            </div>
-            <!-- End Users -->
-
-            <!-- Stores -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="#" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_store' %} active {% endif %}" href="#" data-placement="left">
                 <i class="fa fa-store nav-icon"></i>
-                <span class="nav-link-title">Stores</span>
+                <span class="nav-link-title">My Store</span>
               </a>
             </div>
-            <!-- End Stores -->
+            <!-- End My Store -->
 
-            <!-- Products -->
+            <!-- My Products -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'admin-manage-products' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_products' %} active {% endif %}" href="#" data-placement="left">
                 <i class="fa fa-cart-flatbed nav-icon"></i>
-                <span class="nav-link-title">Products</span>
+                <span class="nav-link-title">My Products</span>
               </a>
             </div>
-            <!-- End Products -->
+            <!-- End My Products -->
 
-            <!-- Flash -->
+            <!-- My Sales -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'flash' %} active {% endif %}" href="{% url 'admin-manage-flash' 'main' %}" data-placement="left">
-                <i class="fa fa-bolt nav-icon"></i>
-                <span class="nav-link-title">Flash</span>
-              </a>
-            </div>
-            <!-- End Flash -->
-
-            <!-- Orders -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'admin-manage-orders' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_sales' %} active {% endif %}" href="#" data-placement="left">
                 <i class="fa fa-cart-shopping nav-icon"></i>
-                <span class="nav-link-title">Orders
+                <span class="nav-link-title">My Sales
                   {% if new_orders_count %}
                   <span class="badge bg-primary rounded-pill ms-1">{{ new_orders_count }}</span>
                   {% endif %}
                 </span>
               </a>
             </div>
-            <!-- End Orders -->
+            <!-- End My Sales -->
 
-            <!-- Shipping -->
+            <!-- My Wallet -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'shipping' %} active {% endif %}" href="{% url 'admin-manage-shipping' 'main' %}" data-placement="left">
-                <i class="fa fa-truck nav-icon"></i>
-                <span class="nav-link-title">Shipping</span>
+              <a class="nav-link {% if nav_side == 'my_wallet' %} active {% endif %}" href="#" data-placement="left">
+                <i class="fa fa-hand-holding-dollar nav-icon"></i>
+                <span class="nav-link-title">My Wallet</span>
               </a>
             </div>
-            <!-- End Shipping -->
-
-            <!-- Coupon -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'coupon' %} active {% endif %}" href="{% url 'admin-manage-coupon' 'main' %}" data-placement="left">
-                <i class="fa fa-tags nav-icon"></i>
-                <span class="nav-link-title">Coupon</span>
-              </a>
-            </div>
-            <!-- End Coupon -->
+            <!-- End My Wallet -->
           </div>
         </div>
         <!-- End Content -->
