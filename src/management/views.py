@@ -10,7 +10,7 @@ from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Desc
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
-from authentication.models import User, users_filter
+from authentication.models import User, users_filter, change_role
 
 @login_required
 @permission_required('main_manager.delete_option')
@@ -47,7 +47,8 @@ def manage_users(request, action):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     items_by_page = 6
-    # --------------- main page ------------------- #
+
+    # -- main page -- #
     if action == 'main':
         url = direction + "/management/admin/users/list.html"
         users_list = User.objects.all().exclude(username=request.user.username)
@@ -89,6 +90,42 @@ def manage_users(request, action):
             'users_list': users_list,
         }
         return render(request, url, context)
+    # -- main page actions -- #
+    if action == 'activate_user':
+        if request.method == 'POST':
+            user_id = request.POST.get('user_id', False)
+            users_page = request.POST.get('users_page', False)
+            request.session['users-page'] = users_page
+            selected_user = User.objects.all().get(id=user_id)
+            selected_user.is_activated = True
+            selected_user.save()
+            return redirect ('admin-manage-users', 'main')
+    if action == 'deactivate_user':
+        if request.method == 'POST':
+            user_id = request.POST.get('user_id', False)
+            users_page = request.POST.get('users_page', False)
+            request.session['users-page'] = users_page
+            selected_user = User.objects.all().get(id=user_id)
+            selected_user.is_activated = False
+            selected_user.save()
+            return redirect ('admin-manage-users', 'main')
+    if action == 'delete_user':
+        if request.method == 'POST':
+            user_id = request.POST.get('user_id', False)
+            users_page = request.POST.get('users_page', False)
+            request.session['users-page'] = users_page
+            selected_user = User.objects.all().get(id=user_id)
+            selected_user.delete()
+            return redirect ('admin-manage-users', 'main')
+    if action == 'change_user':
+        if request.method == 'POST':
+            user_id = request.POST.get('user_id', False)
+            role = request.POST.get('role', False)
+            selected_user = User.objects.all().get(id=user_id)
+            change_role(selected_user, role)
+            return redirect ('admin-manage-users', 'main')
+
+
 
 
 

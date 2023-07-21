@@ -140,6 +140,28 @@ def users_filter(request, users_list, new_filter):
         return users_list.filter(is_provider=True)
     if request.session.get('users_filter', None) == 'blacklist':
         return users_list.filter(is_blacklisted=True)
+#                                                                        #
+def change_role(selected_user, role):
+    if role == 'customer':
+        selected_user.is_customer = True
+        selected_user.is_seller = False
+        selected_user.is_provider = False
+        selected_user.is_member = False
+    if role == 'seller':
+        selected_user.is_customer = False
+        selected_user.is_seller = True
+        selected_user.is_provider = False
+        selected_user.is_member = False
+    if role == 'provider':
+        selected_user.is_customer = False
+        selected_user.is_seller = False
+        selected_user.is_provider = True
+        selected_user.is_member = False
+    if role == 'member':
+        selected_user.is_customer = False
+        selected_user.is_seller = False
+        selected_user.is_provider = False
+        selected_user.is_member = True
 # ---------------------------------------------------------------------- #
 
 
