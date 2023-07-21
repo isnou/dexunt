@@ -922,6 +922,17 @@ def provider_settings(request, action):
             else:
                 request.session['error_messages'] = update_profile_form.errors
             return redirect('provider-settings', 'main')
+    if action == 'change_password':
+        if request.method == 'POST':
+            change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+            if change_password_form.is_valid():
+                change_password_form.save()
+                update_session_auth_hash(request, change_password_form.user)
+            else:
+                request.session['error_messages'] = change_password_form.errors
+            return redirect('provider-settings', 'main')
+
+
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
