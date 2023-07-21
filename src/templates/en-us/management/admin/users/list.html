@@ -131,7 +131,7 @@
         <!-- Table Actions -->
         <tr>
           <td>
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="{% url 'admin-manage-users' 'select_user' %}?user_id={{ selected_user.id }}">
               <div class="avatar avatar-soft-dark avatar-circle">
                 <span class="avatar-initials">{{ selected_user.first_name|title|slice:"1" }}{{ selected_user.last_name|title|slice:"1" }}</span>
               </div>
@@ -183,10 +183,6 @@
               <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
             </a>
             {% endif %}
-
-            <a class="text-body me-3" href="{% url 'admin-manage-users' 'select_user' %}?user_email={{ selected_user.email }}">
-              <i class="fa fa-arrow-pointer fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Select"></i>
-            </a>
 
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#change_modal_{{ selected_user.id }}">
               <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
