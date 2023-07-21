@@ -108,8 +108,7 @@ class User(AbstractUser):
             new_cart.save()
             self.cart = new_cart
         if not self.store:
-            new_store = Store(provider_token = self.token,
-                              en_name = self.username,
+            new_store = Store(en_name = self.username,
                               fr_name = self.username,
                               ar_name = self.username)
             new_store.save()
