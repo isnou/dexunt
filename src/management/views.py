@@ -913,13 +913,16 @@ def provider_settings(request, action):
             'update_profile_photo_form': update_profile_photo_form
         }
         return render(request, url, context)
-    if action == 'edit':
+    if action == 'edit_profile':
         if request.method == 'POST':
-            order_id = request.POST.get('order_id', False)
-            selected_order = Order.objects.all().get(id=order_id)
-            selected_order.delete_products()
-            selected_order.delete()
-            return redirect('admin-manage-orders', 'main')
+            edit_profile_form = UpdateProfileForm(request.POST, instance=request.user)
+            if edit_profile_form.is_valid():
+                user = edit_profile_form.save()
+                login(request, user)
+                return redirect('provider-settings', 'main')
+            else:
+                request.session['error_messages'] = signup_form.errors
+                return redirect('provider-settings', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
