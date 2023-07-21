@@ -162,6 +162,7 @@ def change_role(selected_user, role):
         selected_user.is_seller = False
         selected_user.is_provider = False
         selected_user.is_member = True
+    selected_user.save()
 # ---------------------------------------------------------------------- #
 
 
