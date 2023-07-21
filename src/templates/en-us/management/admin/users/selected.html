@@ -127,7 +127,7 @@
           {% endif %}
 
           <li class="list-group-item">
-            <form action="{% url 'user-manager' 'add_files' %}" id="upload-files" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
+            <form action="{% url 'admin-manage-users' 'main' %}" id="upload-files" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
               <div class="fallback">
