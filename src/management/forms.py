@@ -37,4 +37,5 @@ class DescriptionForm(ModelForm):
 class StoreForm(ModelForm):
     class Meta:
         model = Store
-        fields = ('en_store_name', 'fr_store_name', 'ar_store_name')
+        fields = ('en_name', 'fr_name', 'ar_name', 'en_activity', 'fr_activity', 'ar_activity', 'en_description',
+                  'fr_description', 'ar_description')
