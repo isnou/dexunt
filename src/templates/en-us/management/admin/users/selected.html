@@ -14,8 +14,8 @@
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'home-manager' 'main' %}">Home</a></li>
-        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'user-manager' 'main' %}">Users</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'admin-manage-home' 'main' %}?init=True">Home</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'admin-manage-users' 'main' %}">Users</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ selected_user.first_name|title }} {{ selected_user.last_name|title }}</li>
       </ol>
     </nav>
