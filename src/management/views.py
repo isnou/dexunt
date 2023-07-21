@@ -915,14 +915,13 @@ def provider_settings(request, action):
         return render(request, url, context)
     if action == 'edit_profile':
         if request.method == 'POST':
-            edit_profile_form = UpdateProfileForm(request.POST, instance=request.user)
-            if edit_profile_form.is_valid():
-                user = edit_profile_form.save()
+            update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
+            if update_profile_form.is_valid():
+                user = update_profile_form.save()
                 login(request, user)
-                return redirect('provider-settings', 'main')
             else:
-                request.session['error_messages'] = edit_profile_form.errors
-                return redirect('provider-settings', 'main')
+                request.session['error_messages'] = update_profile_form.errors
+            return redirect('provider-settings', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
