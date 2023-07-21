@@ -124,8 +124,6 @@ class User(AbstractUser):
             self.tags += (', ' + self.province)
         if self.municipality:
             self.tags += (', ' + self.municipality)
-        if self.store_name:
-            self.tags += (', ' + self.store_name)
 
         if self.profile_photo:
             img = Image.open(self.profile_photo.path)

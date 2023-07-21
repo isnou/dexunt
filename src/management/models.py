@@ -226,7 +226,7 @@ class Product(models.Model):
 class Store(models.Model):
     # ----- Technical ----- #
     token = models.CharField(max_length=20, unique=True, null=True)
-    provider_token = models.CharField(max_length=24, null=True)
+    tags = models.CharField(max_length=5000, blank=True, null=True)
     # ----- relations ----- #
     product = models.ManyToManyField(Product, blank=True)
     # ----- content ----- #
@@ -243,6 +243,26 @@ class Store(models.Model):
     ar_description = models.CharField(max_length=700, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
+        self.tags = ''
+        if self.en_name:
+            self.tags += (', ' + self.en_name)
+        if self.fr_name:
+            self.tags += (', ' + self.fr_name)
+        if self.ar_name:
+            self.tags += (', ' + self.ar_name)
+        if self.en_activity:
+            self.tags += (', ' + self.en_activity)
+        if self.fr_activity:
+            self.tags += (', ' + self.fr_activity)
+        if self.ar_activity:
+            self.tags += (', ' + self.ar_activity)
+        if self.en_description:
+            self.tags += (', ' + self.en_description)
+        if self.fr_description:
+            self.tags += (', ' + self.fr_description)
+        if self.ar_description:
+            self.tags += (', ' + self.ar_description)
+
         if not self.token:
             self.token = functions.serial_number_generator(20).upper()
 #                                                                        #
