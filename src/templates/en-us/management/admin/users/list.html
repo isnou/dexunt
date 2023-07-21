@@ -193,7 +193,7 @@
             </a>
             {% endif %}
 
-            <a class="text-body me-3" href="{% url 'user-manager' 'select_user' %}?user_email={{ selected_user.email }}">
+            <a class="text-body me-3" href="{% url 'admin-manage-users' 'select_user' %}?user_email={{ selected_user.email }}">
               <i class="fa fa-arrow-pointer fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Select"></i>
             </a>
 
