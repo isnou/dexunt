@@ -25,6 +25,8 @@ class Album(models.Model):
         verbose_name_plural = "Album"
 #                                                                        #
 class Feature(models.Model):
+    # ----- Technical ----- #
+    tags = models.CharField(max_length=2000, blank=True, null=True)
     # ----- content ----- #
     en_name = models.CharField(max_length=100, blank=True, null=True)
     fr_name = models.CharField(max_length=100, blank=True, null=True)
@@ -33,6 +35,21 @@ class Feature(models.Model):
     en_content = models.TextField(max_length=500, null=True)
     fr_content = models.TextField(max_length=500, null=True)
     ar_content = models.TextField(max_length=500, null=True)
+    def save(self):
+        self.tags = ''
+        if self.en_name:
+            self.tags += (', ' + self.en_name)
+        if self.fr_name:
+            self.tags += (', ' + self.fr_name)
+        if self.ar_name:
+            self.tags += (', ' + self.ar_name)
+        if self.en_content:
+            self.tags += (', ' + self.en_content)
+        if self.fr_content:
+            self.tags += (', ' + self.fr_content)
+        if self.ar_content:
+            self.tags += (', ' + self.ar_content)
+        super().save()
 #                                                                        #
 class Description(models.Model):
     # ----- content ----- #
@@ -55,14 +72,16 @@ class Option(models.Model):
     # ----- Technical ----- #
     has_image = models.BooleanField(default=False)
     is_activated = models.BooleanField(default=False)
+    # ----- #
+    upc = models.CharField(max_length=20, unique=True, null=True)
     product_token = models.CharField(max_length=24, null=True)
     provider_token = models.CharField(max_length=24, null=True)
+    # ----- #
     sale = models.IntegerField(default=0)
-    upc = models.CharField(max_length=20, unique=True, null=True)
-    tag = models.CharField(max_length=500, blank=True, default='tag')
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
     max_quantity = models.IntegerField(default=0)
+    tags = models.CharField(max_length=800, blank=True, null=True)
     # ----- relations ----- #
     review = models.ManyToManyField(Review, blank=True)
     # ----- media ----- #
@@ -89,6 +108,13 @@ class Option(models.Model):
         if self.discount:
             if self.price < self.discount:
                 self.discount = None
+        self.tags = ''
+        if self.en_value:
+            self.tags += (', ' + self.en_value)
+        if self.fr_value:
+            self.tags += (', ' + self.fr_value)
+        if self.ar_value:
+            self.tags += (', ' + self.ar_value)
         super().save()
 # ---------------------------------------------------------------------- #
 
@@ -97,12 +123,15 @@ class Variant(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
     is_available = models.BooleanField(default=False)
+    # ----- #
     product_token = models.CharField(max_length=24, null=True)
     provider_token = models.CharField(max_length=24, null=True)
+    # ----- #
     like = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     created_at = models.DateTimeField(blank=True, null=True)
+    tags = models.CharField(max_length=9000, blank=True, null=True)
     # ----- relations ----- #
     album = models.ManyToManyField(Album, blank=True)
     option = models.ManyToManyField(Option, blank=True)
@@ -125,18 +154,15 @@ class Variant(models.Model):
             if self.price < self.discount:
                 self.discount = None
         super().save()
-
     def clean(self):
         quantity = 0
         for option in self.option.all():
             if option.is_activated:
                 quantity += option.quantity
-
         if quantity:
             self.is_available = True
         else:
             self.is_available = False
-
         deactivate = True
         for option in self.option.all():
             if option.is_activated:
@@ -144,9 +170,23 @@ class Variant(models.Model):
         if deactivate:
             self.is_activated = False
         super().save()
-
     def reset(self):
         self.created_at = timezone.now()
+        super().save()
+    def set_tags(self):
+        self.tags = ''
+        if self.en_title:
+            self.tags += (', ' + self.en_title)
+        if self.en_title:
+            self.tags += (', ' + self.en_title)
+        if self.en_title:
+            self.tags += (', ' + self.en_title)
+        if self.option.all().count():
+            for o in self.option.all():
+                self.tags += (', ' + o.tags)
+        if self.feature.all().count():
+            for f in self.feature.all():
+                self.tags += (', ' + f.tags)
         super().save()
 #                                                                        #
 class Product(models.Model):

@@ -13,6 +13,8 @@ class SelectedProduct(models.Model):
     delivery = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
     lack_of_quantity = models.BooleanField(default=False)
+    # ----- #
+    provider_token = models.CharField(max_length=24, blank=True, null=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
@@ -179,9 +181,6 @@ def add_product_to_cart(cart, variant, option):
     cart.update_prices()
 #                                                                        #
 class Order(models.Model):
-    #valid_until = models.DateTimeField(blank=True, null=True)
-    #is_active = models.BooleanField(default=True)
-
     # ----- Technical ----- #
     is_regular = models.BooleanField(default=True)
     is_flash = models.BooleanField(default=False)
@@ -189,19 +188,51 @@ class Order(models.Model):
     my_qr = models.BooleanField(default=False)
     gift_card = models.BooleanField(default=False)
     # ----- #
-    created_at = models.DateTimeField(auto_now_add=True)
     cart_ref = models.CharField(max_length=20, blank=True, null=True)
     ref = models.CharField(max_length=6, unique=True, null=True)
     quantity_issue = models.BooleanField(default=False)
     # ----- #
-
-
-    status = models.CharField(max_length=100, default='INCOMPLETE')
-    # -- status : INCOMPLETE - FULFILLED -
-
-
-
-    provider_token = models.CharField(max_length=24, blank=True, null=True)
+    is_incomplete = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    # ----- #
+    is_fulfilled = models.BooleanField(default=False)
+    fulfilled_at = models.DateTimeField(blank=True, null=True)
+    # ----- #
+    is_pending = models.BooleanField(default=False)
+    pended_at = models.DateTimeField(blank=True, null=True)
+    pended_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    # ----- #
+    is_cancelled = models.BooleanField(default=False)
+    cancelled_at = models.DateTimeField(blank=True, null=True)
+    cancelled_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    # ----- #
+    is_confirmed = models.BooleanField(default=False)
+    confirmed_at = models.DateTimeField(blank=True, null=True)
+    confirmation_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    # ----- #
+    is_processing = models.BooleanField(default=False)
+    processing_at = models.DateTimeField(blank=True, null=True)
+    processing_by = models.CharField(max_length=24, blank=True, null=True) # -- by the provider
+    # ----- #
+    is_quality_checking = models.BooleanField(default=False)
+    quality_checking_at = models.DateTimeField(blank=True, null=True)
+    quality_checking_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    # ----- #
+    is_given_for_delivery = models.BooleanField(default=False)
+    given_for_delivery_at = models.DateTimeField(blank=True, null=True)
+    given_for_delivery_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    # ----- #
+    is_paid = models.BooleanField(default=False)
+    paid_at = models.DateTimeField(blank=True, null=True)
+    paid_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    # ----- #
+    refund_request = models.BooleanField(default=False)
+    refund_request_at = models.DateTimeField(blank=True, null=True)
+    refund_request_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    # ----- #
+    is_refunded = models.BooleanField(default=False)
+    refunded_at = models.DateTimeField(blank=True, null=True)
+    refunded_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
     # ----- content ----- #
     product = models.ManyToManyField(SelectedProduct, blank=True)
     client_name = models.CharField(max_length=300, blank=True, null=True)
@@ -221,19 +252,6 @@ class Order(models.Model):
 
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    # --------------------------------- options ------------------------------------------------
-
-
-    #theme = models.CharField(max_length=100, default='SIMPLE')
-    # -- themes :  STANDARD - BIRTHDAY - WEDDING - BIRTH
-
-    #occasion = models.CharField(max_length=100, default='UNDEFINED')
-    # -- occasions :  UNDEFINED - BIRTHDAY - WEDDING - BIRTH
-
-
-    #receiver_name = models.CharField(max_length=300, blank=True, null=True)
-    #receiver_message = models.CharField(max_length=500, blank=True, null=True)
-
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
@@ -277,12 +295,12 @@ def get_order(request, selected_cart):
                 selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
-        if Order.objects.all().filter(user_token=request.user.token).exists():
-            selected_order = Order.objects.all().get(user_token=request.user.token)
+        if request.user.order.all().filter(is_incomplete=True).exists():
+            selected_order = Order.objects.all().get(is_incomplete=True)
         else:
-            selected_order = Order(user_token=request.user.token,
-                                   cart_ref=selected_cart.ref,)
+            selected_order = Order(cart_ref=selected_cart.ref)
             selected_order.save()
+            request.user.order,add(selected_order)
 
     new_points = 0
     for p in selected_cart.product.all():
@@ -300,7 +318,8 @@ def get_order(request, selected_cart):
     return selected_order
 #                                                                        #
 def place_order(request, selected_cart, selected_order):
-    selected_order.status = 'FULFILLED'
+    selected_order.is_fulfilled = True
+    selected_order.fulfilled_at = timezone.now()
     selected_order.update_prices()
     selected_cart.delete()
 

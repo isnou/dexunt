@@ -61,6 +61,8 @@ class User(AbstractUser):
     # ----- #
     tags = models.CharField(max_length=5000, blank=True, null=True)
     points = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
     token = models.CharField(max_length=24, unique=True, null=True)
     # ----- relations ----- #
     wallet = models.OneToOneField(
