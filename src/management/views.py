@@ -174,6 +174,7 @@ def manage_users(request, action):
         selected_user = User.objects.all().get(id=user_id)
 
         context = {
+            'nav_side': 'users',
             'selected_user': selected_user,
         }
         return render(request, url, context)
