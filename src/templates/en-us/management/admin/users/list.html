@@ -176,11 +176,11 @@
           <td class="text-end">
             {% if selected_user.is_activated %}
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ selected_user.id }}">
-              <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
+              <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
             </a>
             {% else %}
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ selected_user.id }}">
-              <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
+              <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
             </a>
             {% endif %}
 
