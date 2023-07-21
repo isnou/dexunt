@@ -66,9 +66,9 @@
           <div class="mb-4">
             <label class="form-label">Phone <span class="form-label-secondary">(Optional)</span></label>
             {% if user.phone_number %}
-            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+0(000)000-00-00"}'>
+            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+213 (000)-000-000"}'>
             {% else %}
-            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+0(000)000-00-00"}'>
+            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+213 (000)-000-000"}'>
             {% endif %}
           </div>
 
