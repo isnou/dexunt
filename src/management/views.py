@@ -905,7 +905,7 @@ def provider_settings(request, action):
             errors = None
 
         context = {
-            'nav_side': 'my_store',
+            'nav_side': 'settings',
             'store_form': store_form,
             'errors': errors,
             'password_form': password_form,
