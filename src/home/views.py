@@ -13,9 +13,9 @@ from authentication.models import User
 def home_page(request):
     if request.user.is_authenticated:
         if request.user.is_provider:
-            return redirect('provider-manage-home', 'main')
+            return redirect('provider-home', 'main')
         if request.user.is_seller:
-            return redirect('seller-manage-home', 'main')
+            return redirect('seller-home', 'main')
 
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'

@@ -237,9 +237,13 @@ def router(request):
         return redirect('admin-manage-home', 'main')
 
     if request.user.is_customer:
-        return redirect('customer-manage-home', 'main')
-    else:
-        return redirect('admin-manage-home', 'main')
+        return redirect('customer-home', 'main')
+
+    if request.user.is_provider:
+        return redirect('provider-home', 'main')
+
+    if request.user.is_seller:
+        return redirect('seller-home', 'main')
 
 
 
