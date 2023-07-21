@@ -351,20 +351,15 @@
               <div class="col text-center">
                 <!-- first name -->
                 <div class="input-group input-group-borderless mb-2">
-
-                  <span class="input-group-text">First Name</span>
-                  {% if selected_user.first_name %}
-                  <input type="text" class="form-control" name="first_name" value="{{ selected_user.first_name }}" placeholder="john">
-                  {% else %}
-                  <input type="text" class="form-control" name="first_name" placeholder="john">
-                  {% endif %}
-                </div>
-                <!-- end first name -->
-
-                <div class="form-check mb-3">
+                  <div class="form-check mb-3">
                   <input type="radio" id="formRadio1" class="form-check-input" name="formRadio">
                   <label class="form-check-label" for="formRadio1">Unchecked</label>
                 </div>
+                  
+                </div>
+                <!-- end first name -->
+
+
 
               </div>
             </div>
