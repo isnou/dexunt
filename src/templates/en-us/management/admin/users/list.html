@@ -19,100 +19,12 @@
       </ol>
     </nav>
     <h1 class="page-header-title">Users</h1>
-    <h6 class="text-muted">You have {{ users_list.count }} user</h6>
+    <h6 class="text-muted">You have {{ users_list.all.count }} user</h6>
   </div>
   <div class="col-sm-auto">
   </div>
   <!-- end all products  -->
 </div>
-
-<!-- add new product modal -->
-<div id="add_new_coupon_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-    <!-- Header -->
-    <div class="modal-close">
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <!-- End Header -->
-
-    <!-- Body -->
-    <div class="modal-body">
-      <div>
-        <!-- title -->
-        <div class="text-center mb-7">
-          <h2>Add new coupon</h2>
-        </div>
-        <!-- end title -->
-
-        <form action="{% url 'admin-manage-coupon' 'add_new_coupon' %}" class="js-validate need-validate" novalidate method="post">
-          {% csrf_token %}
-          <div class="col-sm text-end">
-            <!-- coupon valid until -->
-            <div class="form-group mb-4">
-              <div id="projectDeadlineNewProjectFlatpickr" class="js-flatpickr flatpickr-custom input-group"
-                   data-hs-flatpickr-options='{
-                   "appendTo": "#projectDeadlineNewProjectFlatpickr",
-                   "enableTime": true,
-                   "dateFormat": "Y-m-d H:i",
-                   "time_24hr": true,
-                   "minDate": "today",
-                   "wrap": true
-                   }'>
-                <div class="input-group-prepend input-group-text" style="width: 15%;">
-                  Expiration
-                </div>
-                <input type="datetime-local" class="flatpickr-custom-form-control form-control" name="{{ coupon_form.valid_until.name }}" id="projectDeadlineFlatpickrNewProjectLabel" placeholder="select a date or leave empty" data-input>
-              </div>
-            </div>
-            <!-- end coupon valid until -->
-
-            <!-- is subtractive -->
-              <div class="form-check text-start mb-4">
-                <input type="checkbox" class="form-check-input indeterminate-checkbox" name="{{ coupon_form.is_subtractive.name }}" checked>
-                <label class="form-check-label">Regular Coupon <small class="text-body">(deselect for percentage coupons)</small></label>
-              </div>
-              <!-- end is subtractive -->
-
-            <!-- coupon quantity -->
-            <div class="input-group mb-4">
-              <span class="input-group-text" style="width: 15%;">Quantity</span>
-              <input type="number" class="form-control" name="{{ coupon_form.quantity.name }}" placeholder="10">
-            </div>
-            <!-- end coupon quantity -->
-
-            <!-- coupon code -->
-            <div class="input-group mb-4">
-              <span class="input-group-text" style="width: 15%;">Code</span>
-              <input type="text" class="form-control" name="{{ coupon_form.code.name }}" placeholder="HELLO" required>
-              <span class="invalid-feedback text-start">This field is required.</span>
-            </div>
-            <!-- end coupon code -->
-
-            <!-- coupon value -->
-            <div class="input-group mb-4">
-              <span class="input-group-text" style="width: 15%;">Value</span>
-              <input type="number" class="form-control" name="{{ coupon_form.value.name }}" placeholder="40" required>
-              <span class="invalid-feedback text-start">This field is required.</span>
-            </div>
-            <!-- end coupon value -->
-          </div>
-          <!-- submit -->
-          <div class="text-center mb-2">
-
-          </div>
-          <div class="d-grid mb-4">
-            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-          </div>
-          <!-- end submit -->
-        </form>
-      </div>
-    </div>
-    <!-- End Body -->
-    </div>
-  </div>
-</div>
-<!-- end add new product modal -->
 {% endblock %}
 
 <!-- content -->
