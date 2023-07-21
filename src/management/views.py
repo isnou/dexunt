@@ -6,7 +6,7 @@ from add_ons import functions
 from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description
+from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description, Store
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
@@ -121,6 +121,73 @@ def manage_users(request, action):
             selected_user.delete()
             return redirect ('admin-manage-users', 'main')
     if action == 'change_user':
+        if request.method == 'POST':
+            user_id = request.POST.get('user_id', False)
+            role = request.POST.get('role', False)
+            selected_user = User.objects.all().get(id=user_id)
+            change_role(selected_user, role)
+            return redirect ('admin-manage-users', 'main')
+#                                                                        #
+@login_required
+@permission_required('main_manager.delete_option')
+def manage_stores(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 6
+
+    # -- main page -- #
+    if action == 'main':
+        url = direction + "/management/admin/stores/list.html"
+        stores = Store.objects.all()
+
+        if request.GET.get('init', None):
+            request.session['stores_key_word']=None
+
+        if request.session.get('stores_key_word', None):
+            stores = stores.filter(tags__icontains=request.session.get('stores_key_word'))
+            search_key_word = request.session.get('stores_key_word')
+        else:
+            search_key_word = None
+
+        new_filter = request.GET.get('filter', None)
+        if not request.session.get('stores_filter', None):
+            request.session['stores_filter'] = 'all'
+
+        stores = users_filter(request, stores, new_filter)
+        filtered = request.session.get('stores_filter', None)
+
+        if not request.session.get('stores-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('stores-page')
+            request.session['stores-page'] = None
+
+        paginator = Paginator(stores, items_by_page)
+        try:
+            stores = paginator.page(page)
+        except PageNotAnInteger:
+            stores = paginator.page(1)
+        except EmptyPage:
+            stores = paginator.page(paginator.num_pages)
+
+        context = {
+            'nav_side': 'stores',
+            'search_key_word': search_key_word,
+            'filtered': filtered,
+            'stores': stores,
+        }
+        return render(request, url, context)
+    # -- main page actions -- #
+    if action == 'delete_store':
+        if request.method == 'POST':
+            user_id = request.POST.get('user_id', False)
+            users_page = request.POST.get('users_page', False)
+            request.session['users-page'] = users_page
+            selected_user = User.objects.all().get(id=user_id)
+            selected_user.delete()
+            return redirect ('admin-manage-users', 'main')
+    if action == 'edit_store':
         if request.method == 'POST':
             user_id = request.POST.get('user_id', False)
             role = request.POST.get('role', False)

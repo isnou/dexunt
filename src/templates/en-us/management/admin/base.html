@@ -548,7 +548,7 @@
 
             <!-- Stores -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="#" data-placement="left">
+              <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="{% url 'admin-manage-stores' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-store nav-icon"></i>
                 <span class="nav-link-title">Stores</span>
               </a>

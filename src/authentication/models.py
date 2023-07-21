@@ -108,10 +108,10 @@ class User(AbstractUser):
             new_cart.save()
             self.cart = new_cart
         if not self.store:
-            new_store = Store()
-            new_store.save()
-            self.store = new_store
-
+            if self.is_provider:
+                new_store = Store()
+                new_store.save()
+                self.store = new_store
         self.tags = ''
         if self.first_name:
             self.tags += (', ' + self.first_name)
