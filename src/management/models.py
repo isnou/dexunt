@@ -230,17 +230,17 @@ class Store(models.Model):
     # ----- relations ----- #
     product = models.ManyToManyField(Product, blank=True)
     # ----- content ----- #
-    en_name = models.CharField(max_length=240, unique=True, null=True)
-    fr_name = models.CharField(max_length=240, unique=True, null=True)
-    ar_name = models.CharField(max_length=240, unique=True, null=True)
+    en_name = models.CharField(max_length=200, unique=True, null=True)
+    fr_name = models.CharField(max_length=200, unique=True, null=True)
+    ar_name = models.CharField(max_length=200, unique=True, null=True)
     # ----- #
-    en_activity = models.CharField(max_length=700, blank=True, null=True)
-    fr_activity = models.CharField(max_length=700, blank=True, null=True)
-    ar_activity = models.CharField(max_length=700, blank=True, null=True)
+    en_activity = models.CharField(max_length=300, blank=True, null=True)
+    fr_activity = models.CharField(max_length=300, blank=True, null=True)
+    ar_activity = models.CharField(max_length=300, blank=True, null=True)
     # ----- #
-    en_description = models.CharField(max_length=700, blank=True, null=True)
-    fr_description = models.CharField(max_length=700, blank=True, null=True)
-    ar_description = models.CharField(max_length=700, blank=True, null=True)
+    en_description = models.CharField(max_length=600, blank=True, null=True)
+    fr_description = models.CharField(max_length=600, blank=True, null=True)
+    ar_description = models.CharField(max_length=600, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         self.tags = ''
@@ -265,6 +265,7 @@ class Store(models.Model):
 
         if not self.token:
             self.token = functions.serial_number_generator(20).upper()
+        super().save()
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #
