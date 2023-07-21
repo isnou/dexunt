@@ -233,10 +233,14 @@ class Store(models.Model):
     en_name = models.CharField(max_length=240, unique=True, null=True)
     fr_name = models.CharField(max_length=240, unique=True, null=True)
     ar_name = models.CharField(max_length=240, unique=True, null=True)
-
-    en_description = models.CharField(max_length=700, unique=True, null=True)
-    fr_description = models.CharField(max_length=700, unique=True, null=True)
-    ar_description = models.CharField(max_length=700, unique=True, null=True)
+    # ----- #
+    en_activity = models.CharField(max_length=700, blank=True, null=True)
+    fr_activity = models.CharField(max_length=700, blank=True, null=True)
+    ar_activity = models.CharField(max_length=700, blank=True, null=True)
+    # ----- #
+    en_description = models.CharField(max_length=700, blank=True, null=True)
+    fr_description = models.CharField(max_length=700, blank=True, null=True)
+    ar_description = models.CharField(max_length=700, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.token:
