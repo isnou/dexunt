@@ -122,6 +122,7 @@ class User(AbstractUser):
         if self.municipality:
             self.tags += (', ' + self.municipality)
 
+
         if self.profile_photo:
             img = Image.open(self.profile_photo.path)
             if img.height > 200 or img.width > 200:
