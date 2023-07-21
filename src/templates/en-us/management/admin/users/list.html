@@ -251,17 +251,17 @@
   <!-- Table Forms -->
   <form action="{% url 'admin-manage-users' 'activate_user' %}" id="confirm_user_form_{{ selected_user.id }}" method="post">
     {% csrf_token %}
-    <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
+    <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
     <input type="hidden" name="users_page" value='{{ users_list.number }}'>
   </form>
   <form action="{% url 'admin-manage-users' 'deactivate_user' %}" id="pend_user_form_{{ selected_user.id }}" method="post">
     {% csrf_token %}
-    <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
+    <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
     <input type="hidden" name="users_page" value='{{ users_list.number }}'>
   </form>
   <form action="{% url 'admin-manage-users' 'delete_user' %}" id="delete_user_form_{{ selected_user.id }}" method="post">
     {% csrf_token %}
-    <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
+    <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
     <input type="hidden" name="users_page" value='{{ users_list.number }}'>
   </form>
   <!-- End Table Forms -->
