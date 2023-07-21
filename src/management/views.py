@@ -893,7 +893,7 @@ def provider_my_store(request, action):
     if action == 'main':
         url = direction + "/management/provider/my-store/home.html"
         store_form = StoreForm()
-        password_form = PasswordChangeForm()
+        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
         update_profile_form = UpdateProfileForm()
         update_profile_photo_form = UpdateProfilePhotoForm()
 
