@@ -921,7 +921,7 @@ def provider_settings(request, action):
                 login(request, user)
                 return redirect('provider-settings', 'main')
             else:
-                request.session['error_messages'] = signup_form.errors
+                request.session['error_messages'] = edit_profile_form.errors
                 return redirect('provider-settings', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
