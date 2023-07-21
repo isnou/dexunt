@@ -12,6 +12,7 @@ from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
 from authentication.models import User, users_filter, change_role
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from authentication.forms import UpdateProfileForm, UpdateProfilePhotoForm
 
 
