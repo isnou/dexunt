@@ -11,7 +11,6 @@
 <!-- header -->
 {% block page_header %}
 <div class="row align-items-end">
-  <!-- all products  -->
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
@@ -19,11 +18,10 @@
       </ol>
     </nav>
     <h1 class="page-header-title">Users</h1>
-    <h6 class="text-muted">You have {{ users_list }} user</h6>
+    <h6 class="text-muted">Manage users</h6>
   </div>
   <div class="col-sm-auto">
   </div>
-  <!-- end all products  -->
 </div>
 {% endblock %}
 
@@ -107,9 +105,7 @@
         blacklist
       </a>
       {% endif %}
-
     </div>
-
   </div>
   <!-- End Header -->
 
@@ -120,9 +116,9 @@
         <thead class="thead-light">
         <tr>
           <th>Name</th>
-          <th>Gender</th>
-          <th>Kits</th>
           <th>Orders</th>
+          <th>Cart</th>
+          <th>Wallet</th>
           <th>Cart</th>
           <th>Role</th>
           <th></th>
@@ -136,11 +132,7 @@
         <tr>
           <td>
             <a class="d-flex align-items-center" href="#">
-              <div class="avatar
-              {% if selected_user.is_patient %} avatar-soft-primary {% endif %}
-              {% if selected_user.is_clinician %} avatar-soft-secondary {% endif %}
-              {% if selected_user.is_researcher %} avatar-soft-dark {% endif %}
-              avatar-circle">
+              <div class="avatar avatar-soft-dark avatar-circle">
                 <span class="avatar-initials">{{ selected_user.first_name|title|slice:"1" }}{{ selected_user.last_name|title|slice:"1" }}</span>
               </div>
               <div class="ms-3">
@@ -151,21 +143,18 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ selected_user.gender }}</span>
-          </td>
-
-          <td>
-            <span class="d-block fs-5">{{ selected_user.kit.all.count }}</span>
-          </td>
-
-          <td>
             <span class="d-block fs-5">{{ selected_user.order.all.count }}</span>
           </td>
 
           <td>
-            {% if selected_user.cart.product.all.count %}
-            {% else %}
-            {% endif %}
+            <span class="d-block fs-5">{{ selected_user.cart.product.all.count }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.wallet.balance }}</span>
+          </td>
+
+          <td>
             <span class="d-block fs-5">{{ selected_user.cart.product.all.count }}</span>
           </td>
 
