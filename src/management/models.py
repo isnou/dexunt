@@ -230,9 +230,13 @@ class Store(models.Model):
     # ----- relations ----- #
     product = models.ManyToManyField(Product, blank=True)
     # ----- content ----- #
-    en_store_name = models.CharField(max_length=240, unique=True, null=True)
-    fr_store_name = models.CharField(max_length=240, unique=True, null=True)
-    ar_store_name = models.CharField(max_length=240, unique=True, null=True)
+    en_name = models.CharField(max_length=240, unique=True, null=True)
+    fr_name = models.CharField(max_length=240, unique=True, null=True)
+    ar_name = models.CharField(max_length=240, unique=True, null=True)
+
+    en_description = models.CharField(max_length=700, unique=True, null=True)
+    fr_description = models.CharField(max_length=700, unique=True, null=True)
+    ar_description = models.CharField(max_length=700, unique=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.token:

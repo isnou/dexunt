@@ -109,12 +109,12 @@ class User(AbstractUser):
             self.cart = new_cart
         if not self.store:
             new_store = Store(provider_token = self.token,
-                              en_store_name = self.username,
-                              fr_store_name = self.username,
-                              ar_store_name = self.username)
+                              en_name = self.username,
+                              fr_name = self.username,
+                              ar_name = self.username)
             new_store.save()
             self.store = new_store
-            
+
         self.tags = ''
         if self.first_name:
             self.tags += (', ' + self.first_name)
@@ -124,8 +124,6 @@ class User(AbstractUser):
             self.tags += (', ' + self.province)
         if self.municipality:
             self.tags += (', ' + self.municipality)
-        if self.phone_number:
-            self.tags += (', ' + self.phone_number)
         if self.store_name:
             self.tags += (', ' + self.store_name)
 
