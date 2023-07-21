@@ -885,13 +885,13 @@ def provider_home(request, action):
         return render(request, url, context)
 #                                                                        #
 @login_required
-def provider_my_store(request, action):
+def provider_settings(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/provider/my-store/home.html"
+        url = direction + "/management/provider/settings/home.html"
         store_form = StoreForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
         update_profile_form = UpdateProfileForm()
@@ -912,7 +912,7 @@ def provider_my_store(request, action):
             'update_profile_photo_form': update_profile_photo_form
         }
         return render(request, url, context)
-    if action == 'delete_order':
+    if action == 'edit':
         if request.method == 'POST':
             order_id = request.POST.get('order_id', False)
             selected_order = Order.objects.all().get(id=order_id)

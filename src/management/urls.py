@@ -15,7 +15,7 @@ urlpatterns = [
     path('<str:action>/customer/home', views.customer_home, name='customer-manage-home'),
     # ---- provider ---- #
     path('<str:action>/provider/home', views.provider_home, name='provider-manage-home'),
-    path('<str:action>/provider/my/store', views.provider_my_store, name='provider-my-store'),
+    path('<str:action>/provider/settings', views.provider_settings, name='provider-settings'),
     # ---- seller ---- #
     path('<str:action>/seller/home', views.seller_home, name='seller-manage-home'),
 ]
