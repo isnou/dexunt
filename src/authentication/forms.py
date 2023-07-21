@@ -22,6 +22,10 @@ class SignupForm(UserCreationForm):
         fields = ('username', 'phone_number', 'first_name', 'last_name')
 
 class UpdateProfileForm(forms.ModelForm):
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    phone_number = PhoneNumberField(required=False)
+    phone_number.error_messages['invalid'] = 'Incorrect Phone Number!'
     class Meta:
         model = get_user_model()
         fields = ('username', 'phone_number', 'first_name', 'last_name')
