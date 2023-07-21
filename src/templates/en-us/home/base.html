@@ -153,7 +153,6 @@
     </div>
   </div>
 
-  <strong>{{ errors }}</strong><br>
 
   {% if errors %}
   <div class="container text-center col-8" >
@@ -161,7 +160,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
       {% if errors.username.0 %}
-      <strong>{{ errors.username }}</strong><br>
+      <strong>{{ errors.username.0 }}</strong><br>
       {% endif %}
 
       {% if errors.password1.0 %}
@@ -170,14 +169,6 @@
 
       {% if errors.password2.0 %}
       <strong>{{ errors.password2.0 }}</strong><br>
-      {% endif %}
-
-      {% if errors.first_name.0 %}
-      <strong>{{ errors.first_name.0 }}</strong><br>
-      {% endif %}
-
-      {% if errors.last_name.0 %}
-      <strong>{{ errors.last_name.0 }}</strong><br>
       {% endif %}
 
       {% if errors.phone_number.0 %}

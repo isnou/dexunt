@@ -636,8 +636,8 @@
         <div class="container text-center col-8" >
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            {% if errors.email.0 %}
-            <strong>{{ errors.email.0 }}</strong><br>
+            {% if errors.username.0 %}
+            <strong>{{ errors.username.0 }}</strong><br>
             {% endif %}
 
             {% if errors.password1.0 %}
@@ -646,6 +646,14 @@
 
             {% if errors.password2.0 %}
             <strong>{{ errors.password2.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.first_name.0 %}
+            <strong>{{ errors.first_name.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.last_name.0 %}
+            <strong>{{ errors.last_name.0 }}</strong><br>
             {% endif %}
 
             {% if errors.phone_number.0 %}
