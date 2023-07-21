@@ -12,6 +12,9 @@ from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
 from authentication.models import User, users_filter, change_role
 
+
+
+# ------------------------------- Admin -------------------------------- #
 @login_required
 @permission_required('main_manager.delete_option')
 def admin_home(request, action):
@@ -39,7 +42,7 @@ def admin_home(request, action):
             'unpublished_flash_products': unpublished_flash_products,
         }
         return render(request, url, context)
-
+#                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
 def manage_users(request, action):
@@ -124,11 +127,7 @@ def manage_users(request, action):
             selected_user = User.objects.all().get(id=user_id)
             change_role(selected_user, role)
             return redirect ('admin-manage-users', 'main')
-
-
-
-
-
+#                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
 def manage_products(request, action):
@@ -398,7 +397,7 @@ def manage_products(request, action):
                 option.has_image = True
             option.save()
             return redirect('admin-manage-products', 'view_variant')
-
+#                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
 def manage_flash(request, action):
@@ -500,7 +499,7 @@ def manage_flash(request, action):
             if flash_form.is_valid():
                 flash_form.save()
                 return redirect('admin-manage-flash', 'main')
-
+#                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
 def manage_orders(request, action):
@@ -539,7 +538,7 @@ def manage_orders(request, action):
             selected_order.delete_products()
             selected_order.delete()
             return redirect('admin-manage-orders', 'main')
-
+#                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
 def manage_shipping(request, action):
@@ -654,7 +653,7 @@ def manage_shipping(request, action):
             selected_municipality.delete()
 
             return redirect('admin-manage-shipping', 'view_province')
-
+#                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
 def manage_coupon(request, action):
@@ -708,8 +707,25 @@ def manage_coupon(request, action):
             selected_coupon.delete()
 
             return redirect('admin-manage-coupon', 'main')
+# ---------------------------------------------------------------------- #
 
 
 
+# ----------------------------- Customer ------------------------------- #
+@login_required
+def customer_home(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/customer/home.html"
+
+        context = {
+            'nav_side': 'home',
+        }
+        return render(request, url, context)
+#                                                                        #
+# ---------------------------------------------------------------------- #
 
 
