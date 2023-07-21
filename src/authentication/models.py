@@ -75,7 +75,11 @@ class User(AbstractUser):
         on_delete=models.PROTECT,
         null=True
     )
-    store = models.ManyToManyField(Store, blank=True)
+    store = models.OneToOneField(
+        Store,
+        on_delete=models.PROTECT,
+        null=True
+    )
     order = models.ManyToManyField(Order, blank=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=300, blank=True, null=True)
@@ -103,14 +107,14 @@ class User(AbstractUser):
             new_cart = Cart()
             new_cart.save()
             self.cart = new_cart
-        if self.profile_photo:
-            img = Image.open(self.profile_photo.path)
-            if img.height > 200 or img.width > 200:
-                new_img = (200, 200)
-                img.thumbnail(new_img)
-                img.save(self.profile_photo.path)
-        super().save()
-    def set_tags(self):
+        if not self.store:
+            new_store = Store(provider_token = self.token,
+                              en_store_name = self.username,
+                              fr_store_name = self.username,
+                              ar_store_name = self.username)
+            new_store.save()
+            self.store = new_store
+            
         self.tags = ''
         if self.first_name:
             self.tags += (', ' + self.first_name)
@@ -124,6 +128,13 @@ class User(AbstractUser):
             self.tags += (', ' + self.phone_number)
         if self.store_name:
             self.tags += (', ' + self.store_name)
+
+        if self.profile_photo:
+            img = Image.open(self.profile_photo.path)
+            if img.height > 200 or img.width > 200:
+                new_img = (200, 200)
+                img.thumbnail(new_img)
+                img.save(self.profile_photo.path)
         super().save()
 #                                                                        #
 def users_filter(request, users_list, new_filter):
