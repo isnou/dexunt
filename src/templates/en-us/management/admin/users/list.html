@@ -160,7 +160,7 @@
 
           <td>
             {% if selected_user.is_customer %}
-            <span class="d-block fs-5">customer</span>
+            <span class="d-block fs-5">client</span>
             {% endif %}
             {% if selected_user.is_provider %}
             <span class="d-block fs-5">provider</span>
@@ -174,7 +174,7 @@
           </td>
 
           <td class="text-end">
-            {% if selected_user.is_confirmed %}
+            {% if selected_user.is_activated %}
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ selected_user.id }}">
               <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
             </a>
@@ -274,7 +274,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>{{ selected_user.email }} will be deactivated, click Yes to confirm.</p>
+          <p>{{ selected_user.username }} will be deactivated, click Yes to confirm.</p>
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
@@ -293,7 +293,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>{{ selected_user.email }} will be activated, click Yes to confirm.</p>
+          <p>{{ selected_user.username }} will be activated, click Yes to confirm.</p>
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
@@ -312,7 +312,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>{{ selected_user.email }} will be definitely deleted, click Yes to confirm.</p>
+          <p>{{ selected_user.username }} will be definitely deleted, click Yes to confirm.</p>
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
@@ -349,18 +349,57 @@
 
             <div class="row mb-3">
               <div class="col text-center">
-                <!-- first name -->
+                <!-- customer -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                  <input type="radio" id="formRadio1" class="form-check-input" name="formRadio">
-                  <label class="form-check-label" for="formRadio1">Unchecked</label>
+                    {% if selected_user.is_customer %}
+                    <input type="radio" class="form-check-input" name="role" value="customer" checked>
+                    {% else %}
+                    <input type="radio" class="form-check-input" name="role" value="customer">
+                    {% endif %}
+                    <label class="form-check-label">Client</label>
+                  </div>
                 </div>
-                  
+                <!-- end customer -->
+
+                <!-- seller -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    {% if selected_user.is_seller %}
+                    <input type="radio" class="form-check-input" name="role" value="seller" checked>
+                    {% else %}
+                    <input type="radio" class="form-check-input" name="role" value="seller">
+                    {% endif %}
+                    <label class="form-check-label">Seller</label>
+                  </div>
                 </div>
-                <!-- end first name -->
+                <!-- end seller -->
 
+                <!-- provider -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    {% if selected_user.is_provider %}
+                    <input type="radio" class="form-check-input" name="role" value="provider" checked>
+                    {% else %}
+                    <input type="radio" class="form-check-input" name="role" value="provider">
+                    {% endif %}
+                    <label class="form-check-label">Provider</label>
+                  </div>
+                </div>
+                <!-- end provider -->
 
-
+                <!-- member -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    {% if selected_user.is_member %}
+                    <input type="radio" class="form-check-input" name="role" value="member" checked>
+                    {% else %}
+                    <input type="radio" class="form-check-input" name="role" value="member">
+                    {% endif %}
+                    <label class="form-check-label">Member</label>
+                  </div>
+                </div>
+                <!-- end member -->
               </div>
             </div>
 
