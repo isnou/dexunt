@@ -660,6 +660,18 @@
             <strong>{{ errors.phone_number.0 }}</strong><br>
             {% endif %}
 
+            {% if errors.old_password.0 %}
+            <strong>{{ errors.old_password.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.new_password1.0 %}
+            <strong>{{ errors.new_password1.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.new_password2.0 %}
+            <strong>{{ errors.new_password2.0 }}</strong><br>
+            {% endif %}
+
             {% if errors.login %}
             <strong>{{ errors.login }}</strong><br>
             {% endif %}
