@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Variant, Option, Album, Feature, FlashProduct
+from .models import Product, Variant, Option, Album, Feature, FlashProduct, Store
 
 
 admin.site.register(Product)
@@ -8,3 +8,4 @@ admin.site.register(Option)
 admin.site.register(Album)
 admin.site.register(Feature)
 admin.site.register(FlashProduct)
+admin.site.register(Store)
