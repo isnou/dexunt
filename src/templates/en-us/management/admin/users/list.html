@@ -58,10 +58,6 @@
       </a>
       {% endif %}
 
-
-
-
-
       {% if filtered == 'costumers' %}
       <button class="btn btn-white btn-sm me-2" disabled>
         costumers
@@ -262,17 +258,17 @@
 
   {% for selected_user in users_list %}
   <!-- Table Forms -->
-  <form action="{% url 'user-manager' 'activate_user' %}" id="confirm_user_form_{{ selected_user.id }}" method="post">
+  <form action="{% url 'admin-manage-users' 'activate_user' %}" id="confirm_user_form_{{ selected_user.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
     <input type="hidden" name="users_page" value='{{ users_list.number }}'>
   </form>
-  <form action="{% url 'user-manager' 'deactivate_user' %}" id="pend_user_form_{{ selected_user.id }}" method="post">
+  <form action="{% url 'admin-manage-users' 'deactivate_user' %}" id="pend_user_form_{{ selected_user.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
     <input type="hidden" name="users_page" value='{{ users_list.number }}'>
   </form>
-  <form action="{% url 'user-manager' 'delete_user' %}" id="delete_user_form_{{ selected_user.id }}" method="post">
+  <form action="{% url 'admin-manage-users' 'delete_user' %}" id="delete_user_form_{{ selected_user.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="user_email" value='{{ selected_user.email }}'>
     <input type="hidden" name="users_page" value='{{ users_list.number }}'>
