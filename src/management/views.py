@@ -892,9 +892,16 @@ def provider_my_store(request, action):
         url = direction + "/management/provider/my-store/home.html"
         store_form = StoreForm()
 
+        if request.session.get('error_messages'):
+            errors = request.session.get('error_messages')
+            request.session['error_messages'] = None
+        else:
+            errors = None
+
         context = {
             'nav_side': 'my_store',
             'store_form': store_form,
+            'errors': errors,
         }
         return render(request, url, context)
     if action == 'delete_order':
