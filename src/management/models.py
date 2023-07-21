@@ -262,9 +262,9 @@ class Store(models.Model):
             self.tags += (', ' + self.fr_description)
         if self.ar_description:
             self.tags += (', ' + self.ar_description)
-
         if not self.token:
             self.token = functions.serial_number_generator(20).upper()
+
         super().save()
 #                                                                        #
 class FlashProduct(models.Model):
