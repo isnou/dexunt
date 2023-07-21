@@ -7,7 +7,7 @@ from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description, Store
-from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm
+from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm ,StoreForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
 from authentication.models import User, users_filter, change_role
@@ -881,6 +881,29 @@ def provider_home(request, action):
             'nav_side': 'home',
         }
         return render(request, url, context)
+#                                                                        #
+@login_required
+def provider_my_store(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/provider/my-store/home.html"
+        store_form = StoreForm()
+
+        context = {
+            'nav_side': 'my_store',
+            'store_form': store_form,
+        }
+        return render(request, url, context)
+    if action == 'delete_order':
+        if request.method == 'POST':
+            order_id = request.POST.get('order_id', False)
+            selected_order = Order.objects.all().get(id=order_id)
+            selected_order.delete_products()
+            selected_order.delete()
+            return redirect('admin-manage-orders', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
 

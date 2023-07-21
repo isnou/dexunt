@@ -38,4 +38,4 @@ class StoreForm(ModelForm):
     class Meta:
         model = Store
         fields = ('en_name', 'fr_name', 'ar_name', 'en_activity', 'fr_activity', 'ar_activity', 'en_description',
-                  'fr_description', 'ar_description')
+                  'fr_description', 'ar_description', 'en_address', 'fr_address', 'ar_address')

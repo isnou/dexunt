@@ -539,7 +539,7 @@
 
             <!-- My Store -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'my_store' %} active {% endif %}" href="#" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_store' %} active {% endif %}" href="{% url 'provider-my-store' 'main' %}" data-placement="left">
                 <i class="fa fa-store nav-icon"></i>
                 <span class="nav-link-title">My Store</span>
               </a>
