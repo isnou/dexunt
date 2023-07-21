@@ -893,8 +893,9 @@ def provider_settings(request, action):
     if action == 'main':
         url = direction + "/management/provider/settings/home.html"
         store_form = StoreForm()
-        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
         update_profile_form = UpdateProfileForm()
+        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+
         update_profile_photo_form = UpdateProfilePhotoForm()
 
         if request.session.get('error_messages'):

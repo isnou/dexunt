@@ -30,120 +30,49 @@
     <div class="card">
       <!-- Body -->
       <div class="card-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <!-- Form -->
-            <div class="mb-4">
-              <label for="firstNameLabel" class="form-label">First name</label>
-              <input type="text" class="form-control" name="firstName" id="firstNameLabel" placeholder="Clarice" aria-label="Clarice">
-            </div>
-            <!-- End Form -->
+        <form action="{% url 'provider-settings' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+
+          <div class="mb-4">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" value="{{ user.username }}" required>
+            <span class="invalid-feedback text-start">This field is required.</span>
           </div>
-          <!-- End Col -->
 
-          <div class="col-sm-6">
-            <!-- Form -->
-            <div class="mb-4">
-              <label for="lastNameLabel" class="form-label">Last name</label>
-              <input type="text" class="form-control" name="lastName" id="lastNameLabel" placeholder="Boone" aria-label="Boone">
-            </div>
-            <!-- End Form -->
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-
-        <!-- Form -->
-        <div class="mb-4">
-          <label for="emailLabel" class="form-label">Email</label>
-          <input type="email" class="form-control" name="email" id="emailLabel" placeholder="clarice@site.com" aria-label="clarice@site.com">
-        </div>
-        <!-- End Form -->
-
-        <!-- Form -->
-        <div class="js-add-field mb-4" data-hs-add-field-options='{
-                "template": "#addPhoneFieldTemplate",
-                "container": "#addPhoneFieldContainer",
-                "defaultCreated": 0
-              }'>
-          <label for="phoneLabel" class="form-label">Phone <span class="form-label-secondary">(Optional)</span></label>
-
-          <div class="input-group">
-            <input type="text" class="js-input-mask form-control" name="phone" id="phoneLabel" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx" data-hs-mask-options='{
-                     "mask": "+0(000)000-00-00"
-                   }'>
-
-            <div class="input-group-append">
-              <!-- Select -->
-              <div class="tom-select-custom tom-select-custom-end">
-                <select class="js-select form-select" autocomplete="off" name="phoneSelect" data-hs-tom-select-options='{
-                        "searchInDropdown": false,
-                        "hideSearch": true,
-                        "dropdownWidth": "8rem"
-                      }'>
-                  <option value="Mobile" selected>Mobile</option>
-                  <option value="Home">Home</option>
-                  <option value="Work">Work</option>
-                  <option value="Fax">Fax</option>
-                  <option value="Direct">Direct</option>
-                </select>
-                <!-- End Select -->
+          <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-4">
+                  <label class="form-label">First name</label>
+                  {% if user.first_name %}
+                  <input type="text" class="form-control" name="{{ update_profile_form.first_name.name }}" value="{{ user.first_name }}">
+                  {% else %}
+                  <input type="text" class="form-control" name="{{ update_profile_form.first_name.name }}" placeholder="Clarice">
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Container For Input Field -->
-          <div id="addPhoneFieldContainer"></div>
-
-          <a href="javascript:;" class="js-create-field form-link">
-            <i class="bi-plus"></i> Add phone
-          </a>
-        </div>
-        <!-- End Form -->
-
-        <!-- Add Phone Input Field -->
-        <div id="addAddressFieldTemplate" style="display: none;">
-          <div class="input-group-add-field">
-            <input type="text" class="form-control" data-name="addressLine" placeholder="Your address" aria-label="Your address">
-
-            <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
-              <i class="bi-x"></i>
-            </a>
-          </div>
-        </div>
-        <!-- End Add Phone Input Field -->
-
-        <!-- Add Phone Input Field -->
-        <div id="addPhoneFieldTemplate" class="input-group-add-field" style="display: none;">
-          <div class="input-group">
-            <input type="text" class="js-input-mask form-control" data-name="additionlPhone" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx" data-hs-mask-options='{
-                     "mask": "+0(000)000-00-00"
-                   }'>
-
-            <div class="input-group-append">
-              <!-- Select -->
-              <div class="tom-select-custom tom-select-custom-end">
-                <select class="js-select-dynamic form-select" autocomplete="off" data-name="phoneSelect" data-hs-tom-select-options='{
-                        "searchInDropdown": false,
-                        "hideSearch": true,
-                        "dropdownWidth": "8rem"
-                      }'>
-                  <option value="Mobile" selected>Mobile</option>
-                  <option value="Home">Home</option>
-                  <option value="Work">Work</option>
-                  <option value="Fax">Fax</option>
-                  <option value="Direct">Direct</option>
-                </select>
-                <!-- End Select -->
+              <div class="col-sm-6">
+                <div class="mb-4">
+                  <label class="form-label">Last name</label>
+                  {% if user.last_name %}
+                  <input type="text" class="form-control" name="{{ update_profile_form.last_name.name }}" value="{{ user.last_name }}">
+                  {% else %}
+                  <input type="text" class="form-control" name="{{ update_profile_form.last_name.name }}" placeholder="Boone">
+                  {% endif %}
+                </div>
               </div>
-            </div>
           </div>
 
-          <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
-            <i class="bi-x"></i>
-          </a>
-        </div>
-        <!-- End Add Phone Input Field -->
+          <div class="mb-4">
+            <label class="form-label">Phone <span class="form-label-secondary">(Optional)</span></label>
+            {% if user.phone_number %}
+            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+0(000)000-00-00"}'>
+            {% else %}
+            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+0(000)000-00-00"}'>
+            {% endif %}
+          </div>
+
+
 
         <!-- Form Check -->
         <div class="form-check mb-4">
@@ -156,6 +85,8 @@
           <button type="button" class="btn btn-white">Discard</button>
           <button type="button" class="btn btn-primary">Save</button>
         </div>
+        </form>
+
       </div>
       <!-- Body -->
     </div>
