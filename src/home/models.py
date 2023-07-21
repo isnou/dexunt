@@ -318,6 +318,7 @@ def get_order(request, selected_cart):
     return selected_order
 #                                                                        #
 def place_order(request, selected_cart, selected_order):
+    selected_order.is_incomplete = False
     selected_order.is_fulfilled = True
     selected_order.fulfilled_at = timezone.now()
     selected_order.update_prices()
