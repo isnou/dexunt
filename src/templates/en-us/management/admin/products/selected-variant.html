@@ -40,7 +40,7 @@
 </div>
 
 <!-- edit variant modal -->
-<div id="edit_variant" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="edit_variant_modal_title" aria-hidden="true">
+<div id="edit_variant" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-close">
@@ -133,7 +133,7 @@
 <!-- end edit variant modal -->
 
 <!-- add feature modal -->
-<div id="add_feature" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="add_feature_modal_title" aria-hidden="true">
+<div id="add_feature" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-close">
@@ -212,6 +212,86 @@
   </div>
 </div>
 <!-- end add feature modal -->
+
+<!-- add description modal -->
+<div id="add_description" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add Description</h2>
+          </div>
+          <form action="{% url 'admin-manage-products' 'add_description' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+            <div class="row mb-4">
+
+              <span class="divider-center mb-2">Title</span>
+
+              <!-- english title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <input type="text" class="form-control" name="{{ description_form.en_title.name }}" placeholder="storage tips" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end english title -->
+
+              <!-- french title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <input type="text" class="form-control" name="{{ description_form.fr_title.name }}" placeholder="conseils de stockage">
+              </div>
+              <!-- end french title -->
+
+              <!-- arabic title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <input type="text" class="form-control" name="{{ description_form.ar_title.name }}" placeholder="نصائح التخزين" dir="rtl">
+              </div>
+              <!-- end arabic title -->
+
+              <span class="divider-center mb-2">Content</span>
+
+              <!-- product english content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <textarea class="form-control" name="{{ description_form.en_content.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product english description -->
+
+              <!-- product french content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <textarea class="form-control" name="{{ description_form.fr_content.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product french content -->
+
+              <!-- product arabic content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <textarea class="form-control" name="{{ description_form.ar_content.name }}" placeholder="" rows="4" dir="rtl"></textarea>
+              </div>
+              <!-- end product arabic content -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add description modal -->
 {% endblock %}
 
 <!-- product content -->
@@ -241,7 +321,7 @@
               </span>
 
               <button class="btn btn-white btn-icon" form="delete_image_{{ album.id }}">
-                <i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
               </button>
             </div>
           </div>
@@ -546,8 +626,8 @@
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
           <!-- add description button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
-            <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Feature"></i>
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_description">
+            <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Description"></i>
           </button>
           <!-- end add description button -->
         </div>
@@ -914,10 +994,10 @@
           </div>
         </form>
 
-        <p class="mt-4">you can edit or deconvert {{ option.en_value }}.</p>
+        <p class="mt-4">you can edit or remove image.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
-        <button class="btn btn-white" form="deconvert_option_form_{{ option.id }}_{{ variant.id }}">Deconvert</button>
+        <button class="btn btn-white" form="deconvert_option_form_{{ option.id }}_{{ variant.id }}">Remove Image</button>
         <button class="btn btn-white" form="edit_image_option_{{ option.id }}_{{ variant.id }}">Edit</button>
       </div>
     </div>
