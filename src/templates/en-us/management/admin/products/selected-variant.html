@@ -381,7 +381,7 @@
 
       <!-- Body -->
       <div class="card-body">
-        <form action="{% url 'admin-manage-products' 'add_files' %}" id="upload-files" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
+        <form action="{% url 'admin-manage-products' 'add_files' %}" id="variant_upload_images" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
           <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
