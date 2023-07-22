@@ -486,6 +486,19 @@ def manage_products(request, action):
             selected_variant.album.add(album)
 
             return redirect('admin-manage-products', 'view_variant')
+
+    if action == 'add_images':
+        if request.method == 'POST':
+            request.session['product_id_token'] = request.POST.get('product_id', None)
+            variant_id = request.POST.get('variant_id', None)
+            request.session['variant_id_token'] = variant_id
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            album = Album(file_name=selected_variant.en_title + '/' + selected_variant.en_spec + '/',
+                          image=request.FILES.get('variant_image'),
+                          )
+            album.save()
+            selected_variant.album.add(album)
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_image':
         if request.method == 'POST':
             album_id = request.POST.get('album_id', False)
