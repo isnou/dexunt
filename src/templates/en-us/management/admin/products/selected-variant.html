@@ -501,7 +501,7 @@
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
             <i class="fa fa-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
           </button>
-          {% else %}
+          {% endif %}
 
           {% if selected_variant.option.all.count > 1 %}
           <!-- delete option button -->
@@ -1012,7 +1012,6 @@
             </div>
           </div>
         </form>
-
 
         <p>click yes to deconvert {{ option.en_value }}.</p>
       </div>
