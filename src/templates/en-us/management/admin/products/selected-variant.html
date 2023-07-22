@@ -1187,29 +1187,30 @@
             </div>
             <!-- end feature arabic title -->
 
-            <span class="divider-center mb-2">Values</span>
+            <span class="divider-center mb-2">Content</span>
 
-            <!-- feature english value -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">english</span>
-              <input type="text" class="form-control" name="{{ description_form.en_content.name }}" value="{{ description.en_content }}" required>
-              <span class="invalid-feedback text-center">required field.</span>
-            </div>
-            <!-- end feature english value -->
+            <!-- product english content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <textarea class="form-control" name="{{ description_form.en_content.name }}" data-value="{{ description.en_content }}" placeholder="{{ description.en_content }}" rows="4"></textarea>
+              </div>
+              <!-- end product english description -->
 
-            <!-- feature french value -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">french</span>
-              <input type="text" class="form-control" name="{{ description_form.fr_content.name }}" value="{{ description.fr_content }}">
-            </div>
-            <!-- end feature french value -->
+              <!-- product french content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <textarea class="form-control" name="{{ description_form.fr_content.name }}" placeholder="{{ description.fr_content }}" rows="4"></textarea>
+              </div>
+              <!-- end product french content -->
 
-            <!-- feature arabic value -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">arabic</span>
-              <input type="text" class="form-control" name="{{ description_form.ar_content.name }}" value="{{ description.ar_content }}" dir="rtl">
-            </div>
-            <!-- end feature arabic value -->
+              <!-- product arabic content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <textarea class="form-control" name="{{ description_form.ar_content.name }}" placeholder="{{ description.ar_content }}" rows="4" dir="rtl"></textarea>
+              </div>
+              <!-- end product arabic content -->
+
+
           </div>
 
           <!-- submit -->
