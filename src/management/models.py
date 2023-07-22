@@ -125,6 +125,24 @@ class Option(models.Model):
         if self.ar_value:
             self.tags += (', ' + self.ar_value)
         super().save()
+    def duplicate(self, selected_variant):
+        new_option = Option(product_token = self.product_token,
+                            provider_token = self.provider_token,
+                            delivery_quotient = self.delivery_quotient,
+                            points = self.points,
+                            max_quantity = self.max_quantity,
+                            en_value = self.en_value,
+                            fr_value = self.fr_value,
+                            ar_value = self.ar_value,
+                            en_note = self.en_note,
+                            fr_note = self.fr_note,
+                            ar_note = self.ar_note,
+                            cost = self.cost,
+                            price = self.price,
+                            discount = self.discount
+                            )
+        new_option.save()
+        selected_variant.option.add(new_option)
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #

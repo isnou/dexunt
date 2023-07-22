@@ -543,12 +543,14 @@ def manage_products(request, action):
                                 product_token=selected_product.product_token,
                                 )
             new_option.save()
-            selected_option_form = OptionForm(request.POST, request.FILES, instance=new_option)
+            selected_option_form = OptionForm(request.POST, instance=new_option)
             selected_option_form.save()
             selected_variant.option.add(new_option)
             return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_option':
         if request.method == 'POST':
+            request.session['product_id_token'] = request.POST.get('product_id', None)
+            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             option_id = request.POST.get('option_id', False)
 
             option = Option.objects.all().get(id=option_id)
@@ -556,10 +558,12 @@ def manage_products(request, action):
             return redirect('admin-manage-products', 'view_variant')
     if action == 'edit_option':
         if request.method == 'POST':
+            request.session['product_id_token'] = request.POST.get('product_id', None)
+            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             option_id = request.POST.get('option_id', False)
             selected_option = Option.objects.all().get(id=option_id)
 
-            selected_option_form = OptionForm(request.POST, request.FILES, instance=selected_option)
+            selected_option_form = OptionForm(request.POST, instance=selected_option)
             selected_option_form.save()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'convert_option':
@@ -580,6 +584,18 @@ def manage_products(request, action):
             selected_option.image = None
             selected_option.save()
             return redirect('admin-manage-products', 'view_variant')
+    if action == 'duplicate_option':
+        if request.method == 'POST':
+            request.session['product_id_token'] = request.POST.get('product_id', None)
+            variant_id = request.POST.get('variant_id', None)
+            request.session['variant_id_token'] = variant_id
+            option_id = request.POST.get('option_id', False)
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            selected_option = Option.objects.all().get(id=option_id)
+            selected_option.duplicate(selected_variant)
+            return redirect('admin-manage-products', 'view_variant')
+
+
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
