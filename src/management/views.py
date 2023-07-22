@@ -932,6 +932,16 @@ def provider_settings(request, action):
             else:
                 request.session['error_messages'] = change_password_form.errors
             return redirect('provider-settings', 'main')
+    if action == 'edit_store':
+        if request.method == 'POST':
+            store_form = StoreForm(request.POST)
+            if store_form.is_valid():
+                store_form.save()
+            else:
+                request.session['error_messages'] = store_form.errors
+            return redirect('provider-settings', 'main')
+
+
 
 
 #                                                                        #
