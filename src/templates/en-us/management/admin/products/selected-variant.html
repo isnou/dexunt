@@ -510,10 +510,12 @@
           </button>
           {% endif %}
 
+          {% if forloop.counter %}
           <!-- duplicate option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
             <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
           </button>
+          {% endif %}
 
           <!-- edit option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
