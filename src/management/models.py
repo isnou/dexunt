@@ -25,12 +25,13 @@ class Album(models.Model):
     class Meta:
         verbose_name_plural = "Album"
     def save(self, *args, **kwargs):
+        super().save()
         if self.image:
             img = Image.open(self.image.path)
             new_img = (1500, 1200)
             img.thumbnail(new_img)
             img.save(self.image.path)
-        super().save()
+
 #                                                                        #
 class Feature(models.Model):
     # ----- Technical ----- #
