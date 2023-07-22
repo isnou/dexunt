@@ -765,10 +765,9 @@
             <input type="hidden" name="option_id" value='{{ option.id }}'>
 
             <div class="row mb-4">
-              {% if option.has_image %}
               <span class="divider-center mb-2">Image</span>
 
-              <!-- product presentation photo -->
+              <!-- option photo -->
               <div class="mb-3">
                 <div class="col text-center">
                   <label class="avatar avatar-xxl avatar-uploader" for="option_presentation_photo_uploader_{{ option.id }}" style="width: 50%; height: 50%;">
@@ -782,7 +781,7 @@
                   </label>
                 </div>
               </div>
-              <!-- end product presentation photo -->
+              <!-- end option photo -->
 
               <div class="d-grid mb-4">
                 <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
