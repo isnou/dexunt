@@ -499,25 +499,25 @@
           {% if not option.has_image %}
           <!-- convert option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="bi-card-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
+            <i class="fa fa-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
           </button>
           {% else %}
           <!-- deconvert option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deconvert_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="bi-card-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Deconvert"></i>
+            <i class="fa fa-image-slash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Deconvert"></i>
           </button>
           {% endif %}
 
           {% if selected_variant.option.all.count > 1 %}
           <!-- delete option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+            <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
           {% endif %}
 
           <!-- edit option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="bi-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+            <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
         </div>
         <!-- end title bar -->
