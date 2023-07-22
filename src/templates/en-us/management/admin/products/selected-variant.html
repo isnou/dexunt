@@ -386,6 +386,7 @@
                 </button>
               </td>
 
+              <!-- value -->
               <td class="text-start">
                 <h6 class="text-body">
                   <small>{{ option.en_value }}</small>
@@ -396,18 +397,6 @@
                 <h6 class="text-body" dir="rtl">
                   <small>{{ option.ar_value }}</small>
                 </h6>
-              </td>
-
-              <td>
-                <h6 class="text-body">
-                  <small>UPC: {{ option.upc }}</small>
-                </h6>
-
-                {% if not option.is_activated %}
-                <small>
-                  <span class="badge bg-warning">deactivated</span>
-                </small>
-                {% endif %}
               </td>
 
               <!-- price , discount & quantity-->
@@ -435,6 +424,12 @@
                   <span class="badge bg-danger">unavailable</span>
                 </small>
                 {% endif %}
+
+                {% if not option.is_activated %}
+                <small>
+                  <span class="badge bg-warning">deactivated</span>
+                </small>
+                {% endif %}
               </td>
 
               <!-- sell quantity , delivery quotient & gift points-->
@@ -449,6 +444,12 @@
 
                 <h6 class="text-body">
                   <small>Gift Points:{{ option.points }} GP</small>
+                </h6>
+              </td>
+
+              <td>
+                <h6 class="text-body">
+                  <small>UPC: {{ option.upc }}</small>
                 </h6>
               </td>
             </tr>
