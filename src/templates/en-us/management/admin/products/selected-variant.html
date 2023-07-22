@@ -346,10 +346,47 @@
             <tbody>
             {% for option in selected_variant.option.all %}
             <tr>
+              <!-- actions -->
+              <td>
+                {% if not option.has_image %}
+                <!-- convert option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
+                </button>
+                {% endif %}
+
+                {% if selected_variant.option.all.count > 1 %}
+                <!-- delete option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                </button>
+                {% endif %}
+
+                {% if forloop.counter == 1 %}
+                <!-- duplicate option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
+                </button>
+                {% endif %}
+
+                <!-- edit option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </button>
+              </td>
+
               <!-- option title and image -->
               {% if option.has_image %}
-              <td class="table-column-ps-0">
+              <td>
                 <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#deconvert_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <div class="flex-shrink-0">
+                    <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}">
+                  </div>
+                </a>
+              </td>
+              {% else %}
+              <td>
+                <a class="d-flex align-items-center" href="#">
                   <div class="flex-shrink-0">
                     <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}">
                   </div>
@@ -421,35 +458,6 @@
                 <h6 class="text-body">
                   <small>Gift Points:{{ option.points }} GP</small>
                 </h6>
-              </td>
-
-              <!-- actions -->
-              <td>
-                {% if not option.has_image %}
-                <!-- convert option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
-                </button>
-                {% endif %}
-
-                {% if selected_variant.option.all.count > 1 %}
-                <!-- delete option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-                </button>
-                {% endif %}
-
-                {% if forloop.counter == 1 %}
-                <!-- duplicate option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
-                </button>
-                {% endif %}
-
-                <!-- edit option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-                </button>
               </td>
             </tr>
             {% endfor %}
