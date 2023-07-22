@@ -32,7 +32,7 @@ class FeatureForm(ModelForm):
 class DescriptionForm(ModelForm):
     class Meta:
         model = Description
-        fields = ('en_title', 'fr_title', 'ar_title', 'en_content', 'fr_content', 'ar_content', 'image')
+        fields = ('en_title', 'fr_title', 'ar_title', 'en_content', 'fr_content', 'ar_content')
 
 class StoreForm(ModelForm):
     class Meta:
