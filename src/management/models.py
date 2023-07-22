@@ -162,6 +162,11 @@ class Variant(models.Model):
             if self.price < self.discount:
                 self.discount = None
         super().save()
+    def set_option(self, new_option):
+        self.price = new_option.price
+        self.discount = new_option.discount
+        self.option.add(new_option)
+        super().save()
     def get_product(self):
         return Product.objects.all().get(token=self.provider_token)
     def clean(self):

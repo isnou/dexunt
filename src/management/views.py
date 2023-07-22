@@ -283,31 +283,52 @@ def manage_products(request, action):
             all_products = paginator.page(paginator.num_pages)
 
         product_form = ProductForm()
+        variant_form = VariantForm()
+        option_form = OptionForm()
         context = {
             'nav_side': 'products',
             'all_products': all_products,
             'paginate': paginate,
             'product_form': product_form,
+            'variant_form': variant_form,
+            'option_form': option_form,
             'errors': errors,
         }
         return render(request, url, context)
     if action == 'add_new_product':
         if request.method == 'POST':
+            new_option = Option()
+            new_option.save()
             new_variant = Variant()
             new_variant.save()
             new_product = Product()
             new_product.save()
             new_product_form = ProductForm(request.POST, instance=new_product)
+            new_variant_form = VariantForm(request.POST, instance=new_variant)
+            new_option_form = OptionForm(request.POST, instance=new_option)
+
             if new_product_form.is_valid():
                 new_product_form.save()
                 new_product.set_variant(new_variant)
-                request.session['product_id_token'] = new_product.id
-                request.session['variant_id_token'] = new_variant.id
-                return redirect('admin-manage-products', 'view_variant')
+                if new_variant_form.is_valid():
+                    new_variant_form.save()
+                    if new_option_form.is_valid():
+                        new_option_form.save()
+                        new_variant.set_option(new_option)
+                        request.session['product_id_token'] = new_product.id
+                        request.session['variant_id_token'] = new_variant.id
+                        return redirect('admin-manage-products', 'view_variant')
+                    else:
+                        request.session['error_messages'] = new_option_form.errors
+                else:
+                    request.session['error_messages'] = new_variant_form.errors
             else:
+                request.session['error_messages'] = new_product_form.errors
+
+            if not new_product_form.is_valid() or not new_variant_form.is_valid() or not new_option_form.is_valid():
                 new_product.delete()
                 new_variant.delete()
-                request.session['error_messages'] = store_form.errors
+                new_option.delete()
                 return redirect('admin-manage-products', 'main')
 
     if action == 'delete_product':
