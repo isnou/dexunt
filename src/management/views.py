@@ -260,6 +260,13 @@ def manage_products(request, action):
         url = direction + "/management/admin/products/list.html"
         request.session['variant_id_token'] = None
         request.session['product_id_token'] = None
+
+        if request.session.get('error_messages'):
+            errors = request.session.get('error_messages')
+            request.session['error_messages'] = None
+        else:
+            errors = None
+
         all_products = Product.objects.all()
         if all_products.count():
             paginate = True
@@ -281,6 +288,7 @@ def manage_products(request, action):
             'all_products': all_products,
             'paginate': paginate,
             'product_form': product_form,
+            'errors': errors,
         }
         return render(request, url, context)
     if action == 'add_new_product':
@@ -288,7 +296,9 @@ def manage_products(request, action):
             new_product_form = ProductForm(request.POST)
             if new_product_form.is_valid():
                 new_product_form.save()
-                return redirect('admin-manage-products', 'main')
+            else:
+                request.session['error_messages'] = store_form.errors
+            return redirect('admin-manage-products', 'view_product')
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -940,10 +950,6 @@ def provider_settings(request, action):
             else:
                 request.session['error_messages'] = store_form.errors
             return redirect('provider-settings', 'main')
-
-
-
-
 #                                                                        #
 # ---------------------------------------------------------------------- #
 

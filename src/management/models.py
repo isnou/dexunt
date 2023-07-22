@@ -154,6 +154,8 @@ class Variant(models.Model):
             if self.price < self.discount:
                 self.discount = None
         super().save()
+    def get_product(self):
+        return Product.objects.all().get(token=self.provider_token)
     def clean(self):
         quantity = 0
         for option in self.option.all():
@@ -211,7 +213,7 @@ class Product(models.Model):
         if not self.token:
             self.token = functions.serial_number_generator(24).upper()
         super().save()
-    def set_provider(self, provider_token):
+    def set_provider(self, provider_token, store_name):
         self.provider_token = provider_token
         if self.variant.all().count():
             for v in self.variant.all():
@@ -219,6 +221,10 @@ class Product(models.Model):
                 if v.option.all().count():
                     for o in v.option.all():
                         o.provider_token = provider_token
+        self.brand = store_name
+        if self.variant.all().count():
+            for v in self.variant.all():
+                v.brand = store_name
         super().save()
 # ---------------------------------------------------------------------- #
 
