@@ -502,11 +502,6 @@
             <i class="fa fa-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
           </button>
           {% else %}
-          <!-- deconvert option button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deconvert_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="fa fa-image-slash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Deconvert"></i>
-          </button>
-          {% endif %}
 
           {% if selected_variant.option.all.count > 1 %}
           <!-- delete option button -->
@@ -985,11 +980,45 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
+        <!-- convert option form -->
+        <form action="{% url 'admin-manage-products' 'convert_option' %}" id="edit_image_option_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+          <input type="hidden" name="option_id" value='{{ option.id }}'>
+
+          <div class="row mb-4">
+            <span class="divider-center mb-2">Image</span>
+
+            <!-- option photo -->
+            <div class="mb-3">
+              <div class="col text-center">
+                <label class="avatar avatar-xxl avatar-uploader" style="width: 50%; height: 50%;">
+                  <img id="presentation_photo_{{ option.id }}" class="avatar-img" src="{% get_media_prefix %}{{ option.image }}" style="width: 50%;">
+                  <input type="file" class="js-file-attach avatar-uploader-input" name="option_image" data-hs-file-attach-options='{
+                      "textTarget": "#presentation_photo_{{ option.id }}",
+                      "mode": "image",
+                      "targetAttr": "src",
+                      "allowTypes": [".png", ".jpeg", ".jpg"]
+                      }' required>
+                  <span class="invalid-feedback text-center">please upload an image.</span>
+                </label>
+              </div>
+            </div>
+            <!-- end option photo -->
+
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+          </div>
+        </form>
+
+
         <p>click yes to deconvert {{ option.en_value }}.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="deconvert_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
+        <button class="btn btn-white" form="deconvert_option_form_{{ option.id }}_{{ variant.id }}">Deconvert</button>
+        <button class="btn btn-white" form="edit_image_option_{{ option.id }}_{{ variant.id }}">Edit</button>
       </div>
     </div>
   </div>
