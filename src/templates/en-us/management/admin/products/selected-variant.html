@@ -223,7 +223,7 @@
     <!-- photos -->
     <div class="card mb-2">
       <div class="card-header">
-        <h4 class="card-header-title">Photos</h4>
+        <h5 class="card-header-title">Photos</h5>
       </div>
       <div class="card-body">
         <div class="row">
@@ -319,55 +319,20 @@
     {% endif %}
 
     <!-- options -->
-    {% for option in selected_variant.option.all %}
+
     <div class="card mb-2">
       <!-- Header -->
       <div class="card-header card-header-content-md-between">
         <!-- title -->
         <div class="mb-2 mb-md-0">
           <div class="flex-grow-1">
-            <h5 class="text-inherit mb-1">Option {% if option.has_image %} with image {% endif %} : {{ option.en_value }}</h5>
-            <h6 class="text-body"><small>UPC: {{ option.upc }}</small></h6>
-
-            {% if not option.quantity %}
-            <span class="badge bg-danger">unavailable</span>
-            {% endif %}
-
-            {% if not option.is_activated %}
-            <span class="badge bg-warning">deactivated</span>
-            {% endif %}
+            <h5 class="text-inherit mb-1">Options</h5>
           </div>
         </div>
         <!-- end title -->
 
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
-
-          {% if not option.has_image %}
-          <!-- convert option button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="fa fa-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
-          </button>
-          {% endif %}
-
-          {% if selected_variant.option.all.count > 1 %}
-          <!-- delete option button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-          </button>
-          {% endif %}
-
-          {% if forloop.counter == 1 %}
-          <!-- duplicate option button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
-          </button>
-          {% endif %}
-
-          <!-- edit option button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
-            <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-          </button>
         </div>
         <!-- end title bar -->
       </div>
@@ -379,6 +344,7 @@
         <div class="table-responsive">
           <table id="option_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
+            {% for option in selected_variant.option.all %}
             <tr>
               <!-- option title and image -->
               {% if option.has_image %}
@@ -391,28 +357,102 @@
               </td>
               {% endif %}
 
-              <!-- price -->
-              <td>Price :{{ option.price|floatformat:"2g" }} DZD</td>
+              <td class="text-start">
+                <h6 class="text-body">
+                  <small>{{ option.en_value }}</small>
+                </h6>
+                <h6 class="text-body">
+                  <small>{{ option.fr_value }}</small>
+                </h6>
+                <h6 class="text-body" dir="rtl">
+                  <small>{{ option.ar_value }}</small>
+                </h6>
+              </td>
 
-              <!-- discount -->
-              {% if option.discount %}
-              <td>Discount :{{ option.discount|floatformat:"2g" }} DZD</td>
-              {% endif %}
+              <td>
+                <h6 class="text-body">
+                  <small>UPC: {{ option.upc }}</small>
+                </h6>
 
-              <!-- quantity -->
-              {% if option.quantity %}
-              <td>Quantity :{{ option.quantity }}</td>
-              {% endif %}
+                {% if not option.is_activated %}
+                <small>
+                  <span class="badge bg-warning">deactivated</span>
+                </small>
+                {% endif %}
+              </td>
 
-              <!-- sell quantity -->
-              <td>Sell Quantity :{{ option.max_quantity }}</td>
+              <!-- price , discount & quantity-->
+              <td>
+                <h6 class="text-body">
+                  <small>Price :{{ option.price|floatformat:"2g" }} DZD</small>
+                </h6>
 
-              <!-- delivery -->
-              <td>Delivery Quotient:{{ option.delivery_quotient }} %</td>
+                {% if option.discount %}
+                <h6 class="text-body">
+                  <small>Discount :{{ option.discount|floatformat:"2g" }} DZD</small>
+                </h6>
+                {% else %}
+                <h6 class="text-body">
+                  <small>No Discount</small>
+                </h6>
+                {% endif %}
 
-              <!-- gift points -->
-              <td>Gift Points:{{ option.points }} GP</td>
+                {% if option.quantity %}
+                <h6 class="text-body">
+                  <small>Quantity :{{ option.quantity }}</small>
+                </h6>
+                {% else %}
+                <small>
+                  <span class="badge bg-danger">unavailable</span>
+                </small>
+                {% endif %}
+              </td>
+
+              <!-- sell quantity , delivery quotient & gift points-->
+              <td>
+                <h6 class="text-body">
+                  <small>Sell Quantity :{{ option.max_quantity }}</small>
+                </h6>
+
+                <h6 class="text-body">
+                  <small>Delivery Quotient:{{ option.delivery_quotient }} %</small>
+                </h6>
+
+                <h6 class="text-body">
+                  <small>Gift Points:{{ option.points }} GP</small>
+                </h6>
+              </td>
+
+              <!-- actions -->
+              <td>
+                {% if not option.has_image %}
+                <!-- convert option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-image me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Convert"></i>
+                </button>
+                {% endif %}
+
+                {% if selected_variant.option.all.count > 1 %}
+                <!-- delete option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                </button>
+                {% endif %}
+
+                {% if forloop.counter == 1 %}
+                <!-- duplicate option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
+                </button>
+                {% endif %}
+
+                <!-- edit option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </button>
+              </td>
             </tr>
+            {% endfor %}
             </tbody>
           </table>
         </div>
@@ -420,7 +460,7 @@
       </div>
       <!-- Body -->
     </div>
-    {% endfor %}
+
   </div>
 
   <!-- features -->
