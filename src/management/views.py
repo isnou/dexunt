@@ -934,7 +934,7 @@ def provider_settings(request, action):
             return redirect('provider-settings', 'main')
     if action == 'edit_store':
         if request.method == 'POST':
-            store_form = StoreForm(request.POST)
+            store_form = StoreForm(request.POST, instance=request.user.store)
             if store_form.is_valid():
                 store_form.save()
             else:
