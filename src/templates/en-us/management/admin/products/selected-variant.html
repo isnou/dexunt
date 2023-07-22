@@ -534,7 +534,7 @@
               <!-- option title and image -->
               {% if option.has_image %}
               <td class="table-column-ps-0">
-                <a class="d-flex align-items-center" href="#">
+                <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#deconvert_option_modal_{{ option.id }}_{{ variant.id }}">
                   <div class="flex-shrink-0">
                     <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}">
                   </div>
