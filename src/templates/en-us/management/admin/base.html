@@ -744,13 +744,7 @@
     // INITIALIZATION OF FILE ATTACH
     // =======================================================
     new HSFileAttach('.js-file-attach')
-
-    // INITIALIZATION OF DROPZONE
-    // =======================================================
-    HSCore.components.HSDropzone.init('.js-dropzone')
-
     })();
-
   </script>
 
   <!-- Style Switcher JS -->
@@ -792,6 +786,25 @@
 
   <!-- HTMX -->
   <script src="{% static 'htmx/htmx.min.js' %}"></script>
+
+  <!-- Dropzone JS -->
+  <script src="{% static 'dropzone/dropzone.js' %}"></script>
+
+  <script>
+    Dropzone.options.variantUploadImages = {
+      paramName: "variant_image",
+      maxFilesize: 4096,
+      previewTemplate: document.getElementById('preview-template').innerHTML,
+      uploadprogress: function(file, progress, bytesSent) {
+        if (file.previewElement) {
+          var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
+          progressElement.style.width = progress + "%";
+          progressElement.querySelector('.progress-text').textContent = progress + "%";
+        }
+      }
+    };
+    Dropzone.discover();
+  </script>
 
 </body>
 </html>
