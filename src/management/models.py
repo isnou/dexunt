@@ -190,7 +190,7 @@ class Variant(models.Model):
         self.option.add(new_option)
         super().save()
     def get_product(self):
-        return Product.objects.all().get(token=self.provider_token)
+        return Product.objects.all().get(token=self.product_token)
     def clean(self):
         quantity = 0
         for option in self.option.all():
@@ -225,6 +225,31 @@ class Variant(models.Model):
             for f in self.feature.all():
                 self.tags += (', ' + f.tags)
         super().save()
+    def duplicate(self):
+        selected_product = Product.objects.all().get(token=self.product_token)
+        new_variant = Variant(product_token = self.product_token,
+                              provider_token = self.provider_token,
+                              en_title = self.en_title,
+                              fr_title = self.fr_title,
+                              ar_title = self.ar_title,
+                              en_spec = self.en_spec,
+                              fr_spec = self.fr_spec,
+                              ar_spec = self.ar_spec,
+                              brand = self.brand,
+                              price=self.price,
+                              discount=self.discount
+                              )
+        new_variant.save()
+        if self.option.all().count:
+            for o in self.option.all():
+                new_variant.option.add(o)
+        if self.feature.all().count:
+            for o in self.feature.all():
+                new_variant.feature.add(o)
+        if self.description.all().count:
+            for o in self.description.all():
+                new_variant.description.add(o)
+        selected_product.variant.add(new_variant)
 #                                                                        #
 class Product(models.Model):
     # ----- Technical ----- #
