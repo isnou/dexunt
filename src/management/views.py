@@ -293,7 +293,8 @@ def manage_products(request, action):
         return render(request, url, context)
     if action == 'add_new_product':
         if request.method == 'POST':
-            new_product = Product().save()
+            new_product = Product()
+            new_product.save()
             new_product_form = ProductForm(request.POST, instance=new_product)
             if new_product_form.is_valid():
                 new_product_form.save()
