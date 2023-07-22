@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from add_ons import functions
+from PIL import Image
 
 # ---------------------------- Requirements ---------------------------- #
 class Review(models.Model):
@@ -23,6 +24,13 @@ class Album(models.Model):
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Album"
+    def save(self, *args, **kwargs):
+        if self.image:
+            img = Image.open(self.image.path)
+            new_img = (1500, 1200)
+            img.thumbnail(new_img)
+            img.save(self.image.path)
+        super().save()
 #                                                                        #
 class Feature(models.Model):
     # ----- Technical ----- #
