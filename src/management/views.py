@@ -293,15 +293,20 @@ def manage_products(request, action):
         return render(request, url, context)
     if action == 'add_new_product':
         if request.method == 'POST':
+            new_variant = Variant()
+            new_variant.save()
             new_product = Product()
+            new_product.variant.add(new_variant)
             new_product.save()
             new_product_form = ProductForm(request.POST, instance=new_product)
             if new_product_form.is_valid():
                 new_product_form.save()
                 request.session['product_id_token'] = new_product.id
-                return redirect('admin-manage-products', 'view_product')
+                request.session['variant_id_token'] = new_variant.id
+                return redirect('admin-manage-products', 'view_variant')
             else:
                 new_product.delete()
+                new_variant.delete()
                 request.session['error_messages'] = store_form.errors
                 return redirect('admin-manage-products', 'main')
 
