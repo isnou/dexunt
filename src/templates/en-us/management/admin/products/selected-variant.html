@@ -468,7 +468,18 @@
               </td>
 
               <!-- feature title & value -->
-              <td>{{ feature.en_name }} : {{ feature.en_content }}
+              <td>
+                <h6 class="text-body">
+                  <small>{{ feature.en_name }} : {{ feature.en_content }}</small>
+                </h6>
+                <h6 class="text-body">
+                  <small>{{ feature.fr_name }} : {{ feature.fr_content }}</small>
+                </h6>
+                <h6 class="text-body">
+                  <small>{{ feature.ar_content }} : {{ feature.ar_name }}</small>
+                </h6>
+
+
               </td>
             </tr>
             {% endfor %}
