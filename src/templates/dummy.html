@@ -2998,3 +2998,24 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+<form action="{% url 'kit-manager' 'add_files' %}" id="upload-files" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+
+
+
+<img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image.png' %}" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image.png' %}" alt="Image Description" data-hs-theme-appearance="dark">
+
+        <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+            <input name="fileName" type="file" multiple />

@@ -381,8 +381,7 @@
 
       <!-- Body -->
       <div class="card-body">
-        <!-- Dropzone -->
-        <form action="{% url 'admin-manage-products' 'add_image' %}" id="variant-upload-images" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
+        <form action="{% url 'kit-manager' 'add_files' %}" id="upload-files" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
           <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -390,14 +389,14 @@
           <div class="fallback">
             <input name="fileName" type="file" multiple />
           </div>
+
           <div class="dz-message">
             <img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image.png' %}" alt="Image Description" data-hs-theme-appearance="default">
             <img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image-dark.png' %}" alt="Image Description" data-hs-theme-appearance="dark">
-            <div class="mb-4">
-              <span class="d-block h6 mb-1">Browse files</span>
-              <span class="d-block h6 mb-1">or</span>
-              <span class="d-block h6">Drag n' drop</span>
-            </div>
+
+            <h5>Drag and drop your file here</h5>
+            <p class="mb-2">or</p>
+            <span class="btn btn-white btn-sm">Browse files</span>
           </div>
 
           <div id="preview-template" style="display: none;">
@@ -439,12 +438,8 @@
             </div>
           </div>
         </form>
-        <!-- End Dropzone -->
-      </div>
-      <!-- Body -->
-    </div>
-    <!-- photos -->
 
+    </div>
     <!-- photos -->
     <div class="card mb-2">
       <div class="card-header">
