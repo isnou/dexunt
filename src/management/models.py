@@ -117,7 +117,7 @@ class Option(models.Model):
                 self.discount = None
         self.tags = ''
         if self.en_value:
-            self.tags += (', ' + self.en_value)
+            self.tags += ('' + self.en_value)
         if self.fr_value:
             self.tags += (', ' + self.fr_value)
         if self.ar_value:
@@ -163,6 +163,8 @@ class Variant(models.Model):
                 self.discount = None
         super().save()
     def set_option(self, new_option):
+        new_option.product_token = self.product_token
+        new_option.save()
         self.price = new_option.price
         self.discount = new_option.discount
         self.option.add(new_option)
@@ -191,7 +193,7 @@ class Variant(models.Model):
     def set_tags(self):
         self.tags = ''
         if self.en_title:
-            self.tags += (', ' + self.en_title)
+            self.tags += ('' + self.en_title)
         if self.en_title:
             self.tags += (', ' + self.en_title)
         if self.en_title:
@@ -222,6 +224,7 @@ class Product(models.Model):
             self.token = functions.serial_number_generator(24).upper()
         super().save()
     def set_variant(self, new_variant):
+        new_variant.product_token = self.token
         new_variant.en_title = self.en_title
         new_variant.fr_title = self.fr_title
         new_variant.ar_title = self.ar_title
