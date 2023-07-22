@@ -518,7 +518,7 @@ def manage_products(request, action):
             selected_variant = Variant.objects.all().get(id=variant_id)
             new_description = Description()
             new_description.save()
-            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=new_description)
+            selected_description_form = DescriptionForm(request.POST, instance=new_description)
             selected_description_form.save()
             selected_variant.description.add(new_description)
             return redirect('admin-manage-products', 'view_variant')
@@ -532,7 +532,7 @@ def manage_products(request, action):
         if request.method == 'POST':
             description_id = request.POST.get('description_id', False)
             selected_description = Description.objects.all().get(id=description_id)
-            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=selected_description)
+            selected_description_form = DescriptionForm(request.POST, instance=selected_description)
             selected_description_form.save()
             return redirect('admin-manage-products', 'view_variant')
 
