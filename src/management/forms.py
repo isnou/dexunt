@@ -15,7 +15,7 @@ class VariantForm(ModelForm):
 class OptionForm(ModelForm):
     class Meta:
         model = Option
-        fields = ('en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points',
+        fields = ('en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points', 'upc',
                   'delivery_quotient', 'max_quantity', 'quantity', 'is_activated', 'en_note', 'fr_note', 'ar_note')
 
 class FlashForm(ModelForm):
