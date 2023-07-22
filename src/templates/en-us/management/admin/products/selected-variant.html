@@ -640,32 +640,34 @@
             <tbody>
             {% for description in selected_variant.description.all %}
             <tr>
-              <!-- feature action -->
+              <!-- description action -->
               <td class="text-start">
-                <!-- edit feature button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
+                <!-- edit description button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_description_modal_{{ description.id }}">
                   <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </button>
-                <!-- end edit feature button -->
+                <!-- end edit description button -->
 
-                <!-- delete option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
+                <!-- delete description button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_description_modal_{{ description.id }}">
                   <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
-                <!-- end delete option button -->
+                <!-- end delete description button -->
               </td>
 
-              <!-- feature title & value -->
-              <td class="text-start">
-                <h6 class="text-body">
-                  <small>{{ feature.en_name }} : {{ feature.en_content }}</small>
-                </h6>
-                <h6 class="text-body">
-                  <small>{{ feature.fr_name }} : {{ feature.fr_content }}</small>
-                </h6>
-                <h6 class="text-body" dir="rtl">
-                  <small>{{ feature.ar_name }} : {{ feature.ar_content }}</small>
-                </h6>
+              <!-- description title & value -->
+              <td>
+                <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#check_description_modal_{{ description.id }}">
+                  <h6 class="text-body">
+                    <small>{{ description.en_title }}</small>
+                  </h6>
+                  <h6 class="text-body">
+                    <small>{{ description.fr_title }}</small>
+                  </h6>
+                  <h6 class="text-body" dir="rtl">
+                    <small>{{ description.ar_title }}</small>
+                  </h6>
+                </a>
               </td>
             </tr>
             {% endfor %}
@@ -1115,4 +1117,113 @@
 <!-- end delete feature modal -->
 {% endfor %}
 
+<!-- description modals & forms -->
+{% for description in selected_variant.description.all %}
+<!-- delete description form -->
+<form action="{% url 'admin-manage-products' 'delete_description' %}" id="delete_description_{{ description.id }}" class="js-validate need-validate" novalidate method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+  <input type="hidden" name="description_id" value='{{ description.id }}'>
+</form>
+
+<!-- delete description modal -->
+<div id="delete_description_modal_{{ description.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete {{ description.en_title }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_description_{{ description.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end delete description modal -->
+
+<!-- edit description modal -->
+<div id="edit_description_modal_{{ description.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit feature</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form action="{% url 'admin-manage-products' 'edit_description' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+          <input type="hidden" name="description_id" value='{{ description.id }}'>
+
+          <div class="row mb-4">
+
+            <span class="divider-center mb-2">Titles</span>
+
+            <!-- feature english title -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">english</span>
+              <input type="text" class="form-control" name="{{ feature_form.en_name.name }}" value="{{ feature.en_name }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
+            </div>
+            <!-- end feature english title -->
+
+            <!-- feature french title -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">french</span>
+              <input type="text" class="form-control" name="{{ feature_form.fr_name.name }}" value="{{ feature.fr_name }}">
+            </div>
+            <!-- end feature french title -->
+
+            <!-- feature arabic title -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">arabic</span>
+              <input type="text" class="form-control" name="{{ feature_form.ar_name.name }}" value="{{ feature.ar_name }}" dir="rtl">
+            </div>
+            <!-- end feature arabic title -->
+
+            <span class="divider-center mb-2">Values</span>
+
+            <!-- feature english value -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">english</span>
+              <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" value="{{ feature.en_content }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
+            </div>
+            <!-- end feature english value -->
+
+            <!-- feature french value -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">french</span>
+              <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" value="{{ feature.fr_content }}">
+            </div>
+            <!-- end feature french value -->
+
+            <!-- feature arabic value -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">arabic</span>
+              <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" value="{{ feature.ar_content }}" dir="rtl">
+            </div>
+            <!-- end feature arabic value -->
+          </div>
+
+          <!-- submit -->
+          <div class="d-grid mb-4">
+            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+          </div>
+          <!-- end submit -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end delete description modal -->
+{% endfor %}
 {% endblock %}
