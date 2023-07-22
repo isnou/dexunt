@@ -346,6 +346,25 @@
             <tbody>
             {% for option in selected_variant.option.all %}
             <tr>
+              <!-- option title and image -->
+              {% if option.has_image %}
+              <td>
+                <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#deconvert_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <div class="flex-shrink-0">
+                    <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}">
+                  </div>
+                </a>
+              </td>
+              {% else %}
+              <td>
+                <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <div class="flex-shrink-0">
+                    <img class="avatar avatar-lg" src="{% static 'home-page/images/custom/add-image.png' %}">
+                  </div>
+                </a>
+              </td>
+              {% endif %}
+
               <!-- actions -->
               <td>
                 {% if selected_variant.option.all.count > 1 %}
@@ -367,25 +386,6 @@
                   <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </button>
               </td>
-
-              <!-- option title and image -->
-              {% if option.has_image %}
-              <td>
-                <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#deconvert_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <div class="flex-shrink-0">
-                    <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ option.image }}">
-                  </div>
-                </a>
-              </td>
-              {% else %}
-              <td>
-                <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#convert_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <div class="flex-shrink-0">
-                    <img class="avatar avatar-lg" src="{% static 'home-page/images/custom/add-image.png' %}">
-                  </div>
-                </a>
-              </td>
-              {% endif %}
 
               <td class="text-start">
                 <h6 class="text-body">
