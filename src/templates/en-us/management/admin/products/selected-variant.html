@@ -573,30 +573,19 @@
 
   <!-- features -->
   <div class="col-lg-4">
-    {% for feature in selected_variant.feature.all %}
     <div class="card mb-2">
       <div class="card-header card-header-content-md-between">
         <!-- title -->
         <div class="mb-md-0">
           <div class="flex-grow-1">
-            <h5 class="text-inherit mb-0">Feature</h5>
+            <h5 class="text-inherit mb-0">Features</h5>
           </div>
         </div>
         <!-- end title -->
 
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
-          <!-- edit feature button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
-            <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-          </button>
-          <!-- end edit feature button -->
 
-          <!-- delete option button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
-            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-          </button>
-          <!-- end delete option button -->
         </div>
         <!-- end title bar -->
       </div>
@@ -605,19 +594,36 @@
         <div class="table-responsive">
           <table id="feature_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
+            {% for feature in selected_variant.feature.all %}
             <tr>
               <!-- feature title -->
-              <td>{{ feature.en_name }}</td>
+              <td>{{ feature.en_name }}
+              </td>
               <!-- feature value -->
-              <td>{{ feature.en_content }}</td>
+              <td>{{ feature.en_content }}
+              </td>
+              <!-- feature action -->
+              <td class="text-end">
+                <!-- edit feature button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
+                  <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </button>
+                <!-- end edit feature button -->
+
+                <!-- delete option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
+                  <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                </button>
+                <!-- end delete option button -->
+              </td>
             </tr>
+            {% endfor %}
             </tbody>
           </table>
         </div>
         <!-- end table -->
       </div>
     </div>
-    {% endfor %}
   </div>
 </div>
 <!-- end selected variant  -->
