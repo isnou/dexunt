@@ -908,10 +908,10 @@ def provider_settings(request, action):
         context = {
             'nav_side': 'settings',
             'store_form': store_form,
-            'errors': errors,
             'password_form': password_form,
             'update_profile_form': update_profile_form,
-            'update_profile_photo_form': update_profile_photo_form
+            'update_profile_photo_form': update_profile_photo_form,
+            'errors': errors
         }
         return render(request, url, context)
     if action == 'edit_profile':
