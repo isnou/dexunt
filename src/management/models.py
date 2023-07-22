@@ -213,6 +213,12 @@ class Product(models.Model):
         if not self.token:
             self.token = functions.serial_number_generator(24).upper()
         super().save()
+    def set_variant(self, new_variant):
+        new_variant.en_title = self.en_title
+        new_variant.fr_title = self.fr_title
+        new_variant.ar_title = self.ar_title
+        new_variant.save()
+        self.variant.add(new_variant)
     def set_provider(self, provider_token, store_name):
         self.provider_token = provider_token
         if self.variant.all().count():

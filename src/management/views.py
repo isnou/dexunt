@@ -296,11 +296,11 @@ def manage_products(request, action):
             new_variant = Variant()
             new_variant.save()
             new_product = Product()
-            new_product.variant.add(new_variant)
             new_product.save()
             new_product_form = ProductForm(request.POST, instance=new_product)
             if new_product_form.is_valid():
                 new_product_form.save()
+                new_product.set_variant(new_variant)
                 request.session['product_id_token'] = new_product.id
                 request.session['variant_id_token'] = new_variant.id
                 return redirect('admin-manage-products', 'view_variant')
