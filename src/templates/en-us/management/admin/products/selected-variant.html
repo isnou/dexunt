@@ -452,12 +452,10 @@
             <tbody>
             {% for feature in selected_variant.feature.all %}
             <tr>
-              <!-- feature title -->
-              <td>{{ feature.en_name }}
+              <!-- feature title & value -->
+              <td>{{ feature.en_name }} : {{ feature.en_content }}
               </td>
-              <!-- feature value -->
-              <td>{{ feature.en_content }}
-              </td>
+
               <!-- feature action -->
               <td class="text-end">
                 <!-- edit feature button -->
