@@ -452,12 +452,8 @@
             <tbody>
             {% for feature in selected_variant.feature.all %}
             <tr>
-              <!-- feature title & value -->
-              <td>{{ feature.en_name }} : {{ feature.en_content }}
-              </td>
-
               <!-- feature action -->
-              <td class="text-end">
+              <td class="text-start">
                 <!-- edit feature button -->
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
                   <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
@@ -469,6 +465,10 @@
                   <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
                 <!-- end delete option button -->
+              </td>
+
+              <!-- feature title & value -->
+              <td>{{ feature.en_name }} : {{ feature.en_content }}
               </td>
             </tr>
             {% endfor %}
