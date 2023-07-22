@@ -372,6 +372,38 @@
 <!-- selected variant  -->
 <div class="row">
   <div class="col-lg-8 mb-3 mb-lg-0">
+    {% if selected_variant.album.all.count %}
+    <!-- photos -->
+    <div class="card mb-2">
+      <div class="card-header">
+        <h4 class="card-header-title">Photos</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          {% for album in selected_variant.album.all %}
+          <div class="col">
+            <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+              <input type="hidden" name="album_id" value='{{ album.id }}'>
+            </form>
+
+            <div class="row" style="justify-content: center;">
+              <span class="avatar avatar-xxl avatar-4x3 text-center mb-2">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 45%;">
+              </span>
+
+              <button class="btn btn-white btn-icon" form="delete_image_{{ album.id }}">
+                <i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+              </button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <!-- dropzone -->
     <div class="card mb-3 mb-lg-5">
       <!-- Header -->
       <div class="card-header card-header-content-between">
@@ -437,37 +469,6 @@
         </form>
       </div>
     </div>
-
-    {% if selected_variant.album.all.count %}
-    <!-- photos -->
-    <div class="card mb-2">
-      <div class="card-header">
-        <h4 class="card-header-title">Photos</h4>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          {% for album in selected_variant.album.all %}
-          <div class="col">
-            <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
-              {% csrf_token %}
-              <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-              <input type="hidden" name="album_id" value='{{ album.id }}'>
-            </form>
-
-            <div class="row" style="justify-content: center;">
-              <span class="avatar avatar-xxl avatar-4x3 text-center mb-2">
-                <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 45%;">
-              </span>
-
-              <button class="btn btn-white btn-icon" form="delete_image_{{ album.id }}">
-                <i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-              </button>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
     {% endif %}
 
     <!-- options -->
@@ -507,10 +508,12 @@
             <i class="bi-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
 
+          {% if selected_variant.option.all.count > 1 %}
           <!-- delete option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
             <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
+          {% endif %}
         </div>
         <!-- end title bar -->
       </div>
