@@ -657,17 +657,15 @@
 
               <!-- description title & value -->
               <td>
-                <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#check_description_modal_{{ description.id }}">
-                  <h6 class="text-body">
-                    <small>{{ description.en_title }}</small>
-                  </h6>
-                  <h6 class="text-body">
-                    <small>{{ description.fr_title }}</small>
-                  </h6>
-                  <h6 class="text-body" dir="rtl">
-                    <small>{{ description.ar_title }}</small>
-                  </h6>
-                </a>
+                <h6 class="text-body">
+                  {{ description.en_title }}
+                </h6>
+                <h6 class="text-body">
+                  {{ description.fr_title }}
+                </h6>
+                <h6 class="text-body" dir="rtl">
+                  {{ description.ar_title }}
+                </h6>
               </td>
             </tr>
             {% endfor %}
@@ -1170,7 +1168,7 @@
             <!-- feature english title -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">english</span>
-              <input type="text" class="form-control" name="{{ feature_form.en_name.name }}" value="{{ feature.en_name }}" required>
+              <input type="text" class="form-control" name="{{ description_form.en_title.name }}" value="{{ description.en_name }}" required>
               <span class="invalid-feedback text-center">required field.</span>
             </div>
             <!-- end feature english title -->
@@ -1178,14 +1176,14 @@
             <!-- feature french title -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">french</span>
-              <input type="text" class="form-control" name="{{ feature_form.fr_name.name }}" value="{{ feature.fr_name }}">
+              <input type="text" class="form-control" name="{{ description_form.fr_title.name }}" value="{{ description.fr_name }}">
             </div>
             <!-- end feature french title -->
 
             <!-- feature arabic title -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">arabic</span>
-              <input type="text" class="form-control" name="{{ feature_form.ar_name.name }}" value="{{ feature.ar_name }}" dir="rtl">
+              <input type="text" class="form-control" name="{{ description_form.ar_title.name }}" value="{{ description.ar_name }}" dir="rtl">
             </div>
             <!-- end feature arabic title -->
 
@@ -1194,7 +1192,7 @@
             <!-- feature english value -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">english</span>
-              <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" value="{{ feature.en_content }}" required>
+              <input type="text" class="form-control" name="{{ description_form.en_content.name }}" value="{{ description.en_content }}" required>
               <span class="invalid-feedback text-center">required field.</span>
             </div>
             <!-- end feature english value -->
@@ -1202,14 +1200,14 @@
             <!-- feature french value -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">french</span>
-              <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" value="{{ feature.fr_content }}">
+              <input type="text" class="form-control" name="{{ description_form.fr_content.name }}" value="{{ description.fr_content }}">
             </div>
             <!-- end feature french value -->
 
             <!-- feature arabic value -->
             <div class="input-group mb-2">
               <span class="input-group-text" style="width: 25%;">arabic</span>
-              <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" value="{{ feature.ar_content }}" dir="rtl">
+              <input type="text" class="form-control" name="{{ description_form.ar_content.name }}" value="{{ description.ar_content }}" dir="rtl">
             </div>
             <!-- end feature arabic value -->
           </div>
