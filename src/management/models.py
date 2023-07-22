@@ -52,6 +52,9 @@ class Feature(models.Model):
         super().save()
 #                                                                        #
 class Description(models.Model):
+    # ----- Technical ----- #
+    has_image = models.BooleanField(default=False)
+    image_to_the_right = models.BooleanField(default=False)
     # ----- content ----- #
     en_title = models.CharField(max_length=100, blank=True, null=True)
     fr_title = models.CharField(max_length=100, blank=True, null=True)
@@ -93,6 +96,10 @@ class Option(models.Model):
     en_value = models.CharField(max_length=200, blank=True, null=True)
     fr_value = models.CharField(max_length=200, blank=True, null=True)
     ar_value = models.CharField(max_length=200, blank=True, null=True)
+    # ----- #
+    en_note = models.CharField(max_length=500, blank=True, null=True)
+    fr_note = models.CharField(max_length=500, blank=True, null=True)
+    ar_note = models.CharField(max_length=500, blank=True, null=True)
     # ----- #
     quantity = models.IntegerField(default=0)
     cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
@@ -136,6 +143,7 @@ class Variant(models.Model):
     album = models.ManyToManyField(Album, blank=True)
     option = models.ManyToManyField(Option, blank=True)
     feature = models.ManyToManyField(Feature, blank=True)
+    description = models.ManyToManyField(Description, blank=True)
     # ----- content ----- #
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
@@ -197,15 +205,10 @@ class Product(models.Model):
     provider_token = models.CharField(max_length=24, null=True)
     # ----- relations ----- #
     variant = models.ManyToManyField(Variant, blank=True)
-    description = models.ManyToManyField(Description, blank=True)
     # ----- content ----- #
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
-    # ----- #
-    en_note = models.CharField(max_length=500, blank=True, null=True)
-    fr_note = models.CharField(max_length=500, blank=True, null=True)
-    ar_note = models.CharField(max_length=500, blank=True, null=True)
     # ----- #
     brand = models.CharField(max_length=80, blank=True, null=True)
     # ----- functions ----- #
