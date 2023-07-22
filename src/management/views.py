@@ -564,14 +564,21 @@ def manage_products(request, action):
             return redirect('admin-manage-products', 'view_variant')
     if action == 'convert_option':
         if request.method == 'POST':
-            option_id = request.POST.get('option_id', False)
-
-            option = Option.objects.all().get(id=option_id)
-            if option.has_image:
-                option.has_image = False
-            else:
-                option.has_image = True
-            option.save()
+            request.session['product_id_token'] = request.POST.get('product_id', None)
+            request.session['variant_id_token'] = request.POST.get('variant_id', None)
+            selected_option = Option.objects.all().get(id=request.POST.get('option_id', False))
+            selected_option.has_image = True
+            selected_option.image = request.FILES.get('option_image')
+            selected_option.save()
+            return redirect('admin-manage-products', 'view_variant')
+    if action == 'deconvert_option':
+        if request.method == 'POST':
+            request.session['product_id_token'] = request.POST.get('product_id', None)
+            request.session['variant_id_token'] = request.POST.get('variant_id', None)
+            selected_option = Option.objects.all().get(id=request.POST.get('option_id', False))
+            selected_option.has_image = False
+            selected_option.image = None
+            selected_option.save()
             return redirect('admin-manage-products', 'view_variant')
 #                                                                        #
 @login_required
