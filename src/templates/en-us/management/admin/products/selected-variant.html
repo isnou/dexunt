@@ -372,6 +372,49 @@
 <!-- selected variant  -->
 <div class="row">
   <div class="col-lg-8 mb-3 mb-lg-0">
+    <div class="card mb-3 mb-lg-5">
+      <!-- Header -->
+      <div class="card-header card-header-content-between">
+        <h4 class="card-header-title">Media</h4>
+
+        <!-- Dropdown -->
+        <div class="dropdown">
+          <a class="btn btn-ghost-secondary btn-sm" href="ecommerce-add-product.html#!" id="mediaDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            Add media from URL <i class="bi-chevron-down"></i>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-end mt-1">
+            <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#addImageFromURLModal">
+              <i class="bi-link dropdown-item-icon"></i> Add image from URL
+            </a>
+            <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#embedVideoModal">
+              <i class="bi-youtube dropdown-item-icon"></i> Embed video
+            </a>
+          </div>
+        </div>
+        <!-- End Dropdown -->
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="card-body">
+        <!-- Dropzone -->
+        <div id="attachFilesNewProjectLabel" class="js-dropzone dz-dropzone dz-dropzone-card">
+          <div class="dz-message">
+            <img class="avatar avatar-xl avatar-4x3 mb-3" src="assets/svg/illustrations/oc-browse.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="avatar avatar-xl avatar-4x3 mb-3" src="assets/svg/illustrations-light/oc-browse.svg" alt="Image Description" data-hs-theme-appearance="dark">
+
+            <h5>Drag and drop your file here</h5>
+
+            <p class="mb-2">or</p>
+
+            <span class="btn btn-white btn-sm">Browse files</span>
+          </div>
+        </div>
+        <!-- End Dropzone -->
+      </div>
+      <!-- Body -->
+    </div>
     <!-- photos -->
     <div class="card mb-2">
       <div class="card-header">
