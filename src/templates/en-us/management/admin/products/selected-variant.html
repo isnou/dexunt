@@ -22,7 +22,7 @@
     </nav>
     <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
     <h6>
-      Token :<span class="text-muted ms-1">{{ selected_product.product_token }}</span>
+      Token :<span class="text-muted ms-1">{{ selected_product.token }}</span>
       | Price :<span class="text-muted ms-1">{{ selected_variant.price }} DZD</span>
       {% if selected_variant.discount %}
       | Discount :<span class="text-muted ms-1">{{ selected_variant.discount }} DZD</span>
@@ -588,116 +588,17 @@
         <div class="d-grid d-sm-flex gap-2">
           <!-- edit feature button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
-            <i class="bi-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+            <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
           <!-- end edit feature button -->
 
           <!-- delete option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
-            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
           <!-- end delete option button -->
         </div>
         <!-- end title bar -->
-
-        <!-- delete feature modal -->
-        <div id="delete_feature_modal_{{ feature.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_feature_modal_title_{{ feature.id }}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="delete_feature_modal_title_{{ feature.id }}"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-center">
-                <p>click yes to delete {{ feature.en_name }}.</p>
-              </div>
-              <div class="modal-footer" style="align-self: center;">
-                <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-primary" form="delete_feature_{{ feature.id }}">Yes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end delete feature modal -->
-
-        <!-- edit feature modal -->
-        <div id="edit_feature_modal_{{ feature.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="edit_feature_modal_title_{{ feature.id }}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="edit_feature_modal_title_{{ feature.id }}">Edit feature</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-
-              <div class="modal-body">
-                <form action="{% url 'admin-manage-products' 'edit_feature' %}" class="js-validate need-validate" novalidate method="post">
-                  {% csrf_token %}
-                  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-                  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-                  <input type="hidden" name="feature_id" value='{{ feature.id }}'>
-
-                  <div class="row mb-4">
-
-                    <span class="divider-center mb-2">Titles</span>
-
-                    <!-- feature english title -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">english</span>
-                      <input type="text" class="form-control" name="{{ feature_form.en_name.name }}" value="{{ feature.en_name }}" required>
-                      <span class="invalid-feedback text-center">required field.</span>
-                    </div>
-                    <!-- end feature english title -->
-
-                    <!-- feature french title -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">french</span>
-                      <input type="text" class="form-control" name="{{ feature_form.fr_name.name }}" value="{{ feature.fr_name }}">
-                    </div>
-                    <!-- end feature french title -->
-
-                    <!-- feature arabic title -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">arabic</span>
-                      <input type="text" class="form-control" name="{{ feature_form.ar_name.name }}" value="{{ feature.ar_name }}" dir="rtl">
-                    </div>
-                    <!-- end feature arabic title -->
-
-                    <span class="divider-center mb-2">Values</span>
-
-                    <!-- feature english value -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">english</span>
-                      <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" value="{{ feature.en_content }}" required>
-                      <span class="invalid-feedback text-center">required field.</span>
-                    </div>
-                    <!-- end feature english value -->
-
-                    <!-- feature french value -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">french</span>
-                      <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" value="{{ feature.fr_content }}">
-                    </div>
-                    <!-- end feature french value -->
-
-                    <!-- feature arabic value -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">arabic</span>
-                      <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" value="{{ feature.ar_content }}" dir="rtl">
-                    </div>
-                    <!-- end feature arabic value -->
-                  </div>
-
-                  <!-- submit -->
-                  <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-                  </div>
-                  <!-- end submit -->
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end delete feature modal -->
       </div>
       <div class="card-body">
         <!-- table -->
@@ -715,13 +616,6 @@
         </div>
         <!-- end table -->
       </div>
-      <!-- delete feature form -->
-      <form action="{% url 'admin-manage-products' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
-          {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-          <input type="hidden" name="feature_id" value='{{ feature.id }}'>
-        </form>
     </div>
     {% endfor %}
   </div>
@@ -729,7 +623,7 @@
 <!-- end selected variant  -->
 
 
-<!-- option modals & forms -->
+<!-- options modals & forms -->
 {% for option in selected_variant.option.all %}
 <!-- delete option form -->
 <form action="{% url 'admin-manage-products' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" method="post">
@@ -1046,6 +940,116 @@
     </div>
   </div>
 </div>
+{% endfor %}
+
+<!-- features modals & forms -->
+{% for feature in selected_variant.feature.all %}
+<!-- delete feature form -->
+<form action="{% url 'admin-manage-products' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+    <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+    <input type="hidden" name="feature_id" value='{{ feature.id }}'>
+  </form>
+
+<!-- delete feature modal -->
+<div id="delete_feature_modal_{{ feature.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete {{ feature.en_name }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_feature_{{ feature.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end delete feature modal -->
+
+<!-- edit feature modal -->
+<div id="edit_feature_modal_{{ feature.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit feature</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form action="{% url 'admin-manage-products' 'edit_feature' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+          <input type="hidden" name="feature_id" value='{{ feature.id }}'>
+
+          <div class="row mb-4">
+
+            <span class="divider-center mb-2">Titles</span>
+
+            <!-- feature english title -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">english</span>
+              <input type="text" class="form-control" name="{{ feature_form.en_name.name }}" value="{{ feature.en_name }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
+            </div>
+            <!-- end feature english title -->
+
+            <!-- feature french title -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">french</span>
+              <input type="text" class="form-control" name="{{ feature_form.fr_name.name }}" value="{{ feature.fr_name }}">
+            </div>
+            <!-- end feature french title -->
+
+            <!-- feature arabic title -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">arabic</span>
+              <input type="text" class="form-control" name="{{ feature_form.ar_name.name }}" value="{{ feature.ar_name }}" dir="rtl">
+            </div>
+            <!-- end feature arabic title -->
+
+            <span class="divider-center mb-2">Values</span>
+
+            <!-- feature english value -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">english</span>
+              <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" value="{{ feature.en_content }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
+            </div>
+            <!-- end feature english value -->
+
+            <!-- feature french value -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">french</span>
+              <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" value="{{ feature.fr_content }}">
+            </div>
+            <!-- end feature french value -->
+
+            <!-- feature arabic value -->
+            <div class="input-group mb-2">
+              <span class="input-group-text" style="width: 25%;">arabic</span>
+              <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" value="{{ feature.ar_content }}" dir="rtl">
+            </div>
+            <!-- end feature arabic value -->
+          </div>
+
+          <!-- submit -->
+          <div class="d-grid mb-4">
+            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+          </div>
+          <!-- end submit -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end delete feature modal -->
 {% endfor %}
 
 {% endblock %}
