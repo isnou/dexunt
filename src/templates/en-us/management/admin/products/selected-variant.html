@@ -479,7 +479,8 @@
         <!-- title -->
         <div class="mb-2 mb-md-0">
           <div class="flex-grow-1">
-            <h5 class="text-inherit">Option {% if option.has_image %} with image {% endif %} : {{ option.en_value }}</h5>
+            <h5 class="text-inherit mb-1">Option {% if option.has_image %} with image {% endif %} : {{ option.en_value }}</h5>
+            <h6 class="text-body"><small>UPC: {{ option.upc }}</small></h6>
 
             {% if not option.quantity %}
             <span class="badge bg-danger">unavailable</span>
@@ -488,8 +489,6 @@
             {% if not option.is_activated %}
             <span class="badge bg-warning">deactivated</span>
             {% endif %}
-
-            <h6 class="text-body">UPC: {{ option.upc }}</h6>
           </div>
         </div>
         <!-- end title -->
