@@ -372,13 +372,12 @@ def manage_products(request, action):
         selected_product_form = ProductForm(request.POST, instance=selected_product)
 
         variant_form = VariantForm()
-        description_form = DescriptionForm()
+
         context = {
             'nav_side': 'products',
             'selected_product': selected_product,
             'selected_product_form': selected_product_form,
             'variant_form': variant_form,
-            'description_form': description_form,
         }
         return render(request, url, context)
     if action == 'edit_product':
@@ -412,30 +411,7 @@ def manage_products(request, action):
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant.delete()
             return redirect('admin-manage-products', 'view_product')
-    if action == 'add_description':
-        if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
-            selected_product = Product.objects.all().get(id=product_id)
-            new_description = Description(file_name=selected_product.en_title,
-                                          )
-            new_description.save()
-            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=new_description)
-            selected_description_form.save()
-            selected_product.description.add(new_description)
-            return redirect('admin-manage-products', 'view_product')
-    if action == 'delete_description':
-        if request.method == 'POST':
-            description_id = request.POST.get('description_id', False)
-            selected_description = Description.objects.all().get(id=description_id)
-            selected_description.delete()
-            return redirect('admin-manage-products', 'view_product')
-    if action == 'edit_description':
-        if request.method == 'POST':
-            description_id = request.POST.get('description_id', False)
-            selected_description = Description.objects.all().get(id=description_id)
-            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=selected_description)
-            selected_description_form.save()
-            return redirect('admin-manage-products', 'view_product')
+
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"
@@ -452,15 +428,17 @@ def manage_products(request, action):
         selected_variant.clean()
 
         variant_form = VariantForm()
-        feature_form = FeatureForm()
         option_form = OptionForm()
+        feature_form = FeatureForm()
+        description_form = DescriptionForm()
         context = {
             'nav_side': 'products',
             'selected_variant': selected_variant,
             'selected_product': selected_product,
             'variant_form': variant_form,
-            'feature_form': feature_form,
             'option_form': option_form,
+            'feature_form': feature_form,
+            'description_form': description_form,
         }
         return render(request, url, context)
     if action == 'edit_variant':
@@ -506,6 +484,7 @@ def manage_products(request, action):
             album = Album.objects.all().get(id=album_id)
             album.delete()
             return redirect('admin-manage-products', 'view_variant')
+        
     if action == 'add_feature':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -532,6 +511,32 @@ def manage_products(request, action):
             selected_feature_form = FeatureForm(request.POST, instance=selected_feature)
             selected_feature_form.save()
             return redirect('admin-manage-products', 'view_variant')
+
+    if action == 'add_description':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            new_description = Description(file_name=selected_product.en_title,
+                                          )
+            new_description.save()
+            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=new_description)
+            selected_description_form.save()
+            selected_product.description.add(new_description)
+            return redirect('admin-manage-products', 'view_variant')
+    if action == 'delete_description':
+        if request.method == 'POST':
+            description_id = request.POST.get('description_id', False)
+            selected_description = Description.objects.all().get(id=description_id)
+            selected_description.delete()
+            return redirect('admin-manage-products', 'view_variant')
+    if action == 'edit_description':
+        if request.method == 'POST':
+            description_id = request.POST.get('description_id', False)
+            selected_description = Description.objects.all().get(id=description_id)
+            selected_description_form = DescriptionForm(request.POST, request.FILES, instance=selected_description)
+            selected_description_form.save()
+            return redirect('admin-manage-products', 'view_variant')
+
     if action == 'add_option':
         if request.method == 'POST':
             product_id = request.session.get('product_id_token')

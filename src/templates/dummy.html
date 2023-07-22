@@ -3054,3 +3054,28 @@
             </span>
           </div>
           {% endif %}
+
+
+
+
+
+
+
+
+
+              <span class="divider-center mb-2">Image</span>
+              <!-- description photo -->
+              <div class="mb-3">
+                <div class="col text-center">
+                  <label class="avatar avatar-xxl avatar-uploader" for="option_presentation_photo_uploader" style="width: 50%; height: 50%;">
+                    <img id="option_presentation_photo" class="avatar-img" src="{% static 'management/img/img_download.png' %}" style="width: 50%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="{{ description_form.image.name }}" id="option_presentation_photo_uploader" data-hs-file-attach-options='{
+                        "textTarget": "#option_presentation_photo",
+                        "mode": "image",
+                        "targetAttr": "src",
+                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                        }'>
+                  </label>
+                </div>
+              </div>
+              <!-- end description photo -->
