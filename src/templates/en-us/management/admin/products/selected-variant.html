@@ -510,6 +510,11 @@
           </button>
           {% endif %}
 
+          <!-- duplicate option button -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
+            <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
+          </button>
+
           <!-- edit option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
             <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
@@ -731,7 +736,15 @@
 <!-- option modals & forms -->
 {% for option in selected_variant.option.all %}
 <!-- delete option form -->
-<form action="{% url 'admin-manage-products' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
+<form action="{% url 'admin-manage-products' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+  <input type="hidden" name="option_id" value='{{ option.id }}'>
+</form>
+
+<!-- duplicate option form -->
+<form action="{% url 'admin-manage-products' 'duplicate_option' %}" id="duplicate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
   <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -739,7 +752,7 @@
 </form>
 
 <!-- deconvert option form -->
-<form action="{% url 'admin-manage-products' 'deconvert_option' %}" id="deconvert_option_form_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post">
+<form action="{% url 'admin-manage-products' 'deconvert_option' %}" id="deconvert_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
   <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -747,7 +760,7 @@
 </form>
 
 <!-- convert option modal -->
-<div id="convert_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="edit_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
+<div id="convert_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <!-- Header -->
@@ -953,7 +966,7 @@
 </div>
 
 <!-- delete option modal -->
-<div id="delete_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
+<div id="delete_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -971,8 +984,27 @@
   </div>
 </div>
 
+<!-- duplicate option modal -->
+<div id="duplicate_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to duplicate {{ option.en_value }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="duplicate_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- deconvert option modal -->
-<div id="deconvert_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_option_modal_title_{{ option.id }}_{{ variant.id }}" aria-hidden="true">
+<div id="deconvert_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
