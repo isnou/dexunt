@@ -24,7 +24,7 @@ class Album(models.Model):
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Album"
-        
+
 #                                                                        #
 class Feature(models.Model):
     # ----- Technical ----- #
