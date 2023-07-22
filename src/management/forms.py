@@ -30,6 +30,11 @@ class FeatureForm(ModelForm):
         fields = ('en_name', 'fr_name', 'ar_name', 'en_content', 'fr_content', 'ar_content')
 
 class DescriptionForm(ModelForm):
+    fr_title = forms.CharField(required=False)
+    ar_title = forms.CharField(required=False)
+    en_content = forms.TextField(required=False)
+    fr_content = forms.TextField(required=False)
+    ar_content = forms.TextField(required=False)
     class Meta:
         model = Description
         fields = ('en_title', 'fr_title', 'ar_title', 'en_content', 'fr_content', 'ar_content')
