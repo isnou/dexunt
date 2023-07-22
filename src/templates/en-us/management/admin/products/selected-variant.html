@@ -430,12 +430,18 @@
                   <div class="dz-error-mark">
                     <span class="fa fa-times-circle"></span>
                   </div>
+                  <div class="dz-error-message">
+                    <small data-dz-errormessage></small>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </form>
       </div>
+    </div>
+
+    {% if selected_variant.album.all.count %}
     <!-- photos -->
     <div class="card mb-2">
       <div class="card-header">
@@ -465,6 +471,8 @@
         </div>
       </div>
     </div>
+    {% endif %}
+
     <!-- options -->
     {% for option in selected_variant.option.all %}
     <div class="card mb-2">
@@ -763,7 +771,7 @@
       <!-- Body -->
     </div>
     {% endfor %}
-  </div>
+
 
   <!-- features -->
   <div class="col-lg-4">
