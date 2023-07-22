@@ -802,15 +802,15 @@
               <!-- end product gift points -->
 
               <!-- product activation -->
-
-
-              <div class="form-check form-switch mb-4 mt-4">
-                {% if option.is_activated %}
-                <input type="checkbox" name="{{ option_form.is_activated.name }}" class="form-check-input" checked>
-                {% else %}
-                <input type="checkbox" name="{{ option_form.is_activated.name }}" class="form-check-input">
-                {% endif %}
-                <label class="form-check-label">Activation</label>
+              <div class="input-group">
+                <div class="form-check form-switch mb-4 mt-4">
+                  {% if option.is_activated %}
+                  <input type="checkbox" name="{{ option_form.is_activated.name }}" class="form-check-input" checked>
+                  {% else %}
+                  <input type="checkbox" name="{{ option_form.is_activated.name }}" class="form-check-input">
+                  {% endif %}
+                  <label class="form-check-label">Activation</label>
+                </div>
               </div>
               <!-- end product activation -->
             </div>
