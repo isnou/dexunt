@@ -508,8 +508,6 @@
           </button>
           {% endif %}
 
-
-
           {% if selected_variant.option.all.count > 1 %}
           <!-- delete option button -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
@@ -773,7 +771,7 @@
           <!-- end title -->
 
           <!-- convert option form -->
-          <form action="{% url 'admin-manage-products' 'convert_option' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'admin-manage-products' 'convert_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
@@ -792,7 +790,8 @@
                         "mode": "image",
                         "targetAttr": "src",
                         "allowTypes": [".png", ".jpeg", ".jpg"]
-                        }'>
+                        }' required>
+                    <span class="invalid-feedback text-center">please upload an image.</span>
                   </label>
                 </div>
               </div>
@@ -831,7 +830,7 @@
           <!-- end title -->
 
           <!-- edit option form -->
-          <form action="{% url 'admin-manage-products' 'edit_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          <form action="{% url 'admin-manage-products' 'edit_option' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
