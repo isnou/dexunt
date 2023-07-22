@@ -484,7 +484,7 @@ def manage_products(request, action):
             album = Album.objects.all().get(id=album_id)
             album.delete()
             return redirect('admin-manage-products', 'view_variant')
-        
+
     if action == 'add_feature':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -514,14 +514,13 @@ def manage_products(request, action):
 
     if action == 'add_description':
         if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
-            selected_product = Product.objects.all().get(id=product_id)
-            new_description = Description(file_name=selected_product.en_title,
-                                          )
+            variant_id = request.POST.get('variant_id', False)
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            new_description = Description()
             new_description.save()
             selected_description_form = DescriptionForm(request.POST, request.FILES, instance=new_description)
             selected_description_form.save()
-            selected_product.description.add(new_description)
+            selected_variant.description.add(new_description)
             return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_description':
         if request.method == 'POST':
