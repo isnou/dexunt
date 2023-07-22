@@ -793,7 +793,8 @@
   <script>
     Dropzone.options.variantUploadImages = {
       paramName: "variant_image",
-      maxFilesize: 4096,
+      maxFilesize: 1024,
+      maxFiles: 4,
       previewTemplate: document.getElementById('preview-template').innerHTML,
       uploadprogress: function(file, progress, bytesSent) {
         if (file.previewElement) {
