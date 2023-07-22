@@ -230,9 +230,7 @@ class Store(models.Model):
     # ----- relations ----- #
     product = models.ManyToManyField(Product, blank=True)
     # ----- content ----- #
-    en_name = models.CharField(max_length=200, unique=True, null=True)
-    fr_name = models.CharField(max_length=200, unique=True, null=True)
-    ar_name = models.CharField(max_length=200, unique=True, null=True)
+    name = models.CharField(max_length=200, unique=True, null=True)
     # ----- #
     en_activity = models.CharField(max_length=300, blank=True, null=True)
     fr_activity = models.CharField(max_length=300, blank=True, null=True)
@@ -248,12 +246,8 @@ class Store(models.Model):
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         self.tags = ''
-        if self.en_name:
-            self.tags += (', ' + self.en_name)
-        if self.fr_name:
-            self.tags += (', ' + self.fr_name)
-        if self.ar_name:
-            self.tags += (', ' + self.ar_name)
+        if self.name:
+            self.tags += (', ' + self.name)
 
         if self.en_activity:
             self.tags += (', ' + self.en_activity)
