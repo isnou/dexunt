@@ -298,7 +298,7 @@
             <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
               tabindex="0">
               <div class="my-8">
-                {% for description in selected_product.description.all %}
+                {% for description in selected_variant.description.all %}
                 <div class="mb-6">
                   <!-- text -->
                   <h4 class="mb-1">{{ description.en_title|title }}</h4>
