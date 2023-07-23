@@ -124,6 +124,11 @@ class Option(models.Model):
             self.tags += (', ' + self.fr_value)
         if self.ar_value:
             self.tags += (', ' + self.ar_value)
+        selected_product = Product.objects.all().get(token=self.product_token)
+        for v in selected_product.variant.all():
+            v.price = self.price
+            v.discount = self.discount
+            v.save()
         super().save()
     def duplicate(self, selected_variant):
         new_option = Option(product_token = self.product_token,
