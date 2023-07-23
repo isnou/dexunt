@@ -102,22 +102,6 @@
               </div>
               <!-- end product discount -->
 
-
-              {% if selected_variant.is_activated %}
-              <span class="divider-center mb-2">Activate product</span>
-              {% else %}
-              <span class="divider-center mb-2">Deactivate product</span>
-              {% endif %}
-              <!-- product activation -->
-              <div class="form-check form-switch mb-4">
-                {% if selected_variant.is_activated %}
-                <input type="checkbox" name="{{ variant_form.is_activated.name }}" class="form-check-input" checked>
-                {% else %}
-                <input type="checkbox" name="{{ variant_form.is_activated.name }}" class="form-check-input">
-                {% endif %}
-              </div>
-              <!-- end product activation -->
-
             </div>
             <!-- submit -->
             <div class="d-grid mb-4">
@@ -446,6 +430,18 @@
 
               <!-- actions -->
               <td>
+                {% if option.is_activated %}
+                <!-- deactivate option button -->
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-toggle-on fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
+                </button>
+                {% else %}
+                <!-- activate option button -->
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-toggle-off fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate"></i>
+                </button>
+                {% endif %}
+
                 {% if selected_variant.option.all.count > 1 %}
                 <!-- delete option button -->
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
@@ -464,18 +460,6 @@
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </button>
-
-                {% if option.is_activated %}
-                <!-- deactivate option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-toggle-on" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
-                </button>
-                {% else %}
-                <!-- activate option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-toggle-off" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate"></i>
-                </button>
-                {% endif %}
               </td>
 
               <!-- value -->
@@ -694,6 +678,22 @@
 
 <!-- options modals & forms -->
 {% for option in selected_variant.option.all %}
+<!-- activate option form -->
+<form action="{% url 'admin-manage-products' 'activate_option' %}" id="activate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+  <input type="hidden" name="option_id" value='{{ option.id }}'>
+</form>
+
+<!-- deactivate option form -->
+<form action="{% url 'admin-manage-products' 'deactivate_option' %}" id="deactivate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+  <input type="hidden" name="option_id" value='{{ option.id }}'>
+</form>
+
 <!-- delete option form -->
 <form action="{% url 'admin-manage-products' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
@@ -717,6 +717,47 @@
   <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="option_id" value='{{ option.id }}'>
 </form>
+
+
+
+
+<!-- activate option modal -->
+<div id="activate_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to activate {{ option.en_value }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="activate_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- deactivate option modal -->
+<div id="deactivate_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to deactivate {{ option.en_value }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="deactivate_option_form_{{ option.id }}_{{ variant.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- convert option modal -->
 <div id="convert_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
@@ -893,19 +934,6 @@
                 <span class="input-group-text" style="width: 20%;">GP</span>
               </div>
               <!-- end product gift points -->
-
-              <!-- product activation -->
-              <div class="input-group">
-                <div class="form-check form-switch mb-4 mt-4">
-                  {% if option.is_activated %}
-                  <input type="checkbox" name="{{ option_form.is_activated.name }}" class="form-check-input" checked>
-                  {% else %}
-                  <input type="checkbox" name="{{ option_form.is_activated.name }}" class="form-check-input">
-                  {% endif %}
-                  <label class="form-check-label">Activation</label>
-                </div>
-              </div>
-              <!-- end product activation -->
 
               <!-- upc -->
               <div class="input-group mb-2">

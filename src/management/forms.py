@@ -10,19 +10,19 @@ class ProductForm(ModelForm):
 class VariantForm(ModelForm):
     class Meta:
         model = Variant
-        fields = ('en_spec', 'fr_spec', 'ar_spec', 'price', 'discount', 'is_activated')
+        fields = ('en_spec', 'fr_spec', 'ar_spec', 'price', 'discount')
 
 class OptionForm(ModelForm):
     class Meta:
         model = Option
         fields = ('en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points', 'upc',
-                  'delivery_quotient', 'max_quantity', 'quantity', 'is_activated', 'en_note', 'fr_note', 'ar_note')
+                  'delivery_quotient', 'max_quantity', 'quantity', 'en_note', 'fr_note', 'ar_note')
 
 class FlashForm(ModelForm):
     class Meta:
         model = FlashProduct
         fields = ('en_title', 'fr_title', 'ar_title', 'en_spec', 'fr_spec', 'ar_spec', 'en_value', 'fr_value',
-                  'ar_value', 'image', 'valid_until', 'discount', 'is_activated')
+                  'ar_value', 'image', 'valid_until', 'discount')
 
 class FeatureForm(ModelForm):
     class Meta:

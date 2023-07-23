@@ -69,6 +69,18 @@
 
               <!-- actions -->
               <td>
+                {% if variant.is_activated %}
+                <!-- deactivate variant button -->
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_variant_modal_{{ variant.id }}">
+                  <i class="fa fa-toggle-on fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
+                </button>
+                {% else %}
+                <!-- activate variant button -->
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#activate_variant_modal_{{ variant.id }}">
+                  <i class="fa fa-toggle-off fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate"></i>
+                </button>
+                {% endif %}
+
                 <!-- view variant -->
                 <button class="btn btn-white btn-icon" form="view_variant_form_{{ selected_product.id }}_{{ variant.id }}">
                   <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
@@ -229,6 +241,20 @@
 
 <!-- variants modals & forms -->
 {% for variant in selected_product.variant.all %}
+<!-- activate variant form -->
+<form action="{% url 'admin-manage-products' 'activate_variant' %}" id="activate_variant_form_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+</form>
+
+<!-- deactivate variant form -->
+<form action="{% url 'admin-manage-products' 'deactivate_variant' %}" id="deactivate_variant_form_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+</form>
+
 <!-- delete variant form -->
 <form action="{% url 'admin-manage-products' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
@@ -249,6 +275,47 @@
   <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
   <input type="hidden" name="variant_id" value='{{ variant.id }}'>
 </form>
+
+
+
+
+<!-- activate variant modal -->
+<div id="activate_variant_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to activate {{ variant.en_spec }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="activate_variant_form_{{ variant.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- deactivate variant modal -->
+<div id="deactivate_variant_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to deactivate {{ variant.en_spec }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="deactivate_variant_form_{{ variant.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- delete variant modal -->
 <div id="delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}" aria-hidden="true">
