@@ -387,6 +387,13 @@ def manage_products(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('admin-manage-products', 'view_product')
+    if action == 'duplicate_variant':
+        if request.method == 'POST':
+            request.session['product_id_token'] = request.POST.get('product_id', None)
+            variant_id = request.POST.get('variant_id', None)
+            selected_variant = Variant.objects.all().get(id=variant_id)
+            selected_variant.duplicate()
+            return redirect('admin-manage-products', 'view_product')
     if action == 'add_new_variant':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)

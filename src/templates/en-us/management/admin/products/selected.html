@@ -224,43 +224,68 @@
       </div>
     </div>
   </div>
+</div>
+<!-- end selected product  -->
 
-  <!-- variants modals & forms -->
-  {% for variant in selected_product.variant.all %}
-  <!-- delete variant form -->
-  <form action="{% url 'admin-manage-products' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-    <input type="hidden" name="variant_id" value='{{ variant.id }}'>
-  </form>
+<!-- variants modals & forms -->
+{% for variant in selected_product.variant.all %}
+<!-- delete variant form -->
+<form action="{% url 'admin-manage-products' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ variant.id }}'>
+</form>
 
-  <!-- view variant form -->
-  <form action="{% url 'admin-manage-products' 'view_variant' %}" id="view_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-    <input type="hidden" name="variant_id" value='{{ variant.id }}'>
-  </form>
+<!-- view variant form -->
+<form action="{% url 'admin-manage-products' 'view_variant' %}" id="view_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ variant.id }}'>
+</form>
 
-  <!-- delete variant modal -->
-  <div id="delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <p>click yes to delete {{ variant.en_spec }}.</p>
-        </div>
-        <div class="modal-footer" style="align-self: center;">
-          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary" form="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}">Yes</button>
-        </div>
+<!-- duplicate variant form -->
+<form action="{% url 'admin-manage-products' 'duplicate_variant' %}" id="duplicate_variant_form_{{ variant.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+  <input type="hidden" name="variant_id" value='{{ variant.id }}'>
+</form>
+
+<!-- delete variant modal -->
+<div id="delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete {{ variant.en_spec }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}">Yes</button>
       </div>
     </div>
   </div>
-  {% endfor %}
-
 </div>
-<!-- end selected product  -->
+
+<!-- duplicate variant modal -->
+<div id="duplicate_variant_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to duplicate {{ selected_product.en_title }} - {{ variant.en_spec }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="duplicate_variant_form_{{ variant.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock %}
