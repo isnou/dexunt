@@ -330,7 +330,6 @@ def manage_products(request, action):
                 new_variant.delete()
                 new_option.delete()
                 return redirect('admin-manage-products', 'main')
-
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
@@ -364,6 +363,9 @@ def manage_products(request, action):
         request.session['variant_id_token'] = None
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
+            request.session['product_id_token'] = product_id
+        elif request.method == 'GET':
+            product_id = request.GET.get('product_id')
             request.session['product_id_token'] = product_id
         else:
             product_id = request.session.get('product_id_token')
