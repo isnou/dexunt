@@ -79,7 +79,7 @@ def product_page(request, action):
             option_id = request.GET.get('option_id')
 
         selected_variant = Variant.objects.all().get(id=variant_id)
-        selected_product = Product.objects.all().get(product_token=selected_variant.product_token)
+        selected_product = Product.objects.all().get(product_token=selected_variant.token)
 
         if option_id:
             selected_option = Option.objects.all().get(id=option_id)
