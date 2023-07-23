@@ -242,6 +242,7 @@ class Variant(models.Model):
         new_variant.save()
         if self.option.all().count:
             for o in self.option.all():
+                o.upc = None
                 o.pk = None
                 o.save()
                 new_variant.option.add(o)
