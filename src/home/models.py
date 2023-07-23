@@ -29,6 +29,7 @@ class SelectedProduct(models.Model):
     fr_detail = models.CharField(max_length=400, blank=True, null=True)
     ar_detail = models.CharField(max_length=400, blank=True, null=True)
     # ----- #
+    cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=1)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
@@ -157,10 +158,8 @@ def add_product_to_cart(cart, variant, option):
 
         cart_product = SelectedProduct(delivery=option.delivery_quotient,
                                        points=option.points,
-
                                        file_name= 'cart' + variant.en_title + '/' + variant.en_spec + '/' + option.en_value,
                                        image=image,
-
                                        token=variant.product_token,
                                        option_id=option.id,
                                        variant_id=variant.id,
@@ -170,6 +169,7 @@ def add_product_to_cart(cart, variant, option):
                                        en_detail= variant.en_spec + '-' + option.en_value,
                                        fr_detail= variant.fr_spec + '-' + option.fr_value,
                                        ar_detail= variant.ar_spec + '-' + option.ar_value,
+                                       cost= option.cost
                                        )
         if option.discount:
             cart_product.price = option.discount

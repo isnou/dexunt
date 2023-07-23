@@ -21,7 +21,7 @@ from management.models import Store
 
 
 # ------------------------------ Billing ------------------------------- #
-class Bill(models.Model):
+class Transaction(models.Model):
     # ----- Technical ----- #
     user_token = models.CharField(max_length=24, null=True)
     store = models.CharField(max_length=240, blank=True, null=True)
@@ -32,14 +32,14 @@ class Bill(models.Model):
 #                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #
-    bill = models.ManyToManyField(Bill, blank=True)
+    transaction = models.ManyToManyField(Transaction, blank=True)
     # ----- content ----- #
     balance = models.IntegerField(default=0)
     # ----- functions ----- #
     def update(self):
         self.balance = 0
-        for bill in self.bill.all():
-            self.balance += bill.amount
+        for transaction in self.transaction.all():
+            self.balance += transaction.amount
         super().save()
 # ---------------------------------------------------------------------- #
 
@@ -121,8 +121,6 @@ class User(AbstractUser):
             self.tags += (', ' + self.province)
         if self.municipality:
             self.tags += (', ' + self.municipality)
-
-
         if self.profile_photo:
             img = Image.open(self.profile_photo.path)
             if img.height > 200 or img.width > 200:
