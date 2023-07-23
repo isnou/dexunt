@@ -282,6 +282,15 @@ class Product(models.Model):
         if not self.token:
             self.token = functions.serial_number_generator(24).upper()
         super().save()
+    def update(self):
+        for v in self.variant.all():
+            v.provider_token = self.provider_token
+            v.product_token = self.token
+            v.en_title = self.en_title
+            v.fr_title = self.fr_title
+            v.ar_title = self.ar_title
+            v.save()
+        super().save()
     def set_variant(self, new_variant):
         new_variant.product_token = self.token
         new_variant.en_title = self.en_title
