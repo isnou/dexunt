@@ -185,7 +185,7 @@
       </div>
 
       <div class="card-body">
-        <form action="{% url 'admin-manage-products' 'edit_product' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+        <form action="{% url 'admin-manage-products' 'edit_product' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
           <div class="row mb-4">

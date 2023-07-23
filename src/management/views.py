@@ -389,6 +389,7 @@ def manage_products(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             selected_product.update()
+            request.session['product_id_token'] = product_id
             return redirect('admin-manage-products', 'view_product')
     if action == 'duplicate_variant':
         if request.method == 'POST':
