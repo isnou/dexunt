@@ -289,6 +289,7 @@ class Product(models.Model):
             v.en_title = self.en_title
             v.fr_title = self.fr_title
             v.ar_title = self.ar_title
+            v.set_tags()
             v.save()
         super().save()
     def set_variant(self, new_variant):
@@ -300,16 +301,14 @@ class Product(models.Model):
         self.variant.add(new_variant)
     def set_provider(self, provider_token, store_name):
         self.provider_token = provider_token
-        if self.variant.all().count():
-            for v in self.variant.all():
-                v.provider_token = provider_token
-                if v.option.all().count():
-                    for o in v.option.all():
-                        o.provider_token = provider_token
         self.brand = store_name
-        if self.variant.all().count():
-            for v in self.variant.all():
-                v.brand = store_name
+        for v in self.variant.all():
+            v.provider_token = provider_token
+            v.brand = store_name
+            if v.option.all().count():
+                for o in v.option.all():
+                    o.provider_token = provider_token
+            v.set_tags()
         super().save()
 # ---------------------------------------------------------------------- #
 
