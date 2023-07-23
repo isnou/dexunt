@@ -364,11 +364,12 @@ def manage_products(request, action):
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             request.session['product_id_token'] = product_id
-        elif request.method == 'GET':
-            product_id = request.GET.get('product_id')
-            request.session['product_id_token'] = product_id
         else:
-            product_id = request.session.get('product_id_token')
+            if request.GET.get('product_id', False):
+                product_id = request.GET.get('product_id')
+                request.session['product_id_token'] = product_id
+            else:
+                product_id = request.session.get('product_id_token')
 
         selected_product = Product.objects.all().get(id=product_id)
         selected_product_form = ProductForm(request.POST, instance=selected_product)
@@ -389,7 +390,6 @@ def manage_products(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             selected_product.update()
-            request.session['product_id_token'] = product_id
             return redirect('admin-manage-products', 'view_product')
     if action == 'duplicate_variant':
         if request.method == 'POST':
