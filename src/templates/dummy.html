@@ -3079,3 +3079,102 @@
                 </div>
               </div>
               <!-- end description photo -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- add description button -->
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_description_modal">
+      <i class="bi-node-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add description"></i>
+    </button>
+    <!-- end add description button -->
+
+    <!-- add variant button -->
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_new_variant_modal">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new variant"></i>
+    </button>
+    <!-- end add variant button -->
+
+
+
+<!-- add new variant modal -->
+<div id="add_new_variant_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_variant_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add new variant</h2>
+          </div>
+
+          <form action="{% url 'admin-manage-products' 'add_new_variant' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Specs</span>
+
+              <!-- product english spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="en_spec" style="width: 25%;">english spec</span>
+                <input type="text" class="form-control" aria-label="en_title" aria-describedby="en_spec" name="{{ variant_form.en_spec.name }}" placeholder="Blue" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product english spec -->
+
+              <!-- product french spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="fr_spec" style="width: 25%;">french spec</span>
+                <input type="text" class="form-control" aria-label="fr_spec" aria-describedby="fr_spec" name="{{ variant_form.fr_spec.name }}" placeholder="Bleu">
+              </div>
+              <!-- end product french spec -->
+
+              <!-- product arabic spec -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="ar_spec" style="width: 25%;">arabic spec</span>
+                <input type="text" class="form-control" aria-label="ar_spec" aria-describedby="ar_spec" name="{{ variant_form.ar_spec.name }}" placeholder="أزرق" dir="rtl">
+              </div>
+              <!-- end product arabic spec -->
+
+              <span class="divider-center mb-2">Prices</span>
+
+              <!-- product price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="price" style="width: 25%;">price</span>
+                <input type="number" class="form-control" aria-label="price" aria-describedby="price" name="{{ variant_form.price.name }}" placeholder="6000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" id="discount" style="width: 25%;">discount</span>
+                <input type="number" class="form-control" aria-label="discount" aria-describedby="discount" name="{{ variant_form.discount.name }}" placeholder="5000">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end product discount -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add new variant modal -->
