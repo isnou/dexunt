@@ -464,6 +464,18 @@
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </button>
+
+                {% if option.is_activated %}
+                <!-- deactivate option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-toggle-on" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
+                </button>
+                {% else %}
+                <!-- activate option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-toggle-off" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate"></i>
+                </button>
+                {% endif %}
               </td>
 
               <!-- value -->
