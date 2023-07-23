@@ -242,13 +242,19 @@ class Variant(models.Model):
         new_variant.save()
         if self.option.all().count:
             for o in self.option.all():
+                o.pk = None
+                o.save()
                 new_variant.option.add(o)
         if self.feature.all().count:
-            for o in self.feature.all():
-                new_variant.feature.add(o)
+            for f in self.feature.all():
+                f.pk = None
+                f.save()
+                new_variant.feature.add(f)
         if self.description.all().count:
-            for o in self.description.all():
-                new_variant.description.add(o)
+            for d in self.description.all():
+                d.pk = None
+                d.save()
+                new_variant.description.add(d)
         selected_product.variant.add(new_variant)
 #                                                                        #
 class Product(models.Model):
