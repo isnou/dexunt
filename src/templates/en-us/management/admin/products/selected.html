@@ -76,7 +76,7 @@
 
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_variant_modal_{{ variant.id }}">
                   <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
                 </button>
                 {% endif %}
@@ -270,7 +270,7 @@
 </div>
 
 <!-- duplicate variant modal -->
-<div id="duplicate_variant_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="duplicate_variant_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
