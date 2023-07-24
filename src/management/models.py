@@ -381,7 +381,7 @@ class Product(models.Model):
         super().save()
         selected_store.product.add(self)
     def unset_provider(self):
-        selected_store = Store.objects.all().get(name=self.brand)
+        store_name = self.brand
         self.provider_token = None
         self.brand = None
         for v in self.variant.all():
@@ -392,7 +392,9 @@ class Product(models.Model):
                     o.provider_token = None
             v.set_tags()
         super().save()
-        selected_store.product.remove(self)
+        if Store.objects.all().filter(name=self.store_name).exists():
+            selected_store = Store.objects.all().get(name=self.store_name)
+            selected_store.product.remove(self)
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
