@@ -278,6 +278,11 @@
         </td>
         <!-- product actions -->
         <td class="text-end">
+          <!-- delete product -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
+            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
+
           {% if product.is_activated %}
           <!-- deactivate product button -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_product_modal_{{ product.id }}">
@@ -289,11 +294,6 @@
             <i class="fa fa-toggle-off fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate"></i>
           </button>
           {% endif %}
-
-          <!-- delete product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
-            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-          </button>
         </td>
       </tr>
       <!-- end products list -->
