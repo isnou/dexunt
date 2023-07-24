@@ -289,18 +289,6 @@
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
             <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
-
-          {% if product.is_activated %}
-          <!-- deactivate product button -->
-          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_product_modal_{{ product.id }}">
-            <i class="fa fa-toggle-on fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
-          </button>
-          {% else %}
-          <!-- activate product button -->
-          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#activate_product_modal_{{ product.id }}">
-            <i class="fa fa-toggle-off fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate"></i>
-          </button>
-          {% endif %}
         </td>
       </tr>
       <!-- end products list -->
@@ -367,18 +355,6 @@
 
 <!-- product modals & forms -->
 {% for product in all_products %}
-<!-- activate product form -->
-<form action="{% url 'admin-manage-products' 'activate_product' %}" id="activate_product_form_{{ product.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ product.id }}'>
-</form>
-
-<!-- deactivate product form -->
-<form action="{% url 'admin-manage-products' 'deactivate_product' %}" id="deactivate_product_form_{{ product.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ product.id }}'>
-</form>
-
 <!-- delete product form -->
 <form action="{% url 'admin-manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
   {% csrf_token %}
@@ -387,46 +363,6 @@
 
 
 
-
-
-
-<!-- activate product modal -->
-<div id="activate_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>click yes to activate {{ product.en_title }}.</p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="activate_product_form_{{ product.id }}">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- deactivate product modal -->
-<div id="deactivate_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>click yes to deactivate {{ product.en_title }}.</p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="deactivate_product_form_{{ product.id }}">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- delete product modal -->
 <div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
