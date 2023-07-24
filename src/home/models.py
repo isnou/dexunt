@@ -7,43 +7,30 @@ from phonenumber_field.modelfields import PhoneNumberField
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
     token = models.CharField(max_length=24, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     # ----- #
-    delivery = models.IntegerField(default=100)
-    points = models.IntegerField(default=0)
     lack_of_quantity = models.BooleanField(default=False)
-    # ----- #
-    provider_token = models.CharField(max_length=24, blank=True, null=True)
     # ----- relations ----- #
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
     variant = models.ForeignKey(
         'management.Variant', on_delete=models.CASCADE, null=True)
-    # ----- media ----- #
-    file_name = models.CharField(max_length=500, blank=True)
-    def get_image_path(self, filename):
-        return self.file_name.lower()
-    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    provider = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
-    en_name = models.CharField(max_length=400, blank=True, null=True)
-    fr_name = models.CharField(max_length=400, blank=True, null=True)
-    ar_name = models.CharField(max_length=400, blank=True, null=True)
-    # ----- #
-    en_detail = models.CharField(max_length=400, blank=True, null=True)
-    fr_detail = models.CharField(max_length=400, blank=True, null=True)
-    ar_detail = models.CharField(max_length=400, blank=True, null=True)
-    # ----- #
-    cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     quantity = models.IntegerField(default=1)
-    total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
-    def save(self, *args, **kwargs):
-        self.total_price = self.price * self.quantity
-        super().save()
-    def update_prices(self):
-        if self.price:
-            self.total_price = self.price * self.quantity
-        super().save()
+    def get_image(self):
+        if self.option.has_image:
+            image = option.image
+        else:
+            image = self.variant.album.all().first().image
+        return image
+    def get_price(self):
+        if self.option.discount:
+            return self.option.discount
+        else:
+            return self.option.price
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
