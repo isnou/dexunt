@@ -372,11 +372,11 @@ class Product(models.Model):
         self.provider_token = selected_store.user.token
         self.brand = store_name
         for v in self.variant.all():
-            v.provider_token = provider_token
+            v.provider_token = selected_store.user.token
             v.brand = store_name
             if v.option.all().count():
                 for o in v.option.all():
-                    o.provider_token = provider_token
+                    o.provider_token = selected_store.user.token
             v.set_tags()
         super().save()
 
