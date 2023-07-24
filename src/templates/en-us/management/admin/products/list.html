@@ -401,15 +401,9 @@
                     <div class="col-auto">
                       <div class="d-flex align-items-center">
                         <div class="form-check">
-
                           <label class="form-check-label"></label>
                           <span class="form-check-stretched-bg"></span>
                         </div>
-                        {% if not option.has_image %}
-                        <img class="avatar avatar-sm avatar-square" src="{% get_media_prefix %}{{ variant.album.all.0.image }}">
-                        {% else %}
-                        <img class="avatar avatar-sm avatar-square" src="{% get_media_prefix %}{{ option.image }}">
-                        {% endif %}
                       </div>
                     </div>
 
@@ -417,7 +411,7 @@
                       <h6 class="mb-1">{{ store.name }}</h6>
                     </div>
                   </div>
-                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'view_variant' %}?product_id={{ selected_product.id }}&variant_id={{ variant.id }}"></a>
+                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'assign_provider' %}?product_id={{ product.id }}&store_name={{ store.name }}"></a>
                 </li>
                 {% endfor %}
               </ul>
