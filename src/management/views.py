@@ -420,17 +420,14 @@ def manage_products(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
-            selected_variant.is_activated = True
-            selected_variant.save()
+            selected_variant.activate()
             return redirect('admin-manage-products', 'view_product')
     if action == 'deactivate_variant':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
-            selected_variant.is_activated = False
-            selected_variant.save()
+            selected_variant.deactivate()
             return redirect('admin-manage-products', 'view_product')
-
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"

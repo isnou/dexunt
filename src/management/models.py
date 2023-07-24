@@ -151,6 +151,8 @@ class Option(models.Model):
                             )
         new_option.save()
         selected_variant.option.add(new_option)
+    def get_product(self):
+        return Product.objects.all().get(token=self.product_token)
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
@@ -325,6 +327,18 @@ class Variant(models.Model):
                 d.save()
                 new_variant.description.add(d)
         selected_product.variant.add(new_variant)
+    def activate(self):
+        deactivate = True
+        for option in self.option.all():
+            if option.is_activated:
+                deactivate = False
+        if not deactivate:
+            self.is_activated = True
+        super().save()
+    def deactivate(self):
+        self.is_activated = False
+        super().save()
+
 #                                                                        #
 class Product(models.Model):
     # ----- Technical ----- #
