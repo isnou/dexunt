@@ -459,8 +459,13 @@ def manage_products(request, action):
             variant_id = request.POST.get('variant_id', False)
             request.session['variant_id_token'] = variant_id
         else:
-            product_id = request.session.get('product_id_token')
-            variant_id = request.session.get('variant_id_token')
+            if request.GET.get('variant_id', False):
+                product_id = request.GET.get('product_id')
+                variant_id = request.GET.get('variant_id')
+                request.session['variant_id_token'] = variant_id
+            else:
+                product_id = request.session.get('product_id_token')
+                variant_id = request.session.get('variant_id_token')
 
         selected_variant = Variant.objects.all().get(id=variant_id)
         selected_product = Product.objects.all().get(id=product_id)
