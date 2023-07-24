@@ -315,6 +315,7 @@ def manage_products(request, action):
                     if new_option_form.is_valid():
                         new_option_form.save()
                         new_variant.set_option(new_option)
+                        new_variant.set_standard_features()
                         request.session['product_id_token'] = new_product.id
                         request.session['variant_id_token'] = new_variant.id
                         return redirect('admin-manage-products', 'view_variant')
@@ -469,7 +470,9 @@ def manage_products(request, action):
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant_form = VariantForm(request.POST, instance=selected_variant)
+
             selected_variant_form.save()
+            selected_variant.set_standard_features()
 
             return redirect('admin-manage-products', 'view_variant')
     if action == 'add_image':

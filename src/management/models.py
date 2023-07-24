@@ -197,6 +197,56 @@ class Variant(models.Model):
         self.discount = new_option.discount
         self.option.add(new_option)
         super().save()
+    def set_standard_features(self):
+        new_feature = Feature(en_name = 'weight',
+                              fr_name = 'poids',
+                              ar_name = 'الوزن',
+                              en_content = 'gr',
+                              fr_content = 'gr',
+                              ar_content = 'غرام',
+                              )
+        new_feature.save()
+        self.option.add(new_feature)
+
+        new_feature = Feature(en_name='length',
+                              fr_name='longueur',
+                              ar_name='طول',
+                              en_content='mm',
+                              fr_content='mm',
+                              ar_content='ملم',
+                              )
+        new_feature.save()
+        self.option.add(new_feature)
+
+        new_feature = Feature(en_name='width',
+                              fr_name='largeur',
+                              ar_name='عرض',
+                              en_content='mm',
+                              fr_content='mm',
+                              ar_content='ملم',
+                              )
+        new_feature.save()
+        self.option.add(new_feature)
+
+        new_feature = Feature(en_name='height',
+                              fr_name='hauteur',
+                              ar_name='ارتفاع',
+                              en_content='mm',
+                              fr_content='mm',
+                              ar_content='ملم',
+                              )
+        new_feature.save()
+        self.option.add(new_feature)
+
+        new_feature = Feature(en_name='material',
+                              fr_name='matière',
+                              ar_name='مادة الصنع',
+                              en_content='',
+                              fr_content='',
+                              ar_content='',
+                              )
+        new_feature.save()
+        self.option.add(new_feature)
     def get_product(self):
         return Product.objects.all().get(token=self.product_token)
     def clean(self):
