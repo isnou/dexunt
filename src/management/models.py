@@ -331,7 +331,6 @@ class Variant(models.Model):
     def deactivate(self):
         self.is_activated = False
         super().save()
-
 #                                                                        #
 class Product(models.Model):
     # ----- Technical ----- #
@@ -492,15 +491,4 @@ class FlashProduct(models.Model):
         if not self.discount:
             self.is_activated = False
         super().save()
-# ---------------------------------------------------------------------- #
-
-
-# ------------------------------- Title -------------------------------- #
-# ----- Technical ----- #
-# ----- relations ----- #
-# ----- media ----- #
-# ----- content ----- #
-# ----- #
-# ----- #
-# ----- functions ----- #
 # ---------------------------------------------------------------------- #

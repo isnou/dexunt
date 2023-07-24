@@ -15,6 +15,11 @@ class SelectedProduct(models.Model):
     lack_of_quantity = models.BooleanField(default=False)
     # ----- #
     provider_token = models.CharField(max_length=24, blank=True, null=True)
+    # ----- relations ----- #
+    option = models.ForeignKey(
+        'management.Option', on_delete=models.CASCADE)
+    variant = models.ForeignKey(
+        'management.Variant', on_delete=models.CASCADE)
     # ----- media ----- #
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
