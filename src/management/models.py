@@ -379,8 +379,20 @@ class Product(models.Model):
                     o.provider_token = selected_store.user.token
             v.set_tags()
         super().save()
-
         selected_store.product.add(self)
+    def unset_provider(self):
+        selected_store = Store.objects.all().get(name=self.brand)
+        self.provider_token = None
+        self.brand = None
+        for v in self.variant.all():
+            v.provider_token = None
+            v.brand = None
+            if v.option.all().count():
+                for o in v.option.all():
+                    o.provider_token = None
+            v.set_tags()
+        super().save()
+        selected_store.product.remove(self)
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #

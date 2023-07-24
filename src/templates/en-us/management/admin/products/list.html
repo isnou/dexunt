@@ -265,10 +265,10 @@
           {% if product.brand %}
           <!-- unassign a store -->
           <span class="d-block text-body fs-6">
-            {{ product.brand }}
             <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ product.id }}">
-              <i class="fa fa-x fa-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
+              <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
             </button>
+            {{ product.brand }}
           </span>
           {% else %}
           <!-- assign a store -->
@@ -378,6 +378,12 @@
   <input type="hidden" name="product_id" value='{{ product.id }}'>
 </form>
 
+<!-- unassign store form -->
+<form action="{% url 'admin-manage-products' 'unassign_provider' %}" id="unassign_form_{{ product.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value='{{ product.id }}'>
+</form>
+
 
 <!-- assign a store modal -->
 <div id="assign_a_store_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
@@ -417,6 +423,25 @@
             </div>
 
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- unassign a store modal -->
+<div id="unassign_a_store_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete {{ product.brand }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="unassign_form_{{ product.id }}">Yes</button>
       </div>
     </div>
   </div>

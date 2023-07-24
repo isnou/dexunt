@@ -346,6 +346,13 @@ def manage_products(request, action):
         selected_product = Product.objects.all().get(id=product_id)
         selected_product.set_provider(store_name)
         return redirect('admin-manage-products', 'main')
+    if action == 'unassign_provider':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_product.unset_provider()
+            return redirect('admin-manage-products', 'main')
+
     # --------------- selected product ------------ #
     if action == 'view_product':
         url = direction + "/management/admin/products/selected.html"
