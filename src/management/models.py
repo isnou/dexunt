@@ -367,8 +367,9 @@ class Product(models.Model):
         new_variant.ar_title = self.ar_title
         new_variant.save()
         self.variant.add(new_variant)
-    def set_provider(self, provider_token, store_name):
-        self.provider_token = provider_token
+    def set_provider(self, store_name):
+        selected_store = Store.objects.all().get(name=store_name)
+        self.provider_token = selected_store.user.token
         self.brand = store_name
         for v in self.variant.all():
             v.provider_token = provider_token
@@ -378,7 +379,7 @@ class Product(models.Model):
                     o.provider_token = provider_token
             v.set_tags()
         super().save()
-        selected_store = Store.objects.all().get(name=store_name)
+
         selected_store.product.add(self)
 # ---------------------------------------------------------------------- #
 

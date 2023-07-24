@@ -340,20 +340,12 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product.delete()
             return redirect('admin-manage-products', 'main')
-    if action == 'activate_product':
-        if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
-            selected_product = Product.objects.all().get(id=product_id)
-            selected_product.is_activated = True
-            selected_product.save()
-            return redirect('admin-manage-products', 'main')
-    if action == 'deactivate_product':
-        if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
-            selected_product = Product.objects.all().get(id=product_id)
-            selected_product.is_activated = False
-            selected_product.save()
-            return redirect('admin-manage-products', 'main')
+    if action == 'assign_provider':
+        product_id = request.GET.get('product_id')
+        store_name = request.GET.get('store_name')
+        selected_product = Product.objects.all().get(id=product_id)
+        selected_product.set_provider(store_name)
+        return redirect('admin-manage-products', 'main')
     # --------------- selected product ------------ #
     if action == 'view_product':
         url = direction + "/management/admin/products/selected.html"
