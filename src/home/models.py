@@ -15,9 +15,9 @@ class SelectedProduct(models.Model):
     provider_token = models.CharField(max_length=24, blank=True, null=True)
     # ----- relations ----- #
     option = models.ForeignKey(
-        'management.Option', on_delete=models.CASCADE)
+        'management.Option', on_delete=models.CASCADE, null=True)
     variant = models.ForeignKey(
-        'management.Variant', on_delete=models.CASCADE)
+        'management.Variant', on_delete=models.CASCADE, null=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
