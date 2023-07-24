@@ -350,27 +350,6 @@ def manage_products(request, action):
             selected_product.is_activated = False
             selected_product.save()
             return redirect('admin-manage-products', 'main')
-    if action == 'clean_product':
-        if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
-            selected_product = Product.objects.all().get(id=product_id)
-
-            for variant in selected_product.variant.all():
-                for option in variant.option.all():
-                    if FlashProduct.objects.all().filter(upc=option.upc).exists():
-                        if not FlashProduct.objects.all().get(upc=option.upc).is_activated:
-                            option.is_activated = True
-                            option.save()
-                        else:
-                            option.is_activated = False
-                            option.save()
-                    else:
-                        option.is_activated = True
-                        option.save()
-                variant.is_activated = True
-                variant.clean()
-
-            return redirect('admin-manage-products', 'main')
     # --------------- selected product ------------ #
     if action == 'view_product':
         url = direction + "/management/admin/products/selected.html"
