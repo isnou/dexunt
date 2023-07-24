@@ -270,12 +270,6 @@ class Variant(models.Model):
             self.is_available = True
         else:
             self.is_available = False
-        deactivate = True
-        for option in self.option.all():
-            if option.is_activated:
-                deactivate = False
-        if deactivate:
-            self.is_activated = False
         super().save()
     def reset(self):
         self.created_at = timezone.now()
