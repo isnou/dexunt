@@ -206,7 +206,7 @@ class Variant(models.Model):
                               ar_content = 'غرام',
                               )
         new_feature.save()
-        self.option.add(new_feature)
+        self.feature.add(new_feature)
 
         new_feature = Feature(en_name='length',
                               fr_name='longueur',
@@ -216,7 +216,7 @@ class Variant(models.Model):
                               ar_content='ملم',
                               )
         new_feature.save()
-        self.option.add(new_feature)
+        self.feature.add(new_feature)
 
         new_feature = Feature(en_name='width',
                               fr_name='largeur',
@@ -226,7 +226,7 @@ class Variant(models.Model):
                               ar_content='ملم',
                               )
         new_feature.save()
-        self.option.add(new_feature)
+        self.feature.add(new_feature)
 
         new_feature = Feature(en_name='height',
                               fr_name='hauteur',
@@ -236,7 +236,7 @@ class Variant(models.Model):
                               ar_content='ملم',
                               )
         new_feature.save()
-        self.option.add(new_feature)
+        self.feature.add(new_feature)
 
         new_feature = Feature(en_name='material',
                               fr_name='matière',
@@ -246,7 +246,7 @@ class Variant(models.Model):
                               ar_content='',
                               )
         new_feature.save()
-        self.option.add(new_feature)
+        self.feature.add(new_feature)
     def get_product(self):
         return Product.objects.all().get(token=self.product_token)
     def clean(self):
