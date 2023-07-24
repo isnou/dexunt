@@ -124,7 +124,7 @@ class Option(models.Model):
             self.tags += (', ' + self.fr_value)
         if self.ar_value:
             self.tags += (', ' + self.ar_value)
-        if self.pk:
+        if self.product_token:
             selected_product = Product.objects.all().get(token=self.product_token)
             for v in selected_product.variant.all():
                 for o in v.option.all():
