@@ -392,8 +392,8 @@ class Product(models.Model):
                     o.provider_token = None
             v.set_tags()
         super().save()
-        if Store.objects.all().filter(name=self.store_name).exists():
-            selected_store = Store.objects.all().get(name=self.store_name)
+        if Store.objects.all().filter(name=store_name).exists():
+            selected_store = Store.objects.all().get(name=store_name)
             selected_store.product.remove(self)
 # ---------------------------------------------------------------------- #
 
