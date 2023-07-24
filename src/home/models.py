@@ -7,8 +7,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
     token = models.CharField(max_length=24, null=True)
-    option_id = models.PositiveIntegerField(blank=True, null=True)
-    variant_id = models.PositiveIntegerField(blank=True, null=True)
     # ----- #
     delivery = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
