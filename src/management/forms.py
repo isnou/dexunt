@@ -13,6 +13,7 @@ class VariantForm(ModelForm):
         fields = ('en_spec', 'fr_spec', 'ar_spec', 'price', 'discount')
 
 class OptionForm(ModelForm):
+    upc = forms.CharField(required=False, null=True)
     class Meta:
         model = Option
         fields = ('en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points', 'upc',
