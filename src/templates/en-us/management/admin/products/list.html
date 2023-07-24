@@ -396,12 +396,6 @@
               <span class="divider-center mb-2">Select from the list</span>
               <ul class="list-group list-group-flush navbar-card-list-group">
                 {% for store in stores %}
-
-                <form action="{% url 'admin-manage-flash' 'link_products' %}" id="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}" class="js-validate need-validate" novalidate method="post">
-                  {% csrf_token %}
-                  <input type="hidden" value="{{ product.id }}" name="product_id">
-                </form>
-
                 <li class="list-group-item form-check-select">
                   <div class="row">
                     <div class="col-auto">
@@ -423,7 +417,7 @@
                       <h6 class="mb-1">{{ store.name }}</h6>
                     </div>
                   </div>
-                  <button class="btn btn-ghost stretched-link" form="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}"></button>
+                  <button class="btn btn-ghost stretched-link" href="#1"></button>
                 </li>
                 {% endfor %}
               </ul>
