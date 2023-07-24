@@ -24,7 +24,6 @@ class Album(models.Model):
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Album"
-
 #                                                                        #
 class Feature(models.Model):
     # ----- Technical ----- #
@@ -379,6 +378,8 @@ class Product(models.Model):
                     o.provider_token = provider_token
             v.set_tags()
         super().save()
+        selected_store = Store.objects.all().get(name=store_name)
+        selected_store.product.add(self)
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #

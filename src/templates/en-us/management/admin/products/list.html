@@ -261,8 +261,17 @@
           </a>
         </td>
         <!-- product brand -->
-        <td>{{ product.brand }}</td>
-        <!-- product info -->
+        <td>
+          {% if product.brand %}
+          <span class="d-block text-body fs-6">{{ product.brand }}</span>
+          {% else %}
+          <!-- assign a store -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#assign_a_store_{{ product.id }}">
+            <i class="fa fa-person" data-bs-toggle="tooltip" data-bs-placement="top" title="Assign a store"></i>
+          </button>
+          {% endif %}
+        </td>
+        <!-- assign a store -->
         <td>
           {% for variant in product.variant.all %}
           {% for option in variant.option.all %}
@@ -362,7 +371,71 @@
 </form>
 
 
+<!-- assign a store modal -->
+<div id="assign_a_store_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Link a product</h2>
+          </div>
 
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Select from the list</span>
+              <ul class="list-group list-group-flush navbar-card-list-group">
+                {% for product in all_products.all %}
+                {% for variant in product.variant.all %}
+                {% for option in variant.option.all %}
+
+                <form action="{% url 'admin-manage-flash' 'link_products' %}" id="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}" class="js-validate need-validate" novalidate method="post">
+                  {% csrf_token %}
+                  <input type="hidden" value="{{ product.id }}" name="product_id">
+                  <input type="hidden" value="{{ variant.id }}" name="variant_id">
+                  <input type="hidden" value="{{ option.id }}" name="option_id">
+                </form>
+
+                <li class="list-group-item form-check-select">
+                  <div class="row">
+                    <div class="col-auto">
+                      <div class="d-flex align-items-center">
+                        <div class="form-check">
+
+                          <label class="form-check-label"></label>
+                          <span class="form-check-stretched-bg"></span>
+                        </div>
+                        {% if not option.has_image %}
+                        <img class="avatar avatar-sm avatar-square" src="{% get_media_prefix %}{{ variant.album.all.0.image }}">
+                        {% else %}
+                        <img class="avatar avatar-sm avatar-square" src="{% get_media_prefix %}{{ option.image }}">
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col ms-n2">
+                      <h6 class="mb-1">{{ product.en_title }}</h6>
+                      <p class="text-body fs-6">{{ variant.en_spec }} {{ option.en_value }}</p>
+                      <p class="text-body fs-6">{{ product.brand }}</p>
+                    </div>
+
+                    <small class="col-auto text-muted text-cap">2hr</small>
+                  </div>
+                  <button class="btn btn-ghost stretched-link" form="link_product_{{ product.id }}_{{ variant.id }}_{{ option.id }}"></button>
+                </li>
+                {% endfor %}
+                {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- delete product modal -->
 <div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">

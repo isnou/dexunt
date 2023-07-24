@@ -261,6 +261,8 @@ def manage_products(request, action):
         request.session['variant_id_token'] = None
         request.session['product_id_token'] = None
 
+        stores = Store.objects.all()
+
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
             request.session['error_messages'] = None
@@ -293,6 +295,7 @@ def manage_products(request, action):
             'variant_form': variant_form,
             'option_form': option_form,
             'errors': errors,
+            'stores': stores,
         }
         return render(request, url, context)
     if action == 'add_new_product':
