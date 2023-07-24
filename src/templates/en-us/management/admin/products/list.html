@@ -417,7 +417,7 @@
                       <h6 class="mb-1">{{ store.name }}</h6>
                     </div>
                   </div>
-                  <button class="btn btn-ghost stretched-link" href="#1"></button>
+                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'view_variant' %}?product_id={{ selected_product.id }}&variant_id={{ variant.id }}"></a>
                 </li>
                 {% endfor %}
               </ul>
