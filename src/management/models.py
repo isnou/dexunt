@@ -238,6 +238,16 @@ class Variant(models.Model):
         new_feature.save()
         self.feature.add(new_feature)
 
+        new_feature = Feature(en_name='diameter',
+                              fr_name='diamètre',
+                              ar_name='القطر',
+                              en_content='mm',
+                              fr_content='mm',
+                              ar_content='ملم',
+                              )
+        new_feature.save()
+        self.feature.add(new_feature)
+
         new_feature = Feature(en_name='material',
                               fr_name='matière',
                               ar_name='مادة الصنع',
