@@ -31,18 +31,29 @@
     <div class="card">
       <div class="card-body">
         <form action="{% url 'provider-settings' 'edit_logo' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
+          {% csrf_token %}
 
           <div class="text-center mb-4 mt-4">
-            <label class="avatar avatar-xxl avatar-square avatar-uploader" for="editAvatarUploaderModal">
-              <img id="editAvatarImgModal" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}">
-              <input type="file" class="js-file-attach avatar-uploader-input" id="editAvatarUploaderModal" name="{{ update_photo_form.profile_photo.name }}" data-hs-file-attach-options='{
-              "textTarget": "#editAvatarImgModal",
+            <label class="avatar avatar-xxl avatar-square avatar-uploader">
+              {% if user.profile_photo %}
+              <img id="editAvatarImg" class="avatar-img" src="{% get_media_prefix %}{{ user.profile_photo }}">
+              <input type="file" class="js-file-attach avatar-uploader-input" name="{{ update_photo_form.profile_photo.name }}" data-hs-file-attach-options='{
+              "textTarget": "#editAvatarImg",
               "mode": "image",
               "targetAttr": "src",
               "allowTypes": [".png", ".jpeg", ".jpg"]
               }' required>
               <span class="invalid-feedback text-center">please upload your logo.</span>
+              {% else %}
+              <img id="editAvatarNoImg" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}">
+              <input type="file" class="js-file-attach avatar-uploader-input" name="{{ update_photo_form.profile_photo.name }}" data-hs-file-attach-options='{
+              "textTarget": "#editAvatarNoImg",
+              "mode": "image",
+              "targetAttr": "src",
+              "allowTypes": [".png", ".jpeg", ".jpg"]
+              }' required>
+              <span class="invalid-feedback text-center">please upload your logo.</span>
+              {% endif %}
 
               <span class="avatar-uploader-trigger">
                 <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
