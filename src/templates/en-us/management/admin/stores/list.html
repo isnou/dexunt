@@ -161,7 +161,7 @@
             {% endif %}
 
             {% for i in stores.paginator.page_range %}
-            {% if users_list.number == i %}
+            {% if stores.number == i %}
             <li class="page-item active">
               <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
             </li>
@@ -195,19 +195,19 @@
   <form action="{% url 'admin-manage-stores' 'activate_store' %}" id="activate_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="store_id" value='{{ store.id }}'>
-    <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
+    <input type="hidden" name="stores_page" value='{{ stores.number }}'>
   </form>
 
   <form action="{% url 'admin-manage-stores' 'deactivate_store' %}" id="deactivate_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="store_id" value='{{ store.id }}'>
-    <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
+    <input type="hidden" name="stores_page" value='{{ stores.number }}'>
   </form>
 
   <form action="{% url 'admin-manage-stores' 'delete_store' %}" id="delete_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="store_id" value='{{ store.id }}'>
-    <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
+    <input type="hidden" name="stores_page" value='{{ stores.number }}'>
   </form>
   <!-- End Table Forms -->
 
