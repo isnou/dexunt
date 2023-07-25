@@ -2,15 +2,6 @@
     <!-- table -->
     <div class="table-responsive">
       <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col" class="table-column-pe-0">
-            </th>
-            <th class="table-column-ps-0">Product</th>
-            <th></th>
-            <th>Actions</th>
-          </tr>
-        </thead>
 
         <tbody>
         {% for variant in variants %}
@@ -31,7 +22,10 @@
               <div class="flex-grow-1 ms-3">
                 <h5 class="text-inherit me-2">{{ variant.product.en_title }}</h5>
                 <span class="d-block text-body fs-6">
-                  <small> {{ variant.en_spec }} </small>
+                  <small>
+                    {{ variant.en_spec }}
+                    | Rate <strong class="text-dark">{{ variant.rate }}</strong>
+                  </small>
                 </span>
               </div>
             </a>
@@ -42,6 +36,7 @@
             <span class="d-block text-body fs-6">
               <small>
                 {{ option.en_value }}
+                | <strong class="text-dark">{{ option.sale }}</strong> Sales
                 {% if not option.is_activated or not variant.is_activated %}
                 <span class="badge bg-warning">not activated</span>
                 {% endif %}
