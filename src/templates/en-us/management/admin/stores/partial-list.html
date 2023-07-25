@@ -109,7 +109,7 @@
             {% endif %}
 
             {% for i in stores.paginator.page_range %}
-            {% if users_list.number == i %}
+            {% if stores.number == i %}
             <li class="page-item active">
               <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
             </li>
