@@ -394,26 +394,26 @@ def manage_products(request, action):
     if action == 'search_products':
         url = direction + "/management/admin/products/partial-list.html"
         key_word = request.GET.get('key_word', None)
-        request.session['products_key_word'] = key_word
+        request.session['variants_key_word'] = key_word
 
-        products = Product.objects.all().filter(tags__icontains=key_word)
+        variants = Variant.objects.all().filter(tags__icontains=key_word)
 
-        if not request.session.get('products-page', None):
+        if not request.session.get('variants-page', None):
             page = request.GET.get('page', 1)
         else:
-            page = request.session.get('products-page')
-            request.session['products-page'] = None
+            page = request.session.get('variants-page')
+            request.session['variants-page'] = None
 
-        paginator = Paginator(products, items_by_page)
+        paginator = Paginator(variants, items_by_page)
         try:
-            products = paginator.page(page)
+            variants = paginator.page(page)
         except PageNotAnInteger:
-            products = paginator.page(1)
+            variants = paginator.page(1)
         except EmptyPage:
-            products = paginator.page(paginator.num_pages)
+            variants = paginator.page(paginator.num_pages)
 
         context = {
-            'products': products,
+            'variants': variants,
         }
         return render(request, url, context)
 
