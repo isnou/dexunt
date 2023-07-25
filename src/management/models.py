@@ -259,6 +259,7 @@ class Product(models.Model):
 class Store(models.Model):
     # ----- Technical ----- #
     tags = models.CharField(max_length=5000, blank=True, null=True)
+    is_activated = models.BooleanField(default=False)
     # ----- content ----- #
     name = models.CharField(max_length=200, unique=True, null=True)
     # ----- relations ----- #
@@ -303,6 +304,10 @@ class Store(models.Model):
             self.tags += (', ' + self.ar_address)
 
         super().save()
+    def activate(self):
+        if self.user.profile_photo and self.name:
+            self.is_activated = True
+            super().save()
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #
