@@ -985,7 +985,8 @@ def provider_settings(request, action):
             return redirect('provider-settings', 'main')
     if action == 'edit_logo':
         if request.method == 'POST':
-            request.user.first_name = request.store.name + '/'
+            request.user.file_name = request.user.store.name + '/'
+            request.user.save()
             update_photo_form = UpdatePhotoForm(request.POST, request.FILES, instance=request.user)
             if update_photo_form.is_valid():
                 update_photo_form.save()
