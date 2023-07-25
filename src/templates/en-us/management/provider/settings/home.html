@@ -30,7 +30,7 @@
   <div class="col-lg-8">
     <div class="card">
       <div class="card-body">
-        <form action="{% url 'provider-settings' 'edit_logo' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'provider-settings' 'edit_logo' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
           {% csrf_token %}
 
           <div class="text-center mb-4 mt-4">
