@@ -257,7 +257,6 @@ def manage_products(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        request.session['product_id'] = None
         url = direction + "/management/admin/products/list.html"
         stores = Store.objects.all()
 
@@ -386,32 +385,13 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
-            selected_product.update()
+            selected_product.update_tags()
             return redirect('admin-manage-products', 'view_product')
     if action == 'duplicate_variant':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
             variant_id = request.POST.get('variant_id', None)
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant.duplicate()
-            return redirect('admin-manage-products', 'view_product')
-    if action == 'add_new_variant':
-        if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
-            selected_product = Product.objects.all().get(id=product_id)
-            new_variant = Variant(en_title=selected_product.en_title,
-                                  fr_title=selected_product.fr_title,
-                                  ar_title=selected_product.ar_title,
-                                  brand=selected_product.brand,
-                                  en_spec='unlinked variant',
-                                  product_token=selected_product.product_token,
-                                  )
-            new_variant.save()
-
-            selected_variant_form = VariantForm(request.POST, instance=new_variant)
-            selected_variant_form.save()
-
-            selected_product.variant.add(new_variant)
             return redirect('admin-manage-products', 'view_product')
     if action == 'delete_variant':
         if request.method == 'POST':
@@ -434,6 +414,7 @@ def manage_products(request, action):
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"
+
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             variant_id = request.POST.get('variant_id', False)
