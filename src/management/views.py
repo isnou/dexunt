@@ -283,7 +283,7 @@ def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 2
+    items_by_page = 6
 
     # --------------- main page ------------------- #
     if action == 'main':
@@ -1057,8 +1057,64 @@ def provider_settings(request, action):
             else:
                 request.session['error_messages'] = update_photo_form.errors
             return redirect('provider-settings', 'main')
-
 #                                                                        #
+@login_required
+def provider_products(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 6
+
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/provider/products/list.html"
+        variants = request.user.store.product_set.first().variant_set.all()
+        for product in  request.user.store.product_set.all():
+            variants.append(product.variant_set.all())
+
+        if request.GET.get('init', None):
+            request.session['variants_key_word']=None
+
+        if request.session.get('variants_key_word', None):
+            variants = variants.filter(tags__icontains=request.session.get('variants_key_word'))
+            search_key_word = request.session.get('variants_key_word')
+        else:
+            search_key_word = None
+
+        if not request.session.get('variants-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('variants-page')
+            request.session['variants-page'] = None
+
+        if request.session.get('error_messages'):
+            errors = request.session.get('error_messages')
+            request.session['error_messages'] = None
+        else:
+            errors = None
+
+        paginator = Paginator(variants, items_by_page)
+        try:
+            variants = paginator.page(page)
+        except PageNotAnInteger:
+            variants = paginator.page(1)
+        except EmptyPage:
+            variants = paginator.page(paginator.num_pages)
+
+        product_form = ProductForm()
+        variant_form = VariantForm()
+        option_form = OptionForm()
+        context = {
+            'nav_side': 'products',
+            'search_key_word': search_key_word,
+            'variants': variants,
+            'product_form': product_form,
+            'variant_form': variant_form,
+            'option_form': option_form,
+            'errors': errors,
+            'stores': stores,
+        }
+        return render(request, url, context)
 # ---------------------------------------------------------------------- #
 
 
