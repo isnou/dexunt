@@ -289,22 +289,22 @@ def manage_products(request, action):
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         stores = Store.objects.all()
-        products = Variant.objects.all()
+        variants = Variant.objects.all()
 
         if request.GET.get('init', None):
-            request.session['products_key_word']=None
+            request.session['variants_key_word']=None
 
-        if request.session.get('products_key_word', None):
-            products = products.filter(tags__icontains=request.session.get('products_key_word'))
-            search_key_word = request.session.get('products_key_word')
+        if request.session.get('variants_key_word', None):
+            variants = variants.filter(tags__icontains=request.session.get('variants_key_word'))
+            search_key_word = request.session.get('variants_key_word')
         else:
             search_key_word = None
 
-        if not request.session.get('products-page', None):
+        if not request.session.get('variants-page', None):
             page = request.GET.get('page', 1)
         else:
-            page = request.session.get('products-page')
-            request.session['products-page'] = None
+            page = request.session.get('variants-page')
+            request.session['variants-page'] = None
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -312,13 +312,13 @@ def manage_products(request, action):
         else:
             errors = None
 
-        paginator = Paginator(products, items_by_page)
+        paginator = Paginator(variants, items_by_page)
         try:
-            products = paginator.page(page)
+            variants = paginator.page(page)
         except PageNotAnInteger:
-            products = paginator.page(1)
+            variants = paginator.page(1)
         except EmptyPage:
-            products = paginator.page(paginator.num_pages)
+            variants = paginator.page(paginator.num_pages)
 
         product_form = ProductForm()
         variant_form = VariantForm()
@@ -326,7 +326,7 @@ def manage_products(request, action):
         context = {
             'nav_side': 'products',
             'search_key_word': search_key_word,
-            'products': products,
+            'variants': variants,
             'product_form': product_form,
             'variant_form': variant_form,
             'option_form': option_form,
