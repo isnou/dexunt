@@ -1068,9 +1068,7 @@ def provider_products(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/provider/products/list.html"
-        variants = request.user.store.product_set.first().variant_set.all()
-        for product in  request.user.store.product_set.all():
-            variants.append(product.variant_set.all())
+        variants = request.user.store.product_set.all().variant_set.all()
 
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
