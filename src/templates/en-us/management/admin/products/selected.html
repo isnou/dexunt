@@ -23,11 +23,6 @@
         {{ selected_product.store.name }}
         {% else %}
         {{ selected_product.store.user.username }}
-        {% else %}
-        {% if selected_product.brand %}
-        {{ selected_product.brand }}
-        {% else %}
-        none
         {% endif %}
         {% endif %}
       </span>
