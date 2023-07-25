@@ -260,7 +260,7 @@ def manage_stores(request, action):
         else:
             request.session['stores_key_word'] = None
 
-        stores = Store.objects.values().filter(tags__icontains=key_word)
+        stores = Store.objects.all().filter(tags__icontains=key_word)
 
         if not request.session.get('stores-page', None):
             page = request.GET.get('page', 1)
