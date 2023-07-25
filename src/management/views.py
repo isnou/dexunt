@@ -396,7 +396,7 @@ def manage_products(request, action):
         key_word = request.GET.get('key_word', None)
         request.session['variants_key_word'] = key_word
 
-        variants = Variant.objects.all().filter(tags__icontains=key_word)
+        variants = Variant.objects.values().filter(tags__icontains=key_word)
 
         if not request.session.get('variants-page', None):
             page = request.GET.get('page', 1)
