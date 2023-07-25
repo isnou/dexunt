@@ -1068,7 +1068,7 @@ def provider_products(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/provider/products/list.html"
-        variants = Variant.none()
+        variants = Variant.objects.all().none()
         for p in request.user.store.product_set.all():
             for v in p.variant_set.all():
                 variants.append(v)
