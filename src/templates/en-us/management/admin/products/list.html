@@ -262,13 +262,13 @@
         </td>
         <!-- product brand -->
         <td>
-          {% if product.brand %}
+          {% if product.store %}
           <!-- unassign a store -->
           <span class="d-block text-body fs-6">
             <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ product.id }}">
               <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
             </button>
-            {{ product.brand }}
+            {{ store.name }}
           </span>
           {% else %}
           <!-- assign a store -->
@@ -281,8 +281,8 @@
         </td>
         <!-- assign a store -->
         <td>
-          {% for variant in product.variant.all %}
-          {% for option in variant.option.all %}
+          {% for variant in product.variant_set.all %}
+          {% for option in variant.option_set.all %}
           <span class="d-block text-body fs-6">
             <small>
               {{ variant.en_spec }} - {{ option.en_value }}
@@ -416,7 +416,7 @@
                       <h6 class="mb-1">{{ store.name }}</h6>
                     </div>
                   </div>
-                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'assign_provider' %}?product_id={{ product.id }}&store_name={{ store.name }}"></a>
+                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'assign_provider' %}?product_id={{ product.id }}&store_id={{ store.id }}"></a>
                 </li>
                 {% endfor %}
               </ul>

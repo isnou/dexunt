@@ -341,9 +341,10 @@ def manage_products(request, action):
             return redirect('admin-manage-products', 'main')
     if action == 'assign_provider':
         product_id = request.GET.get('product_id')
-        store_name = request.GET.get('store_name')
+        store_id = request.GET.get('store_id')
         selected_product = Product.objects.all().get(id=product_id)
-        selected_product.set_provider(store_name)
+        selected_store = Store.objects.all().get(id=store_id)
+        selected_store.product_set.add(selected_product)
         return redirect('admin-manage-products', 'main')
     if action == 'unassign_provider':
         if request.method == 'POST':
