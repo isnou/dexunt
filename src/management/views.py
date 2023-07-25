@@ -405,10 +405,7 @@ def manage_products(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
-            if selected_variant.option_set.all().count():
-                for o in selected_variant.option_set.all():
-                    o.delete()
-                    
+
             selected_variant.delete()
             return redirect('admin-manage-products', 'view_product')
     if action == 'activate_variant':
