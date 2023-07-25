@@ -256,21 +256,7 @@ def manage_stores(request, action):
         key_word = request.GET.get('key_word', None)
         request.session['stores_key_word'] = key_word
 
-        stores = Store.objects.all().filter(tags__icontains=key_word)
-
-        if not request.session.get('stores-page', None):
-            page = request.GET.get('page', 1)
-        else:
-            page = request.session.get('stores-page')
-            request.session['stores-page'] = None
-
-        paginator = Paginator(stores, items_by_page)
-        try:
-            stores = paginator.page(page)
-        except PageNotAnInteger:
-            stores = paginator.page(1)
-        except EmptyPage:
-            stores = paginator.page(paginator.num_pages)
+        stores = Store.objects.all().first()
 
         context = {
             'stores': stores,
