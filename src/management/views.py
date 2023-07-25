@@ -317,8 +317,7 @@ def manage_products(request, action):
                         new_option_form.save()
                         new_option.variant = new_variant
                         new_option.save()
-                        request.session['product_id_token'] = new_product.id
-                        request.session['variant_id_token'] = new_variant.id
+                        request.session['product_id'] = new_product.id
                         return redirect('admin-manage-products', 'view_variant')
                     else:
                         request.session['error_messages'] = new_option_form.errors
@@ -336,13 +335,6 @@ def manage_products(request, action):
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
-            if selected_product.variant_set.all().count():
-                for v in selected_product.variant_set.all():
-                    if v.option_set.all().count():
-                        for o in v.option_set.all():
-                            o.delete()
-                    v.delete()
-
             selected_product.delete()
             return redirect('admin-manage-products', 'main')
     if action == 'assign_provider':
@@ -405,7 +397,6 @@ def manage_products(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
             selected_variant = Variant.objects.all().get(id=variant_id)
-
             selected_variant.delete()
             return redirect('admin-manage-products', 'view_product')
     if action == 'activate_variant':
