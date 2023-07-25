@@ -188,7 +188,7 @@ def manage_stores(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 6
+    items_by_page = 1
 
     # -- main page -- #
     if action == 'main':
@@ -203,13 +203,6 @@ def manage_stores(request, action):
             search_key_word = request.session.get('stores_key_word')
         else:
             search_key_word = None
-
-        new_filter = request.GET.get('filter', None)
-        if not request.session.get('stores_filter', None):
-            request.session['stores_filter'] = 'all'
-
-        stores = users_filter(request, stores, new_filter)
-        filtered = request.session.get('stores_filter', None)
 
         if not request.session.get('stores-page', None):
             page = request.GET.get('page', 1)
@@ -258,6 +251,36 @@ def manage_stores(request, action):
             selected_store.is_activated = False
             selected_store.save()
             return redirect ('admin-manage-stores', 'main')
+    # -- search partial show -- #
+    if action == 'search_stores':
+        url = direction + "/management/admin/stores/partial-list.html"
+        key_word = request.GET.get('key_word', None)
+
+        if key_word:
+            request.session['stores_key_word'] = key_word
+        else:
+            request.session['stores_key_word'] = None
+
+        stores_list = Store.objects.values().filter(tags__icontains=key_word)
+
+        if not request.session.get('stores-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('stores-page')
+            request.session['stores-page'] = None
+
+        paginator = Paginator(stores_list, items_by_page)
+        try:
+            stores_list = paginator.page(page)
+        except PageNotAnInteger:
+            stores_list = paginator.page(1)
+        except EmptyPage:
+            stores_list = paginator.page(paginator.num_pages)
+
+        context = {
+            'stores_list': stores_list,
+        }
+        return render(request, url, context)
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
