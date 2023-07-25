@@ -205,17 +205,15 @@
   <div class="card-header card-header-content-md-between">
     <!-- search -->
     <div class="mb-2 mb-md-0">
-      <form action="{% url 'admin-manage-products' 'main' %}" method="post">
-        {% csrf_token %}
+      <form>
         <div class="input-group input-group-merge input-group-flush">
           <div class="input-group-prepend input-group-text">
             <i class="bi-search"></i>
           </div>
-
           {% if search_key_word %}
-          <input class="form-control" type="search" name="key_word" value="{{ search_key_word }}" required >
+          <input class="form-control" type="search" name="key_word" value="{{ search_key_word }}" required hx-get="{% url 'admin-manage-products' 'search_products' %}" hx-trigger="keyup changed delay:1s" hx-target="#list">
           {% else %}
-          <input class="form-control" type="search" name="key_word" placeholder="Search products" required >
+          <input class="form-control" type="search" name="key_word" placeholder="Search products" required hx-get="{% url 'admin-manage-products' 'search_products' %}" hx-trigger="keyup changed delay:1s" hx-target="#list">
           {% endif %}
         </div>
       </form>
