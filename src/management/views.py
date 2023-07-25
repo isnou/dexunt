@@ -1102,18 +1102,11 @@ def provider_products(request, action):
         except EmptyPage:
             variants = paginator.page(paginator.num_pages)
 
-        product_form = ProductForm()
-        variant_form = VariantForm()
-        option_form = OptionForm()
         context = {
-            'nav_side': 'products',
+            'nav_side': 'my_products',
             'search_key_word': search_key_word,
             'variants': variants,
-            'product_form': product_form,
-            'variant_form': variant_form,
-            'option_form': option_form,
             'errors': errors,
-            'stores': stores,
         }
         return render(request, url, context)
 # ---------------------------------------------------------------------- #
