@@ -257,10 +257,8 @@ def manage_products(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
+        request.session['product_id'] = None
         url = direction + "/management/admin/products/list.html"
-        request.session['variant_id_token'] = None
-        request.session['product_id_token'] = None
-
         stores = Store.objects.all()
 
         if request.session.get('error_messages'):
@@ -357,26 +355,26 @@ def manage_products(request, action):
     # --------------- selected product ------------ #
     if action == 'view_product':
         url = direction + "/management/admin/products/selected.html"
-        request.session['variant_id_token'] = None
+
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
-            request.session['product_id_token'] = product_id
+            request.session['product_id'] = product_id
         else:
             if request.GET.get('product_id', False):
                 product_id = request.GET.get('product_id')
-                request.session['product_id_token'] = product_id
+                request.session['product_id'] = product_id
             else:
-                product_id = request.session.get('product_id_token')
+                product_id = request.session.get('product_id')
 
         selected_product = Product.objects.all().get(id=product_id)
-        selected_product_form = ProductForm(request.POST, instance=selected_product)
 
+        product_form = ProductForm()
         variant_form = VariantForm()
 
         context = {
             'nav_side': 'products',
             'selected_product': selected_product,
-            'selected_product_form': selected_product_form,
+            'product_form': product_form,
             'variant_form': variant_form,
         }
         return render(request, url, context)

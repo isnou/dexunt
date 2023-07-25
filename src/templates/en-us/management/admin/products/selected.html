@@ -52,7 +52,7 @@
           <table id="all_variants_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
             <!-- variants list -->
-            {% for variant in selected_product.variant.all %}
+            {% for variant in selected_product.variant_set.all %}
             <tr>
               <!-- variant title and image -->
               <td class="table-column-ps-0">
@@ -88,7 +88,7 @@
                 </button>
                 {% endif %}
 
-                {% if selected_product.variant.all.count > 1 %}
+                {% if selected_product.variant_set.all.count > 1 %}
                 <!-- delete variant -->
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
                   <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
@@ -141,7 +141,7 @@
               <!-- details -->
               <td>
                 <h6 class="text-body">
-                  {% if variant.album.all.count %}
+                  {% if variant.album_set.all.count %}
                   <small>Photos : {{ variant.album.all.count }}</small>
                   {% else %}
                   <span class="badge bg-danger">no photos</span>
@@ -149,7 +149,7 @@
                 </h6>
 
                 <h6 class="text-body">
-                  {% if variant.option.all.count %}
+                  {% if variant.option_set.all.count %}
                   <small>Options : {{ variant.option.all.count }}</small>
                   {% else %}
                   <span class="badge bg-warning">no options</span>
@@ -199,20 +199,20 @@
             <span class="divider-center mb-2">Main Informations</span>
             <!-- product english title -->
             <div class="input-group mb-2">
-              <input type="text" class="form-control" name="{{ selected_product_form.en_title.name }}" value="{{ selected_product.en_title }}" required>
+              <input type="text" class="form-control" name="{{ product_form.en_title.name }}" value="{{ selected_product.en_title }}" required>
               <span class="invalid-feedback text-center">required field.</span>
             </div>
             <!-- end product english title -->
 
             <!-- product french title -->
             <div class="input-group mb-2">
-              <input type="text" class="form-control" name="{{ selected_product_form.fr_title.name }}" value="{{ selected_product.fr_title }}">
+              <input type="text" class="form-control" name="{{ product_form.fr_title.name }}" value="{{ selected_product.fr_title }}">
             </div>
             <!-- end product french title -->
 
             <!-- product arabic title -->
             <div class="input-group mb-2">
-              <input type="text" class="form-control" name="{{ selected_product_form.ar_title.name }}" value="{{ selected_product.ar_title }}" dir="rtl">
+              <input type="text" class="form-control" name="{{ product_form.ar_title.name }}" value="{{ selected_product.ar_title }}" dir="rtl">
             </div>
             <!-- end product arabic title -->
           </div>
@@ -229,7 +229,7 @@
 <!-- end selected product  -->
 
 <!-- variants modals & forms -->
-{% for variant in selected_product.variant.all %}
+{% for variant in selected_product.variant_set.all %}
 <!-- activate variant form -->
 <form action="{% url 'admin-manage-products' 'activate_variant' %}" id="activate_variant_form_{{ variant.id }}" method="post">
   {% csrf_token %}
