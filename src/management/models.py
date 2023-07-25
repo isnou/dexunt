@@ -181,12 +181,12 @@ class Variant(models.Model):
         super().save()
     def set_tags(self):
         self.tags = ''
+        if self.product.en_title:
+            self.tags += ('' + self.product.en_title)
         if self.en_title:
-            self.tags += ('' + self.en_title)
+            self.tags += (', ' + self.product.en_title)
         if self.en_title:
-            self.tags += (', ' + self.en_title)
-        if self.en_title:
-            self.tags += (', ' + self.en_title)
+            self.tags += (', ' + self.product.en_title)
         if self.option_set.all().count():
             for o in self.option_set.all():
                 self.tags += (', ' + o.tags)
