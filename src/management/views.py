@@ -1120,21 +1120,6 @@ def provider_products(request, action):
             for v in p.variant_set.all():
                 variants.append(v)
 
-        variants = variants.filter(tags__icontains=key_word)
-
-        if not request.session.get('variants-page', None):
-            page = request.GET.get('page', 1)
-        else:
-            page = request.session.get('variants-page')
-            request.session['variants-page'] = None
-
-        paginator = Paginator(variants, items_by_page)
-        try:
-            variants = paginator.page(page)
-        except PageNotAnInteger:
-            variants = paginator.page(1)
-        except EmptyPage:
-            variants = paginator.page(paginator.num_pages)
 
         context = {
             'variants': variants,
