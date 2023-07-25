@@ -283,10 +283,28 @@ def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
+    items_by_page = 2
+
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         stores = Store.objects.all()
+        products = Product.objects.all()
+
+        if request.GET.get('init', None):
+            request.session['products_key_word']=None
+
+        if request.session.get('products_key_word', None):
+            stores = stores.filter(tags__icontains=request.session.get('products_key_word'))
+            search_key_word = request.session.get('products_key_word')
+        else:
+            search_key_word = None
+
+        if not request.session.get('products-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('products-page')
+            request.session['products-page'] = None
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -294,28 +312,21 @@ def manage_products(request, action):
         else:
             errors = None
 
-        all_products = Product.objects.all()
-        if all_products.count():
-            paginate = True
-        else:
-            paginate = False
-
-        page = request.GET.get('page', 1)
-        paginator = Paginator(all_products, 6)
+        paginator = Paginator(products, items_by_page)
         try:
-            all_products = paginator.page(page)
+            products = paginator.page(page)
         except PageNotAnInteger:
-            all_products = paginator.page(1)
+            products = paginator.page(1)
         except EmptyPage:
-            all_products = paginator.page(paginator.num_pages)
+            products = paginator.page(paginator.num_pages)
 
         product_form = ProductForm()
         variant_form = VariantForm()
         option_form = OptionForm()
         context = {
             'nav_side': 'products',
-            'all_products': all_products,
-            'paginate': paginate,
+            'search_key_word': search_key_word,
+            'products': products,
             'product_form': product_form,
             'variant_form': variant_form,
             'option_form': option_form,
@@ -379,6 +390,32 @@ def manage_products(request, action):
             selected_product.store = None
             selected_product.save()
             return redirect('admin-manage-products', 'main')
+    # -- search partial show -- #
+    if action == 'search_products':
+        url = direction + "/management/admin/products/partial-list.html"
+        key_word = request.GET.get('key_word', None)
+        request.session['products_key_word'] = key_word
+
+        products = Product.objects.all().filter(tags__icontains=key_word)
+
+        if not request.session.get('products-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('products-page')
+            request.session['products-page'] = None
+
+        paginator = Paginator(products, items_by_page)
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            products = paginator.page(1)
+        except EmptyPage:
+            products = paginator.page(paginator.num_pages)
+
+        context = {
+            'products': products,
+        }
+        return render(request, url, context)
 
     # --------------- selected product ------------ #
     if action == 'view_product':
