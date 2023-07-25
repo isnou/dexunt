@@ -290,7 +290,8 @@ def manage_products(request, action):
         url = direction + "/management/admin/products/list.html"
         stores = Store.objects.all()
         variants = Variant.objects.all()
-
+        for v in variants:
+            v.set_tags()
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
 
