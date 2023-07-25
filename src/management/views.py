@@ -983,6 +983,16 @@ def provider_settings(request, action):
             else:
                 request.session['error_messages'] = store_form.errors
             return redirect('provider-settings', 'main')
+    if action == 'edit_logo':
+        if request.method == 'POST':
+            request.user.first_name = request.store.name + '/'
+            update_photo_form = UpdatePhotoForm(request.POST, request.FILES, instance=request.user)
+            if update_photo_form.is_valid():
+                update_photo_form.save()
+            else:
+                request.session['error_messages'] = update_photo_form.errors
+            return redirect('provider-settings', 'main')
+
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
