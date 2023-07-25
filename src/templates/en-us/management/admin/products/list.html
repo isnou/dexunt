@@ -249,7 +249,6 @@
               </div>
               <div class="flex-grow-1 ms-3">
                 <h5 class="text-inherit me-2">{{ variant.product.en_title }}</h5>
-
                 <span class="d-block text-body fs-6">
                   <small> {{ variant.en_spec }} </small>
                 </span>
@@ -283,7 +282,7 @@
               <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
                 <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
               </button>
-              <strong>{{ variant.product.store.name }}</strong>
+              <strong class="text-dark">{{ variant.product.store.name }}</strong>
             </span>
             {% else %}
             <!-- assign a store -->
