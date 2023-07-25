@@ -306,7 +306,7 @@
           <!-- product actions -->
           <td class="text-end">
             <!-- delete product -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ product.id }}">
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ variant.id }}">
               <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
             </button>
           </td>
@@ -323,16 +323,16 @@
       <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
         <!-- Pagination -->
         <nav>
-          {% if products.has_other_pages %}
+          {% if variants.has_other_pages %}
           <ul class="pagination justify-content-center">
-            {% if products.has_previous %}
+            {% if variants.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ products.previous_page_number }}" tabindex="-1">Previous</a>
+              <a class="page-link" href="?page={{ variants.previous_page_number }}" tabindex="-1">Previous</a>
             </li>
             {% endif %}
 
-            {% for i in products.paginator.page_range %}
-            {% if products.number == i %}
+            {% for i in variants.paginator.page_range %}
+            {% if variants.number == i %}
             <li class="page-item active">
               <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
             </li>
@@ -343,9 +343,9 @@
             {% endif %}
             {% endfor %}
 
-            {% if products.has_next %}
+            {% if variants.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ products.next_page_number }}">Next</a>
+              <a class="page-link" href="?page={{ variants.next_page_number }}">Next</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -365,22 +365,22 @@
 <!-- end all products  -->
 
 <!-- product modals & forms -->
-{% for product in products %}
+{% for variant in variants %}
 <!-- delete product form -->
-<form action="{% url 'admin-manage-products' 'delete_product' %}" id="delete_product_form_{{ product.id }}" method="post">
+<form action="{% url 'admin-manage-products' 'delete_product' %}" id="delete_product_form_{{ variant.id }}" method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ product.id }}'>
+  <input type="hidden" name="product_id" value='{{ variant.product.id }}'>
 </form>
 
 <!-- unassign store form -->
-<form action="{% url 'admin-manage-products' 'unassign_provider' %}" id="unassign_form_{{ product.id }}" method="post">
+<form action="{% url 'admin-manage-products' 'unassign_provider' %}" id="unassign_form_{{ variant.id }}" method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ product.id }}'>
+  <input type="hidden" name="product_id" value='{{ variant.product.id }}'>
 </form>
 
 
 <!-- assign a store modal -->
-<div id="assign_a_store_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="assign_a_store_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-close">
@@ -410,7 +410,7 @@
                       <h6 class="mb-1">{{ store.name }}</h6>
                     </div>
                   </div>
-                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'assign_provider' %}?product_id={{ product.id }}&store_id={{ store.id }}"></a>
+                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'assign_provider' %}?product_id={{ variant.product.id }}&store_id={{ store.id }}"></a>
                 </li>
                 {% endfor %}
               </ul>
@@ -423,7 +423,7 @@
 </div>
 
 <!-- unassign a store modal -->
-<div id="unassign_a_store_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="unassign_a_store_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -431,18 +431,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <p>click yes to unassign {{ product.store.name }}.</p>
+        <p>click yes to unassign {{ variant.product.store.name }}.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="unassign_form_{{ product.id }}">Yes</button>
+        <button class="btn btn-primary" form="unassign_form_{{ variant.id }}">Yes</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- delete product modal -->
-<div id="delete_product_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="delete_product_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -450,11 +450,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <p>click yes to delete {{ product.en_title }}.</p>
+        <p>click yes to delete {{ variant.product.en_title }} and variants.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="delete_product_form_{{ product.id }}">Yes</button>
+        <button class="btn btn-primary" form="delete_product_form_{{ variant.id }}">Yes</button>
       </div>
     </div>
   </div>
