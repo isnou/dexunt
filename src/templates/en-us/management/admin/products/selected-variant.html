@@ -407,7 +407,7 @@
         <div class="table-responsive">
           <table id="option_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
-            {% for option in selected_variant.option.all %}
+            {% for option in selected_variant.option_set.all %}
             <tr>
               <!-- option title and image -->
               {% if option.has_image %}
@@ -442,7 +442,7 @@
                 </button>
                 {% endif %}
 
-                {% if selected_variant.option.all.count > 1 %}
+                {% if selected_variant.option_set.all.count > 1 %}
                 <!-- delete option button -->
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
