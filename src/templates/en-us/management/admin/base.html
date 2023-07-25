@@ -557,7 +557,7 @@
 
             <!-- Products -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'admin-manage-products' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'admin-manage-products' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-cart-flatbed nav-icon"></i>
                 <span class="nav-link-title">Products</span>
               </a>

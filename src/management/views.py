@@ -289,13 +289,13 @@ def manage_products(request, action):
     if action == 'main':
         url = direction + "/management/admin/products/list.html"
         stores = Store.objects.all()
-        products = Product.objects.all()
+        products = Variant.objects.all()
 
         if request.GET.get('init', None):
             request.session['products_key_word']=None
 
         if request.session.get('products_key_word', None):
-            stores = stores.filter(tags__icontains=request.session.get('products_key_word'))
+            products = products.filter(tags__icontains=request.session.get('products_key_word'))
             search_key_word = request.session.get('products_key_word')
         else:
             search_key_word = None
