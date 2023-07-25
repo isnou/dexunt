@@ -416,20 +416,16 @@ def manage_products(request, action):
         url = direction + "/management/admin/products/selected-variant.html"
 
         if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
             variant_id = request.POST.get('variant_id', False)
             request.session['variant_id'] = variant_id
         else:
             if request.GET.get('variant_id', False):
-                product_id = request.GET.get('product_id')
                 variant_id = request.GET.get('variant_id')
                 request.session['variant_id'] = variant_id
             else:
-                product_id = request.session.get('product_id')
                 variant_id = request.session.get('variant_id')
 
         selected_variant = Variant.objects.all().get(id=variant_id)
-        selected_product = Product.objects.all().get(id=product_id)
         selected_variant.clean()
 
         variant_form = VariantForm()
@@ -439,7 +435,6 @@ def manage_products(request, action):
         context = {
             'nav_side': 'products',
             'selected_variant': selected_variant,
-            'selected_product': selected_product,
             'variant_form': variant_form,
             'option_form': option_form,
             'feature_form': feature_form,

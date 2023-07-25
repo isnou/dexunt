@@ -2,30 +2,26 @@
 {% load static %}
 
 <!-- title -->
-{% block title %}<title>Dexunt | eCommerce & Logistic | Management | Products | {{ selected_product.en_title }} | {{ selected_variant.en_spec }} </title>{% endblock %}
+{% block title %}<title>Dexunt | eCommerce & Logistic | Management | Products | {{ selected_variant.product.en_title }} | {{ selected_variant.en_spec }} </title>{% endblock %}
 
 <!-- header -->
 {% block page_header %}
 <div class="row align-items-end">
   <!-- selected variant  -->
   <div class="col-sm mb-2 mb-sm-0">
-    <form action="{% url 'admin-manage-products' 'view_product' %}" id="view_product_form" method="post">
-      {% csrf_token %}
-      <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-    </form>
+
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
         <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'admin-manage-products' 'main' %}">Products</a></li>
-        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'admin-manage-products' 'view_product' %}">{{ selected_product.en_title }}</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ selected_variant.product.id }}">{{ selected_variant.product.en_title }}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ selected_variant.en_spec }}</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">{{ selected_product.en_title }}</h1>
+    <h1 class="page-header-title">{{ selected_variant.product.en_title }}</h1>
     <h6>
-      Token :<span class="text-muted ms-1">{{ selected_product.token }}</span>
-      | Price :<span class="text-muted ms-1">{{ selected_variant.price }} DZD</span>
+      Price :<span class="text-muted ms-1">{{ selected_variant.option_set.first.price }} DZD</span>
       {% if selected_variant.discount %}
-      | Discount :<span class="text-muted ms-1">{{ selected_variant.discount }} DZD</span>
+      | Discount :<span class="text-muted ms-1">{{ selected_variant.option_set.first.discount }} DZD</span>
       {% endif %}
     </h6>
   </div>
@@ -681,40 +677,30 @@
 <!-- activate option form -->
 <form action="{% url 'admin-manage-products' 'activate_option' %}" id="activate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="option_id" value='{{ option.id }}'>
 </form>
 
 <!-- deactivate option form -->
 <form action="{% url 'admin-manage-products' 'deactivate_option' %}" id="deactivate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="option_id" value='{{ option.id }}'>
 </form>
 
 <!-- delete option form -->
 <form action="{% url 'admin-manage-products' 'delete_option' %}" id="delete_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="option_id" value='{{ option.id }}'>
 </form>
 
 <!-- duplicate option form -->
 <form action="{% url 'admin-manage-products' 'duplicate_option' %}" id="duplicate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="option_id" value='{{ option.id }}'>
 </form>
 
 <!-- deconvert option form -->
 <form action="{% url 'admin-manage-products' 'deconvert_option' %}" id="deconvert_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="option_id" value='{{ option.id }}'>
 </form>
 
@@ -778,8 +764,6 @@
           <!-- convert option form -->
           <form action="{% url 'admin-manage-products' 'convert_option' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
             <input type="hidden" name="option_id" value='{{ option.id }}'>
 
             <div class="row mb-4">
@@ -837,8 +821,6 @@
           <!-- edit option form -->
           <form action="{% url 'admin-manage-products' 'edit_option' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
-            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
             <input type="hidden" name="option_id" value='{{ option.id }}'>
 
             <div class="row mb-4">
@@ -1005,8 +987,6 @@
         <!-- convert option form -->
         <form action="{% url 'admin-manage-products' 'convert_option' %}" id="edit_image_option_{{ option.id }}_{{ variant.id }}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
           <input type="hidden" name="option_id" value='{{ option.id }}'>
 
           <div class="row mb-4">
@@ -1047,8 +1027,6 @@
 <!-- delete feature form -->
 <form action="{% url 'admin-manage-products' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
     {% csrf_token %}
-    <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-    <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
     <input type="hidden" name="feature_id" value='{{ feature.id }}'>
   </form>
 
@@ -1084,8 +1062,6 @@
       <div class="modal-body">
         <form action="{% url 'admin-manage-products' 'edit_feature' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
           <input type="hidden" name="feature_id" value='{{ feature.id }}'>
 
           <div class="row mb-4">
@@ -1157,7 +1133,6 @@
 <!-- delete description form -->
 <form action="{% url 'admin-manage-products' 'delete_description' %}" id="delete_description_{{ description.id }}" class="js-validate need-validate" novalidate method="post">
   {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
   <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="description_id" value='{{ description.id }}'>
 </form>
@@ -1194,7 +1169,6 @@
       <div class="modal-body">
         <form action="{% url 'admin-manage-products' 'edit_description' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
           <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
           <input type="hidden" name="description_id" value='{{ description.id }}'>
 
