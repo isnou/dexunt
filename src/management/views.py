@@ -312,13 +312,14 @@ def manage_products(request, action):
 
             if new_product_form.is_valid():
                 new_product_form.save()
-                new_product.set_variant(new_variant)
                 if new_variant_form.is_valid():
                     new_variant_form.save()
+                    new_variant.product = new_product
+                    new_variant.save()
                     if new_option_form.is_valid():
                         new_option_form.save()
-                        new_variant.set_option(new_option)
-                        new_variant.set_standard_features()
+                        new_option.variant = new_variant
+                        new_option.save()
                         request.session['product_id_token'] = new_product.id
                         request.session['variant_id_token'] = new_variant.id
                         return redirect('admin-manage-products', 'view_variant')
