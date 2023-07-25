@@ -16,10 +16,77 @@
 
         <tbody>
 
-        {% for store in stores %}
+        {% for r in stores %}
         <!-- Table Actions -->
         <tr>
-          
+          <td>
+            {% if store.user.profile_photo %}
+            <a class="d-flex align-items-center" href="#">
+              <div class="flex-shrink-0">
+                <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ store.user.profile_photo }}">
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h5 class="text-inherit ms-2">{{ store.name }}</h5>
+              </div>
+            </a>
+            {% else %}
+            <a class="d-flex align-items-center" href="#">
+              <div class="avatar avatar-soft-dark avatar-circle">
+                <span class="avatar-initials">{{ store.name|title|slice:"2" }}</span>
+              </div>
+              <div class="ms-3">
+                <span class="d-block h5 text-inherit">{{ store.name }}</span>
+              </div>
+            </a>
+            {% endif %}
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.order.all.count }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.cart.product.all.count }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.wallet.balance }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ selected_user.points }}</span>
+          </td>
+
+          <td>
+            {% if selected_user.is_customer %}
+            <span class="d-block fs-5">client</span>
+            {% endif %}
+            {% if selected_user.is_provider %}
+            <span class="d-block fs-5">provider</span>
+            {% endif %}
+            {% if selected_user.is_seller %}
+            <span class="d-block fs-5">seller</span>
+            {% endif %}
+            {% if selected_user.is_member %}
+            <span class="d-block fs-5">member</span>
+            {% endif %}
+          </td>
+
+          <td class="text-end">
+            {% if store.is_activated %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ store.id }}">
+              <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
+            </a>
+            {% else %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ store.id }}">
+              <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
+            </a>
+            {% endif %}
+
+            <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ store.id }}">
+              <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+            </a>
+          </td>
         </tr>
         <!-- End Table Actions -->
         {% endfor %}
