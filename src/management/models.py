@@ -305,10 +305,7 @@ class Store(models.Model):
 
         super().save()
     def activate(self):
-        if not self.user.profile_photo and not self.name:
-            self.is_activated = False
-        else:
-            self.is_activated = True
+        self.is_activated = True
         super().save()
 #                                                                        #
 class FlashProduct(models.Model):
