@@ -62,7 +62,6 @@
             <th scope="col" class="table-column-pe-0">
             </th>
             <th class="table-column-ps-0">Product</th>
-            <th>Vendor</th>
             <th></th>
             <th>Actions</th>
           </tr>
@@ -89,28 +88,8 @@
               </div>
             </a>
           </td>
-          <!-- product brand -->
+
           <td>
-            {% if variant.product.store %}
-            <!-- unassign a store -->
-            <span class="d-block text-body fs-6">
-              <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
-                <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
-              </button>
-              {{ variant.product.store.name }}
-            </span>
-            {% else %}
-            <!-- assign a store -->
-            <span class="d-block text-body text-center fs-6">
-              <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#assign_a_store_{{ variant.id }}">
-                <i class="fa fa-store fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Store"></i>
-              </button>
-            </span>
-            {% endif %}
-          </td>
-          <!-- assign a store -->
-          <td>
-            {% for variant in variant.product.variant_set.all %}
             {% for option in variant.option_set.all %}
             <span class="d-block text-body fs-6">
               <small>
@@ -126,7 +105,6 @@
                 {% endif %}
               </small>
             </span>
-            {% endfor %}
             {% endfor %}
           </td>
           <!-- product actions -->
