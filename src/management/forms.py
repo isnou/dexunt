@@ -22,8 +22,7 @@ class OptionForm(ModelForm):
 class FlashForm(ModelForm):
     class Meta:
         model = FlashProduct
-        fields = ('en_title', 'fr_title', 'ar_title', 'en_spec', 'fr_spec', 'ar_spec', 'en_value', 'fr_value',
-                  'ar_value', 'image', 'valid_until', 'discount')
+        fields = ['valid_until']
 
 class FeatureForm(ModelForm):
     class Meta:
