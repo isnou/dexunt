@@ -435,15 +435,15 @@ def manage_products(request, action):
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             variant_id = request.POST.get('variant_id', False)
-            request.session['variant_id_token'] = variant_id
+            request.session['variant_id'] = variant_id
         else:
             if request.GET.get('variant_id', False):
                 product_id = request.GET.get('product_id')
                 variant_id = request.GET.get('variant_id')
-                request.session['variant_id_token'] = variant_id
+                request.session['variant_id'] = variant_id
             else:
-                product_id = request.session.get('product_id_token')
-                variant_id = request.session.get('variant_id_token')
+                product_id = request.session.get('product_id')
+                variant_id = request.session.get('variant_id')
 
         selected_variant = Variant.objects.all().get(id=variant_id)
         selected_product = Product.objects.all().get(id=product_id)
@@ -465,38 +465,25 @@ def manage_products(request, action):
         return render(request, url, context)
     if action == 'edit_variant':
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
+            request.session['product_id'] = request.POST.get('product_id', None)
+            variant_id = request.POST.get('variant_id', None)
+            request.session['variant_id'] = variant_id
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant_form = VariantForm(request.POST, instance=selected_variant)
             selected_variant_form.save()
             return redirect('admin-manage-products', 'view_variant')
-    if action == 'add_image':
-        if request.method == 'POST':
-            product_id = request.session.get('product_id_token')
-            variant_id = request.POST.get('variant_id', False)
-            image = request.FILES.get('image', False)
-
-            selected_product = Product.objects.all().get(id=product_id)
-            selected_variant = Variant.objects.all().get(id=variant_id)
-            album = Album(file_name= selected_product.en_title + '/' + selected_variant.en_spec,
-                          image=image,
-                          )
-            album.save()
-            selected_variant.album.add(album)
-
-            return redirect('admin-manage-products', 'view_variant')
 
     if action == 'add_images':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
+            request.session['product_id'] = request.POST.get('product_id', None)
             variant_id = request.POST.get('variant_id', None)
-            request.session['variant_id_token'] = variant_id
+            request.session['variant_id'] = variant_id
             selected_variant = Variant.objects.all().get(id=variant_id)
             album = Album(file_name=selected_variant.en_title + '/' + selected_variant.en_spec + '/',
                           image=request.FILES.get('variant_image'),
                           )
+            album.variant = selected_variant
             album.save()
-            selected_variant.album.add(album)
             return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_image':
         if request.method == 'POST':
