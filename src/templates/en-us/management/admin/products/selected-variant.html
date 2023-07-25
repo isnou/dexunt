@@ -283,7 +283,7 @@
 <!-- selected variant  -->
 <div class="row">
   <div class="col-lg-8 mb-3 mb-lg-0">
-    {% if selected_variant.album.all.count %}
+    {% if selected_variant.album_set.all.count %}
     <!-- photos -->
     <div class="card mb-2">
       <div class="card-header">
@@ -291,7 +291,7 @@
       </div>
       <div class="card-body">
         <div class="row">
-          {% for album in selected_variant.album.all %}
+          {% for album in selected_variant.album_set.all %}
           <div class="col">
             <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
               {% csrf_token %}
@@ -717,9 +717,6 @@
   <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
   <input type="hidden" name="option_id" value='{{ option.id }}'>
 </form>
-
-
-
 
 <!-- activate option modal -->
 <div id="activate_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
