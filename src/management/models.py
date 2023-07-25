@@ -183,16 +183,25 @@ class Variant(models.Model):
         self.tags = ''
         if self.product.en_title:
             self.tags += ('' + self.product.en_title)
-        if self.en_title:
-            self.tags += (', ' + self.product.en_title)
-        if self.en_title:
-            self.tags += (', ' + self.product.en_title)
+        if self.product.fr_title:
+            self.tags += (', ' + self.product.fr_title)
+        if self.product.ar_title:
+            self.tags += (', ' + self.product.ar_title)
+
+        if self.en_spec:
+            self.tags += (', ' + self.en_spec)
+        if self.fr_spec:
+            self.tags += (', ' + self.fr_spec)
+        if self.ar_spec:
+            self.tags += (', ' + self.ar_spec)
+
         if self.option_set.all().count():
             for o in self.option_set.all():
                 self.tags += (', ' + o.tags)
         if self.feature.all().count():
             for f in self.feature.all():
                 self.tags += (', ' + f.tags)
+
         super().save()
     def duplicate(self):
         new_variant = Variant(en_spec = self.en_spec,
