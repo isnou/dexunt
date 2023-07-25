@@ -273,7 +273,7 @@ def manage_stores(request, action):
             stores = paginator.page(paginator.num_pages)
 
         context = {
-            
+            'stores': stores,
         }
         return render(request, url, context)
 #                                                                        #
