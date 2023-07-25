@@ -125,7 +125,7 @@
           </td>
 
           <td class="text-end">
-            {% if store.user.is_activated %}
+            {% if store.is_activated %}
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ store.id }}">
               <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
             </a>
