@@ -29,47 +29,24 @@
 
   <div class="col-lg-8">
     <div class="card">
-              <!-- Profile Cover -->
-              <div class="profile-cover">
-                <div class="profile-cover-img-wrapper">
-                  <img id="profileCoverImg" class="profile-cover-img" src="assets/img/1920x400/img2.jpg" alt="Image Description">
+      <div class="profile-cover">
 
-                  <!-- Custom File Cover -->
-                  <div class="profile-cover-content profile-cover-uploader p-3">
-                    <input type="file" class="js-file-attach profile-cover-uploader-input" id="profileCoverUplaoder" data-hs-file-attach-options='{
-                                "textTarget": "#profileCoverImg",
-                                "mode": "image",
-                                "targetAttr": "src",
-                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                             }'>
-                    <label class="profile-cover-uploader-label btn btn-sm btn-white" for="profileCoverUplaoder">
-                      <i class="bi-camera-fill"></i>
-                      <span class="d-none d-sm-inline-block ms-1">Upload header</span>
-                    </label>
-                  </div>
-                  <!-- End Custom File Cover -->
-                </div>
-              </div>
-              <!-- End Profile Cover -->
+      </div>
 
-              <!-- Avatar -->
-              <label class="avatar avatar-xxl avatar-circle avatar-uploader profile-cover-avatar" for="editAvatarUploaderModal">
-                <img id="editAvatarImgModal" class="avatar-img" src="assets/img/160x160/img6.jpg" alt="Image Description">
+      <label class="avatar avatar-xxl avatar-circle avatar-uploader profile-cover-avatar" for="editAvatarUploaderModal">
+        <img id="editAvatarImgModal" class="avatar-img" src="assets/img/160x160/img6.jpg" alt="Image Description">
+        <input type="file" class="js-file-attach avatar-uploader-input" id="editAvatarUploaderModal" data-hs-file-attach-options='{
+        "textTarget": "#editAvatarImgModal",
+        "mode": "image",
+        "targetAttr": "src",
+        "allowTypes": [".png", ".jpeg", ".jpg"]
+        }'>
 
-                <input type="file" class="js-file-attach avatar-uploader-input" id="editAvatarUploaderModal" data-hs-file-attach-options='{
-                            "textTarget": "#editAvatarImgModal",
-                            "mode": "image",
-                            "targetAttr": "src",
-                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                         }'>
+        <span class="avatar-uploader-trigger">
+          <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
+        </span>
+      </label>
 
-                <span class="avatar-uploader-trigger">
-                  <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
-                </span>
-              </label>
-              <!-- End Avatar -->
-
-              <!-- Body -->
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-5">
@@ -91,7 +68,7 @@
                 </div>
                 <!-- End Row -->
               </div>
-              <!-- End Body -->
+      
             </div>
   </div>
 </div>
