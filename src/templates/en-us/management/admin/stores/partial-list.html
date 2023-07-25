@@ -16,19 +16,29 @@
 
         <tbody>
 
-        {% for selected_user in users_list %}
+        {% for store in stores %}
         <!-- Table Actions -->
         <tr>
           <td>
-            <a class="d-flex align-items-center" href="{% url 'admin-manage-users' 'select_user' %}?user_id={{ selected_user.id }}">
-              <div class="avatar avatar-soft-dark avatar-circle">
-                <span class="avatar-initials">{{ selected_user.first_name|title|slice:"1" }}{{ selected_user.last_name|title|slice:"1" }}</span>
+            {% if store.user.profile_photo %}
+            <a class="d-flex align-items-center" href="#">
+              <div class="flex-shrink-0">
+                <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ store.user.profile_photo }}">
               </div>
-              <div class="ms-3">
-                <span class="d-block h5 text-inherit mb-0">{{ selected_user.username }}</span>
-                <span class="d-block fs-5 text-body">{{ selected_user.first_name|title }} {{ selected_user.last_name|title }}</span>
+              <div class="flex-grow-1 ms-3">
+                <h5 class="text-inherit ms-2">{{ store.name }}</h5>
               </div>
             </a>
+            {% else %}
+            <a class="d-flex align-items-center" href="#">
+              <div class="avatar avatar-soft-dark avatar-circle">
+                <span class="avatar-initials">{{ store.name|title|slice:"2" }}</span>
+              </div>
+              <div class="ms-3">
+                <span class="d-block h5 text-inherit">{{ store.name }}</span>
+              </div>
+            </a>
+            {% endif %}
           </td>
 
           <td>
@@ -63,21 +73,17 @@
           </td>
 
           <td class="text-end">
-            {% if selected_user.is_activated %}
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ selected_user.id }}">
+            {% if store.is_activated %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ store.id }}">
               <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
             </a>
             {% else %}
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ selected_user.id }}">
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ store.id }}">
               <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
             </a>
             {% endif %}
 
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#change_modal_{{ selected_user.id }}">
-              <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
-            </a>
-
-            <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
+            <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ store.id }}">
               <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
             </a>
           </td>
@@ -94,15 +100,15 @@
       <!-- Pagination -->
       <div class="d-flex justify-content-center justify-content-sm-end">
         <nav>
-          {% if users_list.has_other_pages %}
+          {% if stores.has_other_pages %}
           <ul class="pagination justify-content-center">
-            {% if users_list.has_previous %}
+            {% if stores.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ users_list.previous_page_number }}" tabindex="-1">Previous</a>
+              <a class="page-link" href="?page={{ stores.previous_page_number }}" tabindex="-1">Previous</a>
             </li>
             {% endif %}
 
-            {% for i in users_list.paginator.page_range %}
+            {% for i in stores.paginator.page_range %}
             {% if users_list.number == i %}
             <li class="page-item active">
               <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
@@ -114,9 +120,9 @@
             {% endif %}
             {% endfor %}
 
-            {% if users_list.has_next %}
+            {% if stores.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ users_list.next_page_number }}">Next</a>
+              <a class="page-link" href="?page={{ stores.next_page_number }}">Next</a>
             </li>
             {% else %}
             <li class="page-item disabled">
