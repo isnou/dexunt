@@ -524,27 +524,19 @@ def manage_products(request, action):
             return redirect('admin-manage-products', 'view_variant')
     if action == 'edit_option':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
-            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             option_id = request.POST.get('option_id', False)
             selected_option = Option.objects.all().get(id=option_id)
-
             selected_option_form = OptionForm(request.POST, instance=selected_option)
             selected_option_form.save()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_option':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
-            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             option_id = request.POST.get('option_id', False)
-
             option = Option.objects.all().get(id=option_id)
             option.delete()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'convert_option':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
-            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             selected_option = Option.objects.all().get(id=request.POST.get('option_id', False))
             selected_option.has_image = True
             selected_option.image = request.FILES.get('option_image')
@@ -552,8 +544,6 @@ def manage_products(request, action):
             return redirect('admin-manage-products', 'view_variant')
     if action == 'deconvert_option':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
-            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             selected_option = Option.objects.all().get(id=request.POST.get('option_id', False))
             selected_option.has_image = False
             selected_option.image = None
@@ -561,27 +551,18 @@ def manage_products(request, action):
             return redirect('admin-manage-products', 'view_variant')
     if action == 'activate_option':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
-            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             option_id = request.POST.get('option_id', False)
-
             option = Option.objects.all().get(id=option_id)
             option.is_activated = True
             option.save()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'deactivate_option':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
-            request.session['variant_id_token'] = request.POST.get('variant_id', None)
             option_id = request.POST.get('option_id', False)
-
             option = Option.objects.all().get(id=option_id)
             option.is_activated = False
             option.save()
             return redirect('admin-manage-products', 'view_variant')
-
-
-
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
