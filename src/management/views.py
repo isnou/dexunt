@@ -479,7 +479,7 @@ def manage_products(request, action):
             variant_id = request.POST.get('variant_id', None)
             request.session['variant_id'] = variant_id
             selected_variant = Variant.objects.all().get(id=variant_id)
-            album = Album(file_name=selected_variant.en_title + '/' + selected_variant.en_spec + '/',
+            album = Album(file_name=selected_variant.product.en_title + '/' + selected_variant.en_spec + '/',
                           image=request.FILES.get('variant_image'),
                           )
             album.variant = selected_variant
