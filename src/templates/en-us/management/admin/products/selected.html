@@ -26,7 +26,9 @@
         {% endif %}
       </span>
     </h6>
-    {% elif selected_product.brand %}
+    {% endif %}
+
+    {% if selected_product.brand %}
     <h6>
       <span class="text-muted ms-1">
         {{ selected_product.brand }}

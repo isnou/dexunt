@@ -17,10 +17,10 @@
         <li class="breadcrumb-item active" aria-current="page">{{ selected_variant.en_spec }}</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">{{ selected_variant.product.en_title }}</h1>
+    <h1 class="page-header-title">{{ selected_variant.product.en_title }} - {{ selected_variant.en_spec }}</h1>
     <h6>
       Price :<span class="text-muted ms-1">{{ selected_variant.option_set.first.price }} DZD</span>
-      {% if selected_variant.discount %}
+      {% if selected_variant.option_set.first.discount %}
       | Discount :<span class="text-muted ms-1">{{ selected_variant.option_set.first.discount }} DZD</span>
       {% endif %}
     </h6>
@@ -74,30 +74,6 @@
                 <input type="text" class="form-control" name="{{ variant_form.ar_spec.name }}" value="{{ selected_variant.ar_spec }}" dir="rtl">
               </div>
               <!-- end variant arabic spec -->
-
-              <span class="divider-center mb-2">Prices</span>
-              <!-- variant price -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">price</span>
-                <input type="number" class="form-control" name="{{ variant_form.price.name }}" value="{{ selected_variant.price }}" required>
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end variant price -->
-
-              <!-- product discount -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">discount</span>
-                {% if selected_variant.discount %}
-                <input type="number" class="form-control" name="{{ variant_form.discount.name }}" value="{{ selected_variant.discount }}">
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                {% else %}
-                <input type="text" class="form-control" name="{{ variant_form.discount.name }}" placeholder="no discount">
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                {% endif %}
-              </div>
-              <!-- end product discount -->
-
             </div>
             <!-- submit -->
             <div class="d-grid mb-4">
@@ -126,7 +102,6 @@
           </div>
           <form action="{% url 'admin-manage-products' 'add_feature' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
-            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
 
             <div class="row mb-4">
@@ -207,7 +182,6 @@
           </div>
           <form action="{% url 'admin-manage-products' 'add_description' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
             <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
 
             <div class="row mb-4">
@@ -291,7 +265,6 @@
           <div class="col">
             <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
               {% csrf_token %}
-              <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
               <input type="hidden" name="album_id" value='{{ album.id }}'>
             </form>
 
@@ -322,7 +295,6 @@
       <div class="card-body">
         <form action="{% url 'admin-manage-products' 'add_images' %}" id="variant_upload_images" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
           <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
 
           <div class="fallback">
@@ -673,7 +645,7 @@
 
 
 <!-- options modals & forms -->
-{% for option in selected_variant.option.all %}
+{% for option in selected_variant.option_set.all %}
 <!-- activate option form -->
 <form action="{% url 'admin-manage-products' 'activate_option' %}" id="activate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
   {% csrf_token %}
