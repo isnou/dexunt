@@ -143,7 +143,6 @@ class Option(models.Model):
                             )
         new_option.save()
         self.variant.option_set.add(new_option)
-        self.provider.option_set.add(new_option)
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
