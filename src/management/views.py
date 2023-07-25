@@ -253,11 +253,10 @@ def manage_stores(request, action):
     # -- search partial show -- #
     if action == 'search_stores':
         url = direction + "/management/admin/stores/partial-list.html"
-        stores = Store.objects.all()
         key_word = request.GET.get('key_word', None)
         request.session['stores_key_word'] = key_word
 
-        stores = stores.filter(tags__icontains=key_word)
+        stores = Store.objects.all().filter(tags__icontains=key_word)
 
         if not request.session.get('stores-page', None):
             page = request.GET.get('page', 1)
