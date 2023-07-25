@@ -279,6 +279,7 @@ class Store(models.Model):
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         self.tags = ''
+        self.tags += (', ' + self.user.tags)
         if self.name:
             self.tags += (', ' + self.name)
 
@@ -302,7 +303,6 @@ class Store(models.Model):
             self.tags += (', ' + self.fr_address)
         if self.ar_address:
             self.tags += (', ' + self.ar_address)
-
         super().save()
     def activate(self):
         if not self.user.profile_photo or not self.name:
