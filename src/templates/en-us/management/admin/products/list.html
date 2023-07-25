@@ -249,8 +249,31 @@
               </div>
               <div class="flex-grow-1 ms-3">
                 <h5 class="text-inherit me-2">{{ variant.product.en_title }}</h5>
+
+                <span class="d-block text-body fs-6">
+                  <small> {{ variant.en_spec }} </small>
+                </span>
               </div>
             </a>
+          </td>
+          <!-- options -->
+          <td>
+            {% for option in variant.option_set.all %}
+            <span class="d-block text-body fs-6">
+              <small>
+                {{ option.en_value }}
+                {% if not option.is_activated or not variant.is_activated %}
+                <span class="badge bg-warning">not activated</span>
+                {% endif %}
+
+                {% if not option.quantity %}
+                <span class="badge bg-danger">not available</span>
+                {% else %}
+                 ({{ option.quantity }}) available
+                {% endif %}
+              </small>
+            </span>
+            {% endfor %}
           </td>
           <!-- product brand -->
           <td>
@@ -270,25 +293,6 @@
               </button>
             </span>
             {% endif %}
-          </td>
-          <!-- assign a store -->
-          <td>
-            {% for option in variant.option_set.all %}
-            <span class="d-block text-body fs-6">
-              <small>
-                {{ variant.en_spec }} - {{ option.en_value }}
-                {% if not option.is_activated or not variant.is_activated %}
-                <span class="badge bg-warning">not activated</span>
-                {% endif %}
-
-                {% if not option.quantity %}
-                <span class="badge bg-danger">not available</span>
-                {% else %}
-                 ({{ option.quantity }}) available
-                {% endif %}
-              </small>
-            </span>
-            {% endfor %}
           </td>
           <!-- product actions -->
           <td class="text-end">
