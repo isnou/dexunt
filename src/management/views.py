@@ -294,6 +294,10 @@ def manage_products(request, action):
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
 
+        if request.method == 'POST':
+            key_word = request.POST.get('key_word', False)
+            request.session['variants_key_word'] = key_word
+
         if request.session.get('variants_key_word', None):
             variants = variants.filter(tags__icontains=request.session.get('variants_key_word'))
             search_key_word = request.session.get('variants_key_word')
