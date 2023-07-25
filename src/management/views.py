@@ -518,13 +518,9 @@ def manage_products(request, action):
 
     if action == 'duplicate_option':
         if request.method == 'POST':
-            request.session['product_id_token'] = request.POST.get('product_id', None)
-            variant_id = request.POST.get('variant_id', None)
-            request.session['variant_id_token'] = variant_id
             option_id = request.POST.get('option_id', False)
-            selected_variant = Variant.objects.all().get(id=variant_id)
             selected_option = Option.objects.all().get(id=option_id)
-            selected_option.duplicate(selected_variant)
+            selected_option.duplicate()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'edit_option':
         if request.method == 'POST':
