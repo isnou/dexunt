@@ -231,17 +231,6 @@
     <!-- table -->
     <div class="table-responsive">
       <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col" class="table-column-pe-0">
-            </th>
-            <th class="table-column-ps-0">Product</th>
-            <th>Vendor</th>
-            <th></th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
         <tbody>
         {% for variant in variants %}
         <!-- products list -->
@@ -284,7 +273,6 @@
           </td>
           <!-- assign a store -->
           <td>
-            {% for variant in variant.product.variant_set.all %}
             {% for option in variant.option_set.all %}
             <span class="d-block text-body fs-6">
               <small>
@@ -300,7 +288,6 @@
                 {% endif %}
               </small>
             </span>
-            {% endfor %}
             {% endfor %}
           </td>
           <!-- product actions -->
