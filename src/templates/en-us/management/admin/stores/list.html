@@ -72,15 +72,29 @@
         <!-- Table Actions -->
         <tr>
           <td>
-            <a class="d-flex align-items-center" href="{% url 'admin-manage-users' 'select_user' %}?user_id={{ selected_user.id }}">
+            {% if store.user.profile_photo %}
+            <a class="d-flex align-items-center" href="#">
+              <div class="flex-shrink-0">
+                <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ store.user.profile_photo }}">
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h5 class="text-inherit ms-2">{{ store.name }}</h5>
+              </div>
+            </a>
+            {% else %}
+            <a class="d-flex align-items-center" href="#">
               <div class="avatar avatar-soft-dark avatar-circle">
                 <span class="avatar-initials">{{ store.name|title|slice:"2" }}</span>
               </div>
               <div class="ms-3">
-                <span class="d-block h5 text-inherit mb-0">{{ store.name }}</span>
-                <span class="d-block fs-5 text-body">{{ selected_user.first_name|title }} {{ selected_user.last_name|title }}</span>
+                <span class="d-block h5 text-inherit">{{ store.name }}</span>
               </div>
             </a>
+            {% endif %}
+
+
+
+
           </td>
 
           <td>
@@ -115,21 +129,17 @@
           </td>
 
           <td class="text-end">
-            {% if selected_user.is_activated %}
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ selected_user.id }}">
+            {% if store.user.is_activated %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ store.id }}">
               <i class="fa fa-lock-open fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to deactivate"></i>
             </a>
             {% else %}
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ selected_user.id }}">
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#activate_modal_{{ store.id }}">
               <i class="fa fa-lock fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to activate"></i>
             </a>
             {% endif %}
 
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#change_modal_{{ selected_user.id }}">
-              <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
-            </a>
-
-            <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
+            <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ store.id }}">
               <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
             </a>
           </td>
@@ -184,27 +194,28 @@
     <!-- End Footer -->
   </div>
 
-  {% for selected_user in users_list %}
+  {% for store in stores %}
   <!-- Table Forms -->
-  <form action="{% url 'admin-manage-users' 'activate_user' %}" id="confirm_user_form_{{ selected_user.id }}" method="post">
+  <form action="{% url 'admin-manage-stores' 'activate_store' %}" id="confirm_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
-    <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
-    <input type="hidden" name="users_page" value='{{ users_list.number }}'>
+    <input type="hidden" name="store_id" value='{{ store.id }}'>
+    <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
   </form>
-  <form action="{% url 'admin-manage-users' 'deactivate_user' %}" id="pend_user_form_{{ selected_user.id }}" method="post">
+  <form action="{% url 'admin-manage-stores' 'deactivate_store' %}" id="pend_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
-    <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
-    <input type="hidden" name="users_page" value='{{ users_list.number }}'>
+    <input type="hidden" name="store_id" value='{{ store.id }}'>
+    <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
   </form>
-  <form action="{% url 'admin-manage-users' 'delete_user' %}" id="delete_user_form_{{ selected_user.id }}" method="post">
+  <form action="{% url 'admin-manage-stores' 'delete_store' %}" id="delete_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
-    <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
-    <input type="hidden" name="users_page" value='{{ users_list.number }}'>
+    <input type="hidden" name="store_id" value='{{ store.id }}'>
+    <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
   </form>
   <!-- End Table Forms -->
 
-  <!-- Deactivate User Modal -->
-  <div id="deactivate_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+  <!-- Deactivate Store Modal -->
+  <div id="deactivate_modal_{{ store.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -220,10 +231,10 @@
       </div>
     </div>
   </div>
-  <!-- End Deactivate User Modal -->
+  <!-- End Deactivate Store Modal -->
 
-  <!-- Activate User Modal -->
-  <div id="activate_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Activate Store Modal -->
+  <div id="activate_modal_{{ store.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -239,10 +250,10 @@
       </div>
     </div>
   </div>
-  <!-- End Activate User Modal -->
+  <!-- End Activate Store Modal -->
 
-  <!-- Delete User Modal -->
-  <div id="delete_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete_modal_{{ selected_user.id }}" aria-hidden="true">
+  <!-- Delete Store Modal -->
+  <div id="delete_modal_{{ store.id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete_modal_{{ selected_user.id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -258,102 +269,7 @@
       </div>
     </div>
   </div>
-  <!-- End Delete User Modal -->
-
-  <!-- Change Modal -->
-  <div id="change_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-      <!-- Header -->
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <!-- End Header -->
-
-      <!-- Body -->
-      <div class="modal-body">
-        <!-- Patient -->
-        <div>
-          <!-- login title -->
-          <div class="text-center mb-7">
-            <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
-          </div>
-          <!-- end login title -->
-          <form action="{% url 'admin-manage-users' 'change_user' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
-
-            <div class="row mb-3">
-              <div class="col text-center">
-                <!-- customer -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if selected_user.is_customer %}
-                    <input type="radio" class="form-check-input" name="role" value="customer" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="role" value="customer">
-                    {% endif %}
-                    <label class="form-check-label">Client</label>
-                  </div>
-                </div>
-                <!-- end customer -->
-
-                <!-- seller -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if selected_user.is_seller %}
-                    <input type="radio" class="form-check-input" name="role" value="seller" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="role" value="seller">
-                    {% endif %}
-                    <label class="form-check-label">Seller</label>
-                  </div>
-                </div>
-                <!-- end seller -->
-
-                <!-- provider -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if selected_user.is_provider %}
-                    <input type="radio" class="form-check-input" name="role" value="provider" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="role" value="provider">
-                    {% endif %}
-                    <label class="form-check-label">Provider</label>
-                  </div>
-                </div>
-                <!-- end provider -->
-
-                <!-- member -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if selected_user.is_member %}
-                    <input type="radio" class="form-check-input" name="role" value="member" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="role" value="member">
-                    {% endif %}
-                    <label class="form-check-label">Member</label>
-                  </div>
-                </div>
-                <!-- end member -->
-              </div>
-            </div>
-
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-          </form>
-        </div>
-        <!-- End Patient -->
-      </div>
-      <!-- End Body -->
-      </div>
-    </div>
-  </div>
-  <!-- End Change Modal -->
+  <!-- End Delete Store Modal -->
   {% endfor %}
 </div>
 {% endblock %}
