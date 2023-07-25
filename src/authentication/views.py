@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, SignupForm, UpdateProfileForm, UpdateProfilePhotoForm
+from .forms import LoginForm, SignupForm, UpdateProfileForm, UpdatePhotoForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
 from django.contrib.auth.forms import PasswordChangeForm
@@ -201,10 +201,10 @@ def edit_profile_photo(request):
     direction = request.session.get('language')
     url = direction + "/main-shop/account/profile-page.html"
 
-    edit_profile_form = UpdateProfileForm()
+    edit_profile_form = UpdatePhotoForm()
 
     if request.method == 'POST':
-        edit_profile_photo_form = UpdateProfilePhotoForm(request.POST, request.FILES, instance=request.user)
+        edit_profile_photo_form = UpdatePhotoForm(request.POST, request.FILES, instance=request.user)
         if edit_profile_photo_form.is_valid():
             user = edit_profile_photo_form.save()
             login(request, user)
