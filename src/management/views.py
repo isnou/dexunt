@@ -240,7 +240,7 @@ def manage_stores(request, action):
             request.session['stores-page'] = stores_page
             selected_store = Store.objects.all().get(id=store_id)
             selected_store.delete()
-            return redirect ('admin-manage-users', 'main')
+            return redirect ('admin-manage-stores', 'main')
     if action == 'activate_store':
         if request.method == 'POST':
             store_id = request.POST.get('store_id', False)
@@ -248,7 +248,7 @@ def manage_stores(request, action):
             request.session['stores-page'] = stores_page
             selected_store = Store.objects.all().get(id=store_id)
             selected_store.activate()
-            return redirect ('admin-manage-users', 'main')
+            return redirect ('admin-manage-stores', 'main')
     if action == 'deactivate_store':
         if request.method == 'POST':
             store_id = request.POST.get('store_id', False)
@@ -257,7 +257,7 @@ def manage_stores(request, action):
             selected_store = Store.objects.all().get(id=store_id)
             selected_store.is_activated = False
             selected_store.save()
-            return redirect ('admin-manage-users', 'main')
+            return redirect ('admin-manage-stores', 'main')
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
