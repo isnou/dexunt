@@ -249,8 +249,8 @@
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.id }}">
             <div class="flex-shrink-0">
-              {% if product.variant.all.0.album.all.count %}
-              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.variant.all.0.album.all.0.image }}">
+              {% if product.variant_set.all.first.album_set.all.count %}
+              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.variant_set.all.first.album_set.all.first.image }}">
               {% else %}
               <span class="badge bg-warning">no images</span>
               {% endif %}
