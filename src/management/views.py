@@ -13,7 +13,7 @@ from home.models import Province, Municipality, Coupon, Order
 from authentication.models import User, users_filter, change_role
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from authentication.forms import UpdateProfileForm, UpdateProfilePhotoForm
+from authentication.forms import UpdateProfileForm, UpdatePhotoForm
 
 
 
@@ -940,8 +940,7 @@ def provider_settings(request, action):
         store_form = StoreForm()
         update_profile_form = UpdateProfileForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
-
-        update_profile_photo_form = UpdateProfilePhotoForm()
+        update_photo_form = UpdatePhotoForm()
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -954,7 +953,7 @@ def provider_settings(request, action):
             'store_form': store_form,
             'password_form': password_form,
             'update_profile_form': update_profile_form,
-            'update_profile_photo_form': update_profile_photo_form,
+            'update_photo_form': update_photo_form,
             'errors': errors
         }
         return render(request, url, context)
