@@ -14,6 +14,9 @@
       </ol>
     </nav>
     <h1 class="page-header-title">Provider Home</h1>
+    {% if not user.store.is_activated %}
+    <h6 class="text-muted text-danger">Your account is not yet activated, please give deeded information in settings</h6>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
