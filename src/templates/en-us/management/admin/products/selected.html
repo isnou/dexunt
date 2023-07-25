@@ -112,12 +112,12 @@
               <!-- price , discount-->
               <td>
                 <h6 class="text-body">
-                  <small>Price :{{ variant.price|floatformat:"2g" }} DZD</small>
+                  <small>Price :{{ variant.option_set.first.price|floatformat:"2g" }} DZD</small>
                 </h6>
 
                 {% if variant.discount %}
                 <h6 class="text-body">
-                  <small>Discount :{{ variant.discount|floatformat:"2g" }} DZD</small>
+                  <small>Discount :{{ variant.option_set.first.discount|floatformat:"2g" }} DZD</small>
                 </h6>
                 {% else %}
                 <h6 class="text-body">
@@ -142,7 +142,7 @@
               <td>
                 <h6 class="text-body">
                   {% if variant.album_set.all.count %}
-                  <small>Photos : {{ variant.album.all.count }}</small>
+                  <small>Photos : {{ variant.album_set.all.count }}</small>
                   {% else %}
                   <span class="badge bg-danger">no photos</span>
                   {% endif %}
@@ -150,7 +150,7 @@
 
                 <h6 class="text-body">
                   {% if variant.option_set.all.count %}
-                  <small>Options : {{ variant.option.all.count }}</small>
+                  <small>Options : {{ variant.option_set.all.count }}</small>
                   {% else %}
                   <span class="badge bg-warning">no options</span>
                   {% endif %}
