@@ -636,6 +636,10 @@
         <div class="container text-center col-8" >
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% if errors.profile_photo.0 %}
+            <strong>{{ errors.profile_photo.0 }}</strong><br>
+            {% endif %}
+
             {% if errors.username.0 %}
             <strong>{{ errors.username.0 }}</strong><br>
             {% endif %}
