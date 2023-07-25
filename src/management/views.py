@@ -221,7 +221,6 @@ def manage_stores(request, action):
         context = {
             'nav_side': 'stores',
             'search_key_word': search_key_word,
-            'filtered': filtered,
             'stores': stores,
         }
         return render(request, url, context)
@@ -261,7 +260,7 @@ def manage_stores(request, action):
         else:
             request.session['stores_key_word'] = None
 
-        stores_list = Store.objects.values().filter(tags__icontains=key_word)
+        stores = Store.objects.values().filter(tags__icontains=key_word)
 
         if not request.session.get('stores-page', None):
             page = request.GET.get('page', 1)
@@ -269,16 +268,16 @@ def manage_stores(request, action):
             page = request.session.get('stores-page')
             request.session['stores-page'] = None
 
-        paginator = Paginator(stores_list, items_by_page)
+        paginator = Paginator(stores, items_by_page)
         try:
-            stores_list = paginator.page(page)
+            stores = paginator.page(page)
         except PageNotAnInteger:
-            stores_list = paginator.page(1)
+            stores = paginator.page(1)
         except EmptyPage:
-            stores_list = paginator.page(paginator.num_pages)
+            stores = paginator.page(paginator.num_pages)
 
         context = {
-            'stores_list': stores_list,
+            'stores': stores,
         }
         return render(request, url, context)
 #                                                                        #
