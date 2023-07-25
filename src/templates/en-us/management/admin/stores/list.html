@@ -91,10 +91,6 @@
               </div>
             </a>
             {% endif %}
-
-
-
-
           </td>
 
           <td>
@@ -196,16 +192,18 @@
 
   {% for store in stores %}
   <!-- Table Forms -->
-  <form action="{% url 'admin-manage-stores' 'activate_store' %}" id="confirm_store_form_{{ store.id }}" method="post">
+  <form action="{% url 'admin-manage-stores' 'activate_store' %}" id="activate_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="store_id" value='{{ store.id }}'>
     <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
   </form>
-  <form action="{% url 'admin-manage-stores' 'deactivate_store' %}" id="pend_store_form_{{ store.id }}" method="post">
+
+  <form action="{% url 'admin-manage-stores' 'deactivate_store' %}" id="deactivate_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="store_id" value='{{ store.id }}'>
     <input type="hidden" name="stores_page" value='{{ stores_list.number }}'>
   </form>
+
   <form action="{% url 'admin-manage-stores' 'delete_store' %}" id="delete_store_form_{{ store.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="store_id" value='{{ store.id }}'>
@@ -222,11 +220,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>{{ selected_user.username }} will be deactivated, click Yes to confirm.</p>
+          <p>{{ store.name }} will be deactivated, click Yes to confirm.</p>
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary" form="pend_user_form_{{ selected_user.id }}">Yes</button>
+          <button class="btn btn-primary" form="deactivate_store_form_{{ store.id }}">Yes</button>
         </div>
       </div>
     </div>
@@ -241,11 +239,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>{{ selected_user.username }} will be activated, click Yes to confirm.</p>
+          <p>{{ store.name }} will be activated, click Yes to confirm.</p>
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary" form="confirm_user_form_{{ selected_user.id }}">Yes</button>
+          <button class="btn btn-primary" form="activate_store_form_{{ store.id }}">Yes</button>
         </div>
       </div>
     </div>
@@ -260,11 +258,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>{{ selected_user.username }} will be definitely deleted, click Yes to confirm.</p>
+          <p>{{ store.name }} will be definitely deleted, click Yes to confirm.</p>
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary" form="delete_user_form_{{ selected_user.id }}">Yes</button>
+          <button class="btn btn-primary" form="delete_store_form_{{ store.id }}">Yes</button>
         </div>
       </div>
     </div>

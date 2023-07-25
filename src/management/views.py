@@ -235,18 +235,28 @@ def manage_stores(request, action):
     # -- main page actions -- #
     if action == 'delete_store':
         if request.method == 'POST':
-            user_id = request.POST.get('user_id', False)
-            users_page = request.POST.get('users_page', False)
-            request.session['users-page'] = users_page
-            selected_user = User.objects.all().get(id=user_id)
-            selected_user.delete()
+            store_id = request.POST.get('store_id', False)
+            stores_page = request.POST.get('stores_page', False)
+            request.session['stores-page'] = stores_page
+            selected_store = Store.objects.all().get(id=store_id)
+            selected_store.delete()
             return redirect ('admin-manage-users', 'main')
-    if action == 'edit_store':
+    if action == 'activate_store':
         if request.method == 'POST':
-            user_id = request.POST.get('user_id', False)
-            role = request.POST.get('role', False)
-            selected_user = User.objects.all().get(id=user_id)
-            change_role(selected_user, role)
+            store_id = request.POST.get('store_id', False)
+            stores_page = request.POST.get('stores_page', False)
+            request.session['stores-page'] = stores_page
+            selected_store = Store.objects.all().get(id=store_id)
+            selected_store.activate()
+            return redirect ('admin-manage-users', 'main')
+    if action == 'deactivate_store':
+        if request.method == 'POST':
+            store_id = request.POST.get('store_id', False)
+            stores_page = request.POST.get('stores_page', False)
+            request.session['stores-page'] = stores_page
+            selected_store = Store.objects.all().get(id=store_id)
+            selected_store.is_activated = False
+            selected_store.save()
             return redirect ('admin-manage-users', 'main')
 #                                                                        #
 @login_required
