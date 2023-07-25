@@ -317,7 +317,7 @@ def manage_products(request, action):
                         new_option_form.save()
                         new_option.variant = new_variant
                         new_option.save()
-                        request.session['product_id'] = new_product.id
+                        request.session['variant_id'] = new_variant.id
                         return redirect('admin-manage-products', 'view_variant')
                     else:
                         request.session['error_messages'] = new_option_form.errors
