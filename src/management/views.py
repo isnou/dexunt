@@ -1109,6 +1109,37 @@ def provider_products(request, action):
             'errors': errors,
         }
         return render(request, url, context)
+    # -- search partial show -- #
+    if action == 'search_products':
+        url = direction + "/management/provider/products/partial-list.html"
+        key_word = request.GET.get('key_word', None)
+        request.session['variants_key_word'] = key_word
+
+        variants = []
+        for p in request.user.store.product_set.all():
+            for v in p.variant_set.all():
+                variants.append(v)
+
+        variants = variants.filter(tags__icontains=key_word)
+
+        if not request.session.get('variants-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('variants-page')
+            request.session['variants-page'] = None
+
+        paginator = Paginator(variants, items_by_page)
+        try:
+            variants = paginator.page(page)
+        except PageNotAnInteger:
+            variants = paginator.page(1)
+        except EmptyPage:
+            variants = paginator.page(paginator.num_pages)
+
+        context = {
+            'variants': variants,
+        }
+        return render(request, url, context)
 # ---------------------------------------------------------------------- #
 
 
