@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate
 from .models import Cart, SelectedProduct, get_cart, add_product_to_cart, get_order, place_order
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
-from management.models import Product, Variant, Option, Feature, Album, FlashProduct
+from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store
 from management.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
@@ -32,6 +32,7 @@ def home_page(request):
     login_form = LoginForm()
     signup_form = SignupForm()
 
+    all_stores = Store.objects.all()
     all_products = Variant.objects.all().filter(is_activated=True)[:15]
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
 
@@ -51,6 +52,7 @@ def home_page(request):
         'selected_cart': selected_cart,
         'published_products': published_products,
         'published_flash_products': published_flash_products,
+        'all_stores': all_stores,
     }
     return render(request, url, context)
 
