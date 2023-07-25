@@ -1068,10 +1068,12 @@ def provider_products(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/provider/products/list.html"
-        variants = []
+
+        variant_ids = []
         for p in request.user.store.product_set.all():
             for v in p.variant_set.all():
-                variants.append(v)
+                variant_ids.append(v.id)
+        variants = Variant.objects.filter(id__in=variant_ids)
 
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
@@ -1115,11 +1117,27 @@ def provider_products(request, action):
         key_word = request.GET.get('key_word', None)
         request.session['variants_key_word'] = key_word
 
-        variants = []
+        variant_ids = []
         for p in request.user.store.product_set.all():
             for v in p.variant_set.all():
-                variants.append(v)
+                variant_ids.append(v.id)
+        variants = Variant.objects.filter(id__in=variant_ids)
 
+        variants = variants.filter(tags__icontains=key_word)
+
+        if not request.session.get('variants-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('variants-page')
+            request.session['variants-page'] = None
+
+        paginator = Paginator(variants, items_by_page)
+        try:
+            variants = paginator.page(page)
+        except PageNotAnInteger:
+            variants = paginator.page(1)
+        except EmptyPage:
+            variants = paginator.page(paginator.num_pages)
 
         context = {
             'variants': variants,
