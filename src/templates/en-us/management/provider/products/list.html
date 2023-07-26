@@ -128,6 +128,12 @@
               <i class="fa fa-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
             </button>
 
+            {% if option.quantity %}
+            <strong>{{ option.quantity }}</strong>
+            {% else %}
+            <strong>empty</strong>
+            {% endif %}
+
             <!-- add quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ variant.id }}">
               <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
