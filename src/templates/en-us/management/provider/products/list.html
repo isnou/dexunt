@@ -190,21 +190,10 @@
 
 <!-- product modals & forms -->
 {% for variant in variants %}
-<!-- delete product form -->
-<form action="{% url 'admin-manage-products' 'delete_product' %}" id="delete_product_form_{{ variant.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ variant.product.id }}'>
-</form>
-
-<!-- unassign store form -->
-<form action="{% url 'admin-manage-products' 'unassign_provider' %}" id="unassign_form_{{ variant.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ variant.product.id }}'>
-</form>
 
 
-<!-- quantity modal -->
-<div id="quantity_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- add quantity modal -->
+<div id="add_quantity_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-close">
@@ -213,13 +202,30 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Edit quantity</h2>
+            <h2>Add quantity</h2>
           </div>
 
+          <form action="{% url 'provider-settings' 'edit_store' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            
             <div class="row mb-4">
-              <span class="divider-center mb-2">Select from the list</span>
-
+            <div class="input-group input-group-merge input-group-borderless input-group-flush">
+              <div class="input-group-prepend input-group-text">
+                <i class="fa fa-plus"></i>
+              </div>
+              <input type="number" class="form-control" placeholder="quantity">
             </div>
+
+          </div>
+
+
+
+
+          <div class="d-flex justify-content-end gap-3">
+            <button type="submit" class="btn btn-white">Save</button>
+          </div>
+        </form>
+
 
         </div>
       </div>
