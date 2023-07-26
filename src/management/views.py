@@ -302,6 +302,7 @@ def manage_products(request, action):
 
         if not request.session.get('variants-page', None):
             page = request.GET.get('page', 1)
+            request.session['variants-page'] = page
         else:
             page = request.session.get('variants-page')
             request.session['variants-page'] = None
