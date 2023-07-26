@@ -182,7 +182,7 @@
               {% if selected_variant.option_set.all.count == 1 %}
               <div class="col d-grid">
                 {% if selected_variant.is_available %}
-                <a class="btn btn-primary" href="{% url 'shopping-cart' selected_variant.id selected_variant.option.all.0.id 'no' 'add_regular_product' %}" role="button">
+                <a class="btn btn-primary" href="#" role="button">
                   <i class="feather-icon icon-shopping-bag me-2"></i>Buy now
                 </a>
                 {% else %}
@@ -195,7 +195,7 @@
               {% if selected_option %}
               <div class="col d-grid">
                 {% if selected_option.quantity %}
-                <a class="btn btn-primary" href="{% url 'shopping-cart' selected_variant.id selected_option.id 'no' 'add_regular_product' %}" role="button">
+                <a class="btn btn-primary" href="#" role="button">
                   <i class="feather-icon icon-shopping-bag me-2"></i>Buy now
                 </a>
                 {% else %}
@@ -220,8 +220,11 @@
                 <tbody>
                   <tr>
                     <td>Product Code:</td>
-                    <td>{{ selected_product.product_token }}</td>
-
+                    {% if selected_option %}
+                    <td>{{ selected_option.upc }}</td>
+                    {% else %}
+                    <td>{{ selected_variant.option_set.all.first.upc }}</td>
+                    {% endif %}
                   </tr>
                   <tr>
                     <td>Availability:</td>
@@ -245,7 +248,13 @@
                   </tr>
                   <tr>
                     <td>Brand:</td>
-                    <td>{{ selected_variant.brand }}</td>
+                    {% if variant.product.store %}
+                    <td>{{ variant.product.store.name }}</td>
+                    {% elif variant.product.brand %}
+                    <td>{{ variant.product.brand }}</td>
+                    {% else %}
+                    <td>dexunt</td>
+                    {% endif %}
                   </tr>
                 </tbody>
               </table>
