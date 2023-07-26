@@ -123,9 +123,14 @@
               <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
 
-            <!-- quantity -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#quantity_modal_{{ variant.id }}">
-              <i class="fa fa-truck-ramp-box" data-bs-toggle="tooltip" data-bs-placement="top" title="Quantity"></i>
+            <!-- remove quantity -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#remove_quantity_modal_{{ variant.id }}">
+              <i class="fa fa-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
+            </button>
+
+            <!-- add quantity -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ variant.id }}">
+              <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
             </button>
           </td>
         </tr>
