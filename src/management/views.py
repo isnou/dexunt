@@ -283,7 +283,7 @@ def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 1
+    items_by_page = 6
 
     # --------------- main page ------------------- #
     if action == 'main':
@@ -1064,7 +1064,7 @@ def provider_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 1
+    items_by_page = 6
 
     # --------------- main page ------------------- #
     if action == 'main':
