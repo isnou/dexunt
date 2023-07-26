@@ -209,6 +209,8 @@
 
           <form action="{% url 'provider-products' 'edit_price' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
+            <input type="hidden" name="option_id" value="{{ option.id }}">
+
             <div class="row mb-4">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 <div class="input-group-prepend input-group-text">
@@ -243,6 +245,8 @@
 
           <form action="{% url 'provider-products' 'remove_quantity' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
+            <input type="hidden" name="option_id" value="{{ option.id }}">
+
             <div class="row mb-4">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 <div class="input-group-prepend input-group-text">
@@ -277,6 +281,8 @@
 
           <form action="{% url 'provider-products' 'add_quantity' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
+            <input type="hidden" name="option_id" value="{{ option.id }}">
+
             <div class="row mb-4">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 <div class="input-group-prepend input-group-text">

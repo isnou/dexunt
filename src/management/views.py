@@ -283,7 +283,7 @@ def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 6
+    items_by_page = 1
 
     # --------------- main page ------------------- #
     if action == 'main':
@@ -1143,6 +1143,17 @@ def provider_products(request, action):
             'variants': variants,
         }
         return render(request, url, context)
+    if action == 'add_quantity':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_product.delete()
+            return redirect('admin-manage-products', 'main')
+
+   # edit_price
+   # remove_quantity
+
+
 # ---------------------------------------------------------------------- #
 
 
