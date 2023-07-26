@@ -108,12 +108,6 @@ class User(AbstractUser):
         if self.municipality:
             self.tags += (', ' + self.municipality)
         super().save()
-        if self.profile_photo:
-            img = Image.open(self.profile_photo.path)
-            if img.height > 200 or img.width > 200:
-                new_img = (200, 200)
-                img.thumbnail(new_img)
-                img.save(self.profile_photo.path)
 
 #                                                                        #
 def users_filter(request, users_list, new_filter):
