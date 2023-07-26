@@ -81,7 +81,6 @@ def product_page(request, action):
             option_id = request.GET.get('option_id')
 
         selected_variant = Variant.objects.all().get(id=variant_id)
-        selected_product = Product.objects.all().get(token=selected_variant.product_token)
 
         if option_id:
             selected_option = Option.objects.all().get(id=option_id)
@@ -91,7 +90,6 @@ def product_page(request, action):
         context = {
             'selected_option': selected_option,
             'selected_variant': selected_variant,
-            'selected_product': selected_product,
         }
         return render(request, url, context)
 
