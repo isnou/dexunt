@@ -279,11 +279,8 @@ class Store(models.Model):
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         self.tags = ''
-        if self.user:
-            self.tags += (', ' + self.user.tags)
         if self.name:
             self.tags += (', ' + self.name)
-
         if self.en_activity:
             self.tags += (', ' + self.en_activity)
         if self.fr_activity:
