@@ -108,9 +108,14 @@
           </td>
           <!-- product actions -->
           <td class="text-end">
-            <!-- modify quantity -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#modify_quantity_modal_{{ variant.id }}">
-              <i class="fa fa-truck-ramp-box" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify Quantity"></i>
+            <!-- edit -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ variant.id }}">
+              <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+            </button>
+
+            <!-- quantity -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#quantity_modal_{{ variant.id }}">
+              <i class="fa fa-truck-ramp-box" data-bs-toggle="tooltip" data-bs-placement="top" title="Quantity"></i>
             </button>
           </td>
         </tr>
