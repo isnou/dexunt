@@ -78,11 +78,6 @@
               </div>
               <div class="flex-grow-1 ms-3">
                 <h5 class="text-inherit me-2">{{ variant.product.en_title }}</h5>
-                <span class="d-block text-body fs-6">
-                  <small>
-                    {{ variant.en_spec }}
-                  </small>
-                </span>
               </div>
             </a>
             {% endif %}
@@ -92,7 +87,7 @@
             {% if forloop.counter == 1 %}
             <span class="d-block text-dark fs-6">
               {{ variant.en_spec }}
-              | rate <strong>{{ option.rate }}</strong>
+              | rate <strong>{{ variant.rate }}</strong>
             </span>
             {% endif %}
           </td>
