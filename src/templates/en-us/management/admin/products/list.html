@@ -282,9 +282,11 @@
               <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
                 <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
               </button>
-              <strong class="text-dark">{{ variant.product.store.name }}</strong>
+
               {% if not variant.product.store.is_activated %}
-              <i class="fa fa-triangle-exclamation" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivated"></i>
+              <i class="fa fa-triangle-exclamation nav-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivated">
+                <strong class="text-dark">{{ variant.product.store.name }}</strong>
+              </i>
               {% endif %}
             </span>
             {% else %}
