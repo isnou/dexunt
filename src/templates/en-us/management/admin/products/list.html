@@ -284,9 +284,11 @@
               </button>
 
               {% if not variant.product.store.is_activated %}
-              <i class="fa fa-triangle-exclamation nav-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivated">
-                <strong class="text-dark">{{ variant.product.store.name }}</strong>
-              </i>
+              <strong class="text-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivated">
+                <i class="fa fa-triangle-exclamation"></i>{{ variant.product.store.name }}
+              </strong>
+              {% endif %}
+              <strong class="text-dark">{{ variant.product.store.name }}</strong>
               {% endif %}
             </span>
             {% else %}
