@@ -122,11 +122,12 @@
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
               <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
-
+            {% if option.quantity %}
             <!-- remove quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#remove_quantity_modal_{{ option.id }}">
               <i class="fa fa-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
             </button>
+            {% endif %}
 
             <!-- add quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ option.id }}">
@@ -211,7 +212,7 @@
                 <div class="input-group-prepend input-group-text">
                   <i class="fa fa-coins"></i>
                 </div>
-                <input type="number" class="form-control" placeholder="price" required>
+                <input type="number" class="form-control" placeholder="price" name="price" min="0" required>
                 <span class="invalid-feedback text-start">Please enter your new price.</span>
               </div>
             </div>
@@ -245,7 +246,7 @@
                 <div class="input-group-prepend input-group-text">
                   <i class="fa fa-minus"></i>
                 </div>
-                <input type="number" class="form-control" placeholder="quantity" max="{{ option.quantity }}" required>
+                <input type="number" class="form-control" placeholder="quantity"  name="quantity" max="{{ option.quantity }}" min="0" required>
                 <span class="invalid-feedback text-start">Please enter quantity to remove.</span>
               </div>
             </div>
@@ -279,7 +280,7 @@
                 <div class="input-group-prepend input-group-text">
                   <i class="fa fa-plus"></i>
                 </div>
-                <input type="number" class="form-control" placeholder="quantity" required>
+                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="0" required>
                 <span class="invalid-feedback text-start">Please enter quantity to add.</span>
               </div>
             </div>
