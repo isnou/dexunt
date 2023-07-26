@@ -119,7 +119,7 @@
           <!-- product actions -->
           <td class="text-end">
             <!-- price -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#price_modal_{{ variant.id }}">
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ variant.id }}">
               <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
 
@@ -190,7 +190,73 @@
 
 <!-- product modals & forms -->
 {% for variant in variants %}
+<!-- edit price modal -->
+<div id="edit_price_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>Edit price</h2>
+          </div>
 
+          <form action="{% url 'provider-products' 'edit_price' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <div class="row mb-4">
+              <div class="input-group input-group-merge input-group-borderless input-group-flush">
+                <input type="number" class="form-control" placeholder="price" required>
+                <span class="invalid-feedback text-start">Please enter quantity to remove.</span>
+                <div class="input-group-prepend input-group-text">
+                  DZD
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end gap-3">
+              <button type="submit" class="btn btn-white">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- remove quantity modal -->
+<div id="remove_quantity_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>Remove quantity</h2>
+          </div>
+
+          <form action="{% url 'provider-products' 'remove_quantity' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <div class="row mb-4">
+              <div class="input-group input-group-merge input-group-borderless input-group-flush">
+                <div class="input-group-prepend input-group-text">
+                  <i class="fa fa-minus"></i>
+                </div>
+                <input type="number" class="form-control" placeholder="quantity" required>
+                <span class="invalid-feedback text-start">Please enter quantity to remove.</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end gap-3">
+              <button type="submit" class="btn btn-white">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- add quantity modal -->
 <div id="add_quantity_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
@@ -205,28 +271,21 @@
             <h2>Add quantity</h2>
           </div>
 
-          <form action="{% url 'provider-settings' 'edit_store' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'provider-products' 'add_quantity' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
-            
             <div class="row mb-4">
-            <div class="input-group input-group-merge input-group-borderless input-group-flush">
-              <div class="input-group-prepend input-group-text">
-                <i class="fa fa-plus"></i>
+              <div class="input-group input-group-merge input-group-borderless input-group-flush">
+                <div class="input-group-prepend input-group-text">
+                  <i class="fa fa-plus"></i>
+                </div>
+                <input type="number" class="form-control" placeholder="quantity" required>
+                <span class="invalid-feedback text-start">Please enter quantity to add.</span>
               </div>
-              <input type="number" class="form-control" placeholder="quantity">
             </div>
-
-          </div>
-
-
-
-
-          <div class="d-flex justify-content-end gap-3">
-            <button type="submit" class="btn btn-white">Save</button>
-          </div>
-        </form>
-
-
+            <div class="d-flex justify-content-end gap-3">
+              <button type="submit" class="btn btn-white">Save</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
