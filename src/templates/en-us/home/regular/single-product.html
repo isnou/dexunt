@@ -29,7 +29,9 @@
   <section class="mt-8">
     <div class="container">
       <div class="row">
+        <!-- images -->
         <div class="col-md-6">
+          <!-- zooms -->
           <div class="slider slider-for">
             {% if selected_option %}
             {% if selected_option.has_image %}
@@ -49,7 +51,8 @@
             </div>
             {% endfor %}
           </div>
-
+          <!-- end zooms -->
+          <!-- thumbs -->
           <div class="slider slider-nav mt-4">
             {% if not selected_option.has_image %}
             {% for album in selected_variant.album_set.all %}
@@ -59,15 +62,18 @@
             {% endfor %}
             {% endif %}
           </div>
+          <!-- end thumbs -->
         </div>
+        <!-- end images -->
 
+        <!-- selects -->
         <div class="col-md-6">
           <div class="ps-lg-10 mt-6 mt-md-0">
             <!-- content -->
-            {% if variant.product.store %}
-            <a href="#" class="mb-4 d-block">{{ variant.product.store.name }}</a>
-            {% elif variant.product.brand %}
-            <a href="#" class="mb-4 d-block">{{ variant.product.brand }}</a>
+            {% if selected_variant.product.store %}
+            <a href="#" class="mb-4 d-block">{{ selected_variant.product.store.name }}</a>
+            {% elif selected_variant.product.brand %}
+            <a href="#" class="mb-4 d-block">{{ selected_variant.product.brand }}</a>
             {% else %}
             <a href="#" class="mb-4 d-block">dexunt</a>
             {% endif %}
@@ -83,11 +89,15 @@
             <span class="fw-bold text-muted mb-1">{{ selected_option.en_value }}</span>
             {% endif %}
 
+            <!-- reviews -->
             <div class="mb-4">
               <small class="text-warning">
                 <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-half"></i>
-              </small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a></div>
+              </small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a>
+            </div>
+
+            <!-- proces -->
             <div class="fs-4">
               {% if selected_option %}
               {% if selected_option.discount %}
@@ -109,10 +119,10 @@
             </div>
 
             {% if selected_variant.product.variant_set.all.count > 1 %}
-            <!-- hr -->
+            <!-- variants -->
             <hr class="my-6">
             <div class="mb-5">
-              <div class="row row-cols-sm-{{ selected_product.variant.all.count }} mb-3">
+              <div class="row row-cols-sm-{{ selected_variant.product.variant_set.all.count }} mb-3">
                 {% for variant in selected_variant.product.variant_set.all %}
                 {% if variant.is_activated %}
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ variant.id }}" class="text-decoration-none text-inherit" tabindex="-1">
@@ -135,10 +145,10 @@
 
             </div>
             {% endif %}
-            <!-- hr -->
+            <!-- options -->
             <hr class="my-6">
             <div class="mb-5">
-              <div class="row row-cols-sm-{{ selected_variant.option.all.count }} mb-3">
+              <div class="row row-cols-sm-{{ selected_variant.option_set.all.count }} mb-3">
                 {% if selected_variant.option_set.all.count > 1 %}
                 {% for option in selected_variant.option_set.all %}
 
@@ -272,6 +282,7 @@
             </div>
           </div>
         </div>
+        <!-- end selects -->
       </div>
     </div>
   </section>
