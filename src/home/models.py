@@ -6,7 +6,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 # ------------------------------- Orders ------------------------------- #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
-    token = models.CharField(max_length=24, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- #
     lack_of_quantity = models.BooleanField(default=False)
