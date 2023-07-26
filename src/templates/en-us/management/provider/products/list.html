@@ -67,7 +67,7 @@
           </td>
           <!-- product title and image -->
           <td class="table-column-ps-0">
-            {% if forloop.counter == 1 %}
+            {% if forloop.counter == 1 and not option.has_image %}
             <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ variant.product.id }}">
               <div class="flex-shrink-0">
                 {% if option.has_image %}
@@ -98,11 +98,11 @@
                 | <span>{{ option.cost|floatformat:"0g" }} DZD</span>
                 | <strong>{{ option.sale }}</strong> sales
                 {% if not option.is_activated or not variant.is_activated %}
-                <span class="badge bg-warning">not activated</span>
+                <span class="badge bg-warning">deactivated</span>
                 {% endif %}
 
                 {% if not option.quantity %}
-                <span class="badge bg-danger">not available</span>
+                <span class="badge bg-danger">unavailable</span>
                 {% else %}
                 | <strong>{{ option.quantity }}</strong> available
                 {% endif %}
@@ -110,6 +110,11 @@
           </td>
           <!-- product actions -->
           <td class="text-end">
+            <!-- price -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#price_modal_{{ variant.id }}">
+              <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
+            </button>
+
             <!-- quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#quantity_modal_{{ variant.id }}">
               <i class="fa fa-truck-ramp-box" data-bs-toggle="tooltip" data-bs-placement="top" title="Quantity"></i>
@@ -186,7 +191,7 @@
 
 
 <!-- quantity modal -->
-<div id="assign_a_store_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="quantity_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-close">
@@ -195,31 +200,12 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Link a product</h2>
+            <h2>Edit quantity</h2>
           </div>
 
             <div class="row mb-4">
               <span class="divider-center mb-2">Select from the list</span>
-              <ul class="list-group list-group-flush navbar-card-list-group">
-                {% for store in stores %}
-                <li class="list-group-item form-check-select">
-                  <div class="row">
-                    <div class="col-auto">
-                      <div class="d-flex align-items-center">
-                        <div class="form-check">
-                          <label class="form-check-label"></label>
-                          <span class="form-check-stretched-bg"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col ms-n2">
-                      <h6 class="mb-1">{{ store.name }}</h6>
-                    </div>
-                  </div>
-                  <a class="btn btn-ghost stretched-link" href="{% url 'admin-manage-products' 'assign_provider' %}?product_id={{ variant.product.id }}&store_id={{ store.id }}"></a>
-                </li>
-                {% endfor %}
-              </ul>
+
             </div>
 
         </div>
