@@ -399,7 +399,7 @@ def manage_products(request, action):
 
         variants = Variant.objects.all().filter(tags__icontains=key_word)
 
-        if not request.session.get('variants-page', None):
+        if request.GET.get('page', None):
             page = request.GET.get('page', 1)
             request.session['variants-page'] = page
         else:
@@ -1064,7 +1064,7 @@ def provider_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 6
+    items_by_page = 1
 
     # --------------- main page ------------------- #
     if action == 'main':
@@ -1078,6 +1078,7 @@ def provider_products(request, action):
 
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
+            request.session['variants-page'] = None
 
         if request.session.get('variants_key_word', None):
             variants = variants.filter(tags__icontains=request.session.get('variants_key_word'))
@@ -1085,11 +1086,11 @@ def provider_products(request, action):
         else:
             search_key_word = None
 
-        if not request.session.get('variants-page', None):
+        if request.GET.get('page', None):
             page = request.GET.get('page', 1)
+            request.session['variants-page'] = page
         else:
             page = request.session.get('variants-page')
-            request.session['variants-page'] = None
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -1126,11 +1127,11 @@ def provider_products(request, action):
 
         variants = variants.filter(tags__icontains=key_word)
 
-        if not request.session.get('variants-page', None):
+        if request.GET.get('page', None):
             page = request.GET.get('page', 1)
+            request.session['variants-page'] = page
         else:
             page = request.session.get('variants-page')
-            request.session['variants-page'] = None
 
         paginator = Paginator(variants, items_by_page)
         try:
@@ -1144,14 +1145,34 @@ def provider_products(request, action):
             'variants': variants,
         }
         return render(request, url, context)
+    if action == 'edit_price':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            price = request.POST.get('price', False)
+            selected_option = Option.objects.all().get(id=option_id)
+            selected_option.cost = price
+            selected_option.is_activated = False
+            selected_option.save()
+            return redirect('provider-products', 'main')
     if action == 'add_quantity':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
-            selected_product = Product.objects.all().get(id=product_id)
-            selected_product.delete()
-            return redirect('admin-manage-products', 'main')
+            quantity = request.POST.get('quantity', False)
+            selected_option = Option.objects.all().get(id=option_id)
+            selected_option.quantity += quantity
+            selected_option.save()
+            return redirect('provider-products', 'main')
+    if action == 'remove_quantity':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            quantity = request.POST.get('quantity', False)
+            selected_option = Option.objects.all().get(id=option_id)
+            if quantity <= selected_option.quantity:
+                selected_option.quantity -= quantity
+                selected_option.save()
+            return redirect('provider-products', 'main')
 
-   # edit_price
+
    # remove_quantity
 
 
