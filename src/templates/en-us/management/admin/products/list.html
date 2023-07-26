@@ -283,6 +283,9 @@
                 <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
               </button>
               <strong class="text-dark">{{ variant.product.store.name }}</strong>
+              {% if not variant.product.store.is_activated %}
+              <i class="fa fa-triangle-exclamation" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivated"></i>
+              {% endif %}
             </span>
             {% else %}
             <!-- assign a store -->
