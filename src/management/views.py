@@ -1148,7 +1148,7 @@ def provider_products(request, action):
     if action == 'edit_price':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
-            price = request.POST.get('price', False)
+            price = int(request.POST.get('price', False))
             selected_option = Option.objects.all().get(id=option_id)
             selected_option.cost = price
             selected_option.is_activated = False
@@ -1157,7 +1157,7 @@ def provider_products(request, action):
     if action == 'add_quantity':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
-            quantity = request.POST.get('quantity', False)
+            quantity = int(request.POST.get('quantity', False))
             selected_option = Option.objects.all().get(id=option_id)
             selected_option.quantity += quantity
             selected_option.save()
@@ -1165,7 +1165,7 @@ def provider_products(request, action):
     if action == 'remove_quantity':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
-            quantity = request.POST.get('quantity', False)
+            quantity = int(request.POST.get('quantity', False))
             selected_option = Option.objects.all().get(id=option_id)
             if quantity <= selected_option.quantity:
                 selected_option.quantity -= quantity
