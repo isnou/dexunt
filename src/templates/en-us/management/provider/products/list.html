@@ -118,10 +118,7 @@
           </td>
           <!-- product actions -->
           <td class="text-end">
-            <!-- price -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
-              <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
-            </button>
+
             {% if option.quantity %}
             <!-- remove quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#remove_quantity_modal_{{ option.id }}">
@@ -132,6 +129,11 @@
             <!-- add quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ option.id }}">
               <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
+            </button>
+            
+            <!-- price -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
+              <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
           </td>
         </tr>
@@ -247,7 +249,7 @@
                   <i class="fa fa-minus"></i>
                 </div>
                 <input type="number" class="form-control" placeholder="quantity"  name="quantity" max="{{ option.quantity }}" min="0" required>
-                <span class="invalid-feedback text-start">Please enter quantity to remove.</span>
+                <span class="invalid-feedback text-start">Quantity to remove must not exceed inventory.</span>
               </div>
             </div>
             <div class="d-flex justify-content-end gap-3">
