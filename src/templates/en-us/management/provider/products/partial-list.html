@@ -5,61 +5,85 @@
 
         <tbody>
         {% for variant in variants %}
+        {% for option in variant.option_set.all %}
         <!-- products list -->
         <tr>
           <td class="table-column-pe-0">
           </td>
           <!-- product title and image -->
           <td class="table-column-ps-0">
+
             <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ variant.product.id }}">
+              {% if forloop.counter == 1 %}
               <div class="flex-shrink-0">
-                {% if variant.album_set.all.count %}
-                <img class="avatar avatar-lg" src="/media/{{ variant.album_set.all.first.image }}">
+                {% if option.has_image %}
+                <img class="avatar avatar-lg" src="/media/{{ option.image }}">
                 {% else %}
-                <span class="badge bg-warning">no images</span>
+                <img class="avatar avatar-lg" src="/media/{{ variant.album_set.all.first.image }}">
                 {% endif %}
               </div>
               <div class="flex-grow-1 ms-3">
                 <h5 class="text-inherit me-2">{{ variant.product.en_title }}</h5>
-                <span class="d-block text-body fs-6">
-                  <small>
-                    {{ variant.en_spec }}
-                    | rate <strong class="text-dark">{{ variant.rate }}</strong>
-                  </small>
-                </span>
               </div>
+              {% else %}
+              {% if option.has_image %}
+              <div class="flex-shrink-0">
+                <img class="avatar avatar-lg" src="/media/{{ option.image }}">
+              </div>
+              {% endif %}
+              {% endif %}
             </a>
+
           </td>
-          <!-- options -->
+          <!-- variant -->
           <td>
-            {% for option in variant.option_set.all %}
-            <span class="d-block text-body fs-6">
-              <small>
+            {% if forloop.counter == 1 %}
+            <span class="d-block text-dark fs-6">
+              {{ variant.en_spec }}
+              | rate <strong>{{ variant.rate }}</strong>
+            </span>
+            {% endif %}
+          </td>
+          <!-- option -->
+          <td>
+            <span class="d-block text-dark fs-6">
                 {{ option.en_value }}
-                | <span class="text-dark">{{ option.cost|floatformat:"0g" }} DZD</span>
-                | <strong class="text-dark">{{ option.sale }}</strong> sales
+                | <span>{{ option.cost|floatformat:"0g" }} DZD</span>
+                | <strong>{{ option.sale }}</strong> sales
                 {% if not option.is_activated or not variant.is_activated %}
-                <span class="badge bg-warning">not activated</span>
+                <span class="badge bg-warning">deactivated</span>
                 {% endif %}
 
                 {% if not option.quantity %}
-                <span class="badge bg-danger">not available</span>
+                <span class="badge bg-danger">unavailable</span>
                 {% else %}
-                | <strong class="text-dark">{{ option.quantity }}</strong> available
+                | <strong>{{ option.quantity }}</strong> available
                 {% endif %}
-              </small>
             </span>
-            {% endfor %}
           </td>
           <!-- product actions -->
           <td class="text-end">
-            <!-- delete product -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ variant.id }}">
-              <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+
+            {% if option.quantity %}
+            <!-- remove quantity -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#remove_quantity_modal_{{ option.id }}">
+              <i class="fa fa-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
+            </button>
+            {% endif %}
+
+            <!-- add quantity -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ option.id }}">
+              <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
+            </button>
+
+            <!-- price -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
+              <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
           </td>
         </tr>
         <!-- end products list -->
+        {% endfor %}
         {% endfor %}
         </tbody>
       </table>
