@@ -91,7 +91,7 @@
             <span class="d-block text-body fs-6">
               <small>
                 {{ option.en_value }}
-                | price DZD <span class="text-dark">{{ option.cost }}</span>
+                | <span class="text-dark">{{ option.cost|floatformat:"0g" }} DZD</span>
                 | <strong class="text-dark">{{ option.sale }}</strong> sales
                 {% if not option.is_activated or not variant.is_activated %}
                 <span class="badge bg-warning">not activated</span>
