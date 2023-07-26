@@ -360,14 +360,12 @@
 <form action="{% url 'admin-manage-products' 'delete_product' %}" id="delete_product_form_{{ variant.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="product_id" value='{{ variant.product.id }}'>
-  <input type="hidden" name="variants_page" value='{{ variants.number }}'>
 </form>
 
 <!-- unassign store form -->
 <form action="{% url 'admin-manage-products' 'unassign_provider' %}" id="unassign_form_{{ variant.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="product_id" value='{{ variant.product.id }}'>
-  <input type="hidden" name="variants_page" value='{{ variants.number }}'>
 </form>
 
 

@@ -293,6 +293,7 @@ def manage_products(request, action):
 
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
+            request.session['variants-page'] = None
 
         if request.session.get('variants_key_word', None):
             variants = variants.filter(tags__icontains=request.session.get('variants_key_word'))
@@ -305,7 +306,6 @@ def manage_products(request, action):
             request.session['variants-page'] = page
         else:
             page = request.session.get('variants-page')
-            request.session['variants-page'] = None
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -401,9 +401,9 @@ def manage_products(request, action):
 
         if not request.session.get('variants-page', None):
             page = request.GET.get('page', 1)
+            request.session['variants-page'] = page
         else:
             page = request.session.get('variants-page')
-            request.session['variants-page'] = None
 
         paginator = Paginator(variants, items_by_page)
         try:
