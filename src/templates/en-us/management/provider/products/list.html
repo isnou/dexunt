@@ -79,7 +79,7 @@
                 <span class="d-block text-body fs-6">
                   <small>
                     {{ variant.en_spec }}
-                    | Rate <strong class="text-dark">{{ variant.rate }}</strong>
+                    | rate <strong class="text-dark">{{ variant.rate }}</strong>
                   </small>
                 </span>
               </div>
@@ -91,7 +91,7 @@
             <span class="d-block text-body fs-6">
               <small>
                 {{ option.en_value }}
-                | <strong class="text-dark">{{ option.sale }}</strong> Sales
+                | <strong class="text-dark">{{ option.sale }}</strong> sales
                 {% if not option.is_activated or not variant.is_activated %}
                 <span class="badge bg-warning">not activated</span>
                 {% endif %}
