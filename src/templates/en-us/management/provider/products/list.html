@@ -89,11 +89,10 @@
           </td>
           <!-- options -->
           <td>
-            <span class="d-block text-body fs-6">
-              <small>
+            <span class="d-block text-dark fs-6">
                 {{ option.en_value }}
-                | <span class="text-dark">{{ option.cost|floatformat:"0g" }} DZD</span>
-                | <strong class="text-dark">{{ option.sale }}</strong> sales
+                | <span>{{ option.cost|floatformat:"0g" }} DZD</span>
+                | <strong>{{ option.sale }}</strong> sales
                 {% if not option.is_activated or not variant.is_activated %}
                 <span class="badge bg-warning">not activated</span>
                 {% endif %}
@@ -101,9 +100,8 @@
                 {% if not option.quantity %}
                 <span class="badge bg-danger">not available</span>
                 {% else %}
-                | <strong class="text-dark">{{ option.quantity }}</strong> available
+                | <strong>{{ option.quantity }}</strong> available
                 {% endif %}
-              </small>
             </span>
           </td>
           <!-- product actions -->
