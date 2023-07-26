@@ -87,7 +87,16 @@
             </a>
             {% endif %}
           </td>
-          <!-- options -->
+          <!-- variant -->
+          <td>
+            {% if forloop.counter == 1 %}
+            <span class="d-block text-dark fs-6">
+              {{ variant.en_spec }}
+              | rate <strong>{{ option.rate }}</strong>
+            </span>
+            {% endif %}
+          </td>
+          <!-- option -->
           <td>
             <span class="d-block text-dark fs-6">
                 {{ option.en_value }}
