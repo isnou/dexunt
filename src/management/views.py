@@ -301,7 +301,7 @@ def manage_products(request, action):
         else:
             search_key_word = None
 
-        if not request.session.get('variants-page', None):
+        if request.GET.get('page', None):
             page = request.GET.get('page', 1)
             request.session['variants-page'] = page
         else:
