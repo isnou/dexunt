@@ -16,15 +16,19 @@ class SelectedProduct(models.Model):
     # ----- functions ----- #
     def get_image(self):
         if self.option.has_image:
-            image = self.option.image
+            return self.option.image
         else:
-            image = self.option.variant.album_set.all().first().image
-        return image
+            return self.option.variant.album_set.all().first().image
     def get_price(self):
         if self.option.discount:
             return self.option.discount
         else:
             return self.option.price
+    def get_total_price(self):
+        if self.option.discount:
+            return self.option.discount * self.quantity
+        else:
+            return self.option.price * self.quantity
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
