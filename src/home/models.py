@@ -104,14 +104,18 @@ class Cart(models.Model):
                 self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
     def add_product(self, option):
+        selected_product = None
         for p in self.product.all():
-            if p.option.id == option.id:
-                selected_product = self.product.all().get(id=p.id)
-                selected_product.quantity += 1
-                selected_product.save()
-            else:
-                selected_product = SelectedProduct(option=option)
-                selected_product.save()
+            if p.option:
+                if p.option.id == option.id:
+                    selected_product = self.product.all().get(id=p.id)
+                    selected_product.quantity += 1
+                    selected_product.save()
+
+        if not selected_product:
+            selected_product = SelectedProduct(option=option)
+            selected_product.save()
+            self.product.add(selected_product)
 #                                                                        #
 def get_cart(request):
     if not request.user.is_authenticated:
