@@ -67,7 +67,7 @@
 
                   <div class="col-7 col-md-7">
                     <a href="shop-single.html" class="text-inherit"><h6 class="mb-0">{{ product.option.variant.product.en_title }}</h6></a>
-                    <span><small class="text-muted">{{ product.option.variant.en_spec }}</small></span><br>
+                    <span><small class="text-muted">{{ product.option.variant.en_spec }} {{ product.option.en_value }}</small></span><br>
                     <span class="fw-bold">{{ product.get_total_price|floatformat:"0g" }} <small>DZD</small></span>
                   </div>
 
