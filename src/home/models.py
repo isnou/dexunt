@@ -6,6 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # ------------------------------- Orders ------------------------------- #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
+    ref = models.CharField(max_length=6, unique=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     lack_of_quantity = models.BooleanField(default=False)
     # ----- #
@@ -33,6 +34,10 @@ class SelectedProduct(models.Model):
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
     # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.ref:
+            self.ref = functions.serial_number_generator(6).upper()
+        super().save()
     def image(self):
         if self.option.has_image:
             return self.option.image
@@ -170,7 +175,6 @@ class Order(models.Model):
     my_qr = models.BooleanField(default=False)
     gift_card = models.BooleanField(default=False)
     # ----- #
-    cart_ref = models.CharField(max_length=20, blank=True, null=True)
     ref = models.CharField(max_length=6, unique=True, null=True)
     lack_of_quantity = models.BooleanField(default=False)
     # ----- #
