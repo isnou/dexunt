@@ -27,9 +27,9 @@ class SelectedProduct(models.Model):
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
     cart = models.ForeignKey(
-        'management.Cart', on_delete=models.CASCADE, null=True)
+        'home.Cart', on_delete=models.CASCADE, null=True)
     order = models.ForeignKey(
-        'management.Order', on_delete=models.CASCADE, null=True)
+        'home.Order', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
     # ----- functions ----- #
