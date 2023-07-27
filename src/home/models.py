@@ -63,32 +63,26 @@ class Coupon(models.Model):
             elif self.value > 100:
                 self.value = 100
         super().save()
-    def clean(self):
+    def check(self):
         if self.valid_until <= timezone.now():
             self.is_active = False
         if self.quantity == 0:
             self.is_active = False
         super().save()
 #                                                                        #
-def apply_coupon(request, selected_cart, coupon_code):
-    code = None
-    value = None
-    is_subtractive = True
+def apply_coupon(request, selected_cart):
+    coupon_code = request.POST.get('coupon_code', False)
     if Coupon.objects.all().filter(code=coupon_code).exists():
         coupon = Coupon.objects.all().get(code=coupon_code)
+        coupon.check()
         if coupon.is_active:
             request.session['coupon_message'] = 'success'
-            code = coupon.code
-            is_subtractive = coupon.is_subtractive
-            value = coupon.value
+            selected_cart.coupon = coupon
+            selected_cart.save()
         else:
             request.session['coupon_message'] = 'expired'
     else:
         request.session['coupon_message'] = 'wrong'
-    selected_cart.coupon_code = code
-    selected_cart.has_subtractive_coupon = is_subtractive
-    selected_cart.coupon_value = value
-    selected_cart.update_prices()
 #                                                                        #
 class Cart(models.Model):
     # ----- Technical ----- #
@@ -103,18 +97,6 @@ class Cart(models.Model):
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(20).upper()
-        super().save()
-    def update_prices(self):
-        new_price = 0
-        for product in self.product.all():
-            new_price += product.total_price
-        self.sub_total_price = new_price
-        self.total_price = new_price
-        if self.coupon_value:
-            if self.has_subtractive_coupon:
-                self.total_price = self.sub_total_price - self.coupon_value
-            else:
-                self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
     def add_product(self, option):
         selected_product = None
@@ -137,6 +119,7 @@ class Cart(models.Model):
     def total_price(self):
         total_price = self.price()
         if self.coupon:
+            self.coupon.check()
             if self.coupon.is_active:
                 if self.coupon.is_subtractive:
                     total_price = total_price - self.coupon.value

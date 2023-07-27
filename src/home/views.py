@@ -114,6 +114,10 @@ def shopping_cart_page(request, action):
         selected_option = Option.objects.all().get(id=request.GET.get('option_id'))
         selected_cart.add_product(selected_option)
         return redirect('shopping-cart', 'main')
+    if action == 'apply_coupon':
+        if request.method == 'POST':
+            apply_coupon(request, selected_cart)
+            return redirect('shopping-cart', 'main')
 
 
 def shopping_cart(request, product_id, option_id, user_token, action):
