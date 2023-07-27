@@ -222,6 +222,8 @@ class Order(models.Model):
     # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
