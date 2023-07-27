@@ -29,6 +29,12 @@ class SelectedProduct(models.Model):
             return self.option.discount * self.quantity
         else:
             return self.option.price * self.quantity
+    def get_tite(self, language):
+        if language == 'en':
+            return self.option.variant.product.en_title
+    def get_detail(self, language):
+        if language == 'en':
+            return self.option.variant.en_spec + ' ' + self.option.en_value
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
