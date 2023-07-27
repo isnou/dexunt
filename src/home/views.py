@@ -105,7 +105,7 @@ def shopping_cart_page(request, action):
     if action == 'main':
         url = direction + "/home/regular/shopping-cart.html"
 
-        if selected_cart.product.all().count():
+        if selected_cart.selectedproduct_set.all().count():
             context = {
                 'selected_cart': selected_cart,
                 'coupon_message': coupon_message,
