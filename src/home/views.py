@@ -119,14 +119,14 @@ def shopping_cart_page(request, action):
             apply_coupon(request, selected_cart)
             return redirect('shopping-cart', 'main')
     if action == 'add_quantity':
-        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        selected_product = SelectedProduct.objects.all().get(id=request.GET.get('product_id'))
         if selected_product.option.quantity > selected_product.quantity:
             if selected_product.option.max_quantity > selected_product.quantity:
                 selected_product.quantity += 1
                 selected_product.save()
         return redirect('shopping-cart', 'main')
     if action == 'remove_quantity':
-        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        selected_product = SelectedProduct.objects.all().get(id=request.GET.get('product_id'))
         if selected_product.quantity > 1:
             selected_product.quantity -= 1
             selected_product.save()
