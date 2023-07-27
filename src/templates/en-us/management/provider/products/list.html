@@ -117,7 +117,7 @@
           <!-- sales -->
           <td>
             <span class="d-block text-dark fs-6">
-              {% for p in option.selected_product_set.all %}
+              {% for p in option.selectedproduct_set.all %}
               {{ p.created_at }}
               <strong>{{ forloop.counter }}</strong>
               {% endfor %}
