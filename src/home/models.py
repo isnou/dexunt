@@ -6,14 +6,37 @@ from phonenumber_field.modelfields import PhoneNumberField
 # ------------------------------- Orders ------------------------------- #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
-    created_at = models.DateTimeField(auto_now_add=True)
+    ref = models.CharField(max_length=20, unique=True, null=True)
     lack_of_quantity = models.BooleanField(default=False)
+    # ----- #
+    has_been_ordered = models.BooleanField(default=False)
+    has_been_ordered_at = models.DateTimeField(blank=True, null=True)  # -- by the provider
+    # ----- #
+    is_in_quality_control = models.BooleanField(default=False)
+    is_in_quality_control_since = models.DateTimeField(blank=True, null=True)
+    # ----- #
+    is_processed = models.BooleanField(default=False)
+    is_processed_at = models.DateTimeField(blank=True, null=True)  # -- by a member
+    # ----- #
+    is_on_delivery = models.BooleanField(default=False)
+    is_on_delivery_since = models.DateTimeField(blank=True, null=True)
+    # ----- #
+    is_paid = models.BooleanField(default=False)
+    is_paid_at = models.DateTimeField(blank=True, null=True)  # -- by a member
     # ----- relations ----- #
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
+    cart = models.ForeignKey(
+        'home.Cart', on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(
+        'home.Order', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
     # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.ref:
+            self.ref = functions.serial_number_generator(20).upper()
+        super().save()
     def image(self):
         if self.option.has_image:
             return self.option.image
@@ -90,28 +113,26 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # ----- relations ----- #
+    # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
-    product = models.ManyToManyField(SelectedProduct, blank=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(20).upper()
         super().save()
     def add_product(self, option):
-        selected_product = None
-        if self.product.all().filter(option_id=option.id).exists():
-            selected_product = self.product.all().get(option_id=option.id)
+        if self.product_set.all().filter(option_id=option.id).exists():
+            selected_product = self.product_set.all().get(option_id=option.id)
             selected_product.quantity += 1
             selected_product.save()
-
-        if not selected_product:
+        else:
             selected_product = SelectedProduct(option=option)
+            selected_product.cart = self
             selected_product.save()
-            self.product.add(selected_product)
     def price(self):
         price = 0
-        for p in self.product.all():
+        for p in self.product_set.all():
             price += p.total_price()
         return price
     def total_price(self):
@@ -153,60 +174,62 @@ class Order(models.Model):
     # ----- #
     cart_ref = models.CharField(max_length=20, blank=True, null=True)
     ref = models.CharField(max_length=6, unique=True, null=True)
-    quantity_issue = models.BooleanField(default=False)
+    lack_of_quantity = models.BooleanField(default=False)
     # ----- #
-    is_incomplete = models.BooleanField(default=True)
+    is_empty = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- #
     is_fulfilled = models.BooleanField(default=False)
     fulfilled_at = models.DateTimeField(blank=True, null=True)
     # ----- #
     is_pending = models.BooleanField(default=False)
-    pended_at = models.DateTimeField(blank=True, null=True)
-    pended_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    is_pending_since = models.DateTimeField(blank=True, null=True)
+    is_pending_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
     # ----- #
     is_cancelled = models.BooleanField(default=False)
-    cancelled_at = models.DateTimeField(blank=True, null=True)
-    cancelled_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    is_cancelled_at = models.DateTimeField(blank=True, null=True)
+    is_cancelled_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
     # ----- #
     is_confirmed = models.BooleanField(default=False)
-    confirmed_at = models.DateTimeField(blank=True, null=True)
-    confirmation_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    is_confirmed_at = models.DateTimeField(blank=True, null=True)
+    is_confirmed_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
     # ----- #
-    is_processing = models.BooleanField(default=False)
-    processing_at = models.DateTimeField(blank=True, null=True)
-    processing_by = models.CharField(max_length=24, blank=True, null=True) # -- by the provider
+    is_being_processed = models.BooleanField(default=False)
+    is_being_processed_since = models.DateTimeField(blank=True, null=True) # -- by providers
     # ----- #
-    is_quality_checking = models.BooleanField(default=False)
-    quality_checking_at = models.DateTimeField(blank=True, null=True)
-    quality_checking_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_in_quality_control = models.BooleanField(default=False)
+    is_in_quality_control_since = models.DateTimeField(blank=True, null=True)
+    is_in_quality_control_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
     # ----- #
-    is_given_for_delivery = models.BooleanField(default=False)
-    given_for_delivery_at = models.DateTimeField(blank=True, null=True)
-    given_for_delivery_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_processed = models.BooleanField(default=False)
+    is_processed_at = models.DateTimeField(blank=True, null=True)
+    is_processed_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    # ----- #
+    is_on_delivery = models.BooleanField(default=False)
+    is_on_delivery_since = models.DateTimeField(blank=True, null=True)
+    is_on_delivery_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
     # ----- #
     is_paid = models.BooleanField(default=False)
-    paid_at = models.DateTimeField(blank=True, null=True)
-    paid_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_paid_at = models.DateTimeField(blank=True, null=True)
+    is_paid_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
     # ----- #
     refund_request = models.BooleanField(default=False)
     refund_request_at = models.DateTimeField(blank=True, null=True)
     refund_request_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
     # ----- #
     is_refunded = models.BooleanField(default=False)
-    refunded_at = models.DateTimeField(blank=True, null=True)
-    refunded_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_refunded_at = models.DateTimeField(blank=True, null=True)
+    is_refunded_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
     # ----- relations ----- #
-    product = models.ManyToManyField(SelectedProduct, blank=True)
+    # related to many selected_products #
+    coupon = models.ForeignKey(
+        'home.Coupon', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
     address = models.CharField(max_length=250, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
     points = models.IntegerField(default=0)
-    coupon_code = models.CharField(max_length=20, blank=True, null=True)
-    coupon_value = models.IntegerField(default=0, null=True)
-    has_subtractive_coupon = models.BooleanField(default=True)
 
     delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK

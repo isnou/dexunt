@@ -19,7 +19,7 @@
             </span>
             {% endif %}
         </a>
-        {% if selected_cart.product.all.count %}
+        {% if selected_cart.product_set.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
             {% if selected_cart.coupon %}
             {% if selected_cart.coupon.is_subtractive %}
@@ -41,8 +41,8 @@
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5 mb-3">
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
-                    {% if selected_cart.product.all.count %}
-                    <span class="text-success">{{ selected_cart.product.all.count }}</span>
+                    {% if selected_cart.product_set.all.count %}
+                    <span class="text-success">{{ selected_cart.product_set.all.count }}</span>
                     {% endif %}
                 </div>
 
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <ul class="list-group list-group-flush">
-                {% for product in selected_cart.product.all %}
+                {% for product in selected_cart.product_set.all %}
                 <li class="list-group-item px-0 py-3">
                     <div class="row align-items-center g-0">
                         <div class="col-lg-3 col-3 text-center me-2">
@@ -101,13 +101,13 @@
             <span>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             </span>
-            {% if selected_cart.product.all.count %}
+            {% if selected_cart.product_set.all.count %}
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                 {{ selected_cart.product.all.count }}
             </span>
             {% endif %}
         </a>
-        {% if selected_cart.product.all.count %}
+        {% if selected_cart.product_set.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
             {% if selected_cart.coupon %}
             {% if selected_cart.coupon.is_subtractive %}
@@ -129,8 +129,8 @@
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
-                    {% if selected_cart.product.all.count %}
-                    <span class="text-success">{{ selected_cart.product.all.count }}</span>
+                    {% if selected_cart.product_set.all.count %}
+                    <span class="text-success">{{ selected_cart.product_set.all.count }}</span>
                     {% endif %}
                 </div>
                 <div>
@@ -139,7 +139,7 @@
                 </div>
             </div>
             <ul class="list-group list-group-flush">
-                {% for product in selected_cart.product.all %}
+                {% for product in selected_cart.product_set.all %}
                 <li class="list-group-item px-0 py-3">
                     <div class="row align-items-center g-0">
                         <div class="col-lg-3 text-center">
