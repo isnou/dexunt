@@ -94,7 +94,6 @@ class Coupon(models.Model):
         if self.quantity == 0:
             self.is_active = False
         super().save()
-
 #                                                                        #
 def apply_coupon(request, selected_cart):
     coupon_code = request.POST.get('coupon_code', False)
@@ -226,8 +225,6 @@ class Order(models.Model):
     # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
-    user = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
@@ -271,37 +268,30 @@ class Order(models.Model):
 def get_order(request, selected_cart):
     if not request.user.is_authenticated:
         if not request.session.get('order_ref', None):
-            selected_order = Order(cart_ref=selected_cart.ref,)
+            selected_order = Order(coupon=selected_cart.coupon)
             selected_order.save()
             request.session['order_ref'] = selected_order.ref
         else:
-            ref = request.session.get('order_ref')
-            if Order.objects.all().filter(ref=ref).exists():
-                selected_order = Order.objects.all().get(ref=ref)
+            if Order.objects.all().filter(ref=request.session.get('order_ref')).exists():
+                selected_order = Order.objects.all().get(ref=request.session.get('order_ref'))
             else:
-                selected_order = Order(cart_ref=selected_cart.ref,)
+                selected_order = Order(coupon=selected_cart.coupon)
                 selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
         if request.user.order.all().filter(is_incomplete=True).exists():
             selected_order = Order.objects.all().get(is_incomplete=True)
         else:
-            selected_order = Order(cart_ref=selected_cart.ref)
+            selected_order = Order(coupon=selected_cart.coupon)
             selected_order.save()
-            request.user.order,add(selected_order)
+            request.user.order.add(selected_order)
 
-    new_points = 0
-    for p in selected_cart.product.all():
-        selected_order.product.add(p)
-        new_points += (p.points * p.quantity)
-
-    selected_order.coupon_code = selected_cart.coupon_code
-    selected_order.has_subtractive_coupon = selected_cart.has_subtractive_coupon
-    selected_order.coupon_value = selected_cart.coupon_value
-    selected_order.points = new_points
-    selected_order.sub_total_price = selected_cart.sub_total_price
-
-    selected_order.update_prices()
+    selected_cart.coupon = None
+    selected_cart.save()
+    for p in selected_cart.selectedproduct_set.all():
+        p.cart = None
+        p.order = selected_order
+        p.save()
 
     return selected_order
 #                                                                        #

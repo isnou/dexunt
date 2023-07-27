@@ -54,7 +54,6 @@ class User(AbstractUser):
     sale = models.IntegerField(default=0)
     token = models.CharField(max_length=24, unique=True, null=True)
     # ----- relations ----- #
-    # related to many orders #
     wallet = models.OneToOneField(
         Wallet,
         on_delete=models.PROTECT,
@@ -70,6 +69,7 @@ class User(AbstractUser):
         on_delete=models.PROTECT,
         null=True
     )
+    order = models.ManyToManyField(Order, blank=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=300, blank=True, null=True)
     def get_image_path(self, filename):
