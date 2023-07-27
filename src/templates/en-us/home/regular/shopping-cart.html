@@ -62,7 +62,11 @@
               <li class="list-group-item py-3 py-lg-0 px-0 border-bottom">
                 <div class="row align-items-center">
                   <div class="col-3 col-md-2">
+                    {% if product.has_image %}
                     <img src="{% get_media_prefix %}{{ product.image }}" class="img-fluid">
+                    {% else %}
+                    <img src="{% get_media_prefix %}{{ product.variant.album_set.all.first.image }}" class="img-fluid">
+                    {% endif %}
                   </div>
 
                   <div class="col-7 col-md-7">
