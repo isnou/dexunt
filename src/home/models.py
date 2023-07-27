@@ -18,7 +18,7 @@ class SelectedProduct(models.Model):
         if self.option.has_image:
             image = option.image
         else:
-            image = self.variant.album.all().first().image
+            image = self.variant.album_set.all().first().image
         return image
     def get_price(self):
         if self.option.discount:
