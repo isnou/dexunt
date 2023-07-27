@@ -13,6 +13,9 @@ class Transaction(models.Model):
     # ----- Technical ----- #
     user_token = models.CharField(max_length=24, null=True)
     store = models.CharField(max_length=240, blank=True, null=True)
+    # ----- relations ----- #
+    wallet = models.ForeignKey(
+        'authentication.Wallet', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     title = models.CharField(max_length=500, blank=True, null=True)
     amount = models.IntegerField(default=0)
@@ -20,7 +23,7 @@ class Transaction(models.Model):
 #                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #
-    transaction = models.ManyToManyField(Transaction, blank=True)
+    # related to many transactions #
     # ----- content ----- #
     balance = models.IntegerField(default=0)
     # ----- functions ----- #
@@ -58,7 +61,7 @@ class User(AbstractUser):
     )
     cart = models.OneToOneField(
         Cart,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         null=True
     )
     store = models.OneToOneField(

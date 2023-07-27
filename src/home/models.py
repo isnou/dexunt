@@ -6,7 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # ------------------------------- Orders ------------------------------- #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
-    ref = models.CharField(max_length=20, unique=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     lack_of_quantity = models.BooleanField(default=False)
     # ----- #
     has_been_ordered = models.BooleanField(default=False)
@@ -26,17 +26,9 @@ class SelectedProduct(models.Model):
     # ----- relations ----- #
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
-    cart = models.ForeignKey(
-        'home.Cart', on_delete=models.CASCADE, null=True)
-    order = models.ForeignKey(
-        'home.Order', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
     # ----- functions ----- #
-    def save(self, *args, **kwargs):
-        if not self.ref:
-            self.ref = functions.serial_number_generator(20).upper()
-        super().save()
     def image(self):
         if self.option.has_image:
             return self.option.image
@@ -113,26 +105,26 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # ----- relations ----- #
-    # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
+    product = models.ManyToManyField(SelectedProduct, blank=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(20).upper()
         super().save()
     def add_product(self, option):
-        if self.product_set.all().filter(option_id=option.id).exists():
-            selected_product = self.product_set.all().get(option_id=option.id)
+        if self.product.all().filter(option_id=option.id).exists():
+            selected_product = self.product.all().get(option_id=option.id)
             selected_product.quantity += 1
             selected_product.save()
         else:
             selected_product = SelectedProduct(option=option)
-            selected_product.cart = self
             selected_product.save()
+            self.product.add(selected_product)
     def price(self):
         price = 0
-        for p in self.product_set.all():
+        for p in self.product.all():
             price += p.total_price()
         return price
     def total_price(self):
@@ -221,9 +213,9 @@ class Order(models.Model):
     is_refunded_at = models.DateTimeField(blank=True, null=True)
     is_refunded_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
     # ----- relations ----- #
-    # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
+    product = models.ManyToManyField(SelectedProduct, blank=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
