@@ -100,12 +100,10 @@ class Cart(models.Model):
         super().save()
     def add_product(self, option):
         selected_product = None
-        for p in self.product.all():
-            if p.option:
-                if p.option.id == option.id:
-                    selected_product = self.product.all().get(id=p.id)
-                    selected_product.quantity += 1
-                    selected_product.save()
+        if self.product.all().filter(option_id=option.id).exists():
+            selected_product = self.product.all().get(option_id=option.id)
+            selected_product.quantity += 1
+            selected_product.save()
 
         if not selected_product:
             selected_product = SelectedProduct(option=option)

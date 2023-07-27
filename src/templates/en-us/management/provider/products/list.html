@@ -114,15 +114,6 @@
                 {% endif %}
             </span>
           </td>
-          <!-- sales -->
-          <td>
-            <span class="d-block text-dark fs-6">
-              {% for p in option.selectedproduct_set.all %}
-              {{ p.created_at }}
-              <strong>{{ forloop.counter }}</strong>
-              {% endfor %}
-            </span>
-          </td>
           <!-- product actions -->
           <td class="text-end">
             {% if option.quantity %}
