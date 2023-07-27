@@ -133,6 +133,10 @@ def shopping_cart_page(request, action):
         else:
             selected_product.delete()
         return redirect('shopping-cart', 'main')
+    if action == 'remove_product':
+        selected_product = SelectedProduct.objects.all().get(id=request.GET.get('product_id'))
+        selected_product.delete()
+        return redirect('home-page')
 
 def shopping_cart(request, product_id, option_id, user_token, action):
     selected_cart = get_cart(request)
