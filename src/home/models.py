@@ -11,8 +11,6 @@ class SelectedProduct(models.Model):
     # ----- relations ----- #
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
-    provider = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
     # ----- functions ----- #
@@ -105,6 +103,15 @@ class Cart(models.Model):
             else:
                 self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
         super().save()
+    def add_product(self, option):
+        for p in self.product.all():
+            if p.option.id == option.id:
+                selected_product = self.product.all().get(id=p.id)
+                selected_product.quantity += 1
+                selected_product.save()
+            else:
+                selected_product = SelectedProduct(option=option)
+                selected_product.save()
 #                                                                        #
 def get_cart(request):
     if not request.user.is_authenticated:
@@ -124,7 +131,7 @@ def get_cart(request):
         selected_cart = request.user.cart
     return selected_cart
 #                                                                        #
-def add_product_to_cart(cart, variant, option):
+def add_product_to_cart(cart, option_id):
     if cart.product.all().filter(option_id=option.id).exists():
         selected_cart_product = cart.product.all().get(option_id=option.id)
         selected_cart_product.quantity += 1

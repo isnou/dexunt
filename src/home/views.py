@@ -110,6 +110,11 @@ def shopping_cart_page(request, action):
             'coupon_message': coupon_message,
         }
         return render(request, url, context)
+    if action == 'add_regular_product':
+        selected_option = Option.objects.all().get(id=request.GET.get('option_id'))
+        selected_cart.add_product(selected_option)
+        return redirect('shopping-cart', 'main')
+
 
 def shopping_cart(request, product_id, option_id, user_token, action):
     selected_cart = get_cart(request)

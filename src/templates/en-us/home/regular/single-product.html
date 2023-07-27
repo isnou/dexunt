@@ -192,7 +192,8 @@
               {% if selected_variant.option_set.all.count == 1 %}
               <div class="col d-grid">
                 {% if selected_variant.is_available %}
-                <a class="btn btn-primary" href="#" role="button">
+
+                <a class="btn btn-primary" href="{% url 'shopping-cart' 'add_regular_product' %}?option_id={{ selected_variant.option_set.all.first.id }}" role="button">
                   <i class="feather-icon icon-shopping-bag me-2"></i>Buy now
                 </a>
                 {% else %}
@@ -202,10 +203,11 @@
                 {% endif %}
               </div>
               {% else %}
+
               {% if selected_option %}
               <div class="col d-grid">
                 {% if selected_option.quantity %}
-                <a class="btn btn-primary" href="#" role="button">
+                <a class="btn btn-primary" href="{% url 'shopping-cart' 'add_regular_product' %}?option_id={{ selected_option.id }}" role="button">
                   <i class="feather-icon icon-shopping-bag me-2"></i>Buy now
                 </a>
                 {% else %}
