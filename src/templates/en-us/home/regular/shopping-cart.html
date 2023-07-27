@@ -66,8 +66,8 @@
                       {% else %}
                       <a class="btn btn-outline-secondary" href="{% url 'shopping-cart' 'remove_quantity' %}?product_id={{ product.id }}"><i class="bi bi-trash"></i></a>
                       {% endif %}
-                      <input type="text" class="form-control text-center" value="{{ product.quantity }}?product_id={{ product.id }}" readonly>
-                      <a class="btn btn-outline-secondary" href="{% url 'shopping-cart' 'add_quantity' %}"><i class="bi bi-plus-lg"></i></a>
+                      <input type="text" class="form-control text-center" value="{{ product.quantity }}" readonly>
+                      <a class="btn btn-outline-secondary" href="{% url 'shopping-cart' 'add_quantity' %}?product_id={{ product.id }}"><i class="bi bi-plus-lg"></i></a>
                     </div>
                   </div>
                 </div>
