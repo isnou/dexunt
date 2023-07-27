@@ -135,7 +135,7 @@ def shopping_cart_page(request, action):
             selected_product.save()
         else:
             selected_product.delete()
-        if selected_cart.product.all().count():
+        if selected_cart.selectedproduct_set.all().count():
             return redirect('shopping-cart', 'main')
         else:
             return redirect('home-page')
