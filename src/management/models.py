@@ -88,6 +88,7 @@ class Option(models.Model):
     max_quantity = models.IntegerField(default=0)
     tags = models.CharField(max_length=800, blank=True, null=True)
     # ----- relations ----- #
+    # related to many selected_products #
     variant = models.ForeignKey(
         'management.Variant', on_delete=models.CASCADE, null=True)
     review = models.ManyToManyField(Review, blank=True)
