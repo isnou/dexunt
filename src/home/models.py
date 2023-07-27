@@ -7,13 +7,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
     created_at = models.DateTimeField(auto_now_add=True)
-    # ----- #
     lack_of_quantity = models.BooleanField(default=False)
     # ----- relations ----- #
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
-    variant = models.ForeignKey(
-        'management.Variant', on_delete=models.CASCADE, null=True)
     provider = models.ForeignKey(
         'authentication.User', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -82,18 +79,16 @@ def apply_coupon(request, selected_cart, coupon_code):
 class Cart(models.Model):
     # ----- Technical ----- #
     ref = models.CharField(max_length=20, unique=True, null=True)
-    product = models.ManyToManyField(SelectedProduct, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # ----- relations ----- #
+    coupon = models.ForeignKey(
+        'home.Coupon', on_delete=models.CASCADE, null=True)
+    product = models.ManyToManyField(SelectedProduct, blank=True)
     # ----- content ----- #
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    # ----- #
-    coupon_code = models.CharField(max_length=20, blank=True, null=True)
-    has_subtractive_coupon = models.BooleanField(default=True)
-    coupon_value = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
-
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(20).upper()
@@ -109,10 +104,6 @@ class Cart(models.Model):
                 self.total_price = self.sub_total_price - self.coupon_value
             else:
                 self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
-        super().save()
-    def delete_products(self):
-        for product in self.product.all():
-            product.delete()
         super().save()
 #                                                                        #
 def get_cart(request):
@@ -222,12 +213,11 @@ class Order(models.Model):
     is_refunded = models.BooleanField(default=False)
     refunded_at = models.DateTimeField(blank=True, null=True)
     refunded_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
-    # ----- content ----- #
+    # ----- relations ----- #
     product = models.ManyToManyField(SelectedProduct, blank=True)
+    # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
-    province = models.CharField(max_length=200, blank=True, null=True)
-    municipality = models.CharField(max_length=200, blank=True, null=True)
     address = models.CharField(max_length=250, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
     points = models.IntegerField(default=0)
@@ -236,8 +226,7 @@ class Order(models.Model):
     has_subtractive_coupon = models.BooleanField(default=True)
 
     delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    delivery_type = models.CharField(max_length=100, default='HOME')
-    # -- delivery_types :  TO-HOME - TO-DESK
+    delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK
 
     sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
