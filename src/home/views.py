@@ -105,11 +105,14 @@ def shopping_cart_page(request, action):
     if action == 'main':
         url = direction + "/home/regular/shopping-cart.html"
 
-        context = {
-            'selected_cart': selected_cart,
-            'coupon_message': coupon_message,
-        }
-        return render(request, url, context)
+        if selected_cart.product.all().count():
+            context = {
+                'selected_cart': selected_cart,
+                'coupon_message': coupon_message,
+            }
+            return render(request, url, context)
+        else:
+            return redirect('home-page')
     if action == 'add_regular_product':
         selected_option = Option.objects.all().get(id=request.GET.get('option_id'))
         selected_cart.add_product(selected_option)
@@ -132,7 +135,10 @@ def shopping_cart_page(request, action):
             selected_product.save()
         else:
             selected_product.delete()
-        return redirect('shopping-cart', 'main')
+        if selected_cart.product.all().count():
+            return redirect('shopping-cart', 'main')
+        else:
+            return redirect('home-page')
     if action == 'remove_product':
         selected_product = SelectedProduct.objects.all().get(id=request.GET.get('product_id'))
         selected_product.delete()
