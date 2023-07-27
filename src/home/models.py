@@ -78,12 +78,14 @@ class Coupon(models.Model):
             elif self.value > 100:
                 self.value = 100
         super().save()
-    def check(self):
-        if self.valid_until <= timezone.now():
-            self.is_active = False
-        if self.quantity == 0:
-            self.is_active = False
-        super().save()
+
+    #def check(self):
+    #    if self.valid_until <= timezone.now():
+    #        self.is_active = False
+    #    if self.quantity == 0:
+    #        self.is_active = False
+    #    super().save()
+
 #                                                                        #
 def apply_coupon(request, selected_cart):
     coupon_code = request.POST.get('coupon_code', False)
