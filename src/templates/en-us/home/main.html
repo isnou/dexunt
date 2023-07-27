@@ -21,6 +21,23 @@
         </a>
         {% if selected_cart.product.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
+            {% if selected_cart.coupon %}
+            {% if selected_cart.coupon.is_subtractive %}
+            <div class="d-grid pb-4 pt-2">
+                <div class="alert border-dark text-center" role="alert">
+                    <i class="fa fa-gifts me-2"></i>
+                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
+                </div>
+            </div>
+            {% else %}
+            <div class="d-grid pb-4 pt-2">
+                <div class="alert border-dark text-center" role="alert">
+                    <i class="fa fa-gifts"></i>
+                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5 mb-3">
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
@@ -48,7 +65,7 @@
                             <small class="text-muted">{{ product.quantity }} x {{ product.price|floatformat:"2g" }} <small>DZD</small></small>
                         </div>
                         <div class="text-end col-lg-2 col-2">
-                            <a href="{% url 'shopping-cart' product.id product.id 'no' 'delete_product_from_home' %}" class="text-inherit" aria-label="Close"><i class="bi bi-x fs-4"></i></a>
+                            <a href="{% url 'shopping-cart' 'remove_product' %}?product_id={{ product.id }}" class="text-inherit" aria-label="Close"><i class="bi bi-x fs-4"></i></a>
                         </div>
                     </div>
                 </li>
@@ -92,7 +109,6 @@
         </a>
         {% if selected_cart.product.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
-
             {% if selected_cart.coupon %}
             {% if selected_cart.coupon.is_subtractive %}
             <div class="d-grid pb-4 pt-2">
@@ -102,7 +118,6 @@
                 </div>
             </div>
             {% else %}
-
             <div class="d-grid pb-4 pt-2">
                 <div class="alert border-dark text-center" role="alert">
                     <i class="fa fa-gifts"></i>
@@ -111,9 +126,6 @@
             </div>
             {% endif %}
             {% endif %}
-
-
-
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
