@@ -47,15 +47,15 @@
           <div class="py-3">
             <ul class="list-group list-group-flush">
               {% for selected in selected_cart.product.all %}
-              <form action="{% url 'shopping-cart' selected.id selection.id 'no' 'add_quantity' %}" id="add_quantity_form_{{ product.id }}" novalidate method="post">
+              <form action="#" id="add_quantity_form_{{ product.id }}" novalidate method="post">
                 {% csrf_token %}
               </form>
 
-              <form action="{% url 'shopping-cart' selected.id selection.id 'no' 'remove_quantity' %}" id="remove_quantity_form_{{ product.id }}" novalidate method="post">
+              <form action="#" id="remove_quantity_form_{{ product.id }}" novalidate method="post">
                 {% csrf_token %}
               </form>
 
-              <form action="{% url 'shopping-cart' selected.id selection.id 'no' 'delete_product' %}" id="delete_form_{{ product.id }}" novalidate method="post">
+              <form action="#" id="delete_form_{{ product.id }}" novalidate method="post">
                 {% csrf_token %}
               </form>
 
