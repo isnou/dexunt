@@ -92,11 +92,27 @@
         </a>
         {% if selected_cart.product.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
+
+            {% if selected_cart.coupon %}
+            {% if selected_cart.coupon.is_subtractive %}
             <div class="d-grid pb-4 pt-2">
                 <div class="alert border-dark text-center" role="alert">
-                    Please choose an option below
+                    <i class="fa fa-gifts"></i>
+                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
                 </div>
             </div>
+            {% else %}
+
+            <div class="d-grid pb-4 pt-2">
+                <div class="alert border-dark text-center" role="alert">
+                    <i class="fa fa-gifts"></i>
+                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+
+
 
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
                 <div>
