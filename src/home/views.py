@@ -144,44 +144,6 @@ def shopping_cart_page(request, action):
         selected_product.delete()
         return redirect('home-page')
 
-def shopping_cart(request, product_id, option_id, user_token, action):
-    selected_cart = get_cart(request)
-    if action == 'add_regular_product':
-        selected_variant = Variant.objects.all().get(id=product_id)
-        selected_option = Option.objects.all().get(id=option_id)
-        add_product_to_cart(selected_cart, selected_variant, selected_option)
-        return redirect('shopping-cart-page', 'main')
-    if action == 'add_quantity':
-        selected_product = SelectedProduct.objects.all().get(id=product_id)
-        selected_option = Option.objects.all().get(id=selected_product.option_id)
-        if selected_option.quantity > selected_product.quantity:
-            if selected_option.max_quantity > selected_product.quantity:
-                selected_product.quantity += 1
-                selected_product.update_prices()
-                selected_cart.update_prices()
-        return redirect('shopping-cart-page', 'main')
-    if action == 'remove_quantity':
-        selected_product = SelectedProduct.objects.all().get(id=product_id)
-        if selected_product.quantity > 1:
-            selected_product.quantity -= 1
-            selected_product.update_prices()
-            selected_cart.update_prices()
-        return redirect('shopping-cart-page', 'main')
-    if action == 'delete_product':
-        selected_product = SelectedProduct.objects.all().get(id=product_id)
-        selected_product.delete()
-        selected_cart.update_prices()
-        return redirect('shopping-cart-page', 'main')
-    if action == 'delete_product_from_home':
-        selected_product = SelectedProduct.objects.all().get(id=product_id)
-        selected_product.delete()
-        selected_cart.update_prices()
-        return redirect('home-page')
-    if action == 'apply_coupon':
-        if request.method == 'POST':
-            coupon_code = request.POST.get('coupon_code', False)
-            apply_coupon(request, selected_cart, coupon_code)
-            return redirect('shopping-cart-page', 'main')
 
 def order_page(request, action):
     if not request.session.get('language', None):
