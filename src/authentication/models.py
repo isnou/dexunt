@@ -61,7 +61,7 @@ class User(AbstractUser):
     )
     cart = models.OneToOneField(
         Cart,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         null=True
     )
     store = models.OneToOneField(
