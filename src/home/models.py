@@ -14,32 +14,32 @@ class SelectedProduct(models.Model):
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
     # ----- functions ----- #
-    def get_image(self):
+    def image(self):
         if self.option.has_image:
             return self.option.image
         else:
             return self.option.variant.album_set.all().first().image
-    def get_price(self):
+    def price(self):
         if self.option.discount:
             return self.option.discount
         else:
             return self.option.price
-    def get_total_price(self):
+    def total_price(self):
         if self.option.discount:
             return self.option.discount * self.quantity
         else:
             return self.option.price * self.quantity
-    def get_en_tite(self):
+    def en_tite(self):
         return self.option.variant.product.en_title
-    def get_en_detail(self):
+    def en_detail(self):
         return self.option.variant.en_spec + ' ' + self.option.en_value
-    def get_fr_tite(self):
+    def fr_tite(self):
         return self.option.variant.product.fr_title
-    def get_fr_detail(self):
+    def fr_detail(self):
         return self.option.variant.fr_spec + ' ' + self.option.fr_value
-    def get_ar_tite(self):
+    def ar_tite(self):
         return self.option.variant.product.ar_title
-    def get_ar_detail(self):
+    def ar_detail(self):
         return self.option.variant.ar_spec + ' ' + self.option.ar_value
 #                                                                        #
 class Coupon(models.Model):
@@ -99,9 +99,6 @@ class Cart(models.Model):
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
     product = models.ManyToManyField(SelectedProduct, blank=True)
-    # ----- content ----- #
-    sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
@@ -132,6 +129,20 @@ class Cart(models.Model):
             selected_product = SelectedProduct(option=option)
             selected_product.save()
             self.product.add(selected_product)
+    def price(self):
+        price = 0
+        for p in self.product.all():
+            price += p.total_price()
+        return price
+    def total_price(self):
+        total_price = self.price()
+        if self.coupon:
+            if self.coupon.is_active:
+                if self.coupon.is_subtractive:
+                    total_price = total_price - self.coupon.value
+                else:
+                    total_price = total_price - ((total_price * self.coupon.value) / 100)
+        return total_price
 #                                                                        #
 def get_cart(request):
     if not request.user.is_authenticated:
@@ -150,42 +161,6 @@ def get_cart(request):
     else:
         selected_cart = request.user.cart
     return selected_cart
-#                                                                        #
-def add_product_to_cart(cart, option_id):
-    if cart.product.all().filter(option_id=option.id).exists():
-        selected_cart_product = cart.product.all().get(option_id=option.id)
-        selected_cart_product.quantity += 1
-        selected_cart_product.save()
-    else:
-        if option.has_image:
-            image = option.image
-        else:
-            album = variant.album.all()[0]
-            image = album.image
-
-        cart_product = SelectedProduct(delivery=option.delivery_quotient,
-                                       points=option.points,
-                                       file_name= 'cart' + variant.en_title + '/' + variant.en_spec + '/' + option.en_value,
-                                       image=image,
-                                       token=variant.product_token,
-                                       option_id=option.id,
-                                       variant_id=variant.id,
-                                       en_name=variant.en_title,
-                                       fr_name=variant.fr_title,
-                                       ar_name=variant.ar_title,
-                                       en_detail= variant.en_spec + '-' + option.en_value,
-                                       fr_detail= variant.fr_spec + '-' + option.fr_value,
-                                       ar_detail= variant.ar_spec + '-' + option.ar_value,
-                                       cost= option.cost
-                                       )
-        if option.discount:
-            cart_product.price = option.discount
-        else:
-            cart_product.price = option.price
-        cart_product.update_prices()
-        cart.product.add(cart_product)
-
-    cart.update_prices()
 #                                                                        #
 class Order(models.Model):
     # ----- Technical ----- #
