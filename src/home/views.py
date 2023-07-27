@@ -118,7 +118,21 @@ def shopping_cart_page(request, action):
         if request.method == 'POST':
             apply_coupon(request, selected_cart)
             return redirect('shopping-cart', 'main')
-
+    if action == 'add_quantity':
+        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        if selected_product.option.quantity > selected_product.quantity:
+            if selected_product.option.max_quantity > selected_product.quantity:
+                selected_product.quantity += 1
+                selected_product.save()
+        return redirect('shopping-cart', 'main')
+    if action == 'remove_quantity':
+        selected_product = SelectedProduct.objects.all().get(id=product_id)
+        if selected_product.quantity > 1:
+            selected_product.quantity -= 1
+            selected_product.save()
+        else:
+            selected_product.delete()
+        return redirect('shopping-cart', 'main')
 
 def shopping_cart(request, product_id, option_id, user_token, action):
     selected_cart = get_cart(request)

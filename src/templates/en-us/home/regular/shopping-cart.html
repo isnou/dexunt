@@ -47,11 +47,11 @@
           <div class="py-3">
             <ul class="list-group list-group-flush">
               {% for product in selected_cart.product.all %}
-              <form action="{% url 'shopping-cart' product.id product.id 'no' 'add_quantity' %}" id="add_quantity_form_{{ product.id }}" novalidate method="post">
+              <form action="{% url 'shopping-cart' 'add_quantity' %}" id="add_quantity_form_{{ product.id }}" novalidate method="post">
                 {% csrf_token %}
               </form>
 
-              <form action="{% url 'shopping-cart' product.id product.id 'no' 'remove_quantity' %}" id="remove_quantity_form_{{ product.id }}" novalidate method="post">
+              <form action="{% url 'shopping-cart' 'remove_quantity' %}" id="remove_quantity_form_{{ product.id }}" novalidate method="post">
                 {% csrf_token %}
               </form>
 
@@ -74,12 +74,12 @@
                   <div class="col-5 col-md-5 col-lg-3">
                     <div class="input-group">
                       {% if not product.quantity == 1 %}
-                      <button class="btn btn-outline-secondary" form="remove_quantity_form_{{ product.id }}"><i class="bi bi-dash-lg"></i></button>
+                      <a class="btn btn-outline-secondary" href="{% url 'shopping-cart' 'remove_quantity' %}"><i class="bi bi-dash-lg"></i></a>
                       {% else %}
-                      <button class="btn btn-outline-secondary" form="delete_form_{{ product.id }}"><i class="bi bi-trash"></i></button>
+                      <a class="btn btn-outline-secondary" href="{% url 'shopping-cart' 'remove_quantity' %}"><i class="bi bi-trash"></i></a>
                       {% endif %}
                       <input type="text" class="form-control text-center" value="{{ product.quantity }}" readonly>
-                      <button class="btn btn-outline-secondary" form="add_quantity_form_{{ product.id }}"><i class="bi bi-plus-lg"></i></button>
+                      <a class="btn btn-outline-secondary" href="{% url 'shopping-cart' 'add_quantity' %}"><i class="bi bi-plus-lg"></i></a>
                     </div>
                   </div>
                 </div>
