@@ -120,8 +120,8 @@ class Cart(models.Model):
             self.ref = functions.serial_number_generator(20).upper()
         super().save()
     def add_product(self, option):
-        if self.product_set.all().filter(option_id=option.id).exists():
-            selected_product = self.product_set.all().get(option_id=option.id)
+        if self.selectedproduct_set.all().filter(option_id=option.id).exists():
+            selected_product = self.selectedproduct_set.all().get(option_id=option.id)
             selected_product.quantity += 1
             selected_product.save()
         else:
@@ -130,7 +130,7 @@ class Cart(models.Model):
             selected_product.save()
     def price(self):
         price = 0
-        for p in self.product_set.all():
+        for p in self.selectedproduct_set.all():
             price += p.total_price()
         return price
     def total_price(self):
