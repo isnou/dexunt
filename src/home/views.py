@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Cart, SelectedProduct, get_cart, add_product_to_cart, get_order, place_order
+from .models import Cart, SelectedProduct, get_cart, get_order, place_order
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
 from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store
