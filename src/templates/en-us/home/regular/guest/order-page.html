@@ -93,7 +93,7 @@
               <h5 class="px-6 py-4 bg-transparent mb-0">Order Details</h5>
 
               <ul class="list-group list-group-flush">
-                {% for product in selected_cart.selectedproduct_set.all %}
+                {% for product in selected_order.selectedproduct_set.all %}
                 <li class="list-group-item px-4 py-3">
                   <div class="row align-items-center">
                     <div class="col-2 col-md-2">
@@ -118,25 +118,25 @@
                     <li class="list-group-item px-4 py-3" >
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Item Subtotal</div>
-                        <div class="fw-bold"> {{ selected_cart.price|floatformat:"0g" }} <small>DZD</small></div>
+                        <div class="fw-bold"> {{ selected_order.price|floatformat:"0g" }} <small>DZD</small></div>
                       </div>
 
-                      {% if selected_cart.coupon.is_subtractive %}
+                      {% if selected_order.coupon.is_subtractive %}
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Discount</div>
-                        <div class="fw-bold">{{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small></div>
+                        <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>DZD</small></div>
                       </div>
                       {% else %}
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Discount</div>
-                        <div class="fw-bold">{{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small></div>
+                        <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>%</small></div>
                       </div>
                       {% endif %}
                     </li>
 
                     <li class="list-group-item px-4 py-3">
                       <div class="d-flex align-items-center justify-content-between fw-bold">
-                        <div> Total</div><div>{{ selected_cart.total_price|floatformat:"0g" }} <small>DZD</small></div>
+                        <div> Total</div><div>{{ selected_order.total_price|floatformat:"0g" }} <small>DZD</small></div>
                       </div>
                     </li>
                   </ul>
