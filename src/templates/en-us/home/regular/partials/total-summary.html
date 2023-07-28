@@ -10,6 +10,7 @@
       <div class="fw-bold">{{ selected_order.delivery_price|floatformat:"0g" }} <small>DZD</small></div>
     </div>
 
+    {% if selected_order.coupon %}
     {% if selected_order.coupon.is_subtractive %}
     <div class="d-flex align-items-center justify-content-between mb-2">
       <div>Discount</div>
@@ -20,6 +21,7 @@
       <div>Discount</div>
       <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>%</small></div>
     </div>
+    {% endif %}
     {% endif %}
   </li>
 

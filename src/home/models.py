@@ -250,7 +250,7 @@ class Order(models.Model):
             for p in self.selectedproduct_set.all():
                 delivery_q += p.option.delivery_quotient
             delivery_q = float(delivery_q / self.selectedproduct_set.all().count())
-            
+
             if self.municipality:
                 if self.delivery_type == 'HOME':
                     return int(float(self.municipality.home_delivery_price) * delivery_q / 100)
