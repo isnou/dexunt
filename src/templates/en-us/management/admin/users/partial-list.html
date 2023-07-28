@@ -73,9 +73,15 @@
             </a>
             {% endif %}
 
+            {% if selected_user.is_customer %}
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#change_modal_{{ selected_user.id }}">
               <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
             </a>
+            {% else %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#reset_modal_{{ selected_user.id }}">
+              <i class="fa fa-repeat fa-flip-horizontal fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset"></i>
+            </a>
+            {% endif %}
 
             <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ selected_user.id }}">
               <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>

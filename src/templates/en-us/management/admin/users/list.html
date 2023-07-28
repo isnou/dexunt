@@ -307,7 +307,7 @@
   <!-- End Activate User Modal -->
 
   <!-- Delete User Modal -->
-  <div id="delete_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete_modal_{{ selected_user.id }}" aria-hidden="true">
+  <div id="delete_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -324,6 +324,25 @@
     </div>
   </div>
   <!-- End Delete User Modal -->
+
+  <!-- Reset User Modal -->
+  <div id="reset_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>click yes to reset {{ selected_user.username }} (all related products ,store will be lost) .</p>
+        </div>
+        <div class="modal-footer" style="align-self: center;">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" form="reset_user_form_{{ selected_user.id }}">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Reset User Modal -->
 
   <!-- Change Modal -->
   <div id="change_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
@@ -351,27 +370,10 @@
 
             <div class="row mb-3">
               <div class="col text-center">
-                <!-- customer -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if selected_user.is_customer %}
-                    <input type="radio" class="form-check-input" name="role" value="customer" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="role" value="customer">
-                    {% endif %}
-                    <label class="form-check-label">Client</label>
-                  </div>
-                </div>
-                <!-- end customer -->
-
                 <!-- seller -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if selected_user.is_seller %}
                     <input type="radio" class="form-check-input" name="role" value="seller" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="role" value="seller">
-                    {% endif %}
                     <label class="form-check-label">Seller</label>
                   </div>
                 </div>
@@ -380,11 +382,7 @@
                 <!-- provider -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if selected_user.is_provider %}
-                    <input type="radio" class="form-check-input" name="role" value="provider" checked>
-                    {% else %}
                     <input type="radio" class="form-check-input" name="role" value="provider">
-                    {% endif %}
                     <label class="form-check-label">Provider</label>
                   </div>
                 </div>
@@ -393,11 +391,7 @@
                 <!-- member -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if selected_user.is_member %}
-                    <input type="radio" class="form-check-input" name="role" value="member" checked>
-                    {% else %}
                     <input type="radio" class="form-check-input" name="role" value="member">
-                    {% endif %}
                     <label class="form-check-label">Member</label>
                   </div>
                 </div>
