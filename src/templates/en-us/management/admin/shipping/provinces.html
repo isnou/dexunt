@@ -157,21 +157,22 @@
         <!-- province info -->
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}">
-            <span class="d-block text-dark fs-5">
-              {{ province.en_name|title }} <i class="bi-dash"></i>
-              {{ province.fr_name|title }} <i class="bi-dash"></i>
-              {{ province.ar_name }}
-            </span>
+            <h5 class="text-inherit">{{ province.en_name|title }} - {{ province.en_delivery_time }}</h5>
+            <h5 class="text-inherit">{{ province.fr_name|title }} - {{ province.fr_delivery_time }}</h5>
+            <h5 class="text-inherit" dir="rtl">{{ province.ar_name }} - {{ province.ar_delivery_time }}</h5>
           </a>
         </td>
 
         <td>
-          <span class="d-block text-body fs-6">
-            {{ province.municipality_set.all.count }}
-          </span>
+          <h4 class="text-inherit text-body">delivery to home :{{ province.home_delivery_price|floatformat:"2g" }} DZD</h4>
+          <h4 class="text-inherit text-body">delivery to desk :{{ province.desk_delivery_price|floatformat:"2g" }} DZD</h4>
         </td>
         <!-- province actions -->
         <td class="text-end">
+          <!-- edit municipality -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ province.id }}">
+            <i class="fa fa-pencil fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          </button>
 
           <!-- delete province -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ province.id }}">
