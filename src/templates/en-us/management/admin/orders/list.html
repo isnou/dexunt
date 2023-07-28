@@ -57,6 +57,110 @@
       <tr>
         <td class="table-column-pe-0">
         </td>
+        <!-- order ref & date -->
+        <td>
+          <span class="d-block h4 text-start"><small>{{ order.ref }}</small></span>
+          <span class="d-block fs-4 text-body text-start">
+            <small>
+              <i class="bi-escape ms-2 me-2"></i>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} , {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}.
+            </small>
+          </span>
+          <span class="d-block fs-4 text-body text-start">
+            <small>
+              <i class="bi-person ms-2 me-2"></i>
+              {{ order.client_name|title }}
+            </small>
+          </span>
+          <span class="d-block fs-4 text-body text-start">
+            <small>
+              <i class="bi-phone ms-2 me-2"></i>
+                {{ order.client_phone|title }}
+            </small>
+          </span>
+          <span class="d-block fs-4 text-body text-start">
+            <small>
+              <i class="bi-truck ms-2 me-2"></i>
+              {{ order.municipality.province.en_name|title }} | {{ order.municipality.en_name|title }}
+            </small>
+          </span>
+        </td>
+
+        <!-- delivery price discount & points -->
+        <td>
+          <span class="d-block h4 text-start"><small>Total Price :{{ order.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
+        </td>
+
+        <!-- delivery price discount & points -->
+        <td>
+          <span class="d-block h4 text-start"><small>Total Price :{{ order.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
+          <span class="d-block fs-4 text-body text-start">
+            <small>
+              <i class="bi-geo-alt ms-2 me-2"></i>
+              {% if order.delivery_price %}
+              {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
+              {% else %}
+              free
+              {% endif %}
+
+              {% if order.delivery_type == 'HOME' %}
+              to home
+              {% endif %}
+
+              {% if order.delivery_type == 'DESK' %}
+              to desk
+              {% endif %}
+            </small>
+          </span>
+          <span class="d-block fs-4 text-body text-start">
+            <small>
+              <i class="bi-tags ms-2 me-2"></i>
+              {% if order.coupon %}
+              [{{ order.coupon.code }}]
+              {% if order.coupon.is_subtractive %}
+              {{ order.coupon.value|floatformat:"0g" }} <small>DZD</small>
+              {% else %}
+              {{ order.coupon.value }} <small>%</small>
+              {% endif %}
+              {% else %}
+              No discount
+              {% endif %}
+            </small>
+          </span>
+          <span class="d-block fs-4 text-body text-start">
+            <small>
+              <i class="bi-gift ms-2 me-2"></i>
+              {% if order.points %}
+              {{ order.points }} GP
+              {% else %}
+              No points
+              {% endif %}
+            </small>
+          </span>
+        </td>
+        <!-- order actions -->
+        <td class="text-end">
+          <!-- view order -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
+            <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
+          </button>
+
+          <!-- view product -->
+          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
+            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          </button>
+
+          <!-- delete order -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
+        </td>
+      </tr>
+
+      {% for product in order.selectedproduct_set.all %}
+      <!-- products list -->
+      <tr>
+        <td class="table-column-pe-0">
+        </td>
         <!-- order ref date & products -->
         <td>
           <div class="dropdown">
@@ -182,7 +286,7 @@
           </button>
         </td>
       </tr>
-      <!-- end orders list -->
+      {% endfor %}
       {% endfor %}
       </tbody>
     </table>
