@@ -792,7 +792,7 @@ def manage_shipping(request, action):
             request.session['provinces-page'] = None
             request.session['municipalities-page'] = None
 
-        if not request.session.get('provinces-page', None):
+        if request.GET.get('page', None):
             page = request.GET.get('page', 1)
             request.session['provinces-page'] = page
         else:
