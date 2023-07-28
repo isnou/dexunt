@@ -10,7 +10,7 @@ from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Desc
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm ,StoreForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order
-from authentication.models import User, users_filter, change_role
+from authentication.models import User, users_filter
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from authentication.forms import UpdateProfileForm, UpdatePhotoForm
