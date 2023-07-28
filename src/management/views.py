@@ -776,29 +776,39 @@ def manage_shipping(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
+    items_by_page = 1
+
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/shipping/provinces.html"
-        request.session['province_id_token'] = None
-        all_provinces = Province.objects.all()
-        if all_provinces.count():
+        provinces = Province.objects.all()
+
+        if provinces.count():
             paginate = True
         else:
             paginate = False
 
-        page = request.GET.get('page', 1)
-        paginator = Paginator(all_provinces, 6)
+        if request.GET.get('init', None):
+            request.session['provinces-page'] = None
+            request.session['municipalities-page'] = None
+
+        if not request.session.get('provinces-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('provinces-page')
+
+        paginator = Paginator(provinces, items_by_page)
         try:
-            all_provinces = paginator.page(page)
+            provinces = paginator.page(page)
         except PageNotAnInteger:
-            all_provinces = paginator.page(1)
+            provinces = paginator.page(1)
         except EmptyPage:
-            all_provinces = paginator.page(paginator.num_pages)
+            provinces = paginator.page(paginator.num_pages)
 
         province_form = ProvinceForm()
         context = {
             'nav_side': 'shipping',
-            'all_provinces': all_provinces,
+            'provinces': provinces,
             'paginate': paginate,
             'province_form': province_form,
         }
@@ -826,34 +836,47 @@ def manage_shipping(request, action):
     # --------------- selected province ------------ #
     if action == 'view_province':
         url = direction + "/management/admin/shipping/selected_province.html"
+
         if request.method == 'POST':
             province_id = request.POST.get('province_id', False)
-            request.session['province_id_token'] = province_id
+            request.session['province_id'] = province_id
         else:
-            province_id = request.session.get('province_id_token')
+            if request.GET.get('province_id', False):
+                province_id = request.GET.get('province_id')
+                request.session['province_id'] = province_id
+            else:
+                province_id = request.session.get('province_id')
 
         selected_province = Province.objects.all().get(id=province_id)
-        selected_province_municipalities = selected_province.municipality.all()
-        if selected_province_municipalities.count():
+        municipalities = selected_province.municipality_set.all()
+
+        if municipalities.count():
             paginate = True
         else:
             paginate = False
 
-        page = request.GET.get('page', 1)
-        paginator = Paginator(selected_province_municipalities, 6)
+        if request.GET.get('init', None):
+            request.session['municipalities-page'] = None
+
+        if not request.session.get('municipalities-page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('municipalities-page')
+
+        paginator = Paginator(municipalities, items_by_page)
         try:
-            selected_province_municipalities = paginator.page(page)
+            municipalities = paginator.page(page)
         except PageNotAnInteger:
-            selected_province_municipalities = paginator.page(1)
+            municipalities = paginator.page(1)
         except EmptyPage:
-            selected_province_municipalities = paginator.page(paginator.num_pages)
+            municipalities = paginator.page(paginator.num_pages)
 
         selected_province_form = ProvinceForm(request.POST, instance=selected_province)
         municipality_form = MunicipalityForm()
         context = {
             'nav_side': 'shipping',
             'selected_province': selected_province,
-            'selected_province_municipalities': selected_province_municipalities,
+            'municipalities': municipalities,
             'paginate': paginate,
             'selected_province_form': selected_province_form,
             'municipality_form': municipality_form,
@@ -863,11 +886,11 @@ def manage_shipping(request, action):
         if request.method == 'POST':
             province_id = request.POST.get('province_id', False)
             selected_province = Province.objects.all().get(id=province_id)
-            new_municipality = Municipality()
+            new_municipality = Municipality(province = selected_province)
+            new_municipality.save()
             selected_municipality_form = MunicipalityForm(request.POST, instance=new_municipality)
             if selected_municipality_form.is_valid():
                 selected_municipality_form.save()
-                selected_province.municipality.add(new_municipality)
                 return redirect('admin-manage-shipping', 'view_province')
     if action == 'edit_municipality':
         if request.method == 'POST':

@@ -190,7 +190,7 @@ def order_page(request, action):
         municipality = Municipality.objects.all().get(id=municipality_id)
         request.session['municipality_id_token'] = municipality_id
 
-        selected_order.municipality = municipality.en_name
+        selected_order.municipality = municipality
         selected_order.save()
         sub_context = {
             'municipality': municipality,

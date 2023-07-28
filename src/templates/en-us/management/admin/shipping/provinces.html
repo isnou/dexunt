@@ -64,6 +64,25 @@
                 <input type="text" class="form-control" name="{{ province_form.ar_name.name }}" placeholder="الجزائر" dir="rtl">
               </div>
               <!-- end product arabic name -->
+
+              <span class="divider-center mb-2">Delivery Price</span>
+
+              <!-- price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">to home</span>
+                <input type="number" class="form-control" name="{{ province_form.home_delivery_price.name }}" min="0" placeholder="1000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end price -->
+
+              <!-- price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">to desk</span>
+                <input type="number" class="form-control" name="{{ province_form.desk_delivery_price.name }}" min="0" placeholder="800">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end price -->
             </div>
 
             <!-- submit -->

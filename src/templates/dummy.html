@@ -3178,3 +3178,13 @@
   </div>
 </div>
 <!-- end add new variant modal -->
+
+
+
+
+
+
+
+    retained_points = models.IntegerField(default=0)
+    retained_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    retained_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)

@@ -231,17 +231,29 @@ class Order(models.Model):
     # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
+    municipality = models.ForeignKey(
+        'home.Municipality', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
     address = models.CharField(max_length=250, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
-    delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
+        super().save()
+    def set_delivery_price(self, delivery_type, municipality):
+        delivery_q = 0
+        for p in self.selectedproduct_set.all():
+            delivery_q += p.option.delivery_quotient
+        delivery_q = float(delivery_q / self.selectedproduct_set.all().count())
+
+        if self.delivery_type == 'HOME':
+            self.delivery_price = int(float(municipality.home_delivery_price) * delivery_q / 100)
+        if self.delivery_type == 'DESK':
+            self.delivery_price = int(float(municipality.desk_delivery_price) * delivery_q / 100)
         super().save()
     def price(self):
         price = 0
@@ -290,10 +302,10 @@ def get_order(request):
             selected_order.save()
             request.user.order.add(selected_order)
 
-    selected_cart.coupon = None
-    selected_cart.save()
+    #selected_cart.coupon = None
+    #selected_cart.save()
     for p in selected_cart.selectedproduct_set.all():
-        p.cart = None
+        #p.cart = None
         p.order = selected_order
         p.save()
 
@@ -319,15 +331,16 @@ class Municipality(models.Model):
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
-    en_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    fr_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    ar_home_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    en_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    fr_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    ar_delivery_time = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
-    en_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    fr_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    ar_desk_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # ----- relations ----- #
+    # related to many order #
+    province = models.ForeignKey(
+        'home.Province', on_delete=models.CASCADE, null=True)
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Municipalities"
@@ -337,8 +350,11 @@ class Province(models.Model):
     en_name = models.CharField(max_length=200, blank=True, null=True)
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
-    # ----- functions ----- #
-    municipality = models.ManyToManyField(Municipality, blank=True)
+    # ----- #
+    home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    # ----- relations ----- #
+    # related to many municipalities #
 # ---------------------------------------------------------------------- #
 
 
