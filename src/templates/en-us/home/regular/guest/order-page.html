@@ -66,11 +66,13 @@
 
                 <div class="col-12">
                   <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
-                    <option value="">Province</option>
                     {% for province in provinces %}
+                    {% if selected_order.municipality.province.id == province.id %}
+                    <option value='{{ province.id }}' selected>{{ province.en_name|title }}</option>
+                    {% else %}
                     <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
+                    {% endif %}
                     {% endfor %}
-                    <option value='other'>Other</option>
                   </select>
                   <span class="invalid-feedback text-start">choose your municipality.</span>
                 </div>

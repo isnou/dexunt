@@ -181,6 +181,7 @@ def order_page(request, action):
         selected_order.save()
 
         sub_context = {
+            'selected_order': selected_order,
             'province': province,
         }
         return render(request, direction + '/home/regular/partials/municipalities.html', sub_context)
