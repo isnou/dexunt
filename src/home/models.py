@@ -351,6 +351,10 @@ class Province(models.Model):
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
+    en_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    fr_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    ar_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    # ----- #
     home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- relations ----- #

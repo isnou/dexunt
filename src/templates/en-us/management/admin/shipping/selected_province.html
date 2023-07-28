@@ -72,21 +72,21 @@
               <!-- french delivery time -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english</span>
-                <input type="text" class="form-control" name="{{ municipality_form.en_delivery_time.name }}" placeholder="Three to Four Days">
+                <input type="text" class="form-control" name="{{ municipality_form.en_delivery_time.name }}" value="{{ selected_province.en_delivery_time }}" placeholder="Three to Four Days">
               </div>
               <!-- end french delivery time -->
 
               <!-- english delivery time -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french</span>
-                <input type="text" class="form-control" name="{{ municipality_form.fr_delivery_time.name }}" placeholder="Trois à Quatre Jours">
+                <input type="text" class="form-control" name="{{ municipality_form.fr_delivery_time.name }}" value="{{ selected_province.fr_delivery_time }}" placeholder="Trois à Quatre Jours">
               </div>
               <!-- end english delivery time -->
 
               <!-- arabic delivery time -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic</span>
-                <input type="text" class="form-control" name="{{ municipality_form.ar_delivery_time.name }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
+                <input type="text" class="form-control" name="{{ municipality_form.ar_delivery_time.name }}" value="{{ selected_province.ar_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
               </div>
               <!-- end arabic delivery time -->
 
