@@ -158,8 +158,13 @@
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}">
             <h5 class="text-inherit">{{ province.en_name|title }} - {{ province.en_delivery_time }}</h5>
+          </a>
+          <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}">
             <h5 class="text-inherit">{{ province.fr_name|title }} - {{ province.fr_delivery_time }}</h5>
+          </a>
+          <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}">
             <h5 class="text-inherit" dir="rtl">{{ province.ar_name }} - {{ province.ar_delivery_time }}</h5>
+          </a>
           </a>
         </td>
 
