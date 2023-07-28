@@ -146,10 +146,8 @@
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-
       <tbody>
       {% for municipality in municipalities %}
-
       <!-- municipalities list -->
       <tr>
         <td class="table-column-pe-0">
@@ -162,8 +160,8 @@
         </td>
 
         <td>
-          <h4 class="text-inherit">delivery to home :{{ municipality.home_delivery_price|floatformat:"2g" }} DZD</h4>
-          <h4 class="text-inherit">delivery to desk :{{ municipality.desk_delivery_price|floatformat:"2g" }} DZD</h4>
+          <h4 class="text-inherit text-body">delivery to home :{{ municipality.home_delivery_price|floatformat:"2g" }} DZD</h4>
+          <h4 class="text-inherit text-body">delivery to desk :{{ municipality.desk_delivery_price|floatformat:"2g" }} DZD</h4>
         </td>
         <!-- municipality actions -->
         <td class="text-end">
@@ -265,11 +263,11 @@
             <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
 
             <div class="row mb-4">
-              <span class="divider-center mb-2">Main Informations</span>
+              <span class="divider-center mb-2">Municipality Name</span>
 
               <!-- municipality english name -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english name</span>
+                <span class="input-group-text" style="width: 25%;">english</span>
                 <input type="text" class="form-control" name="{{ municipality_form.en_name.name }}" placeholder="Kouba" value="{{ municipality.en_name }}" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -277,80 +275,59 @@
 
               <!-- municipality french name -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french name</span>
+                <span class="input-group-text" style="width: 25%;">french</span>
                 <input type="text" class="form-control" name="{{ municipality_form.fr_name.name }}" placeholder="Kouba" value="{{ municipality.fr_name }}">
               </div>
               <!-- end municipality french name -->
 
               <!-- municipality arabic name -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic name</span>
+                <span class="input-group-text" style="width: 25%;">arabic</span>
                 <input type="text" class="form-control" name="{{ municipality_form.ar_name.name }}" placeholder="القبة" value="{{ municipality.ar_name }}" dir="rtl">
               </div>
               <!-- end municipality arabic name -->
 
-              <span class="divider-center mb-2">Delivery to Home</span>
-
-              <!-- french delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english time</span>
-                <input type="text" class="form-control" name="{{ municipality_form.en_home_delivery_time.name }}" value="{{ municipality.en_home_delivery_time }}" placeholder="Three to Four Days">
-              </div>
-              <!-- end french delivery time -->
+              <span class="divider-center mb-2">Delivery Time</span>
 
               <!-- english delivery time -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french time</span>
-                <input type="text" class="form-control" name="{{ municipality_form.fr_home_delivery_time.name }}" value="{{ municipality.fr_home_delivery_time }}" placeholder="Trois à Quatre Jours">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_delivery_time.name }}" value="{{ municipality.en_delivery_time }}" placeholder="Three to Four Days">
               </div>
               <!-- end english delivery time -->
 
+              <!-- french delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_delivery_time.name }}" value="{{ municipality.fr_delivery_time }}" placeholder="Trois à Quatre Jours">
+              </div>
+              <!-- end french delivery time -->
+
               <!-- arabic delivery time -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic time</span>
-                <input type="text" class="form-control" name="{{ municipality_form.ar_home_delivery_time.name }}" value="{{ municipality.ar_home_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_delivery_time.name }}" value="{{ municipality.ar_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
               </div>
               <!-- end arabic delivery time -->
 
-              <!-- price -->
+              <span class="divider-center mb-2">Delivery Price</span>
+
+              <!-- to home -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">price</span>
+                <span class="input-group-text" style="width: 25%;">to home</span>
                 <input type="number" class="form-control" name="{{ municipality_form.home_delivery_price.name }}" value="{{ municipality.home_delivery_price }}" min="0" placeholder="1000" required>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
-              <!-- end price -->
+              <!-- end to home -->
 
-              <span class="divider-center mb-2">Delivery to Desk</span>
-
-              <!-- french delivery time -->
+              <!-- to desk -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english time</span>
-                <input type="text" class="form-control" name="{{ municipality_form.en_desk_delivery_time.name }}" value="{{ municipality.en_desk_delivery_time }}" placeholder="Three to Four Days">
-              </div>
-              <!-- end french delivery time -->
-
-              <!-- english delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french time</span>
-                <input type="text" class="form-control" name="{{ municipality_form.fr_desk_delivery_time.name }}" value="{{ municipality.fr_desk_delivery_time }}" placeholder="Trois à Quatre Jours">
-              </div>
-              <!-- end english delivery time -->
-
-              <!-- arabic delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic time</span>
-                <input type="text" class="form-control" name="{{ municipality_form.ar_desk_delivery_time.name }}" value="{{ municipality.ar_desk_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
-              </div>
-              <!-- end arabic delivery time -->
-
-              <!-- price -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">price</span>
+                <span class="input-group-text" style="width: 25%;">to desk</span>
                 <input type="number" class="form-control" name="{{ municipality_form.desk_delivery_price.name }}" value="{{ municipality.desk_delivery_price }}" min="0" placeholder="800">
                 <span class="input-group-text" style="width: 20%;">DZD</span>
               </div>
-              <!-- end price -->
+              <!-- end to desk -->
             </div>
 
             <!-- submit -->
