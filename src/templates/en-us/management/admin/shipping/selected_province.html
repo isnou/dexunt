@@ -132,14 +132,6 @@
   <div class="card-header card-header-content-md-between">
     <!-- search -->
     <div class="mb-2 mb-md-0">
-      <form>
-        <div class="input-group input-group-merge input-group-flush">
-          <div class="input-group-prepend input-group-text">
-            <i class="bi-search"></i>
-          </div>
-          <input id="datatableSearch" type="search" class="form-control" placeholder="Search municipality" aria-label="Search products">
-        </div>
-      </form>
     </div>
     <!-- end search -->
 
@@ -154,15 +146,6 @@
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col" class="table-column-pe-0"></th>
-          <th class="table-column-ps-0"></th>
-          <th>Delivery to home</th>
-          <th>Delivery to desk</th>
-          <th></th>
-        </tr>
-      </thead>
 
       <tbody>
       {% for municipality in municipalities %}
@@ -173,25 +156,14 @@
         </td>
         <!-- municipality info -->
         <td class="table-column-ps-0">
-          <span class="d-block text-dark fs-5">
-            {{ municipality.en_name|title }} <i class="bi-dash"></i>
-            {{ municipality.fr_name|title }} <i class="bi-dash"></i>
-            {{ municipality.ar_name }}
-          </span>
+          <span class="d-block fs-6"><small>{{ municipality.en_name|title }} - {{ municipality.en_delivery_time }}</small></span>
+          <span class="d-block fs-6"><small>{{ municipality.fr_name|title }} - {{ municipality.fr_delivery_time }}</small></span>
+          <span class="d-block fs-6"><small>{{ municipality.fr_delivery_time }} - {{ municipality.ar_name }}</small></span>
         </td>
 
         <td>
-          <h6 class="text-inherit mb-0">{{ municipality.home_delivery_price|floatformat:"2g" }} DZD</h6>
-          <span class="d-block fs-6"><small>{{ municipality.en_home_delivery_time }}</small></span>
-          <span class="d-block fs-6"><small>{{ municipality.fr_home_delivery_time }}</small></span>
-          <span class="d-block fs-6"><small>{{ municipality.ar_home_delivery_time }}</small></span>
-        </td>
-
-        <td>
-          <h6 class="text-inherit mb-0">{{ municipality.desk_delivery_price|floatformat:"2g" }} DZD</h6>
-          <span class="d-block fs-6"><small>{{ municipality.en_desk_delivery_time }}</small></span>
-          <span class="d-block fs-6"><small>{{ municipality.fr_desk_delivery_time }}</small></span>
-          <span class="d-block fs-6"><small>{{ municipality.ar_desk_delivery_time }}</small></span>
+          <h6 class="text-inherit mb-0">delivery to home :{{ municipality.home_delivery_price|floatformat:"2g" }} DZD</h6>
+          <h6 class="text-inherit mb-0">delivery to desk :{{ municipality.desk_delivery_price|floatformat:"2g" }} DZD</h6>
         </td>
         <!-- municipality actions -->
         <td class="text-end">
