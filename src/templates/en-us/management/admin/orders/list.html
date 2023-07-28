@@ -65,8 +65,6 @@
 
               <span class="d-block fs-4 text-body text-start"><small><i class="bi-escape ms-2 me-2"></i>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} , {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}.</small></span>
 
-              <span class="d-block fs-4 text-body text-start"><small><i class="bi-clock ms-2 me-2"></i>{{ order.updated_at|date:'M' }} {{ order.updated_at|date:'d' }} , {{ order.updated_at|time:'H' }}:{{ order.updated_at|time:'i' }}.</small></span>
-
               {% if order.selectedproduct_set.all.count == 1 %}
               <span class="d-block fs-4 text-body text-start"><small><i class="bi-cart2 ms-2 me-2"></i>one product</small></span>
               {% else %}
