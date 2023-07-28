@@ -51,18 +51,6 @@
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table table-hover">
-      <thead >
-        <tr>
-          <th></th>
-          <th style="width: 40%"></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-
       <tbody>
       {% for order in all_orders %}
       <!-- orders list -->
@@ -121,7 +109,7 @@
             </div>
             <div class="flex-grow-1 ms-3">
               <h5 class="text-inherit h5 me-2">{{ product.en_title }}</h5>
-              <span class="d-block text-body fs-6">
+              <span class="d-block text-body fs-6 text-wrap">
                 <small> {{ product.en_detail }} </small>
               </span>
             </div>
