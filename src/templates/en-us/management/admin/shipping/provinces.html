@@ -109,10 +109,6 @@
     <div class="mb-2 mb-md-0">
       <form>
         <div class="input-group input-group-merge input-group-flush">
-          <div class="input-group-prepend input-group-text">
-            <i class="bi-search"></i>
-          </div>
-          <input id="datatableSearch" type="search" class="form-control" placeholder="Search products" aria-label="Search products">
         </div>
       </form>
     </div>
@@ -130,7 +126,7 @@
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
-      {% for province in all_provinces %}
+      {% for province in provinces %}
       <!-- delete province form -->
       <form action="{% url 'admin-manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
         {% csrf_token %}
@@ -148,11 +144,13 @@
         </td>
         <!-- province info -->
         <td class="table-column-ps-0">
-          <span class="d-block text-dark fs-5">
-            {{ province.en_name|title }} <i class="bi-dash"></i>
-            {{ province.fr_name|title }} <i class="bi-dash"></i>
-            {{ province.ar_name }}
-          </span>
+          <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}">
+            <span class="d-block text-dark fs-5">
+              {{ province.en_name|title }} <i class="bi-dash"></i>
+              {{ province.fr_name|title }} <i class="bi-dash"></i>
+              {{ province.ar_name }}
+            </span>
+          </a>
         </td>
 
         <td>
@@ -206,16 +204,16 @@
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
       <!-- Pagination -->
       <nav>
-        {% if all_provinces.has_other_pages %}
+        {% if provinces.has_other_pages %}
         <ul class="pagination justify-content-center">
-          {% if all_provinces.has_previous %}
+          {% if provinces.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ all_orders.previous_page_number }}" tabindex="-1">Previous</a>
+            <a class="page-link" href="?page={{ provinces.previous_page_number }}" tabindex="-1">Previous</a>
           </li>
           {% endif %}
 
-          {% for i in all_provinces.paginator.page_range %}
-          {% if all_provinces.number == i %}
+          {% for i in provinces.paginator.page_range %}
+          {% if provinces.number == i %}
           <li class="page-item active">
             <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
           </li>
@@ -228,7 +226,7 @@
 
           {% if all_provinces.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ all_provinces.next_page_number }}">Next</a>
+            <a class="page-link" href="?page={{ provinces.next_page_number }}">Next</a>
           </li>
           {% else %}
           <li class="page-item disabled">

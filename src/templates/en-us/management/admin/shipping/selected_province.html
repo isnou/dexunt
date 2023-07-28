@@ -165,7 +165,7 @@
       </thead>
 
       <tbody>
-      {% for municipality in selected_province_municipalities %}
+      {% for municipality in municipalities %}
 
       <!-- delete municipality form -->
       <form action="{% url 'admin-manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
@@ -364,16 +364,16 @@
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
       <!-- Pagination -->
       <nav>
-        {% if selected_province_municipalities.has_other_pages %}
+        {% if municipalities.has_other_pages %}
         <ul class="pagination justify-content-center">
-          {% if selected_province_municipalities.has_previous %}
+          {% if municipalities.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ all_orders.previous_page_number }}" tabindex="-1">Previous</a>
+            <a class="page-link" href="?page={{ municipalities.previous_page_number }}" tabindex="-1">Previous</a>
           </li>
           {% endif %}
 
-          {% for i in selected_province_municipalities.paginator.page_range %}
-          {% if selected_province_municipalities.number == i %}
+          {% for i in municipalities.paginator.page_range %}
+          {% if municipalities.number == i %}
           <li class="page-item active">
             <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
           </li>
@@ -384,9 +384,9 @@
           {% endif %}
           {% endfor %}
 
-          {% if selected_province_municipalities.has_next %}
+          {% if municipalities.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ selected_province_municipalities.next_page_number }}">Next</a>
+            <a class="page-link" href="?page={{ municipalities.next_page_number }}">Next</a>
           </li>
           {% else %}
           <li class="page-item disabled">
