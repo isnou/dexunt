@@ -53,14 +53,6 @@
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
       {% for order in all_orders %}
-      <!-- order forms list -->
-      <!-- delete order form -->
-      <form action="{% url 'admin-manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="order_id" value='{{ order.id }}'>
-      </form>
-      <!-- end order forms list -->
-
       <!-- orders list -->
       <tr>
         <td class="table-column-pe-0">
@@ -75,22 +67,22 @@
 
               <span class="d-block fs-4 text-body text-start"><small><i class="bi-clock ms-2 me-2"></i>{{ order.updated_at|date:'M' }} {{ order.updated_at|date:'d' }} , {{ order.updated_at|time:'H' }}:{{ order.updated_at|time:'i' }}.</small></span>
 
-              {% if order.product.all.count == 1 %}
+              {% if order.selectedproduct_set.all.count == 1 %}
               <span class="d-block fs-4 text-body text-start"><small><i class="bi-cart2 ms-2 me-2"></i>one product</small></span>
               {% else %}
-              <span class="d-block fs-4 text-body text-start"><small><i class="bi-cart4 ms-2 me-2"></i>{{ order.product.all.count }} products</small></span>
+              <span class="d-block fs-4 text-body text-start"><small><i class="bi-cart4 ms-2 me-2"></i>{{ order.selectedproduct_set.all.count }} products</small></span>
               {% endif %}
             </button>
             <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
               <!-- title bar -->
               <div class="d-grid d-sm-flex gap-2">
-                <span class="d-block fs-5 text-body">subtotal : {{ order.sub_total_price|floatformat:"0g" }} <small>DZD</small></span>
+                <span class="d-block fs-5 text-body">subtotal : {{ order.price|floatformat:"0g" }} <small>DZD</small></span>
               </div>
               <!-- end title bar -->
               <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                   <tbody>
-                  {% for product in order.product.all %}
+                  {% for product in order.selectedproduct_set.all %}
                   <tr>
                     <td>
                       <a class="d-flex align-items-center" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.variant_id }}&option_id={{ product.option_id }}">
@@ -98,7 +90,7 @@
                           <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
                         </div>
                         <div class="ms-3">
-                          <span class="d-block h5 text-inherit mb-0">{{ product.en_name }}</span>
+                          <span class="d-block h5 text-inherit mb-0">{{ product.en_title }}</span>
                           <span class="d-block fs-5 text-body">{{ product.en_detail }}</span>
                         </div>
                       </a>
@@ -107,7 +99,7 @@
                       <span class="d-block h5 mb-0">{{ product.price|floatformat:"2g" }} <small>DZD</small></span>
                       <span class="d-block fs-5">quantity: {{ product.quantity }}</span>
                     </td>
-                    {% if product.quantity_issue %}
+                    {% if product.lack_of_quantity %}
                     <td>
                       <span class="badge bg-warning">no stock</span>
                     </td>
@@ -254,6 +246,14 @@
 <!-- end all products  -->
 
 {% for order in all_orders %}
+<!-- delete order form -->
+<form action="{% url 'admin-manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="order_id" value='{{ order.id }}'>
+</form>
+<!-- end order forms list -->
+
+
 <!-- delete order modal -->
 <div id="delete_order_modal_{{ order.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
