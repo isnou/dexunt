@@ -87,7 +87,6 @@ class Coupon(models.Model):
             elif self.value > 100:
                 self.value = 100
         super().save()
-
     def check_availability(self):
         if self.valid_until <= timezone.now():
             self.is_active = False

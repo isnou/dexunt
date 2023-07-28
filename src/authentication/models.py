@@ -8,11 +8,11 @@ from home.models import Cart, Order
 from management.models import Store
 
 
-# ------------------------------ Billing ------------------------------- #
+
+# ------------------------------ Setting ------------------------------- #
 class Transaction(models.Model):
     # ----- Technical ----- #
-    user_token = models.CharField(max_length=24, null=True)
-    store = models.CharField(max_length=240, blank=True, null=True)
+    hook = models.CharField(max_length=24, null=True)
     # ----- relations ----- #
     wallet = models.ForeignKey(
         'authentication.Wallet', on_delete=models.CASCADE, null=True)
@@ -111,6 +111,15 @@ class User(AbstractUser):
         if self.municipality:
             self.tags += (', ' + self.municipality)
         super().save()
+    def change_role(self, new_role):
+        self.is_customer = False
+        if new_role == 'seller':
+            self.is_seller = True
+        if new_role == 'provider':
+            self.is_provider = True
+        if new_role == 'member':
+            self.is_member = True
+        super().save()
 
 #                                                                        #
 def users_filter(request, users_list, new_filter):
@@ -129,29 +138,6 @@ def users_filter(request, users_list, new_filter):
         return users_list.filter(is_provider=True)
     if request.session.get('users_filter', None) == 'blacklist':
         return users_list.filter(is_blacklisted=True)
-#                                                                        #
-def change_role(selected_user, role):
-    if role == 'customer':
-        selected_user.is_customer = True
-        selected_user.is_seller = False
-        selected_user.is_provider = False
-        selected_user.is_member = False
-    if role == 'seller':
-        selected_user.is_customer = False
-        selected_user.is_seller = True
-        selected_user.is_provider = False
-        selected_user.is_member = False
-    if role == 'provider':
-        selected_user.is_customer = False
-        selected_user.is_seller = False
-        selected_user.is_provider = True
-        selected_user.is_member = False
-    if role == 'member':
-        selected_user.is_customer = False
-        selected_user.is_seller = False
-        selected_user.is_provider = False
-        selected_user.is_member = True
-    selected_user.save()
 # ---------------------------------------------------------------------- #
 
 

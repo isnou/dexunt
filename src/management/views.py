@@ -128,7 +128,7 @@ def manage_users(request, action):
             user_id = request.POST.get('user_id', False)
             role = request.POST.get('role', False)
             selected_user = User.objects.all().get(id=user_id)
-            change_role(selected_user, role)
+            selected_user.change_role(role)
             return redirect ('admin-manage-users', 'main')
     # -- search partial show -- #
     if action == 'search_users':
