@@ -96,7 +96,11 @@
         </td>
       </tr>
 
-      {% for product in order.selectedproduct_set.all %}
+      <tr>
+        <td colspan="4">
+          <table class="table mb-0">
+
+            {% for product in order.selectedproduct_set.all %}
       <!-- products list -->
       <tr>
         <td class="table-column-pe-0">
@@ -136,6 +140,14 @@
         </td>
       </tr>
       {% endfor %}
+
+
+
+          </table>
+        </td>
+      </tr>
+
+
       {% endfor %}
       </tbody>
     </table>
