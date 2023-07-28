@@ -59,9 +59,8 @@
         </td>
         <!-- order ref -->
         <td>
-          <span class="d-block h4 text-start"><small>#{{ order.ref }}</small></span>
-
-          <!-- view order -->
+          <span class="d-block h4 text-start"><small>#{{ order.ref }}</small>
+            <!-- view order -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
             <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
           </button>
@@ -75,6 +74,8 @@
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
             <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
+
+          </span>
         </td>
         <!-- creation date -->
         <td>
