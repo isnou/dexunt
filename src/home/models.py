@@ -269,23 +269,24 @@ class Order(models.Model):
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
+    coupon = selected_cart.coupon
     if not request.user.is_authenticated:
         if not request.session.get('order_ref', None):
-            selected_order = Order(coupon=selected_cart.coupon)
+            selected_order = Order(coupon=coupon)
             selected_order.save()
             request.session['order_ref'] = selected_order.ref
         else:
             if Order.objects.all().filter(ref=request.session.get('order_ref')).exists():
                 selected_order = Order.objects.all().get(ref=request.session.get('order_ref'))
             else:
-                selected_order = Order(coupon=selected_cart.coupon)
+                selected_order = Order(coupon=coupon)
                 selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
         if request.user.order.all().filter(is_empty=True).exists():
             selected_order = Order.objects.all().get(is_empty=True)
         else:
-            selected_order = Order(coupon=selected_cart.coupon)
+            selected_order = Order(coupon=coupon)
             selected_order.save()
             request.user.order.add(selected_order)
 
