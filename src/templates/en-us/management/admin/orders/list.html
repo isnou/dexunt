@@ -60,6 +60,21 @@
         <!-- order ref -->
         <td>
           <span class="d-block h4 text-start"><small>#{{ order.ref }}</small></span>
+
+          <!-- view order -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
+            <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
+          </button>
+
+          <!-- view product -->
+          <button class="btn btn-ghost btn-icon" form="view_product_form_{{ product.id }}">
+            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          </button>
+
+          <!-- delete order -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
         </td>
         <!-- creation date -->
         <td>
@@ -76,23 +91,6 @@
         <!-- delivery -->
         <td>
           <span class="d-block h4 text-start"><small>{{ order.municipality.province.en_name|title }} | {{ order.municipality.en_name|title }}</small></span>
-        </td>
-        <!-- order actions -->
-        <td class="text-end">
-          <!-- view order -->
-          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
-            <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
-          </button>
-
-          <!-- view product -->
-          <button class="btn btn-ghost btn-icon" form="view_product_form_{{ product.id }}">
-            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-          </button>
-
-          <!-- delete order -->
-          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
-            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-          </button>
         </td>
       </tr>
 
@@ -114,9 +112,6 @@
               </span>
             </div>
           </a>
-        </td>
-        <!-- # -->
-        <td>
         </td>
         <!-- # -->
         <td>
