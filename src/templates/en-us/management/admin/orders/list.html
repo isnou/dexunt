@@ -144,12 +144,12 @@
           <span class="d-block fs-4 text-body text-start">
             <small>
               <i class="bi-tags ms-2 me-2"></i>
-              {% if order.coupon_value %}
-              [{{ order.coupon_code }}]
-              {% if order.has_subtractive_coupon %}
-              {{ order.coupon_value|floatformat:"0g" }} <small>DZD</small>
+              {% if order.coupon %}
+              [{{ order.coupon.code }}]
+              {% if order.coupon.is_subtractive %}
+              {{ order.coupon.value|floatformat:"0g" }} <small>DZD</small>
               {% else %}
-              {{ order.coupon_value }} <small>%</small>
+              {{ order.coupon.value }} <small>%</small>
               {% endif %}
               {% else %}
               No discount
@@ -171,7 +171,7 @@
         <td>
           <span class="d-block h4 text-start"><small>{{ order.client_name|title }}</small></span>
           <span class="d-block fs-4 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
-          <span class="d-block fs-4 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.province|title }} | {{ order.municipality|title }}</small></span>
+          <span class="d-block fs-4 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.municipality.province.en_name|title }} | {{ order.municipality.en_name|title }}</small></span>
           <span class="d-block fs-4 text-body text-start"><small><i class="bi-clipboard ms-2 me-2"></i>{{ order.status }}</small></span>
         </td>
         <!-- order actions -->
