@@ -55,15 +55,15 @@ class SelectedProduct(models.Model):
             return self.option.price * self.quantity
     def points(self):
         return self.option.points * self.quantity
-    def en_tite(self):
+    def en_title(self):
         return self.option.variant.product.en_title
     def en_detail(self):
         return self.option.variant.en_spec + ' ' + self.option.en_value
-    def fr_tite(self):
+    def fr_title(self):
         return self.option.variant.product.fr_title
     def fr_detail(self):
         return self.option.variant.fr_spec + ' ' + self.option.fr_value
-    def ar_tite(self):
+    def ar_title(self):
         return self.option.variant.product.ar_title
     def ar_detail(self):
         return self.option.variant.ar_spec + ' ' + self.option.ar_value
