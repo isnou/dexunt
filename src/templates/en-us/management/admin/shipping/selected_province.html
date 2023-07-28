@@ -167,13 +167,6 @@
       <tbody>
       {% for municipality in municipalities %}
 
-      <!-- delete municipality form -->
-      <form action="{% url 'admin-manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
-        <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
-      </form>
-
       <!-- municipalities list -->
       <tr>
         <td class="table-column-pe-0">
@@ -204,155 +197,16 @@
         <td class="text-end">
           <!-- edit municipality -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ municipality.id }}">
-            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+            <i class="fa fa-pencil fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
 
           <!-- delete municipality -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ municipality.id }}">
-            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+            <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
         </td>
       </tr>
       <!-- end products list -->
-
-      <!-- municipality actions modals -->
-      <!-- edit municipality modal -->
-      <div id="edit_modal_{{ municipality.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-close">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div>
-                <div class="text-center mb-7">
-                  <h2>{{ municipality.en_name }}</h2>
-                </div>
-                <form action="{% url 'admin-manage-shipping' 'edit_municipality' %}" class="js-validate need-validate" novalidate method="post">
-                  {% csrf_token %}
-                  <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
-                  <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
-
-                  <div class="row mb-4">
-                    <span class="divider-center mb-2">Main Informations</span>
-
-                    <!-- municipality english name -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">english name</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.en_name.name }}" placeholder="Kouba" value="{{ municipality.en_name }}" required>
-                      <span class="invalid-feedback text-center">required field.</span>
-                    </div>
-                    <!-- end municipality english name -->
-
-                    <!-- municipality french name -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">french name</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.fr_name.name }}" placeholder="Kouba" value="{{ municipality.fr_name }}">
-                    </div>
-                    <!-- end municipality french name -->
-
-                    <!-- municipality arabic name -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">arabic name</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.ar_name.name }}" placeholder="القبة" value="{{ municipality.ar_name }}" dir="rtl">
-                    </div>
-                    <!-- end municipality arabic name -->
-
-                    <span class="divider-center mb-2">Delivery to Home</span>
-
-                    <!-- french delivery time -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">english time</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.en_home_delivery_time.name }}" value="{{ municipality.en_home_delivery_time }}" placeholder="Three to Four Days">
-                    </div>
-                    <!-- end french delivery time -->
-
-                    <!-- english delivery time -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">french time</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.fr_home_delivery_time.name }}" value="{{ municipality.fr_home_delivery_time }}" placeholder="Trois à Quatre Jours">
-                    </div>
-                    <!-- end english delivery time -->
-
-                    <!-- arabic delivery time -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">arabic time</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.ar_home_delivery_time.name }}" value="{{ municipality.ar_home_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
-                    </div>
-                    <!-- end arabic delivery time -->
-
-                    <!-- price -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">price</span>
-                      <input type="number" class="form-control" name="{{ municipality_form.home_delivery_price.name }}" value="{{ municipality.home_delivery_price }}" min="0" placeholder="1000" required>
-                      <span class="input-group-text" style="width: 20%;">DZD</span>
-                      <span class="invalid-feedback text-center">required field.</span>
-                    </div>
-                    <!-- end price -->
-
-                    <span class="divider-center mb-2">Delivery to Desk</span>
-
-                    <!-- french delivery time -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">english time</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.en_desk_delivery_time.name }}" value="{{ municipality.en_desk_delivery_time }}" placeholder="Three to Four Days">
-                    </div>
-                    <!-- end french delivery time -->
-
-                    <!-- english delivery time -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">french time</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.fr_desk_delivery_time.name }}" value="{{ municipality.fr_desk_delivery_time }}" placeholder="Trois à Quatre Jours">
-                    </div>
-                    <!-- end english delivery time -->
-
-                    <!-- arabic delivery time -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">arabic time</span>
-                      <input type="text" class="form-control" name="{{ municipality_form.ar_desk_delivery_time.name }}" value="{{ municipality.ar_desk_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
-                    </div>
-                    <!-- end arabic delivery time -->
-
-                    <!-- price -->
-                    <div class="input-group mb-2">
-                      <span class="input-group-text" style="width: 25%;">price</span>
-                      <input type="number" class="form-control" name="{{ municipality_form.desk_delivery_price.name }}" value="{{ municipality.desk_delivery_price }}" min="0" placeholder="800">
-                      <span class="input-group-text" style="width: 20%;">DZD</span>
-                    </div>
-                    <!-- end price -->
-                  </div>
-
-                  <!-- submit -->
-                  <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-                  </div>
-                  <!-- end submit -->
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- delete municipality modal -->
-      <div id="delete_modal_{{ municipality.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-              <p>click yes to delete {{ municipality.en_name }}.</p>
-            </div>
-            <div class="modal-footer" style="align-self: center;">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" form="delete_form_{{ municipality.id }}">Yes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end municipality actions modals -->
       {% endfor %}
       </tbody>
     </table>
@@ -412,4 +266,150 @@
   {% endif %}
 </div>
 <!-- end all municipalities  -->
+
+{% for municipality in municipalities %}
+<!-- delete municipality form -->
+<form action="{% url 'admin-manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
+  <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
+</form>
+
+<!-- edit municipality modal -->
+<div id="edit_modal_{{ municipality.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>{{ municipality.en_name }}</h2>
+          </div>
+          <form action="{% url 'admin-manage-shipping' 'edit_municipality' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
+            <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Main Informations</span>
+
+              <!-- municipality english name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english name</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_name.name }}" placeholder="Kouba" value="{{ municipality.en_name }}" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end municipality english name -->
+
+              <!-- municipality french name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french name</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_name.name }}" placeholder="Kouba" value="{{ municipality.fr_name }}">
+              </div>
+              <!-- end municipality french name -->
+
+              <!-- municipality arabic name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic name</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_name.name }}" placeholder="القبة" value="{{ municipality.ar_name }}" dir="rtl">
+              </div>
+              <!-- end municipality arabic name -->
+
+              <span class="divider-center mb-2">Delivery to Home</span>
+
+              <!-- french delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english time</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_home_delivery_time.name }}" value="{{ municipality.en_home_delivery_time }}" placeholder="Three to Four Days">
+              </div>
+              <!-- end french delivery time -->
+
+              <!-- english delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french time</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_home_delivery_time.name }}" value="{{ municipality.fr_home_delivery_time }}" placeholder="Trois à Quatre Jours">
+              </div>
+              <!-- end english delivery time -->
+
+              <!-- arabic delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic time</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_home_delivery_time.name }}" value="{{ municipality.ar_home_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
+              </div>
+              <!-- end arabic delivery time -->
+
+              <!-- price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">price</span>
+                <input type="number" class="form-control" name="{{ municipality_form.home_delivery_price.name }}" value="{{ municipality.home_delivery_price }}" min="0" placeholder="1000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end price -->
+
+              <span class="divider-center mb-2">Delivery to Desk</span>
+
+              <!-- french delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english time</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_desk_delivery_time.name }}" value="{{ municipality.en_desk_delivery_time }}" placeholder="Three to Four Days">
+              </div>
+              <!-- end french delivery time -->
+
+              <!-- english delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french time</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_desk_delivery_time.name }}" value="{{ municipality.fr_desk_delivery_time }}" placeholder="Trois à Quatre Jours">
+              </div>
+              <!-- end english delivery time -->
+
+              <!-- arabic delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic time</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_desk_delivery_time.name }}" value="{{ municipality.ar_desk_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
+              </div>
+              <!-- end arabic delivery time -->
+
+              <!-- price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">price</span>
+                <input type="number" class="form-control" name="{{ municipality_form.desk_delivery_price.name }}" value="{{ municipality.desk_delivery_price }}" min="0" placeholder="800">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end price -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete municipality modal -->
+<div id="delete_modal_{{ municipality.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete {{ municipality.en_name }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_form_{{ municipality.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock %}

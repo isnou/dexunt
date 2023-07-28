@@ -150,17 +150,6 @@
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
       {% for province in provinces %}
-      <!-- delete province form -->
-      <form action="{% url 'admin-manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="province_id" value='{{ province.id }}'>
-      </form>
-      <!-- view province form -->
-      <form action="{% url 'admin-manage-shipping' 'view_province' %}" id="view_form_{{ province.id }}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="province_id" value='{{ province.id }}'>
-      </form>
-
       <!-- provinces list -->
       <tr>
         <td class="table-column-pe-0">
@@ -183,10 +172,6 @@
         </td>
         <!-- province actions -->
         <td class="text-end">
-          <!-- view province -->
-          <button class="btn btn-white btn-icon" form="view_form_{{ province.id }}">
-            <i class="fa fa-pencil fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-          </button>
 
           <!-- delete province -->
           <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ province.id }}">
@@ -196,26 +181,6 @@
       </tr>
       <!-- end products list -->
 
-      <!-- provinces actions modals -->
-      <!-- delete province modal -->
-      <div id="delete_modal_{{ province.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-              <p>click yes to delete {{ province.en_name }}.</p>
-            </div>
-            <div class="modal-footer" style="align-self: center;">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" form="delete_form_{{ province.id }}">Yes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end provinces actions modals -->
       {% endfor %}
       </tbody>
     </table>
@@ -275,4 +240,31 @@
   {% endif %}
 </div>
 <!-- end all provinces  -->
+
+{% for province in provinces %}
+<!-- delete province form -->
+<form action="{% url 'admin-manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="province_id" value='{{ province.id }}'>
+</form>
+
+<!-- delete province modal -->
+<div id="delete_modal_{{ province.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete {{ province.en_name }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_form_{{ province.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock %}
