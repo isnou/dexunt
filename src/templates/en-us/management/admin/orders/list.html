@@ -80,27 +80,23 @@
         <!-- order actions -->
         <td class="text-end">
           <!-- view order -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
             <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
           </button>
 
           <!-- view product -->
-          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
+          <button class="btn btn-ghost btn-icon" form="view_product_form_{{ product.id }}">
             <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
 
           <!-- delete order -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
             <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
         </td>
       </tr>
 
-      <tr>
-        <td colspan="4">
-          <table class="table mb-0">
-
-            {% for product in order.selectedproduct_set.all %}
+      {% for product in order.selectedproduct_set.all %}
       <!-- products list -->
       <tr>
         <td class="table-column-pe-0">
@@ -140,14 +136,6 @@
         </td>
       </tr>
       {% endfor %}
-
-
-
-          </table>
-        </td>
-      </tr>
-
-
       {% endfor %}
       </tbody>
     </table>
