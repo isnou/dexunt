@@ -249,7 +249,10 @@ class Order(models.Model):
             price += p.total_price()
         return price
     def total_price(self):
-        total_price = self.price() + self.delivery_price
+        if self.delivery_price:
+            total_price = self.price() + self.delivery_price
+        else:
+            total_price = self.price()
         if self.coupon:
             self.coupon.check_availability()
             if self.coupon.is_active:
