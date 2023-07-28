@@ -292,6 +292,8 @@ def get_order(request):
         else:
             if Order.objects.all().filter(ref=request.session.get('order_ref')).exists():
                 selected_order = Order.objects.all().get(ref=request.session.get('order_ref'))
+                selected_order.coupon=coupon
+                selected_order.save()
             else:
                 selected_order = Order(coupon=coupon)
                 selected_order.save()
@@ -299,6 +301,8 @@ def get_order(request):
     else:
         if request.user.order.all().filter(is_empty=True).exists():
             selected_order = Order.objects.all().get(is_empty=True)
+            selected_order.coupon = coupon
+            selected_order.save()
         else:
             selected_order = Order(coupon=coupon)
             selected_order.save()
