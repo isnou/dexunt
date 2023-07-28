@@ -102,7 +102,7 @@
             <ul class="list-unstyled list-py-2 text-dark">
               <li><i class="bi-gender-{{ selected_user.gender }} me-2"></i>: <span class="text-body">{{ selected_user.gender|title }}</span></li>
 
-              <li><i class="bi-at me-2"></i>: <span class="text-body">{{ selected_user.email }}</span></li>
+              <li><i class="bi-at me-2"></i>: <span class="text-body">{{ selected_user.username }}</span></li>
 
               {% if selected_user.phone_number %}
               <li><i class="bi-phone me-2"></i>: <span class="text-body">{{ selected_user.phone_number }}</span></li>
