@@ -794,6 +794,7 @@ def manage_shipping(request, action):
 
         if not request.session.get('provinces-page', None):
             page = request.GET.get('page', 1)
+            request.session['provinces-page'] = page
         else:
             page = request.session.get('provinces-page')
 
@@ -860,6 +861,7 @@ def manage_shipping(request, action):
 
         if not request.session.get('municipalities-page', None):
             page = request.GET.get('page', 1)
+            request.session['municipalities-page'] = page
         else:
             page = request.session.get('municipalities-page')
 

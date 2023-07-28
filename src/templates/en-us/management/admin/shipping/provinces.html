@@ -156,7 +156,7 @@
         </td>
         <!-- province info -->
         <td class="table-column-ps-0">
-          <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}">
+          <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}&init=True">
             <div class="ms-3">
               <span class="d-block h5 text-inherit">{{ province.en_name|title }} - {{ province.en_delivery_time }}</span>
               <span class="d-block h5 text-inherit">{{ province.fr_name|title }} - {{ province.fr_delivery_time }}</span>
