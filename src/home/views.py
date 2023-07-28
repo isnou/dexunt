@@ -149,6 +149,7 @@ def order_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
+    selected_cart = get_cart(request)
     selected_order = get_order(request)
 
     request.session['coupon_message'] = None
