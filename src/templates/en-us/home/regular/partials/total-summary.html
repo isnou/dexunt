@@ -5,11 +5,6 @@
       <div class="fw-bold"> {{ selected_order.price|floatformat:"0g" }} <small>DZD</small></div>
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mb-2">
-      <div>Delivery</div>
-      <div class="fw-bold">{{ selected_order.delivery_price|floatformat:"0g" }} <small>DZD</small></div>
-    </div>
-
     {% if selected_order.coupon %}
     {% if selected_order.coupon.is_subtractive %}
     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -23,6 +18,11 @@
     </div>
     {% endif %}
     {% endif %}
+
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <div>Delivery</div>
+      <div class="fw-bold">{{ selected_order.delivery_price|floatformat:"0g" }} <small>DZD</small></div>
+    </div>
   </li>
 
   <li class="list-group-item px-4 py-3">
