@@ -53,6 +53,8 @@ class SelectedProduct(models.Model):
             return self.option.discount * self.quantity
         else:
             return self.option.price * self.quantity
+    def points(self):
+        return self.option.points * self.quantity
     def en_tite(self):
         return self.option.variant.product.en_title
     def en_detail(self):
@@ -146,6 +148,11 @@ class Cart(models.Model):
                 else:
                     total_price = total_price - ((total_price * self.coupon.value) / 100)
         return total_price
+    def points(self):
+        points = 0
+        for p in self.selectedproduct_set.all():
+            points += p.points()
+        return points
 #                                                                        #
 def get_cart(request):
     if not request.user.is_authenticated:
@@ -179,8 +186,8 @@ class Order(models.Model):
     is_empty = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- #
-    is_fulfilled = models.BooleanField(default=False)
-    fulfilled_at = models.DateTimeField(blank=True, null=True)
+    is_placed = models.BooleanField(default=False)
+    is_placed_at = models.DateTimeField(blank=True, null=True)
     # ----- #
     is_pending = models.BooleanField(default=False)
     is_pending_since = models.DateTimeField(blank=True, null=True)
@@ -229,42 +236,36 @@ class Order(models.Model):
     client_phone = PhoneNumberField(blank=True)
     address = models.CharField(max_length=250, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
-    points = models.IntegerField(default=0)
-
     delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK
-
-    sub_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
         super().save()
-    def update_prices(self):
-        if not self.coupon_value:
-            if self.delivery_price:
-                self.total_price = self.sub_total_price + self.delivery_price
-            else:
-                self.total_price = self.sub_total_price
-        else:
-            if self.delivery_price:
-                if self.has_subtractive_coupon:
-                    self.total_price = self.sub_total_price - self.coupon_value + self.delivery_price
+    def price(self):
+        price = 0
+        for p in self.selectedproduct_set.all():
+            price += p.total_price()
+        return price
+    def total_price(self):
+        total_price = self.price() + self.delivery_price
+        if self.coupon:
+            self.coupon.check_availability()
+            if self.coupon.is_active:
+                if self.coupon.is_subtractive:
+                    total_price = total_price - self.coupon.value
                 else:
-                    self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100) + self.delivery_price
-            else:
-                if self.has_subtractive_coupon:
-                    self.total_price = self.sub_total_price - self.coupon_value
-                else:
-                    self.total_price = self.sub_total_price - (( self.sub_total_price * self.coupon_value ) / 100)
-        super().save()
-    def delete_products(self):
-        for product in self.product.all():
-            product.delete()
-        super().save()
+                    total_price = total_price - ((total_price * self.coupon.value) / 100)
+        return total_price
+    def points(self):
+        points = 0
+        for p in self.selectedproduct_set.all():
+            points += p.points()
+        return points
 #                                                                        #
-def get_order(request, selected_cart):
+def get_order(request):
+    selected_cart = get_cart(request)
     if not request.user.is_authenticated:
         if not request.session.get('order_ref', None):
             selected_order = Order(coupon=selected_cart.coupon)
@@ -278,8 +279,8 @@ def get_order(request, selected_cart):
                 selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
-        if request.user.order.all().filter(is_incomplete=True).exists():
-            selected_order = Order.objects.all().get(is_incomplete=True)
+        if request.user.order.all().filter(is_empty=True).exists():
+            selected_order = Order.objects.all().get(is_empty=True)
         else:
             selected_order = Order(coupon=selected_cart.coupon)
             selected_order.save()

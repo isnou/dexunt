@@ -93,13 +93,13 @@
               <h5 class="px-6 py-4 bg-transparent mb-0">Order Details</h5>
 
               <ul class="list-group list-group-flush">
-                {% for product in selected_cart.product.all %}
+                {% for product in selected_cart.selectedproduct_set.all %}
                 <li class="list-group-item px-4 py-3">
                   <div class="row align-items-center">
                     <div class="col-2 col-md-2">
                       <img src="{% get_media_prefix %}{{ product.image }}" class="img-fluid"></div>
                     <div class="col-5 col-md-5">
-                      <h6 class="mb-0">{{ product.en_name }}</h6>
+                      <h6 class="mb-0">{{ product.en_tite }}</h6>
                       <span><small class="text-muted">{{ product.en_detail }}</small></span>
                     </div>
                     <div class="col-2 col-md-2 text-center text-muted">
@@ -118,18 +118,18 @@
                     <li class="list-group-item px-4 py-3" >
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Item Subtotal</div>
-                        <div class="fw-bold"> {{ selected_cart.sub_total_price|floatformat:"0g" }} <small>DZD</small></div>
+                        <div class="fw-bold"> {{ selected_cart.price|floatformat:"0g" }} <small>DZD</small></div>
                       </div>
 
-                      {% if selected_cart.has_subtractive_coupon %}
+                      {% if selected_cart.coupon.is_subtractive %}
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Discount</div>
-                        <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>DZD</small></div>
+                        <div class="fw-bold">{{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small></div>
                       </div>
                       {% else %}
                       <div class="d-flex align-items-center justify-content-between   mb-2">
                         <div>Discount</div>
-                        <div class="fw-bold">{{ selected_cart.coupon_value|floatformat:"0g" }} <small>%</small></div>
+                        <div class="fw-bold">{{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small></div>
                       </div>
                       {% endif %}
                     </li>

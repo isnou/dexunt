@@ -149,8 +149,7 @@ def order_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    selected_cart = get_cart(request)
-    selected_order = get_order(request, selected_cart)
+    selected_order = get_order(request)
 
     request.session['coupon_message'] = None
     provinces = Province.objects.all()
@@ -180,7 +179,7 @@ def order_page(request, action):
         province = Province.objects.all().get(id=province_id)
 
         selected_order.province = province.en_name
-        selected_order.update_prices()
+        selected_order.save()
 
         sub_context = {
             'province': province,
@@ -193,7 +192,7 @@ def order_page(request, action):
         request.session['municipality_id_token'] = municipality_id
 
         selected_order.municipality = municipality.en_name
-        selected_order.update_prices()
+        selected_order.save()
         sub_context = {
             'municipality': municipality,
             'selected_order': selected_order,
@@ -205,9 +204,9 @@ def order_page(request, action):
         delivery_type = request.GET.get('delivery_type')
 
         delivery_q = 0
-        for p in selected_order.product.all():
-            delivery_q += p.delivery
-        delivery_q = float(delivery_q / selected_order.product.all().count())
+        for p in selected_order.selectedproduct_set.all():
+            delivery_q += p.option.delivery_quotient
+        delivery_q = float(delivery_q / selected_order.selectedproduct_set.all().count())
 
         if delivery_type == 'HOME':
             selected_order.delivery_price = int(float(municipality.home_delivery_price) * delivery_q/100)
@@ -215,7 +214,7 @@ def order_page(request, action):
             selected_order.delivery_price = int(float(municipality.desk_delivery_price) * delivery_q/100)
 
         selected_order.delivery_type = delivery_type
-        selected_order.update_prices()
+        selected_order.save()
 
         sub_context = {
             'selected_order': selected_order,
