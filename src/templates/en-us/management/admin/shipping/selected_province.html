@@ -156,14 +156,14 @@
         </td>
         <!-- municipality info -->
         <td class="table-column-ps-0">
-          <span class="d-block fs-6"><small>{{ municipality.en_name|title }} - {{ municipality.en_delivery_time }}</small></span>
-          <span class="d-block fs-6"><small>{{ municipality.fr_name|title }} - {{ municipality.fr_delivery_time }}</small></span>
-          <span class="d-block fs-6"><small>{{ municipality.fr_delivery_time }} - {{ municipality.ar_name }}</small></span>
+          <h5 class="text-inherit">{{ municipality.en_name|title }} - {{ municipality.en_delivery_time }}</h5>
+          <h5 class="text-inherit">{{ municipality.fr_name|title }} - {{ municipality.fr_delivery_time }}</h5>
+          <h5 class="text-inherit">{{ municipality.ar_delivery_time }} - {{ municipality.ar_name }}</h5>
         </td>
 
         <td>
-          <h6 class="text-inherit mb-0">delivery to home :{{ municipality.home_delivery_price|floatformat:"2g" }} DZD</h6>
-          <h6 class="text-inherit mb-0">delivery to desk :{{ municipality.desk_delivery_price|floatformat:"2g" }} DZD</h6>
+          <h4 class="text-inherit">delivery to home :{{ municipality.home_delivery_price|floatformat:"2g" }} DZD</h4>
+          <h4 class="text-inherit">delivery to desk :{{ municipality.desk_delivery_price|floatformat:"2g" }} DZD</h4>
         </td>
         <!-- municipality actions -->
         <td class="text-end">
