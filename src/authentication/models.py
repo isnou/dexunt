@@ -35,7 +35,6 @@ class Wallet(models.Model):
 # ---------------------------------------------------------------------- #
 
 
-
 # -------------------------------- User -------------------------------- #
 class User(AbstractUser):
     # ----- Technical ----- #
@@ -120,7 +119,6 @@ class User(AbstractUser):
         if new_role == 'member':
             self.is_member = True
         super().save()
-
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:
