@@ -98,172 +98,40 @@
 
       {% for product in order.selectedproduct_set.all %}
       <!-- products list -->
-        <tr>
-          <td class="table-column-pe-0">
-          </td>
-          <!-- product title and image -->
-          <td class="table-column-ps-0">
-            <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.variant.product.id }}">
-              <div class="flex-shrink-0">
-                <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.image }}">
-              </div>
-              <div class="flex-grow-1 ms-3">
-                <h5 class="text-inherit me-2">{{ product.en_title }}</h5>
-                <span class="d-block text-body fs-6">
-                  <small> {{ product.en_detail }} </small>
-                </span>
-              </div>
-            </a>
-          </td>
-          <!-- # -->
-          <td>
-          </td>
-          <!-- # -->
-          <td>
-          </td>
-          <!-- # -->
-          <td>
-          </td>
-          <!-- # -->
-          <td>
-          </td>
-          <!-- product actions -->
-          <td class="text-end">
-            <!-- delete product -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ variant.id }}">
-              <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-            </button>
-          </td>
-        </tr>
-
-
-
-      <!-- products list -->
       <tr>
         <td class="table-column-pe-0">
         </td>
-        <!-- order ref date & products -->
-        <td>
-          <div class="dropdown">
-            <button class="btn btn-ghost bg-white link-dark text-secondary" type="button" id="{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-open-on-hover data-bs-dropdown-animation>
-              <span class="d-block h4 text-start"><small><i class="bi-hash"></i>{{ order.ref }}</small></span>
-
-              <span class="d-block fs-4 text-body text-start"><small><i class="bi-escape ms-2 me-2"></i>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} , {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}.</small></span>
-
-              {% if order.selectedproduct_set.all.count == 1 %}
-              <span class="d-block fs-4 text-body text-start"><small><i class="bi-cart2 ms-2 me-2"></i>one product</small></span>
-              {% else %}
-              <span class="d-block fs-4 text-body text-start"><small><i class="bi-cart4 ms-2 me-2"></i>{{ order.selectedproduct_set.all.count }} products</small></span>
-              {% endif %}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="{{ order.id }}">
-              <!-- title bar -->
-              <div class="d-grid d-sm-flex gap-2">
-                <span class="d-block fs-5 text-body">subtotal : {{ order.price|floatformat:"0g" }} <small>DZD</small></span>
-              </div>
-              <!-- end title bar -->
-              <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-                  <tbody>
-                  {% for product in order.selectedproduct_set.all %}
-                  <tr>
-                    <td>
-                      <a class="d-flex align-items-center" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.variant_id }}&option_id={{ product.option_id }}">
-                        <div class="avatar avatar-square">
-                          <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
-                        </div>
-                        <div class="ms-3">
-                          <span class="d-block h5 text-inherit mb-0">{{ product.en_title }}</span>
-                          <span class="d-block fs-5 text-body">{{ product.en_detail }}</span>
-                        </div>
-                      </a>
-                    </td>
-                    <td>
-                      <span class="d-block h5 mb-0">{{ product.price|floatformat:"2g" }} <small>DZD</small></span>
-                      <span class="d-block fs-5">quantity: {{ product.quantity }}</span>
-                    </td>
-                    {% if product.lack_of_quantity %}
-                    <td>
-                      <span class="badge bg-warning">no stock</span>
-                    </td>
-                    {% endif %}
-                  </tr>
-                  {% endfor %}
-                  </tbody>
-                </table>
-              </div>
+        <!-- product title and image -->
+        <td class="table-column-ps-0">
+          <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.variant.product.id }}">
+            <div class="flex-shrink-0">
+              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.image }}">
             </div>
-          </div>
+            <div class="flex-grow-1 ms-3">
+              <h5 class="text-inherit me-2">{{ product.en_title }}</h5>
+              <span class="d-block text-body fs-6">
+                <small> {{ product.en_detail }} </small>
+              </span>
+            </div>
+          </a>
         </td>
-        <!-- delivery price discount & points -->
+        <!-- # -->
         <td>
-          <span class="d-block h4 text-start"><small>Total Price :{{ order.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
-          <span class="d-block fs-4 text-body text-start">
-            <small>
-              <i class="bi-geo-alt ms-2 me-2"></i>
-              {% if order.delivery_price %}
-              {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
-              {% else %}
-              free
-              {% endif %}
-
-              {% if order.delivery_type == 'HOME' %}
-              to home
-              {% endif %}
-
-              {% if order.delivery_type == 'DESK' %}
-              to desk
-              {% endif %}
-            </small>
-          </span>
-          <span class="d-block fs-4 text-body text-start">
-            <small>
-              <i class="bi-tags ms-2 me-2"></i>
-              {% if order.coupon %}
-              [{{ order.coupon.code }}]
-              {% if order.coupon.is_subtractive %}
-              {{ order.coupon.value|floatformat:"0g" }} <small>DZD</small>
-              {% else %}
-              {{ order.coupon.value }} <small>%</small>
-              {% endif %}
-              {% else %}
-              No discount
-              {% endif %}
-            </small>
-          </span>
-          <span class="d-block fs-4 text-body text-start">
-            <small>
-              <i class="bi-gift ms-2 me-2"></i>
-              {% if order.points %}
-              {{ order.points }} GP
-              {% else %}
-              No points
-              {% endif %}
-            </small>
-          </span>
         </td>
-        <!-- name phone & delivery destination -->
+        <!-- # -->
         <td>
-          <span class="d-block h4 text-start"><small>{{ order.client_name|title }}</small></span>
-          <span class="d-block fs-4 text-body text-start"><small><i class="bi-phone ms-2 me-2"></i>{{ order.client_phone|title }}</small></span>
-          <span class="d-block fs-4 text-body text-start"><small><i class="bi-truck ms-2 me-2"></i>{{ order.municipality.province.en_name|title }} | {{ order.municipality.en_name|title }}</small></span>
-          <span class="d-block fs-4 text-body text-start"><small><i class="bi-clipboard ms-2 me-2"></i>{{ order.status }}</small></span>
         </td>
-        <!-- order actions -->
+        <!-- # -->
+        <td>
+        </td>
+        <!-- # -->
+        <td>
+        </td>
+        <!-- product actions -->
         <td class="text-end">
-          <!-- view order -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
-            <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
-          </button>
-
-          <!-- view product -->
-          <button class="btn btn-white btn-icon" form="view_product_form_{{ product.id }}">
-            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-          </button>
-
-          <!-- delete order -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
-            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          <!-- delete product -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ variant.id }}">
+            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </button>
         </td>
       </tr>
