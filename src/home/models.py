@@ -244,16 +244,15 @@ class Order(models.Model):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
         super().save()
-    def set_delivery_price(self, delivery_type, municipality):
+    def delivery_price(self):
         delivery_q = 0
         for p in self.selectedproduct_set.all():
             delivery_q += p.option.delivery_quotient
         delivery_q = float(delivery_q / self.selectedproduct_set.all().count())
-
         if self.delivery_type == 'HOME':
-            self.delivery_price = int(float(municipality.home_delivery_price) * delivery_q / 100)
+            return int(float(self.municipality.home_delivery_price) * delivery_q / 100)
         if self.delivery_type == 'DESK':
-            self.delivery_price = int(float(municipality.desk_delivery_price) * delivery_q / 100)
+            return int(float(self.municipality.desk_delivery_price) * delivery_q / 100)
         super().save()
     def price(self):
         price = 0
@@ -261,8 +260,8 @@ class Order(models.Model):
             price += p.total_price()
         return price
     def total_price(self):
-        if self.delivery_price:
-            total_price = self.price() + self.delivery_price
+        if self.delivery_price():
+            total_price = self.price() + self.delivery_price()
         else:
             total_price = self.price()
         if self.coupon:

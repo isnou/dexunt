@@ -177,9 +177,6 @@ def order_page(request, action):
         province_id = request.GET.get('province_id')
         province = Province.objects.all().get(id=province_id)
 
-        selected_order.province = province.en_name
-        selected_order.save()
-
         sub_context = {
             'selected_order': selected_order,
             'province': province,
@@ -189,30 +186,15 @@ def order_page(request, action):
         municipality_id = request.GET.get('municipality_id')
 
         municipality = Municipality.objects.all().get(id=municipality_id)
-        request.session['municipality_id_token'] = municipality_id
 
         selected_order.municipality = municipality
         selected_order.save()
         sub_context = {
-            'municipality': municipality,
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/partials/prices.html', sub_context)
     if action == 'load_summary':
-        municipality_id = request.session.get('municipality_id_token')
-        municipality = Municipality.objects.all().get(id=municipality_id)
         delivery_type = request.GET.get('delivery_type')
-
-        delivery_q = 0
-        for p in selected_order.selectedproduct_set.all():
-            delivery_q += p.option.delivery_quotient
-        delivery_q = float(delivery_q / selected_order.selectedproduct_set.all().count())
-
-        if delivery_type == 'HOME':
-            selected_order.delivery_price = int(float(municipality.home_delivery_price) * delivery_q/100)
-        if delivery_type == 'DESK':
-            selected_order.delivery_price = int(float(municipality.desk_delivery_price) * delivery_q/100)
-
         selected_order.delivery_type = delivery_type
         selected_order.save()
 
