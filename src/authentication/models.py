@@ -23,7 +23,8 @@ class Transaction(models.Model):
 #                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #
-    # related to many transactions #
+    # many transactions #
+    # one user #
     # ----- content ----- #
     balance = models.IntegerField(default=0)
     # ----- functions ----- #
@@ -32,6 +33,19 @@ class Wallet(models.Model):
         for transaction in self.transaction.all():
             self.balance += transaction.amount
         super().save()
+#                                                            #
+class DeliveryAddress(models.Model):
+    # ---- content ---- #
+    title = models.CharField(max_length=60, default='home')
+    state = models.CharField(max_length=64, blank=True, null=True)
+    city = models.CharField(max_length=64, blank=True, null=True)
+    detail = models.CharField(max_length=128, blank=True, null=True)
+    default = models.BooleanField(default=False)
+    # ----- relations ----- #
+    municipality = models.ForeignKey(
+        'home.Municipality', on_delete=models.CASCADE, related_name='delivery_addresses', null=True)
+    user = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='delivery_addresses', null=True)
 # ---------------------------------------------------------------------- #
 
 
@@ -49,10 +63,11 @@ class User(AbstractUser):
     # ----- #
     tags = models.CharField(max_length=5000, blank=True, null=True)
     points = models.IntegerField(default=0)
-    rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     token = models.CharField(max_length=24, unique=True, null=True)
     # ----- relations ----- #
+    # many selected_products #
+    # many delivery_addresses #
     wallet = models.OneToOneField(
         Wallet,
         on_delete=models.PROTECT,
@@ -61,11 +76,13 @@ class User(AbstractUser):
     cart = models.OneToOneField(
         Cart,
         on_delete=models.PROTECT,
+        blank=True,
         null=True
     )
     store = models.OneToOneField(
         Store,
         on_delete=models.PROTECT,
+        blank=True,
         null=True
     )
     order = models.ManyToManyField(Order, blank=True)
@@ -120,7 +137,7 @@ class User(AbstractUser):
             self.is_member = True
         super().save()
     def new_orders(self):
-        if self.is_superuser:
+        if self.is_superuser or self.is_admin or self.is_member:
             count = 0
             for o in Order.objects.all():
                 if o.status() == 'confirmation':

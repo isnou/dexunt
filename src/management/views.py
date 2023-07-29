@@ -69,8 +69,6 @@ def manage_users(request, action):
                 if not c.created_at <= timezone.now():
                     c.delete()
 
-
-
         if request.GET.get('init', None):
             request.session['users_key_word']=None
 
@@ -553,12 +551,14 @@ def manage_products(request, action):
             new_feature.save()
             selected_feature_form = FeatureForm(request.POST, instance=new_feature)
             selected_feature_form.save()
-            selected_variant.feature.add(new_feature)
+            selected_variant.feature_set.add(new_feature)
             return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_feature':
         if request.method == 'POST':
             feature_id = request.POST.get('feature_id', False)
             selected_feature = Feature.objects.all().get(id=feature_id)
+            selected_feature.variant = None
+            selected_feature.save()
             selected_feature.delete()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'edit_feature':
@@ -577,12 +577,14 @@ def manage_products(request, action):
             new_description.save()
             selected_description_form = DescriptionForm(request.POST, instance=new_description)
             selected_description_form.save()
-            selected_variant.description.add(new_description)
+            selected_variant.description_set.add(new_description)
             return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_description':
         if request.method == 'POST':
             description_id = request.POST.get('description_id', False)
             selected_description = Description.objects.all().get(id=description_id)
+            selected_description.variant = None
+            selected_description.save()
             selected_description.delete()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'edit_description':

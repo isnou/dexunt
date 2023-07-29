@@ -8,10 +8,11 @@ from PIL import Image
 class Review(models.Model):
     # ----- Technical ----- #
     show = models.BooleanField(default=True)
-    user_token = models.CharField(max_length=24, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    # ----- relations ----- #
+    option = models.ForeignKey(
+        'management.Option', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
-    client_name = models.CharField(max_length=100, blank=True, null=True)
     content = models.CharField(max_length=500, blank=True, null=True)
     rates = models.IntegerField(default=0)
 #                                                                        #
@@ -31,6 +32,9 @@ class Album(models.Model):
 class Feature(models.Model):
     # ----- Technical ----- #
     tags = models.CharField(max_length=2000, blank=True, null=True)
+    # ----- relations ----- #
+    variant = models.ForeignKey(
+        'management.Variant', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     en_name = models.CharField(max_length=100, blank=True, null=True)
     fr_name = models.CharField(max_length=100, blank=True, null=True)
@@ -59,6 +63,9 @@ class Description(models.Model):
     # ----- Technical ----- #
     has_image = models.BooleanField(default=False)
     image_to_the_right = models.BooleanField(default=False)
+    # ----- relations ----- #
+    variant = models.ForeignKey(
+        'management.Variant', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     en_title = models.CharField(max_length=100, blank=True, null=True)
     fr_title = models.CharField(max_length=100, blank=True, null=True)
@@ -88,10 +95,9 @@ class Option(models.Model):
     max_quantity = models.IntegerField(default=0)
     tags = models.CharField(max_length=800, blank=True, null=True)
     # ----- relations ----- #
-    # related to many selected_products #
+    # many selected_products #
     variant = models.ForeignKey(
         'management.Variant', on_delete=models.CASCADE, null=True)
-    review = models.ManyToManyField(Review, blank=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
@@ -158,10 +164,10 @@ class Variant(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     tags = models.CharField(max_length=9000, blank=True, null=True)
     # ----- relations ----- #
-    # related to many options #
-    # related to many albums #
-    feature = models.ManyToManyField(Feature, blank=True)
-    description = models.ManyToManyField(Description, blank=True)
+    # many options #
+    # many album_set #
+    # many feature_set #
+    # many description_set #
     product = models.ForeignKey(
         'management.Product', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -215,32 +221,38 @@ class Variant(models.Model):
                 o.pk = None
                 o.save()
                 new_variant.option_set.add(o)
-        if self.feature.all().count:
-            for f in self.feature.all():
+        if self.feature_set.all().count:
+            for f in self.feature_set.all():
                 f.pk = None
                 f.save()
-                new_variant.feature.add(f)
-        if self.description.all().count:
-            for d in self.description.all():
+                new_variant.feature_set.add(f)
+        if self.description_set.all().count:
+            for d in self.description_set.all():
                 d.pk = None
                 d.save()
-                new_variant.description.add(d)
+                new_variant.description_set.add(d)
         self.product.variant_set.add(new_variant)
     def activate(self):
-        deactivate = True
-        for option in self.option_set.all():
-            if option.is_activated:
-                deactivate = False
-        if not deactivate:
+        if self.product.store.is_activated:
+            deactivate = True
+            for option in self.option_set.all():
+                if option.is_activated:
+                    deactivate = False
+            if not deactivate:
+                self.is_activated = True
+        else:
             self.is_activated = True
         super().save()
     def deactivate(self):
+        for o in self.option_set.all():
+            o.is_activated = False
+            o.save()
         self.is_activated = False
         super().save()
 #                                                                        #
 class Product(models.Model):
     # ----- relations ----- #
-    # related to many variants #
+    # many variants #
     store = models.ForeignKey(
         'management.Store', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -261,11 +273,14 @@ class Store(models.Model):
     # ----- Technical ----- #
     tags = models.CharField(max_length=5000, blank=True, null=True)
     is_activated = models.BooleanField(default=False)
+    # ----- #
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
+    # ----- relations ----- #
+    # many products #
+    # one user #
     # ----- content ----- #
     name = models.CharField(max_length=200, unique=True, null=True)
-    # ----- relations ----- #
-    # related to many products #
-    # ----- #
     en_activity = models.CharField(max_length=300, blank=True, null=True)
     fr_activity = models.CharField(max_length=300, blank=True, null=True)
     ar_activity = models.CharField(max_length=300, blank=True, null=True)
