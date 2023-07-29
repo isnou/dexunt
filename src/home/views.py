@@ -13,8 +13,8 @@ from authentication.models import User
 def home_page(request):
 
     for c in Cart.objects.all():
-        if not c.user:
-            c.delete()
+        if c.user is not None:
+            c.save()
 
     selected_cart = get_cart(request)
 
