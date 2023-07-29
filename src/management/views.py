@@ -60,10 +60,12 @@ def manage_users(request, action):
         users_list = User.objects.all().exclude(username=request.user.username)
 
         carts = Cart.objects.all()
+
         for c in Cart.objects.all():
             for u in User.objects.all():
-                if c.ref == u.cart.ref:
-                    carts.exclude(ref=u.cart.ref)
+                if c.id == u.cart.id:
+                    carts.exclude(id=u.cart.id)
+
 
 
         if request.GET.get('init', None):
