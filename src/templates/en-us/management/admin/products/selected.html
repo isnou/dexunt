@@ -175,16 +175,16 @@
                 </h6>
 
                 <h6 class="text-body">
-                  {% if variant.feature.all.count %}
-                  <small>Features : {{ variant.feature.all.count }}</small>
+                  {% if variant.feature_set.all.count %}
+                  <small>Features : {{ variant.feature_set.all.count }}</small>
                   {% else %}
                   <span class="badge bg-warning">no features</span>
                   {% endif %}
                 </h6>
 
                 <h6 class="text-body">
-                  {% if variant.description.all.count %}
-                  <small>Descriptions : {{ variant.description.all.count }}</small>
+                  {% if variant.description_set.all.count %}
+                  <small>Descriptions : {{ variant.description_set.all.count }}</small>
                   {% else %}
                   <span class="badge bg-warning">no descriptions</span>
                   {% endif %}

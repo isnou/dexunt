@@ -534,7 +534,7 @@
         <div class="table-responsive">
           <table id="feature_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
-            {% for feature in selected_variant.feature.all %}
+            {% for feature in selected_variant.feature_set.all %}
             <tr>
               <!-- feature action -->
               <td class="text-start">
@@ -602,7 +602,7 @@
         <div class="table-responsive">
           <table id="description_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
-            {% for description in selected_variant.description.all %}
+            {% for description in selected_variant.description_set.all %}
             <tr>
               <!-- description action -->
               <td class="text-start">
@@ -995,7 +995,7 @@
 {% endfor %}
 
 <!-- features modals & forms -->
-{% for feature in selected_variant.feature.all %}
+{% for feature in selected_variant.feature_set.all %}
 <!-- delete feature form -->
 <form action="{% url 'admin-manage-products' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
     {% csrf_token %}
@@ -1101,7 +1101,7 @@
 {% endfor %}
 
 <!-- description modals & forms -->
-{% for description in selected_variant.description.all %}
+{% for description in selected_variant.description_set.all %}
 <!-- delete description form -->
 <form action="{% url 'admin-manage-products' 'delete_description' %}" id="delete_description_{{ description.id }}" class="js-validate need-validate" novalidate method="post">
   {% csrf_token %}
