@@ -59,6 +59,14 @@ def manage_users(request, action):
         url = direction + "/management/admin/users/list.html"
         users_list = User.objects.all().exclude(username=request.user.username)
 
+        carts = Cart.objects.all()
+        
+        for c in Cart.objects.all():
+            for u in users_list:
+                if c.id == u.cart.id:
+                    carts.exclude(id=u.cart.id)
+        for c in carts:
+            c.delete()
 
 
         if request.GET.get('init', None):
