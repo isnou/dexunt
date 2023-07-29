@@ -11,11 +11,12 @@ from authentication.models import User
 
 
 def home_page(request):
-    
+
     for c in Cart.objects.all():
-        if not c.User:
+        if not c.user:
             c.delete()
 
+    selected_cart = get_cart(request)
 
     if request.user.is_authenticated:
         if request.user.is_provider:
@@ -26,7 +27,7 @@ def home_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    selected_cart = get_cart(request)
+
     url = direction + "/home/main.html"
 
     if request.session.get('error_messages'):
