@@ -60,11 +60,12 @@ def manage_users(request, action):
         users_list = User.objects.all().exclude(username=request.user.username)
 
         carts = Cart.objects.all()
-
         for c in Cart.objects.all():
             for u in User.objects.all():
                 if c.id == u.cart.id:
                     carts = carts.exclude(id=u.cart.id)
+        for c in carts:
+            c.delete()
 
 
 
@@ -99,7 +100,6 @@ def manage_users(request, action):
             users_list = paginator.page(paginator.num_pages)
 
         context = {
-            'carts': carts,
             'nav_side': 'users',
             'search_key_word': search_key_word,
             'filtered': filtered,
