@@ -64,9 +64,9 @@ def manage_users(request, action):
             cart_refs.append(u.cart.ref)
         carts = Cart.objects.all()
         for c in Cart.objects.all():
-            for ref in refs:
-                if c.ref == ref:
-                    carts.exclude(ref=ref)
+            for cart_ref in cart_refs:
+                if c.ref == cart_ref:
+                    carts.exclude(ref=cart_ref)
         for c in carts:
             c.delete()
 
