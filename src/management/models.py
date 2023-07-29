@@ -15,7 +15,7 @@ class Review(models.Model):
     user = models.ForeignKey(
         'authentication.User', on_delete=models.CASCADE, null=True)
     user_2 = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, null=True)
+        'authentication.User', on_delete=models.CASCADE, related_name='review_2', null=True)
     # ----- content ----- #
     content = models.CharField(max_length=500, blank=True, null=True)
     rates = models.IntegerField(default=0)
