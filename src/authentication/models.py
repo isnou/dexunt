@@ -64,10 +64,10 @@ class User(AbstractUser):
     tags = models.CharField(max_length=5000, blank=True, null=True)
     points = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
-    token = models.CharField(max_length=24, unique=True, null=True)
     # ----- relations ----- #
     # many selected_products #
     # many delivery_addresses #
+    # many order_set #
     wallet = models.OneToOneField(
         Wallet,
         on_delete=models.PROTECT,
@@ -85,7 +85,6 @@ class User(AbstractUser):
         blank=True,
         null=True
     )
-    order = models.ManyToManyField(Order, blank=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=300, blank=True, null=True)
     def get_image_path(self, filename):
@@ -143,7 +142,6 @@ class User(AbstractUser):
                 if o.status() == 'confirmation':
                     count += 1
             return count
-
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:
