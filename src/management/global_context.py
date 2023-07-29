@@ -3,7 +3,7 @@ from home.models import Order
 def orders(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
-            new_orders_count = Order.objects.all().filter(is_placed=True).count()
+            new_orders_count = Order.objects.all().filter(is_empty=True).count()
         else:
             new_orders_count = None
     else:
