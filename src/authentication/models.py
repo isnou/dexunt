@@ -120,7 +120,7 @@ class User(AbstractUser):
             self.is_member = True
         super().save()
     def new_orders(self):
-        if self.is_admin or self.is_member:
+        if self.is_admin or self.is_member or self.is_superuser:
             count = 0
             for o in Order.objects.all():
                 if o.status == 'confirmation':
