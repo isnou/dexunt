@@ -16,11 +16,11 @@ class SelectedProduct(models.Model):
     is_refunded_at = models.DateTimeField(blank=True, null=True)
     # ----- relations ----- #
     option = models.ForeignKey(
-        'management.Option', on_delete=models.CASCADE, null=True)
+        'management.Option', on_delete=models, related_name='selected_products'.CASCADE, null=True)
     cart = models.ForeignKey(
-        'home.Cart', on_delete=models.CASCADE, null=True)
+        'home.Cart', on_delete=models.CASCADE, related_name='selected_products', null=True)
     order = models.ForeignKey(
-        'home.Order', on_delete=models.CASCADE, null=True)
+        'home.Order', on_delete=models.CASCADE, related_name='selected_products', null=True)
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
     retained_points = models.IntegerField(default=0)
@@ -142,8 +142,8 @@ class Cart(models.Model):
             self.ref = functions.serial_number_generator(20).upper()
         super().save()
     def add_product(self, option):
-        if self.selectedproduct_set.all().filter(option_id=option.id).exists():
-            selected_product = self.selectedproduct_set.all().get(option_id=option.id)
+        if self.selected_products.all().filter(option_id=option.id).exists():
+            selected_product = self.selected_products.all().get(option_id=option.id)
             selected_product.quantity += 1
             selected_product.save()
         else:
@@ -152,7 +152,7 @@ class Cart(models.Model):
             selected_product.save()
     def price(self):
         price = 0
-        for p in self.selectedproduct_set.all():
+        for p in self.selected_products.all():
             price += p.total_price()
         return price
     def total_price(self):
@@ -167,7 +167,7 @@ class Cart(models.Model):
         return total_price
     def points(self):
         points = 0
-        for p in self.selectedproduct_set.all():
+        for p in self.selected_products.all():
             points += p.points()
         return points
 #                                                                        #
@@ -250,22 +250,23 @@ class Order(models.Model):
             self.ref = functions.serial_number_generator(6).upper()
         super().save()
     def place_order(self, request):
-        for p in self.selectedproduct_set.all():
+        for p in self.selected_products.all():
             p.place_order()
         self.is_empty = False
         self.is_placed_at = timezone.now()
         self.retained_points = self.points()
         self.retained_price = self.price()
         self.retained_total_price = self.total_price()
-        request.session['order_ref'] = None
-        request.session['cart_ref'] = None
+        if not request.user.is_authenticated:
+            request.session['order_ref'] = None
+            request.session['cart_ref'] = None
         super().save()
     def delivery_price(self):
         delivery_q = 0
-        if self.selectedproduct_set.all().count():
-            for p in self.selectedproduct_set.all():
+        if self.selected_products.all().count():
+            for p in self.selected_products.all():
                 delivery_q += p.option.delivery_quotient
-            delivery_q = float(delivery_q / self.selectedproduct_set.all().count())
+            delivery_q = float(delivery_q / self.selected_products.all().count())
 
             if self.municipality:
                 if self.delivery_type == 'HOME':
@@ -275,7 +276,7 @@ class Order(models.Model):
         super().save()
     def price(self):
         price = 0
-        for p in self.selectedproduct_set.all():
+        for p in self.selected_products.all():
             price += p.total_price()
         return price
     def total_price(self):
@@ -293,7 +294,7 @@ class Order(models.Model):
         return total_price
     def points(self):
         points = 0
-        for p in self.selectedproduct_set.all():
+        for p in self.selected_products.all():
             points += p.points()
         return points
     def status(self):
@@ -347,10 +348,7 @@ def get_order(request):
             selected_order.save()
             request.user.order.add(selected_order)
 
-    #selected_cart.coupon = None
-    #selected_cart.save()
-    for p in selected_cart.selectedproduct_set.all():
-        #p.cart = None
+    for p in selected_cart.selected_products.all():
         p.order = selected_order
         p.save()
 

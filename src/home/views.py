@@ -107,7 +107,7 @@ def shopping_cart_page(request, action):
     if action == 'main':
         url = direction + "/home/regular/shopping-cart.html"
 
-        if selected_cart.selectedproduct_set.all().count():
+        if selected_cart.selected_products.all().count():
             context = {
                 'selected_cart': selected_cart,
                 'coupon_message': coupon_message,
@@ -137,7 +137,7 @@ def shopping_cart_page(request, action):
             selected_product.save()
         else:
             selected_product.delete()
-        if selected_cart.selectedproduct_set.all().count():
+        if selected_cart.selected_products.all().count():
             return redirect('shopping-cart', 'main')
         else:
             return redirect('home-page')
