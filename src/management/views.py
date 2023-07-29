@@ -66,7 +66,8 @@ def manage_users(request, action):
                     carts = carts.exclude(id=u.cart.id)
         for c in carts:
             if not c.selected_products.all().count():
-                c.delete()
+                if not c.created_at <= timezone.now():
+                    c.delete()
 
 
 
