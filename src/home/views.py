@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from add_ons import functions
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Cart, SelectedProduct, get_cart, get_order, place_order
+from .models import Cart, SelectedProduct, get_cart, get_order
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
 from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store
@@ -203,7 +203,7 @@ def order_page(request, action):
         }
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
     if action == 'place_order':
-        place_order(request, selected_cart, selected_order)
+        selected_order.place_order()
 
         if not request.user.is_authenticated:
             url = direction + "/home/regular/guest/checkout-review.html"
@@ -211,7 +211,6 @@ def order_page(request, action):
             url = direction + "/home/regular/member/checkout-review.html"
 
         context = {
-            'selected_cart': selected_cart,
             'selected_order': selected_order,
         }
         return render(request, url, context)
