@@ -64,8 +64,7 @@ def manage_users(request, action):
             for u in User.objects.all():
                 if c.ref == u.cart.ref:
                     carts.exclude(ref=u.cart.ref)
-        for c in carts:
-            c.delete()
+
 
         if request.GET.get('init', None):
             request.session['users_key_word']=None
@@ -98,6 +97,7 @@ def manage_users(request, action):
             users_list = paginator.page(paginator.num_pages)
 
         context = {
+            'carts': carts,
             'nav_side': 'users',
             'search_key_word': search_key_word,
             'filtered': filtered,
