@@ -7,23 +7,13 @@ from phonenumber_field.modelfields import PhoneNumberField
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
     ref = models.CharField(max_length=6, unique=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
     lack_of_quantity = models.BooleanField(default=False)
     # ----- #
-    has_been_ordered = models.BooleanField(default=False)
-    has_been_ordered_at = models.DateTimeField(blank=True, null=True)  # -- by the provider
-    # ----- #
-    is_in_quality_control = models.BooleanField(default=False)
-    is_in_quality_control_since = models.DateTimeField(blank=True, null=True)
-    # ----- #
-    is_processed = models.BooleanField(default=False)
-    is_processed_at = models.DateTimeField(blank=True, null=True)  # -- by a member
-    # ----- #
-    is_on_delivery = models.BooleanField(default=False)
-    is_on_delivery_since = models.DateTimeField(blank=True, null=True)
-    # ----- #
-    is_paid = models.BooleanField(default=False)
-    is_paid_at = models.DateTimeField(blank=True, null=True)  # -- by a member
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_ordered_at = models.DateTimeField(blank=True, null=True) # -- a new confirmed order
+    is_prepared_at = models.DateTimeField(blank=True, null=True) # -- order prepared by the provider
+    is_paid_at = models.DateTimeField(blank=True, null=True)
+    is_refunded_at = models.DateTimeField(blank=True, null=True)
     # ----- relations ----- #
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
@@ -33,10 +23,26 @@ class SelectedProduct(models.Model):
         'home.Order', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     quantity = models.IntegerField(default=1)
+    retained_points = models.IntegerField(default=0)
+    retained_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    retained_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
+        super().save()
+    def quantity_control(self):
+        if self.quantity > self.option.quantity:
+            self.lack_of_quantity = True
+        super().save()
+    def place_order(self):
+        self.quantity_control()
+        self.cart.coupon = None
+        self.cart.save()
+        self.cart = None
+        self.retained_points = self.points()
+        self.retained_price = self.price()
+        self.retained_total_price = self.total_price()
         super().save()
     def image(self):
         if self.option.has_image:
@@ -67,6 +73,17 @@ class SelectedProduct(models.Model):
         return self.option.variant.product.ar_title
     def ar_detail(self):
         return self.option.variant.ar_spec + ' ' + self.option.ar_value
+    def status(self):
+        status = 'created'
+        if self.is_ordered_at:
+            status = 'pending'
+        if self.is_prepared_at:
+            status = 'prepared'
+        if self.is_paid_at:
+            status = 'paid'
+        if self.is_refunded_at:
+            status = 'refunded'
+        return  status
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
@@ -181,52 +198,37 @@ class Order(models.Model):
     gift_card = models.BooleanField(default=False)
     # ----- #
     ref = models.CharField(max_length=6, unique=True, null=True)
-    lack_of_quantity = models.BooleanField(default=False)
     # ----- #
-    is_empty = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_empty = models.BooleanField(default=True) # -- new order
     # ----- #
-    is_placed = models.BooleanField(default=False)
-    is_placed_at = models.DateTimeField(blank=True, null=True)
+    is_placed_at = models.DateTimeField(blank=True, null=True) # -- waiting for confirmation
     # ----- #
-    is_pending = models.BooleanField(default=False)
-    is_pending_since = models.DateTimeField(blank=True, null=True)
-    is_pending_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    is_pending_since = models.DateTimeField(blank=True, null=True) # -- no answers
+    number_of_calls = models.IntegerField(default=0)
     # ----- #
-    is_cancelled = models.BooleanField(default=False)
-    is_cancelled_at = models.DateTimeField(blank=True, null=True)
-    is_cancelled_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    is_cancelled_at = models.DateTimeField(blank=True, null=True) # -- by the customer or after multiple calls
+    is_cancelled_by = models.CharField(max_length=24, blank=True, null=True)
     # ----- #
-    is_confirmed = models.BooleanField(default=False)
-    is_confirmed_at = models.DateTimeField(blank=True, null=True)
-    is_confirmed_by = models.CharField(max_length=24, blank=True, null=True) # -- by a member
+    is_confirmed_at = models.DateTimeField(blank=True, null=True) # -- confirmed order and waiting for providers
+    is_confirmed_by = models.CharField(max_length=24, blank=True, null=True)
     # ----- #
-    is_being_processed = models.BooleanField(default=False)
-    is_being_processed_since = models.DateTimeField(blank=True, null=True) # -- by providers
+    is_being_processed_since = models.DateTimeField(blank=True, null=True) # -- all products prepared by different providers
     # ----- #
-    is_in_quality_control = models.BooleanField(default=False)
-    is_in_quality_control_since = models.DateTimeField(blank=True, null=True)
-    is_in_quality_control_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_in_quality_control_since = models.DateTimeField(blank=True, null=True) # -- check before expedition
+    is_in_quality_control_by = models.CharField(max_length=24, blank=True, null=True)
     # ----- #
-    is_processed = models.BooleanField(default=False)
-    is_processed_at = models.DateTimeField(blank=True, null=True)
-    is_processed_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_on_delivery_since = models.DateTimeField(blank=True, null=True) # -- products shipped
+    is_on_delivery_by = models.CharField(max_length=24, blank=True, null=True)
     # ----- #
-    is_on_delivery = models.BooleanField(default=False)
-    is_on_delivery_since = models.DateTimeField(blank=True, null=True)
-    is_on_delivery_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_paid_at = models.DateTimeField(blank=True, null=True) # -- received and paid by the client
+    is_paid_by = models.CharField(max_length=24, blank=True, null=True)
     # ----- #
-    is_paid = models.BooleanField(default=False)
-    is_paid_at = models.DateTimeField(blank=True, null=True)
-    is_paid_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
-    # ----- #
-    refund_request = models.BooleanField(default=False)
     refund_request_at = models.DateTimeField(blank=True, null=True)
-    refund_request_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    refund_request_by = models.CharField(max_length=24, blank=True, null=True)
     # ----- #
-    is_refunded = models.BooleanField(default=False)
     is_refunded_at = models.DateTimeField(blank=True, null=True)
-    is_refunded_by = models.CharField(max_length=24, blank=True, null=True)  # -- by a member
+    is_refunded_by = models.CharField(max_length=24, blank=True, null=True)
     # ----- relations ----- #
     # related to many selected_products #
     coupon = models.ForeignKey(
@@ -237,12 +239,24 @@ class Order(models.Model):
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
     address = models.CharField(max_length=250, blank=True, null=True)
+    retained_points = models.IntegerField(default=0)
+    retained_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    retained_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # --------------------------------- order info ---------------------------------------------
     delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
+        super().save()
+    def place_order(self):
+        for p in self.selectedproduct_set.all():
+            p.place_order()
+        self.is_empty = False
+        self.is_placed_at = timezone.now()
+        self.retained_points = self.points()
+        self.retained_price = self.price()
+        self.retained_total_price = self.total_price()
         super().save()
     def delivery_price(self):
         delivery_q = 0
@@ -280,6 +294,29 @@ class Order(models.Model):
         for p in self.selectedproduct_set.all():
             points += p.points()
         return points
+    def status(self):
+        status = 'created'
+        if self.is_placed_at:
+            status = 'confirmation'
+        if self.is_pending_since:
+            status = 'pending'
+        if self.is_cancelled_at:
+            status = 'cancelled'
+        if self.is_confirmed_at:
+            status = 'confirmed'
+        if self.is_being_processed_since:
+            status = 'processed'
+        if self.is_in_quality_control_since:
+            status = 'quality'
+        if self.is_on_delivery_since:
+            status = 'delivery'
+        if self.is_paid_at:
+            status = 'paid'
+        if self.refund_request_at:
+            status = 'dispute'
+        if self.is_refunded_at:
+            status = 'refund'
+        return  status
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
