@@ -12,7 +12,7 @@ from authentication.models import User
 
 def home_page(request):
     for c in Cart.objects.all():
-        if not c.user:
+        if not c.get_user():
             c.delete()
 
     if request.user.is_authenticated:

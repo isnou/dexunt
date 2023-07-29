@@ -56,19 +56,16 @@ class User(AbstractUser):
     wallet = models.OneToOneField(
         Wallet,
         on_delete=models.PROTECT,
-        related_name='user',
         null=True
     )
     cart = models.OneToOneField(
         Cart,
         on_delete=models.PROTECT,
-        related_name='user',
         null=True
     )
     store = models.OneToOneField(
         Store,
         on_delete=models.PROTECT,
-        related_name='user',
         null=True
     )
     order = models.ManyToManyField(Order, blank=True)
