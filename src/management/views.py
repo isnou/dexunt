@@ -64,7 +64,7 @@ def manage_users(request, action):
         for c in Cart.objects.all():
             for u in User.objects.all():
                 if c.id == u.cart.id:
-                    carts.exclude(id=u.cart.id)
+                    carts = carts.exclude(id=u.cart.id)
 
 
 
