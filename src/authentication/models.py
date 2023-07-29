@@ -119,6 +119,14 @@ class User(AbstractUser):
         if new_role == 'member':
             self.is_member = True
         super().save()
+    def new_orders(self):
+        if self.is_admin or self.is_member:
+            count = 0
+            for o in Order.objects.all():
+                if o.status == 'confirmation':
+                    count += 1
+                return count
+
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:

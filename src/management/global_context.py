@@ -1,9 +1,7 @@
-from home.models import Order
-
 def orders(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
-            new_orders_count = Order.objects.all().filter(status='confirmation').count()
+            new_orders_count = request.user.new_orders
         else:
             new_orders_count = None
     else:
