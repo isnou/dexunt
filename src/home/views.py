@@ -11,11 +11,11 @@ from authentication.models import User
 
 
 def home_page(request):
+    
     for c in Cart.objects.all():
-        if c.user:
-            c.save()
-        else:
+        if not c.User:
             c.delete()
+
 
     if request.user.is_authenticated:
         if request.user.is_provider:
