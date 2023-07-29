@@ -211,9 +211,9 @@ class Order(models.Model):
     # ----- relations ----- #
     # related to many selected_products #
     coupon = models.ForeignKey(
-        'home.Coupon', on_delete=models.CASCADE, null=True)
+        'home.Coupon', blank=True, on_delete=models.CASCADE, null=True)
     municipality = models.ForeignKey(
-        'home.Municipality', on_delete=models.CASCADE, null=True)
+        'home.Municipality', blank=True, on_delete=models.CASCADE, null=True)
     # ----- #
     placed_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='placed_orders', blank=True, null=True)
     cancelled_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='cancelled_orders', blank=True, null=True)
