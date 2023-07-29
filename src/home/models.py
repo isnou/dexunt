@@ -170,6 +170,8 @@ class Cart(models.Model):
         for p in self.selectedproduct_set.all():
             points += p.points()
         return points
+    def get_user(self):
+        return self.user
 #                                                                        #
 def get_cart(request):
     if not request.user.is_authenticated:
