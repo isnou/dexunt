@@ -16,7 +16,7 @@ class SelectedProduct(models.Model):
     is_refunded_at = models.DateTimeField(blank=True, null=True)
     # ----- relations ----- #
     option = models.ForeignKey(
-        'management.Option', on_delete=models, related_name='selected_products'.CASCADE, null=True)
+        'management.Option', on_delete=models.CASCADE, related_name='selected_products', null=True)
     cart = models.ForeignKey(
         'home.Cart', on_delete=models.CASCADE, related_name='selected_products', null=True)
     order = models.ForeignKey(
