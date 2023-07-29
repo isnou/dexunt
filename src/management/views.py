@@ -65,7 +65,8 @@ def manage_users(request, action):
                 if c.id == u.cart.id:
                     carts = carts.exclude(id=u.cart.id)
         for c in carts:
-            c.delete()
+            if not c.selected_products.all().count():
+                c.delete()
 
 
 

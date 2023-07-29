@@ -44,9 +44,6 @@
         </div>
       <!-- End Search -->
     </div>
-    {% for c in carts %}
-    {{ c.ref }}
-    {% endfor %}
     <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
       {% if filtered == 'all' %}
       <button class="btn btn-white btn-sm me-2" disabled>
@@ -149,7 +146,7 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ selected_user.cart.ref }}</span>
+            <span class="d-block fs-5">{{ selected_user.cart.selected_products.all.count }}</span>
           </td>
 
           <td>
