@@ -121,7 +121,11 @@ class User(AbstractUser):
         super().save()
     def new_orders(self):
         if self.is_superuser:
-            return 15
+            count = 0
+            for o in Order.objects.all():
+                if o.status() == 'confirmation':
+                    count += 1
+                return count
 
 #                                                                        #
 def users_filter(request, users_list, new_filter):
