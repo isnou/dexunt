@@ -100,7 +100,7 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     def save(self, *args, **kwargs):
-        self.file_name = 'profile_photos' + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/' + self.token + '/'
+        self.file_name = 'profile_photos' + '/' + dateformat.format(timezone.now(), 'Y/m/d/H/i/s') + '/'
         if not self.wallet:
             new_wallet = Wallet()
             new_wallet.save()
