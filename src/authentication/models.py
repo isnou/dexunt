@@ -125,7 +125,7 @@ class User(AbstractUser):
             for o in Order.objects.all():
                 if o.status() == 'confirmation':
                     count += 1
-                return count
+            return count
 
 #                                                                        #
 def users_filter(request, users_list, new_filter):
