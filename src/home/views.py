@@ -11,11 +11,6 @@ from authentication.models import User
 
 
 def home_page(request):
-
-    for c in Cart.objects.all():
-        if c.user:
-            c.save()
-
     selected_cart = get_cart(request)
 
     if request.user.is_authenticated:

@@ -249,7 +249,7 @@ class Order(models.Model):
         if not self.ref:
             self.ref = functions.serial_number_generator(6).upper()
         super().save()
-    def place_order(self):
+    def place_order(self, request):
         for p in self.selectedproduct_set.all():
             p.place_order()
         self.is_empty = False
