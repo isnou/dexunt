@@ -1,7 +1,7 @@
 def orders(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
-            new_orders_count = request.user.new_orders
+            new_orders_count = 19
         else:
             new_orders_count = None
     else:
