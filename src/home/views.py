@@ -11,6 +11,10 @@ from authentication.models import User
 
 
 def home_page(request):
+    for c in Cart.objects.all():
+        if not c.user:
+            c.delete()
+
     if request.user.is_authenticated:
         if request.user.is_provider:
             return redirect('provider-home', 'main')
@@ -203,7 +207,7 @@ def order_page(request, action):
         }
         return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
     if action == 'place_order':
-        selected_order.place_order()
+        selected_order.place_order(request)
 
         if not request.user.is_authenticated:
             url = direction + "/home/regular/guest/checkout-review.html"

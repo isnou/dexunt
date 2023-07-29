@@ -257,6 +257,8 @@ class Order(models.Model):
         self.retained_points = self.points()
         self.retained_price = self.price()
         self.retained_total_price = self.total_price()
+        request.session['order_ref'] = None
+        request.session['cart_ref'] = None
         super().save()
     def delivery_price(self):
         delivery_q = 0
