@@ -12,6 +12,10 @@ class Review(models.Model):
     # ----- relations ----- #
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, null=True)
+    user_2 = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     content = models.CharField(max_length=500, blank=True, null=True)
     rates = models.IntegerField(default=0)
