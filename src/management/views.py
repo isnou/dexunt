@@ -62,11 +62,10 @@ def manage_users(request, action):
         carts = Cart.objects.all()
         for c in Cart.objects.all():
             for u in User.objects.all():
-                if c.id == u.cart.id:
-                    carts.exclude(id=u.cart.id)
+                if c.ref == u.cart.ref:
+                    carts.exclude(ref=u.cart.ref)
         for c in carts:
             c.delete()
-
 
         if request.GET.get('init', None):
             request.session['users_key_word']=None
