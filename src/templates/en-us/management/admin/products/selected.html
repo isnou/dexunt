@@ -82,28 +82,26 @@
                     <img class="avatar avatar-lg" src="{% static 'home-page/images/custom/no-image.png' %}">
                     {% endif %}
                   </div>
+
+                  <div class="flex-grow-1 ms-3">
+                    {% if not variant.is_available %}
+                    <small>
+                      <span class="badge bg-danger">unavailable</span>
+                    </small>
+                    {% endif %}
+
+                    {% if not variant.is_activated %}
+                    <small>
+                      <span class="badge bg-warning">deactivated</span>
+                    </small>
+                    {% endif %}
+
+                  </div>
                 </a>
               </td>
 
               <!-- actions -->
               <td>
-
-
-                <div class="flex-shrink-0">
-                {% if not variant.is_available %}
-                <small>
-                  <span class="badge bg-danger">unavailable</span>
-                </small>
-                {% endif %}
-
-                {% if not variant.is_activated %}
-                <small>
-                  <span class="badge bg-warning">deactivated</span>
-                </small>
-                {% endif %}
-                </div>
-
-                <div class="flex-grow-1 ms-3">
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_variant_modal_{{ variant.id }}">
@@ -117,7 +115,6 @@
                   <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
                 {% endif %}
-                </div>
 
 
               </td>
