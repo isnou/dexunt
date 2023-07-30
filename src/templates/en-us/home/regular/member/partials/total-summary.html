@@ -32,9 +32,9 @@
   </li>
 </ul>
 
-
 <div class="px-4 py-4 d-grid">
   <button class="btn btn-primary btn-lg justify-content-between align-items-center" form="order_form">
     Checkout
+    ({{ selected_order.total_price|floatformat:"0g" }} <small>DZD</small>)
   </button>
 </div>

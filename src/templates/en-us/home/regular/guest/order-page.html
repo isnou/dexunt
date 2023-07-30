@@ -114,43 +114,35 @@
                 </li>
                 {% endfor %}
               </ul>
+              <div id="total_summary">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item px-4 py-3" >
+                    <div class="d-flex align-items-center justify-content-between   mb-2">
+                      <div>Item Subtotal</div>
+                      <div class="fw-bold"> {{ selected_order.price|floatformat:"0g" }} <small>DZD</small></div>
+                    </div>
 
-                <div id="total_summary">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item px-4 py-3" >
-                      <div class="d-flex align-items-center justify-content-between   mb-2">
-                        <div>Item Subtotal</div>
-                        <div class="fw-bold"> {{ selected_order.price|floatformat:"0g" }} <small>DZD</small></div>
-                      </div>
+                    {% if selected_order.coupon %}
+                    {% if selected_order.coupon.is_subtractive %}
+                    <div class="d-flex align-items-center justify-content-between   mb-2">
+                      <div>Discount</div>
+                      <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>DZD</small></div>
+                    </div>
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-between   mb-2">
+                      <div>Discount</div>
+                      <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>%</small></div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                  </li>
 
-                      {% if selected_order.coupon %}
-                      {% if selected_order.coupon.is_subtractive %}
-                      <div class="d-flex align-items-center justify-content-between   mb-2">
-                        <div>Discount</div>
-                        <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>DZD</small></div>
-                      </div>
-                      {% else %}
-                      <div class="d-flex align-items-center justify-content-between   mb-2">
-                        <div>Discount</div>
-                        <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>%</small></div>
-                      </div>
-                      {% endif %}
-                      {% endif %}
-                    </li>
-
-                    <li class="list-group-item px-4 py-3">
-                      <div class="d-flex align-items-center justify-content-between fw-bold">
-                        <div> Total</div><div>{{ selected_order.total_price|floatformat:"0g" }} <small>DZD</small></div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-
-              <div class="px-4 py-4 d-grid">
-                <button class="btn btn-primary btn-lg justify-content-between align-items-center" form="order_form">
-                  Checkout
-                </button>
+                  <li class="list-group-item px-4 py-3">
+                    <div class="d-flex align-items-center justify-content-between fw-bold">
+                      <div> Total</div><div>{{ selected_order.total_price|floatformat:"0g" }} <small>DZD</small></div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
