@@ -144,6 +144,7 @@ class User(AbstractUser):
             if default == 'true':
                 for a in self.delivery_addresses.all():
                     a.default = False
+                    a.save()
                 new_address.default = True
             new_address.save()
     def new_orders(self):
