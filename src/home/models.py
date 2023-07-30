@@ -215,13 +215,20 @@ class Order(models.Model):
     municipality = models.ForeignKey(
         'home.Municipality', blank=True, on_delete=models.CASCADE, null=True)
     # ----- #
-    placed_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='placed_orders', blank=True, null=True)
-    cancelled_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='cancelled_orders', blank=True, null=True)
-    confirmed_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='confirmed_orders', blank=True, null=True)
-    quality_control_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='orders_under_quality_control', blank=True, null=True)
-    on_delivery_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='orders_on_delivery', blank=True, null=True)
-    paid_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='paid_products', blank=True, null=True)
-    refunded_by = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='refunded_orders', blank=True, null=True)
+    placed_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='placed_orders', blank=True, null=True)
+    cancelled_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='cancelled_orders', blank=True, null=True)
+    confirmed_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='confirmed_orders', blank=True, null=True)
+    quality_control_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='orders_under_quality_control', blank=True, null=True)
+    on_delivery_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='orders_on_delivery', blank=True, null=True)
+    paid_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='paid_products', blank=True, null=True)
+    refunded_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='refunded_orders', blank=True, null=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
