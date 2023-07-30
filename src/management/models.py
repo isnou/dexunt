@@ -330,6 +330,7 @@ class Store(models.Model):
         for p in self.product_set.all():
             for v in p.variant_set.all():
                 v.deactivate()
+        self.is_activated = False
         super().save()
 #                                                                        #
 class FlashProduct(models.Model):
