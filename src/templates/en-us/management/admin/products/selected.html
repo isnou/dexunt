@@ -84,6 +84,7 @@
                   </div>
 
                   <div class="ms-3">
+                    <div class="col">
                       {% if not variant.is_available %}
                       <small>
                         <span class="badge bg-danger">unavailable</span>
@@ -95,8 +96,9 @@
                         <span class="badge bg-danger">deactivated</span>
                       </small>
                       {% endif %}
+                      </div>
 
-<div class="row">
+<div class="col">
                   {% if variant.album_set.all.count %}
                   <small>Photos : {{ variant.album_set.all.count }}</small>
                   {% else %}
