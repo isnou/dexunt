@@ -79,6 +79,30 @@
 
             <div class="mt-5">
               <div class="row">
+                {% for address in user.delivery_addresses.all %}
+                <div class="col-lg-6 col-12 mb-4">
+                  <div class="card card-body p-6 ">
+                    <div class="form-check mb-4">
+                      {% if address.is_default %}
+                      <input class="form-check-input" type="radio" name="address" checked>
+                      {% else %}
+                      <input class="form-check-input" type="radio" name="address">
+                      {% endif %}
+                      <label class="form-check-label text-dark">
+                        {{ address.municipality.en_name }}
+                      </label>
+                      {% if address.is_default %}
+                      <span class="badge bg-danger">Default</span>
+                      {% endif %}
+                    </div>
+
+                    <address>
+                      <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
+                      {{ address.detail }}, <br>
+                    </address>
+                  </div>
+                </div>
+                {% endfor %}
                 <!-- first address -->
                 <div class="col-lg-6 col-12 mb-4">
                   <!-- form -->
