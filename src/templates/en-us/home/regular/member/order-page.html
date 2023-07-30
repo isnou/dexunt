@@ -50,7 +50,7 @@
                   {% if selected_order.client_name %}
                   <input type="text" class="form-control" name="full_name" value="{{ selected_order.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="keyup changed delay:1s">
                   {% elif user.client_name %}
-                  <input type="text" class="form-control" name="full_name" value="{{ user.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="delay:1s">
+                  <input type="text" class="form-control" name="full_name" value="{{ user.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="keyup changed delay:1s">
                   {% else %}
                   <input type="text" class="form-control" name="full_name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
                   {% endif %}
