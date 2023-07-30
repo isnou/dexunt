@@ -116,16 +116,7 @@
                       </small>
                       {% endif %}
 
-                      {% if variant.option_set.all.count %}
                       <small>Options : {{ variant.option_set.all.count }}</small>
-                      {% else %}
-                      <small>
-                        <span class="badge bg-warning">
-                          <i class="fa fa-triangle-exclamation"></i>
-                          options
-                        </span>
-                      </small>
-                      {% endif %}
                     </div>
 
                     <div class="col">

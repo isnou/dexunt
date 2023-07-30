@@ -474,18 +474,6 @@ def manage_products(request, action):
             selected_variant = Variant.objects.all().get(id=variant_id)
             selected_variant.delete()
             return redirect('admin-manage-products', 'view_product')
-    if action == 'activate_variant':
-        if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-            selected_variant = Variant.objects.all().get(id=variant_id)
-            selected_variant.activate()
-            return redirect('admin-manage-products', 'view_product')
-    if action == 'deactivate_variant':
-        if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-            selected_variant = Variant.objects.all().get(id=variant_id)
-            selected_variant.deactivate()
-            return redirect('admin-manage-products', 'view_product')
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"
@@ -631,15 +619,13 @@ def manage_products(request, action):
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
-            option.is_activated = True
-            option.save()
+            option.activate()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'deactivate_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
-            option.is_activated = False
-            option.save()
+            option.deactivate()
             return redirect('admin-manage-products', 'view_variant')
 #                                                                        #
 @login_required
