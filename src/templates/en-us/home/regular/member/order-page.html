@@ -59,9 +59,9 @@
 
                 <div class="col-12">
                   {% if selected_order.client_phone %}
-                  <input class="form-control" type="tel" name="phone" placeholder="Phone number" value="{{ selected_order.client_phone }}" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="delay:1s, change">
+                  <input class="form-control" type="tel" name="phone" placeholder="Phone number" value="{{ selected_order.client_phone }}" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="load delay:1s, change">
                   {% elif user.phone_number %}
-                  <input class="form-control" type="tel" name="phone" placeholder="Phone number" value="{{ user.phone_number }}" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="delay:1s, change">
+                  <input class="form-control" type="tel" name="phone" placeholder="Phone number" value="{{ user.phone_number }}" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="load delay:1s, change">
                   {% else %}
                   <input class="form-control" type="tel" name="phone" placeholder="Phone number" required hx-get="{% url 'order-page' 'load_client_phone' %}" hx-trigger="change">
                   {% endif %}
