@@ -212,6 +212,7 @@ def order_page(request, action):
             municipality_id = request.POST.get('municipality_id', False)
             municipality = Municipality.objects.all().get(id=municipality_id)
             request.user.new_address(request, municipality)
+            return redirect('order-page', 'main')
 
     if action == 'place_order':
         selected_order.place_order(request)
