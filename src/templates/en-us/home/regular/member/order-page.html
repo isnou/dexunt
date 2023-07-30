@@ -48,9 +48,9 @@
               <div class="row g-3">
                 <div class="col-12">
                   {% if selected_order.client_name %}
-                  <input type="text" class="form-control" name="full_name" value="{{ selected_order.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="load">
+                  <input type="text" class="form-control" name="full_name" value="{{ selected_order.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
                   {% elif user.client_name %}
-                  <input type="text" class="form-control" name="full_name" value="{{ user.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="load">
+                  <input type="text" class="form-control" name="full_name" value="{{ user.client_name }}" placeholder="Full name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
                   {% else %}
                   <input type="text" class="form-control" name="full_name" required hx-get="{% url 'order-page' 'load_client_name' %}" hx-trigger="change">
                   {% endif %}
