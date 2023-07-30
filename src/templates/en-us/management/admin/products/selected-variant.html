@@ -404,10 +404,26 @@
                   <i class="fa fa-toggle-on" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate" style="width: 100%;"></i>
                 </button>
                 {% else %}
+
+
+
+                {% if option.can_be_activated %}
                 <!-- activate option button -->
                 <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-toggle-off" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate" style="width: 100%;"></i>
                 </button>
+                {% elif option.can_be_activated == 'deactivated' %}
+                <strong data-bs-toggle="tooltip" data-bs-placement="top" title="store is not activated" style="color: #ff7d00;">
+                  <i class="fa fa-triangle-exclamation"></i>
+                </strong>
+                {% else %}
+                <strong data-bs-toggle="tooltip" data-bs-placement="top" title="no store assigned" style="color: #ff7d00;">
+                  <i class="fa fa-triangle-exclamation"></i>
+                </strong>
+                {% endif %}
+
+
+
                 {% endif %}
 
                 {% if selected_variant.option_set.all.count > 1 %}
