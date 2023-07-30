@@ -328,7 +328,7 @@ class Store(models.Model):
         super().save()
     def deactivate(self):
         for p in self.product_set.all():
-            for v in p.all():
+            for v in p.variant_set.all():
                 v.deactivate()
         super().save()
 #                                                                        #
