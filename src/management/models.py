@@ -326,6 +326,11 @@ class Store(models.Model):
         else:
             self.is_activated = True
         super().save()
+    def deactivate(self):
+        for p in self.product_set.all():
+            for v in p.all():
+                v.deactivate()
+        super().save()
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #

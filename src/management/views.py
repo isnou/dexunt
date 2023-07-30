@@ -257,8 +257,7 @@ def manage_stores(request, action):
             stores_page = request.POST.get('stores_page', False)
             request.session['stores-page'] = stores_page
             selected_store = Store.objects.all().get(id=store_id)
-            selected_store.is_activated = False
-            selected_store.save()
+            selected_store.deactivate()
             return redirect ('admin-manage-stores', 'main')
     # -- search partial show -- #
     if action == 'search_stores':
