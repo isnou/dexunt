@@ -96,40 +96,40 @@
                         <span class="badge bg-danger">deactivated</span>
                       </small>
                       {% endif %}
-                      </div>
+                    </div>
 
-<div class="col">
-                  {% if variant.album_set.all.count %}
-                  <small>Photos : {{ variant.album_set.all.count }}</small>
-                  {% else %}
-                  <span class="badge bg-danger">no photos</span>
-                  {% endif %}
+                    <div class="col">
+                      {% if variant.album_set.all.count %}
+                      <small>Photos : {{ variant.album_set.all.count }}</small>
+                      {% else %}
+                      <span class="badge bg-danger">photos</span>
+                      {% endif %}
 
+                      {% if variant.option_set.all.count %}
+                      <small>Options : {{ variant.option_set.all.count }}</small>
+                      {% else %}
+                      <span class="badge bg-warning">options</span>
+                      {% endif %}
+                    </div>
 
-                  {% if variant.option_set.all.count %}
-                  <small>Options : {{ variant.option_set.all.count }}</small>
-                  {% else %}
-                  <span class="badge bg-warning">no options</span>
-
-                  {% endif %}
-  </div>
-
-<div class="col">
+                    <div class="col">
                       {% if variant.feature_set.all.count %}
-                  <small>Features : {{ variant.feature_set.all.count }}</small>
-                  {% else %}
-                  <span class="badge bg-warning">no features</span>
-  <i class="fa fa-image-slash"></i>
-                  {% endif %}
+                      <small>Features : {{ variant.feature_set.all.count }}</small>
+                      {% else %}
+                      <span class="badge bg-warning">
+                        <i class="fa fa-triangle-exclamation me-4"></i>
+                        features
+                      </span>
+                      {% endif %}
 
-
-                  {% if variant.description_set.all.count %}
-                  <small>Descriptions : {{ variant.description_set.all.count }}</small>
-                  {% else %}
-                  <span class="badge bg-warning">no descriptions</span>
-                  {% endif %}
-
-
+                      {% if variant.description_set.all.count %}
+                      <small>Descriptions : {{ variant.description_set.all.count }}</small>
+                      {% else %}
+                      <span class="badge bg-warning">
+                        <i class="fa fa-triangle-exclamation me-4"></i>
+                        descriptions
+                      </span>
+                      {% endif %}
                     </div>
                   </div>
                 </a>
