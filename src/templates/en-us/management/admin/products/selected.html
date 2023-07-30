@@ -87,13 +87,19 @@
                     <div class="col">
                       {% if not variant.is_available %}
                       <small>
-                        <span class="badge bg-danger">unavailable</span>
+                        <span class="badge bg-danger">
+                        <i class="fa fa-circle-exclamation"></i>
+                          unavailable
+                        </span>
                       </small>
                       {% endif %}
 
                       {% if not variant.is_activated %}
                       <small>
-                        <span class="badge bg-danger">deactivated</span>
+                        <span class="badge bg-danger">
+                        <i class="fa fa-circle-exclamation"></i>
+                          deactivated
+                        </span>
                       </small>
                       {% endif %}
                     </div>
@@ -102,13 +108,19 @@
                       {% if variant.album_set.all.count %}
                       <small>Photos : {{ variant.album_set.all.count }}</small>
                       {% else %}
-                      <span class="badge bg-danger">photos</span>
+                      <span class="badge bg-danger">
+                        <i class="fa fa-triangle-exclamation"></i>
+                        photos
+                      </span>
                       {% endif %}
 
                       {% if variant.option_set.all.count %}
                       <small>Options : {{ variant.option_set.all.count }}</small>
                       {% else %}
-                      <span class="badge bg-warning">options</span>
+                      <span class="badge bg-warning">
+                        <i class="fa fa-triangle-exclamation"></i>
+                        options
+                      </span>
                       {% endif %}
                     </div>
 
@@ -117,7 +129,7 @@
                       <small>Features : {{ variant.feature_set.all.count }}</small>
                       {% else %}
                       <span class="badge bg-warning">
-                        <i class="fa fa-triangle-exclamation me-4"></i>
+                        <i class="fa fa-triangle-exclamation"></i>
                         features
                       </span>
                       {% endif %}
@@ -126,7 +138,7 @@
                       <small>Descriptions : {{ variant.description_set.all.count }}</small>
                       {% else %}
                       <span class="badge bg-warning">
-                        <i class="fa fa-triangle-exclamation me-4"></i>
+                        <i class="fa fa-triangle-exclamation"></i>
                         descriptions
                       </span>
                       {% endif %}
