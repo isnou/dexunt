@@ -210,7 +210,7 @@ def order_page(request, action):
             return render(request, direction + '/home/regular/guest/partials/total-summary.html', sub_context)
         else:
             address_id = request.GET.get('address_id')
-            delivery_address = request.user.delivery_addresses.get(id=address_id)
+            delivery_address = request.user.delivery_addresses.all().get(id=address_id)
             selected_order.delivery_type = delivery_address.type
             selected_order.municipality = delivery_address.municipality
             selected_order.save()
