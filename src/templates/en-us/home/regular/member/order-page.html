@@ -404,7 +404,7 @@
           <form action="{% url 'order-page' 'create_new_address' %}" class="needs-validation" novalidate method="post">
             {% csrf_token %}
 
-            <div class="col-12">
+            <div class="col-12 mb-4">
               <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
                 <option value="">Province</option>
                 {% for province in provinces %}
