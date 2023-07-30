@@ -152,12 +152,13 @@ class Option(models.Model):
                             )
         new_option.save()
         self.variant.option_set.add(new_option)
+    def can_be_activated(self):
+        return self.variant.product.store.is_activated
     def activate(self):
-        if self.variant.product.store.is_activated:
-            if not self.variant.is_activated:
-                self.variant.is_activated = True
-                self.variant.save()
-            self.is_activated = True
+        if not self.variant.is_activated:
+            self.variant.is_activated = True
+            self.variant.save()
+        self.is_activated = True
         super().save()
     def deactivate(self):
         self.is_activated = False
