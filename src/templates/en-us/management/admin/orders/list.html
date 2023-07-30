@@ -227,10 +227,10 @@
     <div class="modal-content">
       <div class="modal-header" style="align-self: center;">
         <i class="fa fa-hashtag me-1"></i> <span class="d-block fs-5 text-body">{{ order.ref }}</span>
-        <i class="fa fa-user me-1 ms-1"></i> <span class="d-block fs-5 text-body">{{ order.client_name|title }}</span>
-        <i class="fa fa-mobile me-1 ms-1"></i> <span class="d-block fs-5 text-body">{{ order.client_phone|title }}</span>
-        <i class="fa-solid fa-location-dot me-1 ms-1"></i> <span class="d-block fs-5 text-body">{{ order.municipality.province.en_name|title }}|{{ order.municipality.en_name|title }}</span>
-        <i class="fa-solid fa-coins me-1 ms-1"></i> <span class="d-block fs-5 text-body">{{ order.total_price|floatformat:"0g" }} DZD </span>
+        <i class="fa fa-user me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.client_name|title }}</span>
+        <i class="fa fa-mobile me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.client_phone|title }}</span>
+        <i class="fa-solid fa-location-dot me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.municipality.province.en_name|title }}, {{ order.municipality.en_name|title }}</span>
+        <i class="fa-solid fa-coins me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.total_price|floatformat:"0g" }} DZD </span>
       </div>
       <div class="modal-body text-center">
         <div class="table-responsive datatable-custom">
