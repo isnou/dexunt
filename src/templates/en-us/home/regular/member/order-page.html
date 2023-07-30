@@ -141,42 +141,35 @@
                 {% endfor %}
               </ul>
 
-                <div id="total_summary">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item px-4 py-3" >
-                      <div class="d-flex align-items-center justify-content-between   mb-2">
-                        <div>Item Subtotal</div>
-                        <div class="fw-bold"> {{ selected_order.price|floatformat:"0g" }} <small>DZD</small></div>
-                      </div>
+              <div id="total_summary">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item px-4 py-3" >
+                    <div class="d-flex align-items-center justify-content-between   mb-2">
+                      <div>Item Subtotal</div>
+                      <div class="fw-bold"> {{ selected_order.price|floatformat:"0g" }} <small>DZD</small></div>
+                    </div>
 
-                      {% if selected_order.coupon %}
-                      {% if selected_order.coupon.is_subtractive %}
-                      <div class="d-flex align-items-center justify-content-between   mb-2">
-                        <div>Discount</div>
-                        <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>DZD</small></div>
-                      </div>
-                      {% else %}
-                      <div class="d-flex align-items-center justify-content-between   mb-2">
-                        <div>Discount</div>
-                        <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>%</small></div>
-                      </div>
-                      {% endif %}
-                      {% endif %}
-                    </li>
+                    {% if selected_order.coupon %}
+                    {% if selected_order.coupon.is_subtractive %}
+                    <div class="d-flex align-items-center justify-content-between   mb-2">
+                      <div>Discount</div>
+                      <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>DZD</small></div>
+                    </div>
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-between   mb-2">
+                      <div>Discount</div>
+                      <div class="fw-bold">{{ selected_order.coupon.value|floatformat:"0g" }} <small>%</small></div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                  </li>
 
-                    <li class="list-group-item px-4 py-3">
-                      <div class="d-flex align-items-center justify-content-between fw-bold">
-                        <div> Total</div><div>{{ selected_order.total_price|floatformat:"0g" }} <small>DZD</small></div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-
-              <div class="px-4 py-4 d-grid">
-                <button class="btn btn-primary btn-lg justify-content-between align-items-center" form="order_form">
-                  Checkout
-                </button>
+                  <li class="list-group-item px-4 py-3">
+                    <div class="d-flex align-items-center justify-content-between fw-bold">
+                      <div> Total</div><div>{{ selected_order.total_price|floatformat:"0g" }} <small>DZD</small></div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -259,84 +252,6 @@
           <input type="hidden" name="page" value='home-page'>
         </form>
 
-      </div>
-    </div>
-  </div>
-</div>
-<!-- login modal -->
-<div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modal_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="login_modal_label">Login</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-10">
-            <div class="py-6">
-              <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <div class="mb-8">
-                  <input type="text" id="username" class="form-control form-control-lg" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
-                </div>
-
-                <div class="mb-8">
-                  <input type="password" id="password" class="form-control form-control-lg" name="{{ login_form.password.name }}" maxlength="{{ login_form.password.field.max_length }}" placeholder="{{ login_form.password.label }}" required>
-                </div>
-
-                <div class="d-grid">
-                  <button type="submit" class="btn btn-primary">submit</button>
-                </div>
-              </form>
-              <div class="mt-4">
-                <small>
-                  You don't have an account ?
-                  <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#register_modal">Register</a>
-                  ,it's free.
-                </small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- register modal -->
-<div class="modal fade" id="register_modal" tabindex="-1" aria-labelledby="register_modal_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="register_modal_label">Register</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-10">
-            <div class="py-6">
-              <form>
-                <div class="mb-8">
-                  <input type="text" class="form-control form-control-lg" placeholder="Username" required>
-                </div>
-
-                <div class="mb-8">
-                  <input type="password" class="form-control form-control-lg" placeholder="Password" required>
-                </div>
-
-                <div class="d-grid">
-                  <button type="submit" class="btn btn-primary">submit</button>
-                </div>
-              </form>
-              <div class="mt-4">
-                <small>
-                  Already have an account ?
-                  <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
-                </small>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
