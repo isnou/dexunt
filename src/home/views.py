@@ -211,7 +211,7 @@ def order_page(request, action):
         else:
             address_id = request.GET.get('address_id')
             delivery_address = request.user.delivery_addresses.all().get(id=address_id)
-            selected_order.delivery_type = delivery_address.type
+            selected_order.delivery_type = delivery_address.delivery_type
             selected_order.municipality = delivery_address.municipality
             selected_order.save()
 
