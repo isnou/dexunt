@@ -140,6 +140,8 @@ class User(AbstractUser):
                 if o.status() == 'confirmation':
                     count += 1
             return count
+    def client_name(self):
+        return self.first_name + ' ' + self.last_name
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:
