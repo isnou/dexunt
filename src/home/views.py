@@ -198,6 +198,12 @@ def order_page(request, action):
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/guest/partials/prices.html', sub_context)
+    if action == 'create_new_address':
+        if request.method == 'POST':
+            municipality_id = request.POST.get('municipality_id', False)
+            municipality = Municipality.objects.all().get(id=municipality_id)
+            request.user.new_address(request, municipality)
+            return redirect('order-page', 'main')
     if action == 'load_summary':
         if not request.user.is_authenticated:
             delivery_type = request.GET.get('delivery_type')
@@ -219,13 +225,6 @@ def order_page(request, action):
                 'selected_order': selected_order,
             }
             return render(request, direction + '/home/regular/member/partials/total-summary.html', sub_context)
-    if action == 'create_new_address':
-        if request.method == 'POST':
-            municipality_id = request.POST.get('municipality_id', False)
-            municipality = Municipality.objects.all().get(id=municipality_id)
-            request.user.new_address(request, municipality)
-            return redirect('order-page', 'main')
-
     if action == 'place_order':
         selected_order.place_order(request)
 

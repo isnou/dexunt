@@ -367,13 +367,6 @@
               <input type="text" class="form-control" name="title" placeholder="Home, Office, Etc..">
             </div>
             <div class="col-12 mb-4">
-              <select class="form-select" name="delivery_type">
-                <option value='HOME'>delivery to home</option>
-                <option value='DESK'>delivery to desk</option>
-              </select>
-              <span class="invalid-feedback text-start">choose your province.</span>
-            </div>
-            <div class="col-12 mb-4">
               <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
                 <option value="">Province</option>
                 {% for province in provinces %}
@@ -386,6 +379,13 @@
               <select class="form-select">
                 <option value="">Municipality</option>
               </select>
+            </div>
+            <div class="col-12 mb-4">
+              <select class="form-select" name="delivery_type">
+                <option value='HOME'>delivery to home</option>
+                <option value='DESK'>delivery to desk</option>
+              </select>
+              <span class="invalid-feedback text-start">choose your province.</span>
             </div>
             <div class="col-12 mb-4">
               <div class="form-check">
