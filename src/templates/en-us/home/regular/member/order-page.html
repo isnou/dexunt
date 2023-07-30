@@ -83,7 +83,7 @@
                 <div class="col-lg-6 col-12 mb-4">
                   <div class="card card-body p-6 ">
                     <div class="form-check mb-4">
-                      {% if address.is_default %}
+                      {% if address.default %}
                       <input class="form-check-input" type="radio" name="address" checked>
                       {% else %}
                       <input class="form-check-input" type="radio" name="address">
@@ -91,7 +91,7 @@
                       <label class="form-check-label text-dark">
                         {{ address.municipality.en_name }}
                       </label>
-                      {% if address.is_default %}
+                      {% if address.default %}
                       <span class="badge bg-danger">Default</span>
                       {% endif %}
                     </div>
@@ -103,44 +103,6 @@
                   </div>
                 </div>
                 {% endfor %}
-                <!-- first address -->
-                <div class="col-lg-6 col-12 mb-4">
-                  <!-- form -->
-                  <div class="card card-body p-6 ">
-                    <div class="form-check mb-4">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" checked>
-                      <label class="form-check-label text-dark">
-                        Home
-                      </label>
-                      <span class="badge bg-danger">Default</span>
-                    </div>
-
-                    <address>
-                      <strong>Jitu Chauhan</strong> <br>
-                      4450 North Avenue Oakland, <br>
-                      Nebraska, United States,<br>
-                      <abbr title="Phone">P: 402-776-1106</abbr>
-                    </address>
-                  </div>
-                </div>
-                <!-- second address -->
-                <div class="col-lg-6 col-12 mb-4">
-                  <div class="card card-body p-6 ">
-                    <div class="form-check mb-4">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" >
-                      <label class="form-check-label text-dark">
-                        Office
-                      </label>
-                    </div>
-
-                    <address>
-                      <strong>Nitu Chauhan</strong> <br>
-                      3853 Coal Road, <br>
-                      Tannersville, USA,<br>
-                      <abbr title="Phone">P: 402-776-1106</abbr>
-                    </address>
-                  </div>
-                </div>
               </div>
             </div>
 
