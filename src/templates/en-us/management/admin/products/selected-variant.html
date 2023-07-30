@@ -400,13 +400,13 @@
               <td>
                 {% if option.is_activated %}
                 <!-- deactivate option button -->
-                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-toggle-on fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
+                <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#deactivate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-toggle-on" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate" style="width: 100%;"></i>
                 </button>
                 {% else %}
                 <!-- activate option button -->
-                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-toggle-off fa-2xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate"></i>
+                <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
+                  <i class="fa fa-toggle-off" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate" style="width: 100%;"></i>
                 </button>
                 {% endif %}
 
@@ -998,9 +998,9 @@
 {% for feature in selected_variant.feature_set.all %}
 <!-- delete feature form -->
 <form action="{% url 'admin-manage-products' 'delete_feature' %}" id="delete_feature_{{ feature.id }}" class="js-validate need-validate" novalidate method="post">
-    {% csrf_token %}
-    <input type="hidden" name="feature_id" value='{{ feature.id }}'>
-  </form>
+  {% csrf_token %}
+  <input type="hidden" name="feature_id" value='{{ feature.id }}'>
+</form>
 
 <!-- delete feature modal -->
 <div id="delete_feature_modal_{{ feature.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
