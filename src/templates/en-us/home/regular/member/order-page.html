@@ -69,10 +69,12 @@
                 </div>
               </div>
             </div>
-            {{ user.delivery_addresses.all.count }}
             <div class="d-flex justify-content-between align-items-end">
-
+              {% if user.delivery_addresses.all.count %}
               <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
+              {% else %}
+              <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Create an address </a>
+              {% endif %}
             </div>
 
             <div class="mt-5">
@@ -389,7 +391,7 @@
         <div class="d-flex justify-content-between mb-5">
           <!-- heading -->
           <div>
-            <h5 class="h6 mb-1" id="addAddressModalLabel">New Shipping Address</h5>
+            <h5 class="h6 mb-1" id="addAddressModalLabel">New Delivery Address</h5>
             <p class="small mb-0">Add new shipping address for your order delivery.</p>
           </div>
           <div>
@@ -399,52 +401,23 @@
         </div>
         <!-- row -->
         <div class="row g-3">
-          <!-- col -->
           <div class="col-12">
-            <input type="text" class="form-control" placeholder="First name" aria-label="First name" required="">
+            <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
+              <option value="">Province</option>
+              {% for province in provinces %}
+              <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
+              {% endfor %}
+            </select>
+            <span class="invalid-feedback text-start">choose your province.</span>
           </div>
-          <!-- col -->
-          <div class="col-12">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required="">
-          </div>
-          <!-- col -->
-          <div class="col-12">
 
-            <input type="text" class="form-control" placeholder="Address Line 1">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Address Line 2">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="City">
-          </div>
-          <div class="col-12">
-            <!-- button -->
+          <div class="col-12" id="municipalities">
             <select class="form-select">
-              <option selected=""> India</option>
-              <option value="1">UK</option>
-              <option value="2">USA</option>
-              <option value="3">UAE</option>
+              <option value="">Municipality</option>
             </select>
           </div>
           <div class="col-12">
-            <!-- button -->
-            <select class="form-select">
-              <option selected="">Gujarat</option>
-              <option value="1">Northern Ireland</option>
-              <option value="2"> Alaska</option>
-              <option value="3">Abu Dhabi</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Zip Code">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Business Name">
+            <input type="text" class="form-control" placeholder="Address">
           </div>
           <div class="col-12">
             <div class="form-check">

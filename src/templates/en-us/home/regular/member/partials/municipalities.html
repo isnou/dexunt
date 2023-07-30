@@ -1,0 +1,7 @@
+<select class="form-select" name="municipality_id" required>
+    <option value="">Municipality</option>
+    {% for municipality in province.municipality_set.all %}
+    <option value='{{ municipality.id }}'>{{ municipality.en_name|title }}</option>
+    {% endfor %}
+</select>
+<span class="invalid-feedback text-start">choose your province.</span>

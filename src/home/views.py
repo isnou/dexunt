@@ -183,7 +183,10 @@ def order_page(request, action):
             'selected_order': selected_order,
             'province': province,
         }
-        return render(request, direction + '/home/regular/partials/municipalities.html', sub_context)
+        if not request.user.is_authenticated:
+            return render(request, direction + '/home/regular/guest/partials/municipalities.html', sub_context)
+        else:
+            return render(request, direction + '/home/regular/member/partials/municipalities.html', sub_context)
     if action == 'load_prices':
         municipality_id = request.GET.get('municipality_id')
 
@@ -194,7 +197,7 @@ def order_page(request, action):
         sub_context = {
             'selected_order': selected_order,
         }
-        return render(request, direction + '/home/regular/partials/prices.html', sub_context)
+        return render(request, direction + '/home/regular/guest/partials/prices.html', sub_context)
     if action == 'load_summary':
         delivery_type = request.GET.get('delivery_type')
         selected_order.delivery_type = delivery_type
@@ -203,7 +206,7 @@ def order_page(request, action):
         sub_context = {
             'selected_order': selected_order,
         }
-        return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
+        return render(request, direction + '/home/regular/guest/partials/total-summary.html', sub_context)
     if action == 'place_order':
         selected_order.place_order(request)
 
