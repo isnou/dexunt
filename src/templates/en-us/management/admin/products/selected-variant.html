@@ -416,7 +416,7 @@
                 <strong data-bs-toggle="tooltip" class="btn btn-ghost btn-icon me-2" data-bs-placement="top" title="store is not activated" style="color: #ff7d00;">
                   <i class="fa fa-triangle-exclamation" style="width: 70%;"></i>
                 </strong>
-                {% else %}
+                {% elif option.can_be_activated == 'no-store' %}
                 <strong data-bs-toggle="tooltip" class="btn btn-ghost btn-icon me-2" data-bs-placement="top" title="no store assigned" style="color: #ff0000;">
                   <i class="fa fa-triangle-exclamation" style="width: 70%;"></i>
                 </strong>

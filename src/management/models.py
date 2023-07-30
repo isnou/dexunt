@@ -157,9 +157,9 @@ class Option(models.Model):
             if self.variant.product.store.is_activated:
                 return True
             else:
-                'deactivated'
+                return 'deactivated'
         else:
-            return False
+            return 'no-store'
 
 
     def activate(self):
