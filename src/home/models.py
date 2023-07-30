@@ -193,8 +193,6 @@ class Order(models.Model):
     gift_card = models.BooleanField(default=False)
     # ----- #
     ref = models.CharField(max_length=6, unique=True, null=True)
-    # ----- #
-    number_of_calls = models.IntegerField(default=0)
 
     is_empty = models.BooleanField(default=True) # -- new order
     created_at = models.DateTimeField(auto_now_add=True)
@@ -202,7 +200,7 @@ class Order(models.Model):
     pending_since = models.DateTimeField(blank=True, null=True) # -- no answers
     cancelled_at = models.DateTimeField(blank=True, null=True) # -- by the customer or after multiple calls
     confirmed_at = models.DateTimeField(blank=True, null=True) # -- confirmed order and waiting for providers
-    being_processed_since = models.DateTimeField(blank=True, null=True) # -- all products prepared by different providers
+    processed_since = models.DateTimeField(blank=True, null=True) # -- all products prepared by different providers
     quality_control_since = models.DateTimeField(blank=True, null=True) # -- check before expedition
     on_delivery_since = models.DateTimeField(blank=True, null=True) # -- products shipped
     paid_at = models.DateTimeField(blank=True, null=True) # -- received and paid by the client
@@ -285,7 +283,7 @@ class Order(models.Model):
             status = 'cancelled'
         if self.confirmed_at:
             status = 'confirmed'
-        if self.being_processed_since:
+        if self.processed_since:
             status = 'processed'
         if self.quality_control_since:
             status = 'quality'
