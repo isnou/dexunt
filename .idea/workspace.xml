@@ -2,6 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/all.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/all.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/all.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/brands.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/brands.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/brands.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/brands.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/fontawesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/fontawesome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/fontawesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/fontawesome.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/regular.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/regular.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/regular.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/regular.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/solid.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/solid.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/solid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/solid.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/svg-with-js.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/svg-with-js.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/svg-with-js.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/svg-with-js.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/v4-font-face.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/v4-font-face.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/v4-shims.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/v4-shims.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/v4-shims.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/fontawesome/css/v4-shims.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/v5-font-face.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/css/v5-font-face.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-brands-400.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-brands-400.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-regular-400.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-regular-400.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-solid-900.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-solid-900.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-v4compatibility.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/fontawesome/webfonts/fa-v4compatibility.woff2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/admin/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
