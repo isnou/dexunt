@@ -108,19 +108,23 @@
                       {% if variant.album_set.all.count %}
                       <small>Photos : {{ variant.album_set.all.count }}</small>
                       {% else %}
-                      <span class="badge bg-danger">
-                        <i class="fa fa-triangle-exclamation"></i>
-                        photos
-                      </span>
+                      <small>
+                        <span class="badge bg-danger">
+                          <i class="fa fa-triangle-exclamation"></i>
+                          photos
+                        </span>
+                      </small>
                       {% endif %}
 
                       {% if variant.option_set.all.count %}
                       <small>Options : {{ variant.option_set.all.count }}</small>
                       {% else %}
-                      <span class="badge bg-warning">
-                        <i class="fa fa-triangle-exclamation"></i>
-                        options
-                      </span>
+                      <small>
+                        <span class="badge bg-warning">
+                          <i class="fa fa-triangle-exclamation"></i>
+                          options
+                        </span>
+                      </small>
                       {% endif %}
                     </div>
 
@@ -128,19 +132,23 @@
                       {% if variant.feature_set.all.count %}
                       <small>Features : {{ variant.feature_set.all.count }}</small>
                       {% else %}
-                      <span class="badge bg-warning">
-                        <i class="fa fa-triangle-exclamation"></i>
-                        features
-                      </span>
+                      <small>
+                        <span class="badge bg-warning">
+                          <i class="fa fa-triangle-exclamation"></i>
+                          features
+                        </span>
+                      </small>
                       {% endif %}
 
                       {% if variant.description_set.all.count %}
                       <small>Descriptions : {{ variant.description_set.all.count }}</small>
                       {% else %}
-                      <span class="badge bg-warning">
-                        <i class="fa fa-triangle-exclamation"></i>
-                        descriptions
-                      </span>
+                      <small>
+                        <span class="badge bg-warning">
+                          <i class="fa fa-triangle-exclamation"></i>
+                          descriptions
+                        </span>
+                      </small>
                       {% endif %}
                     </div>
                   </div>
