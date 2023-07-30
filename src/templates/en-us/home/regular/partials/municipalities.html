@@ -1,15 +1,7 @@
-<select class="form-select" name="municipality_id" hx-get="{% url 'order-page' 'load_prices' %}" hx-trigger="keyup changed delay:1s" hx-target="#prices" required>
+<select class="form-select" name="municipality_id" hx-get="{% url 'order-page' 'load_prices' %}" hx-trigger="change" hx-target="#prices" required>
     <option value="">Municipality</option>
     {% for municipality in province.municipality_set.all %}
-
-
-    {% if selected_order.municipality.id == municipality.id %}
-    <option value='{{ municipality.id }}' selected>{{ municipality.en_name|title }}</option>
-    {% else %}
     <option value='{{ municipality.id }}'>{{ municipality.en_name|title }}</option>
-    {% endif %}
-
-
     {% endfor %}
 </select>
 <span class="invalid-feedback text-start">choose your province.</span>
