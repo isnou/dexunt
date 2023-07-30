@@ -44,7 +44,7 @@
           <h5 class="fw-bold mb-0"># {{ selected_order.ref }}</h5>
           <p class="mb-0"> Client name : {{ selected_order.client_name }} </p><br>
           <p class="mb-0"> Client phone : {{ selected_order.client_phone }} </p><br>
-          <p class="mb-0"> Shipping to  : {{ selected_order.province }} / {{ selected_order.municipality }} </p><br>
+          <p class="mb-0"> Shipping to  : {{ selected_order.municipality.province.en_name }} / {{ selected_order.municipality.en_name }} </p><br>
         </div>
       </div>
     </div>
