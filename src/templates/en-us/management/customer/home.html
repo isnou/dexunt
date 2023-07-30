@@ -13,27 +13,27 @@
             <span>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             </span>
-            {% if selected_cart.selected_products.all.count %}
+            {% if user.cart.selected_products.all.count %}
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                {{ selected_cart.selected_products.all.count }}
+                {{ user.cart.selected_products.all.count }}
             </span>
             {% endif %}
         </a>
-        {% if selected_cart.selected_products.all.count %}
+        {% if user.cart.selected_products.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
-            {% if selected_cart.coupon %}
-            {% if selected_cart.coupon.is_subtractive %}
+            {% if user.cart.coupon %}
+            {% if user.cart.coupon.is_subtractive %}
             <div class="d-grid pb-4 pt-2">
                 <div class="alert border-dark text-center" role="alert">
                     <i class="fa fa-gifts me-2"></i>
-                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
+                    Congratulation {{ user.cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
                 </div>
             </div>
             {% else %}
             <div class="d-grid pb-4 pt-2">
                 <div class="alert border-dark text-center" role="alert">
                     <i class="fa fa-gifts"></i>
-                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
+                    Congratulation {{ user.cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
                 </div>
             </div>
             {% endif %}
@@ -41,18 +41,18 @@
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5 mb-3">
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
-                    {% if selected_cart.selected_products.all.count %}
-                    <span class="text-success">{{ selected_cart.selected_products.all.count }}</span>
+                    {% if user.cart.selected_products.all.count %}
+                    <span class="text-success">{{ user.cart.selected_products.all.count }}</span>
                     {% endif %}
                 </div>
 
                 <div>
                     <span>Total:</span>
-                    <span class="text-success">DZD {{ selected_cart.total_price|floatformat:"2g" }}</span>
+                    <span class="text-success">DZD {{ user.cart.total_price|floatformat:"2g" }}</span>
                 </div>
             </div>
             <ul class="list-group list-group-flush">
-                {% for product in selected_cart.selected_products.all %}
+                {% for product in user.cart.selected_products.all %}
                 <li class="list-group-item px-0 py-3">
                     <div class="row align-items-center g-0">
                         <div class="col-lg-3 col-3 text-center me-2">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-lg-7 col-6">
                             <a href="shop-single.html" class="text-inherit">
-                                <h6 class="mb-0">{{ product.en_name }}</h6>
+                                <h6 class="mb-0">{{ product.en_title }}</h6>
                             </a>
                             <small class="text-muted">{{ product.quantity }} x {{ product.price|floatformat:"2g" }} <small>DZD</small></small>
                         </div>
@@ -101,27 +101,27 @@
             <span>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             </span>
-            {% if selected_cart.selected_products.all.count %}
+            {% if user.cart.selected_products.all.count %}
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                {{ selected_cart.selected_products.all.count }}
+                {{ user.cart.selected_products.all.count }}
             </span>
             {% endif %}
         </a>
-        {% if selected_cart.selected_products.all.count %}
+        {% if user.cart.selected_products.all.count %}
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
-            {% if selected_cart.coupon %}
-            {% if selected_cart.coupon.is_subtractive %}
+            {% if user.cart.coupon %}
+            {% if user.cart.coupon.is_subtractive %}
             <div class="d-grid pb-4 pt-2">
                 <div class="alert border-dark text-center" role="alert">
                     <i class="fa fa-gifts me-2"></i>
-                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
+                    Congratulation {{ user.cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
                 </div>
             </div>
             {% else %}
             <div class="d-grid pb-4 pt-2">
                 <div class="alert border-dark text-center" role="alert">
                     <i class="fa fa-gifts"></i>
-                    Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
+                    Congratulation {{ user.cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
                 </div>
             </div>
             {% endif %}
@@ -129,17 +129,17 @@
             <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
-                    {% if selected_cart.selected_products.all.count %}
-                    <span class="text-success">{{ selected_cart.selected_products.all.count }}</span>
+                    {% if user.cart.selected_products.all.count %}
+                    <span class="text-success">{{ user.cart.selected_products.all.count }}</span>
                     {% endif %}
                 </div>
                 <div>
                     <span>Total:</span>
-                    <span class="text-success">{{ selected_cart.total_price|floatformat:"2g" }} <small>DZD</small></span>
+                    <span class="text-success">{{ user.cart.total_price|floatformat:"2g" }} <small>DZD</small></span>
                 </div>
             </div>
             <ul class="list-group list-group-flush">
-                {% for product in selected_cart.selected_products.all %}
+                {% for product in user.cart.selected_products.all %}
                 <li class="list-group-item px-0 py-3">
                     <div class="row align-items-center g-0">
                         <div class="col-lg-3 text-center">
@@ -148,7 +148,7 @@
                         <div class="col-lg-7">
                             <div class="col">
                                 <a href="shop-single.html" class="text-inherit">
-                                    <h6 class="mb-0">{{ product.en_name }}</h6>
+                                    <h6 class="mb-0">{{ product.en_title }}</h6>
                                     <small class="text-muted">{{ product.en_detail }}</small>
                                 </a>
                             </div>
