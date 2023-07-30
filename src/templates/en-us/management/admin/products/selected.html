@@ -87,10 +87,9 @@
 
               <!-- actions -->
               <td>
-                <div class="container">
-                <div class="row">
 
-                <div class="col">
+
+                <div class="flex-shrink-0">
                 {% if not variant.is_available %}
                 <small>
                   <span class="badge bg-danger">unavailable</span>
@@ -104,7 +103,7 @@
                 {% endif %}
                 </div>
 
-                <div class="col">
+                <div class="flex-grow-1 ms-3">
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_variant_modal_{{ variant.id }}">
@@ -120,8 +119,6 @@
                 {% endif %}
                 </div>
 
-                </div>
-                </div>
 
               </td>
 
