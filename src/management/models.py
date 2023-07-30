@@ -242,8 +242,6 @@ class Variant(models.Model):
                     deactivate = False
             if not deactivate:
                 self.is_activated = True
-        else:
-            self.is_activated = True
         super().save()
     def deactivate(self):
         for o in self.option_set.all():
