@@ -110,16 +110,6 @@
           <line>138</line>
           <option name="timeStamp" value="151" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/home/views.py</url>
-          <line>224</line>
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/home/views.py</url>
-          <line>211</line>
-          <option name="timeStamp" value="153" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
