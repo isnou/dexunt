@@ -59,15 +59,14 @@
         </td>
         <!-- order ref -->
         <td>
-          <span class="d-block h4 text-start"><small>#{{ order.ref }} | {{ order.status }}</small>
+          <span class="d-block h4 text-start"><small>#{{ order.ref }} | {{ order.status }}
+            {% if order.placed_by %}
+            | {{ order.placed_by.username }}
+            {% endif %}
+          </small>
             <!-- view order -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
             <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
-          </button>
-
-          <!-- view product -->
-          <button class="btn btn-ghost btn-icon" form="view_product_form_{{ product.id }}">
-            <i class="bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
           </button>
 
           <!-- delete order -->
