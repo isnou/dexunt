@@ -36,9 +36,6 @@ class Wallet(models.Model):
 #                                                            #
 class DeliveryAddress(models.Model):
     # ---- content ---- #
-    title = models.CharField(max_length=60, default='home')
-    state = models.CharField(max_length=64, blank=True, null=True)
-    city = models.CharField(max_length=64, blank=True, null=True)
     detail = models.CharField(max_length=128, blank=True, null=True)
     default = models.BooleanField(default=False)
     # ----- relations ----- #
@@ -133,6 +130,18 @@ class User(AbstractUser):
         if new_role == 'member':
             self.is_member = True
         super().save()
+    def new_address(self, request, municipality):
+        if request.method == 'POST':
+            detail = request.POST.get('detail', False)
+            default = request.POST.get('default', False)
+            new_address = DeliveryAddress(detail=detail,
+                                          municipality=municipality,
+                                          user=self)
+            if default == 'true':
+                for a in self.delivery_addresses.all():
+                    a.default = False
+                new_address.default = True
+            new_address.save()
     def new_orders(self):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0

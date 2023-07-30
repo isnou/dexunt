@@ -207,6 +207,12 @@ def order_page(request, action):
             'selected_order': selected_order,
         }
         return render(request, direction + '/home/regular/guest/partials/total-summary.html', sub_context)
+    if action == 'create_new_address':
+        if request.method == 'POST':
+            municipality_id = request.POST.get('municipality_id', False)
+            municipality = Municipality.objects.all().get(id=municipality_id)
+            request.user.new_address(request, municipality)
+
     if action == 'place_order':
         selected_order.place_order(request)
 
