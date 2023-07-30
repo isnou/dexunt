@@ -83,7 +83,7 @@
                     {% endif %}
                   </div>
 
-                  <div class="flex-grow-1 ms-3">
+                  <div class="ms-3">
                     <div class="row">
                       {% if not variant.is_available %}
                       <small>
@@ -96,8 +96,9 @@
                         <span class="badge bg-danger">deactivated</span>
                       </small>
                       {% endif %}
+                      </div>
 
-
+<div class="row">
                   {% if variant.album_set.all.count %}
                   <small>Photos : {{ variant.album_set.all.count }}</small>
                   {% else %}
@@ -123,7 +124,7 @@
                   {% else %}
                   <span class="badge bg-warning">no descriptions</span>
                   {% endif %}
-                      
+
 
                     </div>
                   </div>
