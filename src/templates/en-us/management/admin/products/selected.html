@@ -87,7 +87,7 @@
 
               <!-- actions -->
               <td>
-                <div class="row">
+                <div class="col">
                 {% if not variant.is_available %}
                 <small>
                   <span class="badge bg-danger">unavailable</span>
@@ -101,6 +101,7 @@
                 {% endif %}
                 </div>
 
+                <div class="col">
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
                 <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_variant_modal_{{ variant.id }}">
@@ -114,6 +115,7 @@
                   <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
                 {% endif %}
+                </div>
               </td>
 
               <!-- value -->
