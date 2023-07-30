@@ -87,6 +87,7 @@
 
               <!-- actions -->
               <td>
+                {% if variant.can_be_activated %}
                 {% if variant.is_activated %}
                 <!-- deactivate variant button -->
                 <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#deactivate_variant_modal_{{ variant.id }}">
@@ -97,6 +98,13 @@
                 <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#activate_variant_modal_{{ variant.id }}">
                   <i class="fa fa-toggle-off" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate" style="width: 100%;"></i>
                 </button>
+                {% endif %}
+
+                {% else %}
+                <strong data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivated" style="color: #ff7d00;">
+                  {{ variant.product.store.name }}
+                  <i class="fa fa-triangle-exclamation ms-2"></i>
+                </strong>
                 {% endif %}
 
                 {% if forloop.counter == 1 %}

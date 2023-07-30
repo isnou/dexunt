@@ -234,14 +234,18 @@ class Variant(models.Model):
                 d.save()
                 new_variant.description_set.add(d)
         self.product.variant_set.add(new_variant)
-    def activate(self):
+    def can_be_activated(self):
         if self.product.store.is_activated:
-            deactivate = True
+            cant_be_activated = True
             for option in self.option_set.all():
                 if option.is_activated:
-                    deactivate = False
-            if not deactivate:
-                self.is_activated = True
+                    cant_be_activated = False
+            return cant_be_activated
+        else:
+            return False
+    def activate(self):
+        if self.can_be_activated():
+            self.is_activated = True
         super().save()
     def deactivate(self):
         for o in self.option_set.all():
