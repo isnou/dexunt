@@ -54,7 +54,7 @@
       <tbody>
       {% for order in all_orders %}
       <!-- orders list -->
-      <tr class="table-secondary">
+      <tr class="border-top">
         <td class="table-column-pe-0">
         </td>
         <!-- order ref -->
@@ -68,6 +68,7 @@
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
             <i class="bi-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i>
           </button>
+
 
           <!-- delete order -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
