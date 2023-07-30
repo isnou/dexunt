@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
+      <change afterPath="$PROJECT_DIR$/src/templates/en-us/home/regular/member/partials/total-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/home/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/templates/en-us/home/regular/member/order-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/home/regular/member/order-page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,16 +43,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/en-us/home/regular/guest/partials"
+    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/en-us/home/regular/member/partials"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/member/partials" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/guest/partials" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/guest" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular/member" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/provider/products" />
-      <recent name="$PROJECT_DIR$/src/templates/en-us/management/provider" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/products" />
@@ -114,8 +116,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/home/views.py</url>
-          <line>212</line>
+          <line>224</line>
           <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/home/views.py</url>
+          <line>211</line>
+          <option name="timeStamp" value="153" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -199,14 +199,26 @@ def order_page(request, action):
         }
         return render(request, direction + '/home/regular/guest/partials/prices.html', sub_context)
     if action == 'load_summary':
-        delivery_type = request.GET.get('delivery_type')
-        selected_order.delivery_type = delivery_type
-        selected_order.save()
+        if not request.user.is_authenticated:
+            delivery_type = request.GET.get('delivery_type')
+            selected_order.delivery_type = delivery_type
+            selected_order.save()
 
-        sub_context = {
-            'selected_order': selected_order,
-        }
-        return render(request, direction + '/home/regular/guest/partials/total-summary.html', sub_context)
+            sub_context = {
+                'selected_order': selected_order,
+            }
+            return render(request, direction + '/home/regular/guest/partials/total-summary.html', sub_context)
+        else:
+            address_id = request.GET.get('address_id')
+            delivery_address = request.user.delivery_addresses.get(id=address_id)
+            selected_order.delivery_type = delivery_address.type
+            selected_order.municipality = delivery_address.municipality
+            selected_order.save()
+
+            sub_context = {
+                'selected_order': selected_order,
+            }
+            return render(request, direction + '/home/regular/member/partials/total-summary.html', sub_context)
     if action == 'create_new_address':
         if request.method == 'POST':
             municipality_id = request.POST.get('municipality_id', False)
