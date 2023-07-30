@@ -87,6 +87,7 @@
 
               <!-- actions -->
               <td>
+                <div class="row">
                 {% if not variant.is_available %}
                 <small>
                   <span class="badge bg-danger">unavailable</span>
@@ -98,6 +99,7 @@
                   <span class="badge bg-warning">deactivated</span>
                 </small>
                 {% endif %}
+                </div>
 
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
