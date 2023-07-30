@@ -35,14 +35,16 @@ class Wallet(models.Model):
         super().save()
 #                                                            #
 class DeliveryAddress(models.Model):
-    # ---- content ---- #
-    detail = models.CharField(max_length=128, blank=True, null=True)
+    # ----- Technical ----- #
     default = models.BooleanField(default=False)
     # ----- relations ----- #
     municipality = models.ForeignKey(
         'home.Municipality', on_delete=models.CASCADE, related_name='delivery_addresses', null=True)
     user = models.ForeignKey(
         'authentication.User', on_delete=models.CASCADE, related_name='delivery_addresses', null=True)
+    # ---- content ---- #
+    title = models.CharField(max_length=100, blank=True, null=True)
+    delivery_type = models.CharField(max_length=100, default='HOME')
 # ---------------------------------------------------------------------- #
 
 
@@ -132,11 +134,13 @@ class User(AbstractUser):
         super().save()
     def new_address(self, request, municipality):
         if request.method == 'POST':
-            detail = request.POST.get('detail', False)
+            title = request.POST.get('title', False)
             default = request.POST.get('default', False)
-            new_address = DeliveryAddress(detail=detail,
+            new_address = DeliveryAddress(title=title,
                                           municipality=municipality,
                                           user=self)
+            if request.POST.get('deliver_type', False):
+                new_address.delivery_type = request.POST.get('deliver_type', False)
             if default == 'true':
                 for a in self.delivery_addresses.all():
                     a.default = False
