@@ -67,11 +67,6 @@
                 {% endif %}
               </small>
             </a>
-
-            <!-- delete order -->
-            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
-              <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-            </button>
           </span>
         </td>
         <!-- client phone -->
@@ -83,8 +78,13 @@
           <span class="d-block h4 text-start"><small>{{ order.status }}</span>
         </td>
         <!-- creation date -->
-        <td>
+        <td class="text-end">
           <span class="d-block h4 text-start"><small>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} , {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}</small></span>
+
+          <!-- delete order -->
+          <button type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
+            <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+           </button>
         </td>
       </tr>
 
