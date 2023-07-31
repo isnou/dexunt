@@ -154,6 +154,12 @@ class User(AbstractUser):
                 if o.status() == 'confirmation':
                     count += 1
             return count
+        if self.is_provider:
+            count = 0
+            for o in self.store.orders.all():
+                if o.status() == 'pending':
+                    count += 1
+            return count
     def client_name(self):
         return self.first_name + ' ' + self.last_name
 #                                                                        #

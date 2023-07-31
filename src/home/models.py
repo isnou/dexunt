@@ -14,6 +14,8 @@ class SelectedProduct(models.Model):
     is_paid_at = models.DateTimeField(blank=True, null=True)
     is_refunded_at = models.DateTimeField(blank=True, null=True)
     # ----- relations ----- #
+    store = models.ForeignKey(
+        'management.Store', on_delete=models.CASCADE, related_name='orders', null=True)
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, related_name='selected_products', null=True)
     cart = models.ForeignKey(
@@ -78,6 +80,10 @@ class SelectedProduct(models.Model):
         self.retained_points = self.points()
         self.retained_price = self.price()
         self.retained_total_price = self.total_price()
+        super().save()
+    def confirm_order(self):
+        self.is_ordered_at = timezone.now()
+        self.store = self.option.variant.product.store
         super().save()
 #                                                                        #
 class Coupon(models.Model):
@@ -311,6 +317,19 @@ class Order(models.Model):
         if not request.user.is_authenticated:
             request.session['order_ref'] = None
             request.session['cart_ref'] = None
+        super().save()
+    def confirm_order(self, request):
+        for p in self.selected_products.all():
+            p.confirm_order()
+        self.confirmed_by = request.user
+        self.confirmed_at = timezone.now()
+        super().save()
+    def cancel_order(self, request):
+        self.cancelled_by = request.user
+        self.cancelled_at = timezone.now()
+        super().save()
+    def pend_order(self):
+        self.pending_since = timezone.now()
         super().save()
 #                                                                        #
 def get_order(request):
