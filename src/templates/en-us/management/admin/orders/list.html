@@ -101,10 +101,17 @@
             </div>
             <div class="flex-grow-1 ms-3">
               <h5 class="text-inherit h5 me-2">{{ product.en_title }}</h5>
-              <span class="d-block text-body fs-6 text-wrap">
-                <small> {{ product.en_detail }} </small>
-              </span>
+              <small>
+                <span class="d-block text-body fs-6 text-wrap">
+                  {{ product.en_detail }}
+                </span>
+              </small>
             </div>
+            {% if product.lack_of_quantity %}
+            <strong data-bs-toggle="tooltip" data-bs-placement="top" title="lack of quantity" style="color: #ff0000;">
+              <i class="fa fa-triangle-exclamation me-4"></i>
+            </strong>
+            {% endif %}
           </a>
         </td>
         <!-- # -->
