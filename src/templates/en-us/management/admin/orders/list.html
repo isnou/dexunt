@@ -255,7 +255,9 @@
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {{ order.client_phone }}
+                      <a href="tel:{{ order.client_phone }}">
+                        {{ order.client_phone }}
+                      </a>
                     </span>
                   </td>
                 </tr>
