@@ -237,7 +237,7 @@
                   <td>
                     <span class="d-block text-dark fs-6">
                       {% if order.placed_by %}
-                      <i class="fa fa-user"></i>
+                      ({{ order.placed_by.sale }})
                       {% endif %}
                       Name
                     </span>
