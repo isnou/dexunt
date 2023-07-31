@@ -238,16 +238,24 @@
                 <tr>
                   <td>
                     <span class="d-block text-dark fs-6">
-                      Client Name
-                      </span>
-                  </td>
+                      Name
+                    </span>
 
-                  <td>
                     <span class="d-block text-body fs-6">
                       {{ order.client_name|title }}
                       {% if order.placed_by %}
                       <small>member</small>
                       {% endif %}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="d-block text-dark fs-6">
+                      Phone
+                    </span>
+
+                    <span class="d-block text-body fs-6">
+                      {{ order.client_phone }}
                     </span>
                   </td>
                 </tr>
