@@ -781,6 +781,17 @@ def manage_orders(request, action):
         selected_order = Order.objects.all().get(id=order_id)
         selected_order.confirm_order(request)
         return redirect('admin-manage-orders', 'main')
+    if action == 'quality_control':
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.quality_control(request)
+        return redirect('admin-manage-orders', 'main')
+    if action == 'on_delivery':
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.on_delivery(request)
+        return redirect('admin-manage-orders', 'main')
+
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')

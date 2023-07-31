@@ -289,6 +289,21 @@ class Order(models.Model):
     def pend_order(self):
         self.pending_since = timezone.now()
         super().save()
+    def quality_control(self, request):
+        self.quality_control_by = request.user
+        self.quality_control_since = timezone.now()
+        super().save()
+    def on_delivery(self, request):
+        self.on_delivery_by = request.user
+        self.on_delivery_since = timezone.now()
+        super().save()
+    def paid(self, request):
+        self.paid_by = request.user
+        self.paid_at = timezone.now()
+    def refund(self, request):
+        self.refunded_by = request.user
+        self.refunded_at = timezone.now()
+        super().save()
     # ----- variables ----- #
     def delivery_price(self):
         delivery_q = 0
