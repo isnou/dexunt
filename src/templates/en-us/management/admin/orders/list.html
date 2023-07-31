@@ -78,7 +78,7 @@
         <td>
           <span class="d-block h4 text-start"><small>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} , {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}</small></span>
         </td>
-        <!-- client name -->
+        <!-- total price -->
         <td>
           <span class="d-block h4 text-start"><small>{{ order.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
         </td>
@@ -111,8 +111,9 @@
         <td>
           {{ product.status }}
         </td>
-        <!-- # -->
+        <!-- price -->
         <td>
+          <span class="d-block h4 text-start"><small>{{ product.quantity }} X {{ product.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
         </td>
         <!-- product actions -->
         <td class="text-end">
