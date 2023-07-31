@@ -754,7 +754,7 @@ def manage_orders(request, action):
             request.session['orders-page'] = page
         else:
             page = request.session.get('orders-page')
-            
+
         paginator = Paginator(all_orders, 6)
         try:
             all_orders = paginator.page(page)
