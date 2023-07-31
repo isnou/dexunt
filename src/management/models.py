@@ -292,6 +292,7 @@ class Store(models.Model):
     sale = models.IntegerField(default=0)
     # ----- relations ----- #
     # many products #
+    # many orders #
     # one user #
     # ----- content ----- #
     name = models.CharField(max_length=200, unique=True, null=True)
