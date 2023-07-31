@@ -48,6 +48,8 @@ class SelectedProduct(models.Model):
     def order_prepared(self):
         self.quantity_control()
         if not self.lack_of_quantity:
+            self.option.quantity -= self.quantity
+            self.option.save()
             self.is_prepared_at = timezone.now()
             super().save()
             processed = True
