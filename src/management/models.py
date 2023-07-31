@@ -280,6 +280,8 @@ class Product(models.Model):
         for v in self.variant_set.all():
             v.set_tags()
             v.save()
+    def variants(self):
+        return self.variant_set.all()
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #

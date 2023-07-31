@@ -557,7 +557,7 @@
 
             <!-- My Sales -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'my_sales' %} active {% endif %}" href="#" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_sales' %} active {% endif %}" href="{% url 'provider-sales' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-cart-shopping nav-icon"></i>
                 <span class="nav-link-title">My Sales
                   {% if new_orders_count %}

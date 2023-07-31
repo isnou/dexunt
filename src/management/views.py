@@ -1099,11 +1099,11 @@ def provider_products(request, action):
     if action == 'main':
         url = direction + "/management/provider/products/list.html"
 
-        variant_ids = []
+
+        variants = Variant.objects.all()[0]
         for p in request.user.store.product_set.all():
             for v in p.variant_set.all():
-                variant_ids.append(v.id)
-        variants = Variant.objects.filter(id__in=variant_ids)
+                variants.append(v)
 
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
@@ -1200,9 +1200,120 @@ def provider_products(request, action):
                 selected_option.quantity -= quantity
                 selected_option.save()
             return redirect('provider-products', 'main')
+#                                                                        #
+@login_required
+def provider_sales(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 6
 
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/provider/sales/list.html"
 
-   # remove_quantity
+        variant_ids = []
+        for p in request.user.store.product_set.all():
+            for v in p.variant_set.all():
+                variant_ids.append(v.id)
+        variants = Variant.objects.filter(id__in=variant_ids)
+        orders = request.user.store.orders.all()
+
+        if request.GET.get('init', None):
+            request.session['variants_key_word']=None
+            request.session['variants-page'] = None
+
+        if request.session.get('variants_key_word', None):
+            variants = variants.filter(tags__icontains=request.session.get('variants_key_word'))
+            search_key_word = request.session.get('variants_key_word')
+        else:
+            search_key_word = None
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+            request.session['variants-page'] = page
+        else:
+            page = request.session.get('variants-page')
+
+        if request.session.get('error_messages'):
+            errors = request.session.get('error_messages')
+            request.session['error_messages'] = None
+        else:
+            errors = None
+
+        paginator = Paginator(variants, items_by_page)
+        try:
+            variants = paginator.page(page)
+        except PageNotAnInteger:
+            variants = paginator.page(1)
+        except EmptyPage:
+            variants = paginator.page(paginator.num_pages)
+
+        context = {
+            'nav_side': 'my_products',
+            'search_key_word': search_key_word,
+            'variants': variants,
+            'errors': errors,
+        }
+        return render(request, url, context)
+    # -- search partial show -- #
+    if action == 'search_products':
+        url = direction + "/management/provider/products/partial-list.html"
+        key_word = request.GET.get('key_word', None)
+        request.session['variants_key_word'] = key_word
+
+        variant_ids = []
+        for p in request.user.store.product_set.all():
+            for v in p.variant_set.all():
+                variant_ids.append(v.id)
+        variants = Variant.objects.filter(id__in=variant_ids)
+
+        variants = variants.filter(tags__icontains=key_word)
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+            request.session['variants-page'] = page
+        else:
+            page = request.session.get('variants-page')
+
+        paginator = Paginator(variants, items_by_page)
+        try:
+            variants = paginator.page(page)
+        except PageNotAnInteger:
+            variants = paginator.page(1)
+        except EmptyPage:
+            variants = paginator.page(paginator.num_pages)
+
+        context = {
+            'variants': variants,
+        }
+        return render(request, url, context)
+    if action == 'edit_price':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            price = int(request.POST.get('price', False))
+            selected_option = Option.objects.all().get(id=option_id)
+            selected_option.cost = price
+            selected_option.is_activated = False
+            selected_option.save()
+            return redirect('provider-products', 'main')
+    if action == 'add_quantity':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            quantity = int(request.POST.get('quantity', False))
+            selected_option = Option.objects.all().get(id=option_id)
+            selected_option.quantity += quantity
+            selected_option.save()
+            return redirect('provider-products', 'main')
+    if action == 'remove_quantity':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            quantity = int(request.POST.get('quantity', False))
+            selected_option = Option.objects.all().get(id=option_id)
+            if quantity <= selected_option.quantity:
+                selected_option.quantity -= quantity
+                selected_option.save()
+            return redirect('provider-products', 'main')
 
 
 # ---------------------------------------------------------------------- #
