@@ -741,12 +741,15 @@ def manage_orders(request, action):
         url = direction + "/management/admin/orders/list.html"
         all_orders = Order.objects.all()
 
-        if all_orders.count():
-            paginate = True
-        else:
-            paginate = False
+        if request.GET.get('init', None):
+            request.session['orders-page'] = None
 
-        page = request.GET.get('page', 1)
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+            request.session['orders-page'] = page
+        else:
+            page = request.session.get('orders-page')
+
         paginator = Paginator(all_orders, 6)
         try:
             all_orders = paginator.page(page)
