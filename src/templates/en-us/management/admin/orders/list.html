@@ -436,10 +436,35 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        {% if not order.confirmed_by %}
+        {% if order.status == 'confirmation' %}
         <a type="button" href="{% url 'admin-manage-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-white">Confirmed</a>
         <a type="button" class="btn btn-white">No answer</a>
         <a type="button" class="btn btn-white">Cancelled</a>
+        {% endif %}
+
+        {% if order.status == 'pending' %}
+        {% endif %}
+
+        {% if order.status == 'cancelled' %}
+        {% endif %}
+
+        {% if order.status == 'processed' %}
+        <a type="button" href="{% url 'admin-manage-orders' 'order_on_delivery' %}?order_id={{ order.id }}" class="btn btn-white">On delivery</a>
+        {% endif %}
+
+        {% if order.status == 'quality' %}
+        {% endif %}
+
+        {% if order.status == 'delivery' %}
+        {% endif %}
+
+        {% if order.status == 'paid' %}
+        {% endif %}
+
+        {% if order.status == 'dispute' %}
+        {% endif %}
+
+        {% if order.status == 'refund' %}
         {% endif %}
       </div>
     </div>
