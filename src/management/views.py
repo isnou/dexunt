@@ -741,6 +741,11 @@ def manage_orders(request, action):
         url = direction + "/management/admin/orders/list.html"
         all_orders = Order.objects.all()
 
+        if all_orders.count():
+            paginate = True
+        else:
+            paginate = False
+
         if request.GET.get('init', None):
             request.session['orders-page'] = None
 
@@ -749,7 +754,7 @@ def manage_orders(request, action):
             request.session['orders-page'] = page
         else:
             page = request.session.get('orders-page')
-
+            
         paginator = Paginator(all_orders, 6)
         try:
             all_orders = paginator.page(page)
@@ -761,6 +766,7 @@ def manage_orders(request, action):
         context = {
             'nav_side': 'orders',
             'all_orders': all_orders,
+            'paginate': paginate,
         }
         return render(request, url, context)
     if action == 'delete_order':
