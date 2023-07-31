@@ -1239,32 +1239,11 @@ def provider_sales(request, action):
             'errors': errors,
         }
         return render(request, url, context)
-    if action == 'edit_price':
-        if request.method == 'POST':
-            option_id = request.POST.get('option_id', False)
-            price = int(request.POST.get('price', False))
-            selected_option = Option.objects.all().get(id=option_id)
-            selected_option.cost = price
-            selected_option.is_activated = False
-            selected_option.save()
-            return redirect('provider-products', 'main')
-    if action == 'add_quantity':
-        if request.method == 'POST':
-            option_id = request.POST.get('option_id', False)
-            quantity = int(request.POST.get('quantity', False))
-            selected_option = Option.objects.all().get(id=option_id)
-            selected_option.quantity += quantity
-            selected_option.save()
-            return redirect('provider-products', 'main')
-    if action == 'remove_quantity':
-        if request.method == 'POST':
-            option_id = request.POST.get('option_id', False)
-            quantity = int(request.POST.get('quantity', False))
-            selected_option = Option.objects.all().get(id=option_id)
-            if quantity <= selected_option.quantity:
-                selected_option.quantity -= quantity
-                selected_option.save()
-            return redirect('provider-products', 'main')
+    if action == 'validate_order':
+        order_id = request.GET.get('order_id', False)
+        selected_order = request.user.store.orders.all().get(id=order_id)
+        selected_order.order_prepared()
+        return redirect('admin-manage-orders', 'main')
 
 
 # ---------------------------------------------------------------------- #
