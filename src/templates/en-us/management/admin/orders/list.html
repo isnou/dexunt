@@ -359,8 +359,9 @@
                   <div class="step-content-wrapper">
                     <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
                     <div class="step-content">
-                      <h4>{{ order.confirmed_by.username }}</h4>
-                      <p class="step-text">{{ order.confirmed_at }}</p>
+                      <h4>Confirmed</h4>
+                      <p class="step-text">by :{{ order.confirmed_by.username }}</p>
+                      <p class="step-text">at :{{ order.confirmed_at }}</p>
                     </div>
                   </div>
                 </li>
