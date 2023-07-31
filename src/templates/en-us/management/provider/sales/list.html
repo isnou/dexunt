@@ -62,26 +62,26 @@
               </div>
             </a>
           </td>
-          <!-- variant -->
+          <!-- ordered at -->
           <td>
             <span class="d-block text-dark fs-6 text-wrap">
               {{ product.is_ordered_at }}
             </span>
           </td>
-          <!-- option -->
+          <!-- quantity -->
           <td>
             <span class="d-block text-dark fs-6">
               {{ product.quantity }}
             </span>
           </td>
+          <!-- status -->
+          <td>
+            <span class="d-block text-dark fs-6">
+              {{ product.status }}
+            </span>
+          </td>
           <!-- product actions -->
           <td class="text-end">
-            {% if option.quantity %}
-            <!-- remove quantity -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#remove_quantity_modal_{{ option.id }}">
-              <i class="fa fa-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
-            </button>
-            {% endif %}
 
             <!-- add quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ option.id }}">
