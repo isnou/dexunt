@@ -1099,12 +1099,8 @@ def provider_products(request, action):
     if action == 'main':
         url = direction + "/management/provider/products/list.html"
 
-
-        variants = Variant.objects.all()[0]
-        for p in request.user.store.product_set.all():
-            for v in p.variant_set.all():
-                variants.add(v)
-
+        variants = request.user.store.all_variants()
+        
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
             request.session['variants-page'] = None

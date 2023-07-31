@@ -280,8 +280,6 @@ class Product(models.Model):
         for v in self.variant_set.all():
             v.set_tags()
             v.save()
-    def variants(self):
-        return self.variant_set.all()
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
@@ -346,6 +344,12 @@ class Store(models.Model):
                 v.deactivate()
         self.is_activated = False
         super().save()
+    def all_variants(self):
+        variant_ids = []
+        for p in self.product_set.all():
+            for v in p.variant_set.all():
+                variant_ids.append(v.id)
+        return Variant.objects.filter(id__in=variant_ids)
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #
