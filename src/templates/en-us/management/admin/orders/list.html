@@ -286,6 +286,57 @@
 
                   <td>
                     <span class="d-block text-dark fs-6">
+                      Sub Total
+                    </span>
+
+                    <span class="d-block text-body fs-6">
+                      {{ order.total_price|floatformat:"0g" }} <small>DZD</small>
+                    </span>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td>
+                    <span class="d-block text-dark fs-6">
+                      Delivery Price
+                    </span>
+
+                    <span class="d-block text-body fs-6">
+                      {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="d-block text-dark fs-6">
+                      Discount
+                    </span>
+
+                    <span class="d-block text-body fs-6">
+                      {% if order.coupon %}
+                      {% if order.coupon.is_subtractive %}
+                      {{ order.coupon.value|floatformat:"0g" }} <small>DZD</small>
+                      {% else %}
+                      {{ order.coupon.value|floatformat:"0g" }} %
+                      {% endif %}
+                      {% else %}
+                      No discount
+                      {% endif %}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="d-block text-dark fs-6">
+                      Gift Points
+                    </span>
+
+                    <span class="d-block text-body fs-6">
+                      {{ order.points }}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="d-block text-dark fs-6">
                       Total
                     </span>
 
@@ -294,6 +345,8 @@
                     </span>
                   </td>
                 </tr>
+
+
                 </tbody>
               </table>
             </div>
@@ -302,12 +355,6 @@
           </div>
         </div>
 
-
-
-        <span class="d-block fs-5 text-body">{{ order.client_name|title }}</span>
-        <i class="fa fa-mobile me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.client_phone|title }}</span>
-        <i class="fa-solid fa-location-dot me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.municipality.province.en_name|title }}, {{ order.municipality.en_name|title }}</span>
-        <i class="fa-solid fa-coins me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.total_price|floatformat:"0g" }} DZD </span>
 
 
 
