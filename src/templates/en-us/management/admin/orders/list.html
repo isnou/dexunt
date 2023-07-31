@@ -239,13 +239,15 @@
                   <td>
                     <span class="d-block text-dark fs-6">
                       Name
+                      {% if order.placed_by %}
+                      <i class="fa fa-check"></i>
+                      {% endif %}
                     </span>
 
                     <span class="d-block text-body fs-6">
                       {% if order.placed_by %}
                       <a href="#">
                         {{ order.client_name|title }}
-                        <small>member</small>
                       </a>
                       {% else %}
                       {{ order.client_name|title }}
