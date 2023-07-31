@@ -303,7 +303,11 @@
                     </span>
 
                     <span class="d-block text-body fs-6">
+                      {% if order.delivery_price %}
                       {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
+                      {% else %}
+                      Free
+                      {% endif %}
                     </span>
                   </td>
 
