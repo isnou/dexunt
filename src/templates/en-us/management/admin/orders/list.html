@@ -347,10 +347,8 @@
           </div>
         </div>
 
-        <!-- Step -->
+        {% if not order.is_empty %}
         <ul class="step step-timeline-md">
-
-
 
               <li class="step-item">
                 <div class="step-content-wrapper">
@@ -402,7 +400,15 @@
                 </div>
               </li>
             </ul>
-            <!-- End Step -->
+        {% else %}
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <span class="d-block fs-4 text-dark">Unfinished Order</span>
+            </div>
+          </div>
+        </div>
+        {% endif %}
 
 
       </div>
