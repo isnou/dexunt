@@ -50,6 +50,7 @@
         {% for product in orders %}
         <tr>
           <td class="table-column-pe-0">
+            #{{ product.order.ref }}
           </td>
           <!-- product title and image -->
           <td class="table-column-ps-0">
@@ -82,15 +83,9 @@
           </td>
           <!-- product actions -->
           <td class="text-end">
-
-            <!-- add quantity -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ option.id }}">
-              <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
-            </button>
-
-            <!-- price -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
-              <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
+            <!-- prepared product -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#prepared_product_{{ product.id }}">
+              <i class="fa fa-check"></i>
             </button>
           </td>
         </tr>
@@ -105,16 +100,16 @@
       <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
         <!-- Pagination -->
         <nav>
-          {% if variants.has_other_pages %}
+          {% if orders.has_other_pages %}
           <ul class="pagination justify-content-center">
-            {% if variants.has_previous %}
+            {% if orders.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ variants.previous_page_number }}" tabindex="-1">Previous</a>
+              <a class="page-link" href="?page={{ orders.previous_page_number }}" tabindex="-1">Previous</a>
             </li>
             {% endif %}
 
-            {% for i in variants.paginator.page_range %}
-            {% if variants.number == i %}
+            {% for i in orders.paginator.page_range %}
+            {% if orders.number == i %}
             <li class="page-item active">
               <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
             </li>
@@ -125,9 +120,9 @@
             {% endif %}
             {% endfor %}
 
-            {% if variants.has_next %}
+            {% if orders.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ variants.next_page_number }}">Next</a>
+              <a class="page-link" href="?page={{ orders.next_page_number }}">Next</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -147,115 +142,24 @@
 <!-- end all products  -->
 
 <!-- product modals & forms -->
-{% for variant in variants %}
-{% for option in variant.option_set.all %}
-<!-- edit price modal -->
-<div id="edit_price_modal_{{ option.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+{% for product in orders %}
+<!-- prepared product modal -->
+<div id="prepared_product_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-close">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div>
-          <div class="text-center mb-7">
-            <h2>Edit price</h2>
-          </div>
-
-          <form action="{% url 'provider-products' 'edit_price' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="option_id" value="{{ option.id }}">
-
-            <div class="row mb-4">
-              <div class="input-group input-group-merge input-group-borderless input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="fa fa-coins"></i>
-                </div>
-                <input type="number" class="form-control" placeholder="price" name="price" min="0" required>
-                <span class="invalid-feedback text-start">Please enter your new price.</span>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end gap-3">
-              <button type="submit" class="btn btn-white">Save</button>
-            </div>
-          </form>
-        </div>
+      <div class="modal-body text-center">
+        <p>{{ product.en_title }} x {{ product.quantity }} is ready ,click yes to confirm.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <a type="button" class="btn btn-primary">Yes</a>
       </div>
     </div>
   </div>
 </div>
-
-<!-- remove quantity modal -->
-<div id="remove_quantity_modal_{{ option.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <div class="text-center mb-7">
-            <h2>Remove quantity</h2>
-          </div>
-
-          <form action="{% url 'provider-products' 'remove_quantity' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="option_id" value="{{ option.id }}">
-
-            <div class="row mb-4">
-              <div class="input-group input-group-merge input-group-borderless input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="fa fa-minus"></i>
-                </div>
-                <input type="number" class="form-control" placeholder="quantity"  name="quantity" max="{{ option.quantity }}" min="0" required>
-                <span class="invalid-feedback text-start">Quantity to remove must not exceed inventory.</span>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end gap-3">
-              <button type="submit" class="btn btn-white">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- add quantity modal -->
-<div id="add_quantity_modal_{{ option.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <div class="text-center mb-7">
-            <h2>Add quantity</h2>
-          </div>
-
-          <form action="{% url 'provider-products' 'add_quantity' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="option_id" value="{{ option.id }}">
-
-            <div class="row mb-4">
-              <div class="input-group input-group-merge input-group-borderless input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="fa fa-plus"></i>
-                </div>
-                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="0" required>
-                <span class="invalid-feedback text-start">Please enter quantity to add.</span>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end gap-3">
-              <button type="submit" class="btn btn-white">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
 {% endfor %}
 {% endblock %}
