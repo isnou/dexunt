@@ -84,11 +84,7 @@
         </td>
         <!-- client phone -->
         <td>
-          <span class="d-block h4 text-start"><small>{{ order.client_phone }}</small></span>
-        </td>
-        <!-- delivery -->
-        <td>
-          <span class="d-block h4 text-start"><small>{{ order.municipality.province.en_name|title }} | {{ order.municipality.en_name|title }}</small></span>
+          <span class="d-block h4 text-start"><small><a href="tel:{{ order.client_phone }}">{{ order.client_phone }}</a></small></span>
         </td>
       </tr>
 
@@ -114,9 +110,6 @@
         <!-- # -->
         <td>
           {{ product.status }}
-        </td>
-        <!-- # -->
-        <td>
         </td>
         <!-- # -->
         <td>
