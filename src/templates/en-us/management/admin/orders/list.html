@@ -242,9 +242,13 @@
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {{ order.client_name|title }}
                       {% if order.placed_by %}
-                      <small>member</small>
+                      <a href="#">
+                        {{ order.client_name|title }}
+                        <small>member</small>
+                      </a>
+                      {% else %}
+                      {{ order.client_name|title }}
                       {% endif %}
                     </span>
                   </td>
