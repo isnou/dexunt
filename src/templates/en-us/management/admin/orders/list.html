@@ -275,12 +275,22 @@
                     <span class="d-block text-body fs-6">
                       {{ order.municipality.province.en_name|title }}, {{ order.municipality.en_name|title }},
                       {% if order.delivery_type == 'HOME' %}
-                      to home
+                      Home
                       {% endif %}
 
                       {% if order.delivery_type == 'DESK' %}
-                      to desk
+                      Desk
                       {% endif %}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="d-block text-dark fs-6">
+                      Total
+                    </span>
+
+                    <span class="d-block text-body fs-6">
+                      {{ order.total_price|floatformat:"0g" }} <small>DZD</small>
                     </span>
                   </td>
                 </tr>
