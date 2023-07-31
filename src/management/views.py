@@ -1243,7 +1243,7 @@ def provider_sales(request, action):
         order_id = request.GET.get('order_id', False)
         selected_order = request.user.store.orders.all().get(id=order_id)
         selected_order.order_prepared()
-        return redirect('admin-manage-orders', 'main')
+        return redirect('provider-sales', 'main')
 
 
 # ---------------------------------------------------------------------- #
