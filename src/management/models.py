@@ -152,13 +152,6 @@ class Option(models.Model):
                             )
         new_option.save()
         self.variant.option_set.add(new_option)
-    def can_be_activated(self):
-        if self.variant.product.store:
-            return self.variant.product.store.is_activated
-        else:
-            return False
-
-
     def activate(self):
         if not self.variant.is_activated:
             self.variant.is_activated = True
@@ -169,6 +162,12 @@ class Option(models.Model):
         self.is_activated = False
         super().save()
         self.variant.activate()
+    # ----- variables ----- #
+    def can_be_activated(self):
+        if self.variant.product.store:
+            return self.variant.product.store.is_activated
+        else:
+            return False
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
@@ -345,6 +344,7 @@ class Store(models.Model):
                 v.deactivate()
         self.is_activated = False
         super().save()
+    # ----- variables ----- #
     def all_variants(self):
         variant_ids = []
         for p in self.product_set.all():

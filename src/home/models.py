@@ -28,6 +28,36 @@ class SelectedProduct(models.Model):
     retained_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     retained_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
+    def quantity_control(self):
+        if self.quantity > self.option.quantity:
+            self.lack_of_quantity = True
+        super().save()
+    def place_order(self):
+        self.quantity_control()
+        self.cart.coupon = None
+        self.cart.save()
+        self.cart = None
+        self.retained_points = self.points()
+        self.retained_price = self.price()
+        self.retained_total_price = self.total_price()
+        super().save()
+    def confirm_order(self):
+        self.is_ordered_at = timezone.now()
+        self.store = self.option.variant.product.store
+        super().save()
+    def order_prepared(self):
+        self.quantity_control()
+        if not self.lack_of_quantity:
+            self.is_prepared_at = timezone.now()
+            super().save()
+            processed = True
+            for p in self.order.selected_products.all():
+                if not p.is_prepared_at:
+                    processed = False
+            if processed:
+                self.order.processed_since = timezone.now()
+                self.order.save()
+    # ----- variables ----- #
     def image(self):
         if self.option.has_image:
             return self.option.image
@@ -68,23 +98,7 @@ class SelectedProduct(models.Model):
         if self.is_refunded_at:
             status = 'refunded'
         return  status
-    def quantity_control(self):
-        if self.quantity > self.option.quantity:
-            self.lack_of_quantity = True
-        super().save()
-    def place_order(self):
-        self.quantity_control()
-        self.cart.coupon = None
-        self.cart.save()
-        self.cart = None
-        self.retained_points = self.points()
-        self.retained_price = self.price()
-        self.retained_total_price = self.total_price()
-        super().save()
-    def confirm_order(self):
-        self.is_ordered_at = timezone.now()
-        self.store = self.option.variant.product.store
-        super().save()
+
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
@@ -138,6 +152,20 @@ class Cart(models.Model):
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
     # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.ref:
+            self.ref = functions.serial_number_generator(20).upper()
+        super().save()
+    def add_product(self, option):
+        if self.selected_products.all().filter(option_id=option.id).exists():
+            selected_product = self.selected_products.all().get(option_id=option.id)
+            selected_product.quantity += 1
+            selected_product.save()
+        else:
+            selected_product = SelectedProduct(option=option)
+            selected_product.cart = self
+            selected_product.save()
+    # ----- variables ----- #
     def price(self):
         price = 0
         for p in self.selected_products.all():
@@ -158,19 +186,6 @@ class Cart(models.Model):
         for p in self.selected_products.all():
             points += p.points()
         return points
-    def save(self, *args, **kwargs):
-        if not self.ref:
-            self.ref = functions.serial_number_generator(20).upper()
-        super().save()
-    def add_product(self, option):
-        if self.selected_products.all().filter(option_id=option.id).exists():
-            selected_product = self.selected_products.all().get(option_id=option.id)
-            selected_product.quantity += 1
-            selected_product.save()
-        else:
-            selected_product = SelectedProduct(option=option)
-            selected_product.cart = self
-            selected_product.save()
 #                                                                        #
 def get_cart(request):
     if not request.user.is_authenticated:
@@ -243,6 +258,36 @@ class Order(models.Model):
     # --------------------------------- order info ---------------------------------------------
     delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK
     # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.ref:
+            self.ref = functions.serial_number_generator(6).upper()
+        super().save()
+    def place_order(self, request):
+        for p in self.selected_products.all():
+            p.place_order()
+        self.is_empty = False
+        self.placed_at = timezone.now()
+        self.retained_points = self.points()
+        self.retained_price = self.price()
+        self.retained_total_price = self.total_price()
+        if not request.user.is_authenticated:
+            request.session['order_ref'] = None
+            request.session['cart_ref'] = None
+        super().save()
+    def confirm_order(self, request):
+        for p in self.selected_products.all():
+            p.confirm_order()
+        self.confirmed_by = request.user
+        self.confirmed_at = timezone.now()
+        super().save()
+    def cancel_order(self, request):
+        self.cancelled_by = request.user
+        self.cancelled_at = timezone.now()
+        super().save()
+    def pend_order(self):
+        self.pending_since = timezone.now()
+        super().save()
+    # ----- variables ----- #
     def delivery_price(self):
         delivery_q = 0
         if self.selected_products.all().count():
@@ -255,7 +300,6 @@ class Order(models.Model):
                     return int(float(self.municipality.home_delivery_price) * delivery_q / 100)
                 if self.delivery_type == 'DESK':
                     return int(float(self.municipality.desk_delivery_price) * delivery_q / 100)
-        super().save()
     def price(self):
         price = 0
         for p in self.selected_products.all():
@@ -302,35 +346,6 @@ class Order(models.Model):
         if self.refunded_at:
             status = 'refund'
         return  status
-    def save(self, *args, **kwargs):
-        if not self.ref:
-            self.ref = functions.serial_number_generator(6).upper()
-        super().save()
-    def place_order(self, request):
-        for p in self.selected_products.all():
-            p.place_order()
-        self.is_empty = False
-        self.placed_at = timezone.now()
-        self.retained_points = self.points()
-        self.retained_price = self.price()
-        self.retained_total_price = self.total_price()
-        if not request.user.is_authenticated:
-            request.session['order_ref'] = None
-            request.session['cart_ref'] = None
-        super().save()
-    def confirm_order(self, request):
-        for p in self.selected_products.all():
-            p.confirm_order()
-        self.confirmed_by = request.user
-        self.confirmed_at = timezone.now()
-        super().save()
-    def cancel_order(self, request):
-        self.cancelled_by = request.user
-        self.cancelled_at = timezone.now()
-        super().save()
-    def pend_order(self):
-        self.pending_since = timezone.now()
-        super().save()
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
