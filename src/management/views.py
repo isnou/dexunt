@@ -768,6 +768,11 @@ def manage_orders(request, action):
             selected_order.delete_products()
             selected_order.delete()
             return redirect('admin-manage-orders', 'main')
+    if action == 'confirmed_order':
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.confirm_order(request)
+        return redirect('admin-manage-orders', 'main')
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')

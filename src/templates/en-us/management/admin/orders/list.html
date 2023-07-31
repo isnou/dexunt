@@ -425,13 +425,11 @@
           </div>
         </div>
 
-
-
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
         {% if not order.confirmed_by %}
-        <a type="button" class="btn btn-white">Confirmed</a>
+        <a type="button" href="{% url 'admin-manage-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-white">Confirmed</a>
         <a type="button" class="btn btn-white">No answer</a>
         <a type="button" class="btn btn-white">Cancelled</a>
         {% endif %}
