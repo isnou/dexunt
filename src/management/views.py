@@ -761,7 +761,6 @@ def manage_orders(request, action):
         context = {
             'nav_side': 'orders',
             'all_orders': all_orders,
-            'paginate': paginate,
         }
         return render(request, url, context)
     if action == 'delete_order':
