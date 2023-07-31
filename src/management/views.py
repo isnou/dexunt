@@ -1100,7 +1100,7 @@ def provider_products(request, action):
         url = direction + "/management/provider/products/list.html"
 
         variants = request.user.store.all_variants()
-        
+
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
             request.session['variants-page'] = None
@@ -1208,28 +1208,16 @@ def provider_sales(request, action):
     if action == 'main':
         url = direction + "/management/provider/sales/list.html"
 
-        variant_ids = []
-        for p in request.user.store.product_set.all():
-            for v in p.variant_set.all():
-                variant_ids.append(v.id)
-        variants = Variant.objects.filter(id__in=variant_ids)
         orders = request.user.store.orders.all()
 
         if request.GET.get('init', None):
-            request.session['variants_key_word']=None
-            request.session['variants-page'] = None
-
-        if request.session.get('variants_key_word', None):
-            variants = variants.filter(tags__icontains=request.session.get('variants_key_word'))
-            search_key_word = request.session.get('variants_key_word')
-        else:
-            search_key_word = None
+            request.session['orders-page'] = None
 
         if request.GET.get('page', None):
             page = request.GET.get('page', 1)
-            request.session['variants-page'] = page
+            request.session['orders-page'] = page
         else:
-            page = request.session.get('variants-page')
+            page = request.session.get('orders-page')
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -1237,51 +1225,18 @@ def provider_sales(request, action):
         else:
             errors = None
 
-        paginator = Paginator(variants, items_by_page)
+        paginator = Paginator(orders, items_by_page)
         try:
-            variants = paginator.page(page)
+            orders = paginator.page(page)
         except PageNotAnInteger:
-            variants = paginator.page(1)
+            orders = paginator.page(1)
         except EmptyPage:
-            variants = paginator.page(paginator.num_pages)
+            orders = paginator.page(paginator.num_pages)
 
         context = {
-            'nav_side': 'my_products',
-            'search_key_word': search_key_word,
-            'variants': variants,
+            'nav_side': 'my_orders',
+            'orders': orders,
             'errors': errors,
-        }
-        return render(request, url, context)
-    # -- search partial show -- #
-    if action == 'search_products':
-        url = direction + "/management/provider/products/partial-list.html"
-        key_word = request.GET.get('key_word', None)
-        request.session['variants_key_word'] = key_word
-
-        variant_ids = []
-        for p in request.user.store.product_set.all():
-            for v in p.variant_set.all():
-                variant_ids.append(v.id)
-        variants = Variant.objects.filter(id__in=variant_ids)
-
-        variants = variants.filter(tags__icontains=key_word)
-
-        if request.GET.get('page', None):
-            page = request.GET.get('page', 1)
-            request.session['variants-page'] = page
-        else:
-            page = request.session.get('variants-page')
-
-        paginator = Paginator(variants, items_by_page)
-        try:
-            variants = paginator.page(page)
-        except PageNotAnInteger:
-            variants = paginator.page(1)
-        except EmptyPage:
-            variants = paginator.page(paginator.num_pages)
-
-        context = {
-            'variants': variants,
         }
         return render(request, url, context)
     if action == 'edit_price':
