@@ -299,14 +299,13 @@
                 <tr>
                   <td>
                     <span class="d-block text-dark fs-6">
-                      Delivery Price
+                      Gift Points
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {% if order.delivery_price %}
-                      {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
-                      {% else %}
-                      Free
+                      {{ order.points }}
+                      {% if order.placed_by %}
+                      ({{ order.placed_by.points }})
                       {% endif %}
                     </span>
                   </td>
@@ -331,11 +330,15 @@
 
                   <td>
                     <span class="d-block text-dark fs-6">
-                      Gift Points
+                      Delivery Price
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {{ order.points }}
+                      {% if order.delivery_price %}
+                      {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
+                      {% else %}
+                      Free
+                      {% endif %}
                     </span>
                   </td>
 
