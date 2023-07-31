@@ -1103,7 +1103,7 @@ def provider_products(request, action):
         variants = Variant.objects.all()[0]
         for p in request.user.store.product_set.all():
             for v in p.variant_set.all():
-                variants.append(v)
+                variants.add(v)
 
         if request.GET.get('init', None):
             request.session['variants_key_word']=None
