@@ -347,82 +347,94 @@
           </div>
         </div>
 
-        {% if not order.is_empty %}
+
         <div class="card">
           <div class="card-body">
+            {% if not order.is_empty %}
             <div class="table-responsive">
 
-        <ul class="step step-timeline-md">
-
-              <li class="step-item">
-                <div class="step-content-wrapper">
-                  <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                  <div class="step-content">
-                    <h4>First step</h4>
-                    <p class="step-text">Achieve virtually any design and layout from within the one template.</p>
+              {% if order.confirmed_by %}
+              <ul class="step step-timeline-md">
+                <li class="step-item">
+                  <div class="step-content-wrapper">
+                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
+                    <div class="step-content">
+                      <h4>{{ order.confirmed_by.username }}</h4>
+                      <p class="step-text">{{ order.confirmed_at }}</p>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
 
-              <li class="step-item">
-                <div class="step-content-wrapper">
-                  <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                  <div class="step-content">
-                    <h4>Second step</h4>
-                    <p class="step-text">We strive to figure out ways to help your business grow through all platforms.</p>
+                {% if order.processed_since %}
+                <li class="step-item">
+                  <div class="step-content-wrapper">
+                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
+                    <div class="step-content">
+                      <h4>Second step</h4>
+                      <p class="step-text">We strive to figure out ways to help your business grow through all platforms.</p>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
+                {% endif %}
 
-              <li class="step-item">
-                <div class="step-content-wrapper">
-                  <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                  <div class="step-content">
-                    <h4>Third step</h4>
-                    <p class="step-text">Find what you need in one template and combine features at will.</p>
+                {% if order.quality_control_since %}
+                <li class="step-item">
+                  <div class="step-content-wrapper">
+                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
+                    <div class="step-content">
+                      <h4>Third step</h4>
+                      <p class="step-text">Find what you need in one template and combine features at will.</p>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
+                {% endif %}
 
-              <li class="step-item">
-                <div class="step-content-wrapper">
-                  <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                  <div class="step-content">
-                    <h4>Fourth step</h4>
-                    <p class="step-text">Find what you need in one template and combine features at will.</p>
+                {% if order.on_delivery_since %}
+                <li class="step-item">
+                  <div class="step-content-wrapper">
+                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
+                    <div class="step-content">
+                      <h4>Fourth step</h4>
+                      <p class="step-text">Find what you need in one template and combine features at will.</p>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
+                {% endif %}
 
-              <li class="step-item">
-                <div class="step-content-wrapper">
-                  <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                  <div class="step-content">
-                    <h4>Fifth step</h4>
-                    <p class="step-text">Find what you need in one template and combine features at will.</p>
+                {% if order.paid_at %}
+                <li class="step-item">
+                  <div class="step-content-wrapper">
+                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
+                    <div class="step-content">
+                      <h4>Fifth step</h4>
+                      <p class="step-text">Find what you need in one template and combine features at will.</p>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+                {% endif %}
+              </ul>
+              {% else %}
+              <span class="d-block fs-4 text-dark">Call The Client And Confirm The Order</span>
+              {% endif %}
+
+              {% else %}
+              <span class="d-block fs-4 text-dark">Unfinished Order</span>
+              {% endif %}
 
               </div>
           </div>
         </div>
-        {% else %}
-        <div class="card">
-          <div class="card-body">
-            <div class="table-responsive">
-              <span class="d-block fs-4 text-dark">Unfinished Order</span>
-            </div>
-          </div>
-        </div>
-        {% endif %}
+
 
 
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="clean_product_form_{{ product.id }}">Yes</button>
+        {% if not order.confirmed_by %}
+        <button class="btn btn-primary">Confirm Order</button>
+        <button class="btn btn-primary">Pend Order</button>
+        <button class="btn btn-primary">Cancel Order</button>
+        {% endif %}
       </div>
     </div>
   </div>
