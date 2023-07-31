@@ -229,14 +229,36 @@
       </div>
       <div class="modal-body text-center">
 
-        <h4>First step</h4>
-        <p class="step-text">Achieve virtually any design and layout from within the one template.</p>
+        <div class="card" style="max-width: 20rem;">
+          <div class="card-body">
 
-        {% if order.placed_by %}
-        <i class="fa-solid fa-user-check me-1 ms-2"></i>
-        {% else %}
-        <i class="fa fa-user me-1 ms-2"></i>
-        {% endif %}
+            <div class="table-responsive">
+              <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                <tbody>
+                <tr>
+                  <td>
+                    <h4>Client Name</h4>
+                  </td>
+
+                  <td>
+                    <span class="d-block text-body fs-6">
+                      {{ order.client_name|title }}
+                      {% if order.placed_by %}
+                      <small>member</small>
+                      {% endif %}
+                    </span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
         <span class="d-block fs-5 text-body">{{ order.client_name|title }}</span>
         <i class="fa fa-mobile me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.client_phone|title }}</span>
         <i class="fa-solid fa-location-dot me-1 ms-2"></i> <span class="d-block fs-5 text-body">{{ order.municipality.province.en_name|title }}, {{ order.municipality.en_name|title }}</span>
