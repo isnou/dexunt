@@ -47,7 +47,8 @@
       <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
 
         <tbody>
-        {% for option in orders.all %}
+        {% for order in orders %}
+        {% for option in order.option.all %}
         <!-- products list -->
         <tr>
           <td class="table-column-pe-0">
@@ -122,6 +123,7 @@
           </td>
         </tr>
         <!-- end products list -->
+        {% endfor %}
         {% endfor %}
         </tbody>
       </table>
