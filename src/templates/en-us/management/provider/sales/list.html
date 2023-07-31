@@ -75,16 +75,16 @@
               {{ product.quantity }}
             </span>
           </td>
+          <!-- price -->
+          <td>
+            <span class="d-block text-dark fs-6">
+              {{ product.total_price|floatformat:"0g" }} <small>DZD</small>
+            </span>
+          </td>
           <!-- status -->
           <td>
             <span class="d-block text-dark fs-6">
               {{ product.status }}
-            </span>
-          </td>
-          <!-- price -->
-          <td>
-            <span class="d-block text-dark fs-6">
-              {{ product.total_price }}
             </span>
           </td>
           <!-- product actions -->
