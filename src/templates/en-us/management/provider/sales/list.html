@@ -11,11 +11,11 @@
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item active" aria-current="page">products</li>
+        <li class="breadcrumb-item active" aria-current="page">orders</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">Products</h1>
-    <h6 class="text-muted">Manage my products</h6>
+    <h1 class="page-header-title">Orders</h1>
+    <h6 class="text-muted">Manage my sales</h6>
   </div>
   <div class="col-sm-auto">
   </div>
@@ -31,18 +31,6 @@
   <div class="card-header card-header-content-md-between">
     <!-- search -->
     <div class="mb-2 mb-md-0">
-      <form>
-        <div class="input-group input-group-merge input-group-flush">
-          <div class="input-group-prepend input-group-text">
-            <i class="bi-search"></i>
-          </div>
-          {% if search_key_word %}
-          <input class="form-control" type="search" name="key_word" value="{{ search_key_word }}" required hx-get="{% url 'provider-products' 'search_products' %}" hx-trigger="keyup changed delay:1s" hx-target="#list">
-          {% else %}
-          <input class="form-control" type="search" name="key_word" placeholder="Search products" required hx-get="{% url 'provider-products' 'search_products' %}" hx-trigger="keyup changed delay:1s" hx-target="#list">
-          {% endif %}
-        </div>
-      </form>
     </div>
     <!-- end search -->
 
@@ -59,8 +47,7 @@
       <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
 
         <tbody>
-        {% for variant in variants %}
-        {% for option in variant.option_set.all %}
+        {% for option in orders.all %}
         <!-- products list -->
         <tr>
           <td class="table-column-pe-0">
@@ -135,7 +122,6 @@
           </td>
         </tr>
         <!-- end products list -->
-        {% endfor %}
         {% endfor %}
         </tbody>
       </table>
