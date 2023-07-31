@@ -238,10 +238,10 @@
                 <tr>
                   <td>
                     <span class="d-block text-dark fs-6">
-                      Name
                       {% if order.placed_by %}
                       <i class="fa fa-user"></i>
                       {% endif %}
+                      Name
                     </span>
 
                     <span class="d-block text-body fs-6">
@@ -264,6 +264,23 @@
                       <a href="tel:{{ order.client_phone }}">
                         {{ order.client_phone }}
                       </a>
+                    </span>
+                  </td>
+
+                  <td>
+                    <span class="d-block text-dark fs-6">
+                      Delivery
+                    </span>
+
+                    <span class="d-block text-body fs-6">
+                      {{ order.municipality.province.en_name|title }}, {{ order.municipality.en_name|title }},
+                      {% if order.delivery_type == 'HOME' %}
+                      to home
+                      {% endif %}
+
+                      {% if order.delivery_type == 'DESK' %}
+                      to desk
+                      {% endif %}
                     </span>
                   </td>
                 </tr>
