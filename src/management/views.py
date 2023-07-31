@@ -1234,7 +1234,7 @@ def provider_sales(request, action):
             orders = paginator.page(paginator.num_pages)
 
         context = {
-            'nav_side': 'my_orders',
+            'nav_side': 'my_sales',
             'orders': orders,
             'errors': errors,
         }
