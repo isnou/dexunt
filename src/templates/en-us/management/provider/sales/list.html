@@ -48,7 +48,7 @@
 
         <tbody>
         {% for product in orders %}
-        <tr class="{% if product.status == 'pending' %} bg-light {% endif %}">
+        <tr class="{% if product.status == 'confirmed' %} bg-light {% endif %}">
           <td class="table-column-pe-0">
             #{{ product.order.ref }}
           </td>
