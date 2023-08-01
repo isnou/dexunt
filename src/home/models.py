@@ -49,8 +49,7 @@ class SelectedProduct(models.Model):
         new_log.save()
     def place_order(self):
         self.quantity_control()
-        if self.cart.coupon:
-            self.cart.coupon = None
+        self.cart.coupon = None
         self.cart.save()
         self.cart = None
         self.retained_points = self.points()

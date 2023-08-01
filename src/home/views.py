@@ -19,6 +19,12 @@ def home_page(request):
         if request.user.is_seller:
             return redirect('seller-home', 'main')
 
+    for u in User.objects.all():
+        u.cart = None
+        u.save()
+    for c in Cart.objects.all():
+        c.delete()
+
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
