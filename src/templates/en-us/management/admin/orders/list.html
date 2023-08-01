@@ -357,12 +357,8 @@
         </div>
         <div class="card">
           <div class="card-body">
-            {{ order.log.all.count }}
 
             <div class="table-responsive">
-              {% if not order.status == 'created' %}
-              <!-- placed order -->
-              {% if order.status == confirmed %}
               <ul class="step step-timeline-md">
                 {% for log in order.log.all %}
                 <li class="step-item">
@@ -377,14 +373,6 @@
                 </li>
                 {% endfor %}
               </ul>
-              {% else %}
-              <span class="d-block fs-4 text-dark">Call The Client And Confirm The Order</span>
-              {% endif %}
-              <!-- unfinished order -->
-              {% else %}
-              <span class="d-block fs-4 text-dark">Unfinished Order</span>
-              {% endif %}
-
               </div>
           </div>
         </div>
