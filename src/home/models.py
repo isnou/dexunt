@@ -4,15 +4,25 @@ from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
 # ------------------------------- Orders ------------------------------- #
+class Log(models.Model):
+    # ----- Technical ----- #
+    content = models.CharField(max_length=500, default='created', null=True)
+    at = models.DateTimeField(auto_now_add=True)
+    # ----- relations ----- #
+    user = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='log', blank=True, null=True)
+    store = models.ForeignKey(
+        'management.Store', on_delete=models.CASCADE, related_name='log', blank=True, null=True)
+    order = models.ForeignKey(
+        'home.Order', on_delete=models.CASCADE, related_name='log', null=True)
+    selected_product = models.ForeignKey(
+        'home.SelectedProduct', on_delete=models.CASCADE, related_name='log', null=True)
+#                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
     lack_of_quantity = models.BooleanField(default=False)
     # ----- #
-    created_at = models.DateTimeField(auto_now_add=True)
-    is_ordered_at = models.DateTimeField(blank=True, null=True) # -- a new confirmed order
-    is_prepared_at = models.DateTimeField(blank=True, null=True) # -- order prepared by the provider
-    is_paid_at = models.DateTimeField(blank=True, null=True)
-    is_refunded_at = models.DateTimeField(blank=True, null=True)
+    status = models.CharField(max_length=50, default='created', null=True)
     # ----- relations ----- #
     store = models.ForeignKey(
         'management.Store', on_delete=models.CASCADE, related_name='orders', null=True)
@@ -32,6 +42,11 @@ class SelectedProduct(models.Model):
         if self.quantity > self.option.quantity:
             self.lack_of_quantity = True
         super().save()
+    def new_log(self):
+        new_log = Log(content=self.status,
+                      store=self.store,
+                      selected_product=self)
+        new_log.save()
     def place_order(self):
         self.quantity_control()
         self.cart.coupon = None
@@ -41,24 +56,36 @@ class SelectedProduct(models.Model):
         self.retained_price = self.price()
         self.retained_total_price = self.total_price()
         super().save()
-    def confirm_order(self):
-        self.is_ordered_at = timezone.now()
+        self.new_log()
+    def confirm(self):
+        self.status = 'confirmed'
         self.store = self.option.variant.product.store
         super().save()
-    def order_prepared(self):
+        self.new_log()
+    def process(self):
         self.quantity_control()
         if not self.lack_of_quantity:
             self.option.quantity -= self.quantity
             self.option.save()
-            self.is_prepared_at = timezone.now()
+            self.status = 'processed'
+            self.store = self.option.variant.product.store
             super().save()
-            processed = True
-            for p in self.order.selected_products.all():
-                if not p.is_prepared_at:
-                    processed = False
-            if processed:
-                self.order.processed_since = timezone.now()
-                self.order.save()
+            self.new_log()
+    def pick_up(self, request):
+        self.status = 'picked_up'
+        self.store = self.option.variant.product.store
+        super().save()
+        new_log = Log(content=self.status,
+                      store=self.store,
+                      user=request.user,
+                      selected_product=self)
+        new_log.save()
+        processed = True
+        for p in self.order.selected_products.all():
+            if not p.status == 'picked_up':
+                processed = False
+        if processed:
+            self.order.process()
     # ----- variables ----- #
     def image(self):
         if self.option.has_image:
@@ -89,18 +116,6 @@ class SelectedProduct(models.Model):
         return self.option.variant.product.ar_title
     def ar_detail(self):
         return self.option.variant.ar_spec + ' ' + self.option.ar_value
-    def status(self):
-        status = 'created'
-        if self.is_ordered_at:
-            status = 'pending'
-        if self.is_prepared_at:
-            status = 'prepared'
-        if self.is_paid_at:
-            status = 'paid'
-        if self.is_refunded_at:
-            status = 'refunded'
-        return  status
-
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
@@ -152,13 +167,13 @@ class Cart(models.Model):
     # ----- relations ----- #
     # related to many selected_products #
     coupon = models.ForeignKey(
-        'home.Coupon', on_delete=models.CASCADE, null=True)
+        'home.Coupon', on_delete=models.CASCADE, blank=True, null=True)
     # ----- functions ----- #
     def __str__(self):
         return self.ref
     def save(self, *args, **kwargs):
         if not self.ref:
-            self.ref = functions.serial_number_generator(20).upper()
+            self.ref = 'CART-' + functions.serial_number_generator(15).upper()
         super().save()
     def add_product(self, option):
         if self.selected_products.all().filter(option_id=option.id).exists():
@@ -217,41 +232,19 @@ class Order(models.Model):
     my_qr = models.BooleanField(default=False)
     gift_card = models.BooleanField(default=False)
     # ----- #
+    cash_on_delivery = models.BooleanField(default=True)
+    # ----- #
     ref = models.CharField(max_length=6, unique=True, null=True)
-
-    is_empty = models.BooleanField(default=True) # -- new order
-    created_at = models.DateTimeField(auto_now_add=True)
-    placed_at = models.DateTimeField(blank=True, null=True) # -- waiting for confirmation
-    pending_since = models.DateTimeField(blank=True, null=True) # -- no answers
-    cancelled_at = models.DateTimeField(blank=True, null=True) # -- by the customer or after multiple calls
-    confirmed_at = models.DateTimeField(blank=True, null=True) # -- confirmed order and waiting for providers
-    processed_since = models.DateTimeField(blank=True, null=True) # -- all products prepared by different providers
-    quality_control_since = models.DateTimeField(blank=True, null=True) # -- check before expedition
-    on_delivery_since = models.DateTimeField(blank=True, null=True) # -- products shipped
-    paid_at = models.DateTimeField(blank=True, null=True) # -- received and paid by the client
-    refund_request_at = models.DateTimeField(blank=True, null=True)
-    refunded_at = models.DateTimeField(blank=True, null=True)
+    secret_key = models.CharField(max_length=6, unique=True, null=True)
+    delivery_code = models.CharField(max_length=30, blank=True, null=True)
+    # ----- #
+    status = models.CharField(max_length=50, default='created', null=True)
     # ----- relations ----- #
     # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', blank=True, on_delete=models.CASCADE, null=True)
     municipality = models.ForeignKey(
         'home.Municipality', blank=True, on_delete=models.CASCADE, null=True)
-    # ----- #
-    placed_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='placed_orders', blank=True, null=True)
-    cancelled_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='cancelled_orders', blank=True, null=True)
-    confirmed_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='confirmed_orders', blank=True, null=True)
-    quality_control_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='orders_under_quality_control', blank=True, null=True)
-    on_delivery_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='orders_on_delivery', blank=True, null=True)
-    paid_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='paid_products', blank=True, null=True)
-    refunded_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='refunded_orders', blank=True, null=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
@@ -263,43 +256,60 @@ class Order(models.Model):
     delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK
     # ----- functions ----- #
     def save(self, *args, **kwargs):
+        if not self.secret_key:
+            self.secret_key = functions.serial_number_generator(6)
         super().save()
         if not self.ref:
             self.ref = str(self.id+1).zfill(6)
         super().save()
-    def place_order(self, request):
+    def new_log(self, request):
+        new_log = Log(content=self.status,
+                      order=self)
+        if request.user.is_authenticated:
+            new_log.user=request.user
+        else:
+            request.session['order_ref'] = None
+            request.session['cart_ref'] = None
+        new_log.save()
+    def placing(self, request):
         for p in self.selected_products.all():
             p.place_order()
-        self.is_empty = False
-        self.placed_at = timezone.now()
         self.retained_points = self.points()
         self.retained_price = self.price()
         self.retained_total_price = self.total_price()
-        if not request.user.is_authenticated:
-            request.session['order_ref'] = None
-            request.session['cart_ref'] = None
         super().save()
-    def confirm_order(self, request):
+        self.new_log(request)
+    def confirm(self, request):
         for p in self.selected_products.all():
-            p.confirm_order()
-        self.confirmed_by = request.user
-        self.confirmed_at = timezone.now()
+            p.confirm()
+        self.status = 'confirmed'
         super().save()
-    def cancel_order(self, request):
-        self.cancelled_by = request.user
-        self.cancelled_at = timezone.now()
+        self.new_log(request)
+    def cancel(self, request):
+        self.status = 'cancelled'
         super().save()
-    def pend_order(self):
-        self.pending_since = timezone.now()
+        self.new_log(request)
+    def pend(self, request):
+        self.status = 'pended'
         super().save()
+        self.new_log(request)
+    def process(self):
+        self.status = 'processed'
+        super().save()
+        new_log = Log(content=self.status,
+                      order=self)
+        new_log.save()
+    def controlled(self, request):
+        self.status = 'controlled'
+        super().save()
+        self.new_log(request)
     def quality_control(self, request):
         self.quality_control_by = request.user
         self.quality_control_since = timezone.now()
         super().save()
-    def on_delivery(self, request):
-        self.on_delivery_by = request.user
-        self.on_delivery_since = timezone.now()
-        super().save()
+    def picked_up(self, request):
+        if request.method == 'POST':
+            lab_id = request.POST.get('lab_id', False)
     def paid(self, request):
         self.paid_by = request.user
         self.paid_at = timezone.now()
@@ -343,29 +353,6 @@ class Order(models.Model):
         for p in self.selected_products.all():
             points += p.points()
         return points
-    def status(self):
-        status = 'created'
-        if self.placed_at:
-            status = 'confirmation'
-        if self.pending_since:
-            status = 'pending'
-        if self.cancelled_at:
-            status = 'cancelled'
-        if self.confirmed_at:
-            status = 'confirmed'
-        if self.processed_since:
-            status = 'processed'
-        if self.quality_control_since:
-            status = 'quality'
-        if self.on_delivery_since:
-            status = 'delivery'
-        if self.paid_at:
-            status = 'paid'
-        if self.refund_request_at:
-            status = 'dispute'
-        if self.refunded_at:
-            status = 'refund'
-        return  status
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
@@ -385,15 +372,14 @@ def get_order(request):
                 selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
-        if request.user.placed_orders.all().filter(is_empty=True).exists():
-            selected_order = request.user.placed_orders.all().get(is_empty=True)
+        if request.user.placed_orders.all().filter(status='created').exists():
+            selected_order = request.user.placed_orders.all().get(status='created')
             selected_order.coupon = coupon
             selected_order.save()
         else:
             selected_order = Order(coupon=coupon)
             selected_order.save()
             request.user.placed_orders.add(selected_order)
-
     for p in selected_cart.selected_products.all():
         p.order = selected_order
         p.save()

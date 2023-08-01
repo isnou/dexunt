@@ -11,13 +11,27 @@ from management.models import Store
 
 # ------------------------------ Setting ------------------------------- #
 class Transaction(models.Model):
+    # ----- Technical ----- #
+    ref = models.CharField(max_length=10, unique=True, null=True)
+    secret_key = models.CharField(max_length=6, unique=True, null=True)
     # ----- relations ----- #
     wallet = models.ForeignKey(
         'authentication.Wallet', on_delete=models.CASCADE, null=True)
+    completed_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, null=True) # -- to be done with a member
     # ----- content ----- #
     title = models.CharField(max_length=500, blank=True, null=True)
     amount = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+    completed_at = models.DateTimeField(auto_now_add=True)
+    # ----- functions ----- #
+    def save(self, *args, **kwargs):
+        if not self.secret_key:
+            self.secret_key = functions.serial_number_generator(6)
+        super().save()
+        if not self.ref:
+            self.ref = str(self.id+1).zfill(10)
+        super().save()
 #                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #
@@ -158,13 +172,13 @@ class User(AbstractUser):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0
             for o in Order.objects.all():
-                if o.status() == 'confirmation':
+                if o.status() == 'created':
                     count += 1
             return count
         if self.is_provider:
             count = 0
             for o in self.store.orders.all():
-                if o.status() == 'pending':
+                if o.status() == 'confirmed':
                     count += 1
             return count
     def client_name(self):
