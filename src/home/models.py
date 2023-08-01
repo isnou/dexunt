@@ -245,6 +245,8 @@ class Order(models.Model):
         'home.Coupon', blank=True, on_delete=models.CASCADE, null=True)
     municipality = models.ForeignKey(
         'home.Municipality', blank=True, on_delete=models.CASCADE, null=True)
+    client = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='all_orders', blank=True, null=True)
     # ----- content ----- #
     client_name = models.CharField(max_length=300, blank=True, null=True)
     client_phone = PhoneNumberField(blank=True)
@@ -372,14 +374,15 @@ def get_order(request):
                 selected_order.save()
                 request.session['order_ref'] = selected_order.ref
     else:
-        if request.user.placed_orders.all().filter(status='created').exists():
-            selected_order = request.user.placed_orders.all().get(status='created')
+        if request.user.all_orders.all().filter(status='created').exists():
+            selected_order = request.user.all_orders.all().get(status='created')
             selected_order.coupon = coupon
             selected_order.save()
         else:
-            selected_order = Order(coupon=coupon)
+            selected_order = Order(coupon=coupon,
+                                   client=request.user)
             selected_order.save()
-            request.user.placed_orders.add(selected_order)
+
     for p in selected_cart.selected_products.all():
         p.order = selected_order
         p.save()
