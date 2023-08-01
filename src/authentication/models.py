@@ -169,7 +169,7 @@ class User(AbstractUser):
                     ).save()
     # ----- variables ----- #
     def new_orders_count(self):
-        return 0
+        return 30
     def client_name(self):
         return self.first_name + ' ' + self.last_name
 #                                                                        #
