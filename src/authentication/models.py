@@ -11,8 +11,6 @@ from management.models import Store
 
 # ------------------------------ Setting ------------------------------- #
 class Transaction(models.Model):
-    # ----- Technical ----- #
-    hook = models.CharField(max_length=24, null=True)
     # ----- relations ----- #
     wallet = models.ForeignKey(
         'authentication.Wallet', on_delete=models.CASCADE, null=True)
@@ -33,7 +31,7 @@ class Wallet(models.Model):
         for transaction in self.transaction.all():
             self.balance += transaction.amount
         super().save()
-#                                                            #
+#                                                                        #
 class DeliveryAddress(models.Model):
     # ----- Technical ----- #
     default = models.BooleanField(default=False)
@@ -59,6 +57,7 @@ class User(AbstractUser):
     is_seller = models.BooleanField(default=False)
     is_member = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    is_cash_manager = models.BooleanField(default=False)
     # ----- #
     tags = models.CharField(max_length=5000, blank=True, null=True)
     points = models.IntegerField(default=0)
@@ -131,6 +130,8 @@ class User(AbstractUser):
             self.is_provider = True
         if new_role == 'member':
             self.is_member = True
+        if new_role == 'cash-manager':
+            self.is_cash_manager = True
         super().save()
     def new_address(self, request, municipality):
         if request.method == 'POST':
@@ -147,6 +148,12 @@ class User(AbstractUser):
                     a.save()
                 new_address.default = True
             new_address.save()
+    def new_transaction(self, title, amount):
+        Transaction(wallet = self,
+                    title = title,
+                    amount = amount
+                    ).save()
+    # ----- variables ----- #
     def new_orders(self):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0
