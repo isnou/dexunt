@@ -359,72 +359,22 @@
           <div class="card-body">
 
             <div class="table-responsive">
-              {% if not order.is_empty %}
+              {% if not order.status == 'created' %}
               <!-- placed order -->
-              {% if order.confirmed_by %}
+              {% if order.status == confirmed %}
               <ul class="step step-timeline-md">
+                {% for log in order.log %}
                 <li class="step-item">
                   <div class="step-content-wrapper">
                     <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
                     <div class="step-content">
-                      <h4>Confirmed</h4>
-                      <p class="step-text">by :{{ order.confirmed_by.username }}</p>
-                      <p class="step-text">at :{{ order.confirmed_at }}</p>
+                      <h4>{{ log.content }}</h4>
+                      <p class="step-text">by :{{ log.user }}</p>
+                      <p class="step-text">at :{{ log.at }}</p>
                     </div>
                   </div>
                 </li>
-                <!-- confirmed order -->
-                {% if order.processed_since %}
-                <li class="step-item">
-                  <div class="step-content-wrapper">
-                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                    <div class="step-content">
-                      <h4>Processed</h4>
-                      <p class="step-text">at :{{ order.processed_since }}</p>
-                    </div>
-                  </div>
-                </li>
-                {% endif %}
-                <!-- processed order -->
-                {% if order.quality_control_since %}
-                <li class="step-item">
-                  <div class="step-content-wrapper">
-                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                    <div class="step-content">
-                      <h4>Quality Control</h4>
-                      <p class="step-text">by :{{ order.quality_control_by.username }}</p>
-                      <p class="step-text">at :{{ order.quality_control_since }}</p>
-                    </div>
-                  </div>
-                </li>
-                {% endif %}
-                <!-- quality checked -->
-                {% if order.on_delivery_since %}
-                <li class="step-item">
-                  <div class="step-content-wrapper">
-                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                    <div class="step-content">
-                      <h4>On Delivery</h4>
-                      <p class="step-text">validated by :{{ order.on_delivery_by.username }}</p>
-                      <p class="step-text">at :{{ order.on_delivery_since }}</p>
-                      <p class="step-text">delivery code :{{ order.delivery_code }}</p>
-                    </div>
-                  </div>
-                </li>
-                {% endif %}
-                <!-- order on delivery -->
-                {% if order.paid_at %}
-                <li class="step-item">
-                  <div class="step-content-wrapper">
-                    <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
-                    <div class="step-content">
-                      <h4>Paid</h4>
-                      <p class="step-text">validated by :{{ order.paid_by.username }}</p>
-                      <p class="step-text">at :{{ order.paid_at }}</p>
-                    </div>
-                  </div>
-                </li>
-                {% endif %}
+                {% endfor %}
               </ul>
               {% else %}
               <span class="d-block fs-4 text-dark">Call The Client And Confirm The Order</span>
