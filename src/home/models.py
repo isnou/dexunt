@@ -158,7 +158,7 @@ class Cart(models.Model):
         return self.ref
     def save(self, *args, **kwargs):
         if not self.ref:
-            self.ref = functions.serial_number_generator(20).upper()
+            self.ref = 'CART-' + functions.serial_number_generator(15).upper()
         super().save()
     def add_product(self, option):
         if self.selected_products.all().filter(option_id=option.id).exists():
