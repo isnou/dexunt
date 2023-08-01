@@ -169,7 +169,18 @@ class User(AbstractUser):
                     ).save()
     # ----- variables ----- #
     def new_orders_count(self):
-        return 30
+        if self.is_superuser or self.is_admin or self.is_member:
+            count = 0
+            for o in Order.objects.all():
+                if o.status() == 'created':
+                    count += 1
+            return 15
+        if self.is_provider:
+            count = 0
+            for o in self.store.orders.all():
+                if o.status() == 'confirmed':
+                    count += 1
+            return count
     def client_name(self):
         return self.first_name + ' ' + self.last_name
 #                                                                        #
