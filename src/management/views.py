@@ -1261,7 +1261,7 @@ def provider_sales(request, action):
     if action == 'validate_order':
         order_id = request.GET.get('order_id', False)
         selected_order = request.user.store.orders.all().get(id=order_id)
-        selected_order.confirm()
+        selected_order.process()
         return redirect('provider-sales', 'main')
 
 
