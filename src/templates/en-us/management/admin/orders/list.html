@@ -91,7 +91,7 @@
 
       {% for product in order.selected_products.all %}
       <!-- products list -->
-      <tr class="{% if order.status == 'confirmation' %} bg-light {% endif %}">
+      <tr class="{% if order.status == 'processed' %} bg-light {% endif %}">
         <td class="table-column-pe-0">
         </td>
         <!-- product title and image -->
@@ -126,7 +126,9 @@
         <!-- product actions -->
         <td class="text-end">
           {% if product.status == 'processed' %}
-          <a type="button" href="{% url 'admin-manage-orders' 'picked_up' %}?order_id={{ order.id }}&product_id={{ product.id }}" class="btn btn-white">On delivery</a>
+          <button type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#product_piked_up_{{ product.id }}">
+            <i class="bi-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Piked up"></i>
+          </button>
           {% endif %}
         </td>
       </tr>
@@ -466,6 +468,27 @@
     </div>
   </div>
 </div>
+
+<!-- piked up product modal -->
+{% for product in order.selected_products.all %}
+<div id="product_piked_up_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>{{ product.en_title }} x {{ product.quantity }} has been piked up ,click yes to confirm.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <a type="button" class="btn btn-primary" href="{% url 'admin-manage-orders' 'picked_up' %}?order_id={{ order.id }}&product_id={{ product.id }}">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endfor %}
 
 {% endblock %}
