@@ -438,7 +438,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        {% if order.status == 'created' %}
+        {% if order.status == 'placed' %}
         <a type="button" href="{% url 'admin-manage-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-white">Confirmed</a>
         <a type="button" href="{% url 'admin-manage-orders' 'pend_order' %}?order_id={{ order.id }}" class="btn btn-white">No answer</a>
         <a type="button" href="{% url 'admin-manage-orders' 'cancel_order' %}?order_id={{ order.id }}" class="btn btn-white">Cancelled</a>
