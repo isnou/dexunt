@@ -154,6 +154,8 @@ class Cart(models.Model):
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, null=True)
     # ----- functions ----- #
+    def __str__(self):
+        return self.ref
     def save(self, *args, **kwargs):
         super().save()
         if not self.ref:
