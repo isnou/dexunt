@@ -5,5 +5,5 @@ def orders(request):
         new_orders_count = None
 
     return {
-        'new_orders_count': new_orders_count
+        'new_orders_count': 0
     }
