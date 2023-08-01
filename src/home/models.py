@@ -49,8 +49,6 @@ class SelectedProduct(models.Model):
         new_log.save()
     def place_order(self):
         self.quantity_control()
-        self.cart.coupon = None
-        self.cart.save()
         self.cart = None
         self.retained_points = self.points()
         self.retained_price = self.price()
@@ -269,11 +267,14 @@ class Order(models.Model):
                       order=self)
         if request.user.is_authenticated:
             new_log.user=request.user
+        new_log.save()
+    def placing(self, request):
+        if request.user.is_authenticated:
+            request.user.cart.coupon = None
+            request.user.cart.save()
         else:
             request.session['order_ref'] = None
             request.session['cart_ref'] = None
-        new_log.save()
-    def placing(self, request):
         for p in self.selected_products.all():
             p.place_order()
         self.retained_points = self.points()
