@@ -357,6 +357,7 @@
         </div>
         <div class="card">
           <div class="card-body">
+            {{ order.log.all.count }}
 
             <div class="table-responsive">
               {% if not order.status == 'created' %}
