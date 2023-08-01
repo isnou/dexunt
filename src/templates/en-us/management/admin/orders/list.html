@@ -91,7 +91,7 @@
 
       {% for product in order.selected_products.all %}
       <!-- products list -->
-      <tr class="{% if order.status == 'processed' %} bg-light {% endif %}">
+      <tr class="{% if product.status == 'processed' %} bg-light {% endif %}">
         <td class="table-column-pe-0">
         </td>
         <!-- product title and image -->
@@ -126,9 +126,9 @@
         <!-- product actions -->
         <td class="text-end">
           {% if product.status == 'processed' %}
-          <button type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#product_piked_up_{{ product.id }}">
+          <a type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#product_piked_up_{{ product.id }}">
             <i class="bi-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Piked up"></i>
-          </button>
+          </a>
           {% endif %}
         </td>
       </tr>
