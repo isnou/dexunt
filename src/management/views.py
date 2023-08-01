@@ -781,15 +781,15 @@ def manage_orders(request, action):
         selected_order = Order.objects.all().get(id=order_id)
         selected_order.confirm(request)
         return redirect('admin-manage-orders', 'main')
-    if action == 'quality_control':
+    if action == 'quality_controlled':
         order_id = request.GET.get('order_id', False)
         selected_order = Order.objects.all().get(id=order_id)
         selected_order.control(request)
         return redirect('admin-manage-orders', 'main')
-    if action == 'on_delivery':
+    if action == 'picked_up_by_delivery':
         order_id = request.GET.get('order_id', False)
         selected_order = Order.objects.all().get(id=order_id)
-        selected_order.on_delivery(request)
+        selected_order.picked_up(request)
         return redirect('admin-manage-orders', 'main')
 
 #                                                                        #

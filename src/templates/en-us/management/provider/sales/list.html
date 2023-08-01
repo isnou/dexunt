@@ -73,7 +73,7 @@
           <!-- ordered at -->
           <td>
             <span class="d-block text-dark fs-6 text-wrap">
-              {{ product.is_ordered_at }}
+              {{ product.log.first.content }} : {{ product.log.first.at }}
             </span>
           </td>
           <!-- quantity -->
@@ -96,7 +96,7 @@
           </td>
           <!-- product actions -->
           <td class="text-end">
-            {% if product.status == 'pending' %}
+            {% if product.status == 'confirmed' %}
             <!-- prepared product -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#prepared_product_{{ product.id }}">
               <i class="fa fa-check"></i>

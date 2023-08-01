@@ -125,10 +125,9 @@
         </td>
         <!-- product actions -->
         <td class="text-end">
-          <!-- delete product -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_product_modal_{{ variant.id }}">
-            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-          </button>
+          {% if product.status == 'processed' %}
+          <a type="button" href="{% url 'admin-manage-orders' 'picked_up' %}?order_id={{ order.id }}&product_id={{ order.id }}" class="btn btn-white">On delivery</a>
+          {% endif %}
         </td>
       </tr>
       {% endfor %}
@@ -452,11 +451,11 @@
         {% endif %}
 
         {% if order.status == 'processed' %}
-        <a type="button" href="{% url 'admin-manage-orders' 'quality_control' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
+        <a type="button" href="{% url 'admin-manage-orders' 'quality_controlled' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
         {% endif %}
 
         {% if order.status == 'quality' %}
-        <a type="button" href="{% url 'admin-manage-orders' 'on_delivery' %}?order_id={{ order.id }}" class="btn btn-white">On delivery</a>
+        <a type="button" href="{% url 'admin-manage-orders' 'picked_up_by_delivery' %}?order_id={{ order.id }}" class="btn btn-white">On delivery</a>
         {% endif %}
 
         {% if order.status == 'delivery' %}
