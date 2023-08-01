@@ -23,7 +23,7 @@ class Transaction(models.Model):
     title = models.CharField(max_length=500, blank=True, null=True)
     amount = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    completed_at = models.DateTimeField(auto_now_add=True)
+    completed_at = models.DateTimeField(blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.secret_key:
