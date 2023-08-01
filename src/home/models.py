@@ -305,13 +305,13 @@ class Order(models.Model):
         self.status = 'controlled'
         super().save()
         self.new_log(request)
-    def quality_control(self, request):
-        self.quality_control_by = request.user
-        self.quality_control_since = timezone.now()
-        super().save()
     def picked_up(self, request):
         if request.method == 'POST':
-            lab_id = request.POST.get('lab_id', False)
+            delivery_code = request.POST.get('delivery_code', False)
+            self.delivery_code = delivery_code
+            self.status = 'controlled'
+            super().save()
+            self.new_log(request)
     def paid(self, request):
         self.paid_by = request.user
         self.paid_at = timezone.now()
