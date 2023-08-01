@@ -54,7 +54,7 @@
       <tbody>
       {% for order in all_orders %}
       <!-- orders list -->
-      <tr class="border-top {% if order.status == 'created' %} bg-light {% endif %}">
+      <tr class="border-top {% if order.status == 'placed' %} bg-light {% endif %}">
         <td class="table-column-pe-0">
         </td>
         <!-- order ref -->
@@ -126,7 +126,7 @@
         <!-- product actions -->
         <td class="text-end">
           {% if product.status == 'processed' %}
-          <a type="button" href="{% url 'admin-manage-orders' 'picked_up' %}?order_id={{ order.id }}&product_id={{ order.id }}" class="btn btn-white">On delivery</a>
+          <a type="button" href="{% url 'admin-manage-orders' 'picked_up' %}?order_id={{ order.id }}&product_id={{ product.id }}" class="btn btn-white">On delivery</a>
           {% endif %}
         </td>
       </tr>
