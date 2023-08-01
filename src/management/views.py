@@ -786,10 +786,12 @@ def manage_orders(request, action):
         selected_order = Order.objects.all().get(id=order_id)
         selected_order.control(request)
         return redirect('admin-manage-orders', 'main')
-    if action == 'picked_up_by_delivery':
+    if action == 'picked_up':
         order_id = request.GET.get('order_id', False)
+        product_id = request.GET.get('product_id', False)
         selected_order = Order.objects.all().get(id=order_id)
-        selected_order.picked_up(request)
+        selected_product = selected_order.selected_products.all().get(id=product_id)
+        selected_product.picked_up(request)
         return redirect('admin-manage-orders', 'main')
 
 #                                                                        #
