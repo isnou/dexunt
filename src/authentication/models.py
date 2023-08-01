@@ -168,7 +168,7 @@ class User(AbstractUser):
                     amount = amount
                     ).save()
     # ----- variables ----- #
-    def new_orders(self):
+    def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0
             for o in Order.objects.all():

@@ -1,6 +1,6 @@
 def orders(request):
     if request.user.is_authenticated:
-        new_orders_count = request.user.new_orders()
+        new_orders_count = request.user.new_orders_count()
     else:
         new_orders_count = None
 
