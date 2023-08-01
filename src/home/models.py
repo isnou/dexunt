@@ -157,9 +157,8 @@ class Cart(models.Model):
     def __str__(self):
         return self.ref
     def save(self, *args, **kwargs):
-        super().save()
         if not self.ref:
-            self.ref = 'CART-' + str(self.id+1).zfill(15)
+            self.ref = functions.serial_number_generator(20).upper()
         super().save()
     def add_product(self, option):
         if self.selected_products.all().filter(option_id=option.id).exists():
@@ -264,8 +263,9 @@ class Order(models.Model):
     delivery_type = models.CharField(max_length=100, default='HOME') # -- delivery_types :  HOME - DESK
     # ----- functions ----- #
     def save(self, *args, **kwargs):
+        super().save()
         if not self.ref:
-            self.ref = functions.serial_number_generator(6).upper()
+            self.ref = str(self.id+1).zfill(6)
         super().save()
     def place_order(self, request):
         for p in self.selected_products.all():
