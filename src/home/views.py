@@ -20,8 +20,7 @@ def home_page(request):
             return redirect('seller-home', 'main')
 
     for u in User.objects.all():
-        u.cart = None
-        u.save()
+        u.remove(cart)
     for c in Cart.objects.all():
         c.delete()
 
