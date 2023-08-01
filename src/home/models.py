@@ -280,6 +280,7 @@ class Order(models.Model):
         self.retained_points = self.points()
         self.retained_price = self.price()
         self.retained_total_price = self.total_price()
+        self.status = 'placed'
         super().save()
         self.new_log(request)
     def confirm(self, request):

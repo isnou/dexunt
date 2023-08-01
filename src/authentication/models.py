@@ -172,7 +172,7 @@ class User(AbstractUser):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0
             for o in Order.objects.all():
-                if o.status == 'created':
+                if o.status == 'placed':
                     count += 1
             return count
         if self.is_provider:
