@@ -80,7 +80,7 @@
         </td>
         <!-- creation date -->
         <td class="text-end">
-          <span class="d-block h4 text-end"><small>{{ order.created_at|date:'M' }} {{ order.created_at|date:'d' }} , {{ order.created_at|time:'H' }}:{{ order.created_at|time:'i' }}</small>
+          <span class="d-block h4 text-end"><small>{{ order.log.first.at|date:'M' }} {{ order.log.first.at|date:'d' }} , {{ order.log.first.at|time:'H' }}:{{ order.log.first.at|time:'i' }}</small>
             <!-- delete order -->
             <button type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
               <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
