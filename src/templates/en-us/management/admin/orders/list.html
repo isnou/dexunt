@@ -381,8 +381,10 @@
                 </li>
                 {% endfor %}
               </ul>
+          </div>
+        </div>
 
-            {% if order.status == 'placed' %}
+        {% if order.status == 'placed' %}
             <div class="card card-border-warning">
             <span class="d-block text-warning fs-4">
               Please call the client to confirm the order
@@ -401,9 +403,7 @@
               Waiting for products to be prepared by providers
             </span>
             {% endif %}
-
-          </div>
-        </div>
+        
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
