@@ -315,7 +315,7 @@ class Order(models.Model):
         if request.method == 'POST':
             delivery_code = request.POST.get('delivery_code', False)
             self.delivery_code = delivery_code
-            self.status = 'controlled'
+            self.status = 'picked-up'
             super().save()
             self.new_log(request)
     def paid(self, request):
@@ -361,6 +361,21 @@ class Order(models.Model):
         for p in self.selected_products.all():
             points += p.points()
         return points
+    def progress(self):
+        if self.status == 'created':
+            return 10
+        if self.status == 'placed':
+            return 20
+        if self.status == 'confirmed':
+            return 30
+        if self.status == 'processed':
+            return 40
+        if self.status == 'controlled':
+            return 50
+        if self.status == 'picked-up':
+            return 60
+        if self.status == 'paid':
+            return 100
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
