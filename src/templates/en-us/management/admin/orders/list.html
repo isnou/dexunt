@@ -395,14 +395,14 @@
         {% endif %}
 
         {% if order.status == 'controlled' %}
-        <form action="#" id="delivery_from_{{ order.id }}" novalidate method="post">
+        <form action="#" id="delivery_from_{{ order.id }}" method="post">
           {% csrf_token %}
           <input type="hidden" name="order_id" value="{{ order.id }}">
           <input type="text" class="form-control" name="delivery_code" required>
           <span class="invalid-feedback text-center">delivery code required.</span>
         </form>
 
-        <button form="delivery_from_{{ order.id }}" class="btn btn-white">On delivery</button>
+        <button type="submit" form="delivery_from_{{ order.id }}" class="btn btn-white">On delivery</button>
         {% endif %}
 
         {% if order.status == 'delivery' %}
