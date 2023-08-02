@@ -368,7 +368,7 @@
                     <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
                     <div class="step-content">
                       <h4>{{ log.content|title }}</h4>
-                      {% if not log.content == 'processed'%}
+                      {% if not log.content == 'processed' and not log.content == 'placed' %}
                       <p class="step-text">by :{{ log.user }}</p>
                       {% endif %}
 
