@@ -370,9 +370,9 @@ class Order(models.Model):
         if self.status == 'processed':
             return 40
         if self.status == 'controlled':
-            return 50
+            return 60
         if self.status == 'handed':
-            return 70
+            return 80
         if self.status == 'paid':
             return 100
 #                                                                        #
