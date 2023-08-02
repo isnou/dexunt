@@ -224,6 +224,7 @@ def get_cart(request):
 #                                                                        #
 class Order(models.Model):
     # ----- Technical ----- #
+    updated_at = models.DateTimeField(auto_now=True)
     is_regular = models.BooleanField(default=True)
     is_flash = models.BooleanField(default=False)
     is_custom = models.BooleanField(default=False)
