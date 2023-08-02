@@ -41,6 +41,8 @@ class SelectedProduct(models.Model):
     def quantity_control(self):
         if self.quantity > self.option.quantity:
             self.lack_of_quantity = True
+        else:
+            self.lack_of_quantity = False
         super().save()
     def new_log(self):
         new_log = Log(content=self.status,
