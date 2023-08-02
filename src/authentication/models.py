@@ -33,6 +33,15 @@ class Transaction(models.Model):
             self.ref = str(self.id+1).zfill(10)
         super().save()
 #                                                                        #
+def transactions_filter(request, new_filter):
+    if new_filter:
+        request.session['transactions_filter'] = new_filter
+
+    if request.session.get('transactions_filter', None) == 'all':
+        return Transaction.objects.all()
+    if request.session.get('transactions_filter', None) == 'costumers':
+        return Transaction.objects.all().filter(is_customer=True)
+#                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #
     # many transactions #

@@ -9,8 +9,9 @@ from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description, Store
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm ,StoreForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
-from home.models import Province, Municipality, Coupon, Order, Cart
+from home.models import Province, Municipality, Coupon, Order, Cart, clean_carts
 from authentication.models import User, users_filter
+from authentication.models import Transaction, transactions_filter
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from authentication.forms import UpdateProfileForm, UpdatePhotoForm
@@ -58,16 +59,8 @@ def manage_users(request, action):
     if action == 'main':
         url = direction + "/management/admin/users/list.html"
         users_list = User.objects.all().exclude(username=request.user.username)
-
         carts = Cart.objects.all()
-        for c in Cart.objects.all():
-            for u in User.objects.all():
-                if c.id == u.cart.id:
-                    carts = carts.exclude(id=u.cart.id)
-        for c in carts:
-            if not c.selected_products.all().count():
-                if not c.created_at <= timezone.now():
-                    c.delete()
+        clean_carts(carts, users_list)
 
         if request.GET.get('init', None):
             request.session['users_key_word']=None
@@ -804,8 +797,6 @@ def manage_orders(request, action):
             selected_order = Order.objects.all().get(id=order_id)
             selected_order.handed(request)
             return redirect('admin-manage-orders', 'main')
-
-
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
@@ -1002,6 +993,32 @@ def manage_coupon(request, action):
             return redirect('admin-manage-coupon', 'main')
 # ---------------------------------------------------------------------- #
 
+
+
+# ------------------------------- Admin -------------------------------- #
+@login_required
+@permission_required('main_manager.delete_option')
+def cash_manager_home(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/admin/home.html"
+        all_transactions = Transaction.objects.all()
+
+        context = {
+            'nav_side': 'home',
+            'all_products': all_products,
+            'all_flash_products': all_flash_products,
+            'published_products': published_products,
+            'unpublished_products': unpublished_products,
+            'published_flash_products': published_flash_products,
+            'unpublished_flash_products': unpublished_flash_products,
+        }
+        return render(request, url, context)
+#                                                                        #
+# ---------------------------------------------------------------------- #
 
 
 # ----------------------------- Customer ------------------------------- #
@@ -1277,8 +1294,6 @@ def provider_sales(request, action):
         selected_order = request.user.store.orders.all().get(id=order_id)
         selected_order.process()
         return redirect('provider-sales', 'main')
-
-
 # ---------------------------------------------------------------------- #
 
 
