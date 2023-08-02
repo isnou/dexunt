@@ -224,6 +224,16 @@ def get_cart(request):
         selected_cart = request.user.cart
     return selected_cart
 #                                                                        #
+def clean_carts(carts, users):
+    for c in carts:
+        for u in users:
+            if c.id == u.cart.id:
+                carts = carts.exclude(id=u.cart.id)
+    for c in carts:
+        if not c.selected_products.all().count():
+            if not c.created_at <= timezone.now():
+                c.delete()
+#                                                                        #
 class Order(models.Model):
     # ----- Technical ----- #
     updated_at = models.DateTimeField(auto_now=True)
@@ -361,8 +371,6 @@ class Order(models.Model):
             points += p.points()
         return points
     def progress(self):
-        if self.status == 'created':
-            return 10
         if self.status == 'placed':
             return 20
         if self.status == 'confirmed':
@@ -373,8 +381,6 @@ class Order(models.Model):
             return 60
         if self.status == 'handed':
             return 80
-        if self.status == 'paid':
-            return 100
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
