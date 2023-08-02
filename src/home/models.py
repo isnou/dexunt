@@ -224,15 +224,6 @@ def get_cart(request):
         selected_cart = request.user.cart
     return selected_cart
 #                                                                        #
-def clean_carts(carts, users):
-    for c in carts:
-        for u in users:
-            if c.id == u.cart.id:
-                carts = carts.exclude(id=u.cart.id)
-    for c in carts:
-        if not c.selected_products.all().count():
-            c.delete()
-#                                                                        #
 class Order(models.Model):
     # ----- Technical ----- #
     updated_at = models.DateTimeField(auto_now=True)

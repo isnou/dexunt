@@ -9,8 +9,8 @@ from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct ,Description, Store
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm ,DescriptionForm ,StoreForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
-from home.models import Province, Municipality, Coupon, Order, Cart, clean_carts
-from authentication.models import User, users_filter
+from home.models import Province, Municipality, Coupon, Order, Cart
+from authentication.models import User, users_filter, clean_users_carts
 from authentication.models import Transaction, transactions_filter
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -59,8 +59,7 @@ def manage_users(request, action):
     if action == 'main':
         url = direction + "/management/admin/users/list.html"
         users_list = User.objects.all().exclude(username=request.user.username)
-        carts = Cart.objects.all()
-        clean_carts(carts, users_list)
+        clean_users_carts()
 
         if request.GET.get('init', None):
             request.session['users_key_word']=None

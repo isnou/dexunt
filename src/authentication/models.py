@@ -208,6 +208,16 @@ def users_filter(request, users_list, new_filter):
         return users_list.filter(is_provider=True)
     if request.session.get('users_filter', None) == 'blacklist':
         return users_list.filter(is_blacklisted=True)
+#                                                                        #
+def clean_users_carts():
+    carts = Cart.objects.all()
+    for c in Cart.objects.all():
+        for u in User.objects.all():
+            if c.id == u.cart.id:
+                carts = carts.exclude(id=u.cart.id)
+    for c in carts:
+        if not c.selected_products.all().count():
+            c.delete()
 # ---------------------------------------------------------------------- #
 
 
