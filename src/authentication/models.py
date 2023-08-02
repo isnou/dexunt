@@ -8,7 +8,6 @@ from home.models import Cart, Order
 from management.models import Store
 
 
-
 # ------------------------------ Setting ------------------------------- #
 class Transaction(models.Model):
     # ----- Technical ----- #
