@@ -231,8 +231,7 @@ def clean_carts(carts, users):
                 carts = carts.exclude(id=u.cart.id)
     for c in carts:
         if not c.selected_products.all().count():
-            if not c.created_at <= timezone.now():
-                c.delete()
+            c.delete()
 #                                                                        #
 class Order(models.Model):
     # ----- Technical ----- #
