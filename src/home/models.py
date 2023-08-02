@@ -294,9 +294,10 @@ class Order(models.Model):
         super().save()
         self.new_log(request)
     def pend(self, request):
-        self.status = 'pended'
-        super().save()
-        self.new_log(request)
+        new_log = Log(content='pend',
+                      user=request.user,
+                      order=self)
+        new_log.save()
     def process(self):
         self.status = 'processed'
         super().save()

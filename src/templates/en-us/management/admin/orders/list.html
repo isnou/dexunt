@@ -383,14 +383,7 @@
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
         {% if order.status == 'placed' %}
         <a type="button" href="{% url 'admin-manage-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-white">Confirmed</a>
-        <a type="button" href="{% url 'admin-manage-orders' 'pend_order' %}?order_id={{ order.id }}" class="btn btn-white">No answer</a>
-        <a type="button" href="{% url 'admin-manage-orders' 'cancel_order' %}?order_id={{ order.id }}" class="btn btn-white">Cancelled</a>
-        {% endif %}
-
-        {% if order.status == 'pending' %}
-        {% endif %}
-
-        {% if order.status == 'cancelled' %}
+        <a type="button" href="{% url 'admin-manage-orders' 'no_answer' %}?order_id={{ order.id }}" class="btn btn-white">No answer</a>
         {% endif %}
 
         {% if order.status == 'processed' %}
