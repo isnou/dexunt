@@ -361,7 +361,7 @@
         </div>
         <div class="card">
           <div class="card-body">
-            {% if not status == 'placed' %}
+            {% if not order.status == 'placed' %}
               <ul class="step step-timeline-md">
                 {% for log in order.log.all %}
                 <li class="step-item">
