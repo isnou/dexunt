@@ -997,23 +997,46 @@ def manage_coupon(request, action):
 # ------------------------------- Admin -------------------------------- #
 @login_required
 @permission_required('main_manager.delete_option')
-def cash_manager_home(request, action):
+def cash_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/admin/home.html"
-        all_transactions = Transaction.objects.all()
+        url = direction + "/management/cash/home.html"
+        transactions = Transaction.objects.all()
+
+
+
+        if request.GET.get('init', None):
+            request.session['transactions-page'] = None
+
+        new_filter = request.GET.get('filter', None)
+        if not request.session.get('transactions_filter', None):
+            request.session['transactions_filter'] = 'all'
+
+        transactions = transactions_filter(request, transactions_list, new_filter)
+        filtered = request.session.get('transactions_filter', None)
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('transactions-page')
+
+
+        paginator = Paginator(transactions, items_by_page)
+        try:
+            transactions = paginator.page(page)
+        except PageNotAnInteger:
+            transactions = paginator.page(1)
+        except EmptyPage:
+            transactions = paginator.page(paginator.num_pages)
 
         context = {
             'nav_side': 'home',
-            'all_products': all_products,
-            'all_flash_products': all_flash_products,
-            'published_products': published_products,
-            'unpublished_products': unpublished_products,
-            'published_flash_products': published_flash_products,
-            'unpublished_flash_products': unpublished_flash_products,
+            'search_key_word': search_key_word,
+            'filtered': filtered,
+            'transactions': transactions,
         }
         return render(request, url, context)
 #                                                                        #

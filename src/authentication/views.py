@@ -156,7 +156,7 @@ def router(request):
         return redirect('seller-home', 'main')
 
     if request.user.is_cash_manager:
-        return redirect('cash-manager-home', 'main')
+        return redirect('cash-home', 'main')
 
 def account_logout(request):
     logout(request)

@@ -152,7 +152,7 @@ class User(AbstractUser):
             self.is_provider = True
         if new_role == 'member':
             self.is_member = True
-        if new_role == 'cash-manager':
+        if new_role == 'cash':
             self.is_cash_manager = True
         super().save()
     def new_address(self, request, municipality):
@@ -217,7 +217,8 @@ def clean_users_carts():
                 carts = carts.exclude(id=u.cart.id)
     for c in carts:
         if not c.selected_products.all().count():
-            c.delete()
+            if not c.created_at <= timezone.now():
+                c.delete()
 # ---------------------------------------------------------------------- #
 
 
