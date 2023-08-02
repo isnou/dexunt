@@ -359,7 +359,7 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card mb-4">
           <div class="card-body">
               <ul class="step step-timeline-md mt-5">
                 {% for log in order.log.all %}
@@ -384,26 +384,25 @@
           </div>
         </div>
 
-        {% if order.status == 'placed' %}
-            <div class="card card-border-warning">
-            <span class="d-block text-warning fs-4">
-              Please call the client to confirm the order
-            </span>
-              </div>
-            {% endif %}
+        <div class="card card-border-warning">
+          {% if order.status == 'placed' %}
+          <span class="d-block text-warning fs-4">
+            Please call the client to confirm the order
+          </span>
+          {% endif %}
 
-            {% if order.status == 'confirmed' %}
-            <span class="d-block text-warning fs-4">
-              Waiting for products to be prepared by providers
-            </span>
-            {% endif %}
+          {% if order.status == 'confirmed' %}
+          <span class="d-block text-warning fs-4">
+            Waiting for products to be prepared by providers
+          </span>
+          {% endif %}
 
-            {% if order.status == 'processed' %}
-            <span class="d-block text-warning fs-4">
-              Waiting for products to be prepared by providers
-            </span>
-            {% endif %}
-        
+          {% if order.status == 'processed' %}
+          <span class="d-block text-warning fs-4">
+            Waiting for products to be prepared by providers
+          </span>
+          {% endif %}
+        </div>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
