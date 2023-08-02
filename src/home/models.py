@@ -71,8 +71,8 @@ class SelectedProduct(models.Model):
             self.store = self.option.variant.product.store
             super().save()
             self.new_log()
-    def pick_up(self, request):
-        self.status = 'picked_up'
+    def collected(self, request):
+        self.status = 'collected'
         self.store = self.option.variant.product.store
         super().save()
         new_log = Log(content=self.status,
@@ -82,7 +82,7 @@ class SelectedProduct(models.Model):
         new_log.save()
         processed = True
         for p in self.order.selected_products.all():
-            if not p.status == 'picked_up':
+            if not p.status == 'collected':
                 processed = False
         if processed:
             self.order.process()
@@ -311,13 +311,12 @@ class Order(models.Model):
         self.status = 'controlled'
         super().save()
         self.new_log(request)
-    def picked_up(self, request):
-        if request.method == 'POST':
-            delivery_code = request.POST.get('delivery_code', False)
-            self.delivery_code = delivery_code
-            self.status = 'picked-up'
-            super().save()
-            self.new_log(request)
+    def handed(self, request):
+        delivery_code = request.POST.get('delivery_code', False)
+        self.delivery_code = delivery_code
+        self.status = 'handed'
+        super().save()
+        self.new_log(request)
     def paid(self, request):
         self.paid_by = request.user
         self.paid_at = timezone.now()
@@ -372,7 +371,7 @@ class Order(models.Model):
             return 40
         if self.status == 'controlled':
             return 50
-        if self.status == 'picked-up':
+        if self.status == 'handed':
             return 60
         if self.status == 'paid':
             return 100

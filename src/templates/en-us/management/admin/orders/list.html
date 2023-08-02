@@ -130,7 +130,7 @@
         <!-- product actions -->
         <td class="text-end">
           {% if product.status == 'processed' %}
-          <a type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#product_piked_up_{{ product.id }}">
+          <a type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#product_collected_{{ product.id }}">
             <i class="fa fa-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Piked up"></i>
           </a>
           {% endif %}
@@ -391,11 +391,18 @@
         {% endif %}
 
         {% if order.status == 'processed' %}
-        <a type="button" href="{% url 'admin-manage-orders' 'quality_controlled' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
+        <a type="button" href="{% url 'admin-manage-orders' 'controlled_quality' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
         {% endif %}
 
         {% if order.status == 'quality' %}
-        <a type="button" href="{% url 'admin-manage-orders' 'picked_up_by_delivery' %}?order_id={{ order.id }}" class="btn btn-white">On delivery</a>
+        <form action="{% url 'admin-manage-orders' 'handed_over' %}" id="delivery_from_{{ order.id }}" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="order_id" value="{{ order.id }}">
+          <input type="text" class="form-control" name="delivery_code" required>
+          <span class="invalid-feedback text-center">delivery code required.</span>
+        </form>
+
+        <button form="delivery_from_{{ order.id }}" class="btn btn-white">On delivery</button>
         {% endif %}
 
         {% if order.status == 'delivery' %}
@@ -409,7 +416,7 @@
 
 <!-- piked up product modal -->
 {% for product in order.selected_products.all %}
-<div id="product_piked_up_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="product_collected_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -421,7 +428,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a type="button" class="btn btn-primary" href="{% url 'admin-manage-orders' 'picked_up_form_provider' %}?order_id={{ order.id }}&product_id={{ product.id }}">Yes</a>
+        <a type="button" class="btn btn-primary" href="{% url 'admin-manage-orders' 'collected' %}?order_id={{ order.id }}&product_id={{ product.id }}">Yes</a>
       </div>
     </div>
   </div>
