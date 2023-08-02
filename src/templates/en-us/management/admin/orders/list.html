@@ -383,22 +383,23 @@
               </ul>
 
             {% if order.status == 'placed' %}
-            <span class="d-block text-dark fs-5">
+            <span class="d-block text-warning fs-4">
               Please call the client to confirm the order
             </span>
             {% endif %}
 
             {% if order.status == 'confirmed' %}
-            <span class="d-block text-dark fs-5">
+            <span class="d-block text-warning fs-4">
               Waiting for products to be prepared by providers
             </span>
             {% endif %}
 
             {% if order.status == 'processed' %}
-            <span class="d-block text-dark fs-5">
+            <span class="d-block text-warning fs-4">
               Waiting for products to be prepared by providers
             </span>
             {% endif %}
+
           </div>
         </div>
       </div>
