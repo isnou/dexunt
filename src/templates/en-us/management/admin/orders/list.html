@@ -395,7 +395,7 @@
         {% endif %}
 
         {% if order.status == 'controlled' %}
-        <form action="#" id="delivery_from_{{ order.id }}" method="post">
+        <form action="#" id="delivery_from_{{ order.id }}" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="order_id" value="{{ order.id }}">
           <input type="text" class="form-control" name="delivery_code" required>
