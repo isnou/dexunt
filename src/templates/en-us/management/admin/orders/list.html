@@ -77,9 +77,23 @@
         <!-- status -->
         <td>
           <span class="d-block h4 text-start">
+            {% if not order.status == 'placed' and not order.status == 'paid'%}
             <div class="progress">
               <div class="progress-bar" role="progressbar" style="width: {{ order.progress }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+            {% endif %}
+
+            {% if order.status == 'placed' %}
+            <span class="d-block h4 text-end">
+              NEW
+            </span>
+            {% endif %}
+
+            {% if order.status == 'paid' %}
+            <span class="d-block h4 text-end">
+              PAID
+            </span>
+            {% endif %}
           </span>
         </td>
         <!-- creation date -->
