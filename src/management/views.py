@@ -1001,7 +1001,7 @@ def cash_home(request, action):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     items_by_page = 6
-    
+
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/cash/home.html"
@@ -1035,7 +1035,6 @@ def cash_home(request, action):
 
         context = {
             'nav_side': 'home',
-            'search_key_word': search_key_word,
             'filtered': filtered,
             'transactions': transactions,
         }
