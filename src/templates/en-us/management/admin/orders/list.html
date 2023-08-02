@@ -361,7 +361,6 @@
         </div>
         <div class="card">
           <div class="card-body">
-            {% if not order.status == 'placed' %}
               <ul class="step step-timeline-md">
                 {% for log in order.log.all %}
                 <li class="step-item">
@@ -382,14 +381,22 @@
                 </li>
                 {% endfor %}
               </ul>
-            {% if order.status == 'confirmed' %}
-            <span class="d-block text-dark fs-5">
-              Waiting for orders to be processed by providers
-            </span>
-            {% endif %}
-            {% else %}
+
+            {% if order.status == 'placed' %}
             <span class="d-block text-dark fs-5">
               Please call the client to confirm the order
+            </span>
+            {% endif %}
+
+            {% if order.status == 'confirmed' %}
+            <span class="d-block text-dark fs-5">
+              Waiting for products to be prepared by providers
+            </span>
+            {% endif %}
+
+            {% if order.status == 'processed' %}
+            <span class="d-block text-dark fs-5">
+              Waiting for products to be prepared by providers
             </span>
             {% endif %}
           </div>
