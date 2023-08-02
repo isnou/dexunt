@@ -241,14 +241,14 @@
                 <tr>
                   <td>
                     <span class="d-block text-dark fs-6">
-                      {% if order.placed_by %}
-                      ({{ order.placed_by.sale }})
+                      {% if order.client %}
+                      ({{ order.client.sale }})
                       {% endif %}
                       Name
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {% if order.placed_by %}
+                      {% if order.client %}
                       <a href="#">
                         {{ order.client_name|title }}
                       </a>
@@ -306,8 +306,8 @@
 
                     <span class="d-block text-body fs-6">
                       {{ order.points }}
-                      {% if order.placed_by %}
-                      ({{ order.placed_by.points }})
+                      {% if order.client %}
+                      ({{ order.client.points }})
                       {% endif %}
                     </span>
                   </td>
