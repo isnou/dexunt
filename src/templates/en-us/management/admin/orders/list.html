@@ -374,7 +374,7 @@
                       <p class="step-text">by :{{ log.user }}</p>
                       {% endif %}
 
-                      {% if order.status == 'delivery' %}
+                      {% if order.status == 'handed' %}
                       <p class="step-text">code #{{ order.delivery_code }}</p>
                       {% endif %}
                       <p class="step-text">at :{{ log.at }}</p>
@@ -408,7 +408,7 @@
         <button type="submit" form="delivery_from_{{ order.id }}" class="btn btn-white">On delivery</button>
         {% endif %}
 
-        {% if order.status == 'delivery' %}
+        {% if order.status == 'handed' %}
         <a type="button" href="{% url 'admin-manage-orders' 'paid' %}?order_id={{ order.id }}" class="btn btn-white">Paid</a>
         <a type="button" href="{% url 'admin-manage-orders' 'refund' %}?order_id={{ order.id }}" class="btn btn-white">Refund</a>
         {% endif %}
