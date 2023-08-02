@@ -76,7 +76,11 @@
         </td>
         <!-- status -->
         <td>
-          <span class="d-block h4 text-start"><small>{{ order.status }}</span>
+          <span class="d-block h4 text-start">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </span>
         </td>
         <!-- creation date -->
         <td class="text-end">
@@ -117,11 +121,7 @@
         </td>
         <!-- # -->
         <td>
-
-          <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-
+          {{ product.status }}
         </td>
         <!-- price -->
         <td>
