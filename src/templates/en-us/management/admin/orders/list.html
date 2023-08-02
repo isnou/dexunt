@@ -382,6 +382,11 @@
                 </li>
                 {% endfor %}
               </ul>
+            {% if order.status == 'confirmed' %}
+            <span class="d-block text-dark fs-5">
+              Waiting for orders to be processed by providers
+            </span>
+            {% endif %}
             {% else %}
             <span class="d-block text-dark fs-5">
               Please call the client to confirm the order
