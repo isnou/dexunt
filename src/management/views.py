@@ -796,7 +796,7 @@ def manage_orders(request, action):
     if action == 'controlled_quality':
         order_id = request.GET.get('order_id', False)
         selected_order = Order.objects.all().get(id=order_id)
-        selected_order.control(request)
+        selected_order.controlled(request)
         return redirect('admin-manage-orders', 'main')
     if action == 'handed_over':
         if request.method == 'POST':
