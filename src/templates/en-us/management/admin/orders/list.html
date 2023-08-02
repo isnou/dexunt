@@ -372,7 +372,7 @@
                       <p class="step-text">by :{{ log.user }}</p>
                       {% endif %}
 
-                      {% if order.status == 'handed' %}
+                      {% if log.content == 'handed' %}
                       <p class="step-text">code #{{ order.delivery_code }}</p>
                       {% endif %}
                       <p class="step-text">at :{{ log.at }}</p>
