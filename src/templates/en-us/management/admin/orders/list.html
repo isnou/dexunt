@@ -361,8 +361,7 @@
         </div>
         <div class="card">
           <div class="card-body">
-
-
+            {% if not log.content == 'placed' %}
               <ul class="step step-timeline-md">
                 {% for log in order.log.all %}
                 <li class="step-item">
@@ -370,7 +369,7 @@
                     <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
                     <div class="step-content">
                       <h4>{{ log.content|title }}</h4>
-                      {% if not log.content == 'placed' and not log.content == 'processed'%}
+                      {% if not log.content == 'processed'%}
                       <p class="step-text">by :{{ log.user }}</p>
                       {% endif %}
 
@@ -383,7 +382,9 @@
                 </li>
                 {% endfor %}
               </ul>
-
+            {% else %}
+            need confirmation
+            {% endif %}
           </div>
         </div>
       </div>
