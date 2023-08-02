@@ -394,13 +394,25 @@
 
           {% if order.status == 'confirmed' %}
           <span class="d-block text-body fs-4 mt-4 mb-4">
-            Waiting for products to be prepared by providers
+            Products needs to be prepared by providers and piked up by a member
           </span>
           {% endif %}
 
           {% if order.status == 'processed' %}
           <span class="d-block text-body fs-4 mt-4 mb-4">
             Waiting for products to be prepared by providers
+          </span>
+          {% endif %}
+
+          {% if order.status == 'controlled' %}
+          <span class="d-block text-body fs-4 mt-4 mb-4">
+            Add tracking number before giving delivery
+          </span>
+          {% endif %}
+
+          {% if order.status == 'handed' %}
+          <span class="d-block text-body fs-4 mt-4 mb-4">
+            Confirm the payment
           </span>
           {% endif %}
         </div>
