@@ -373,6 +373,10 @@
                       {% if not log.content == 'placed' and not log.content == 'processed'%}
                       <p class="step-text">by :{{ log.user }}</p>
                       {% endif %}
+
+                      {% if order.status == 'delivery' %}
+                      <p class="step-text">code #{{ order.delivery_code }}</p>
+                      {% endif %}
                       <p class="step-text">at :{{ log.at }}</p>
                     </div>
                   </div>
@@ -395,13 +399,12 @@
         {% endif %}
 
         {% if order.status == 'controlled' %}
-        <form action="#" id="delivery_from_{{ order.id }}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'admin-manage-orders' 'handed_over' %}" id="delivery_from_{{ order.id }}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="order_id" value="{{ order.id }}">
           <input type="text" class="form-control" name="delivery_code" required>
           <span class="invalid-feedback text-center">delivery code required.</span>
         </form>
-
         <button type="submit" form="delivery_from_{{ order.id }}" class="btn btn-white">On delivery</button>
         {% endif %}
 
