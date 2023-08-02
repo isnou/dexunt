@@ -383,9 +383,11 @@
               </ul>
 
             {% if order.status == 'placed' %}
+            <div class="card card-border-warning">
             <span class="d-block text-warning fs-4">
               Please call the client to confirm the order
             </span>
+              </div>
             {% endif %}
 
             {% if order.status == 'confirmed' %}
