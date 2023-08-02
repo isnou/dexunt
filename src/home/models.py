@@ -267,8 +267,6 @@ class Order(models.Model):
                       order=self)
         if request.user.is_authenticated:
             new_log.user=request.user
-        else:
-            new_log.user=client_name
         new_log.save()
     def placing(self, request):
         if request.user.is_authenticated:
