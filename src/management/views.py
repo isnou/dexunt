@@ -1014,7 +1014,7 @@ def cash_home(request, action):
         if not request.session.get('transactions_filter', None):
             request.session['transactions_filter'] = 'all'
 
-        transactions = transactions_filter(request, transactions, new_filter)
+        transactions = transactions_filter(request, new_filter)
         filtered = request.session.get('transactions_filter', None)
 
         if request.GET.get('page', None):
