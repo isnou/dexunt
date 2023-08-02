@@ -383,7 +383,8 @@
                 {% endfor %}
               </ul>
             {% else %}
-            need confirmation
+
+            <a type="button" href="{% url 'admin-manage-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-ghost">Please call the client to confirm the order</a>
             {% endif %}
           </div>
         </div>
