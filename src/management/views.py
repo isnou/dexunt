@@ -996,7 +996,6 @@ def manage_coupon(request, action):
 
 # ------------------------------- Admin -------------------------------- #
 @login_required
-@permission_required('main_manager.delete_option')
 def cash_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
