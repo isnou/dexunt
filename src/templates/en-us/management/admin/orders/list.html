@@ -394,7 +394,7 @@
         <a type="button" href="{% url 'admin-manage-orders' 'controlled_quality' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
         {% endif %}
 
-        {% if order.status == 'quality' %}
+        {% if order.status == 'controlled' %}
         <form action="{% url 'admin-manage-orders' 'handed_over' %}" id="delivery_from_{{ order.id }}" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="order_id" value="{{ order.id }}">
