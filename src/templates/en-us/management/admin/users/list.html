@@ -170,6 +170,9 @@
             {% if selected_user.is_member %}
             <span class="d-block fs-5">member</span>
             {% endif %}
+            {% if selected_user.is_cash_manager %}
+            <span class="d-block fs-5">cash</span>
+            {% endif %}
           </td>
 
           <td class="text-end">
