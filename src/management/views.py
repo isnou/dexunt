@@ -1049,9 +1049,9 @@ def cash_home(request, action):
             return redirect('cash-home', 'main')
     if action == 'decline_transaction':
         if request.method == 'POST':
-            cash = request.POST.get('cash', False)
-            request.user.new_transaction('request', cash)
-            return redirect('admin-manage-users', 'main')
+            transaction_id = request.POST.get('transaction_id', False)
+            request.user.wallet.transaction_set.get(id=transaction_id).delete()
+            return redirect('cash-home', 'main')
 
 
 #                                                                        #
