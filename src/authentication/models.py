@@ -217,16 +217,19 @@ def users_filter(request, users_list, new_filter):
     if request.session.get('users_filter', None) == 'blacklist':
         return users_list.filter(is_blacklisted=True)
 #                                                                        #
-def clean_users_carts():
+def reset_users():
+    users = User.objects.all()
     carts = Cart.objects.all()
-    for c in Cart.objects.all():
-        for u in User.objects.all():
+    for c in carts:
+        for u in users:
             if c.id == u.cart.id:
                 carts = carts.exclude(id=u.cart.id)
     for c in carts:
         if not c.selected_products.all().count():
             if not c.created_at <= timezone.now():
                 c.delete()
+    for u in users:
+        u.wallet.update()
 # ---------------------------------------------------------------------- #
 
 
