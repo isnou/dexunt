@@ -23,6 +23,7 @@ class Transaction(models.Model):
     amount = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     signed_at = models.DateTimeField(blank=True, null=True)
+    unsigned = models.BooleanField(default=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.secret_key:
@@ -56,7 +57,7 @@ class Wallet(models.Model):
         super().save()
     # ----- variables ----- #
     def unsigned_transactions(self):
-        return self.transaction_set.all().filter(signed_at=True)
+        return self.transaction_set.all().filter(unsigned=True)
 #                                                                        #
 class DeliveryAddress(models.Model):
     # ----- Technical ----- #
