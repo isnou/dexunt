@@ -175,6 +175,14 @@ class User(AbstractUser):
                     title = title,
                     amount = amount
                     ).save()
+    def edit_cash(self, request, cash):
+        title='initial amount'
+        Transaction(wallet=self,
+                    title=title,
+                    amount=cash,
+                    completed_at=timezone.now(),
+                    completed_by=request.user
+                    ).save()
     # ----- variables ----- #
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
