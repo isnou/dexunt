@@ -187,6 +187,10 @@
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#change_modal_{{ selected_user.id }}">
               <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
             </a>
+            {% elif selected_user.is_cash_manager %}
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#edit_cash_modal_{{ selected_user.id }}">
+              <i class="fa fa-coins fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Cash"></i>
+            </a>
             {% else %}
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#reset_modal_{{ selected_user.id }}">
               <i class="fa fa-repeat fa-flip-horizontal fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset"></i>
@@ -342,6 +346,55 @@
     </div>
   </div>
   <!-- End Reset User Modal -->
+
+  <!-- Edit Cash Modal -->
+  <div id="edit_cash_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Patient -->
+        <div>
+          <!-- login title -->
+          <div class="text-center mb-7">
+            <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
+          </div>
+          <!-- end login title -->
+          <form action="{% url 'admin-manage-users' 'edit_cash' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
+
+            <div class="row mb-4">
+              <div class="input-group input-group-merge input-group-borderless input-group-flush">
+                <div class="input-group-prepend input-group-text">
+                  <i class="fa fa-plus"></i>
+                </div>
+                <input type="number" class="form-control" placeholder="quantity" name="cash" min="0" required>
+                <span class="invalid-feedback text-start">Please enter cash value.</span>
+              </div>
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+        <!-- End Patient -->
+      </div>
+      <!-- End Body -->
+      </div>
+    </div>
+  </div>
+  <!-- End Edit Cash Modal -->
 
   <!-- Change Modal -->
   <div id="change_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
