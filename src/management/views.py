@@ -1046,7 +1046,7 @@ def cash_home(request, action):
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
             request.user.sign_transaction(request, transaction_id)
-            return redirect('admin-manage-users', 'main')
+            return redirect('cash-home', 'main')
     if action == 'decline_transaction':
         if request.method == 'POST':
             cash = request.POST.get('cash', False)
