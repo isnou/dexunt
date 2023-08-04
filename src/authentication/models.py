@@ -180,6 +180,13 @@ class User(AbstractUser):
                     title = title,
                     amount = amount
                     ).save()
+    def sign_transaction(self, request, transaction_id):
+        transaction = self.wallet.transaction_set.get(id=transaction_id)
+        transaction.signed_at=timezone.now()
+        transaction.signed_by=request.user
+        transaction.unsigned=False
+        transaction.save()
+        self.wallet.update()
     # ----- variables ----- #
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:

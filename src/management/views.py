@@ -139,7 +139,6 @@ def manage_users(request, action):
             selected_user = User.objects.all().get(id=user_id)
             selected_user.new_transaction('request', cash)
             return redirect('admin-manage-users', 'main')
-
     # -- search partial show -- #
     if action == 'search_users':
         url = direction + "/management/admin/users/partial-list.html"
@@ -1043,6 +1042,18 @@ def cash_home(request, action):
             'transactions': transactions,
         }
         return render(request, url, context)
+    if action == 'sign_transaction':
+        if request.method == 'POST':
+            transaction_id = request.POST.get('transaction_id', False)
+            request.user.sign_transaction(request, transaction_id)
+            return redirect('admin-manage-users', 'main')
+    if action == 'decline_transaction':
+        if request.method == 'POST':
+            cash = request.POST.get('cash', False)
+            request.user.new_transaction('request', cash)
+            return redirect('admin-manage-users', 'main')
+
+
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
