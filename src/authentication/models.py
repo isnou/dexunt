@@ -16,13 +16,13 @@ class Transaction(models.Model):
     # ----- relations ----- #
     wallet = models.ForeignKey(
         'authentication.Wallet', on_delete=models.CASCADE, null=True)
-    completed_by = models.ForeignKey(
+    signed_by = models.ForeignKey(
         'authentication.User', on_delete=models.CASCADE, null=True) # -- to be done with a member
     # ----- content ----- #
     title = models.CharField(max_length=500, blank=True, null=True)
     amount = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    completed_at = models.DateTimeField(blank=True, null=True)
+    signed_at = models.DateTimeField(blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.secret_key:
@@ -51,7 +51,8 @@ class Wallet(models.Model):
     def update(self):
         self.balance = 0
         for transaction in self.transaction_set.all():
-            self.balance += transaction.amount
+            if transaction.signed_at:
+                self.balance += transaction.amount
         super().save()
 #                                                                        #
 class DeliveryAddress(models.Model):
@@ -174,14 +175,6 @@ class User(AbstractUser):
         Transaction(wallet = self.wallet,
                     title = title,
                     amount = amount
-                    ).save()
-    def edit_cash(self, request, cash):
-        title='initial amount'
-        Transaction(wallet=self.wallet,
-                    title=title,
-                    amount=cash,
-                    completed_at=timezone.now(),
-                    completed_by=request.user
                     ).save()
     # ----- variables ----- #
     def new_orders_count(self):

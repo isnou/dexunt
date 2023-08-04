@@ -191,7 +191,7 @@
               <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
             </a>
             {% elif selected_user.is_cash_manager %}
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#edit_cash_modal_{{ selected_user.id }}">
+            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#add_cash_modal_{{ selected_user.id }}">
               <i class="fa fa-coins fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Cash"></i>
             </a>
             {% else %}
@@ -350,8 +350,8 @@
   </div>
   <!-- End Reset User Modal -->
 
-  <!-- Edit Cash Modal -->
-  <div id="edit_cash_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Add Cash Modal -->
+  <div id="add_cash_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
 
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -370,7 +370,7 @@
             <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
           </div>
           <!-- end login title -->
-          <form action="{% url 'admin-manage-users' 'edit_cash' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'admin-manage-users' 'add_cash' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
 
@@ -379,7 +379,7 @@
                 <div class="input-group-prepend input-group-text">
                   <i class="fa fa-coins"></i>
                 </div>
-                <input type="number" class="form-control" placeholder="cash" name="cash" min="0" required>
+                <input type="number" class="form-control" placeholder="amount to add" name="cash" min="0" required>
                 <span class="invalid-feedback text-start">Please enter cash value.</span>
               </div>
             </div>
@@ -397,7 +397,7 @@
       </div>
     </div>
   </div>
-  <!-- End Edit Cash Modal -->
+  <!-- End Add Cash Modal -->
 
   <!-- Change Modal -->
   <div id="change_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
