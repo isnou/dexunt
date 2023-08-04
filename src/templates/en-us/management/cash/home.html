@@ -249,7 +249,7 @@
         </div>
       </div>
 
-
+{% if user.wallet.unsigned_transactions.count %}
 <div id="unsigned_list">
   <!-- Table -->
     <div class="table-responsive datatable-custom">
@@ -284,5 +284,6 @@
     </div>
     <!-- End Table -->
   </div>
+{% endif %}
 {% endblock %}
 
