@@ -54,6 +54,9 @@ class Wallet(models.Model):
             if transaction.signed_at:
                 self.balance += transaction.amount
         super().save()
+    # ----- variables ----- #
+    def unsigned_transactions(self):
+        return self.transaction_set.all().filter(signed_at=True)
 #                                                                        #
 class DeliveryAddress(models.Model):
     # ----- Technical ----- #

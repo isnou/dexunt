@@ -1013,10 +1013,6 @@ def cash_home(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/cash/home.html"
-        transactions = Transaction.objects.all()
-
-
-
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
