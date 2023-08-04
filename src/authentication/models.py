@@ -50,7 +50,7 @@ class Wallet(models.Model):
     # ----- functions ----- #
     def update(self):
         self.balance = 0
-        for transaction in self.transaction.all():
+        for transaction in self.transaction_set.all():
             self.balance += transaction.amount
         super().save()
 #                                                                        #
