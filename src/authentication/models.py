@@ -171,13 +171,13 @@ class User(AbstractUser):
                 new_address.default = True
             new_address.save()
     def new_transaction(self, title, amount):
-        Transaction(wallet = self,
+        Transaction(wallet = self.wallet,
                     title = title,
                     amount = amount
                     ).save()
     def edit_cash(self, request, cash):
         title='initial amount'
-        Transaction(wallet=self,
+        Transaction(wallet=self.wallet,
                     title=title,
                     amount=cash,
                     completed_at=timezone.now(),
