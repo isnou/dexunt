@@ -287,7 +287,6 @@
 {% endif %}
 
 
-
 <div class="card">
   <!-- Header -->
   <div class="card-header card-header-content-md-between">
@@ -364,7 +363,7 @@
 
         <tbody>
 
-        {% for transaction in transactions.all %}
+        {% for transaction in transactions %}
         <!-- Table Actions -->
         <tr>
           <td>
@@ -436,7 +435,6 @@
   </div>
 </div>
 
-
 {% for transaction in user.wallet.unsigned_transactions %}
   <!-- Table Forms -->
   <form action="{% url 'cash-home' 'sign_transaction' %}" id="sign_transaction_form_{{ transaction.id }}" method="post">
@@ -469,6 +467,6 @@
     </div>
   </div>
   <!-- End Sign Modal -->
-  {% endfor %}
+{% endfor %}
 {% endblock %}
 
