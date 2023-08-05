@@ -137,7 +137,7 @@ def manage_users(request, action):
             user_id = request.POST.get('user_id', False)
             cash = request.POST.get('cash', False)
             selected_user = User.objects.all().get(id=user_id)
-            selected_user.new_transaction('funds', cash)
+            selected_user.add_funds('funds', cash)
             return redirect('admin-manage-users', 'main')
     # -- search partial show -- #
     if action == 'search_users':

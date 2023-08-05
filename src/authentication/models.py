@@ -181,6 +181,12 @@ class User(AbstractUser):
                     a.save()
                 new_address.default = True
             new_address.save()
+    def add_funds(self, title, amount):
+        Transaction(wallet=self.wallet,
+                    title=title,
+                    amount=amount
+                    ).save()
+        self.wallet.update()
     def create_transaction(self, request, title, amount):
         Transaction(wallet = self.wallet,
                     add = False,
