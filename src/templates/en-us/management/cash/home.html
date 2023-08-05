@@ -367,7 +367,7 @@
         <!-- Table Actions -->
         <tr>
           <td>
-            <span class="d-block fs-5">{{ transaction.title }}</span>
+            <span class="d-block fs-5">[{{ transaction.title }}]</span>
           </td>
 
           <td>
@@ -377,6 +377,15 @@
           <td>
             <span class="d-block fs-5">{{ transaction.created_at }}</span>
           </td>
+
+          <td>
+            <span class="d-block fs-5">{{ transaction.signed_at }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ transaction.signed_by }}</span>
+          </td>
+
 
           <td class="text-end">
             <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#sign_modal_{{ transaction.id }}">
