@@ -370,7 +370,7 @@
             <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
           </div>
           <!-- end login title -->
-          <form action="{% url 'admin-manage-users' 'add_cash' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'admin-manage-users' 'add_funds' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
 
