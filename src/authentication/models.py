@@ -44,7 +44,7 @@ def transactions_filter(request, new_filter):
         request.session['transactions_filter'] = new_filter
 
     if request.session.get('transactions_filter', None) == 'all':
-        return request.user.wallet.transactions()
+        return request.user.wallet.transactions.all()
     if request.session.get('transactions_filter', None) == 'costumers':
         return Transaction.objects.all().filter(is_customer=True)
 #                                                                        #
