@@ -13,24 +13,30 @@ class Transaction(models.Model):
     # ----- Technical ----- #
     ref = models.CharField(max_length=10, unique=True, null=True)
     secret_key = models.CharField(max_length=6, unique=True, null=True)
+    tags = models.CharField(max_length=2000, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
+    requested_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='payments_requested', null=True)  # -- to be done with a member
+    confirmed_by = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='payments_confirmed', null=True)  # -- to be done with a member
     wallet = models.ForeignKey(
-        'authentication.Wallet', on_delete=models.CASCADE, null=True)
-    signed_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, null=True) # -- to be done with a member
+        'authentication.Wallet', on_delete=models.CASCADE, related_name='transactions', null=True) # -- to be done with a member wallet
     # ----- content ----- #
     title = models.CharField(max_length=500, blank=True, null=True)
     amount = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    signed_at = models.DateTimeField(blank=True, null=True)
-    unsigned = models.BooleanField(default=True)
+    requested_at = models.DateTimeField(blank=True, null=True)
+    confirmed_at = models.DateTimeField(blank=True, null=True)
+    confirmed = models.BooleanField(default=True)  # -- (confirmed = False) => requested
+    add = models.BooleanField(default=True)  # -- (add = False) => remove
     # ----- functions ----- #
     def save(self, *args, **kwargs):
-        if not self.secret_key:
-            self.secret_key = functions.serial_number_generator(6)
         super().save()
         if not self.ref:
             self.ref = str(self.id+1).zfill(10)
+        super().save()
+    def generate_secret_key(self):
+        self.secret_key = functions.serial_number_generator(6)
         super().save()
 #                                                                        #
 def transactions_filter(request, new_filter):
@@ -38,7 +44,7 @@ def transactions_filter(request, new_filter):
         request.session['transactions_filter'] = new_filter
 
     if request.session.get('transactions_filter', None) == 'all':
-        return Transaction.objects.all()
+        return request.user.wallet.transactions()
     if request.session.get('transactions_filter', None) == 'costumers':
         return Transaction.objects.all().filter(is_customer=True)
 #                                                                        #
@@ -51,13 +57,13 @@ class Wallet(models.Model):
     # ----- functions ----- #
     def update(self):
         self.balance = 0
-        for transaction in self.transaction_set.all():
-            if transaction.signed_at:
-                self.balance += transaction.amount
+        for transaction in self.transactions.all():
+            if transaction.confirmed:
+                if transaction.add:
+                    self.balance += transaction.amount
+                else:
+                    self.balance -= transaction.amount
         super().save()
-    # ----- variables ----- #
-    def unsigned_transactions(self):
-        return self.transaction_set.all().filter(unsigned=True)
 #                                                                        #
 class DeliveryAddress(models.Model):
     # ----- Technical ----- #
@@ -175,19 +181,74 @@ class User(AbstractUser):
                     a.save()
                 new_address.default = True
             new_address.save()
-    def new_transaction(self, title, amount):
+    def create_transaction(self, request, title, amount):
         Transaction(wallet = self.wallet,
+                    add = False,
                     title = title,
                     amount = amount
                     ).save()
-    def sign_transaction(self, request, transaction_id):
-        transaction = self.wallet.transaction_set.get(id=transaction_id)
-        transaction.signed_at=timezone.now()
-        transaction.signed_by=request.user
-        transaction.unsigned=False
-        transaction.save()
-        self.wallet.update()
+        Transaction(wallet = request.user.wallet,
+                    title = title,
+                    amount = amount
+                    ).save()
+    def request_transaction(self, title, amount, secret_key):
+        selected_transaction =  Transaction(confirmed = False,
+                                            requested_by = self,
+                                            requested_at = timezone.now(),
+                                            add = False,
+                                            title = title,
+                                            amount = amount
+                                            )
+        if secret_key:
+            selected_transaction.save()
+            selected_transaction.generate_secret_key()
+        else:
+            selected_transaction.save()
+    def confirm_transaction(self, secret_key, transaction_id):
+        selected_transaction = Transaction.objects.all().get(id=transaction_id)
+        if selected_transaction.secret_key:
+            if secret_key == selected_transaction.secret_key:
+                selected_transaction.requested = False
+                selected_transaction.confirmed_at = timezone.now()
+                selected_transaction.confirmed_by = self
+                selected_transaction.received_to = selected_transaction.requested_by.wallet
+                selected_transaction.save()
+                Transaction(
+                            requested = False,
+                            sent_by = self,
+                            sent_at = selected_transaction.confirmed_at,
+                            title = selected_transaction.title,
+                            amount = selected_transaction.amount
+                            ).save()
+        else:
+            selected_transaction.requested = False
+            selected_transaction.confirmed_at = timezone.now()
+            selected_transaction.confirmed_by = self
+            selected_transaction.received_to = selected_transaction.requested_by.wallet
+            selected_transaction.save()
+            Transaction(
+                        requested = False,
+                        sent_by = self,
+                        sent_at = selected_transaction.confirmed_at,
+                        title = selected_transaction.title,
+                        amount = selected_transaction.amount
+                        ).save()
+
     # ----- variables ----- #
+
+    secret_key
+    requested_by
+    confirmed_by
+    requested_at
+    confirmed_at
+    wallet
+    title
+    amount
+    requested # -- (requested = False) => confirmed
+    received # -- (received = False) => sent
+
+
+
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0
