@@ -235,20 +235,6 @@ class User(AbstractUser):
                         ).save()
 
     # ----- variables ----- #
-
-    secret_key
-    requested_by
-    confirmed_by
-    requested_at
-    confirmed_at
-    wallet
-    title
-    amount
-    requested # -- (requested = False) => confirmed
-    received # -- (received = False) => sent
-
-
-
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0
