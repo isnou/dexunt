@@ -36,7 +36,7 @@ class SelectedProduct(models.Model):
     quantity = models.IntegerField(default=1)
     retained_points = models.IntegerField(default=0)
     retained_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    retained_total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    retained_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
     def quantity_control(self):
         if self.quantity > self.option.quantity:
@@ -54,7 +54,7 @@ class SelectedProduct(models.Model):
         self.cart = None
         self.retained_points = self.points()
         self.retained_price = self.price()
-        self.retained_total_price = self.total_price()
+        self.retained_cost = self.cost()
         super().save()
         self.new_log()
     def confirm(self):
@@ -98,12 +98,11 @@ class SelectedProduct(models.Model):
         else:
             return self.option.price
     def total_price(self):
-        if self.option.discount:
-            return self.option.discount * self.quantity
-        else:
-            return self.option.price * self.quantity
+        return self.retained_price * self.quantity
+    def cost(self):
+        return self.option.cost
     def total_cost(self):
-        return self.option.cost * self.quantity
+        return self.option.retained_cost * self.quantity
     def points(self):
         return self.option.points * self.quantity
     def en_title(self):
