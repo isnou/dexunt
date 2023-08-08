@@ -1074,34 +1074,34 @@ def member_home(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/member/orders/list.html"
+        all_orders = Order.objects.all().order_by('-updated_at')
+
+        if all_orders.count():
+            paginate = True
+        else:
+            paginate = False
+
         if request.GET.get('init', None):
-            request.session['transactions-page'] = None
-
-        new_filter = request.GET.get('filter', None)
-        if not request.session.get('transactions_filter', None):
-            request.session['transactions_filter'] = 'all'
-
-        transactions = transactions_filter(request, new_filter)
-        filtered = request.session.get('transactions_filter', None)
+            request.session['orders-page'] = None
 
         if request.GET.get('page', None):
             page = request.GET.get('page', 1)
+            request.session['orders-page'] = page
         else:
-            page = request.session.get('transactions-page')
+            page = request.session.get('orders-page')
 
-
-        paginator = Paginator(transactions, items_by_page)
+        paginator = Paginator(all_orders, 6)
         try:
-            transactions = paginator.page(page)
+            all_orders = paginator.page(page)
         except PageNotAnInteger:
-            transactions = paginator.page(1)
+            all_orders = paginator.page(1)
         except EmptyPage:
-            transactions = paginator.page(paginator.num_pages)
+            all_orders = paginator.page(paginator.num_pages)
 
         context = {
             'nav_side': 'orders',
-            'filtered': filtered,
-            'transactions': transactions,
+            'all_orders': all_orders,
+            'paginate': paginate,
         }
         return render(request, url, context)
     if action == 'sign_transaction':
