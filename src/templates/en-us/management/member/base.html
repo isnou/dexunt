@@ -506,7 +506,7 @@
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
         <!-- Dexunt Logo -->
-        <a class="navbar-brand" href="{% url 'admin-manage-home' 'main' %}" aria-label="Front">
+        <a class="navbar-brand" href="{% url 'provider-home' 'main' %}" aria-label="Front">
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
           <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
           <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
@@ -526,7 +526,7 @@
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <!-- Admin Home -->
             <div class="nav-item mb-8">
-                <a class="nav-link {% if nav_side == 'home' %} active {% endif %}" href="{% url 'admin-manage-home' 'main' %}" data-placement="left">
+                <a class="nav-link {% if nav_side == 'home' %} active {% endif %}" href="{% url 'provider-home' 'main' %}" data-placement="left">
                   <i class="fa fa-house nav-icon"></i>
                   <span class="nav-link-title">Home</span>
                 </a>
@@ -537,72 +537,45 @@
             <small class="bi-three-dots nav-subtitle-replacer"></small>
             <!-- End Management Title -->
 
-            <!-- Users -->
+            <!-- Settings -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'users' %} active {% endif %}" href="{% url 'admin-manage-users' 'main' %}?init=True" data-placement="left">
-                <i class="fa fa-users nav-icon"></i>
-                <span class="nav-link-title">Users</span>
+              <a class="nav-link {% if nav_side == 'settings' %} active {% endif %}" href="{% url 'provider-settings' 'main' %}" data-placement="left">
+                <i class="fa fa-gear nav-icon"></i>
+                <span class="nav-link-title">Settings</span>
               </a>
             </div>
-            <!-- End Users -->
+            <!-- End Settings -->
 
-            <!-- Stores -->
+            <!-- My Products -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'stores' %} active {% endif %}" href="#" data-placement="left">
-                <i class="fa fa-store nav-icon"></i>
-                <span class="nav-link-title">Stores</span>
-              </a>
-            </div>
-            <!-- End Stores -->
-
-            <!-- Products -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'products' %} active {% endif %}" href="{% url 'admin-manage-products' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_products' %} active {% endif %}" href="{% url 'provider-products' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-cart-flatbed nav-icon"></i>
-                <span class="nav-link-title">Products</span>
+                <span class="nav-link-title">My Products</span>
               </a>
             </div>
-            <!-- End Products -->
+            <!-- End My Products -->
 
-            <!-- Flash -->
+            <!-- My Sales -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'flash' %} active {% endif %}" href="{% url 'admin-manage-flash' 'main' %}" data-placement="left">
-                <i class="fa fa-bolt nav-icon"></i>
-                <span class="nav-link-title">Flash</span>
-              </a>
-            </div>
-            <!-- End Flash -->
-
-            <!-- Orders -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'admin-manage-orders' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_sales' %} active {% endif %}" href="{% url 'provider-sales' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-cart-shopping nav-icon"></i>
-                <span class="nav-link-title">Orders
+                <span class="nav-link-title">My Sales
                   {% if new_orders_count %}
                   <span class="badge bg-primary rounded-pill ms-1">{{ new_orders_count }}</span>
                   {% endif %}
                 </span>
               </a>
             </div>
-            <!-- End Orders -->
+            <!-- End My Sales -->
 
-            <!-- Shipping -->
+            <!-- My Wallet -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'shipping' %} active {% endif %}" href="{% url 'admin-manage-shipping' 'main' %}" data-placement="left">
-                <i class="fa fa-truck nav-icon"></i>
-                <span class="nav-link-title">Shipping</span>
+              <a class="nav-link {% if nav_side == 'my_wallet' %} active {% endif %}" href="#" data-placement="left">
+                <i class="fa fa-hand-holding-dollar nav-icon"></i>
+                <span class="nav-link-title">My Wallet</span>
               </a>
             </div>
-            <!-- End Shipping -->
-
-            <!-- Coupon -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'coupon' %} active {% endif %}" href="{% url 'admin-manage-coupon' 'main' %}" data-placement="left">
-                <i class="fa fa-tags nav-icon"></i>
-                <span class="nav-link-title">Coupon</span>
-              </a>
-            </div>
-            <!-- End Coupon -->
+            <!-- End My Wallet -->
           </div>
         </div>
         <!-- End Content -->
@@ -658,6 +631,57 @@
     <div class="content container-fluid">
       <div class="page-header">
         {% block page_header %} {% endblock %}
+
+        {% if errors %}
+        <div class="container text-center col-8" >
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% if errors.profile_photo.0 %}
+            <strong>{{ errors.profile_photo.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.username.0 %}
+            <strong>{{ errors.username.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.password1.0 %}
+            <strong>{{ errors.password1.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.password2.0 %}
+            <strong>{{ errors.password2.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.first_name.0 %}
+            <strong>{{ errors.first_name.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.last_name.0 %}
+            <strong>{{ errors.last_name.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.phone_number.0 %}
+            <strong>{{ errors.phone_number.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.old_password.0 %}
+            <strong>{{ errors.old_password.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.new_password1.0 %}
+            <strong>{{ errors.new_password1.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.new_password2.0 %}
+            <strong>{{ errors.new_password2.0 }}</strong><br>
+            {% endif %}
+
+            {% if errors.login %}
+            <strong>{{ errors.login }}</strong><br>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
       </div>
       <!-- content -->
       {% block content %} {% endblock %}
@@ -783,6 +807,15 @@
         })
       })()
     </script>
+
+  <!-- Input Mask JS -->
+  <script>
+  (function() {
+    // INITIALIZATION OF INPUT MASK
+    // =======================================================
+    HSCore.components.HSMask.init('.js-input-mask')
+  })();
+  </script>
 
   <!-- HTMX -->
   <script src="{% static 'htmx/htmx.min.js' %}"></script>
