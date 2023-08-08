@@ -149,7 +149,7 @@ def manage_users(request, action):
         else:
             request.session['users_key_word'] = None
 
-        users_list = User.objects.values().filter(tags__icontains=key_word).exclude(username=request.user.username)
+        users_list = User.objects.all().filter(tags__icontains=key_word).exclude(username=request.user.username)
 
         new_filter = request.GET.get('filter', None)
         if not request.session.get('users_filter', None):
