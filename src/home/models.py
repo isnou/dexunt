@@ -21,7 +21,6 @@ class Log(models.Model):
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
     lack_of_quantity = models.BooleanField(default=False)
-    paid = models.BooleanField(default=False)
     # ----- #
     status = models.CharField(max_length=50, default='created', null=True)
     # ----- relations ----- #
@@ -320,9 +319,17 @@ class Order(models.Model):
         self.new_log(request)
     def paid(self, request):
         self.status = 'paid'
+        if self.retained_points:
+            if self.client:
+                self.client.points = self.retained_points
+                self.client.save()
         request.user.add_funds('#' + self.ref + ': payment', self.retained_total_price)
         for p in self.selected_products.all():
-            p.paid=True
+            p.status = 'paid'
+            p.option.sale += p.quantity
+            p.option.save()
+            p.store.sale += p.option.sale
+            p.store.save()
             p.save()
         super().save()
         self.new_log(request)
