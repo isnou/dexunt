@@ -158,6 +158,9 @@ def router(request):
     if request.user.is_cash_manager:
         return redirect('cash-home', 'main')
 
+    if request.user.is_member:
+        return redirect('member-home', 'main')
+
 def account_logout(request):
     logout(request)
     return redirect('home-page')

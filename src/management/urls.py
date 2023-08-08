@@ -13,6 +13,8 @@ urlpatterns = [
     path('<str:action>/coupon', views.manage_coupon, name='admin-manage-coupon'),
     # ---- cash manager ---- #
     path('<str:action>/cash/home', views.cash_home, name='cash-home'),
+    # ---- member ---- #
+    path('<str:action>/member/home', views.member_home, name='member-home'),
     # ---- customer ---- #
     path('<str:action>/customer/home', views.customer_home, name='customer-home'),
     # ---- provider ---- #
