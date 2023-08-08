@@ -1073,7 +1073,7 @@ def member_home(request, action):
 
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/member/home.html"
+        url = direction + "/management/member/orders/list.html"
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
@@ -1099,7 +1099,7 @@ def member_home(request, action):
             transactions = paginator.page(paginator.num_pages)
 
         context = {
-            'nav_side': 'home',
+            'nav_side': 'orders',
             'filtered': filtered,
             'transactions': transactions,
         }
