@@ -248,6 +248,8 @@ class User(AbstractUser):
             return count
     def client_name(self):
         return self.first_name + ' ' + self.last_name
+    def orders_count(self):
+        return self.all_orders.all().count
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:
