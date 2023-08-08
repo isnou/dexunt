@@ -351,6 +351,12 @@ class Store(models.Model):
             for v in p.variant_set.all():
                 variant_ids.append(v.id)
         return Variant.objects.filter(id__in=variant_ids)
+    def balance(self):
+        balance = 0
+        for o in self.orders.all():
+            if o.status == 'paid':
+                balance += o.total_cost()
+        return balance
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #

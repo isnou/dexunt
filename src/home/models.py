@@ -102,6 +102,8 @@ class SelectedProduct(models.Model):
             return self.option.discount * self.quantity
         else:
             return self.option.price * self.quantity
+    def total_cost(self):
+        return self.option.cost * self.quantity
     def points(self):
         return self.option.points * self.quantity
     def en_title(self):
