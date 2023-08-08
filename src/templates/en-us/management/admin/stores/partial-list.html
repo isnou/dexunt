@@ -5,11 +5,9 @@
         <thead class="thead-light">
         <tr>
           <th>Name</th>
-          <th>Orders</th>
-          <th>Cart</th>
-          <th>Wallet</th>
-          <th>Points</th>
-          <th>Role</th>
+          <th>Balance</th>
+          <th>Sales</th>
+          <th>Rate</th>
           <th></th>
         </tr>
         </thead>
@@ -31,34 +29,15 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ selected_user.order.all.count }}</span>
+            <span class="d-block fs-5">{{ store.balance }}</span>
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ selected_user.cart.product.all.count }}</span>
+            <span class="d-block fs-5">{{ store.sale }}</span>
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ selected_user.wallet.balance }}</span>
-          </td>
-
-          <td>
-            <span class="d-block fs-5">{{ selected_user.points }}</span>
-          </td>
-
-          <td>
-            {% if selected_user.is_customer %}
-            <span class="d-block fs-5">client</span>
-            {% endif %}
-            {% if selected_user.is_provider %}
-            <span class="d-block fs-5">provider</span>
-            {% endif %}
-            {% if selected_user.is_seller %}
-            <span class="d-block fs-5">seller</span>
-            {% endif %}
-            {% if selected_user.is_member %}
-            <span class="d-block fs-5">member</span>
-            {% endif %}
+            <span class="d-block fs-5">{{ store.rate }}</span>
           </td>
 
           <td class="text-end">
