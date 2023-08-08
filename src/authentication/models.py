@@ -187,21 +187,12 @@ class User(AbstractUser):
                     amount=amount
                     ).save()
         self.wallet.update()
-    def create_transaction(self, request, title, amount):
-        Transaction(wallet = self.wallet,
-                    add = False,
-                    title = title,
-                    amount = amount
-                    ).save()
-        Transaction(wallet = request.user.wallet,
-                    title = title,
-                    amount = amount
-                    ).save()
     def request_transaction(self, title, amount, secret_key):
         selected_transaction =  Transaction(confirmed = False,
+                                            add=False,
                                             requested_by = self,
                                             requested_at = timezone.now(),
-                                            add = False,
+                                            wallet = self.wallet,
                                             title = title,
                                             amount = amount
                                             )
@@ -214,32 +205,33 @@ class User(AbstractUser):
         selected_transaction = Transaction.objects.all().get(id=transaction_id)
         if selected_transaction.secret_key:
             if secret_key == selected_transaction.secret_key:
-                selected_transaction.requested = False
+                selected_transaction.confirmed = True
                 selected_transaction.confirmed_at = timezone.now()
                 selected_transaction.confirmed_by = self
-                selected_transaction.received_to = selected_transaction.requested_by.wallet
                 selected_transaction.save()
-                Transaction(
-                            requested = False,
-                            sent_by = self,
-                            sent_at = selected_transaction.confirmed_at,
-                            title = selected_transaction.title,
-                            amount = selected_transaction.amount
+                Transaction(confirmed = True,
+                            confirmed_by=selected_transaction.confirmed_by,
+                            confirmed_at=selected_transaction.confirmed_at,
+                            requested_by = selected_transaction.requested_by,
+                            requested_at = selected_transaction.requested_at,
+                            wallet = self.wallet,
+                            title = title,
+                            amount = amount
                             ).save()
         else:
-            selected_transaction.requested = False
+            selected_transaction.confirmed = True
             selected_transaction.confirmed_at = timezone.now()
             selected_transaction.confirmed_by = self
-            selected_transaction.received_to = selected_transaction.requested_by.wallet
             selected_transaction.save()
-            Transaction(
-                        requested = False,
-                        sent_by = self,
-                        sent_at = selected_transaction.confirmed_at,
-                        title = selected_transaction.title,
-                        amount = selected_transaction.amount
+            Transaction(confirmed=True,
+                        confirmed_by=selected_transaction.confirmed_by,
+                        confirmed_at=selected_transaction.confirmed_at,
+                        requested_by=selected_transaction.requested_by,
+                        requested_at=selected_transaction.requested_at,
+                        wallet=self.wallet,
+                        title=title,
+                        amount=amount
                         ).save()
-
     # ----- variables ----- #
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
