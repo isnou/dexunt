@@ -98,11 +98,17 @@ class SelectedProduct(models.Model):
         else:
             return self.option.price
     def total_price(self):
-        return self.retained_price * self.quantity
+        if self.retained_price:
+            return self.retained_price * self.quantity
+        else:
+            return self.price() * self.quantity
     def cost(self):
         return self.option.cost
     def total_cost(self):
-        return self.option.retained_cost * self.quantity
+        if self.retained_cost:
+            return self.retained_cost * self.quantity
+        else:
+            return self.cost() * self.quantity
     def points(self):
         return self.option.points * self.quantity
     def en_title(self):
