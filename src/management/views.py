@@ -804,11 +804,10 @@ def manage_orders(request, action):
             selected_order.handed(request)
             return redirect('admin-manage-orders', 'main')
     if action == 'paid':
-        if request.method == 'POST':
-            order_id = request.POST.get('order_id', False)
-            selected_order = Order.objects.all().get(id=order_id)
-            selected_order.paid(request)
-            return redirect('admin-manage-orders', 'main')
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.paid(request)
+        return redirect('admin-manage-orders', 'main')
 
 #                                                                        #
 @login_required
