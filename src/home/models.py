@@ -321,7 +321,7 @@ class Order(models.Model):
     def paid(self, request):
         self.status = 'paid'
         request.user.add_funds('#' + self.ref + ': payment', self.retained_total_price)
-        for p in self.selected_products:
+        for p in self.selected_products.all():
             p.paid=True
             p.save()
         super().save()
