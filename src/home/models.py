@@ -75,8 +75,9 @@ class SelectedProduct(models.Model):
         self.status = 'collected'
         self.store = self.option.variant.product.store
         super().save()
-        new_log = Log(content=self.status,
+        new_log = Log(content='collected',
                       store=self.store,
+                      order=self.order,
                       user=request.user,
                       selected_product=self)
         new_log.save()
