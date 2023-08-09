@@ -1203,10 +1203,8 @@ def provider_profile(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/provider/profile/settings.html"
-        store_form = StoreForm()
         update_profile_form = UpdateProfileForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
-        update_photo_form = UpdatePhotoForm()
 
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -1215,11 +1213,8 @@ def provider_profile(request, action):
             errors = None
 
         context = {
-            'nav_side': 'settings',
-            'store_form': store_form,
             'password_form': password_form,
             'update_profile_form': update_profile_form,
-            'update_photo_form': update_photo_form,
             'errors': errors
         }
         return render(request, url, context)
@@ -1231,7 +1226,7 @@ def provider_profile(request, action):
                 login(request, user)
             else:
                 request.session['error_messages'] = update_profile_form.errors
-            return redirect('provider-settings', 'main')
+            return redirect('provider-profile', 'main')
     if action == 'change_password':
         if request.method == 'POST':
             change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
@@ -1240,24 +1235,7 @@ def provider_profile(request, action):
                 update_session_auth_hash(request, change_password_form.user)
             else:
                 request.session['error_messages'] = change_password_form.errors
-            return redirect('provider-settings', 'main')
-    if action == 'edit_store':
-        if request.method == 'POST':
-            store_form = StoreForm(request.POST, instance=request.user.store)
-            if store_form.is_valid():
-                store_form.save()
-            else:
-                request.session['error_messages'] = store_form.errors
-            return redirect('provider-settings', 'main')
-    if action == 'edit_logo':
-        if request.method == 'POST':
-            request.user.save()
-            update_photo_form = UpdatePhotoForm(request.POST, request.FILES, instance=request.user)
-            if update_photo_form.is_valid():
-                update_photo_form.save()
-            else:
-                request.session['error_messages'] = update_photo_form.errors
-            return redirect('provider-settings', 'main')
+            return redirect('provider-profile', 'main')
 #                                                                        #
 @login_required
 def provider_store(request, action):
@@ -1268,8 +1246,6 @@ def provider_store(request, action):
     if action == 'main':
         url = direction + "/management/provider/store/settings.html"
         store_form = StoreForm()
-        update_profile_form = UpdateProfileForm()
-        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
         update_photo_form = UpdatePhotoForm()
 
         if request.session.get('error_messages'):
@@ -1279,32 +1255,11 @@ def provider_store(request, action):
             errors = None
 
         context = {
-            'nav_side': 'settings',
             'store_form': store_form,
-            'password_form': password_form,
-            'update_profile_form': update_profile_form,
             'update_photo_form': update_photo_form,
             'errors': errors
         }
         return render(request, url, context)
-    if action == 'edit_profile':
-        if request.method == 'POST':
-            update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
-            if update_profile_form.is_valid():
-                user = update_profile_form.save()
-                login(request, user)
-            else:
-                request.session['error_messages'] = update_profile_form.errors
-            return redirect('provider-settings', 'main')
-    if action == 'change_password':
-        if request.method == 'POST':
-            change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
-            if change_password_form.is_valid():
-                change_password_form.save()
-                update_session_auth_hash(request, change_password_form.user)
-            else:
-                request.session['error_messages'] = change_password_form.errors
-            return redirect('provider-settings', 'main')
     if action == 'edit_store':
         if request.method == 'POST':
             store_form = StoreForm(request.POST, instance=request.user.store)
@@ -1312,7 +1267,7 @@ def provider_store(request, action):
                 store_form.save()
             else:
                 request.session['error_messages'] = store_form.errors
-            return redirect('provider-settings', 'main')
+            return redirect('provider-store', 'main')
     if action == 'edit_logo':
         if request.method == 'POST':
             request.user.save()
@@ -1321,7 +1276,7 @@ def provider_store(request, action):
                 update_photo_form.save()
             else:
                 request.session['error_messages'] = update_photo_form.errors
-            return redirect('provider-settings', 'main')
+            return redirect('provider-store', 'main')
 #                                                                        #
 @login_required
 def provider_products(request, action):
