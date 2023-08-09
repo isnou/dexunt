@@ -14,11 +14,10 @@
         <li class="breadcrumb-item active" aria-current="page">my wallet</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">My Wallet</h1>
-    <h6 class="text-muted">Management</h6>
+    <h1 class="page-header-title">My Balance : {{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
   </div>
   <div class="col-sm-auto">
-    Balance : {{ user.store.balance|floatformat:"0g" }} <small>DZD</small>
+
   </div>
   <!-- end all products  -->
 </div>
