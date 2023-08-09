@@ -71,8 +71,6 @@
             <a type="button" class="text-body" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">
               <i class="fa fa-eye fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Secrete Key"></i>
             </a>
-
-
           </span>
         </td>
         <!-- client phone -->
@@ -111,10 +109,10 @@
           </span>
         </td>
       </tr>
-      <div class="collapse" id="collapse_{{ order.id }}">
+
         {% for product in order.selected_products.all %}
         <!-- products list -->
-        <tr class="{% if product.status == 'processed' %} bg-light {% endif %}">
+        <tr class="collapse {% if product.status == 'processed' %} bg-light {% endif %}" id="collapse_{{ order.id }}">
           <td class="table-column-pe-0">
           </td>
           <!-- product title and image -->
@@ -156,7 +154,7 @@
           </td>
         </tr>
         {% endfor %}
-      </div>
+      
       {% endfor %}
       </tbody>
     </table>
