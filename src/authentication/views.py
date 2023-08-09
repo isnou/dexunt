@@ -150,7 +150,7 @@ def router(request):
         return redirect('customer-home', 'main')
 
     if request.user.is_provider:
-        return redirect('provider-home', 'main')
+        return redirect('provider-sales', 'main')
 
     if request.user.is_seller:
         return redirect('seller-home', 'main')

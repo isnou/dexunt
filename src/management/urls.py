@@ -18,7 +18,6 @@ urlpatterns = [
     # ---- customer ---- #
     path('<str:action>/customer/home', views.customer_home, name='customer-home'),
     # ---- provider ---- #
-    path('<str:action>/provider/home', views.provider_home, name='provider-home'),
     path('<str:action>/provider/products', views.provider_products, name='provider-products'),
     path('<str:action>/provider/settings', views.provider_settings, name='provider-settings'),
     path('<str:action>/provider/sales', views.provider_sales, name='provider-sales'),
