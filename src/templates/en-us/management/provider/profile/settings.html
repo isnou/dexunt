@@ -33,7 +33,7 @@
   <div class="col-lg-8">
     <div class="card">
       <div class="card-body">
-        <form action="{% url 'provider-settings' 'edit_logo' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+        <form action="{% url 'provider-profile' 'edit_logo' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
           {% csrf_token %}
 
           <div class="text-center mb-4 mt-4">
@@ -83,7 +83,7 @@
   <div class="col-lg-8">
     <div class="card">
       <div class="card-body">
-        <form action="{% url 'provider-settings' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'provider-profile' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
 
           <div class="mb-4">
@@ -144,7 +144,7 @@
   <div class="col-lg-8">
     <div class="card">
       <div class="card-body">
-        <form action="{% url 'provider-settings' 'change_password' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'provider-profile' 'change_password' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <!-- Old Password -->
           <div class="mb-4">
@@ -200,7 +200,7 @@
   <div class="col-lg-8">
     <div class="card">
       <div class="card-body">
-        <form action="{% url 'provider-settings' 'edit_store' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'provider-profile' 'edit_store' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
 
           <div class="mb-4">
