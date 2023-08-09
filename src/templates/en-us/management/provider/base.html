@@ -524,18 +524,6 @@
         <!-- Content -->
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-            <!-- Admin Home -->
-            <div class="nav-item mb-8">
-                <a class="nav-link {% if nav_side == 'home' %} active {% endif %}" href="{% url 'provider-home' 'main' %}" data-placement="left">
-                  <i class="fa fa-house nav-icon"></i>
-                  <span class="nav-link-title">Home</span>
-                </a>
-            </div>
-            <!-- End Admin Home -->
-
-            <!-- Management Title -->
-            <small class="bi-three-dots nav-subtitle-replacer"></small>
-            <!-- End Management Title -->
 
             <!-- Settings -->
             <div class="nav-item">
@@ -545,15 +533,6 @@
               </a>
             </div>
             <!-- End Settings -->
-
-            <!-- My Products -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'my_products' %} active {% endif %}" href="{% url 'provider-products' 'main' %}?init=True" data-placement="left">
-                <i class="fa fa-cart-flatbed nav-icon"></i>
-                <span class="nav-link-title">My Products</span>
-              </a>
-            </div>
-            <!-- End My Products -->
 
             <!-- My Sales -->
             <div class="nav-item">
@@ -567,6 +546,15 @@
               </a>
             </div>
             <!-- End My Sales -->
+
+            <!-- My Products -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'my_products' %} active {% endif %}" href="{% url 'provider-products' 'main' %}?init=True" data-placement="left">
+                <i class="fa fa-cart-flatbed nav-icon"></i>
+                <span class="nav-link-title">My Products</span>
+              </a>
+            </div>
+            <!-- End My Products -->
 
             <!-- My Wallet -->
             <div class="nav-item">
