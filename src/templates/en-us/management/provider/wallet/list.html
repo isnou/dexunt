@@ -55,7 +55,11 @@
         <!-- Table Actions -->
         <tr>
           <td>
-            <span class="d-block fs-5">[{{ transaction.title }}]</span>
+            <span class="d-block fs-5">{{ transaction.title }}
+              {% if transaction.secret_key %}
+              [{{ transaction.secret_key }}]
+              {% endif %}
+            </span>
           </td>
 
           <td>
