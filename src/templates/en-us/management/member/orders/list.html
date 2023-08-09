@@ -98,10 +98,6 @@
         <!-- creation date -->
         <td class="text-end">
           <span class="d-block h4 text-end"><small>{{ order.log.first.at|date:'M' }} {{ order.log.first.at|date:'d' }} , {{ order.log.first.at|time:'H' }}:{{ order.log.first.at|time:'i' }}</small>
-            <!-- delete order -->
-            <button type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
-              <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-            </button>
           </span>
         </td>
       </tr>
@@ -211,32 +207,6 @@
 <!-- end all products  -->
 
 {% for order in all_orders %}
-<!-- delete order form -->
-<form action="{% url 'admin-manage-orders' 'delete_order' %}" id="delete_order_form_{{ order.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="order_id" value='{{ order.id }}'>
-</form>
-<!-- end order forms list -->
-
-
-<!-- delete order modal -->
-<div id="delete_order_modal_{{ order.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>click yes to delete #{{ order.ref }}.</p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="delete_order_form_{{ order.id }}">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- view order modal -->
 <div id="view_order_modal_{{ order.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
@@ -433,16 +403,16 @@
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
         {% if order.status == 'placed' %}
-        <a type="button" href="{% url 'admin-manage-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-white">Confirmed</a>
-        <a type="button" href="{% url 'admin-manage-orders' 'no_answer' %}?order_id={{ order.id }}" class="btn btn-white">No answer</a>
+        <a type="button" href="{% url 'member-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-white">Confirmed</a>
+        <a type="button" href="{% url 'member-orders' 'no_answer' %}?order_id={{ order.id }}" class="btn btn-white">No answer</a>
         {% endif %}
 
         {% if order.status == 'processed' %}
-        <a type="button" href="{% url 'admin-manage-orders' 'controlled_quality' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
+        <a type="button" href="{% url 'member-orders' 'controlled_quality' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
         {% endif %}
 
         {% if order.status == 'controlled' %}
-        <form action="{% url 'admin-manage-orders' 'handed_over' %}" id="delivery_from_{{ order.id }}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'member-orders' 'handed_over' %}" id="delivery_from_{{ order.id }}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="order_id" value="{{ order.id }}">
           <input type="text" class="form-control" name="delivery_code" required>
@@ -452,8 +422,8 @@
         {% endif %}
 
         {% if order.status == 'handed' %}
-        <a type="button" href="{% url 'admin-manage-orders' 'paid' %}?order_id={{ order.id }}" class="btn btn-white">Paid</a>
-        <a type="button" href="{% url 'admin-manage-orders' 'refund' %}?order_id={{ order.id }}" class="btn btn-white">Refund</a>
+        <a type="button" href="{% url 'member-orders' 'paid' %}?order_id={{ order.id }}" class="btn btn-white">Paid</a>
+        <a type="button" href="{% url 'member-orders' 'refund' %}?order_id={{ order.id }}" class="btn btn-white">Refund</a>
         {% endif %}
       </div>
     </div>

@@ -1065,7 +1065,7 @@ def cash_home(request, action):
 
 # ------------------------------ member -------------------------------- #
 @login_required
-def member_home(request, action):
+def member_orders(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
@@ -1090,7 +1090,7 @@ def member_home(request, action):
         else:
             page = request.session.get('orders-page')
 
-        paginator = Paginator(all_orders, 6)
+        paginator = Paginator(all_orders, items_by_page)
         try:
             all_orders = paginator.page(page)
         except PageNotAnInteger:
@@ -1104,16 +1104,39 @@ def member_home(request, action):
             'paginate': paginate,
         }
         return render(request, url, context)
-    if action == 'sign_transaction':
+    if action == 'no_answer':
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.pend(request)
+        return redirect('member-orders', 'main')
+    if action == 'confirmed_order':
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.confirm(request)
+        return redirect('member-orders', 'main')
+    if action == 'collected':
+        order_id = request.GET.get('order_id', False)
+        product_id = request.GET.get('product_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_product = selected_order.selected_products.all().get(id=product_id)
+        selected_product.collected(request)
+        return redirect('member-orders', 'main')
+    if action == 'controlled_quality':
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.controlled(request)
+        return redirect('member-orders', 'main')
+    if action == 'handed_over':
         if request.method == 'POST':
-            transaction_id = request.POST.get('transaction_id', False)
-            request.user.sign_transaction(request, transaction_id)
-            return redirect('cash-home', 'main')
-    if action == 'decline_transaction':
-        if request.method == 'POST':
-            transaction_id = request.POST.get('transaction_id', False)
-            request.user.wallet.transaction_set.get(id=transaction_id).delete()
-            return redirect('cash-home', 'main')
+            order_id = request.POST.get('order_id', False)
+            selected_order = Order.objects.all().get(id=order_id)
+            selected_order.handed(request)
+            return redirect('member-orders', 'main')
+    if action == 'paid':
+        order_id = request.GET.get('order_id', False)
+        selected_order = Order.objects.all().get(id=order_id)
+        selected_order.paid(request)
+        return redirect('member-orders', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
