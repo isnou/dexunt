@@ -104,7 +104,7 @@
               <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
             </button>
             <!-- toggle details -->
-            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="true">
+            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">
               <i class="fa fa-chevron-down fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Details"></i>
             </button>
           </span>
@@ -112,7 +112,7 @@
       </tr>
       {% for product in order.selected_products.all %}
       <!-- products list -->
-      <tr class="collapse {% if product.status == 'processed' %} bg-light {% endif %}" id="collapse_{{ order.id }}">
+      <tr class="collapse {% if product.status == 'processed' %} bg-light {% endif %} show" id="collapse_{{ order.id }}">
         <td class="table-column-pe-0">
         </td>
         <!-- product title and image -->
