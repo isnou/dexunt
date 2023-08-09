@@ -14,10 +14,13 @@
         <li class="breadcrumb-item active" aria-current="page">my wallet</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">My Balance : {{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    <h1 class="page-header-title">{{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
   </div>
-  <div class="col-sm-auto">
 
+  <div class="col-sm-auto">
+    <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#request_payment">
+      <i class="fa fa-coins fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Request Payment"></i>
+    </a>
   </div>
   <!-- end all products  -->
 </div>
