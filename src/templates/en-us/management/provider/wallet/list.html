@@ -70,7 +70,11 @@
             {% if transaction.confirmed %}
             <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
             {% else %}
-            <span class="d-block fs-5">[{{ transaction.secret_key }}]</span>
+            <div class="collapse" id="collapseExample">
+              <div class="input-group mb-3" id="hideme">
+                <span class="d-block fs-5">[{{ transaction.secret_key }}]</span>
+              </div>
+            </div>
             {% endif %}
           </td>
 
