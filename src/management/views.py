@@ -1424,7 +1424,7 @@ def provider_wallet(request, action):
 
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/provider/wallet/home.html"
+        url = direction + "/management/provider/wallet/list.html"
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
