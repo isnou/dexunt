@@ -1202,7 +1202,7 @@ def provider_profile(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/provider/settings/home.html"
+        url = direction + "/management/provider/profile/settings.html"
         store_form = StoreForm()
         update_profile_form = UpdateProfileForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
@@ -1266,7 +1266,7 @@ def provider_store(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/provider/settings/home.html"
+        url = direction + "/management/provider/store/settings.html"
         store_form = StoreForm()
         update_profile_form = UpdateProfileForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
