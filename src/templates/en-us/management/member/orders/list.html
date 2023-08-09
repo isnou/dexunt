@@ -444,7 +444,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a type="button" class="btn btn-primary" href="{% url 'admin-manage-orders' 'collected' %}?order_id={{ order.id }}&product_id={{ product.id }}">Yes</a>
+        <a type="button" class="btn btn-primary" href="{% url 'member-orders' 'collected' %}?order_id={{ order.id }}&product_id={{ product.id }}">Yes</a>
       </div>
     </div>
   </div>
