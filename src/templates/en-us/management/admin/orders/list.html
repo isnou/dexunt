@@ -7,7 +7,7 @@
 <!-- header -->
 {% block page_header %}
 <div class="row align-items-end">
-  <!-- all products  -->
+  <!-- all orders  -->
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
@@ -17,13 +17,13 @@
     <h1 class="page-header-title">Products</h1>
     <h6 class="text-muted">You have a total of {{ all_orders.all.count }} orders</h6>
   </div>
-  <!-- end all products  -->
+  <!-- end all orders  -->
 </div>
 {% endblock %}
 
-<!-- product content -->
+<!-- orders content -->
 {% block content %}
-<!-- all products  -->
+<!-- all orders  -->
 <div class="card">
   <!-- header -->
   <div class="card-header card-header-content-md-between">
@@ -105,7 +105,7 @@
             </button>
             <!-- toggle details -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">
-              <i class="fa fa-chevron-down fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Secrete Key"></i>
+              <i class="fa fa-chevron-down fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Details"></i>
             </button>
           </span>
         </td>
@@ -212,7 +212,7 @@
   </div>
   {% endif %}
 </div>
-<!-- end all products  -->
+<!-- end all orders  -->
 
 {% for order in all_orders %}
 <!-- delete order form -->
