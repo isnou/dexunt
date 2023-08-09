@@ -159,7 +159,7 @@ def router(request):
         return redirect('cash-home', 'main')
 
     if request.user.is_member:
-        return redirect('member-home', 'main')
+        return redirect('member-orders', 'main')
 
 def account_logout(request):
     logout(request)
