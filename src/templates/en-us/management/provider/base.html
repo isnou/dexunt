@@ -484,8 +484,8 @@
                 </div>
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Profile &amp; account</a>
-                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="{% url 'provider-profile' 'main' %}">Profile</a>
+                <a class="dropdown-item" href="{% url 'provider-store' 'main' %}">Store</a>
 
                 <div class="dropdown-divider"></div>
 
@@ -524,16 +524,6 @@
         <!-- Content -->
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-
-            <!-- Settings -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'settings' %} active {% endif %}" href="{% url 'provider-settings' 'main' %}" data-placement="left">
-                <i class="fa fa-gear nav-icon"></i>
-                <span class="nav-link-title">Settings</span>
-              </a>
-            </div>
-            <!-- End Settings -->
-
             <!-- My Sales -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'my_sales' %} active {% endif %}" href="{% url 'provider-sales' 'main' %}?init=True" data-placement="left">
