@@ -19,7 +19,8 @@ urlpatterns = [
     path('<str:action>/customer/home', views.customer_home, name='customer-home'),
     # ---- provider ---- #
     path('<str:action>/provider/products', views.provider_products, name='provider-products'),
-    path('<str:action>/provider/settings', views.provider_settings, name='provider-settings'),
+    path('<str:action>/provider/profile', views.provider_profile, name='provider-profile'),
+    path('<str:action>/provider/store', views.provider_store, name='provider-store'),
     path('<str:action>/provider/sales', views.provider_sales, name='provider-sales'),
     path('<str:action>/provider/wallet', views.provider_wallet, name='provider-wallet'),
     # ---- seller ---- #
