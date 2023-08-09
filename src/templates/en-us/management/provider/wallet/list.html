@@ -70,13 +70,13 @@
             {% if transaction.confirmed %}
             <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
             {% else %}
-            <div class="collapse" id="collapse">
+            <div class="collapse" id="collapse_{{ transaction.id }}">
               <div class="input-group mb-3">
                 <span class="d-block fs-5">[{{ transaction.secret_key }}]</span>
               </div>
             </div>
 
-            <a type="button" class="text-body" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false">
+            <a type="button" class="text-body" data-bs-toggle="collapse" data-bs-target="#collapse_{{ transaction.id }}" aria-expanded="false">
               <i class="fa fa-eye fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Secrete Key"></i>
             </a>
             {% endif %}
