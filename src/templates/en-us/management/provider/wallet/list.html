@@ -172,26 +172,25 @@
       <div>
         <!-- login title -->
         <div class="text-center mb-7">
-          <h2>Request Payment</h2>
+          <h2>Payment</h2>
         </div>
         <!-- end login title -->
-        <form action="{% url 'admin-manage-users' 'add_funds' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'provider-wallet' 'request_payment' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
-          <input type="hidden" name="user_id" value='{{ selected_user.id }}'>
 
           <div class="row mb-4">
             <div class="input-group input-group-merge input-group-borderless input-group-flush">
               <div class="input-group-prepend input-group-text">
                 <i class="fa fa-coins"></i>
               </div>
-              <input type="number" class="form-control" placeholder="Put your amount here." name="cash" min="0" required>
+              <input type="number" class="form-control" placeholder="Put your amount here." name="amount" min="0" required>
               <span class="invalid-feedback text-start">Required field.</span>
             </div>
           </div>
 
           <!-- submit -->
           <div class="d-grid mb-4">
-            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            <button type="submit" class="btn btn-primary form-control-lg">Request</button>
           </div>
           <!-- end submit -->
         </form>

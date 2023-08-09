@@ -1455,6 +1455,11 @@ def provider_wallet(request, action):
             'transactions': transactions,
         }
         return render(request, url, context)
+    if action == 'request_payment':
+        if request.method == 'POST':
+            amount = request.POST.get('amount', False)
+            request.user.request_transaction('payment', amount, True)
+            return redirect('provider-wallet', 'main')
     if action == 'sign_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
