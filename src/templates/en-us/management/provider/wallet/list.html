@@ -172,7 +172,7 @@
       <div>
         <!-- login title -->
         <div class="text-center mb-7">
-          <h2>{{ selected_user.first_name|title }} {{ selected_user.last_name|title }} Profile</h2>
+          <h2>Request Payment</h2>
         </div>
         <!-- end login title -->
         <form action="{% url 'admin-manage-users' 'add_funds' %}" class="js-validate need-validate" novalidate method="post">
@@ -185,7 +185,7 @@
                 <i class="fa fa-coins"></i>
               </div>
               <input type="number" class="form-control" placeholder="amount to add" name="cash" min="0" required>
-              <span class="invalid-feedback text-start">Please enter cash value.</span>
+              <span class="invalid-feedback text-start">Put your amount here.</span>
             </div>
           </div>
 
