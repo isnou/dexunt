@@ -1190,6 +1190,50 @@ def member_payments(request, action):
             request.user.confirm_transaction(secrete_key, transaction_id)
             return redirect('member-payments', 'main')
 #                                                                        #
+def member_wallet(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 6
+
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/member/wallet/list.html"
+        if request.GET.get('init', None):
+            request.session['transactions-page'] = None
+
+        transactions = request.user.wallet.transactions.all()
+
+        if transactions.count():
+            paginate = True
+        else:
+            paginate = False
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('transactions-page')
+
+
+        paginator = Paginator(transactions, items_by_page)
+        try:
+            transactions = paginator.page(page)
+        except PageNotAnInteger:
+            transactions = paginator.page(1)
+        except EmptyPage:
+            transactions = paginator.page(paginator.num_pages)
+
+        context = {
+            'nav_side': 'my_wallet',
+            'transactions': transactions,
+            'paginate': paginate,
+        }
+        return render(request, url, context)
+    if action == 'request_payment':
+        if request.method == 'POST':
+            amount = request.POST.get('amount', False)
+            request.user.request_transaction('provider-payment-request', amount, True)
+            return redirect('member-wallet', 'main')
 # ---------------------------------------------------------------------- #
 
 
