@@ -50,8 +50,11 @@ def transactions_filter(request, new_filter):
     if request.session.get('transactions_filter', None) == 'costumers':
         return Transaction.objects.all().filter(is_customer=True)
 #                                                                        #
-def requested_payments():
+def provider_requested_payments():
     return Transaction.objects.all().filter(title='provider-payment-request')
+#                                                                        #
+def member_requested_payments():
+    return Transaction.objects.all().filter(title='member-payment-request')
 #                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #
