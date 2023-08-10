@@ -14,10 +14,10 @@
         <li class="breadcrumb-item active" aria-current="page">balance</li>
       </ol>
     </nav>
-    {% if user.store.balance > 0 %}
-    <h1 class="page-header-title text-success">{{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    {% if user.wallet.amount > 0 %}
+    <h1 class="page-header-title text-success">{{ user.wallet.amount|floatformat:"0g" }} <small>DZD</small></h1>
     {% else %}
-    <h1 class="page-header-title text-danger">{{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    <h1 class="page-header-title text-danger">{{ user.wallet.amount|floatformat:"0g" }} <small>DZD</small></h1>
     {% endif %}
   </div>
 
@@ -60,7 +60,6 @@
         <td>
           <span class="d-block fs-5">{{ transaction.title }}</span>
           {{ transaction.type }}
-
         </td>
 
         <td>
