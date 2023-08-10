@@ -249,14 +249,14 @@
         </div>
       </div>
 
-{% if user.wallet.unsigned_transactions.count %}
+{% if provider_requests.count %}
 <div id="unsigned_list">
   <!-- Table -->
     <div class="table-responsive datatable-custom">
       <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
         <tbody>
 
-        {% for transaction in user.wallet.unsigned_transactions %}
+        {% for transaction in provider_requests %}
         <!-- Table Actions -->
         <tr>
           <td>
@@ -283,9 +283,11 @@
       </table>
     </div>
     <!-- End Table -->
-  </div>
+</div>
 {% endif %}
 
+{% if member_requests.count %}
+{% endif %}
 
 <div class="card">
   <!-- Header -->
@@ -444,7 +446,7 @@
   </div>
 </div>
 
-{% for transaction in user.wallet.unsigned_transactions %}
+{% for transaction in user.wallet.transactions %}
   <!-- Table Forms -->
   <form action="{% url 'cash-home' 'sign_transaction' %}" id="sign_transaction_form_{{ transaction.id }}" method="post">
     {% csrf_token %}

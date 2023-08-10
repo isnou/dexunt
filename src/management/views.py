@@ -1029,6 +1029,9 @@ def cash_home(request, action):
         transactions = transactions_filter(request, new_filter)
         filtered = request.session.get('transactions_filter', None)
 
+        provider_requests = provider_requested_payments()
+        member_requests = member_requested_payments()
+
         if request.GET.get('page', None):
             page = request.GET.get('page', 1)
         else:
@@ -1047,6 +1050,8 @@ def cash_home(request, action):
             'nav_side': 'home',
             'filtered': filtered,
             'transactions': transactions,
+            'provider_requests': provider_requests,
+            'member_requests':member_requests,
         }
         return render(request, url, context)
     if action == 'sign_transaction':
@@ -1188,7 +1193,6 @@ def member_payments(request, action):
 # ---------------------------------------------------------------------- #
 
 
-
 # ----------------------------- Customer ------------------------------- #
 @login_required
 def customer_home(request, action):
@@ -1207,7 +1211,6 @@ def customer_home(request, action):
 # ---------------------------------------------------------------------- #
 
 
-
 # ----------------------------- Seller ------------------------------- #
 @login_required
 def seller_home(request, action):
@@ -1224,7 +1227,6 @@ def seller_home(request, action):
         return render(request, url, context)
 #                                                                        #
 # ---------------------------------------------------------------------- #
-
 
 
 # ----------------------------- Provider ------------------------------- #
