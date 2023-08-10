@@ -11,10 +11,11 @@ from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm 
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
 from authentication.models import User, users_filter, reset_users
-from authentication.models import Transaction, transactions_filter, requested_payments
+from authentication.models import Transaction, transactions_filter, provider_requested_payments, member_requested_payments
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from authentication.forms import UpdateProfileForm, UpdatePhotoForm
+
 
 
 
@@ -1151,7 +1152,7 @@ def member_payments(request, action):
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
-        transactions = requested_payments()
+        transactions = provider_requested_payments()
 
         if transactions.count():
             paginate = True
