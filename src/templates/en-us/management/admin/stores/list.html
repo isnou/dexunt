@@ -81,11 +81,21 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ store.balance }}</span>
+            {% if store.balance > 0 %}
+            <span class="d-block fs-5 text-success">{{ store.balance|floatformat:"0g" }} <small>DZD</small></span>
+            {% else %}
+            <span class="d-block fs-5 text-danger">{{ store.balance|floatformat:"0g" }} <small>DZD</small></span>
+            {% endif %}
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ store.sale }}</span>
+            <span class="d-block fs-5">({{ store.sale }})</span>
+            
+            {% if store.sales > 0 %}
+            <span class="d-block fs-5 text-success">{{ store.sales|floatformat:"0g" }} <small>DZD</small></span>
+            {% else %}
+            <span class="d-block fs-5 text-danger">{{ store.sales|floatformat:"0g" }} <small>DZD</small></span>
+            {% endif %}
           </td>
 
           <td>
