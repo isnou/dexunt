@@ -1178,6 +1178,12 @@ def member_payments(request, action):
             'paginate': paginate,
         }
         return render(request, url, context)
+    if action == 'confirm':
+        if request.method == 'POST':
+            transaction_id = request.POST.get('transaction_id', False)
+            secrete_key = request.POST.get('secrete_key', False)
+            request.user.confirm_transaction(secrete_key, transaction_id)
+            return redirect('member-payments', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
 

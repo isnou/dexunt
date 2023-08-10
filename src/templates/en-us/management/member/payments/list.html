@@ -152,14 +152,14 @@
         </div>
         <div class="modal-footer" style="align-self: center;">
 
-          <form action="#" id="confirm_from_{{ transaction.id }}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'member-payments' 'confirm' %}" id="confirm_from_{{ transaction.id }}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="transaction_id" value="{{ transaction.id }}">
             <input type="text" class="form-control" placeholder="secrete key" name="secrete_key" required>
+            <span class="invalid-feedback text-center">secrete key required.</span>
           </form>
 
           <button class="btn btn-white" form="confirm_from_{{ transaction.id }}">Yes</button>
-          <span class="invalid-feedback text-center">secrete key required.</span>
         </div>
       </div>
     </div>
