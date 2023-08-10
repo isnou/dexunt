@@ -331,7 +331,7 @@ class Order(models.Model):
             if self.client:
                 self.client.points = self.retained_points
                 self.client.save()
-        request.user.add_funds('#' + self.ref + ': payment', self.retained_total_price)
+        request.user.add_funds('paid-order-#' + self.ref, self.retained_total_price)
         for p in self.selected_products.all():
             p.status = 'paid'
             p.option.sale += p.quantity
