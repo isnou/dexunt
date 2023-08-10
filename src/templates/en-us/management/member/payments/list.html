@@ -164,7 +164,13 @@
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-white" form="decline_transaction_form_{{ transaction.id }}">Decline</button>
+          <form action="{% url 'admin-manage-orders' 'handed_over' %}" id="delivery_from_{{ transaction.id }}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="order_id" value="{{ transaction.id }}">
+            <input type="text" class="form-control" placeholder="secrete key" name="secrete_key" required>
+            <span class="invalid-feedback text-center">delivery code required.</span>
+          </form>
+
           <button class="btn btn-white" form="sign_transaction_form_{{ transaction.id }}">Yes</button>
         </div>
       </div>
