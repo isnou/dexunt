@@ -224,7 +224,7 @@ class User(AbstractUser):
                             requested_at = selected_transaction.requested_at,
                             wallet = self.wallet,
                             title = selected_transaction.title,
-                            amount = amount
+                            amount = selected_transaction.amount
                             ).save()
         else:
             selected_transaction.confirmed = True
@@ -237,8 +237,8 @@ class User(AbstractUser):
                         requested_by=selected_transaction.requested_by,
                         requested_at=selected_transaction.requested_at,
                         wallet=self.wallet,
-                        title=title,
-                        amount=amount
+                        title = selected_transaction.title,
+                        amount = selected_transaction.amount
                         ).save()
     # ----- variables ----- #
     def new_orders_count(self):
