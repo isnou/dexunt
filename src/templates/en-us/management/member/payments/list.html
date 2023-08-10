@@ -58,25 +58,11 @@
           <span class="d-block fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
         </td>
 
-        <td>
-          {% if transaction.confirmed %}
-          <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
-          {% endif %}
-        </td>
-
-        <td>
-          {% if transaction.confirmed %}
-          <span class="d-block fs-5">{{ transaction.confirmed_by.username }}</span>
-          {% endif %}
-        </td>
-
 
         <td class="text-end">
-          {% if not transaction.confirmed %}
           <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#confirm_modal_{{ transaction.id }}">
             <i class="fa fa-check fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Confirm"></i>
           </a>
-          {% endif %}
         </td>
       </tr>
       <!-- End Table Actions -->
@@ -131,7 +117,7 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        There is no orders yet .
+        No requested payments .
       </div>
     </div>
   </div>
