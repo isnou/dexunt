@@ -59,7 +59,7 @@
           <th>Name</th>
           <th>Balance</th>
           <th>Sales</th>
-          <th>Rate</th>
+          <th></th>
           <th></th>
         </tr>
         </thead>
@@ -89,8 +89,6 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">({{ store.sale }})</span>
-            
             {% if store.sales > 0 %}
             <span class="d-block fs-5 text-success">{{ store.sales|floatformat:"0g" }} <small>DZD</small></span>
             {% else %}
@@ -99,7 +97,7 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ store.rate }}</span>
+            <span class="d-block fs-5">S:{{ store.sale }}|R:{{ store.rate }}</span>
           </td>
 
           <td class="text-end">
