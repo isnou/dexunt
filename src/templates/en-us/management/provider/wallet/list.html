@@ -19,6 +19,7 @@
     {% else %}
     <h1 class="page-header-title text-danger">{{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
     {% endif %}
+    <h1 class="page-header-title text-success">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small></h1>
   </div>
 
   <div class="col-sm-auto">
