@@ -48,119 +48,105 @@
   </div>
   <!-- end header -->
 
-  <div id="list">
-    <!-- Table -->
-    <div class="table-responsive datatable-custom">
-      <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+  {% if paginate %}
+  <!-- Table -->
+  <div class="table-responsive datatable-custom">
+    <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+      <tbody>
 
-        <tbody>
+      {% for transaction in transactions %}
+      <!-- Table Actions -->
+      <tr>
+        <td>
+          <span class="d-block fs-5">{{ transaction.title }}</span>
+        </td>
 
-        {% for transaction in transactions %}
-        <!-- Table Actions -->
-        <tr>
-          <td>
-            <span class="d-block fs-5">{{ transaction.title }}</span>
-          </td>
-
-          <td>
-            {% if transaction.add %}
-            <span class="d-block fs-5 text-success">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
-            {% else %}
-            <span class="d-block fs-5 text-danger">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
-            {% endif %}
-          </td>
-
-          <td>
-            <span class="d-block fs-5">{{ transaction.requested_at }}</span>
-          </td>
-
-          <td>
-            {% if transaction.confirmed %}
-            <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
-            {% else %}
-            <a type="button" class="text-body" data-bs-toggle="collapse" data-bs-target="#collapse_{{ transaction.id }}" aria-expanded="false">
-              <i class="fa fa-eye fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Secrete Key"></i>
-            </a>
-
-            <div class="collapse" id="collapse_{{ transaction.id }}">
-              <span class="d-block fs-5">{{ transaction.secret_key }}</span>
-            </div>
-            {% endif %}
-          </td>
-        </tr>
-        <!-- End Table Actions -->
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <!-- End Table -->
-
-    <!-- Footer -->
-    <div class="card-footer">
-      <!-- Pagination -->
-      <div class="d-flex justify-content-center justify-content-sm-end">
-        <nav>
-          {% if users_list.has_other_pages %}
-          <ul class="pagination justify-content-center">
-            {% if users_list.has_previous %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ users_list.previous_page_number }}" tabindex="-1">Previous</a>
-            </li>
-            {% endif %}
-
-            {% for i in users_list.paginator.page_range %}
-            {% if users_list.number == i %}
-            <li class="page-item active">
-              <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
-            </li>
-            {% else %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-
-            {% if users_list.has_next %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ users_list.next_page_number }}">Next</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Next</a>
-            </li>
-            {% endif %}
-          </ul>
+        <td>
+          {% if transaction.add %}
+          <span class="d-block fs-5 text-success">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+          {% else %}
+          <span class="d-block fs-5 text-danger">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% endif %}
-        </nav>
-      </div>
-      <!-- End Pagination -->
-    </div>
-    <!-- End Footer -->
+        </td>
+
+        <td>
+          <span class="d-block fs-5">{{ transaction.requested_at }}</span>
+        </td>
+
+        <td>
+          {% if transaction.confirmed %}
+          <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
+          {% else %}
+          <a type="button" class="text-body" data-bs-toggle="collapse" data-bs-target="#collapse_{{ transaction.id }}" aria-expanded="false">
+            <i class="fa fa-eye fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Secrete Key"></i>
+          </a>
+
+          <div class="collapse" id="collapse_{{ transaction.id }}">
+            <span class="d-block fs-5">{{ transaction.secret_key }}</span>
+          </div>
+          {% endif %}
+        </td>
+      </tr>
+      <!-- End Table Actions -->
+      {% endfor %}
+      </tbody>
+    </table>
   </div>
+  <!-- End Table -->
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center justify-content-sm-end">
+      <nav>
+        {% if users_list.has_other_pages %}
+        <ul class="pagination justify-content-center">
+          {% if users_list.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ users_list.previous_page_number }}" tabindex="-1">Previous</a>
+          </li>
+          {% endif %}
+
+          {% for i in users_list.paginator.page_range %}
+          {% if users_list.number == i %}
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+
+          {% if users_list.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ users_list.next_page_number }}">Next</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+          </li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </nav>
+    </div>
+    <!-- End Pagination -->
+  </div>
+  <!-- End Footer -->
+  {% else %}
+  <div class="card-footer">
+    <div class="row text-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        No transactions .
+      </div>
+    </div>
+  </div>
+  {% endif %}
 </div>
 <!-- end all products  -->
 
-<!-- product modals & forms -->
-{% for product in orders %}
-<!-- prepared product modal -->
-<div id="prepared_product_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>{{ product.en_title }} x {{ product.quantity }} is ready ,click yes to confirm.</p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a type="button" class="btn btn-primary" href="{% url 'provider-sales' 'validate_order' %}?order_id={{ product.id }}">Yes</a>
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
 
 <!-- Request Payment Modal -->
 <div id="request_payment" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">

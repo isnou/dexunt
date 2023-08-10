@@ -1496,12 +1496,12 @@ def provider_wallet(request, action):
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
-        new_filter = request.GET.get('filter', None)
-        if not request.session.get('transactions_filter', None):
-            request.session['transactions_filter'] = 'all'
-
         transactions = request.user.wallet.transactions.all()
-        filtered = request.session.get('transactions_filter', None)
+
+        if transactions.count():
+            paginate = True
+        else:
+            paginate = False
 
         if request.GET.get('page', None):
             page = request.GET.get('page', 1)
@@ -1519,8 +1519,8 @@ def provider_wallet(request, action):
 
         context = {
             'nav_side': 'my_wallet',
-            'filtered': filtered,
             'transactions': transactions,
+            'paginate': paginate,
         }
         return render(request, url, context)
     if action == 'request_payment':
