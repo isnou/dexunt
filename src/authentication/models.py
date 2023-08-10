@@ -30,6 +30,8 @@ class Transaction(models.Model):
     confirmed = models.BooleanField(default=True)  # -- (confirmed = False) => requested
     add = models.BooleanField(default=True)  # -- (add = False) => remove
     # ----- functions ----- #
+    def __str__(self):
+        return self.title
     def save(self, *args, **kwargs):
         super().save()
         if not self.ref:
