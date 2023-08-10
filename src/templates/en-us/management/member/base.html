@@ -542,7 +542,7 @@
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'payment_request' %} active {% endif %}" href="{% url 'member-orders' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-money-bill-transfer nav-icon"></i>
-                <span class="nav-link-title">Requested payments
+                <span class="nav-link-title">Payments
                   {% if requests_count %}
                   <span class="badge bg-primary rounded-pill ms-1">{{ requests_count }}</span>
                   {% endif %}
