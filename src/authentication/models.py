@@ -221,6 +221,7 @@ class User(AbstractUser):
                 selected_transaction.confirmed_by = self
                 selected_transaction.save()
                 Transaction(confirmed = True,
+                            add=False,
                             confirmed_by=selected_transaction.confirmed_by,
                             confirmed_at=selected_transaction.confirmed_at,
                             requested_by = selected_transaction.requested_by,
@@ -235,6 +236,7 @@ class User(AbstractUser):
             selected_transaction.confirmed_by = self
             selected_transaction.save()
             Transaction(confirmed=True,
+                        add=False,
                         confirmed_by=selected_transaction.confirmed_by,
                         confirmed_at=selected_transaction.confirmed_at,
                         requested_by=selected_transaction.requested_by,
