@@ -1138,6 +1138,53 @@ def member_orders(request, action):
         selected_order.paid(request)
         return redirect('member-orders', 'main')
 #                                                                        #
+@login_required
+def member_payments(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 6
+
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/member/payments/list.html"
+        if request.GET.get('init', None):
+            request.session['transactions-page'] = None
+
+        new_filter = request.GET.get('filter', None)
+        if not request.session.get('transactions_filter', None):
+            request.session['transactions_filter'] = 'all'
+
+        transactions = transactions_filter(request, new_filter)
+        filtered = request.session.get('transactions_filter', None)
+
+        if transactions.count():
+            paginate = True
+        else:
+            paginate = False
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('transactions-page')
+
+
+        paginator = Paginator(transactions, items_by_page)
+        try:
+            transactions = paginator.page(page)
+        except PageNotAnInteger:
+            transactions = paginator.page(1)
+        except EmptyPage:
+            transactions = paginator.page(paginator.num_pages)
+
+        context = {
+            'nav_side': 'payment_request',
+            'filtered': filtered,
+            'transactions': transactions,
+            'paginate': paginate,
+        }
+        return render(request, url, context)
+#                                                                        #
 # ---------------------------------------------------------------------- #
 
 
