@@ -249,45 +249,6 @@
         </div>
       </div>
 
-{% if provider_requests.count %}
-<div id="unsigned_list">
-  <!-- Table -->
-    <div class="table-responsive datatable-custom">
-      <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-        <tbody>
-
-        {% for transaction in provider_requests.all %}
-        <!-- Table Actions -->
-        <tr>
-          <td>
-            <span class="d-block fs-5">{{ transaction.title }}</span>
-          </td>
-
-          <td>
-            <span class="d-block fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
-          </td>
-
-          <td>
-            <span class="d-block fs-5">{{ transaction.created_at }}</span>
-          </td>
-
-          <td class="text-end">
-            <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#sign_modal_{{ transaction.id }}">
-              <i class="fa fa-signature fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign"></i>
-            </a>
-          </td>
-        </tr>
-        <!-- End Table Actions -->
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <!-- End Table -->
-</div>
-{% endif %}
-
-{% if member_requests.count %}
-{% endif %}
 
 <div class="card">
   <!-- Header -->
