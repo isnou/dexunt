@@ -538,9 +538,22 @@
             </div>
             <!-- End Orders -->
 
+            <!-- Request -->
+            <div class="nav-item">
+              <a class="nav-link {% if nav_side == 'payment_request' %} active {% endif %}" href="{% url 'member-orders' 'main' %}?init=True" data-placement="left">
+                <i class="fa fa-money-bill-transfer nav-icon"></i>
+                <span class="nav-link-title">Requested payments
+                  {% if requests_count %}
+                  <span class="badge bg-primary rounded-pill ms-1">{{ requests_count }}</span>
+                  {% endif %}
+                </span>
+              </a>
+            </div>
+            <!-- End Request -->
+
             <!-- My Wallet -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'my_wallet' %} active {% endif %}" href="#" data-placement="left">
+              <a class="nav-link {% if nav_side == 'my_wallet' %} active {% endif %}" href="{% url 'member-orders' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-hand-holding-dollar nav-icon"></i>
                 <span class="nav-link-title">My Wallet</span>
               </a>
