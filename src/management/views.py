@@ -11,7 +11,7 @@ from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm 
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
 from authentication.models import User, users_filter, reset_users
-from authentication.models import Transaction, transactions_filter
+from authentication.models import Transaction, transactions_filter, requested_payments
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from authentication.forms import UpdateProfileForm, UpdatePhotoForm
@@ -1151,12 +1151,7 @@ def member_payments(request, action):
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
-        new_filter = request.GET.get('filter', None)
-        if not request.session.get('transactions_filter', None):
-            request.session['transactions_filter'] = 'all'
-
-        transactions = transactions_filter(request, new_filter)
-        filtered = request.session.get('transactions_filter', None)
+        transactions = requested_payments()
 
         if transactions.count():
             paginate = True
@@ -1168,7 +1163,6 @@ def member_payments(request, action):
         else:
             page = request.session.get('transactions-page')
 
-
         paginator = Paginator(transactions, items_by_page)
         try:
             transactions = paginator.page(page)
@@ -1179,7 +1173,6 @@ def member_payments(request, action):
 
         context = {
             'nav_side': 'payment_request',
-            'filtered': filtered,
             'transactions': transactions,
             'paginate': paginate,
         }
@@ -1526,7 +1519,7 @@ def provider_wallet(request, action):
     if action == 'request_payment':
         if request.method == 'POST':
             amount = request.POST.get('amount', False)
-            request.user.request_transaction('payment', amount, True)
+            request.user.request_transaction('provider-payment-request', amount, True)
             return redirect('provider-wallet', 'main')
     if action == 'sign_transaction':
         if request.method == 'POST':
