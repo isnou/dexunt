@@ -15,6 +15,7 @@ urlpatterns = [
     path('<str:action>/cash/home', views.cash_home, name='cash-home'),
     # ---- member ---- #
     path('<str:action>/member/orders', views.member_orders, name='member-orders'),
+    path('<str:action>/member/payments', views.member_payments, name='member-payments'),
     # ---- customer ---- #
     path('<str:action>/customer/home', views.customer_home, name='customer-home'),
     # ---- provider ---- #
