@@ -1,4 +1,4 @@
-{% extends "en-us/management/provider/base.html" %}
+{% extends "en-us/management/member/base.html" %}
 {% load static %}
 
 <!-- title -->
@@ -65,7 +65,7 @@
 
         <td>
           {% if transaction.add %}
-          <span class="d-block fs-5 text-success">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+          <span class="d-block fs-5 text-success">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% else %}
           <span class="d-block fs-5 text-danger">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% endif %}
