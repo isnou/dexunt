@@ -1230,10 +1230,16 @@ def provider_profile(request, action):
             return redirect('provider-profile', 'main')
     if action == 'change_password':
         if request.method == 'POST':
+            update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
             change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
             if change_password_form.is_valid():
                 change_password_form.save()
                 update_session_auth_hash(request, change_password_form.user)
+                if update_profile_form.is_valid():
+                    user = update_profile_form.save()
+                    login(request, user)
+                else:
+                    request.session['error_messages'] = update_profile_form.errors
             else:
                 request.session['error_messages'] = change_password_form.errors
             return redirect('provider-profile', 'main')
