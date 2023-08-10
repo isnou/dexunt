@@ -14,7 +14,11 @@
         <li class="breadcrumb-item active" aria-current="page">balance</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">{{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    {% if user.store.balance > 0 %}
+    <h1 class="page-header-title text-success">{{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    {% else %}
+    <h1 class="page-header-title text-danger">{{ user.store.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    {% endif %}
   </div>
 
   <div class="col-sm-auto">
