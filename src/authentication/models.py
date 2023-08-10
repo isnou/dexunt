@@ -223,7 +223,7 @@ class User(AbstractUser):
                             requested_by = selected_transaction.requested_by,
                             requested_at = selected_transaction.requested_at,
                             wallet = self.wallet,
-                            title = title,
+                            title = selected_transaction.title,
                             amount = amount
                             ).save()
         else:
