@@ -24,6 +24,7 @@ class Transaction(models.Model):
         'authentication.Wallet', on_delete=models.CASCADE, related_name='transactions', null=True) # -- to be done with a member wallet
     # ----- content ----- #
     title = models.CharField(max_length=500, blank=True, null=True)
+    note = models.CharField(max_length=1000, blank=True, null=True)
     amount = models.IntegerField(default=0)
     requested_at = models.DateTimeField(blank=True, null=True)
     confirmed_at = models.DateTimeField(blank=True, null=True)
@@ -40,6 +41,9 @@ class Transaction(models.Model):
     def generate_secret_key(self):
         self.secret_key = functions.serial_number_generator(6)
         super().save()
+    def type(self):
+        if self.title.startswith('paid-order'):
+            return 'order'
 #                                                                        #
 def transactions_filter(request, new_filter):
     if new_filter:
