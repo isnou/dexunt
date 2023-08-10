@@ -12,14 +12,14 @@ from management.models import Store
 class Transaction(models.Model):
     # ----- Technical ----- #
     ref = models.CharField(max_length=10, unique=True, null=True)
-    secret_key = models.CharField(max_length=6, unique=True, null=True)
+    secret_key = models.CharField(max_length=6, blank=True, unique=True, null=True)
     tags = models.CharField(max_length=2000, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
     requested_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='payments_requested', null=True)  # -- to be done with a member
+        'authentication.User', on_delete=models.CASCADE, related_name='payments_requested', blank=True, null=True)  # -- to be done with a member
     confirmed_by = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='payments_confirmed', null=True)  # -- to be done with a member
+        'authentication.User', on_delete=models.CASCADE, related_name='payments_confirmed', blank=True, null=True)  # -- to be done with a member
     wallet = models.ForeignKey(
         'authentication.Wallet', on_delete=models.CASCADE, related_name='transactions', null=True) # -- to be done with a member wallet
     # ----- content ----- #
