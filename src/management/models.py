@@ -356,6 +356,12 @@ class Store(models.Model):
         for o in self.orders.all():
             if o.status == 'paid':
                 balance += o.total_cost()
+        for transaction in store.user.transactions.all():
+            if transaction.confirmed:
+                if transaction.add:
+                    balance += transaction.amount
+                else:
+                    balance -= transaction.amount
         return balance
 #                                                                        #
 class FlashProduct(models.Model):
