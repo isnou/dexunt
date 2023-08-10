@@ -484,8 +484,8 @@
                 </div>
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'provider-profile' 'main' %}">Profile</a>
-                <a class="dropdown-item" href="{% url 'provider-store' 'main' %}">Store</a>
+                <a class="dropdown-item {% if nav_side == 'profile' %} active {% endif %}" href="{% url 'provider-profile' 'main' %}">Profile</a>
+                <a class="dropdown-item {% if nav_side == 'store' %} active {% endif %}" href="{% url 'provider-store' 'main' %}">Store</a>
 
                 <div class="dropdown-divider"></div>
 

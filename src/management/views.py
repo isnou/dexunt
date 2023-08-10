@@ -1213,6 +1213,7 @@ def provider_profile(request, action):
             errors = None
 
         context = {
+            'nav_side': 'profile',
             'password_form': password_form,
             'update_profile_form': update_profile_form,
             'errors': errors
@@ -1255,6 +1256,7 @@ def provider_store(request, action):
             errors = None
 
         context = {
+            'nav_side': 'store',
             'store_form': store_form,
             'update_photo_form': update_photo_form,
             'errors': errors
