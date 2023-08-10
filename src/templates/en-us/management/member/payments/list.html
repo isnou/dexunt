@@ -59,18 +59,24 @@
         </td>
 
         <td>
+          {% if transaction.confirmed %}
           <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
+          {% endif %}
         </td>
 
         <td>
-          <span class="d-block fs-5">{{ transaction.confirmed_by }}</span>
+          {% if transaction.confirmed %}
+          <span class="d-block fs-5">{{ transaction.confirmed_by.username }}</span>
+          {% endif %}
         </td>
 
 
         <td class="text-end">
+          {% if not transaction.confirmed %}
           <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#confirm_modal_{{ transaction.id }}">
-            <i class="fa fa-check fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign"></i>
+            <i class="fa fa-check fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Confirm"></i>
           </a>
+          {% endif %}
         </td>
       </tr>
       <!-- End Table Actions -->
@@ -133,7 +139,7 @@
 </div>
 <!-- end all orders  -->
 
-{% for transaction in user.wallet.unsigned_transactions %}
+{% for transaction in transactions %}
   <!-- Table Forms -->
   <form action="{% url 'cash-home' 'sign_transaction' %}" id="sign_transaction_form_{{ transaction.id }}" method="post">
     {% csrf_token %}
