@@ -151,7 +151,7 @@
                         {% endif %}
                       </a>
                     </li>
-                    
+
                     <li class="nav-item">
                       <a class="nav-link" href="#provider_request" data-bs-toggle="tab" data-bs-target="#provider_request" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Providers
                         {% if provider_requests.count %}
@@ -194,7 +194,7 @@
 
                       <div class="tab-pane fade" id="provider_request" role="tabpanel">
                         <ul class="list-group list-group-flush navbar-card-list-group">
-                          {% for transaction in member_requests %}
+                          {% for transaction in provider_requests %}
                           <li class="list-group-item form-check-select">
                             <div class="row">
                               <div class="col-auto">
