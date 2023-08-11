@@ -1060,7 +1060,7 @@ def cash_home(request, action):
     if action == 'decline_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
-            request.user.wallet.transaction_set.get(id=transaction_id).delete()
+            request.user.wallet.transactions.get(id=transaction_id).delete()
             return redirect('cash-home', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
@@ -1190,7 +1190,7 @@ def member_payments(request, action):
     if action == 'decline_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
-            request.user.wallet.transaction_set.get(id=transaction_id).delete()
+            request.user.wallet.transactions.get(id=transaction_id).delete()
             return redirect('member-home', 'main')
 #                                                                        #
 def member_wallet(request, action):
