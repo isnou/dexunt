@@ -1235,7 +1235,7 @@ def member_wallet(request, action):
     if action == 'request_payment':
         if request.method == 'POST':
             amount = request.POST.get('amount', False)
-            request.user.request_transaction('memer-payment-request', amount, False)
+            request.user.request_transaction('member-payment-request', amount, False)
             return redirect('member-wallet', 'main')
 # ---------------------------------------------------------------------- #
 
