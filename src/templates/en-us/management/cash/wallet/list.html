@@ -143,9 +143,9 @@
     <!-- End Footer -->
 </div>
 
-{% for transaction in provider_requests %}
+{% for transaction in member_requests %}
   <!-- Table Forms -->
-  <form action="{% url 'cash-home' 'sign_transaction' %}" id="sign_transaction_form_{{ transaction.id }}" method="post">
+  <form action="{% url 'cash-home' 'activate_transaction' %}" id="activate_transaction_form_{{ transaction.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
   </form>
@@ -157,7 +157,7 @@
   <!-- End Table Forms -->
 
   <!-- Sign Modal -->
-  <div id="activate_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div id="activate_modal_{{ transaction.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
