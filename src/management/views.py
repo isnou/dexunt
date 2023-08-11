@@ -1051,18 +1051,13 @@ def cash_home(request, action):
             'member_requests':member_requests,
         }
         return render(request, url, context)
-    if action == 'confirm':
+    if action == 'confirm_sending':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
             secrete_key = None
             request.user.confirm_transaction(secrete_key, transaction_id)
-            return redirect('member-payments', 'main')
-    if action == 'sign_transaction':
-        if request.method == 'POST':
-            transaction_id = request.POST.get('transaction_id', False)
-            request.user.sign_transaction(request, transaction_id)
             return redirect('cash-home', 'main')
-    if action == 'decline_transaction':
+    if action == 'decline_sending':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
             request.user.wallet.transaction_set.get(id=transaction_id).delete()
@@ -1192,6 +1187,11 @@ def member_payments(request, action):
             secrete_key = request.POST.get('secrete_key', False)
             request.user.confirm_transaction(secrete_key, transaction_id)
             return redirect('member-payments', 'main')
+    if action == 'decline_transaction':
+        if request.method == 'POST':
+            transaction_id = request.POST.get('transaction_id', False)
+            request.user.wallet.transaction_set.get(id=transaction_id).delete()
+            return redirect('member-home', 'main')
 #                                                                        #
 def member_wallet(request, action):
     if not request.session.get('language', None):
