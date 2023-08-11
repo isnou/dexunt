@@ -63,10 +63,14 @@
         </td>
 
         <td>
+          {% if transaction.confirmed %}
           {% if transaction.add %}
           <span class="d-block fs-5 text-success">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% else %}
           <span class="d-block fs-5 text-danger">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+          {% endif %}
+          {% else %}
+          <span class="d-block fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% endif %}
         </td>
 
@@ -78,13 +82,7 @@
           {% if transaction.confirmed %}
           <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
           {% else %}
-          <a type="button" class="text-body" data-bs-toggle="collapse" data-bs-target="#collapse_{{ transaction.id }}" aria-expanded="false">
-            <i class="fa fa-eye fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Secrete Key"></i>
-          </a>
-
-          <div class="collapse" id="collapse_{{ transaction.id }}">
-            <span class="d-block fs-5">{{ transaction.secret_key }}</span>
-          </div>
+          <span class="d-block fs-5">needs cash manager confirmation</span>
           {% endif %}
         </td>
       </tr>
