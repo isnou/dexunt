@@ -138,7 +138,7 @@ def manage_users(request, action):
             user_id = request.POST.get('user_id', False)
             cash = request.POST.get('cash', False)
             selected_user = User.objects.all().get(id=user_id)
-            selected_user.add_funds('funds', cash)
+            selected_user.add_funds('funds-added', cash)
             return redirect('admin-manage-users', 'main')
     # -- search partial show -- #
     if action == 'search_users':
@@ -1051,13 +1051,13 @@ def cash_home(request, action):
             'member_requests':member_requests,
         }
         return render(request, url, context)
-    if action == 'confirm_sending':
+    if action == 'confirm_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
             secrete_key = None
             request.user.confirm_transaction(secrete_key, transaction_id)
             return redirect('cash-home', 'main')
-    if action == 'decline_sending':
+    if action == 'decline_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
             request.user.wallet.transaction_set.get(id=transaction_id).delete()
