@@ -177,7 +177,7 @@
                               </div>
 
                               <div class="col ms-n2">
-                                <h5 class="mb-1">{{ transaction.wallet.user.username }}</h5>
+                                <h5 class="mb-1">{{ transaction.wallet.user.fullname|title }} [{{ transaction.wallet.user.username }}]</h5>
                                 <p class="text-body fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></p>
                               </div>
 
