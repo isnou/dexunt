@@ -49,7 +49,7 @@
           </td>
 
           <td class="text-end">
-            {% if transaction.title == 'funds-added' %}
+            {% if transaction.title == 'funds-added' and not transaction.confirmed %}
             <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#confirm_reception_modal_{{ transaction.id }}">
               <i class="fa fa-check fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign"></i>
             </a>
