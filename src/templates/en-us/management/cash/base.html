@@ -144,6 +144,7 @@
                 <div class="card">
                   <!-- Nav -->
                   <ul class="nav nav-tabs nav-justified" id="notificationTab" role="tablist">
+                    <!-- members request -->
                     <li class="nav-item">
                       <a class="nav-link active" href="#member_request" data-bs-toggle="tab" data-bs-target="#member_request" role="tab" aria-controls="notificationNavOne" aria-selected="true">Members
                         {% if member_requests.count %}
@@ -151,7 +152,7 @@
                         {% endif %}
                       </a>
                     </li>
-
+                    <!-- providers request -->
                     <li class="nav-item">
                       <a class="nav-link" href="#provider_request" data-bs-toggle="tab" data-bs-target="#provider_request" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Providers
                         {% if provider_requests.count %}
@@ -165,6 +166,7 @@
                   <!-- Body -->
                   <div class="card-body-height">
                     <div class="tab-content" id="notificationTabContent">
+                      <!-- members request -->
                       <div class="tab-pane fade show active" id="member_request" role="tabpanel">
                         <ul class="list-group list-group-flush navbar-card-list-group">
                           {% for transaction in member_requests %}
@@ -186,12 +188,12 @@
                                 {{ transaction.created_at }}
                               </small>
                             </div>
-                            <a class="stretched-link" type="button" data-bs-toggle="modal" data-bs-target="#confirm_modal_{{ transaction.id }}"></a>
+                            <a class="stretched-link" type="button" data-bs-toggle="modal" data-bs-target="#confirm_sending_modal_{{ transaction.id }}"></a>
                           </li>
                           {% endfor %}
                         </ul>
                       </div>
-
+                      <!-- providers request -->
                       <div class="tab-pane fade" id="provider_request" role="tabpanel">
                         <ul class="list-group list-group-flush navbar-card-list-group">
                           {% for transaction in provider_requests %}
@@ -545,28 +547,6 @@
   </a>
   <!-- end go to button -->
 
-  <!-- shopping cart -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="shopping_cart">
-    <div class="offcanvas-header justify-content-end border-0 pb-0">
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-      <div class="text-center">
-        <div class="mb-5">
-          <img class="avatar avatar-xl avatar-4x3" src="{% static 'landing_page/svg/illustrations/oc-empty-cart.svg' %}" alt="SVG">
-        </div>
-
-        <div class="mb-5">
-          <h3>Your cart is currently empty</h3>
-          <p>Before proceed to checkout you must add some products to your shopping cart. You will find a lot of interesting products on our "Shop" page.</p>
-        </div>
-
-        <a class="btn btn-primary btn-transition rounded-pill px-6" href="index.html">Start shopping</a>
-      </div>
-    </div>
-  </div>
-  <!-- end shopping cart -->
   <!-------------  End Modals  -------->
 
   <!-- JS Implementing Plugins -->
