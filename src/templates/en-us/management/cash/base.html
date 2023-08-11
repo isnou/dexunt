@@ -186,7 +186,7 @@
                                 {{ transaction.created_at }}
                               </small>
                             </div>
-                            <a class="stretched-link" href="#"></a>
+                            <a class="stretched-link" data-bs-toggle="modal" data-bs-target="#sign_modal_{{ transaction.id }}"></a>
                           </li>
                           {% endfor %}
                         </ul>
