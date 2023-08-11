@@ -64,6 +64,7 @@ def manage_users(request, action):
 
         if request.GET.get('init', None):
             request.session['users_key_word']=None
+            request.session['users-page'] = None
 
         if request.session.get('users_key_word', None):
             users_list = users_list.filter(tags__icontains=request.session.get('users_key_word'))
@@ -78,11 +79,10 @@ def manage_users(request, action):
         users_list = users_filter(request, users_list, new_filter)
         filtered = request.session.get('users_filter', None)
 
-        if not request.session.get('users-page', None):
+        if request.GET.get('page', None):
             page = request.GET.get('page', 1)
         else:
             page = request.session.get('users-page')
-            request.session['users-page'] = None
 
         paginator = Paginator(users_list, items_by_page)
         try:
