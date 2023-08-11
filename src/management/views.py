@@ -1018,7 +1018,7 @@ def cash_home(request, action):
 
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/cash/home.html"
+        url = direction + "/management/cash/wallet/list.html"
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
