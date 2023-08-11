@@ -59,7 +59,6 @@
       <tr>
         <td>
           <span class="d-block fs-5">{{ transaction.title }}</span>
-          {{ transaction.type }}
         </td>
 
         <td>
@@ -75,14 +74,22 @@
         </td>
 
         <td>
+          {% if not transaction.type == 'order' %}
           <span class="d-block fs-5">{{ transaction.requested_at }}</span>
+          {% else %}
+          <span class="d-block fs-5">{{ transaction.created_at }}</span>
+          {% endif %}
         </td>
 
         <td>
+          {% if not transaction.type == 'order' %}
           {% if transaction.confirmed %}
           <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
           {% else %}
           <span class="d-block fs-5">not confirmed</span>
+          {% endif %}
+          {% else %}
+          <span class="d-block fs-5">confirmed</span>
           {% endif %}
         </td>
       </tr>
