@@ -14,7 +14,7 @@
         <li class="breadcrumb-item active" aria-current="page">balance</li>
       </ol>
     </nav>
-    {% if user.balance.amount > 0 %}
+    {% if user.wallet.balance > 0 %}
     <h1 class="page-header-title text-success">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small></h1>
     {% else %}
     <h1 class="page-header-title text-danger">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small></h1>
