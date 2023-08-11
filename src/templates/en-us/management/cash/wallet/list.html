@@ -62,16 +62,6 @@
 {% endif %}
 
 <div class="card">
-  <!-- Header -->
-  <div class="card-header card-header-content-md-between">
-    <div class="mb-2 mb-md-0">
-    </div>
-    <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
-    </div>
-  </div>
-  <!-- End Header -->
-
-  <div id="list">
     <!-- Table -->
     <div class="table-responsive datatable-custom">
       <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -154,7 +144,6 @@
       <!-- End Pagination -->
     </div>
     <!-- End Footer -->
-  </div>
 </div>
 
 {% for transaction in user.wallet.transactions.all %}
