@@ -67,65 +67,6 @@
     <div class="mb-2 mb-md-0">
     </div>
     <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
-      {% if filtered == 'all' %}
-      <button class="btn btn-white btn-sm me-2" disabled>
-        all
-      </button>
-      {% else %}
-      <a href="?filter=all" class="btn btn-white btn-sm me-2">
-        all
-      </a>
-      {% endif %}
-
-      {% if filtered == 'costumers' %}
-      <button class="btn btn-white btn-sm me-2" disabled>
-        clients
-      </button>
-      {% else %}
-      <a href="?filter=costumers" class="btn btn-white btn-sm me-2">
-        clients
-      </a>
-      {% endif %}
-
-      {% if filtered == 'members' %}
-      <button class="btn btn-white btn-sm me-2" disabled>
-        members
-      </button>
-      {% else %}
-      <a href="?filter=members" class="btn btn-white btn-sm me-2">
-        members
-      </a>
-      {% endif %}
-
-      {% if filtered == 'sellers' %}
-      <button class="btn btn-white btn-sm" disabled>
-        sellers
-      </button>
-      {% else %}
-      <a href="?filter=sellers" class="btn btn-white btn-sm">
-        sellers
-      </a>
-      {% endif %}
-
-      {% if filtered == 'providers' %}
-      <button class="btn btn-white btn-sm" disabled>
-        providers
-      </button>
-      {% else %}
-      <a href="?filter=providers" class="btn btn-white btn-sm">
-        providers
-      </a>
-      {% endif %}
-
-      {% if filtered == 'blacklist' %}
-      <button class="btn btn-white btn-sm" disabled>
-        blacklist
-      </button>
-      {% else %}
-      <a href="?filter=blacklist" class="btn btn-white btn-sm">
-        blacklist
-      </a>
-      {% endif %}
     </div>
   </div>
   <!-- End Header -->
@@ -134,10 +75,8 @@
     <!-- Table -->
     <div class="table-responsive datatable-custom">
       <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-
         <tbody>
-
-        {% for transaction in transactions.all %}
+        {% for transaction in transactions %}
         <!-- Table Actions -->
         <tr>
           <td>
