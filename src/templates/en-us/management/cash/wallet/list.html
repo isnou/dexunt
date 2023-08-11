@@ -23,11 +23,9 @@
 
 {% if provider_requests.count %}
 <div id="unsigned_list">
-  <!-- Table -->
     <div class="table-responsive datatable-custom">
       <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
         <tbody>
-
         {% for transaction in provider_requests %}
         <!-- Table Actions -->
         <tr>
@@ -54,7 +52,6 @@
         </tbody>
       </table>
     </div>
-    <!-- End Table -->
 </div>
 {% endif %}
 
@@ -146,7 +143,7 @@
     <!-- End Footer -->
 </div>
 
-{% for transaction in user.wallet.transactions.all %}
+{% for transaction in provider_requests %}
   <!-- Table Forms -->
   <form action="{% url 'cash-home' 'sign_transaction' %}" id="sign_transaction_form_{{ transaction.id }}" method="post">
     {% csrf_token %}
