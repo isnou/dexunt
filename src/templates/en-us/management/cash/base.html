@@ -177,11 +177,11 @@
                               </div>
 
                               <div class="col ms-n2">
-                                <h5 class="mb-1">Brian Warner</h5>
-                                <p class="text-body fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small> for: {{ transaction.wallet.user.username }}</p>
+                                <h5 class="mb-1">{{ transaction.wallet.user.username }}</h5>
+                                <p class="text-body fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></p>
                               </div>
 
-                              <small class="col-auto text-muted text-cap">2hr</small>
+                              <small class="col-auto text-muted text-cap">{{ transaction.created_at }}</small>
                             </div>
                             <a class="stretched-link" href="#"></a>
                           </li>
