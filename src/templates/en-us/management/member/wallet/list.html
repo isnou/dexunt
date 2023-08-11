@@ -169,7 +169,7 @@
           <h2>Payment</h2>
         </div>
         <!-- end login title -->
-        <form action="{% url 'provider-wallet' 'request_payment' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'member-wallet' 'request_payment' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
 
           <div class="row mb-4">

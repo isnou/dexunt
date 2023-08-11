@@ -200,7 +200,6 @@ class User(AbstractUser):
         self.wallet.update()
     def request_transaction(self, title, amount, secret_key):
         selected_transaction =  Transaction(confirmed = False,
-                                            add=False,
                                             requested_by = self,
                                             requested_at = timezone.now(),
                                             wallet = self.wallet,
@@ -214,9 +213,10 @@ class User(AbstractUser):
             selected_transaction.save()
     def confirm_transaction(self, secret_key, transaction_id):
         selected_transaction = Transaction.objects.all().get(id=transaction_id)
-        if selected_transaction.secret_key:
+        if selected_transaction.title == 'provider-payment-request':
             if secret_key == selected_transaction.secret_key:
                 selected_transaction.confirmed = True
+                selected_transaction.add = False
                 selected_transaction.confirmed_at = timezone.now()
                 selected_transaction.confirmed_by = self
                 selected_transaction.save()
@@ -230,18 +230,19 @@ class User(AbstractUser):
                             title = selected_transaction.title,
                             amount = selected_transaction.amount
                             ).save()
-        else:
+
+        if selected_transaction.title == 'member-payment-request':
             selected_transaction.confirmed = True
             selected_transaction.confirmed_at = timezone.now()
             selected_transaction.confirmed_by = self
             selected_transaction.save()
-            Transaction(confirmed=True,
+            Transaction(confirmed = True,
                         add=False,
                         confirmed_by=selected_transaction.confirmed_by,
                         confirmed_at=selected_transaction.confirmed_at,
-                        requested_by=selected_transaction.requested_by,
-                        requested_at=selected_transaction.requested_at,
-                        wallet=self.wallet,
+                        requested_by = selected_transaction.requested_by,
+                        requested_at = selected_transaction.requested_at,
+                        wallet = self.wallet,
                         title = selected_transaction.title,
                         amount = selected_transaction.amount
                         ).save()

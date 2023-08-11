@@ -1054,6 +1054,12 @@ def cash_home(request, action):
             'member_requests':member_requests,
         }
         return render(request, url, context)
+    if action == 'confirm':
+        if request.method == 'POST':
+            transaction_id = request.POST.get('transaction_id', False)
+            secrete_key = None
+            request.user.confirm_transaction(secrete_key, transaction_id)
+            return redirect('member-payments', 'main')
     if action == 'sign_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
@@ -1232,7 +1238,7 @@ def member_wallet(request, action):
     if action == 'request_payment':
         if request.method == 'POST':
             amount = request.POST.get('amount', False)
-            request.user.request_transaction('provider-payment-request', amount, True)
+            request.user.request_transaction('memer-payment-request', amount, False)
             return redirect('member-wallet', 'main')
 # ---------------------------------------------------------------------- #
 
