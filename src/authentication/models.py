@@ -231,6 +231,7 @@ class User(AbstractUser):
                             title = selected_transaction.title,
                             amount = selected_transaction.amount
                             ).save()
+            selected_transaction.confirmed_by.wallet.update()
         if selected_transaction.title == 'member-payment-request':
             selected_transaction.confirmed = True
             selected_transaction.confirmed_at = timezone.now()
@@ -246,9 +247,15 @@ class User(AbstractUser):
                         title = selected_transaction.title,
                         amount = selected_transaction.amount
                         ).save()
-
-        selected_transaction.confirmed_by.wallet.update()
+            selected_transaction.confirmed_by.wallet.update()
+        if selected_transaction.title == 'funds-added':
+            selected_transaction.confirmed = True
+            selected_transaction.confirmed_at = timezone.now()
+            selected_transaction.confirmed_by = self
+            selected_transaction.save()
         self.wallet.update()
+
+
     # ----- variables ----- #
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
