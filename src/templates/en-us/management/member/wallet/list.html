@@ -15,9 +15,9 @@
       </ol>
     </nav>
     {% if user.wallet.balance > 0 %}
-    <h1 class="page-header-title text-success">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    <h1 class="page-header-title text-dark fw-semibold">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small></h1>
     {% else %}
-    <h1 class="page-header-title text-danger">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small></h1>
+    <h1 class="page-header-title text-dark fw-semibold">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small></h1>
     {% endif %}
   </div>
 
