@@ -1022,12 +1022,11 @@ def cash_home(request, action):
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
-        new_filter = request.GET.get('filter', None)
-        if not request.session.get('transactions_filter', None):
-            request.session['transactions_filter'] = 'all'
-
-        transactions = transactions_filter(request, new_filter)
-        filtered = request.session.get('transactions_filter', None)
+        transactions = request.user.wallet.transactions.all()
+        if transactions.count():
+            paginate = True
+        else:
+            paginate = False
 
         provider_requests = provider_requested_payments()
         member_requests = member_requested_payments()
@@ -1036,7 +1035,6 @@ def cash_home(request, action):
             page = request.GET.get('page', 1)
         else:
             page = request.session.get('transactions-page')
-
 
         paginator = Paginator(transactions, items_by_page)
         try:
@@ -1047,8 +1045,7 @@ def cash_home(request, action):
             transactions = paginator.page(paginator.num_pages)
 
         context = {
-            'nav_side': 'home',
-            'filtered': filtered,
+            'paginate': paginate,
             'transactions': transactions,
             'provider_requests': provider_requests,
             'member_requests':member_requests,
