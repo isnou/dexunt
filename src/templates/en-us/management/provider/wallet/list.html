@@ -63,10 +63,14 @@
         </td>
 
         <td>
+          {% if transaction.confirmed %}
           {% if transaction.add %}
           <span class="d-block fs-5 text-success">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% else %}
           <span class="d-block fs-5 text-danger">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+          {% endif %}
+          {% else %}
+          <span class="d-block fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% endif %}
         </td>
 
