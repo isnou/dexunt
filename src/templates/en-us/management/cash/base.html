@@ -145,14 +145,14 @@
                   <!-- Nav -->
                   <ul class="nav nav-tabs nav-justified" id="notificationTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" href="#notificationNavOne" id="notificationNavOne-tab" data-bs-toggle="tab" data-bs-target="#notificationNavOne" role="tab" aria-controls="notificationNavOne" aria-selected="true">Members
+                      <a class="nav-link active" href="#member_request" data-bs-toggle="tab" data-bs-target="#member_request" role="tab" aria-controls="notificationNavOne" aria-selected="true">Members
                         {% if member_requests.count %}
                         ({{ member_requests.count }})
                         {% endif %}
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#notificationNavTwo" id="notificationNavTwo-tab" data-bs-toggle="tab" data-bs-target="#notificationNavTwo" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Providers
+                      <a class="nav-link" href="#provider_request" data-bs-toggle="tab" data-bs-target="#provider_request" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Providers
                         {% if provider_requests.count %}
                         ({{ provider_requests.count }})
                         {% endif %}
@@ -165,40 +165,27 @@
                   <div class="card-body-height">
                     <!-- Tab Content -->
                     <div class="tab-content" id="notificationTabContent">
-                      <div class="tab-pane fade show active" id="notificationNavOne" role="tabpanel" aria-labelledby="notificationNavOne-tab">
+                      <div class="tab-pane fade show active" id="member_request" role="tabpanel">
                         <!-- List Group -->
                         <ul class="list-group list-group-flush navbar-card-list-group">
-                          <!-- Item -->
+                          {% for transaction in member_requests %}
                           <li class="list-group-item form-check-select">
                             <div class="row">
                               <div class="col-auto">
                                 <div class="d-flex align-items-center">
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="notificationCheck1" checked>
-                                    <label class="form-check-label" for="notificationCheck1"></label>
-                                    <span class="form-check-stretched-bg"></span>
-                                  </div>
-                                  <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
-                                    <span class="avatar-initials">B</span>
-                                  </div>
                                 </div>
                               </div>
-                              <!-- End Col -->
 
                               <div class="col ms-n2">
                                 <h5 class="mb-1">Brian Warner</h5>
-                                <p class="text-body fs-5">changed an issue from "In Progress" to <span class="badge bg-success">Review</span></p>
+                                <p class="text-body fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small> for: {{ transaction.wallet.user.username }}</p>
                               </div>
-                              <!-- End Col -->
 
                               <small class="col-auto text-muted text-cap">2hr</small>
-                              <!-- End Col -->
                             </div>
-                            <!-- End Row -->
-
                             <a class="stretched-link" href="#"></a>
                           </li>
-                          <!-- End Item -->
+                          {% endfor %}
 
                           <!-- Item -->
                           <li class="list-group-item form-check-select">
@@ -302,7 +289,7 @@
                         <!-- End List Group -->
                       </div>
 
-                      <div class="tab-pane fade" id="notificationNavTwo" role="tabpanel" aria-labelledby="notificationNavTwo-tab">
+                      <div class="tab-pane fade" id="provider_request" role="tabpanel">
                         <!-- List Group -->
                         <ul class="list-group list-group-flush navbar-card-list-group">
                           <!-- Item -->
