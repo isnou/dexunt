@@ -134,46 +134,29 @@
             <!-- Notification -->
             <div class="dropdown">
               <button type="button" class="btn btn-ghost-secondary btn-icon rounded-circle" id="navbarNotificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
+                {% if member_requests.count %}
                 <i class="bi-bell"></i>
+                {% endif %}
                 <span class="btn-status btn-sm-status btn-status-danger"></span>
               </button>
 
               <div class="dropdown-menu dropdown-menu-end dropdown-card navbar-dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="navbarNotificationsDropdown" style="width: 25rem;">
                 <div class="card">
-                  <!-- Header -->
-                  <div class="card-header card-header-content-between">
-                    <h4 class="card-title mb-0">Notifications</h4>
-
-                    <!-- Unfold -->
-                    <div class="dropdown">
-                      <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle" id="navbarNotificationsDropdownSettings" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi-three-dots-vertical"></i>
-                      </button>
-
-                      <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="navbarNotificationsDropdownSettings">
-                        <span class="dropdown-header">Settings</span>
-                        <a class="dropdown-item" href="#">
-                          <i class="bi-archive dropdown-item-icon"></i> Archive all
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <i class="bi-check2-all dropdown-item-icon"></i> Mark all as read
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <i class="bi-toggle-off dropdown-item-icon"></i> Disable notifications
-                        </a>
-                      </div>
-                    </div>
-                    <!-- End Unfold -->
-                  </div>
-                  <!-- End Header -->
-
                   <!-- Nav -->
                   <ul class="nav nav-tabs nav-justified" id="notificationTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" href="#notificationNavOne" id="notificationNavOne-tab" data-bs-toggle="tab" data-bs-target="#notificationNavOne" role="tab" aria-controls="notificationNavOne" aria-selected="true">Messages (3)</a>
+                      <a class="nav-link active" href="#notificationNavOne" id="notificationNavOne-tab" data-bs-toggle="tab" data-bs-target="#notificationNavOne" role="tab" aria-controls="notificationNavOne" aria-selected="true">Members
+                        {% if member_requests.count %}
+                        ({{ member_requests.count }})
+                        {% endif %}
+                      </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#notificationNavTwo" id="notificationNavTwo-tab" data-bs-toggle="tab" data-bs-target="#notificationNavTwo" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Archived</a>
+                      <a class="nav-link" href="#notificationNavTwo" id="notificationNavTwo-tab" data-bs-toggle="tab" data-bs-target="#notificationNavTwo" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Providers
+                        {% if provider_requests.count %}
+                        ({{ provider_requests.count }})
+                        {% endif %}
+                      </a>
                     </li>
                   </ul>
                   <!-- End Nav -->
