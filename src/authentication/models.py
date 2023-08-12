@@ -37,6 +37,8 @@ class Transaction(models.Model):
         super().save()
         if not self.ref:
             self.ref = str(self.id+1).zfill(10)
+        if self.title.startswith('paid-order'):
+            self.confirmed = True
         super().save()
     def generate_secret_key(self):
         self.secret_key = functions.serial_number_generator(6)
