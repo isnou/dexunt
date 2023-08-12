@@ -69,9 +69,8 @@ def transactions_select(action):
         return Transaction.objects.all().filter(title='member-payment-request')
     if action == 'members-income':
         value = 0
-        for t in Transaction.objects.all().filter(title='member-payment-request'):
-            if t.confirmed:
-                value += t.amount
+        for u in User.objects.all().filter(is_member=True):
+            value += u.wallet.balance
         return value
 
 #                                                                        #
