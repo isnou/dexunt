@@ -1126,7 +1126,7 @@ def cash_members(request, action):
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
-        transactions = transactions_select('member-requests')
+        transactions = transactions_select('member-transactions')
         if transactions.count():
             paginate = True
         else:
