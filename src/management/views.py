@@ -1385,7 +1385,7 @@ def provider_store(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/settings/store.html"
+        url = direction + "/management/provider/settings/store.html"
         store_form = StoreForm()
         update_photo_form = UpdatePhotoForm()
 
