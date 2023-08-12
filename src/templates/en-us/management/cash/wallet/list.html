@@ -33,10 +33,6 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
-          </td>
-
-          <td>
             <span class="d-block fs-5">{{ transaction.created_at }}</span>
           </td>
 
@@ -44,17 +40,28 @@
             {% if transaction.confirmed %}
             <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
             {% else %}
-            <span class="d-block fs-5">not confirmed</span>
-            {% endif %}
-          </td>
-
-          <td class="text-end">
-            {% if transaction.title == 'funds-added' and not transaction.confirmed %}
+            {% if transaction.title == 'funds-added' %}
             <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#confirm_reception_modal_{{ transaction.id }}">
               <i class="fa fa-check fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign"></i>
             </a>
+            {% else %}
+            <span class="d-block fs-5">not confirmed</span>
+            {% endif %}
             {% endif %}
           </td>
+
+          <td>
+            {% if transaction.confirmed %}
+            {% if transaction.add %}
+            <span class="d-block fs-5 text-success fw-semibold">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+            {% else %}
+            <span class="d-block fs-5 text-danger fw-semibold">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+            {% endif %}
+            {% else %}
+            <span class="d-block fs-5 text-dark">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+            {% endif %}
+          </td>
+
         </tr>
         <!-- End Table Actions -->
         {% endfor %}
