@@ -186,7 +186,10 @@ class Cart(models.Model):
     def add_product(self, option):
         if self.selected_products.all().filter(option_id=option.id).exists():
             selected_product = self.selected_products.all().get(option_id=option.id)
-            selected_product.quantity += 1
+            if selected_product.quantity < selected_product.option.max_quantity:
+                selected_product.quantity += 1
+            else:
+                selected_product.quantity = selected_product.option.max_quantity
             selected_product.save()
         else:
             selected_product = SelectedProduct(option=option)
