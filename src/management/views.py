@@ -1059,12 +1059,12 @@ def cash_wallet(request, action):
             transaction_id = request.POST.get('transaction_id', False)
             secrete_key = None
             request.user.confirm_transaction(secrete_key, transaction_id)
-            return redirect('cash-home', 'main')
+            return redirect('cash-wallet', 'main')
     if action == 'decline_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
             request.user.wallet.transactions.get(id=transaction_id).delete()
-            return redirect('cash-home', 'main')
+            return redirect('cash-wallet', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
@@ -1625,16 +1625,6 @@ def provider_wallet(request, action):
             amount = request.POST.get('amount', False)
             request.user.request_transaction('provider-payment-request', amount, True)
             return redirect('provider-wallet', 'main')
-    if action == 'sign_transaction':
-        if request.method == 'POST':
-            transaction_id = request.POST.get('transaction_id', False)
-            request.user.sign_transaction(request, transaction_id)
-            return redirect('cash-home', 'main')
-    if action == 'decline_transaction':
-        if request.method == 'POST':
-            transaction_id = request.POST.get('transaction_id', False)
-            request.user.wallet.transaction_set.get(id=transaction_id).delete()
-            return redirect('cash-home', 'main')
 # ---------------------------------------------------------------------- #
 
 
