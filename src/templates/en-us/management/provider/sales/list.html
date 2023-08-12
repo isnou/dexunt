@@ -27,19 +27,6 @@
 {% block content %}
 <!-- all products  -->
 <div class="card">
-  <!-- header -->
-  <div class="card-header card-header-content-md-between">
-    <!-- search -->
-    <div class="mb-2 mb-md-0">
-    </div>
-    <!-- end search -->
-
-    <!-- title bar -->
-    <div class="d-grid d-sm-flex gap-2">
-    </div>
-    <!-- end title bar -->
-  </div>
-  <!-- end header -->
 
   <div id="list">
     <!-- table -->
@@ -110,6 +97,7 @@
     </div>
     <!-- end table -->
 
+    {% if orders.has_other_pages %}
     <!-- footer -->
     <div class="card-footer">
       <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
@@ -152,6 +140,7 @@
       <!-- End Row -->
     </div>
     <!-- end footer -->
+    {% endif %}
   </div>
 </div>
 <!-- end all products  -->
