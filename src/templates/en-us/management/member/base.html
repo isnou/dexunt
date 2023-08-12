@@ -484,8 +484,7 @@
                 </div>
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Profile &amp; account</a>
-                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item {% if nav_side == 'profile' %} active {% endif %}" href="{% url 'member-profile' 'main' %}">Profile</a>
 
                 <div class="dropdown-divider"></div>
 
