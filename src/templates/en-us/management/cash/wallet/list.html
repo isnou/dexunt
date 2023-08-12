@@ -117,12 +117,12 @@
 
 {% for transaction in transactions %}
 <!-- Table Forms -->
-<form action="{% url 'cash-home' 'confirm_transaction' %}" id="confirm_reception_form_{{ transaction.id }}" method="post">
+<form action="{% url 'cash-wallet' 'confirm_transaction' %}" id="confirm_reception_form_{{ transaction.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
 </form>
 
-<form action="{% url 'cash-home' 'decline_transaction' %}" id="decline_reception_form_{{ transaction.id }}" method="post">
+<form action="{% url 'cash-wallet' 'decline_transaction' %}" id="decline_reception_form_{{ transaction.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
 </form>
@@ -154,12 +154,12 @@
 
 {% for transaction in member_requests %}
 <!-- Table Forms -->
-<form action="{% url 'cash-home' 'confirm_transaction' %}" id="confirm_sending_form_{{ transaction.id }}" method="post">
+<form action="{% url 'cash-wallet' 'confirm_transaction' %}" id="confirm_sending_form_{{ transaction.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
 </form>
 
-<form action="{% url 'cash-home' 'decline_transaction' %}" id="decline_sending_form_{{ transaction.id }}" method="post">
+<form action="{% url 'cash-wallet' 'decline_transaction' %}" id="decline_sending_form_{{ transaction.id }}" method="post">
   {% csrf_token %}
   <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
 </form>
