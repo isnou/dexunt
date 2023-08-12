@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change afterPath="$PROJECT_DIR$/src/templates/en-us/management/provider/settings/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/member/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/member/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/provider/profile/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/member/settings/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/provider/store/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/provider/settings/store.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/member/orders/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/member/orders/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/member/payments/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/member/payments/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +101,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1572</line>
+          <line>1573</line>
           <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -117,16 +113,6 @@
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
           <line>1020</line>
           <option name="timeStamp" value="213" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1188</line>
-          <option name="timeStamp" value="214" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1238</line>
-          <option name="timeStamp" value="215" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>

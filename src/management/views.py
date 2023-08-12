@@ -1236,6 +1236,7 @@ def member_payments(request, action):
             request.user.wallet.transactions.get(id=transaction_id).delete()
             return redirect('member-home', 'main')
 #                                                                        #
+@login_required
 def member_wallet(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -1576,6 +1577,7 @@ def provider_sales(request, action):
         selected_order.process()
         return redirect('provider-sales', 'main')
 #                                                                        #
+@login_required
 def provider_wallet(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
