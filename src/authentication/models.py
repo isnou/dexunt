@@ -64,10 +64,7 @@ def transactions_select(action):
         value = 0
         for t in Transaction.objects.all().filter(title__icontains='paid-order'):
             if t.confirmed:
-                if t.add:
-                    value += t.amount
-                else:
-                    value -= t.amount
+                value += t.amount
         return value
     if action == 'member-transactions':
         return Transaction.objects.all().filter(title='member-payment-request')
@@ -75,10 +72,7 @@ def transactions_select(action):
         value = 0
         for t in Transaction.objects.all().filter(title='member-payment-request'):
             if t.confirmed:
-                if t.add:
-                    value += t.amount
-                else:
-                    value -= t.amount
+                value += t.amount
         return value
 
 #                                                                        #
