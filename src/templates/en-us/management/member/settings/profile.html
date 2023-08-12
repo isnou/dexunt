@@ -1,4 +1,4 @@
-{% extends "en-us/management/provider/base.html" %}
+{% extends "en-us/management/member/base.html" %}
 {% load static %}
 
 <!-- title -->
@@ -14,9 +14,6 @@
       </ol>
     </nav>
     <h1 class="page-header-title">Settings</h1>
-    {% if not user.store.is_activated %}
-    <h6 class="text-danger">Your account is not yet activated, please fill in all the information (activation will be done within 24 hours)</h6>
-    {% endif %}
   </div>
 </div>
 {% endblock %}
