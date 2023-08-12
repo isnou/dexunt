@@ -13,6 +13,9 @@ urlpatterns = [
     path('<str:action>/coupon', views.manage_coupon, name='admin-manage-coupon'),
     # ---- cash manager ---- #
     path('<str:action>/cash/wallet', views.cash_wallet, name='cash-wallet'),
+    path('<str:action>/cash/sales', views.cash_sales, name='cash-sales'),
+    path('<str:action>/cash/members', views.cash_members, name='cash-members'),
+    path('<str:action>/cash/providers', views.cash_providers, name='cash-providers'),
     # ---- member ---- #
     path('<str:action>/member/orders', views.member_orders, name='member-orders'),
     path('<str:action>/member/profile', views.member_profile, name='member-profile'),
