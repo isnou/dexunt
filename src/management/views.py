@@ -1066,6 +1066,147 @@ def cash_wallet(request, action):
             request.user.wallet.transactions.get(id=transaction_id).delete()
             return redirect('cash-wallet', 'main')
 #                                                                        #
+@login_required
+def cash_sales(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 12
+
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/cash/sales/list.html"
+        if request.GET.get('init', None):
+            request.session['transactions-page'] = None
+
+        transactions = transactions_select('sale-transactions')
+        if transactions.count():
+            paginate = True
+        else:
+            paginate = False
+
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('transactions-page')
+
+        paginator = Paginator(transactions, items_by_page)
+        try:
+            transactions = paginator.page(page)
+        except PageNotAnInteger:
+            transactions = paginator.page(1)
+        except EmptyPage:
+            transactions = paginator.page(paginator.num_pages)
+
+        context = {
+            'paginate': paginate,
+            'transactions': transactions,
+            'provider_requests': transactions_select('provider-requests'),
+            'member_requests': transactions_select('member-requests'),
+            'sale_transactions': transactions_select('sale-transactions'),
+            'sales_income': transactions_select('sales-income'),
+            'member_transactions': transactions_select('member-transactions'),
+            'members_income': transactions_select('members-income'),
+            'provider_transactions': transactions_select('provider-transactions'),
+            'providers_income': transactions_select('providers-income'),
+        }
+        return render(request, url, context)
+#                                                                        #
+@login_required
+def cash_members(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 12
+
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/cash/members/list.html"
+        if request.GET.get('init', None):
+            request.session['transactions-page'] = None
+
+        transactions = transactions_select('member-requests')
+        if transactions.count():
+            paginate = True
+        else:
+            paginate = False
+
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('transactions-page')
+
+        paginator = Paginator(transactions, items_by_page)
+        try:
+            transactions = paginator.page(page)
+        except PageNotAnInteger:
+            transactions = paginator.page(1)
+        except EmptyPage:
+            transactions = paginator.page(paginator.num_pages)
+
+        context = {
+            'paginate': paginate,
+            'transactions': transactions,
+            'provider_requests': transactions_select('provider-requests'),
+            'member_requests': transactions_select('member-requests'),
+            'sale_transactions': transactions_select('sale-transactions'),
+            'sales_income': transactions_select('sales-income'),
+            'member_transactions': transactions_select('member-transactions'),
+            'members_income': transactions_select('members-income'),
+            'provider_transactions': transactions_select('provider-transactions'),
+            'providers_income': transactions_select('providers-income'),
+        }
+        return render(request, url, context)
+#                                                                        #
+@login_required
+def cash_providers(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 12
+
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/cash/providers/list.html"
+        if request.GET.get('init', None):
+            request.session['transactions-page'] = None
+
+        transactions = transactions_select('provider-transactions')
+        if transactions.count():
+            paginate = True
+        else:
+            paginate = False
+
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+        else:
+            page = request.session.get('transactions-page')
+
+        paginator = Paginator(transactions, items_by_page)
+        try:
+            transactions = paginator.page(page)
+        except PageNotAnInteger:
+            transactions = paginator.page(1)
+        except EmptyPage:
+            transactions = paginator.page(paginator.num_pages)
+
+        context = {
+            'paginate': paginate,
+            'transactions': transactions,
+            'provider_requests': transactions_select('provider-requests'),
+            'member_requests': transactions_select('member-requests'),
+            'sale_transactions': transactions_select('sale-transactions'),
+            'sales_income': transactions_select('sales-income'),
+            'member_transactions': transactions_select('member-transactions'),
+            'members_income': transactions_select('members-income'),
+            'provider_transactions': transactions_select('provider-transactions'),
+            'providers_income': transactions_select('providers-income'),
+        }
+        return render(request, url, context)
+#                                                                        #
 # ---------------------------------------------------------------------- #
 
 
