@@ -146,7 +146,6 @@ def shopping_cart_page(request, action):
         selected_product.delete()
         return redirect('home-page')
 
-
 def order_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'

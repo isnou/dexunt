@@ -1009,7 +1009,7 @@ def manage_coupon(request, action):
 
 # ------------------------------- cash --------------------------------- #
 @login_required
-def cash_home(request, action):
+def cash_wallet(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
