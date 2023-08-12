@@ -1052,11 +1052,6 @@ def cash_home(request, action):
             'members_income': transactions_select('members-income'),
         }
         return render(request, url, context)
-
-
-
-
-
     if action == 'confirm_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)
@@ -1204,7 +1199,7 @@ def member_payments(request, action):
         if request.GET.get('init', None):
             request.session['transactions-page'] = None
 
-        transactions = provider_requested_payments()
+        transactions = transactions_select('provider-requests')
 
         if transactions.count():
             paginate = True
