@@ -63,8 +63,7 @@ def transactions_select(action):
     if action == 'sales-income':
         value = 0
         for t in Transaction.objects.all().filter(title__icontains='paid-order'):
-            if t.confirmed:
-                value += t.amount
+            value += t.amount
         return value
     if action == 'member-transactions':
         return Transaction.objects.all().filter(title='member-payment-request')
