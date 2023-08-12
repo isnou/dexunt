@@ -128,9 +128,7 @@ def shopping_cart_page(request, action):
         if selected_product.option.quantity > selected_product.quantity:
             if selected_product.option.max_quantity > selected_product.quantity:
                 selected_product.quantity += 1
-            else:
-                selected_product.quantity = selected_product.option.max_quantity
-            selected_product.save()
+                selected_product.save()
         return redirect('shopping-cart', 'main')
     if action == 'remove_quantity':
         selected_product = SelectedProduct.objects.all().get(id=request.GET.get('product_id'))
