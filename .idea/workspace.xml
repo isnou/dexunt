@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py" />
+    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
+      <change afterPath="$PROJECT_DIR$/src/templates/en-us/management/provider/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/member/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/member/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/provider/profile/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/member/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/provider/store/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/provider/settings/store.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,23 +47,23 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/en-us/management/cash/wallet"
+    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/en-us/management/member"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/templates/en-us/management/cash/wallet" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/member" />
+      <recent name="$PROJECT_DIR$/src/templates/en-us/management/cash/wallet" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/member/payments" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/provider/store" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/provider/profile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/templates/en-us/management/provider/settings" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin/products" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/admin" />
       <recent name="$PROJECT_DIR$/src/templates/en/main-shop/account" />
       <recent name="$PROJECT_DIR$/src/add_ons" />
-      <recent name="$PROJECT_DIR$/site/public/static/manager/media/stock/ecommerce" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -97,7 +105,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1529</line>
+          <line>1572</line>
           <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -112,12 +120,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1145</line>
+          <line>1188</line>
           <option name="timeStamp" value="214" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1195</line>
+          <line>1238</line>
           <option name="timeStamp" value="215" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

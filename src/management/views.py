@@ -1143,6 +1143,49 @@ def member_orders(request, action):
         return redirect('member-orders', 'main')
 #                                                                        #
 @login_required
+def member_profile(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/settings/profile.html"
+        update_profile_form = UpdateProfileForm()
+        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+
+        if request.session.get('error_messages'):
+            errors = request.session.get('error_messages')
+            request.session['error_messages'] = None
+        else:
+            errors = None
+
+        context = {
+            'nav_side': 'profile',
+            'password_form': password_form,
+            'update_profile_form': update_profile_form,
+            'errors': errors
+        }
+        return render(request, url, context)
+    if action == 'edit_profile':
+        if request.method == 'POST':
+            update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
+            if update_profile_form.is_valid():
+                user = update_profile_form.save()
+                login(request, user)
+            else:
+                request.session['error_messages'] = update_profile_form.errors
+            return redirect('provider-profile', 'main')
+    if action == 'change_password':
+        if request.method == 'POST':
+            change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+            if change_password_form.is_valid():
+                change_password_form.save()
+                update_session_auth_hash(request, change_password_form.user)
+            else:
+                request.session['error_messages'] = change_password_form.errors
+            return redirect('provider-profile', 'main')
+#                                                                        #
+@login_required
 def member_payments(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -1298,7 +1341,7 @@ def provider_profile(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/provider/profile/settings.html"
+        url = direction + "/management/provider/settings/profile.html"
         update_profile_form = UpdateProfileForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
 
@@ -1341,7 +1384,7 @@ def provider_store(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/provider/store/settings.html"
+        url = direction + "/management/settings/store.html"
         store_form = StoreForm()
         update_photo_form = UpdatePhotoForm()
 
