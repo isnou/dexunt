@@ -30,20 +30,6 @@
 {% block content %}
 <!-- all products  -->
 <div class="card">
-  <!-- header -->
-  <div class="card-header card-header-content-md-between">
-    <!-- search -->
-    <div class="mb-2 mb-md-0">
-    </div>
-    <!-- end search -->
-
-    <!-- title bar -->
-    <div class="d-grid d-sm-flex gap-2">
-    </div>
-    <!-- end title bar -->
-  </div>
-  <!-- end header -->
-
   {% if paginate %}
   <!-- Table -->
   <div class="table-responsive datatable-custom">
@@ -96,6 +82,7 @@
   </div>
   <!-- End Table -->
 
+  {% if transactions.has_other_pages %}
   <!-- Footer -->
   <div class="card-footer">
     <!-- Pagination -->
@@ -137,6 +124,7 @@
     <!-- End Pagination -->
   </div>
   <!-- End Footer -->
+  {% endif %}
   {% else %}
   <div class="card-footer">
     <div class="row text-center">
