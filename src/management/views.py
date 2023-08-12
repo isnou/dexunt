@@ -11,11 +11,10 @@ from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm 
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
 from authentication.models import User, users_filter, reset_users
-from authentication.models import Transaction, transactions_filter, provider_requested_payments, member_requested_payments
+from authentication.models import Transaction, transactions_select
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from authentication.forms import UpdateProfileForm, UpdatePhotoForm
-
 
 
 
@@ -1028,8 +1027,6 @@ def cash_home(request, action):
         else:
             paginate = False
 
-        provider_requests = provider_requested_payments()
-        member_requests = member_requested_payments()
 
         if request.GET.get('page', None):
             page = request.GET.get('page', 1)
@@ -1047,10 +1044,19 @@ def cash_home(request, action):
         context = {
             'paginate': paginate,
             'transactions': transactions,
-            'provider_requests': provider_requests,
-            'member_requests':member_requests,
+            'provider_requests': transactions_select('provider-requests'),
+            'member_requests': transactions_select('member-requests'),
+            'sale_transactions': transactions_select('sale-transactions'),
+            'sales_income': transactions_select('sales-income'),
+            'member_transactions': transactions_select('member-transactions'),
+            'members_income': transactions_select('members-income'),
         }
         return render(request, url, context)
+
+
+
+
+
     if action == 'confirm_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)

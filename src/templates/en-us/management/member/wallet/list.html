@@ -44,7 +44,7 @@
         </td>
 
         <td>
-          {% if not transaction.type == 'order' %}
+          {% if not transaction.order_payment %}
           <span class="d-block fs-5">{{ transaction.requested_at }}</span>
           {% else %}
           <span class="d-block fs-5">{{ transaction.created_at }}</span>
@@ -52,7 +52,7 @@
         </td>
 
         <td>
-          {% if not transaction.type == 'order' %}
+          {% if not transaction.order_payment %}
           {% if transaction.confirmed %}
           <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
           {% else %}

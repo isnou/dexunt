@@ -306,7 +306,6 @@
           <a class="card card-hover-shadow h-100" href="{% url 'cash-home' 'main' %}">
             <div class="card-body">
               <h6 class="card-subtitle">My Wallet</h6>
-
               <div class="row align-items-center gx-2 mb-1">
                 <div class="col-6">
                   <h2 class="card-title text-inherit fw-semibold">{{ user.wallet.balance|floatformat:"0g" }} <small>DZD</small> </h2>
@@ -319,7 +318,6 @@
                 <!-- End Col -->
               </div>
               <!-- End Row -->
-
               <span class="badge bg-soft-success text-success">
                 <i class="bi-graph-up"></i> 12.5%
               </span>
@@ -337,7 +335,7 @@
 
               <div class="row align-items-center gx-2 mb-1">
                 <div class="col-6">
-                  <h2 class="card-title text-inherit">92,913</h2>
+                  <h2 class="card-title text-inherit fw-semibold">{{ sales_income|floatformat:"0g" }} <small>DZD</small> </h2>
                 </div>
                 <!-- End Col -->
 
@@ -388,7 +386,7 @@
               <!-- End Row -->
 
               <span class="badge bg-soft-secondary text-body">0.0%</span>
-              <span class="text-body fs-6 ms-1">from 2,913</span>
+              <span class="text-body fs-6 ms-1">{{ sale_transactions.count }}</span>
             </div>
           </a>
         </div>
@@ -469,7 +467,7 @@
 
               <div class="row align-items-center gx-2 mb-1">
                 <div class="col-6">
-                  <h2 class="card-title text-inherit">56.8%</h2>
+                  <h2 class="card-title text-inherit fw-semibold">{{ members_income|floatformat:"0g" }} <small>DZD</small> </h2>
                 </div>
                 <!-- End Col -->
 
@@ -522,7 +520,7 @@
               <span class="badge bg-soft-danger text-danger">
                 <i class="bi-graph-down"></i> 4.4%
               </span>
-              <span class="text-body fs-6 ms-1">from 61.2%</span>
+              <span class="text-body fs-6 ms-1">{{ member_transactions.count }}</span>
             </div>
           </a>
         </div>

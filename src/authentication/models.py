@@ -41,9 +41,9 @@ class Transaction(models.Model):
     def generate_secret_key(self):
         self.secret_key = functions.serial_number_generator(6)
         super().save()
-    def type(self):
+    def order_payment(self):
         if self.title.startswith('paid-order'):
-            return 'order'
+            return True
 #                                                                        #
 def transactions_filter(request, new_filter):
     if new_filter:
@@ -53,11 +53,34 @@ def transactions_filter(request, new_filter):
     if request.session.get('transactions_filter', None) == 'costumers':
         return Transaction.objects.all().filter(is_customer=True)
 #                                                                        #
-def provider_requested_payments():
-    return Transaction.objects.all().filter(title='provider-payment-request').filter(confirmed=False)
-#                                                                        #
-def member_requested_payments():
-    return Transaction.objects.all().filter(title='member-payment-request').filter(confirmed=False)
+def transactions_select(action):
+    if action == 'member-requests':
+        return Transaction.objects.all().filter(title='member-payment-request').filter(confirmed=False)
+    if action == 'provider-requests':
+        return Transaction.objects.all().filter(title='provider-payment-request').filter(confirmed=False)
+    if action == 'sale-transactions':
+        return Transaction.objects.all().filter(title__icontains='paid-order')
+    if action == 'sales-income':
+        value = 0
+        for t in Transaction.objects.all().filter(title__icontains='paid-order'):
+            if t.confirmed:
+                if t.add:
+                    value += t.amount
+                else:
+                    value -= t.amount
+        return value
+    if action == 'member-transactions':
+        return Transaction.objects.all().filter(title='member-payment-request')
+    if action == 'members-income':
+        value = 0
+        for t in Transaction.objects.all().filter(title='member-payment-request'):
+            if t.confirmed:
+                if t.add:
+                    value += t.amount
+                else:
+                    value -= t.amount
+        return value
+
 #                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #
