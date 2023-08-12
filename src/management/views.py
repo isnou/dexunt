@@ -1149,7 +1149,7 @@ def member_profile(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/settings/profile.html"
+        url = direction + "/management/member/settings/profile.html"
         update_profile_form = UpdateProfileForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
 
