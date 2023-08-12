@@ -72,7 +72,8 @@ def transactions_select(action):
         for u in User.objects.all().filter(is_member=True):
             value += u.wallet.balance
         return value
-
+    if action == 'provider-transactions':
+        return Transaction.objects.all().filter(title='provider-payment-request')
 #                                                                        #
 class Wallet(models.Model):
     # ----- relations ----- #

@@ -1050,6 +1050,8 @@ def cash_home(request, action):
             'sales_income': transactions_select('sales-income'),
             'member_transactions': transactions_select('member-transactions'),
             'members_income': transactions_select('members-income'),
+            'provider_transactions': transactions_select('provider-transactions'),
+
         }
         return render(request, url, context)
     if action == 'confirm_transaction':
