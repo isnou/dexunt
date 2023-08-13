@@ -30,11 +30,11 @@
       <tr>
         <td>
           {% if transaction.title == 'funds-added' %}
-          <span class="d-block fs-5"> working funds </span>
+          <span class="d-block text-secondary fw-semibold fs-5"> working funds </span>
           {% endif %}
 
           {% if transaction.title == 'member-payment-request' %}
-          <span class="d-block fs-5">transfer to: {{ transaction.requested_by.username }}</span>
+          <span class="d-block text-dark fw-semibold fs-5">{{ transaction.requested_by.username }}</span>
           {% endif %}
         </td>
 
