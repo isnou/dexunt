@@ -51,7 +51,7 @@
           {% endif %}
         </td>
 
-        <td>
+        <td class="text-end">
           {% if transaction.confirmed %}
           {% if transaction.add %}
           <span class="d-block fs-5 text-success fw-semibold">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
