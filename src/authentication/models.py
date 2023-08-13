@@ -78,7 +78,7 @@ def transactions_select(action):
             value += u.wallet.balance
         return value
     if action == 'provider-transactions':
-        return Transaction.objects.all().filter(title='provider-payment-request')
+        return Store.objects.all()
     if action == 'providers-income':
         value = 0
         for s in Store.objects.all():

@@ -15,40 +15,22 @@
       <!-- Table Actions -->
       <tr>
         <td>
-          {% if transaction.wallet.user.store.name %}
-          <span class="d-block text-dark fw-semibold fs-5">{{ transaction.wallet.user.store.name }}</span>
-          {% else %}
-          <span class="d-block text-secondary fw-semibold fs-5">{{ transaction.wallet.user.username }}</span>
-          {% endif %}
+          <span class="d-block text-dark fw-semibold fs-5">{{ transaction.name }}</span>
         </td>
 
         <td>
-          <span class="d-block fs-5">{{ transaction.created_at }}</span>
+          <span class="d-block fs-5">{{ transaction.sale }}</span>
         </td>
 
         <td>
-          {% if transaction.confirmed %}
-          <span class="d-block fs-5">{{ transaction.confirmed_at }}</span>
-          {% else %}
-          {% if transaction.title == 'funds-added' %}
-          <a type="button" class="text-body" data-bs-toggle="modal" data-bs-target="#confirm_reception_modal_{{ transaction.id }}">
-            <i class="fa fa-check fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign"></i>
-          </a>
-          {% else %}
-          <span class="d-block fs-5">not confirmed</span>
-          {% endif %}
-          {% endif %}
+          <span class="d-block fs-5 text-secondary fw-semibold">{{ transaction.sales|floatformat:"0g" }} <small>DZD</small></span>
         </td>
 
         <td class="text-end">
-          {% if transaction.confirmed %}
-          {% if transaction.add %}
-          <span class="d-block fs-5 text-success fw-semibold">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+          {% if transaction.wallet.user.store.balance > 0 %}
+          <span class="d-block fs-5 text-success fw-semibold">+ {{ transaction.balance|floatformat:"0g" }} <small>DZD</small></span>
           {% else %}
-          <span class="d-block fs-5 text-danger fw-semibold">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
-          {% endif %}
-          {% else %}
-          <span class="d-block fs-5 text-dark">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
+          <span class="d-block fs-5 text-danger fw-semibold">- {{ transaction.balance|floatformat:"0g" }} <small>DZD</small></span>
           {% endif %}
         </td>
 
