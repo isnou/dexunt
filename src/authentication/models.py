@@ -43,11 +43,12 @@ class Transaction(models.Model):
     def generate_secret_key(self):
         self.secret_key = functions.serial_number_generator(6)
         super().save()
+    # ----- variables ----- #
     def order_payment(self):
         if self.title.startswith('paid-order'):
             return True
     def order_ref(self):
-        return self.title [11:]
+        return 'order ref :' + self.title[11:]
 #                                                                        #
 def transactions_filter(request, new_filter):
     if new_filter:
@@ -279,8 +280,6 @@ class User(AbstractUser):
             selected_transaction.confirmed_by = self
             selected_transaction.save()
         self.wallet.update()
-
-
     # ----- variables ----- #
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
