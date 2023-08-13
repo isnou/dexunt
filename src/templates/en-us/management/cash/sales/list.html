@@ -29,7 +29,12 @@
       <!-- Table Actions -->
       <tr>
         <td>
-          <span class="d-block fs-5">[{{ transaction.title }}]</span>
+          <span class="d-block fs-5">{{ transaction.wallet.user.first_name }} {{ transaction.wallet.user.last_name }}</span>
+          <span class="d-block fs-5">{{ transaction.wallet.user.username }}</span>
+        </td>
+
+        <td>
+          <span class="d-block fs-5">{{ transaction.order_ref }}</span>
         </td>
 
         <td>
@@ -37,14 +42,10 @@
         </td>
 
         <td class="text-end">
-          {% if transaction.confirmed %}
           {% if transaction.add %}
           <span class="d-block fs-5 text-success fw-semibold">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% else %}
           <span class="d-block fs-5 text-danger fw-semibold">- {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
-          {% endif %}
-          {% else %}
-          <span class="d-block fs-5 text-dark">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
           {% endif %}
         </td>
       </tr>

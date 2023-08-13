@@ -46,6 +46,8 @@ class Transaction(models.Model):
     def order_payment(self):
         if self.title.startswith('paid-order'):
             return True
+    def order_ref(self):
+        return self.title [11:]
 #                                                                        #
 def transactions_filter(request, new_filter):
     if new_filter:
