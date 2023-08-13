@@ -30,9 +30,9 @@
       <tr>
         <td>
           {% if transaction.wallet.user.store.name %}
-          <span class="d-block fs-5">{{ transaction.wallet.user.store.name }}</span>
+          <span class="d-block text-dark fs-5">{{ transaction.wallet.user.store.name }}</span>
           {% else %}
-          <span class="d-block fs-6">{{ transaction.wallet.user.username }}</span>
+          <span class="d-block text-secondary fs-6">{{ transaction.wallet.user.username }}</span>
           {% endif %}
         </td>
 
