@@ -29,7 +29,11 @@
       <!-- Table Actions -->
       <tr>
         <td>
-          <span class="d-block fs-5">{{ transaction.wallet.user.username }}</span>
+          {% if transaction.add %}
+          <span class="d-block text-dark fw-semibold fs-5">{{ transaction.wallet.user.username }}</span>
+          {% else %}
+          <span class="d-block text-secondary fw-semibold fs-5">{{ transaction.wallet.user.username }}</span>
+          {% endif %}
         </td>
 
         <td>
