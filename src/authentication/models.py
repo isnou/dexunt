@@ -71,7 +71,7 @@ def transactions_select(action):
             value += t.amount
         return value
     if action == 'member-transactions':
-        return Transaction.objects.all().filter(title='member-payment-request')
+        return User.objects.all().filter(is_member=True)
     if action == 'members-income':
         value = 0
         for u in User.objects.all().filter(is_member=True):
