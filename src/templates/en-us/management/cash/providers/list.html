@@ -29,7 +29,9 @@
       <!-- Table Actions -->
       <tr>
         <td>
-          <span class="d-block fs-5">[{{ transaction.title }}]</span>
+          <span class="d-block fs-5">{{ transaction.wallet.user.store.name }}</span>
+          <span class="d-block fs-6">{{ transaction.wallet.user.first_name }} {{ transaction.wallet.user.last_name }}</span>
+          <span class="d-block fs-6">{{ transaction.wallet.user.username }}</span>
         </td>
 
         <td>
