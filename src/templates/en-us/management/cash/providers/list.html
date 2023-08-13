@@ -28,7 +28,7 @@
 
         <td class="text-end">
           {% if transaction.balance > 0 %}
-          <span class="d-block fs-5 text-success fw-semibold">{{ transaction.balance|floatformat:"0g" }} <small>DZD</small></span>
+          <span class="d-block fs-5 text-success fw-semibold">+ {{ transaction.balance|floatformat:"0g" }} <small>DZD</small></span>
           {% else %}
           <span class="d-block fs-5 text-danger fw-semibold">{{ transaction.balance|floatformat:"0g" }} <small>DZD</small></span>
           {% endif %}
