@@ -33,8 +33,12 @@
           <span class="d-block fs-5"> working funds </span>
           {% endif %}
 
-          {% if transaction.title == 'member-payment-request' %}
+          {% if transaction.title == 'member-payment-request' and transaction.confirmed %}
           <span class="d-block fs-5">transfer to: {{ transaction.requested_by.username }}</span>
+          {% endif %}
+
+          {% if transaction.title == 'member-payment-request' and not transaction.confirmed %}
+          <span class="d-block fs-5">requested by: {{ transaction.requested_by.username }}</span>
           {% endif %}
         </td>
 
@@ -56,7 +60,7 @@
           {% endif %}
         </td>
 
-        <td>
+        <td class="text-end">
           {% if transaction.confirmed %}
           {% if transaction.add %}
           <span class="d-block fs-5 text-success fw-semibold">+ {{ transaction.amount|floatformat:"0g" }} <small>DZD</small></span>
