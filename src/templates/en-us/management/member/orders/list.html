@@ -71,7 +71,11 @@
         </td>
         <!-- client phone -->
         <td>
+          {% if not order.delivery_code %}
           <span class="d-block h4 text-start"><small><a href="tel:{{ order.client_phone }}">{{ order.client_phone }}</a></small></span>
+          {% else %}
+          <span class="d-block h4 text-start"><small>{{ order.delivery_code }}</small></span>
+          {% endif %}
         </td>
         <!-- status -->
         <td>
