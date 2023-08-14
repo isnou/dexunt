@@ -74,7 +74,7 @@
           {% if not order.delivery_code %}
           <span class="d-block h4 text-start"><small><a href="tel:{{ order.client_phone }}">{{ order.client_phone }}</a></small></span>
           {% else %}
-          <span class="d-block h4 text-start"><small><i class="fa-solid fa-hashtag"></i>{{ order.delivery_code }}</small></span>
+          <span class="d-block h4 text-start"><small><i class="fa-solid fa-hashtag me-1"></i> {{ order.delivery_code }}</small></span>
           {% endif %}
         </td>
         <!-- status -->
