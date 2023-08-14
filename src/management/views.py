@@ -20,7 +20,7 @@ from authentication.forms import UpdateProfileForm, UpdatePhotoForm
 
 # ------------------------------- Admin -------------------------------- #
 @login_required
-@permission_required('main_manager.delete_option')
+@permission_required('hello.delete_option')
 def admin_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -808,7 +808,6 @@ def manage_orders(request, action):
         selected_order = Order.objects.all().get(id=order_id)
         selected_order.paid(request)
         return redirect('admin-manage-orders', 'main')
-
 #                                                                        #
 @login_required
 @permission_required('main_manager.delete_option')
@@ -1431,11 +1430,32 @@ def member_wallet(request, action):
             'paginate': paginate,
         }
         return render(request, url, context)
-    if action == 'request_payment':
+    if action == 'request_funds':
         if request.method == 'POST':
+            nav_side = request.POST.get('nav_side', False)
             amount = request.POST.get('amount', False)
             request.user.request_transaction('member-payment-request', amount, False)
-            return redirect('member-wallet', 'main')
+            if nav_side == 'orders':
+                return redirect('member-orders', 'main')
+            if nav_side == 'profile':
+                return redirect('member-profile', 'main')
+            if nav_side == 'my_wallet':
+                return redirect('member-wallet', 'main')
+            if nav_side == 'payment_request':
+                return redirect('member-payments', 'main')
+    if action == 'funds_transfer':
+        if request.method == 'POST':
+            nav_side = request.POST.get('nav_side', False)
+            amount = request.POST.get('amount', False)
+            request.user.request_transaction('member-payment-request', amount, False)
+            if nav_side == 'orders':
+                return redirect('member-orders', 'main')
+            if nav_side == 'profile':
+                return redirect('member-profile', 'main')
+            if nav_side == 'my_wallet':
+                return redirect('member-wallet', 'main')
+            if nav_side == 'payment_request':
+                return redirect('member-payments', 'main')
 # ---------------------------------------------------------------------- #
 
 
