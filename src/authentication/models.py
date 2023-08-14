@@ -281,6 +281,23 @@ class User(AbstractUser):
             selected_transaction.confirmed_at = timezone.now()
             selected_transaction.confirmed_by = self
             selected_transaction.save()
+        if selected_transaction.title == 'member-funds-transfer':
+            selected_transaction.add = False
+            selected_transaction.confirmed = True
+            selected_transaction.confirmed_at = timezone.now()
+            selected_transaction.confirmed_by = self
+            selected_transaction.save()
+            Transaction(confirmed = True,
+                        confirmed_by=selected_transaction.confirmed_by,
+                        confirmed_at=selected_transaction.confirmed_at,
+                        requested_by = selected_transaction.requested_by,
+                        requested_at = selected_transaction.requested_at,
+                        wallet = self.wallet,
+                        title = selected_transaction.title,
+                        amount = selected_transaction.amount
+                        ).save()
+            selected_transaction.requested_by.wallet.update()
+
         self.wallet.update()
     # ----- variables ----- #
     def new_orders_count(self):
