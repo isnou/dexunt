@@ -152,11 +152,11 @@
                         {% endif %}
                       </a>
                     </li>
-                    <!-- providers request -->
+                    <!-- funds transfer -->
                     <li class="nav-item">
-                      <a class="nav-link" href="#provider_request" data-bs-toggle="tab" data-bs-target="#provider_request" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Providers
-                        {% if provider_requests.count %}
-                        ({{ provider_requests.count }})
+                      <a class="nav-link" href="#funds_transfer" data-bs-toggle="tab" data-bs-target="#provider_request" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Providers
+                        {% if funds_transfer.count %}
+                        ({{ funds_transfer.count }})
                         {% endif %}
                       </a>
                     </li>
@@ -193,10 +193,10 @@
                           {% endfor %}
                         </ul>
                       </div>
-                      <!-- providers request -->
-                      <div class="tab-pane fade" id="provider_request" role="tabpanel">
+                      <!-- funds transfer -->
+                      <div class="tab-pane fade" id="funds_transfer" role="tabpanel">
                         <ul class="list-group list-group-flush navbar-card-list-group">
-                          {% for transaction in provider_requests %}
+                          {% for transaction in funds_transfer %}
                           <li class="list-group-item form-check-select">
                             <div class="row">
                               <div class="col-auto">

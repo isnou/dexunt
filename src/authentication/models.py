@@ -63,6 +63,8 @@ def transactions_select(action):
         return Transaction.objects.all().filter(title='member-payment-request').filter(confirmed=False)
     if action == 'provider-requests':
         return Transaction.objects.all().filter(title='provider-payment-request').filter(confirmed=False)
+    if action == 'funds-transfer':
+        return Transaction.objects.all().filter(title='member-funds-transfer').filter(confirmed=False)
     if action == 'sale-transactions':
         return Transaction.objects.all().filter(title__icontains='paid-order')
     if action == 'sales-income':
