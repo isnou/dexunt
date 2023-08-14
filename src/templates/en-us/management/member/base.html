@@ -232,12 +232,11 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item {% if nav_side == 'profile' %} active {% endif %}" href="{% url 'member-profile' 'main' %}">Profile</a>
-
+                <a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#request_payment">Request payment</a>
+                <a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#send_fund">Funds deposit</a>
                 <div class="dropdown-divider"></div>
-
                 <a class="dropdown-item" href="{% url 'logout' %}">Sign out</a>
               </div>
             </div>
@@ -273,7 +272,6 @@
         <!-- Content -->
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-
             <!-- Orders -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'member-orders' 'main' %}?init=True" data-placement="left">
