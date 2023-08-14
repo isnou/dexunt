@@ -1045,6 +1045,7 @@ def cash_wallet(request, action):
             'transactions': transactions,
             'provider_requests': transactions_select('provider-requests'),
             'member_requests': transactions_select('member-requests'),
+            'funds_transfer': transactions_select('funds-transfer'),
             'sale_transactions': transactions_select('sale-transactions'),
             'sales_income': transactions_select('sales-income'),
             'member_transactions': transactions_select('member-transactions'),
@@ -1103,6 +1104,7 @@ def cash_sales(request, action):
             'transactions': transactions,
             'provider_requests': transactions_select('provider-requests'),
             'member_requests': transactions_select('member-requests'),
+            'funds_transfer': transactions_select('funds-transfer'),
             'sale_transactions': transactions_select('sale-transactions'),
             'sales_income': transactions_select('sales-income'),
             'member_transactions': transactions_select('member-transactions'),
@@ -1150,6 +1152,7 @@ def cash_members(request, action):
             'transactions': transactions,
             'provider_requests': transactions_select('provider-requests'),
             'member_requests': transactions_select('member-requests'),
+            'funds_transfer': transactions_select('funds-transfer'),
             'sale_transactions': transactions_select('sale-transactions'),
             'sales_income': transactions_select('sales-income'),
             'member_transactions': transactions_select('member-transactions'),
@@ -1197,6 +1200,7 @@ def cash_providers(request, action):
             'transactions': transactions,
             'provider_requests': transactions_select('provider-requests'),
             'member_requests': transactions_select('member-requests'),
+            'funds_transfer': transactions_select('funds-transfer'),
             'sale_transactions': transactions_select('sale-transactions'),
             'sales_income': transactions_select('sales-income'),
             'member_transactions': transactions_select('member-transactions'),
@@ -1445,17 +1449,9 @@ def member_wallet(request, action):
                 return redirect('member-payments', 'main')
     if action == 'funds_transfer':
         if request.method == 'POST':
-            nav_side = request.POST.get('nav_side', False)
             amount = request.POST.get('amount', False)
-            request.user.request_transaction('member-payment-request', amount, False)
-            if nav_side == 'orders':
-                return redirect('member-orders', 'main')
-            if nav_side == 'profile':
-                return redirect('member-profile', 'main')
-            if nav_side == 'my_wallet':
-                return redirect('member-wallet', 'main')
-            if nav_side == 'payment_request':
-                return redirect('member-payments', 'main')
+            request.user.add_funds('member-funds-transfer', amount)
+            return redirect('member-wallet', 'main')
 # ---------------------------------------------------------------------- #
 
 
