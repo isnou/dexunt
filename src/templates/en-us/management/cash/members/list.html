@@ -115,42 +115,5 @@
 </div>
 <!-- End Confirm Modal -->
 {% endfor %}
-
-{% for transaction in member_requests %}
-<!-- Table Forms -->
-<form action="{% url 'cash-wallet' 'confirm_transaction' %}" id="confirm_sending_form_{{ transaction.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
-</form>
-
-<form action="{% url 'cash-wallet' 'decline_transaction' %}" id="decline_sending_form_{{ transaction.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
-</form>
-<!-- End Table Forms -->
-
-<!-- Confirm Modal -->
-<div id="confirm_sending_modal_{{ transaction.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>Click yes if you gave to {{ transaction.wallet.user.first_name|title }}
-          {{ transaction.wallet.user.last_name|title }} the amount of {{ transaction.amount|floatformat:"0g" }}
-          <small>DZD</small>, if not click decline
-        </p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-white" form="decline_sending_form_{{ transaction.id }}">Decline</button>
-        <button class="btn btn-white" form="confirm_sending_form_{{ transaction.id }}">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Confirm Modal -->
-{% endfor %}
 {% endblock %}
 
