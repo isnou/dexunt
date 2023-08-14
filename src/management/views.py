@@ -1247,6 +1247,7 @@ def member_orders(request, action):
             all_orders = paginator.page(paginator.num_pages)
 
         context = {
+            'provider_requests': transactions_select('provider-requests'),
             'nav_side': 'orders',
             'all_orders': all_orders,
             'paginate': paginate,
@@ -1304,6 +1305,7 @@ def member_profile(request, action):
             errors = None
 
         context = {
+            'provider_requests': transactions_select('provider-requests'),
             'nav_side': 'profile',
             'password_form': password_form,
             'update_profile_form': update_profile_form,
@@ -1415,6 +1417,7 @@ def member_wallet(request, action):
             transactions = paginator.page(paginator.num_pages)
 
         context = {
+            'provider_requests': transactions_select('provider-requests'),
             'nav_side': 'my_wallet',
             'transactions': transactions,
             'paginate': paginate,
