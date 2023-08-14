@@ -588,9 +588,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>Click yes if you gave to {{ transaction.wallet.user.first_name|title }}
-            {{ transaction.wallet.user.last_name|title }} the amount of {{ transaction.amount|floatformat:"0g" }}
-            <small>DZD</small>, if not click decline
+          <p>Click yes if you gave {{ transaction.amount|floatformat:"0g" }} <small>DZD</small> to
+            {{ transaction.wallet.user.first_name|title }} {{ transaction.wallet.user.last_name|title }}
+            ,or decline to delete the request
           </p>
         </div>
         <div class="modal-footer" style="align-self: center;">
@@ -625,8 +625,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>Click yes if you received {{ transaction.amount|floatformat:"0g" }} <small>DZD</small>
-            from {{ transaction.wallet.user.first_name|title }} {{ transaction.wallet.user.last_name|title }}
+          <p>Click yes if you received {{ transaction.amount|floatformat:"0g" }} <small>DZD</small> from
+            {{ transaction.wallet.user.first_name|title }} {{ transaction.wallet.user.last_name|title }}
+            ,or decline to delete the request
           </p>
         </div>
         <div class="modal-footer" style="align-self: center;">
