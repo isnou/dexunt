@@ -290,13 +290,11 @@ class User(AbstractUser):
             Transaction(confirmed = True,
                         confirmed_by=selected_transaction.confirmed_by,
                         confirmed_at=selected_transaction.confirmed_at,
-                        requested_by = selected_transaction.requested_by,
-                        requested_at = selected_transaction.requested_at,
                         wallet = self.wallet,
                         title = selected_transaction.title,
                         amount = selected_transaction.amount
                         ).save()
-            selected_transaction.requested_by.wallet.update()
+            selected_transaction.wallet.update()
 
         self.wallet.update()
     # ----- variables ----- #
