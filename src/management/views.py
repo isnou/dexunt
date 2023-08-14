@@ -20,7 +20,7 @@ from authentication.forms import UpdateProfileForm, UpdatePhotoForm
 
 # ------------------------------- Admin -------------------------------- #
 @login_required
-@permission_required('hello.delete_option')
+@permission_required('management.is_admin')
 def admin_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
