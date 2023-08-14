@@ -606,12 +606,12 @@
 
   {% for transaction in funds_transfer %}
   <!-- Table Forms -->
-  <form action="{% url 'cash-wallet' 'confirm_transaction' %}" id="confirm_reception_form_{{ transaction.id }}" method="post">
+  <form action="{% url 'cash-wallet' 'confirm_transaction' %}" id="confirm_receiving_form_{{ transaction.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
   </form>
 
-  <form action="{% url 'cash-wallet' 'decline_transaction' %}" id="decline_reception_form_{{ transaction.id }}" method="post">
+  <form action="{% url 'cash-wallet' 'decline_transaction' %}" id="decline_receiving_form_{{ transaction.id }}" method="post">
     {% csrf_token %}
     <input type="hidden" name="transaction_id" value='{{ transaction.id }}'>
   </form>
@@ -625,15 +625,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <p>Click yes if you gave to {{ transaction.wallet.user.first_name|title }}
-            {{ transaction.wallet.user.last_name|title }} the amount of {{ transaction.amount|floatformat:"0g" }}
-            <small>DZD</small>, if not click decline
+          <p>Click yes if you received {{ transaction.amount|floatformat:"0g" }} <small>DZD</small>
+            from {{ transaction.wallet.user.first_name|title }} {{ transaction.wallet.user.last_name|title }}
           </p>
         </div>
         <div class="modal-footer" style="align-self: center;">
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-white" form="decline_sending_form_{{ transaction.id }}">Decline</button>
-          <button class="btn btn-white" form="confirm_sending_form_{{ transaction.id }}">Yes</button>
+          <button class="btn btn-white" form="decline_receiving_form_{{ transaction.id }}">Decline</button>
+          <button class="btn btn-white" form="confirm_receiving_form_{{ transaction.id }}">Yes</button>
         </div>
       </div>
     </div>
