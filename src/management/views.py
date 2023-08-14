@@ -1372,10 +1372,18 @@ def member_payments(request, action):
         return render(request, url, context)
     if action == 'confirm':
         if request.method == 'POST':
+            nav_side = request.POST.get('nav_side', False)
             transaction_id = request.POST.get('transaction_id', False)
             secrete_key = request.POST.get('secrete_key', False)
             request.user.confirm_transaction(secrete_key, transaction_id)
-            return redirect('member-payments', 'main')
+            if nav_side == 'orders':
+                return redirect('member-orders', 'main')
+            if nav_side == 'profile':
+                return redirect('member-profile', 'main')
+            if nav_side == 'my_wallet':
+                return redirect('member-wallet', 'main')
+            if nav_side == 'payment_request':
+                return redirect('member-payments', 'main')
     if action == 'decline_transaction':
         if request.method == 'POST':
             transaction_id = request.POST.get('transaction_id', False)

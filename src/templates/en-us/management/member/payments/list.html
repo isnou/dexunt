@@ -107,33 +107,4 @@
   {% endif %}
 </div>
 <!-- end all orders  -->
-
-{% for transaction in transactions %}
-  <!-- Confirm Modal -->
-  <div id="confirm_modal_{{ transaction.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <p>Click yes to validate reception of {{ transaction.amount|floatformat:"0g" }} <small>DZD</small>, if not click decline</p>
-        </div>
-        <div class="modal-footer" style="align-self: center;">
-
-          <form action="{% url 'member-payments' 'confirm' %}" id="confirm_from_{{ transaction.id }}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="transaction_id" value="{{ transaction.id }}">
-            <input type="text" class="form-control" placeholder="secrete key" name="secrete_key" required>
-            <span class="invalid-feedback text-center">secrete key required.</span>
-          </form>
-
-          <button class="btn btn-white" form="confirm_from_{{ transaction.id }}">Yes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Confirm Modal -->
-{% endfor %}
-
 {% endblock %}
