@@ -20,11 +20,11 @@
           {% endif %}
 
           {% if transaction.title == 'member-payment-request' %}
-          {% if transaction.add %}
-          <span class="d-block text-dark fw-semibold fs-5">transfer from {{ transaction.requested_by.username }}</span>
-          {% else %}
           <span class="d-block text-dark fw-semibold fs-5">transfer to {{ transaction.requested_by.username }}</span>
           {% endif %}
+
+          {% if transaction.title == 'member-funds-transfer' %}
+          <span class="d-block text-secondary fw-semibold fs-5">transfer from {{ transaction.requested_by.username }}</span>
           {% endif %}
         </td>
 
