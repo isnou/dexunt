@@ -20,7 +20,7 @@ from authentication.forms import UpdateProfileForm, UpdatePhotoForm
 
 # ------------------------------- Admin -------------------------------- #
 @login_required
-@permission_required
+@permission_required('management.delete_option')
 def admin_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -48,7 +48,7 @@ def admin_home(request, action):
         return render(request, url, context)
 #                                                                        #
 @login_required
-@permission_required
+@permission_required('management.delete_option')
 def manage_users(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -192,7 +192,7 @@ def manage_users(request, action):
         return render(request, url, context)
 #                                                                        #
 @login_required
-@permission_required
+@permission_required('management.delete_option')
 def manage_stores(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -286,7 +286,7 @@ def manage_stores(request, action):
         return render(request, url, context)
 #                                                                        #
 @login_required
-@permission_required
+@permission_required('management.delete_option')
 def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -628,7 +628,7 @@ def manage_products(request, action):
             return redirect('admin-manage-products', 'view_variant')
 #                                                                        #
 @login_required
-@permission_required
+@permission_required('management.delete_option')
 def manage_flash(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -730,7 +730,7 @@ def manage_flash(request, action):
                 return redirect('admin-manage-flash', 'main')
 #                                                                        #
 @login_required
-@permission_required
+@permission_required('management.delete_option')
 def manage_orders(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -810,7 +810,7 @@ def manage_orders(request, action):
         return redirect('admin-manage-orders', 'main')
 #                                                                        #
 @login_required
-@permission_required
+@permission_required('management.delete_option')
 def manage_shipping(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
@@ -950,7 +950,7 @@ def manage_shipping(request, action):
             return redirect('admin-manage-shipping', 'view_province')
 #                                                                        #
 @login_required
-@permission_required('main_manager.delete_option')
+@permission_required('management.delete_option')
 def manage_coupon(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
