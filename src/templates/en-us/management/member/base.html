@@ -136,6 +136,7 @@
       <div class="navbar-nav-wrap-content-end">
         <!-- Navbar -->
         <ul class="navbar-nav">
+          {% if not nav_side == 'payment_request' %}
           <!-- Notifications -->
           <li class="nav-item d-none d-sm-inline-block">
             <!-- Notification -->
@@ -182,7 +183,7 @@
 
                   <!-- Card Footer -->
                   <a class="card-footer text-center" href="{% url 'member-payments' 'main' %}?init=True">
-                    View all providers requests <i class="bi-chevron-right"></i>
+                    View all notifications <i class="bi-chevron-right"></i>
                   </a>
                   <!-- End Card Footer -->
                 </div>
@@ -191,6 +192,7 @@
             <!-- End Notification -->
           </li>
           <!-- End Notifications -->
+          {% endif %}
 
           <!-- Style -->
           <li class="nav-item d-none d-sm-inline-block">
