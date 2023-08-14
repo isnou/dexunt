@@ -142,7 +142,7 @@
             <div class="dropdown">
               <button type="button" class="btn btn-ghost-secondary btn-icon rounded-circle" id="navbarNotificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
                 <i class="bi-bell"></i>
-                {% if member_requests.count %}
+                {% if provider_requests.count %}
                 <span class="btn-status btn-sm-status btn-status-danger"></span>
                 {% endif %}
               </button>
@@ -181,8 +181,8 @@
                   <!-- End Body -->
 
                   <!-- Card Footer -->
-                  <a class="card-footer text-center" href="#">
-                    View all notifications <i class="bi-chevron-right"></i>
+                  <a class="card-footer text-center" href="{% url 'member-payments' 'main' %}?init=True">
+                    View all providers requests <i class="bi-chevron-right"></i>
                   </a>
                   <!-- End Card Footer -->
                 </div>
@@ -284,15 +284,6 @@
               </a>
             </div>
             <!-- End Orders -->
-
-            <!-- Request -->
-            <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'payment_request' %} active {% endif %}" href="{% url 'member-payments' 'main' %}?init=True" data-placement="left">
-                <i class="fa fa-money-bill-transfer nav-icon"></i>
-                <span class="nav-link-title">Payments</span>
-              </a>
-            </div>
-            <!-- End Request -->
 
             <!-- My Wallet -->
             <div class="nav-item">
