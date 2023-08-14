@@ -146,7 +146,7 @@
                   <ul class="nav nav-tabs nav-justified" id="notificationTab" role="tablist">
                     <!-- members request -->
                     <li class="nav-item">
-                      <a class="nav-link active" href="#member_request" data-bs-toggle="tab" data-bs-target="#member_request" role="tab" aria-controls="notificationNavOne" aria-selected="true">Members
+                      <a class="nav-link active" href="#member_request" data-bs-toggle="tab" data-bs-target="#member_request" role="tab" aria-selected="true">Members
                         {% if member_requests.count %}
                         ({{ member_requests.count }})
                         {% endif %}
@@ -154,7 +154,7 @@
                     </li>
                     <!-- funds transfer -->
                     <li class="nav-item">
-                      <a class="nav-link" href="#funds_transfer" data-bs-toggle="tab" data-bs-target="#provider_request" role="tab" aria-controls="notificationNavTwo" aria-selected="false">Transfer
+                      <a class="nav-link" href="#funds_transfer" data-bs-toggle="tab" data-bs-target="#funds_transfer" role="tab" aria-selected="false">Transfer
                         {% if funds_transfer.count %}
                         ({{ funds_transfer.count }})
                         {% endif %}
@@ -207,7 +207,7 @@
                                 </div>
                               </div>
                               <div class="col ms-n2">
-                                <h5 class="mb-1">#{{ transaction.wallet.user.first_name|title }} {{ transaction.wallet.user.last_name|title }}</h5>
+                                <h5 class="mb-1">{{ transaction.wallet.user.first_name|title }} {{ transaction.wallet.user.last_name|title }}</h5>
                                 <p class="text-body fs-6"><small>{{ transaction.wallet.user.username }}</small></p>
                                 <p class="text-body fs-5">{{ transaction.amount|floatformat:"0g" }} <small>DZD</small></p>
                               </div>
