@@ -221,13 +221,6 @@
             </td>
             <td class="align-middle border-top-0">
                 <a href="account-orders.html#" class="text-inherit">#{{ order.ref }}</a>
-                {% if forloop.counter == 1 %}
-                <span><small class="text-muted">delivery :{{ order.delivery_price|floatformat:"2g" }} <small>DZD</small></small></span>
-                {% if order.coupon %}
-                <span><small class="text-muted">discount :{{ order.coupon.value|floatformat:"2g" }} <small>DZD</small></small></span>
-                {% endif %}
-
-                {% endif %}
             </td>
             <td class="align-middle border-top-0">
                 {{ order.creation_date }}
@@ -236,7 +229,7 @@
                 {{ product.quantity }}
             </td>
             <td class="align-middle border-top-0">
-                <span class="badge bg-warning">Processing</span>
+                <span class="badge bg-warning">{{ order.status }}</span>
             </td>
             <td class="align-middle border-top-0">
                 {{ product.price|floatformat:"2g" }} <small>DZD</small>
