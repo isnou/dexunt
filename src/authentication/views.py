@@ -147,7 +147,7 @@ def router(request):
         return redirect('admin-manage-home', 'main')
 
     if request.user.is_customer:
-        return redirect('customer-home', 'main')
+        return redirect('customer-orders', 'main')
 
     if request.user.is_provider:
         return redirect('provider-sales', 'main')

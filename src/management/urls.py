@@ -22,7 +22,8 @@ urlpatterns = [
     path('<str:action>/member/payments', views.member_payments, name='member-payments'),
     path('<str:action>/member/wallet', views.member_wallet, name='member-wallet'),
     # ---- customer ---- #
-    path('<str:action>/customer/home', views.customer_home, name='customer-home'),
+    path('<str:action>/customer/orders', views.customer_orders, name='customer-orders'),
+    path('<str:action>/customer/settings', views.customer_settings, name='customer-settings'),
     # ---- provider ---- #
     path('<str:action>/provider/products', views.provider_products, name='provider-products'),
     path('<str:action>/provider/profile', views.provider_profile, name='provider-profile'),

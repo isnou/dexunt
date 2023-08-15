@@ -1455,16 +1455,58 @@ def member_wallet(request, action):
 
 # ----------------------------- Customer ------------------------------- #
 @login_required
-def customer_home(request, action):
+def customer_orders(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/home.html"
+        url = direction + "/management/customer/orders/list.html"
 
         context = {
-            'nav_side': 'home',
+            'nav_side': 'my-orders',
+        }
+        return render(request, url, context)
+#                                                                        #
+@login_required
+def customer_settings(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/customer/settings/home.html"
+
+        context = {
+            'nav_side': 'settings',
+        }
+        return render(request, url, context)
+#                                                                        #
+@login_required
+def customer_address(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/customer/address/home.html"
+
+        context = {
+            'nav_side': 'address',
+        }
+        return render(request, url, context)
+#                                                                        #
+@login_required
+def customer_wallet(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/customer/wallet/home.html"
+
+        context = {
+            'nav_side': 'my-wallet',
         }
         return render(request, url, context)
 #                                                                        #
