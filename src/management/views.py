@@ -1461,7 +1461,7 @@ def customer_home(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/home.html"
+        url = direction + "/management/customer/base.html"
 
         context = {
             'nav_side': 'home',
