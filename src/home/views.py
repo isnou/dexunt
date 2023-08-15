@@ -13,14 +13,6 @@ from authentication.models import User
 def home_page(request):
     selected_cart = get_cart(request)
 
-    if request.user.is_authenticated:
-        if request.user.is_provider:
-            return redirect('provider-sales', 'main')
-        if request.user.is_cash_manager:
-            return redirect('cash-wallet', 'main')
-        if request.user.is_member:
-            return redirect('member-orders', 'main')
-
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
