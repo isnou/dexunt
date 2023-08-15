@@ -98,11 +98,16 @@
         </td>
         <!-- creation date -->
         <td class="text-end">
-          <span class="d-block h4 text-end"><small>{{ order.log.first.at|date:'M' }} {{ order.log.first.at|date:'d' }} , {{ order.log.first.at|time:'H' }}:{{ order.log.first.at|time:'i' }}</small>
+          <span class="d-block h4 text-end">
+            {% if order.status == 'created' %}
             <!-- delete order -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
               <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
             </button>
+            {% else %}
+            <!-- order creation date -->
+            <small>{{ order.log.first.at|date:'M' }} {{ order.log.first.at|date:'d' }} , {{ order.log.first.at|time:'H' }}:{{ order.log.first.at|time:'i' }}</small>
+            {% endif %}
             <!-- toggle details -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">
               <i class="fa fa-chevron-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Details"></i>

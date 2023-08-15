@@ -101,7 +101,10 @@
         </td>
         <!-- creation date -->
         <td class="text-end">
-          <span class="d-block h4 text-end"><small>{{ order.log.first.at|date:'M' }} {{ order.log.first.at|date:'d' }} , {{ order.log.first.at|time:'H' }}:{{ order.log.first.at|time:'i' }}</small>
+          <span class="d-block h4 text-end">
+            {% if not order.status == 'created' %}
+            <small>{{ order.log.first.at|date:'M' }} {{ order.log.first.at|date:'d' }} , {{ order.log.first.at|time:'H' }}:{{ order.log.first.at|time:'i' }}</small>
+            {% endif %}
             <!-- toggle details -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">
               <i class="fa fa-chevron-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Details"></i>
