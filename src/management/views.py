@@ -771,9 +771,7 @@ def manage_orders(request, action):
     if action == 'delete_order':
         if request.method == 'POST':
             order_id = request.POST.get('order_id', False)
-            selected_order = Order.objects.all().get(id=order_id)
-            selected_order.delete_products()
-            selected_order.delete()
+            Order.objects.all().get(id=order_id).delete()
             return redirect('admin-manage-orders', 'main')
     if action == 'no_answer':
         order_id = request.GET.get('order_id', False)
