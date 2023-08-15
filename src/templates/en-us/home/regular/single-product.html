@@ -100,7 +100,8 @@
               </small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a>
             </div>
 
-            <!-- proces -->
+            {% if user.is_customer or not user.is_authenticated %}
+            <!-- prices -->
             <div class="fs-4">
               {% if selected_option %}
               {% if selected_option.discount %}
@@ -120,6 +121,7 @@
               {% endif %}
               {% endif %}
             </div>
+            {% endif %}
 
             {% if selected_variant.product.variant_set.all.count > 1 %}
             <!-- variants -->
