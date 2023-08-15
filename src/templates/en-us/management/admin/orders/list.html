@@ -106,7 +106,7 @@
             </button>
             {% else %}
             <!-- order creation date -->
-            <small>{{ order.log.first.at|date:'M' }} {{ order.log.first.at|date:'d' }} , {{ order.log.first.at|time:'H' }}:{{ order.log.first.at|time:'i' }}</small>
+            <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             {% endif %}
             <!-- toggle details -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">

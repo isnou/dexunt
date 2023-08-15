@@ -395,6 +395,8 @@ class Order(models.Model):
             return 60
         if self.status == 'handed':
             return 80
+    def creation_date(self):
+        return self.log.first().at
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
