@@ -191,7 +191,6 @@
 <!-- table -->
 <div class="table-responsive-xxl border-0">
     <table class="table mb-0 text-nowrap table-centered ">
-        <!-- Table Head -->
         <thead class="bg-light">
         <tr>
             <th>&nbsp;</th>
@@ -204,8 +203,9 @@
             <th></th>
         </tr>
         </thead>
+
         <tbody>
-        {% for order in user.placed_orders.all %}
+        {% for order in user.orders.all %}
         {% for product in order.selected_products.all %}
         <tr>
             <td class="align-middle border-top-0 w-0">
