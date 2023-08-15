@@ -186,7 +186,7 @@
 
 {% block content %}
 <!-- head -->
-<h2 class="mb-6">My Orders {{user.username}}</h2>
+<h2 class="mb-6">My Orders</h2>
 
 <!-- table -->
 <div class="table-responsive-xxl border-0">
@@ -205,8 +205,8 @@
         </thead>
 
         <tbody>
-        {% for order in user.placed_orders.all %}
-        {% for product in order.selected_products.all %}
+        {% for order in user.placed_orders %}
+        {% for product in order.selected_products %}
         <tr>
             <td class="align-middle border-top-0 w-0">
                 <a href="account-orders.html#">
