@@ -205,8 +205,8 @@
         </thead>
 
         <tbody>
-        {% for order in user.placed_orders %}
-        {% for product in order.selected_products %}
+        {% for order in user.all_orders.all %}
+        {% for product in order.selected_products.all %}
         <tr>
             <td class="align-middle border-top-0 w-0">
                 <a href="account-orders.html#">
