@@ -41,7 +41,7 @@
           </td>
           <!-- product title and image -->
           <td class="table-column-ps-0">
-            <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.option.variant.product.id }}">
+            <a class="d-flex align-items-center" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}">
               <div class="flex-shrink-0">
                 <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.image }}">
               </div>
