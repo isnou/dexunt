@@ -6,6 +6,7 @@
 
 <!-- mobile cart block -->
 {% block mobile_cart %}
+{% if user.is_costumer or not user.is_authenticated %}
 <!-- mobile dropdown cart -->
 <div class="list-inline-item ">
     <div class="dropdown  ">
@@ -91,10 +92,12 @@
     </div>
 </div>
 <!-- end mobile dropdown cart -->
+{% endif %}
 {% endblock %}
 
 <!-- desk cart block -->
 {% block desk_cart %}
+{% if user.is_costumer or not user.is_authenticated %}
 <!-- desk dropdown cart -->
 <div class="list-inline-item me-3">
     <div class="dropdown d-none d-md-block ">
@@ -183,6 +186,7 @@
     </div>
 </div>
 <!-- end desk dropdown cart -->
+{% endif %}
 {% endblock %}
 
 <!-- advert section block -->
