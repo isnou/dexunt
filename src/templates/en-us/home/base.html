@@ -820,9 +820,193 @@
     </div>
   </div>
 </nav>
-<!-- navigation modals block -->
-{% block navigation_modals %} {% endblock %}
-<!-- end navigation -->
+
+<!-- modals -->
+<!-- track my order modal -->
+<div class="modal fade" id="track_my_order_modal" tabindex="-1" aria-labelledby="track_my_order_modal_label"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="mb-5 d-flex align-items-center justify-content-between">
+          <h1 class="modal-title fs-5" id="track_my_order_modal_label"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class=" w-100 ">
+
+          <div class="mb-4">
+            <h1 class="mt-3 mb-0 h4">Order tracking</h1>
+            <small>Put your order reference </small>
+          </div>
+          <form>
+            <div class="row g-3">
+              <div class="col">
+                <label for="order_code" class="visually-hidden">Order Code</label>
+                <input type="text" class="form-control" id="order_code"
+                       placeholder="#6F4HU8I" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-danger">Check</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="my-10 text-center">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- change language modal -->
+<div class="modal fade" id="change_language_modal" tabindex="-1" aria-labelledby="change_language_label"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="mb-5 d-flex align-items-center justify-content-between">
+          <h1 class="modal-title fs-5" id="change_language_label"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class=" w-100 ">
+          <div class="text-center text-md-center fs-5 mb-5">
+            Pour le français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
+          </div>
+          <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
+            للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
+          </div>
+        </div>
+
+        <form action="{% url 'change-language' %}" id="french_language_form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="language" value='fr-fr'>
+          <input type="hidden" name="page" value='home-page'>
+        </form>
+
+        <form action="{% url 'change-language' %}" id="arabic_language_form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="language" value='ar-dz'>
+          <input type="hidden" name="page" value='home-page'>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login modal -->
+<div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modal_label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="login_modal_label">Login</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-10">
+                        <div class="py-6">
+                            <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
+                                {% csrf_token %}
+
+                                <div class="form-floating mb-8">
+                                    <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
+                                    <label for="signup_username">Username</label>
+                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
+                                </div>
+
+                                <div class="form-floating mb-8">
+                                    <input type="password" class="form-control" id="password" name="{{ login_form.password.name }}" minlength="{{ login_form.password.field.min_length }}" placeholder="{{ login_form.password.label }}" required>
+                                    <label for="signup_password1">Password</label>
+                                    <span class="invalid-feedback text-start">please provide a correct password.</span>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">submit</button>
+                                </div>
+                            </form>
+                            <div class="mt-4">
+                                <small>
+                                    You don't have an account ?
+                                    <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#register_modal">Register</a>
+                                    ,it's free.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- register modal -->
+<div class="modal fade" id="register_modal" tabindex="-1" aria-labelledby="register_modal_label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="register_modal_label">Register</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-10">
+                        <div class="py-6">
+                            <form action="{% url 'signup' %}" id="signup_form_modal" class="needs-validation" novalidate method="post">
+                                {% csrf_token %}
+
+                                <div class="form-floating mb-8">
+                                    <input type="text" class="form-control" id="signup_username" name="{{ signup_form.username.name }}" maxlength="{{ signup_form.username.field.max_length }}" placeholder="Username" required>
+                                    <label for="signup_username">Username</label>
+                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
+                                </div>
+
+                                <div class="form-floating mb-8">
+                                    <input type="text" class="form-control" id="signup_first_name" name="{{ signup_form.first_name.name }}" placeholder="First name">
+                                    <label for="signup_first_name">First name</label>
+                                </div>
+
+                                <div class="form-floating mb-8">
+                                    <input type="text" class="form-control" id="signup_last_name" name="{{ signup_form.last_name.name }}" placeholder="Last name">
+                                    <label for="signup_last_name">Last name</label>
+                                </div>
+
+                                <div class="form-floating mb-8">
+                                    <input type="tel" class="form-control" id="signup_phone" name="{{ signup_form.phone_number.name }}" value="+213" placeholder="+213 (000)-000-000" data-mask="+213 (000)-000-000">
+                                    <label for="signup_phone">Phone</label>
+                                </div>
+
+                                <div class="form-floating mb-8">
+                                    <input type="password" class="form-control" id="signup_password1" name="{{ signup_form.password1.name }}" minlength="{{ signup_form.password1.field.min_length }}" placeholder="Password" required>
+                                    <label for="signup_password1">Password</label>
+                                    <span class="invalid-feedback text-start">please provide a correct password.</span>
+                                </div>
+
+                                <div class="form-floating mb-8">
+                                    <input type="password" class="form-control" id="signup_password2" name="{{ signup_form.password2.name }}" placeholder="Confirm password" required>
+                                    <label for="signup_password2">Confirm password</label>
+                                    <span class="invalid-feedback text-start">please provide a correct password.</span>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">submit</button>
+                                </div>
+                            </form>
+                            <div class="mt-4">
+                                <small>
+                                    Already have an account ?
+                                    <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modals -->
 
 
 <main>
