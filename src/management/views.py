@@ -1464,7 +1464,7 @@ def customer_orders(request, action):
         url = direction + "/management/customer/orders/list.html"
 
         context = {
-            'nav_side': 'my-orders',
+            'nav_side': 'orders',
         }
         return render(request, url, context)
 #                                                                        #
