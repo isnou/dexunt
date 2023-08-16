@@ -1019,7 +1019,7 @@
         <div class="d-flex justify-content-between mb-5">
           <!-- heading -->
           <div>
-            <h5 class="h6 mb-1" id="addAddressModalLabel">New Shipping Address</h5>
+            <h5 class="h6 mb-1" id="addAddressModalLabel">New Delivery Address</h5>
             <p class="small mb-0">Add new shipping address for your order delivery.</p>
           </div>
           <div>
@@ -1029,67 +1029,48 @@
         </div>
         <!-- row -->
         <div class="row g-3">
-          <!-- col -->
-          <div class="col-12">
-            <input type="text" class="form-control" placeholder="First name" aria-label="First name" required="">
-          </div>
-          <!-- col -->
-          <div class="col-12">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required="">
-          </div>
-          <!-- col -->
-          <div class="col-12">
+          <form action="{% url 'order-page' 'create_new_address' %}" class="needs-validation" novalidate method="post">
+            {% csrf_token %}
 
-            <input type="text" class="form-control" placeholder="Address Line 1">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Address Line 2">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="City">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <select class="form-select">
-              <option selected=""> India</option>
-              <option value="1">UK</option>
-              <option value="2">USA</option>
-              <option value="3">UAE</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <select class="form-select">
-              <option selected="">Gujarat</option>
-              <option value="1">Northern Ireland</option>
-              <option value="2"> Alaska</option>
-              <option value="3">Abu Dhabi</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Zip Code">
-          </div>
-          <div class="col-12">
-            <!-- button -->
-            <input type="text" class="form-control" placeholder="Business Name">
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <!-- label -->
-              <label class="form-check-label" for="flexCheckDefault">
-                Set as Default
-              </label>
+            <div class="col-12 mb-4">
+              <input type="text" class="form-control" name="title" placeholder="Home, Office, Etc..">
             </div>
-          </div>
-          <!-- button -->
-          <div class="col-12 text-end">
-            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="button">Save Address</button>
-          </div>
+            <div class="col-12 mb-4">
+              <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
+                <option value="">Province</option>
+                {% for province in provinces %}
+                <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
+                {% endfor %}
+              </select>
+              <span class="invalid-feedback text-start">choose your province.</span>
+            </div>
+            <div class="col-12 mb-4" id="municipalities">
+              <select class="form-select">
+                <option value="">Municipality</option>
+              </select>
+            </div>
+            <div class="col-12 mb-4">
+              <select class="form-select" name="delivery_type">
+                <option value='HOME'>delivery to home</option>
+                <option value='DESK'>delivery to desk</option>
+              </select>
+              <span class="invalid-feedback text-start">choose your province.</span>
+            </div>
+            <div class="col-12 mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="default" value="true">
+                <!-- label -->
+                <label class="form-check-label" >
+                  Set as Default
+                </label>
+              </div>
+            </div>
+            <!-- button -->
+            <div class="col-12 text-end">
+              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+              <button class="btn btn-primary" type="submit">Save Address</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
