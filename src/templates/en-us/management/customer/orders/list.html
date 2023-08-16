@@ -205,6 +205,7 @@
 
         <tbody>
         {% for order in user.all_orders.all %}
+        {% if not order.status == 'created' %}
         {% for product in order.selected_products.all %}
         <tr>
             <td class="align-middle border-top-0 w-0">
@@ -235,6 +236,7 @@
             </td>
         </tr>
         {% endfor %}
+        {% endif %}
         {% endfor %}
 
 
