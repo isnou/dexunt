@@ -1475,7 +1475,7 @@ def customer_settings(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/settings/home.html"
+        url = direction + "/management/customer/settings/profile.html"
 
         context = {
             'nav_side': 'settings',
@@ -1489,7 +1489,7 @@ def customer_address(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/address/home.html"
+        url = direction + "/management/customer/address/edit.html"
 
         context = {
             'nav_side': 'address',
