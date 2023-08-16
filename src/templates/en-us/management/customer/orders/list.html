@@ -217,13 +217,13 @@
                 <a href="account-orders.html#" class="fw-semi-bold text-inherit">
                     <h6 class="mb-0">{{ product.en_title }}</h6>
                 </a>
-                <span><small class="text-muted">{{ product.en_detail }}</small></span>
+                <span><small class="text-muted text-wrap">{{ product.en_detail }}</small></span>
             </td>
             <td class="align-middle border-top-0">
                 <a href="account-orders.html#" class="text-inherit">#{{ order.ref }}</a>
             </td>
             <td class="align-middle border-top-0">
-                {{ order.creation_date }}
+                <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             </td>
             <td class="align-middle border-top-0">
                 {{ product.quantity }}
