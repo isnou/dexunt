@@ -1010,6 +1010,91 @@
         </div>
     </div>
 </div>
+<!-- new address modal -->
+<div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- modal body -->
+      <div class="modal-body p-6">
+        <div class="d-flex justify-content-between mb-5">
+          <!-- heading -->
+          <div>
+            <h5 class="h6 mb-1" id="addAddressModalLabel">New Shipping Address</h5>
+            <p class="small mb-0">Add new shipping address for your order delivery.</p>
+          </div>
+          <div>
+            <!-- button -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row g-3">
+          <!-- col -->
+          <div class="col-12">
+            <input type="text" class="form-control" placeholder="First name" aria-label="First name" required="">
+          </div>
+          <!-- col -->
+          <div class="col-12">
+            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required="">
+          </div>
+          <!-- col -->
+          <div class="col-12">
+
+            <input type="text" class="form-control" placeholder="Address Line 1">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="Address Line 2">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="City">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <select class="form-select">
+              <option selected=""> India</option>
+              <option value="1">UK</option>
+              <option value="2">USA</option>
+              <option value="3">UAE</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <select class="form-select">
+              <option selected="">Gujarat</option>
+              <option value="1">Northern Ireland</option>
+              <option value="2"> Alaska</option>
+              <option value="3">Abu Dhabi</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="Zip Code">
+          </div>
+          <div class="col-12">
+            <!-- button -->
+            <input type="text" class="form-control" placeholder="Business Name">
+          </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <!-- label -->
+              <label class="form-check-label" for="flexCheckDefault">
+                Set as Default
+              </label>
+            </div>
+          </div>
+          <!-- button -->
+          <div class="col-12 text-end">
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="button">Save Address</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- end modals -->
 
 <main>
