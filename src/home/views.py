@@ -50,7 +50,7 @@ def home_page(request):
     published_flash_products = all_flash_products[:4]
 
     context = {
-        'page': 'home-page',
+        'source_page': 'home-page',
         'errors': errors,
         'login_form': login_form,
         'signup_form': signup_form,
@@ -93,7 +93,7 @@ def product_page(request, action):
             selected_option = None
 
         context = {
-            'page': 'product-page',
+            'source_page': 'product-page',
             'selected_option': selected_option,
             'selected_variant': selected_variant,
         }
@@ -113,7 +113,7 @@ def shopping_cart_page(request, action):
 
         if selected_cart.selected_products.all().count():
             context = {
-                'page': 'cart',
+                'source_page': 'shopping-cart',
                 'selected_cart': selected_cart,
                 'coupon_message': coupon_message,
             }
@@ -167,7 +167,7 @@ def order_page(request, action):
             url = direction + "/home/regular/member/order-page.html"
 
         context = {
-            'page': 'order-page',
+            'source_page': 'order-page',
             'selected_order': selected_order,
             'provinces': provinces,
         }
