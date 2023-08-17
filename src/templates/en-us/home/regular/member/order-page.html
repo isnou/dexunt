@@ -89,7 +89,7 @@
                       <input class="form-check-input" type="radio" value="{{ address.id }}" name="address_id" hx-get="{% url 'order-page' 'load_summary' %}" hx-trigger="change" hx-target="#total_summary">
                       {% endif %}
                       <label class="form-check-label text-dark">
-                        {{ address.title }}
+                        {{ address.content }}
                       </label>
                       {% if address.default %}
                       <span class="badge bg-danger">Default</span>
@@ -99,10 +99,10 @@
                     <address>
                       <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
                       {% if address.delivery_type == 'HOME' %}
-                      Delivery to home, <br>
+                      Delivery to home<br>
                       {% endif %}
                       {% if address.delivery_type == 'DESK' %}
-                      Delivery to desk, <br>
+                      Delivery to desk<br>
                       {% endif %}
                     </address>
                   </div>

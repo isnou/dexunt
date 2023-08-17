@@ -198,19 +198,20 @@
             <address>
               <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
               {% if address.delivery_type == 'HOME' %}
-              Delivery to home, <br>
+                <p class="mb-6">
+                {{ address.content }}
+            </p><br>
+                <p>
+              Delivery to home
               {% endif %}
               {% if address.delivery_type == 'DESK' %}
-              Delivery to desk, <br>
+              Delivery to desk
               {% endif %}
+                    </p><br>
             </address>
 
-            <p class="mb-6">
-                {{ address.content }}
-            </p>
-
             {% if address.default %}
-            <span class="badge bg-danger">Default</span>
+            <a href="account-address.html#" class="btn btn-info btn-lg">Default</a>
             {% else %}
             <a href="account-address.html#" class="link-primary">Set as Default</a>
             {% endif %}
