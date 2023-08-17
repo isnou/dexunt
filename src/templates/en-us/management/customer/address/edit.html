@@ -192,6 +192,15 @@
   <a href="account-address.html#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
 </div>
 <div class="row">
+    <div class="col-lg-5 col-xxl-4 col-12 mb-4">
+
+    {% if user.delivery_addresses.all.count %}
+              <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
+              {% else %}
+              <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Create an address </a>
+              {% endif %}
+        </div>
+
   <!-- col -->
   <div class="col-lg-5 col-xxl-4 col-12 mb-4">
     <!-- form -->
