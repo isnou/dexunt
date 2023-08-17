@@ -193,34 +193,35 @@
 </div>
 <div class="row">
     {% for address in user.delivery_addresses.all %}
-                <div class="col-lg-6 col-12 mb-4">
-                  <div class="card card-body p-6 ">
-                    <div class="form-check mb-4">
-                      {% if address.default %}
-                      <input class="form-check-input" type="radio" value="{{ address.id }}" name="address_id" hx-get="{% url 'order-page' 'load_summary' %}" hx-trigger="load delay:3s, change" hx-target="#total_summary" checked>
-                      {% else %}
-                      <input class="form-check-input" type="radio" value="{{ address.id }}" name="address_id" hx-get="{% url 'order-page' 'load_summary' %}" hx-trigger="change" hx-target="#total_summary">
-                      {% endif %}
-                      <label class="form-check-label text-dark">
-                        {{ address.title }}
-                      </label>
-                      {% if address.default %}
-                      <span class="badge bg-danger">Default</span>
-                      {% endif %}
-                    </div>
+    <div class="col-lg-6 col-12 mb-4">
+        <div class="card card-body p-6 ">
+            <address>
+              <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
+              {% if address.delivery_type == 'HOME' %}
+              Delivery to home, <br>
+              {% endif %}
+              {% if address.delivery_type == 'DESK' %}
+              Delivery to desk, <br>
+              {% endif %}
+            </address>
 
-                    <address>
-                      <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
-                      {% if address.delivery_type == 'HOME' %}
-                      Delivery to home, <br>
-                      {% endif %}
-                      {% if address.delivery_type == 'DESK' %}
-                      Delivery to desk, <br>
-                      {% endif %}
-                    </address>
-                  </div>
-                </div>
-                {% endfor %}
+            <p class="mb-6">
+                {{ address.content }}
+            </p>
+
+            {% if address.default %}
+            <span class="badge bg-danger">Default</span>
+            {% else %}
+            <a href="account-address.html#" class="link-primary">Set as Default</a>
+            {% endif %}
+
+            <div class="mt-4">
+                <a href="account-address.html#" class="text-inherit">Edit </a>
+                <a href="account-address.html#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
   <!-- col -->
   <div class="col-lg-5 col-xxl-4 col-12 mb-4">
@@ -244,10 +245,9 @@
         <!-- btn -->
       <a href="account-address.html#" class="btn btn-info btn-sm">Default address</a>
       <div class="mt-4">
-        <a href="account-address.html#" class="text-inherit">Edit </a>
-        <a href="account-address.html#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
-        </a>
-        </div>
+          <a href="account-address.html#" class="text-inherit">Edit </a>
+          <a href="account-address.html#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+      </div>
       </div>
     </div>
   </div>
@@ -287,69 +287,72 @@
 {% block modals %}
 <!-- new address modal -->
 <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- modal body -->
-      <div class="modal-body p-6">
-        <div class="d-flex justify-content-between mb-5">
-          <!-- heading -->
-          <div>
-            <h5 class="h6 mb-1" id="addAddressModalLabel">New Delivery Address</h5>
-            <p class="small mb-0">Add new shipping address for your order delivery.</p>
-          </div>
-          <div>
-            <!-- button -->
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-        </div>
-        <!-- row -->
-        <div class="row g-3">
-          <form action="{% url 'order-page' 'create_new_address' %}" class="needs-validation" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="source_page" value='{{ source_page }}'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- modal body -->
+            <div class="modal-body p-6">
+                <div class="d-flex justify-content-between mb-5">
+                    <!-- heading -->
+                    <div>
+                        <h5 class="h6 mb-1" id="addAddressModalLabel">New Delivery Address</h5>
+                        <p class="small mb-0">Add new shipping address for your order delivery.</p>
+                    </div>
+                    <div>
+                        <!-- button -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="row g-3">
+                    <form action="{% url 'order-page' 'create_new_address' %}" class="needs-validation" novalidate method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="source_page" value='{{ source_page }}'>
 
-            <div class="col-12 mb-4">
-              <input type="text" class="form-control" name="title" placeholder="Home, Office, Etc..">
+                        <div class="col-12 mb-4">
+                            <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
+                                <option value="">Province</option>
+                                {% for province in provinces %}
+                                <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="invalid-feedback text-start">choose your province.</span>
+                        </div>
+
+                        <div class="col-12 mb-4" id="municipalities">
+                            <select class="form-select">
+                                <option value="">Municipality</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 mb-4">
+                            <input type="text" class="form-control" name="content" placeholder="Hayet city, Villa 155">
+                        </div>
+
+                        <div class="col-12 mb-4">
+                          <select class="form-select" name="delivery_type">
+                            <option value='HOME'>delivery to home</option>
+                            <option value='DESK'>delivery to desk</option>
+                          </select>
+                          <span class="invalid-feedback text-start">choose your province.</span>
+                        </div>
+                        <div class="col-12 mb-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="default" value="true">
+                            <!-- label -->
+                            <label class="form-check-label" >
+                              Set as Default
+                            </label>
+                          </div>
+                        </div>
+                        <!-- button -->
+                        <div class="col-12 text-end">
+                          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                          <button class="btn btn-primary" type="submit">Save Address</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-12 mb-4">
-              <select class="form-select" name="province_id" hx-get="{% url 'order-page' 'load_municipalities' %}" hx-trigger="change" hx-target="#municipalities" required>
-                <option value="">Province</option>
-                {% for province in provinces %}
-                <option value='{{ province.id }}'>{{ province.en_name|title }}</option>
-                {% endfor %}
-              </select>
-              <span class="invalid-feedback text-start">choose your province.</span>
-            </div>
-            <div class="col-12 mb-4" id="municipalities">
-              <select class="form-select">
-                <option value="">Municipality</option>
-              </select>
-            </div>
-            <div class="col-12 mb-4">
-              <select class="form-select" name="delivery_type">
-                <option value='HOME'>delivery to home</option>
-                <option value='DESK'>delivery to desk</option>
-              </select>
-              <span class="invalid-feedback text-start">choose your province.</span>
-            </div>
-            <div class="col-12 mb-4">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="default" value="true">
-                <!-- label -->
-                <label class="form-check-label" >
-                  Set as Default
-                </label>
-              </div>
-            </div>
-            <!-- button -->
-            <div class="col-12 text-end">
-              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-              <button class="btn btn-primary" type="submit">Save Address</button>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 {% endblock %}

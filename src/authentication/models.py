@@ -113,7 +113,7 @@ class DeliveryAddress(models.Model):
     user = models.ForeignKey(
         'authentication.User', on_delete=models.CASCADE, related_name='delivery_addresses', null=True)
     # ---- content ---- #
-    title = models.CharField(max_length=100, blank=True, null=True)
+    content = models.CharField(max_length=500, blank=True, null=True)
     delivery_type = models.CharField(max_length=100, default='HOME')
 # ---------------------------------------------------------------------- #
 
@@ -207,9 +207,9 @@ class User(AbstractUser):
         super().save()
     def new_address(self, request, municipality):
         if request.method == 'POST':
-            title = request.POST.get('title', False)
+            content = request.POST.get('content', False)
             default = request.POST.get('default', False)
-            new_address = DeliveryAddress(title=title,
+            new_address = DeliveryAddress(content=content,
                                           municipality=municipality,
                                           user=self)
             if request.POST.get('deliver_type', False):
