@@ -1490,10 +1490,12 @@ def customer_address(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/address/edit.html"
+        provinces = Province.objects.all()
 
         context = {
             'source_page': 'customer-address',
             'nav_side': 'address',
+            'provinces': provinces,
         }
         return render(request, url, context)
 #                                                                        #
