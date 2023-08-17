@@ -192,14 +192,35 @@
   <a href="account-address.html#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
 </div>
 <div class="row">
-    <div class="col-lg-5 col-xxl-4 col-12 mb-4">
+    {% for address in user.delivery_addresses.all %}
+                <div class="col-lg-6 col-12 mb-4">
+                  <div class="card card-body p-6 ">
+                    <div class="form-check mb-4">
+                      {% if address.default %}
+                      <input class="form-check-input" type="radio" value="{{ address.id }}" name="address_id" hx-get="{% url 'order-page' 'load_summary' %}" hx-trigger="load delay:3s, change" hx-target="#total_summary" checked>
+                      {% else %}
+                      <input class="form-check-input" type="radio" value="{{ address.id }}" name="address_id" hx-get="{% url 'order-page' 'load_summary' %}" hx-trigger="change" hx-target="#total_summary">
+                      {% endif %}
+                      <label class="form-check-label text-dark">
+                        {{ address.title }}
+                      </label>
+                      {% if address.default %}
+                      <span class="badge bg-danger">Default</span>
+                      {% endif %}
+                    </div>
 
-    {% if user.delivery_addresses.all.count %}
-              <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
-              {% else %}
-              <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Create an address </a>
-              {% endif %}
-        </div>
+                    <address>
+                      <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
+                      {% if address.delivery_type == 'HOME' %}
+                      Delivery to home, <br>
+                      {% endif %}
+                      {% if address.delivery_type == 'DESK' %}
+                      Delivery to desk, <br>
+                      {% endif %}
+                    </address>
+                  </div>
+                </div>
+                {% endfor %}
 
   <!-- col -->
   <div class="col-lg-5 col-xxl-4 col-12 mb-4">
