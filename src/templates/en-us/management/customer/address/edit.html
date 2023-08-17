@@ -196,18 +196,17 @@
     <div class="col-lg-6 col-12 mb-4">
         <div class="card card-body p-6 ">
             <address>
-              <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
-              {% if address.delivery_type == 'HOME' %}
-                <p class="mb-6">
-                {{ address.content }}
-            </p><br>
+                <strong>{{ address.municipality.en_name }}</strong><br>
+                <p>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</p><br>
+                <p>{{ address.content }}</p><br>
                 <p>
-              Delivery to home
-              {% endif %}
-              {% if address.delivery_type == 'DESK' %}
-              Delivery to desk
-              {% endif %}
-                    </p><br>
+                    {% if address.delivery_type == 'HOME' %}
+                    Delivery to home
+                    {% endif %}
+                    {% if address.delivery_type == 'DESK' %}
+                    Delivery to desk
+                    {% endif %}
+                </p><br>
             </address>
 
             {% if address.default %}
@@ -216,7 +215,7 @@
             <a href="account-address.html#" class="link-primary">Set as Default</a>
             {% endif %}
 
-            <div class="mt-4">
+            <div class="mt-2">
                 <a href="account-address.html#" class="text-inherit">Edit </a>
                 <a href="account-address.html#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
             </div>
@@ -224,63 +223,6 @@
     </div>
     {% endfor %}
 
-  <!-- col -->
-  <div class="col-lg-5 col-xxl-4 col-12 mb-4">
-    <!-- form -->
-    <div class="card">
-      <div class="card-body p-6">
-      <div class="form-check mb-4">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="homeRadio" checked>
-        <label class="form-check-label text-dark fw-semi-bold" for="homeRadio">
-          Home
-        </label>
-      </div>
-      <!-- address -->
-      <p class="mb-6">Jitu Chauhan<br>
-
-        4450 North Avenue Oakland, <br>
-
-        Nebraska, United States,<br>
-
-        402-776-1106</p>
-        <!-- btn -->
-      <a href="account-address.html#" class="btn btn-info btn-sm">Default address</a>
-      <div class="mt-4">
-          <a href="account-address.html#" class="text-inherit">Edit </a>
-          <a href="account-address.html#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
-      </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-5 col-xxl-4 col-12 mb-4">
-    <!-- input -->
-    <div class="card">
-      <div class="card-body p-6">
-      <div class="form-check mb-4">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="officeRadio">
-        <label class="form-check-label text-dark fw-semi-bold" for="officeRadio">
-          Office
-        </label>
-      </div>
-      <!-- nav item -->
-      <p class="mb-6">Nitu Chauhan<br>
-
-        3853 Coal Road <br>
-
-        Tannersville, Pennsylvania, 18372, United States <br>
-
-        402-776-1106</p>
-        <!-- link -->
-      <a href="account-address.html#" class="link-primary">Set as Default</a>
-      <div class="mt-4">
-        <a href="account-address.html#" class="text-inherit">Edit </a>
-        <!-- btn -->
-        <a href="account-address.html#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
-        </a>
-      </div>
-      </div>
-    </div>
-  </div>
 </div>
 {% endblock %}
 
