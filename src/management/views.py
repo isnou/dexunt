@@ -1492,6 +1492,7 @@ def customer_address(request, action):
         url = direction + "/management/customer/address/edit.html"
 
         context = {
+            'source_page': 'customer-address',
             'nav_side': 'address',
         }
         return render(request, url, context)
