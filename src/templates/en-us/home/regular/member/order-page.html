@@ -87,10 +87,10 @@
                       {% else %}
                       <input class="form-check-input" type="radio" value="{{ address.id }}" name="address_id" hx-get="{% url 'order-page' 'load_prices' %}" hx-trigger="change" hx-target="#prices">
                       {% endif %}
-                      <label class="form-check-label text-dark">
-                          <strong>{{ address.municipality.en_name }}</strong>
+                      <label class="form-check-label">
+                          <strong class="text-dark">{{ address.municipality.en_name }}</strong>
                           {% if address.default %}
-                          <small>(default)</small>
+                          <small class="text-muted">(default)</small>
                           {% endif %}
                       </label>
                     </div>
