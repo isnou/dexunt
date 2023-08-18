@@ -25,14 +25,14 @@
             {% if selected_cart.coupon %}
             {% if selected_cart.coupon.is_subtractive %}
             <div class="d-grid pb-4 pt-2">
-                <div class="alert border-danger text-center" role="alert">
+                <div class="alert border-dark text-center" role="alert">
                     <i class="fa fa-gifts me-2"></i>
                     Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
                 </div>
             </div>
             {% else %}
             <div class="d-grid pb-4 pt-2">
-                <div class="alert border-danger text-center" role="alert">
+                <div class="alert border-dark text-center" role="alert">
                     <i class="fa fa-gifts"></i>
                     Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
                 </div>
@@ -43,13 +43,13 @@
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
                     {% if selected_cart.selected_products.all.count %}
-                    <span class="text-success">{{ selected_cart.selected_products.all.count }}</span>
+                    <span class="text-danger">{{ selected_cart.selected_products.all.count }}</span>
                     {% endif %}
                 </div>
 
                 <div>
                     <span>Total:</span>
-                    <span class="text-success">DZD {{ selected_cart.total_price|floatformat:"2g" }}</span>
+                    <span class="text-danger">DZD {{ selected_cart.total_price|floatformat:"2g" }}</span>
                 </div>
             </div>
             <ul class="list-group list-group-flush">
@@ -83,7 +83,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <span>
-                        <i class="feather-icon icon-shopping-cart me-1"></i> The cart is empty !
+                        <i class="feather-icon icon-shopping-cart me-1"></i> Your cart is empty !
                     </span>
                 </div>
             </div>
@@ -134,12 +134,12 @@
                 <div>
                     <span><i class="feather-icon icon-shopping-cart"></i></span>
                     {% if selected_cart.selected_products.all.count %}
-                    <span class="text-success">{{ selected_cart.selected_products.all.count }}</span>
+                    <span class="text-danger">{{ selected_cart.selected_products.all.count }}</span>
                     {% endif %}
                 </div>
                 <div>
                     <span>Total:</span>
-                    <span class="text-success">{{ selected_cart.total_price|floatformat:"2g" }} <small>DZD</small></span>
+                    <span class="text-danger">{{ selected_cart.total_price|floatformat:"2g" }} <small>DZD</small></span>
                 </div>
             </div>
             <ul class="list-group list-group-flush">
