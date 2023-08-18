@@ -8859,7 +8859,7 @@
 }
 
 .text-reset:hover {
-  color: var(--fc-primary)!important
+  color: var(--fc-danger)!important
 }
 
 .text-inverse {
