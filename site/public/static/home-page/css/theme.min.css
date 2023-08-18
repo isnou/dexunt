@@ -33404,7 +33404,7 @@ h3 {
 }
 
 .footer .social-links:hover {
-  color: var(--fc-primary)
+  color: var(--fc-danger)
 }
 
 .btn-social {
