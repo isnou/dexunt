@@ -196,7 +196,7 @@
     <div class="col-lg-6 col-12 mb-4">
         <div class="card card-body p-6 ">
             <address>
-                <strong>{{ address.municipality.en_name }}</strong>
+                <strong>{{ address.municipality.en_name|title }}</strong>
                 {% if address.default %}
                 <span class="badge bg-danger">Default</span>
                 {% else %}
@@ -204,14 +204,14 @@
                 {% endif %}
                 <br>
 
-                <p>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</p>
-                <p>{{ address.content }}</p>
+                <p>{{ address.municipality.province.en_name|title }} {{ address.municipality.en_name|title }}</p>
+                <p>{{ address.content|title }}</p>
                 <p>
                     {% if address.delivery_type == 'HOME' %}
-                    Delivery to home
+                    Delivery To Home
                     {% endif %}
                     {% if address.delivery_type == 'DESK' %}
-                    Delivery to desk
+                    Delivery To Desk
                     {% endif %}
                 </p>
             </address>
