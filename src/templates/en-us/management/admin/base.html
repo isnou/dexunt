@@ -570,7 +570,7 @@
 
             <!-- Flash -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'flash' %} active {% endif %}" href="{% url 'admin-manage-flash' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'flash' %} active {% endif %}" href="{% url 'admin-manage-flash' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-bolt nav-icon"></i>
                 <span class="nav-link-title">Flash</span>
               </a>
@@ -579,7 +579,7 @@
 
             <!-- Orders -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'admin-manage-orders' 'main' %}" data-placement="left">
+              <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" href="{% url 'admin-manage-orders' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-cart-shopping nav-icon"></i>
                 <span class="nav-link-title">Orders
                   {% if new_orders_count %}
