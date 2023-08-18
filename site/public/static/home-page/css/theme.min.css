@@ -14419,7 +14419,7 @@ fieldset:disabled .btn {
   --fc-navbar-padding-x: 0;
   --fc-navbar-padding-y: 0.5rem;
   --fc-navbar-color: #21313c;
-  --fc-navbar-hover-color: #0aad0a;
+  --fc-navbar-hover-color: #ff0000;
   --fc-navbar-disabled-color: rgba(0, 0, 0, .3);
   --fc-navbar-active-color: rgba(0, 0, 0, .9);
   --fc-navbar-brand-padding-y: 0.325rem;
