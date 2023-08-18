@@ -188,61 +188,36 @@ def order_page(request, action):
             'selected_order': selected_order,
             'province': province,
         }
-        if not request.user.is_authenticated:
-            return render(request, direction + '/home/regular/guest/partials/municipalities.html', sub_context)
-        else:
-            return render(request, direction + '/home/regular/member/partials/municipalities.html', sub_context)
+        return render(request, direction + '/home/regular/partials/municipalities.html', sub_context)
     if action == 'load_prices':
         if not request.user.is_authenticated:
             municipality_id = request.GET.get('municipality_id')
             municipality = Municipality.objects.all().get(id=municipality_id)
-
             selected_order.municipality = municipality
             selected_order.save()
-            sub_context = {
-                'selected_order': selected_order,
-            }
-            return render(request, direction + '/home/regular/guest/partials/prices.html', sub_context)
         else:
             address_id = request.GET.get('address_id')
             delivery_address = request.user.delivery_addresses.all().get(id=address_id)
             selected_order.delivery_type = delivery_address.delivery_type
             selected_order.municipality = delivery_address.municipality
             selected_order.save()
-
-            sub_context = {
-                'selected_order': selected_order,
-            }
-            return render(request, direction + '/home/regular/member/partials/prices.html', sub_context)
-    if action == 'create_new_address':
-        if request.method == 'POST':
-            source_page = request.POST.get('source_page', False)
-            municipality_id = request.POST.get('municipality_id', False)
-            municipality = Municipality.objects.all().get(id=municipality_id)
-            request.user.new_address(request, municipality)
-            if source_page == 'order-page':
-                return redirect('order-page', 'main')
-            if source_page == 'customer-address':
-                return redirect('customer-address', 'main')
+        sub_context = {
+            'selected_order': selected_order,
+        }
+        return render(request, direction + '/home/regular/partials/prices.html', sub_context)
     if action == 'load_summary':
         if not request.user.is_authenticated:
             delivery_type = request.GET.get('delivery_type')
             selected_order.delivery_type = delivery_type
             selected_order.save()
-
-            sub_context = {
-                'selected_order': selected_order,
-            }
-            return render(request, direction + '/home/regular/guest/partials/total-summary.html', sub_context)
         else:
             delivery_type = request.GET.get('delivery_type')
             selected_order.delivery_type = delivery_type
             selected_order.save()
-
-            sub_context = {
-                'selected_order': selected_order,
-            }
-            return render(request, direction + '/home/regular/member/partials/total-summary.html', sub_context)
+        sub_context = {
+            'selected_order': selected_order,
+        }
+        return render(request, direction + '/home/regular/partials/total-summary.html', sub_context)
     if action == 'place_order':
         selected_order.placing(request)
 
@@ -255,3 +230,13 @@ def order_page(request, action):
             'selected_order': selected_order,
         }
         return render(request, url, context)
+    if action == 'create_new_address':
+        if request.method == 'POST':
+            source_page = request.POST.get('source_page', False)
+            municipality_id = request.POST.get('municipality_id', False)
+            municipality = Municipality.objects.all().get(id=municipality_id)
+            request.user.new_address(request, municipality)
+            if source_page == 'order-page':
+                return redirect('order-page', 'main')
+            if source_page == 'customer-address':
+                return redirect('customer-address', 'main')
