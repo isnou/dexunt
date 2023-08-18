@@ -32810,8 +32810,8 @@ h3 {
 .nav-lb-tab .nav-item .nav-link.active,
 .nav-lb-tab .nav-item .nav-link:hover {
   background-color: transparent;
-  border-bottom: 2px solid var(--fc-black);
-  color: var(--fc-black)
+  border-bottom: 2px solid var(--fc-danger);
+  color: var(--fc-danger)
 }
 
 .nav-pills-dark .nav-item .nav-link {
@@ -35100,7 +35100,7 @@ table tr:last-child td {
 }
 
 .slider-nav .slick-slide.slick-current img {
-  border: 2px solid var(--fc-primary)
+  border: 2px solid var(--fc-danger)
 }
 
 .noUi-target {
