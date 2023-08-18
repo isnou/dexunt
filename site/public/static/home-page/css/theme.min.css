@@ -33584,7 +33584,7 @@ input::-webkit-outer-spin-button {
 }
 
 .docs-header .navbar .navbar-nav .nav-item .nav-link:hover {
-  color: var(--fc-black)
+  color: var(--fc-gray-200)
 }
 
 .docs-nav-sidebar {
