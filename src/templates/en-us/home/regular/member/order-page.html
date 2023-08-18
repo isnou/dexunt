@@ -33,7 +33,9 @@
         <div>
           <div class="mb-8">
             <h1 class="fw-bold mb-0">Checkout</h1>
-            <p class="mb-0">This order will get you {{ selected_order.points }} points.</p>
+              {% if selected_order.points %}
+            <p class="mb-0">Finish this order and collect {{ selected_order.points }} gift points.</p>
+              {% endif %}
           </div>
         </div>
       </div>
