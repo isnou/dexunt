@@ -15,7 +15,7 @@
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             </span>
             {% if selected_cart.selected_products.all.count %}
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{ selected_cart.selected_products.all.count }}
             </span>
             {% endif %}
@@ -25,14 +25,14 @@
             {% if selected_cart.coupon %}
             {% if selected_cart.coupon.is_subtractive %}
             <div class="d-grid pb-4 pt-2">
-                <div class="alert border-dark text-center" role="alert">
+                <div class="alert border-danger text-center" role="alert">
                     <i class="fa fa-gifts me-2"></i>
                     Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>DZD</small> Discount
                 </div>
             </div>
             {% else %}
             <div class="d-grid pb-4 pt-2">
-                <div class="alert border-dark text-center" role="alert">
+                <div class="alert border-danger text-center" role="alert">
                     <i class="fa fa-gifts"></i>
                     Congratulation {{ selected_cart.coupon.value|floatformat:"0g" }} <small>%</small> Discount
                 </div>
