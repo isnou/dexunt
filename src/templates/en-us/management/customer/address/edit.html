@@ -314,15 +314,15 @@
         <div class="modal-body">
           <h6>Are you sure you want to delete this address?</h6>
           <address>
-            <strong>{{ address.municipality.en_name }}</strong><br>
-            <p>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</p><br>
-            <p>{{ address.content }}</p><br>
+            <strong>{{ address.municipality.en_name|title }}</strong><br>
+            <p>{{ address.municipality.province.en_name|title }}, {{ address.municipality.en_name|title }}</p><br>
+            <p>{{ address.content|title }}</p><br>
             <p>
               {% if address.delivery_type == 'HOME' %}
-              Delivery to home
+              Delivery To Home
               {% endif %}
               {% if address.delivery_type == 'DESK' %}
-              Delivery to desk
+              Delivery To Desk
               {% endif %}
             </p><br>
           </address>
