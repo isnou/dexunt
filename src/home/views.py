@@ -235,6 +235,10 @@ def order_page(request, action):
             }
             return render(request, direction + '/home/regular/guest/partials/total-summary.html', sub_context)
         else:
+            delivery_type = request.GET.get('delivery_type')
+            selected_order.delivery_type = delivery_type
+            selected_order.save()
+
             sub_context = {
                 'selected_order': selected_order,
             }
