@@ -11840,9 +11840,9 @@ progress {
 
 .form-control:focus {
   background-color: #fff;
-  border-color: #85d685;
-  box-shadow: 0 0 0 .25rem rgba(10, 173, 10, .25);
-  color: #21313c;
+  border-color: #fff;
+  box-shadow: 0 0 0 .25rem rgba(0, 0, 0, .25);
+  color: #fff;
   outline: 0
 }
 
@@ -12014,7 +12014,7 @@ textarea.form-control-lg {
 }
 
 .form-select:focus {
-  border-color: #fff;
+  border-color: #85d685;
   box-shadow: 0 0 0 .25rem rgba(10, 173, 10, .25);
   outline: 0
 }
