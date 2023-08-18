@@ -217,7 +217,7 @@
 
             <div class="mt-2">
                 <a href="#" class="text-inherit">Edit </a>
-                <a href="#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal_{{ address.id }}">Delete</a>
+                <a href="#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
             </div>
         </div>
     </div>
@@ -299,13 +299,13 @@
     </div>
 </div>
 <!-- delete address modal -->
-<div class="modal fade" id="deleteModal_{{ address.id }}" tabindex="-1" aria-labelledby="deleteModalLabel_{{ address.id }}" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <!-- modal content -->
       <div class="modal-content">
         <!-- modal header -->
         <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel_{{ address.id }}">Delete address</h5>
+          <h5 class="modal-title" id="deleteModalLabel">Delete address</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <!-- modal body -->
