@@ -11892,14 +11892,14 @@ progress {
 }
 
 .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
-  background-color: #ff0000
+  background-color: #e0e4e3
 }
 
 .form-control-plaintext {
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0;
-  color: #5c6c75;
+  color: #fff;
   display: block;
   line-height: 1.6;
   margin-bottom: 0;
