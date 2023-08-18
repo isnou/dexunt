@@ -193,16 +193,27 @@ def order_page(request, action):
         else:
             return render(request, direction + '/home/regular/member/partials/municipalities.html', sub_context)
     if action == 'load_prices':
-        municipality_id = request.GET.get('municipality_id')
+        if not request.user.is_authenticated:
+            municipality_id = request.GET.get('municipality_id')
+            municipality = Municipality.objects.all().get(id=municipality_id)
 
-        municipality = Municipality.objects.all().get(id=municipality_id)
+            selected_order.municipality = municipality
+            selected_order.save()
+            sub_context = {
+                'selected_order': selected_order,
+            }
+            return render(request, direction + '/home/regular/guest/partials/prices.html', sub_context)
+        else:
+            address_id = request.GET.get('address_id')
+            delivery_address = request.user.delivery_addresses.all().get(id=address_id)
+            selected_order.delivery_type = delivery_address.delivery_type
+            selected_order.municipality = delivery_address.municipality
+            selected_order.save()
 
-        selected_order.municipality = municipality
-        selected_order.save()
-        sub_context = {
-            'selected_order': selected_order,
-        }
-        return render(request, direction + '/home/regular/guest/partials/prices.html', sub_context)
+            sub_context = {
+                'selected_order': selected_order,
+            }
+            return render(request, direction + '/home/regular/member/partials/prices.html', sub_context)
     if action == 'create_new_address':
         if request.method == 'POST':
             source_page = request.POST.get('source_page', False)
