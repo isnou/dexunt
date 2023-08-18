@@ -32810,8 +32810,8 @@ h3 {
 .nav-lb-tab .nav-item .nav-link.active,
 .nav-lb-tab .nav-item .nav-link:hover {
   background-color: transparent;
-  border-bottom: 2px solid var(--fc-primary);
-  color: var(--fc-primary)
+  border-bottom: 2px solid var(--fc-black);
+  color: var(--fc-black)
 }
 
 .nav-pills-dark .nav-item .nav-link {
@@ -33656,7 +33656,7 @@ input::-webkit-outer-spin-button {
 
 .docs-nav-sidebar .navbar-nav .nav-item .nav-link:hover {
   background-color: var(--fc-gray-200);
-  color: var(--fc-black)!important
+  color: var(--fc-primary)!important
 }
 
 .docs-nav-sidebar .navbar-nav .nav-item .nav-link.active {
