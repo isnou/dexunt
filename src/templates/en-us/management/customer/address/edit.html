@@ -204,8 +204,8 @@
                 {% endif %}
                 <br>
 
-                <p>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</p><br>
-                <p>{{ address.content }}</p><br>
+                <p>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</p>
+                <p>{{ address.content }}</p>
                 <p>
                     {% if address.delivery_type == 'HOME' %}
                     Delivery to home
@@ -213,7 +213,7 @@
                     {% if address.delivery_type == 'DESK' %}
                     Delivery to desk
                     {% endif %}
-                </p><br>
+                </p>
             </address>
 
             <div class="mt-2">
