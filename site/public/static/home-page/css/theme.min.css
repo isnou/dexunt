@@ -33584,7 +33584,7 @@ input::-webkit-outer-spin-button {
 }
 
 .docs-header .navbar .navbar-nav .nav-item .nav-link:hover {
-  color: var(--fc-gray-200)
+  color: var(--fc-black)
 }
 
 .docs-nav-sidebar {
@@ -33656,7 +33656,7 @@ input::-webkit-outer-spin-button {
 
 .docs-nav-sidebar .navbar-nav .nav-item .nav-link:hover {
   background-color: var(--fc-gray-200);
-  color: var(--fc-primary)!important
+  color: var(--fc-black)!important
 }
 
 .docs-nav-sidebar .navbar-nav .nav-item .nav-link.active {
