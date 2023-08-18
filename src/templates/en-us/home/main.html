@@ -74,8 +74,8 @@
                 {% endfor %}
             </ul>
             <div class="mt-2 d-grid">
-                <a href="{% url 'order-page' 'main' %}" class="btn btn-primary">Checkout</a>
-                <a href="{% url 'shopping-cart' 'main' %}" class="btn btn-light mt-2">View Cart</a>
+                <a href="{% url 'order-page' 'main' %}" class="btn btn-danger">Checkout</a>
+                <a href="{% url 'shopping-cart' 'main' %}" class="btn btn-outline-danger mt-2">View Cart</a>
             </div>
         </div>
         {% else %}
@@ -168,8 +168,8 @@
                 {% endfor %}
             </ul>
             <div class="mt-2 d-grid">
-                <a href="{% url 'order-page' 'main' %}" class="btn btn-outline-danger">Checkout</a>
-                <a href="{% url 'shopping-cart' 'main' %}" class="btn btn-danger mt-2">View Cart</a>
+                <a href="{% url 'order-page' 'main' %}" class="btn btn-danger">Checkout</a>
+                <a href="{% url 'shopping-cart' 'main' %}" class="btn btn-outline-danger mt-2">View Cart</a>
             </div>
         </div>
         {% else %}
