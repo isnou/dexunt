@@ -11899,7 +11899,7 @@ progress {
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0;
-  color: #fff;
+  color: #5c6c75;
   display: block;
   line-height: 1.6;
   margin-bottom: 0;
@@ -12014,7 +12014,7 @@ textarea.form-control-lg {
 }
 
 .form-select:focus {
-  border-color: #85d685;
+  border-color: #fff;
   box-shadow: 0 0 0 .25rem rgba(10, 173, 10, .25);
   outline: 0
 }
