@@ -88,21 +88,16 @@
                       <input class="form-check-input" type="radio" value="{{ address.id }}" name="address_id" hx-get="{% url 'order-page' 'load_prices' %}" hx-trigger="change" hx-target="#prices">
                       {% endif %}
                       <label class="form-check-label text-dark">
-                        {{ address.content }}
+                        <strong>{{ address.municipality.en_name }}</strong>
+                          {% if address.default %}
+                          [ Default ]
+                          {% endif %}
                       </label>
-                      {% if address.default %}
-                      <span class="badge bg-danger">Default</span>
-                      {% endif %}
                     </div>
 
-                    <address>
-                      <strong>{{ address.municipality.province.en_name }} {{ address.municipality.en_name }}</strong> <br>
-                      {% if address.delivery_type == 'HOME' %}
-                      Delivery to home<br>
-                      {% endif %}
-                      {% if address.delivery_type == 'DESK' %}
-                      Delivery to desk<br>
-                      {% endif %}
+                      <address>
+                          <p>{{ address.municipality.province.en_name|title }} {{ address.municipality.en_name|title }}</p>
+                          <p>{{ address.content|title }}</p>
                     </address>
                   </div>
                 </div>
