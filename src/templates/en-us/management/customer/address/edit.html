@@ -200,7 +200,7 @@
                 {% if address.default %}
                 <span class="badge bg-danger">Default</span>
                 {% else %}
-                <a href="#" class="link-primary">Set as Default</a>
+                <a href="{% url 'customer-address' 'set_address_as_default' %}?address_id={{ address.id }}" class="link-primary">Set as Default</a>
                 {% endif %}
                 <br>
 
@@ -330,5 +330,44 @@
       </div>
     </div>
   </div>
+
+<!-- edit address modal -->
+<div class="modal fade" id="editModal_{{ address.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- modal body -->
+            <div class="modal-body p-6">
+                <div class="d-flex justify-content-between mb-5">
+                    <!-- heading -->
+                    <div>
+                        <h5 class="h6 mb-1">Edit Address</h5>
+                        <p class="small mb-0 text-wrap">{{ address.municipality.province.en_name|title }} {{ address.municipality.en_name|title }}, {{ address.content|title }}.</p>
+                    </div>
+                    <div>
+                        <!-- button -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="row g-3">
+                    <form action="{% url 'customer-address' 'edit_address' %}" class="needs-validation" novalidate method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="source_page" value='{{ source_page }}'>
+
+                        <div class="col-12 mb-4">
+                            <input type="text" class="form-control" name="content" value="{{ address.content }}" placeholder="Hayet city, Villa 155">
+                        </div>
+
+                        <!-- button -->
+                        <div class="col-12 text-end">
+                          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+                          <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endfor %}
 {% endblock %}
