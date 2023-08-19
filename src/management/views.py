@@ -1509,7 +1509,7 @@ def customer_address(request, action):
             if source_page == 'customer-address':
                 return redirect('customer-address', 'main')
     if action == 'delete_address':
-        request.GET.get('address_id')
+        address_id = request.GET.get('address_id')
         delivery_address = request.user.delivery_addresses.all().get(id=address_id)
         delivery_address.delete()
         return redirect('customer-address', 'main')
