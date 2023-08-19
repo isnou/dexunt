@@ -916,11 +916,22 @@
                             <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
-                                <div class="mb-8">
-                                    <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
-                                  <span class="invalid-feedback text-start">please provide a correct username.</span>
-                                    <label>Username</label>
+                              <div class="col-md-4">
+    <label for="validationCustomUsername" class="form-label">Username</label>
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+      <div class="invalid-feedback">
+        Please choose a username.
+      </div>
+    </div>
+  </div>
+                              
 
+                                <div class="form-floating mb-8">
+                                    <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
+                                    <label>Username</label>
+                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
                                 </div>
 
                                 <div class="form-floating mb-8">
