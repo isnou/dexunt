@@ -206,7 +206,7 @@ class User(AbstractUser):
         super().save()
     def set_address_as_default(self, request):
         address_id = request.GET.get('address_id')
-        selected_address = self.user.delivery_addresses.all().get(id=address_id)
+        selected_address = self.delivery_addresses.all().get(id=address_id)
         for a in self.delivery_addresses.all():
             a.default = False
             a.save()
@@ -216,7 +216,7 @@ class User(AbstractUser):
         if request.method == 'POST':
             content = request.POST.get('content', False)
             address_id = request.GET.get('address_id')
-            selected_address = self.user.delivery_addresses.all().get(id=address_id)
+            selected_address = self.delivery_addresses.all().get(id=address_id)
             selected_address.content = content
             selected_address.save()
     def new_address(self, request, municipality):
