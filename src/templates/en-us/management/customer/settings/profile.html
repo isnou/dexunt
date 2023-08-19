@@ -190,32 +190,42 @@
 </div>
 
 <div>
-  <h5 class="mb-4">Account details</h5>
-  <div class="row">
-    <div class="col-lg-5">
-      <form>
-        <!-- input -->
-        <div class="mb-3">
-          <label class="form-label">Name</label>
-          <input type="text" class="form-control" placeholder="jitu chauhan">
+    <h5 class="mb-4">Account details</h5>
+    <div class="row">
+        <div class="col-lg-5">
+            <form action="{% url 'customer-settings' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
+                {% csrf_token %}
+                
+                <!-- input -->
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" value="{{ user.username }}" required>
+                    <span class="invalid-feedback text-start">This field is required.</span>
+                </div>
+
+
+                <!-- input -->
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" placeholder="jitu chauhan">
+                </div>
+                <!-- input -->
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" placeholder="example@gmail.com">
+                </div>
+                <!-- input -->
+                <div class="mb-5">
+                  <label class="form-label">Phone</label>
+                  <input type="text" class="form-control" placeholder="Phone number">
+                </div>
+                <!-- button -->
+                <div class="mb-3">
+                  <button class="btn btn-primary">Save Details</button>
+                </div>
+            </form>
         </div>
-        <!-- input -->
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-control" placeholder="example@gmail.com">
-        </div>
-        <!-- input -->
-        <div class="mb-5">
-          <label class="form-label">Phone</label>
-          <input type="text" class="form-control" placeholder="Phone number">
-        </div>
-        <!-- button -->
-        <div class="mb-3">
-          <button class="btn btn-primary">Save Details</button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 
 <hr class="my-10">
