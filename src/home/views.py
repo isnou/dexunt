@@ -230,13 +230,3 @@ def order_page(request, action):
             'selected_order': selected_order,
         }
         return render(request, url, context)
-    if action == 'create_new_address':
-        if request.method == 'POST':
-            source_page = request.POST.get('source_page', False)
-            municipality_id = request.POST.get('municipality_id', False)
-            municipality = Municipality.objects.all().get(id=municipality_id)
-            request.user.new_address(request, municipality)
-            if source_page == 'order-page':
-                return redirect('order-page', 'main')
-            if source_page == 'customer-address':
-                return redirect('customer-address', 'main')

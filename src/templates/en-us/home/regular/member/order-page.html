@@ -198,7 +198,7 @@
                 </div>
                 <!-- row -->
                 <div class="row g-3">
-                    <form action="{% url 'order-page' 'create_new_address' %}" class="needs-validation" novalidate method="post">
+                    <form action="{% url 'customer-address' 'create_new_address' %}" class="needs-validation" novalidate method="post">
                         {% csrf_token %}
                         <input type="hidden" name="source_page" value='{{ source_page }}'>
 
