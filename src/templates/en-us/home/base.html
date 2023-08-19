@@ -915,11 +915,11 @@
                         <div class="py-6">
                             <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
-                              
+
                                 <div class="form-floating has-validation mb-8">
                                     <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
                                     <label>Username</label>
-                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
+                                    <span class="invalid-tooltip text-start">please provide a correct username.</span>
                                 </div>
 
                                 <div class="form-floating mb-8">
@@ -932,10 +932,11 @@
                                     <button type="submit" class="btn btn-danger">submit</button>
                                 </div>
                             </form>
+
                             <div class="mt-4">
                                 <small>
                                     You don't have an account ?
-                                    <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#register_modal">Register</a>
+                                    <a href="#" class="text-reset ms-1" data-bs-toggle="modal" data-bs-target="#register_modal">Register</a>
                                     ,it's free.
                                 </small>
                             </div>
@@ -1001,7 +1002,7 @@
                             <div class="mt-4">
                                 <small>
                                     Already have an account ?
-                                    <a href="#" class="ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
+                                    <a href="#" class="text-reset ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
                                 </small>
                             </div>
                         </div>
