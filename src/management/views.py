@@ -1513,6 +1513,12 @@ def customer_address(request, action):
         delivery_address = request.user.delivery_addresses.all().get(id=address_id)
         delivery_address.delete()
         return redirect('customer-address', 'main')
+    if action == 'set_address_as_default':
+        request.user.set_address_as_default(request)
+        return redirect('customer-address', 'main')
+    if action == 'edit_address':
+        request.user.edit_address(request)
+        return redirect('customer-address', 'main')
 #                                                                        #
 @login_required
 def customer_wallet(request, action):

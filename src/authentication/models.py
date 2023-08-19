@@ -212,6 +212,13 @@ class User(AbstractUser):
             a.save()
         selected_address.default = True
         selected_address.save()
+    def edit_address(self, request):
+        if request.method == 'POST':
+            content = request.POST.get('content', False)
+            address_id = request.GET.get('address_id')
+            selected_address = self.user.delivery_addresses.all().get(id=address_id)
+            selected_address.content = content
+            selected_address.save()
     def new_address(self, request, municipality):
         if request.method == 'POST':
             content = request.POST.get('content', False)
