@@ -215,7 +215,7 @@ class User(AbstractUser):
     def edit_address(self, request):
         if request.method == 'POST':
             content = request.POST.get('content', False)
-            address_id = request.GET.get('address_id')
+            address_id = request.POST.get('address_id')
             selected_address = self.delivery_addresses.all().get(id=address_id)
             selected_address.content = content
             selected_address.save()

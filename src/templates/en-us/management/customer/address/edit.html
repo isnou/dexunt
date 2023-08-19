@@ -353,6 +353,7 @@
                     <form action="{% url 'customer-address' 'edit_address' %}" class="needs-validation" novalidate method="post">
                         {% csrf_token %}
                         <input type="hidden" name="source_page" value='{{ source_page }}'>
+                        <input type="hidden" name="address_id" value='{{ address.id }}'>
 
                         <div class="col-12 mb-4">
                             <input type="text" class="form-control" name="content" value="{{ address.content }}" placeholder="Hayet city, Villa 155">
