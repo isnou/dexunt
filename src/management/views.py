@@ -1003,7 +1003,6 @@ def manage_coupon(request, action):
 # ---------------------------------------------------------------------- #
 
 
-
 # ------------------------------- cash --------------------------------- #
 @login_required
 def cash_wallet(request, action):
@@ -1209,7 +1208,6 @@ def cash_providers(request, action):
         return render(request, url, context)
 #                                                                        #
 # ---------------------------------------------------------------------- #
-
 
 
 # ------------------------------ member -------------------------------- #
@@ -1476,11 +1474,31 @@ def customer_settings(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/settings/profile.html"
+        update_profile_form = UpdateProfileForm()
 
         context = {
             'nav_side': 'settings',
+            'update_profile_form': update_profile_form,
         }
         return render(request, url, context)
+    if action == 'edit_profile':
+        if request.method == 'POST':
+            update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
+            if update_profile_form.is_valid():
+                user = update_profile_form.save()
+                login(request, user)
+            else:
+                request.session['error_messages'] = update_profile_form.errors
+            return redirect('customer-settings', 'main')
+    if action == 'change_password':
+        if request.method == 'POST':
+            change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+            if change_password_form.is_valid():
+                change_password_form.save()
+                update_session_auth_hash(request, change_password_form.user)
+            else:
+                request.session['error_messages'] = change_password_form.errors
+            return redirect('customer-settings', 'main')
 #                                                                        #
 @login_required
 def customer_address(request, action):
