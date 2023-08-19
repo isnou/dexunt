@@ -114,7 +114,6 @@ class DeliveryAddress(models.Model):
         'authentication.User', on_delete=models.CASCADE, related_name='delivery_addresses', null=True)
     # ---- content ---- #
     content = models.CharField(max_length=500, blank=True, null=True)
-    delivery_type = models.CharField(max_length=100, default='HOME')
 # ---------------------------------------------------------------------- #
 
 
@@ -205,6 +204,14 @@ class User(AbstractUser):
         if new_role == 'cash':
             self.is_cash_manager = True
         super().save()
+    def set_address_as_default(self, request):
+        address_id = request.GET.get('address_id')
+        selected_address = self.user.delivery_addresses.all().get(id=address_id)
+        for a in self.delivery_addresses.all():
+            a.default = False
+            a.save()
+        selected_address.default = True
+        selected_address.save()
     def new_address(self, request, municipality):
         if request.method == 'POST':
             content = request.POST.get('content', False)
@@ -212,8 +219,6 @@ class User(AbstractUser):
             new_address = DeliveryAddress(content=content,
                                           municipality=municipality,
                                           user=self)
-            if request.POST.get('deliver_type', False):
-                new_address.delivery_type = request.POST.get('deliver_type', False)
             if default == 'true':
                 for a in self.delivery_addresses.all():
                     a.default = False
