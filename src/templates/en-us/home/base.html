@@ -916,10 +916,10 @@
                             <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
-                                <div class="input-group mb-8">
+                                <div class="form-floating mb-8">
                                     <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
                                     <label>Username</label>
-                                    <span class="invalid-feedback d-block text-start">please provide a correct username.</span>
+                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
                                 </div>
 
                                 <div class="form-floating mb-8">
@@ -1096,8 +1096,7 @@
 <script src="{% static 'home-page/js/vendors/increment-value.js' %}"></script>
 <!-- HTMX -->
 <script src="{% static 'htmx/htmx.min.js' %}"></script>
-<!-- Mask inputs -->
-<script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
+
 <!-- Form Validation JS -->
 <script>
 (function() {
