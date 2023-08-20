@@ -12631,9 +12631,8 @@ textarea.form-control.is-valid {
   color: var(--fc-danger-text);
   display: none;
   font-size: .875em;
+  margin-top: .25rem;
   width: 100%
-  position: absolute;
-  top: 3.0em
 }
 
 .invalid-tooltip {
