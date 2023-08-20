@@ -925,7 +925,7 @@
                               </div>
 
                                 <div class="form-floating mb-8">
-                                    <input type="text" class="form-control was-validated" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
+                                    <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
                                     <label>Username</label>
                                     <span class="invalid-feedback text-start">please provide a correct username.</span>
                                 </div>
@@ -1117,8 +1117,8 @@
         event.preventDefault()
         event.stopPropagation()
       }
-      form.classList.add('was-validated')
     }, false)
+    form.classList.add('was-validated')
   })
 })()
 </script>
