@@ -916,13 +916,6 @@
                             <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
-                              <div class="mb-3">
-    <input type="text" class="form-control" value="Form control" aria-describedby="messageFeedbackFormControl" required>
-    <div class="invalid-feedback" id="messageFeedbackFormControl">
-      Example valid feedback text
-    </div>
-  </div>
-
                               <div class="col-md-3 mb-6">
                                 <label for="validationCustom05" class="form-label">Zip</label>
                                 <input type="text" class="form-control" id="validationCustom05" required>
@@ -1124,7 +1117,6 @@
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
-          form.reportValidity()
         }
 
         form.classList.add('was-validated')
