@@ -929,7 +929,7 @@
                                 </div>
 
                                 <div class="form-floating mb-8">
-                                    <input type="password" class="form-control needs-validation" id="password" name="{{ login_form.password.name }}" minlength="{{ login_form.password.field.min_length }}" placeholder="{{ login_form.password.label }}" required>
+                                    <input type="password" class="form-control" id="password" name="{{ login_form.password.name }}" minlength="{{ login_form.password.field.min_length }}" placeholder="{{ login_form.password.label }}" required>
                                     <label>Password</label>
                                     <span class="invalid-feedback text-start">please provide a correct password.</span>
                                 </div>
@@ -1108,7 +1108,7 @@
 <script>
 (() => {
   'use strict'
-  const forms = document.querySelectorAll('.needs-validation')
+  const forms = document.querySelectorAll('.form-control')
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
       if (!form.checkValidity()) {
