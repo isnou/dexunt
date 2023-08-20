@@ -927,7 +927,7 @@
                                 <div class="form-floating mb-8">
                                     <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
                                     <label>Username</label>
-                                    <span class="invalid-feedback text-start">please provide a correct username.</span>
+                                    <span class="invalid-feedback was-validated text-start">please provide a correct username.</span>
                                 </div>
 
                                 <div class="form-floating mb-8">
@@ -1108,20 +1108,18 @@
 <script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
 <!-- Form Validation JS -->
 <script>
-(function () {
+(() => {
   'use strict'
-  var forms = document.querySelectorAll('.needs-validation')
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
+  const forms = document.querySelectorAll('.needs-validation')
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
 })()
 </script>
 
