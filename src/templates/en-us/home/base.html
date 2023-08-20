@@ -913,7 +913,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-10">
                         <div class="py-6">
-                            <form action="{% url 'login' %}" class="form-needs-validation" novalidate method="post">
+                            <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
                               <div class="col-md-3 mb-6">
@@ -1108,18 +1108,21 @@
 <script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
 <!-- Form Validation JS -->
 <script>
-(() => {
+(function () {
   'use strict'
-  const forms = document.querySelectorAll('.form-needs-validation')
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      form.classList.add('was-validated')
-    }, false)
-  })
+  var forms = document.querySelectorAll('.needs-validation')
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+          form.reportValidity()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
 })()
 </script>
 
