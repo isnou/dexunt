@@ -1118,7 +1118,7 @@
         event.stopPropagation()
       }
       form.classList.add('was-validated')
-      const elem = form.getElementById("invalid-feedback")
+      const elem = document.getElementById("invalid-feedback")
       elem.add('d-block')
     }, false)
   })
