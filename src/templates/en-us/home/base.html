@@ -1118,8 +1118,8 @@
         event.stopPropagation()
       }
       form.classList.add('was-validated')
+      form.siblings(".invalid-feedback").css("display", "block");
     }, false)
-  });
   })
 })()
 </script>
