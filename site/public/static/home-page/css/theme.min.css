@@ -12539,13 +12539,10 @@ textarea.form-control-lg {
   z-index: 5
 }
 
-.valid-feedback.is-valid,
-.was-validated .valid-feedback:valid {
-  display: block
-}
-
-.valid-tooltip.is-valid,
-.was-validated .valid-tooltip:valid {
+.is-valid~.valid-feedback,
+.is-valid~.valid-tooltip,
+.was-validated:valid~.valid-feedback,
+.was-validated:valid~.valid-tooltip {
   display: block
 }
 
@@ -12652,13 +12649,10 @@ textarea.form-control.is-valid {
   z-index: 5
 }
 
-.invalid-feedback.is-invalid,
-.was-validated .invalid-feedback:invalid {
-  display: block
-}
-
-.invalid-tooltip.is-invalid,
-.was-validated .valid-tooltip:invalid {
+.is-invalid~.invalid-feedback,
+.is-invalid~.invalid-tooltip,
+.was-validated:invalid~.invalid-feedback,
+.was-validated:invalid~.invalid-tooltip {
   display: block
 }
 
