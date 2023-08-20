@@ -916,7 +916,7 @@
                             <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
-                                <div class="input-group mb-8">
+                                <div class="form-floating mb-8">
                                     <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
                                     <label>Username</label>
                                     <span class="invalid-feedback text-start">please provide a correct username.</span>
@@ -1103,21 +1103,21 @@
 
 <!-- Form Validation JS -->
 <script>
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-  var forms = document.getElementsByClassName('needs-validation');
-  var validation = Array.prototype.filter.call(forms, function(form) {
-    form.addEventListener('submit', function(event) {
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
+(function () {
+  'use strict'
+  var forms = document.querySelectorAll('.needs-validation')
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
         }
-       form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 </script>
 
 </body>
