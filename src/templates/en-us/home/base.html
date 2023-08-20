@@ -916,6 +916,14 @@
                             <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
                                 {% csrf_token %}
 
+                              <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="validationCustom05" required>
+    <div class="invalid-feedback">
+      Please provide a valid zip.
+    </div>
+  </div>
+
                                 <div class="form-floating mb-8">
                                     <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
                                     <label>Username</label>
