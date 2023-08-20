@@ -12629,7 +12629,7 @@ textarea.form-control.is-valid {
 
 .invalid-feedback {
   color: var(--fc-danger-text);
-  display: block;
+  display: none;
   font-size: .875em;
   margin-top: .25rem;
   width: 100%
