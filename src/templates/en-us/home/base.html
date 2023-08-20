@@ -1114,7 +1114,7 @@
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
       if (!form.checkValidity()) {
-        event.stopPropagation()
+        event.preventDefault()
       }
       form.classList.add('was-validated')
     }, false)
