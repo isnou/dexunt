@@ -12539,8 +12539,13 @@ textarea.form-control-lg {
   z-index: 5
 }
 
-.was-validated:valid~.valid-feedback,
-.was-validated:valid~.valid-tooltip {
+.valid-feedback.is-valid,
+.was-validated .valid-feedback:valid {
+  display: block
+}
+
+.valid-tooltip.is-valid,
+.was-validated .valid-tooltip:valid {
   display: block
 }
 
@@ -12647,9 +12652,13 @@ textarea.form-control.is-valid {
   z-index: 5
 }
 
+.invalid-feedback.is-invalid,
+.was-validated .invalid-feedback:invalid {
+  display: block
+}
 
-.was-validated:invalid~.invalid-feedback,
-.was-validated:invalid~.invalid-tooltip {
+.invalid-tooltip.is-invalid,
+.was-validated .valid-tooltip:invalid {
   display: block
 }
 
