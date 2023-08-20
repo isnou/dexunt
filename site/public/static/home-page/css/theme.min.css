@@ -12649,15 +12649,9 @@ textarea.form-control.is-valid {
   z-index: 5
 }
 
-.is-invalid~.invalid-feedback {
-  display: block
-}
-.is-invalid~.invalid-tooltip {
-  display: block
-}
-.was-validated:invalid~.invalid-feedback {
-  display: block
-}
+.is-invalid~.invalid-feedback,
+.is-invalid~.invalid-tooltip,
+.was-validated:invalid~.invalid-feedback,
 .was-validated:invalid~.invalid-tooltip {
   display: block
 }
