@@ -1475,7 +1475,7 @@ def customer_settings(request, action):
     if action == 'main':
         url = direction + "/management/customer/settings/profile.html"
         update_profile_form = UpdateProfileForm()
-        password_form = PasswordChangeForm()
+        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
 
         context = {
             'nav_side': 'settings',
