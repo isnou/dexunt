@@ -241,30 +241,32 @@
 
 <div class="pe-lg-14">
     <h5 class="mb-4">Password</h5>
-    <form action="{% url 'customer-settings' 'edit_profile' %}" class="js-validate need-validate row row-cols-1 row-cols-lg-2" novalidate method="post">
+    <form action="{% url 'customer-settings' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
         {% csrf_token %}
 
         <div class="form-floating mb-8">
             <input type="password" class="form-control" name="{{ password_form.old_password.name }}" maxlength="8" placeholder="Enter current password" required>
-            <label>Old Password</label>
-            <span class="invalid-feedback text-start">please provide a correct username.</span>
+            <label>Current Password</label>
+            <span class="invalid-feedback text-start">please provide a correct password.</span>
         </div>
 
-    <!-- input -->
-    <div class="mb-3 col">
-      <label class="form-label">New Password</label>
-      <input type="password" class="form-control" placeholder="**********">
-    </div>
-    <!-- input -->
-    <div class="mb-3 col">
-      <label class="form-label">Current Password</label>
-      <input type="password" class="form-control" placeholder="**********">
-    </div>
-    <!-- input -->
-    <div class="col-12">
-      <p class="mb-4">Can’t remember your current password?<a href="account-settings.html#"> Reset your password.</a></p>
-      <a href="account-settings.html#" class="btn btn-primary">Save Password</a>
-    </div>
+        <div class="form-floating mb-8">
+            <input type="password" class="form-control" name="{{ password_form.new_password1.name }}" maxlength="8" placeholder="Enter new password" required>
+            <label>New Password</label>
+            <span class="invalid-feedback text-start">please provide a correct password.</span>
+        </div>
+
+        <div class="form-floating mb-8">
+            <input type="password" class="form-control" name="{{ password_form.new_password2.name }}" maxlength="8" placeholder="Reenter new password" required>
+            <label>Confirmation</label>
+            <span class="invalid-feedback text-start">please provide a correct password.</span>
+        </div>
+
+
+        <div class="col-12">
+            <p class="mb-4">Can’t remember your current password?<a href="account-settings.html#"> Reset your password.</a></p>
+            <a href="account-settings.html#" class="btn btn-primary">Save Password</a>
+        </div>
   </form>
 </div>
 
