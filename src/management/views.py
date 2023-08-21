@@ -1475,10 +1475,12 @@ def customer_settings(request, action):
     if action == 'main':
         url = direction + "/management/customer/settings/profile.html"
         update_profile_form = UpdateProfileForm()
+        password_form = PasswordChangeForm()
 
         context = {
             'nav_side': 'settings',
             'update_profile_form': update_profile_form,
+            'password_form': password_form,
         }
         return render(request, url, context)
     if action == 'edit_profile':
