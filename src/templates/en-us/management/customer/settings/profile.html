@@ -195,6 +195,7 @@
         <div class="col-lg-8">
             <form action="{% url 'customer-settings' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
                 {% csrf_token %}
+
                 <div class="form-floating mb-8">
                     <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" maxlength="{{ update_profile_form.username.field.max_length }}" value="{{ user.username }}" placeholder="Username" required>
                     <label>Username</label>
@@ -228,9 +229,9 @@
                     <label>Phone</label>
                 </div>
 
-                <!-- button -->
+
                 <div class="mb-3">
-                    <button class="btn btn-primary">Save Details</button>
+                    <button class="btn btn-danger">Save Details</button>
                 </div>
             </form>
         </div>
@@ -241,7 +242,7 @@
 
 <div class="pe-lg-14">
     <h5 class="mb-4">Password</h5>
-    <form action="{% url 'customer-settings' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
+    <form action="{% url 'customer-settings' 'edit_password' %}" class="js-validate need-validate" novalidate method="post">
         {% csrf_token %}
 
         <div class="form-floating mb-8">
@@ -264,8 +265,8 @@
 
 
         <div class="col-12">
-            <p class="mb-4">Can’t remember your current password?<a href="account-settings.html#"> Reset your password.</a></p>
-            <a href="account-settings.html#" class="btn btn-primary">Save Password</a>
+            <p class="mb-4">Can’t remember your current password?<a href="#"> Click here.</a></p>
+            <a href="account-settings.html#" class="btn btn-outline-danger">Save Password</a>
         </div>
   </form>
 </div>

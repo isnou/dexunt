@@ -1492,7 +1492,7 @@ def customer_settings(request, action):
             else:
                 request.session['error_messages'] = update_profile_form.errors
             return redirect('customer-settings', 'main')
-    if action == 'change_password':
+    if action == 'edit_password':
         if request.method == 'POST':
             change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
             if change_password_form.is_valid():
