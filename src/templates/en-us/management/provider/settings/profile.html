@@ -34,6 +34,44 @@
         <form action="{% url 'provider-profile' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
 
+          <div class="mb-4">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" value="{{ user.username }}" required>
+            <span class="invalid-feedback text-start">This field is required.</span>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-4">
+                <label class="form-label">First name</label>
+                {% if user.first_name %}
+                <input type="text" class="form-control" name="{{ update_profile_form.first_name.name }}" value="{{ user.first_name }}">
+                {% else %}
+                <input type="text" class="form-control" name="{{ update_profile_form.first_name.name }}" placeholder="Clarice">
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="mb-4">
+                <label class="form-label">Last name</label>
+                {% if user.last_name %}
+                <input type="text" class="form-control" name="{{ update_profile_form.last_name.name }}" value="{{ user.last_name }}">
+                {% else %}
+                <input type="text" class="form-control" name="{{ update_profile_form.last_name.name }}" placeholder="Boone">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Phone <span class="form-label-secondary">(Optional)</span></label>
+            {% if user.phone_number %}
+            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+213 (000)-000-000"}'>
+            {% else %}
+            <input type="tel" class="js-input-mask form-control" name="{{ update_profile_form.phone_number.name }}" placeholder="+x(xxx)xxx-xx-xx" data-hs-mask-options='{"mask": "+213 (000)-000-000"}'>
+            {% endif %}
+          </div>
 
           <div class="d-flex justify-content-end gap-3">
             <button type="submit" class="btn btn-white">Save</button>

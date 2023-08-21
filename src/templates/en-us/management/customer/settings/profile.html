@@ -195,30 +195,39 @@
         <div class="col-lg-5">
             <form action="{% url 'customer-settings' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
                 {% csrf_token %}
+                <div class="form-floating mb-8">
+                      <input type="text" class="form-control" id="username" name="{{ update_profile_form.username.name }}" maxlength="{{ update_profile_form.username.field.max_length }}" value="{{ user.username }}" placeholder="Username" required>
+                      <label for="username">Username</label>
+                      <span class="invalid-feedback text-start">please provide a correct username.</span>
+                  </div>
 
-                <!-- input -->
-                <div class="mb-3">
-                  <label class="form-label">Username</label>
-                  <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" value="{{ user.username }}" required>
-                    <span class="invalid-feedback text-start">This field is required.</span>
-                </div>
+                  <div class="form-floating mb-8">
+                    {% if user.first_name %}
+                    <input type="text" class="form-control" name="{{ update_profile_form.first_name.name }}" value="{{ user.first_name }}" placeholder="First name">
+                    {% else %}
+                    <input type="text" class="form-control" name="{{ update_profile_form.first_name.name }}" placeholder="First name">
+                    {% endif %}
+                    <label>First name</label>
+                  </div>
 
+                  <div class="form-floating mb-8">
+                    {% if user.last_name %}
+                    <input type="text" class="form-control" name="{{ update_profile_form.last_name.name }}" value="{{ user.last_name }}" placeholder="Last name">
+                    {% else %}
+                    <input type="text" class="form-control" name="{{ update_profile_form.last_name.name }}" placeholder="Last name">
+                    {% endif %}
+                    <label>Last name</label>
+                  </div>
 
-                <!-- input -->
-                <div class="mb-3">
-                  <label class="form-label">Name</label>
-                  <input type="text" class="form-control" placeholder="jitu chauhan">
-                </div>
-                <!-- input -->
-                <div class="mb-3">
-                  <label class="form-label">Email</label>
-                  <input type="email" class="form-control" placeholder="example@gmail.com">
-                </div>
-                <!-- input -->
-                <div class="mb-5">
-                  <label class="form-label">Phone</label>
-                  <input type="text" class="form-control" placeholder="Phone number">
-                </div>
+                  <div class="form-floating mb-8">
+                    {% if user.phone_number %}
+                    <input type="tel" class="form-control" name="{{ update_profile_form.phone_number.name }}" value="{{ user.phone_number }}" placeholder="+213 (000)-000-000" data-mask="+213 (000)-000-000">
+                    {% else %}
+                    <input type="tel" class="form-control" name="{{ update_profile_form.phone_number.name }}" value="+213" placeholder="+213 (000)-000-000" data-mask="+213 (000)-000-000">
+                    {% endif %}
+                    <label>Phone</label>
+                  </div>
+
                 <!-- button -->
                 <div class="mb-3">
                   <button class="btn btn-primary">Save Details</button>
