@@ -262,6 +262,7 @@ class Variant(models.Model):
                 activation = True
         self.is_activated = activation
         super().save()
+    # ----- variables ----- #
 #                                                                        #
 class Product(models.Model):
     # ----- relations ----- #

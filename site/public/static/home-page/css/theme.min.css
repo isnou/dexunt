@@ -12666,6 +12666,7 @@ textarea.form-control.is-valid {
   padding-right: calc(1.6em + 1.1rem)
 }
 
+
 .form-control.is-invalid:focus,
 .was-validated .form-control:invalid:focus {
   border-color: var(--fc-danger);
