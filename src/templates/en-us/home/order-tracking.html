@@ -1,4 +1,4 @@
-{% extends "en-us/management/customer/raw-base.html" %}
+{% extends "en-us/home/raw-base.html" %}
 {% load static %}
 
 <!-- title block -->
@@ -186,7 +186,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-between mt-10">
-    <h2 class="mb-2">Order</h2>
+    <h2 class="mb-2">Order # {{ selected_order.ref }}</h2>
 </div>
 
 <div class="container">

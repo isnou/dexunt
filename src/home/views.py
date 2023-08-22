@@ -229,3 +229,20 @@ def order_page(request, action):
             'selected_order': selected_order,
         }
         return render(request, url, context)
+
+def order_tracking(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/home/order-tracking.html"
+
+        if request.user.is_authenticated:
+            order_ref = request.GET.get('order_ref')
+            selected_order = request.user.all_orders.all().get(order_ref)
+
+        context = {
+            'selected_order': selected_order,
+        }
+        return render(request, url, context)

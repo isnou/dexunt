@@ -1555,20 +1555,6 @@ def customer_wallet(request, action):
         }
         return render(request, url, context)
 #                                                                        #
-@login_required
-def order_tracking(request, action):
-    if not request.session.get('language', None):
-        request.session['language'] = 'en-us'
-    direction = request.session.get('language')
-    # --------------- main page ------------------- #
-    if action == 'main':
-        url = direction + "/management/customer/orders/tracking.html"
-
-        context = {
-
-        }
-        return render(request, url, context)
-#                                                                        #
 # ---------------------------------------------------------------------- #
 
 

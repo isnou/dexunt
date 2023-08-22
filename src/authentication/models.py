@@ -136,7 +136,7 @@ class User(AbstractUser):
     # ----- relations ----- #
     # many selected_products #
     # many delivery_addresses #
-    # many order_set #
+    # many all_orders #
     wallet = models.OneToOneField(
         Wallet,
         on_delete=models.PROTECT,
