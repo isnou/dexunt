@@ -81,5 +81,61 @@
     </div>
   </div>
 </div>
+
+<hr class="my-5">
+
+<div class="row">
+  <div class="col-lg-4 mb-3 mb-lg-0">
+    <h4>Account</h4>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-body">
+        <form action="{% url 'provider-profile' 'change_password' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <!-- Old Password -->
+          <div class="mb-4">
+            <label class="col-sm-3 col-form-label form-label">Current password</label>
+
+            <div class="col-sm-9">
+              <input type="password" class="form-control" name="{{ password_form.old_password.name }}" minlength="8" placeholder="Enter current password" required>
+              <span class="invalid-feedback">Required field.</span>
+            </div>
+          </div>
+          <!-- End Old Password -->
+
+          <!-- New Password1 -->
+          <div class="mb-4">
+            <label for="newPassword" class="col-sm-3 col-form-label form-label">New password</label>
+
+            <div class="col-sm-9">
+              <input type="password" class="form-control" name="{{ password_form.new_password1.name }}" id="newPassword" minlength="8" placeholder="Enter new password" required>
+              <span class="invalid-feedback">Required field.</span>
+            </div>
+          </div>
+          <!-- End New Password1 -->
+
+          <!-- New Password2 -->
+          <div class="mb-4">
+            <label for="confirmNewPasswordLabel" class="col-sm-3 col-form-label form-label">Confirm new password</label>
+
+            <div class="col-sm-9">
+              <div class="mb-3" data-hs-validation-validate-class>
+                <input type="password" class="form-control" name="{{ password_form.new_password2.name }}" id="confirmNewPasswordLabel" placeholder="Confirm your new password" required data-hs-validation-equal-field="#newPassword">
+                <span class="invalid-feedback">Password does not match.</span>
+              </div>
+            </div>
+          </div>
+          <!-- End New Password2 -->
+
+          <div class="d-flex justify-content-end gap-3">
+            <button type="submit" class="btn btn-white">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 

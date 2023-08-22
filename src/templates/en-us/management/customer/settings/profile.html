@@ -240,39 +240,6 @@
 
 <hr class="my-10">
 
-<div class="pe-lg-14">
-    <h5 class="mb-4">Password</h5>
-    <form action="{% url 'customer-settings' 'edit_password' %}" class="js-validate need-validate" novalidate method="post">
-        {% csrf_token %}
-
-        <div class="form-floating mb-8">
-            <input type="password" class="form-control" name="{{ password_form.old_password.name }}" minlength="8" placeholder="Enter current password" required>
-            <label>Current Password</label>
-            <span class="invalid-feedback text-start">please provide a correct password.</span>
-        </div>
-
-        <div class="form-floating mb-8">
-            <input type="password" class="form-control" name="{{ password_form.new_password1.name }}" minlength="8" placeholder="Enter new password" required>
-            <label>New Password</label>
-            <span class="invalid-feedback text-start">please provide a correct password.</span>
-        </div>
-
-        <div class="form-floating mb-8">
-            <input type="password" class="form-control" name="{{ password_form.new_password2.name }}" minlength="8" placeholder="Reenter new password" required>
-            <label>Confirmation</label>
-            <span class="invalid-feedback text-start">please provide a correct password.</span>
-        </div>
-
-
-        <div class="col-12">
-            <p class="mb-4">Can’t remember your current password?<a href="#"> Click here.</a></p>
-            <button type="submit" class="btn btn-outline-danger">Save Password</button>
-        </div>
-  </form>
-</div>
-
-<hr class="my-10">
-
 <div>
   <!-- heading -->
   <h5 class="mb-4">Delete Account</h5>
