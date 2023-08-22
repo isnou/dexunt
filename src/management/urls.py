@@ -25,6 +25,7 @@ urlpatterns = [
     path('<str:action>/customer/orders', views.customer_orders, name='customer-orders'),
     path('<str:action>/customer/settings', views.customer_settings, name='customer-settings'),
     path('<str:action>/customer/address', views.customer_address, name='customer-address'),
+    path('<str:action>/order/tracking', views.order_tracking, name='order-tracking'),
     # ---- provider ---- #
     path('<str:action>/provider/products', views.provider_products, name='provider-products'),
     path('<str:action>/provider/profile', views.provider_profile, name='provider-profile'),
