@@ -185,8 +185,12 @@
 {% endblock %}
 
 {% block content %}
-<!-- head -->
-<h2 class="mb-6">My Orders</h2>
+<div class="mb-6">
+    <h2 class="mb-2">My Orders</h2>
+    {% if not user.is_activated %}
+    <h6 class="text-danger">Please check your e-mail and follow instructions to validate.</h6>
+    {% endif %}
+</div>
 
 <!-- table -->
 <div class="table-responsive-xxl border-0">

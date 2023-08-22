@@ -185,12 +185,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between mb-6">
-  <!-- heading -->
-  <h2 class="mb-0">Address</h2>
-  <!-- button -->
-  <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
+<div class="d-flex justify-content-between mb-2">
+    <h2 class="mb-2">Address</h2>
+    {% if not user.is_activated %}
+    {% endif %}
+    <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
 </div>
+<h6 class="text-danger mb-4">Please check your e-mail and follow instructions to validate.</h6>
+
 <div class="row">
     {% for address in user.delivery_addresses.all %}
     <div class="col-lg-6 col-12 mb-4">
@@ -223,7 +225,6 @@
         </div>
     </div>
     {% endfor %}
-
 </div>
 {% endblock %}
 
