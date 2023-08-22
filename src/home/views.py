@@ -240,7 +240,7 @@ def order_tracking(request, action):
 
         if request.user.is_authenticated:
             order_ref = request.GET.get('order_ref')
-            selected_order = request.user.all_orders.all().get(order_ref)
+            selected_order = request.user.all_orders.all().get(order_ref=order_ref)
 
         context = {
             'selected_order': selected_order,
