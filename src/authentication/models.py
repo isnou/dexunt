@@ -121,7 +121,7 @@ class DeliveryAddress(models.Model):
 class User(AbstractUser):
     # ----- Technical ----- #
     is_blacklisted = models.BooleanField(default=False)
-    is_activated = models.BooleanField(default=True)
+    is_activated = models.BooleanField(default=False)
     # ----- #
     is_customer = models.BooleanField(default=True)
     is_provider = models.BooleanField(default=False)

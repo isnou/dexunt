@@ -187,6 +187,9 @@
 {% block content %}
 <div class="mb-6">
     <h2 class="mb-0">Account Setting</h2>
+    {% if not user.is_activated %}
+    <h6 class="text-danger">Your account is not yet activated, please fill in all the information (activation will be done within 24 hours)</h6>
+    {% endif %}
 </div>
 
 <div>
