@@ -26,15 +26,15 @@ class Log(models.Model):
         if self.content == 'placed':
             return '50px'
         if self.content == 'pend':
-            return '150px'
-        if self.content == 'confirmed':
             return '300px'
+        if self.content == 'confirmed':
+            return '500px'
         if self.content == 'processed':
-            return '450px'
+            return '700px'
         if self.content == 'controlled':
-            return '600px'
+            return '900px'
         if self.content == 'handed':
-            return '750px'
+            return '1200px'
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
