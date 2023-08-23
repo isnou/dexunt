@@ -255,7 +255,7 @@
     </div>
 </div>
 {% for log in selected_order.log.all %}
-{{ log.id }} <br>
+{{ log.id }}{{ log.content }} <br>
 {% endfor %}
 {% endblock %}
 
