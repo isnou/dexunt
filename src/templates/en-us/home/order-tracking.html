@@ -239,7 +239,7 @@
 </div>
 
 {% for log in selected_order.log.all %}
-{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }} {{ log.at|time:'H' }}:{{ log.at|time:'i' }}<br>
+{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }} {{ log.at|time:'h' }}:{{ log.at|time:'i' }}<br>
 {% endfor %}
 
 {% endblock %}
