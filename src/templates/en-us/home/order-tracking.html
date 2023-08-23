@@ -197,13 +197,13 @@
                     <div class="cd-horizontal-timeline loaded">
                         <div class="timeline">
                             <div class="events-wrapper">
-                                <div class="events" style="width: {{ selected_order.log.all.last.width }}px;">
+                                <div class="events" style="width: {{ selected_order.log.all.last.width }};">
                                     <ol>
                                         {% for log in selected_order.log.all %}
-                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" style="left: {{ log.width }}px;" class="{% if log.selected %} selected {% else %} older-event {% endif %}">{{ log.at|date:'d' }} {{ log.at|date:'M' }}|<small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
+                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" style="left: {{ log.width }};" class="{% if log.selected %} selected {% else %} older-event {% endif %}">{{ log.at|date:'d' }} {{ log.at|date:'M' }}|<small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
                                         {% endfor %}
                                     </ol>
-                                    <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
+                                    <span class="filling-line" aria-hidden="true" style="transform: {{ log.width }};"></span>
                                 </div>
                                 <!-- .events -->
                             </div>
