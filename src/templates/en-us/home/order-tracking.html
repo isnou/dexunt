@@ -200,7 +200,8 @@
                                 <div class="events" style="width: 1800px;">
                                     <ol>
                                         {% for log in selected_order.log.all %}
-                                        {% if forloop.counter == selected_order.log.all.count %}
+                                        {% if forloop.counter == 1 %}
+                                        {% elif forloop.counter == selected_order.log.all.count %}
                                         <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" style="left: 480px;" class="selected">{{ log.at|date:'d' }} {{ log.at|date:'M' }}|<small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
                                         {% else %}
                                         <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" class="older-event" style="left: 120px;">{{ log.at|date:'d' }} {{ log.at|date:'M' }}|<small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
@@ -222,7 +223,8 @@
                         <div class="events-content" style="height: 225px;">
                             <ol>
                                 {% for log in selected_order.log.all %}
-                                {% if forloop.counter == selected_order.log.all.count %}
+                                {% if forloop.counter == 1 %}
+                                {% elif forloop.counter == selected_order.log.all.count %}
                                 <li data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" class="selected">
                                     <h4>
                                         <img class="rounded float-left m-r-15" width="40" alt="user" src="https://bootdey.com/img/Content/avatar/avatar3.png">{{ log.content }}<br>
@@ -255,7 +257,7 @@
     </div>
 </div>
 {% for log in selected_order.log.all %}
-{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }} <br>
+{{ log.log_class }} | {{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }} <br>
 {% endfor %}
 {% endblock %}
 
