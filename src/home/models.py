@@ -24,17 +24,17 @@ class Log(models.Model):
             return False
     def width(self):
         if self.content == 'placed':
-            return 50
+            return '50px'
         if self.content == 'pend':
-            return 300
+            return '300px'
         if self.content == 'confirmed':
-            return 500
+            return '500px'
         if self.content == 'processed':
-            return 700
+            return '700px'
         if self.content == 'controlled':
-            return 900
+            return '900px'
         if self.content == 'handed':
-            return 1200
+            return '1000px'
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
