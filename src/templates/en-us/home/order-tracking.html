@@ -201,9 +201,9 @@
                                     <ol>
                                         {% for log in selected_order.log.all %}
                                         {% if forloop.counter == selected_order.log.all.count %}
-                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" style="left: 480px;" class="selected">{{ log.at|date:'d' }} {{ log.at|date:'M' }}</a></li>
+                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" style="left: 480px;" class="selected">{{ log.at|date:'d' }} {{ log.at|date:'M' }}<br><small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
                                         {% else %}
-                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" class="older-event" style="left: 120px;">{{ log.at|date:'d' }} {{ log.at|date:'M' }}</a></li>
+                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" class="older-event" style="left: 120px;">{{ log.at|date:'d' }} {{ log.at|date:'M' }}<br><small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
                                         {% endif %}
                                         {% endfor %}
                                     </ol>
