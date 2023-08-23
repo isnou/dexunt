@@ -17,11 +17,11 @@ class Log(models.Model):
         'home.Order', on_delete=models.CASCADE, related_name='log', null=True)
     selected_product = models.ForeignKey(
         'home.SelectedProduct', on_delete=models.CASCADE, related_name='log', null=True)
-    def log_class(self):
+    def selected(self):
         if self.id == self.order.log.all().last().id:
-            return 'selected'
+            return True
         else:
-            return 'older-event'
+            return False
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
