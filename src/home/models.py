@@ -252,6 +252,7 @@ class Order(models.Model):
     status = models.CharField(max_length=50, default='created', null=True)
     # ----- relations ----- #
     # related to many selected_products #
+    # related to many log #
     coupon = models.ForeignKey(
         'home.Coupon', blank=True, on_delete=models.CASCADE, null=True)
     municipality = models.ForeignKey(
