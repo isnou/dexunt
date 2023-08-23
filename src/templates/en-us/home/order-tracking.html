@@ -200,7 +200,7 @@
                                 <div class="events" style="width: 1800px;">
                                     <ol>
                                         {% for log in selected_order.log.all %}
-                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}" style="left: 600px;">{{ log.at|date:'d' }} {{ log.at|date:'M' }}</a></li>
+                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}" class="" style="left: 120px;">{{ log.at|date:'d' }} {{ log.at|date:'M' }}</a></li>
                                         {% endfor %}
                                     </ol>
                                     <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
