@@ -23,7 +23,18 @@ class Log(models.Model):
         else:
             return False
     def width(self):
-        mul = 0
+        if self.content == 'placed':
+            return '150px'
+        if self.content == 'pend':
+            return '200px'
+        if self.content == 'confirmed':
+            return '300px'
+        if self.content == 'processed':
+            return '450px'
+        if self.content == 'controlled':
+            return '600px'
+        if self.content == 'handed':
+            return '750px'
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
