@@ -22,6 +22,10 @@ class Log(models.Model):
             return True
         else:
             return False
+    def width(self):
+        mul = 0
+        for l in self.order.log.all():
+            if self.id == self.order.log.all().last().id:
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
