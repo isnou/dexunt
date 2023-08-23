@@ -200,7 +200,7 @@
                                 <div class="events" style="width: 1800px;">
                                     <ol>
                                         {% for log in selected_order.log.all %}
-                                        <li><a href="#0" data-date="{{ log.at }}" class="" style="left: 120px;">{{ log.at|date:'d' }} {{ log.at|date:'M' }}</a></li>
+                                        <li><a href="#0" data-date="{{ log.id }}" class="" style="left: 120px;">{{ log.at|date:'d' }} {{ log.at|date:'M' }}</a></li>
                                         {% endfor %}
                                     </ol>
                                     <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
@@ -218,7 +218,7 @@
                         <div class="events-content" style="height: 225px;">
                             <ol>
                                 {% for log in selected_order.log.all %}
-                                <li data-date="{{ log.at }}">
+                                <li data-date="{{ log.id }}">
                                     <h4>
                                         <img class="rounded float-left m-r-15" width="40" alt="user" src="https://bootdey.com/img/Content/avatar/avatar4.png"> Horizontal Timeline<br>
                                         <small>{{ log.at|date:'d' }} {{ log.at|date:'M' }}, {{ log.at|date:'Y' }}</small>
