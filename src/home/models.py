@@ -426,8 +426,8 @@ class Order(models.Model):
         if self.status == 'placed':
             log = self.log.all().get(content='placed')
             return (log.width()+(log.width()/2))/self.WIDTH
-        if self.status == 'pend':
-            log = self.log.all().filter(content='pend').first()
+        if self.log.all().last().content == 'pend':
+            log = self.log.all().last().get()
             return (log.width()+(log.width()/2))/self.WIDTH
         if self.status == 'confirmed':
             log = self.log.all().get(content='confirmed')
