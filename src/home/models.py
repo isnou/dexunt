@@ -429,28 +429,28 @@ class Order(models.Model):
     def scale(self):
         if self.status == 'placed':
             log = self.log.all().get(content='placed')
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return (log.width()+47.9)/self.WIDTH
         if self.status == 'pend':
             log = self.log.all().filter(content='pend').first()
             return (log.width()+47.9)/self.WIDTH
         if self.status == 'confirmed':
             log = self.log.all().get(content='confirmed')
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return (log.width()+0)/self.WIDTH
         if self.status == 'processed':
             log = self.log.all().get(content='processed')
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return (log.width()+0)/self.WIDTH
         if self.status == 'controlled':
             log = self.log.all().get(content='controlled')
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return (log.width()+0)/self.WIDTH
         if self.status == 'handed':
             log = self.log.all().get(content='handed')
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return (log.width()+0)/self.WIDTH
         if self.status == 'paid':
             log = self.log.all().get(content='paid')
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return (log.width()+0)/self.WIDTH
         if self.status == 'refund':
             log = self.log.all().get(content='refund')
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return (log.width()+0)/self.WIDTH
     def tracking_log(self):
         logs = self.log.all().exclude(content='collected')
         content='start'
