@@ -220,7 +220,7 @@
                                 {% for log in selected_order.tracking_log %}
                                 <li data-date="{{ log.content }}" class="{% if log.selected %} selected {% endif %}">
                                     <h4>
-                                        <img class="rounded float-left m-r-15 mr-4" width="40" alt="user" src="https://bootdey.com/img/Content/avatar/avatar3.png">{{ log.content }}<br>
+                                        <img class="rounded float-left m-r-15 me-2" width="40" alt="user" src="https://bootdey.com/img/Content/avatar/avatar3.png">{{ log.content }}<br>
                                         <small>{{ log.at|date:'M' }} {{ log.at|date:'d' }}, {{ log.at|date:'Y' }}  | {{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small>
                                     </h4>
                                     <hr>
