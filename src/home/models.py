@@ -26,7 +26,7 @@ class Log(models.Model):
         if self.content == 'placed':
             return '50px'
         if self.content == 'pend':
-            return '300px'
+            return '150px'
         if self.content == 'confirmed':
             return '500px'
         if self.content == 'collected':
