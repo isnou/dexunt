@@ -439,7 +439,7 @@ class Order(models.Model):
         if self.log.first():
             return self.log.first().at
     def tracking_log(self):
-        logs = self.log.all().exclude(content='collected')
+        logs = self.log.all()
         content='start'
         for l in self.log.all().exclude(content='collected'):
             if l.content == content:
