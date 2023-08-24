@@ -257,7 +257,7 @@ def get_cart(request):
     return selected_cart
 #                                                                        #
 class Order(models.Model):
-    WIDTH = 1800
+    WIDTH = 1900
     # ----- Technical ----- #
     updated_at = models.DateTimeField(auto_now=True)
     is_regular = models.BooleanField(default=True)
