@@ -112,11 +112,6 @@
           <line>1297</line>
           <option name="timeStamp" value="235" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/home/models.py</url>
-          <line>447</line>
-          <option name="timeStamp" value="241" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
