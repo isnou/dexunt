@@ -331,6 +331,8 @@ class Order(models.Model):
         super().save()
         self.new_log(request)
     def pend(self, request):
+        self.status = 'pend'
+        super().save()
         new_log = Log(content='pend',
                       user=request.user,
                       order=self)
@@ -426,8 +428,8 @@ class Order(models.Model):
         if self.status == 'placed':
             log = self.log.all().get(content='placed')
             return (log.width()+(log.width()/2))/self.WIDTH
-        if self.log.all().last().content == 'pend':
-            log = self.log.all().last().get()
+        if self.status == 'pend':
+            log = self.log.all().filter(content='pend').first()
             return (log.width()+(log.width()/2))/self.WIDTH
         if self.status == 'confirmed':
             log = self.log.all().get(content='confirmed')
