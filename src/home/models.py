@@ -443,7 +443,7 @@ class Order(models.Model):
         content='start'
         for l in self.log.all().exclude(content='collected'):
             if l.content == content:
-                logs.exclude(id=l.id)
+                logs.exclude(id=220)
             content = l.content
         return logs
 #                                                                        #
