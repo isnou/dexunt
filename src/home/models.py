@@ -435,7 +435,7 @@ class Order(models.Model):
             return (log.width()+47.9)/self.WIDTH
         if self.status == 'confirmed':
             log = self.log.all().get(content='confirmed')
-            return (log.width()+0)/self.WIDTH
+            return (log.width()+47.9)/self.WIDTH
         if self.status == 'processed':
             log = self.log.all().get(content='processed')
             return (log.width()+0)/self.WIDTH
