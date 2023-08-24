@@ -238,7 +238,7 @@
     </div>
 </div>
 {% for log in selected_order.tracking_log %}
-{{ log.content }} | {{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }} <br>
+{{ log.id }} {{ log.content }} | {{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }} <br>
 {% endfor %}
 {% endblock %}
 
