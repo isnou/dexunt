@@ -414,6 +414,19 @@ class Order(models.Model):
             return 60
         if self.status == 'handed':
             return 80
+    def scale(self):
+        if self.status == 'placed':
+            return 20
+        if self.status == 'pend':
+            return 20
+        if self.status == 'confirmed':
+            return 30
+        if self.status == 'processed':
+            return 40
+        if self.status == 'controlled':
+            return 60
+        if self.status == 'handed':
+            return 80
     def creation_date(self):
         if self.log.first():
             return self.log.first().at
