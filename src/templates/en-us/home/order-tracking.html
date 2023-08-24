@@ -200,7 +200,7 @@
                                 <div class="events" style="width: 1800px;">
                                     <ol>
                                         {% for log in selected_order.tracking_log %}
-                                        <li><a href="#0" data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" style="left: {{ log.width }};" class="{% if log.selected %} selected {% else %} older-event {% endif %}">{{ log.at|date:'d' }} {{ log.at|date:'M' }}|<small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
+                                        <li><a href="#0" data-date="{{ log.content }}" style="left: {{ log.width }};" class="{% if log.selected %} selected {% else %} older-event {% endif %}">{{ log.at|date:'d' }} {{ log.at|date:'M' }}|<small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
                                         {% endfor %}
                                     </ol>
                                     <span class="filling-line" aria-hidden="true" style="transform: scaleX({{ selected_order.scale }});"></span>
@@ -218,7 +218,7 @@
                         <div class="events-content" style="height: 225px;">
                             <ol>
                                 {% for log in selected_order.tracking_log %}
-                                <li data-date="{{ log.at|date:'d' }}/{{ log.at|date:'m' }}/{{ log.at|date:'Y' }}{{ log.at|time:'H' }}:{{ log.at|time:'i' }}" class="{% if log.selected %} selected {% endif %}">
+                                <li data-date="{{ log.content }}" class="{% if log.selected %} selected {% endif %}">
                                     <h4>
                                         <img class="rounded float-left m-r-15" width="40" alt="user" src="https://bootdey.com/img/Content/avatar/avatar3.png">{{ log.content }}<br>
                                         <small>{{ log.at|date:'M' }} {{ log.at|date:'d' }}, {{ log.at|date:'Y' }}  |{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small>
