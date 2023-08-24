@@ -29,12 +29,14 @@ class Log(models.Model):
             return '300px'
         if self.content == 'confirmed':
             return '500px'
-        if self.content == 'processed':
+        if self.content == 'collected':
             return '700px'
-        if self.content == 'controlled':
+        if self.content == 'processed':
             return '900px'
+        if self.content == 'controlled':
+            return '1200px'
         if self.content == 'handed':
-            return '1000px'
+            return '1400px'
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
@@ -416,11 +418,11 @@ class Order(models.Model):
             return 80
     def scale(self):
         if self.status == 'placed':
-            return 20
+            return '0.055'
         if self.status == 'pend':
-            return 20
+            return '0.1915'
         if self.status == 'confirmed':
-            return 30
+            return '0.3024'
         if self.status == 'processed':
             return 40
         if self.status == 'controlled':
