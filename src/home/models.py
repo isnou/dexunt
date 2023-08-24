@@ -30,7 +30,7 @@ class Log(models.Model):
         if self.content == 'confirmed':
             return '530px'
         if self.content == 'processed':
-            return '800px'
+            return '740px'
         if self.content == 'controlled':
             return '1200px'
         if self.content == 'handed':
