@@ -413,6 +413,8 @@ class Order(models.Model):
     def progress(self):
         if self.status == 'placed':
             return 20
+        if self.status == 'pend':
+            return 20
         if self.status == 'confirmed':
             return 30
         if self.status == 'processed':
