@@ -426,11 +426,18 @@ class Order(models.Model):
         if self.status == 'confirmed':
             return '0.3024'
         if self.status == 'processed':
-            return 40
+            return '740px'
         if self.status == 'controlled':
-            return 60
+            return '1200px'
         if self.status == 'handed':
-            return 80
+            return '1400px'
+        if self.status == 'paid':
+            return '1700px'
+        if self.status == 'refund':
+            return '1700px'
+
+
+
     def creation_date(self):
         if self.log.first():
             return self.log.first().at
