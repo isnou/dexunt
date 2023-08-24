@@ -200,7 +200,7 @@
                                 <div class="events" style="width: 1800px;">
                                     <ol>
                                         {% for log in selected_order.tracking_log %}
-                                        <li><a href="#0" data-date="{{ log.content }}" style="left: {{ log.width }};" class="{% if log.selected %} selected {% else %} older-event {% endif %}">{{ log.at|date:'d' }} {{ log.at|date:'M' }}|<small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
+                                        <li><a href="#0" data-date="{{ log.content }}" style="left: {{ log.width }};" class="{% if log.selected %} selected {% else %} older-event {% endif %}">{{ log.at|date:'d' }} {{ log.at|date:'M' }} | <small class="text-muted">{{ log.at|time:'H' }}:{{ log.at|time:'i' }}</small></a></li>
                                         {% endfor %}
                                     </ol>
                                     <span class="filling-line" aria-hidden="true" style="transform: scaleX({{ selected_order.scale }});"></span>
