@@ -213,12 +213,12 @@
         {% for product in order.selected_products.all %}
         <tr>
             <td class="align-middle border-top-0 w-0">
-                <a href="account-orders.html#">
-                    <img src="{% get_media_prefix %}{{ product.image }}" alt="Ecommerce" class="icon-shape icon-xl">
+                <a href="#">
+                    <img src="{% get_media_prefix %}{{ product.image }}" class="icon-shape icon-xl">
                 </a>
             </td>
             <td class="align-middle border-top-0">
-                <a href="account-orders.html#" class="fw-semi-bold text-inherit">
+                <a href="#" class="fw-semi-bold text-inherit">
                     <h6 class="mb-0">{{ product.en_title }}</h6>
                 </a>
                 <span><small class="text-muted text-wrap">{{ product.en_detail }}</small></span>

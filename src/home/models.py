@@ -418,6 +418,9 @@ class Order(models.Model):
             return 60
         if self.status == 'handed':
             return 80
+    def creation_date(self):
+        if self.log.first():
+            return self.log.first().at
     def scale(self):
         if self.status == 'placed':
             return '0.08'
@@ -435,9 +438,6 @@ class Order(models.Model):
             return '0.968'
         if self.status == 'refund':
             return '0.968'
-    def creation_date(self):
-        if self.log.first():
-            return self.log.first().at
     def tracking_log(self):
         logs = self.log.all().exclude(content='collected')
         content='start'
