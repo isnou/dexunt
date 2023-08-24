@@ -24,7 +24,7 @@ class Log(models.Model):
             return False
     def width(self):
         if self.content == 'placed':
-            return '50px'
+            return '100px'
         if self.content == 'pend':
             return '200px'
         if self.content == 'confirmed':
