@@ -439,8 +439,8 @@ class Order(models.Model):
         if self.log.first():
             return self.log.first().at
     def tracking_log(self):
-        logs = self.log.all().exclude(content='collected')
-        logs.exclude(id=220)
+        logs = self.log.all()
+        logs.exclude(id=220).exclude(content='collected')
         content='start'
         for l in self.log.all().exclude(content='collected'):
             if l.content == content:
