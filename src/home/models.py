@@ -441,9 +441,11 @@ class Order(models.Model):
     def tracking_log(self):
         logs = self.log.all().exclude(content='collected')
         content='start'
-        
-        logs.exclude(id=220)
-        return logs
+        for l in self.log.all().exclude(content='collected'):
+            if l.content == content:
+                logs.exclude(id=l.id)
+            content = l.content
+        return logs.exclude(id=220)
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
