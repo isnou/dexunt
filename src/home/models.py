@@ -447,9 +447,10 @@ class Order(models.Model):
             return (log.width()+47.9)/self.WIDTH
         if self.status == 'paid':
             log = self.log.all().get(content='paid')
-            return self.WIDTH
+            return (log.width()+47.9)/self.WIDTH
         if self.status == 'refund':
-            log = self.log.all().get(content='refund')
+            return self.WIDTH
+        if self.status == 'reviewed':
             return self.WIDTH
     def tracking_log(self):
         logs = self.log.all().exclude(content='collected')
