@@ -432,7 +432,7 @@ class Order(models.Model):
             return (log.width()+(log.width()/2))/self.WIDTH
         if self.status == 'pend':
             log = self.log.all().filter(content='pend').first()
-            return (log.width()+(log.width()/2))/self.WIDTH
+            return self.WIDTH * ( log.width()/self.WIDTH )
         if self.status == 'confirmed':
             log = self.log.all().get(content='confirmed')
             return (log.width()+(log.width()/2))/self.WIDTH
