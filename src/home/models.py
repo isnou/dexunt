@@ -35,6 +35,10 @@ class Log(models.Model):
             return '1200px'
         if self.content == 'handed':
             return '1400px'
+        if self.content == 'paid':
+            return '1700px'
+        if self.content == 'refund':
+            return '1700px'
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
