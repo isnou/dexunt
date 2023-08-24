@@ -26,9 +26,9 @@ class Log(models.Model):
         if self.content == 'placed':
             return '100px'
         if self.content == 'pend':
-            return '200px'
+            return '315px'
         if self.content == 'confirmed':
-            return '500px'
+            return '530px'
         if self.content == 'processed':
             return '800px'
         if self.content == 'controlled':
