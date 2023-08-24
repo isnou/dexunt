@@ -445,7 +445,7 @@ class Order(models.Model):
             if l.content == content:
                 logs.exclude(id=l.id)
             content = l.content
-        return logs
+        return logs.exclude(content='collected')
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
