@@ -430,6 +430,8 @@ class Order(models.Model):
     def creation_date(self):
         if self.log.first():
             return self.log.first().at
+    def tracking_log(self):
+        return self.log.all().exclude(content='collected')
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
