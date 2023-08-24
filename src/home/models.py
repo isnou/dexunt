@@ -24,21 +24,21 @@ class Log(models.Model):
             return False
     def width(self):
         if self.content == 'placed':
-            return '100px'
+            return 100
         if self.content == 'pend':
-            return '315px'
+            return 315
         if self.content == 'confirmed':
-            return '530px'
+            return 530
         if self.content == 'processed':
-            return '740px'
+            return 740
         if self.content == 'controlled':
-            return '1200px'
+            return 1200
         if self.content == 'handed':
-            return '1400px'
+            return 1400
         if self.content == 'paid':
-            return '1700px'
+            return 1700
         if self.content == 'refund':
-            return '1700px'
+            return 1700
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
@@ -257,6 +257,7 @@ def get_cart(request):
     return selected_cart
 #                                                                        #
 class Order(models.Model):
+    WIDTH = 1800
     # ----- Technical ----- #
     updated_at = models.DateTimeField(auto_now=True)
     is_regular = models.BooleanField(default=True)
@@ -423,21 +424,29 @@ class Order(models.Model):
             return self.log.first().at
     def scale(self):
         if self.status == 'placed':
-            return '0.08'
+            log = self.log.all().get(content='placed')
+            return log.width()/self.WIDTH
         if self.status == 'pend':
-            return '0.2'
+            log = self.log.all().filter(content='pend').first()
+            return log.width()/self.WIDTH
         if self.status == 'confirmed':
-            return '0.318'
+            log = self.log.all().get(content='confirmed')
+            return log.width()/self.WIDTH
         if self.status == 'processed':
-            return '0.435'
+            log = self.log.all().get(content='processed')
+            return log.width()/self.WIDTH
         if self.status == 'controlled':
-            return '0.6915'
+            log = self.log.all().get(content='controlled')
+            return log.width()/self.WIDTH
         if self.status == 'handed':
-            return '0.803'
+            log = self.log.all().get(content='handed')
+            return log.width()/self.WIDTH
         if self.status == 'paid':
-            return '0.968'
+            log = self.log.all().get(content='paid')
+            return log.width()/self.WIDTH
         if self.status == 'refund':
-            return '0.968'
+            log = self.log.all().get(content='refund')
+            return log.width()/self.WIDTH
     def tracking_log(self):
         logs = self.log.all().exclude(content='collected')
         content='start'
