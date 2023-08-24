@@ -441,7 +441,7 @@ class Order(models.Model):
     def tracking_log(self):
         logs = self.log.all().exclude(content='collected')
         content='start'
-        for l in self.log.all().exclude(content='collected'):
+        for l in logs:
             if l.content == content:
                 logs = logs.exclude(id=l.id)
             content = l.content
