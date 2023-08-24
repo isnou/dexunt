@@ -420,24 +420,21 @@ class Order(models.Model):
             return 80
     def scale(self):
         if self.status == 'placed':
-            return '0.055'
+            return '0.08'
         if self.status == 'pend':
-            return '0.1915'
+            return '0.2'
         if self.status == 'confirmed':
-            return '0.3024'
+            return '0.318'
         if self.status == 'processed':
-            return '740px'
+            return '0.435'
         if self.status == 'controlled':
-            return '1200px'
+            return '0.6915'
         if self.status == 'handed':
-            return '1400px'
+            return '0.803'
         if self.status == 'paid':
-            return '1700px'
+            return '0.968'
         if self.status == 'refund':
-            return '1700px'
-
-
-
+            return '0.968'
     def creation_date(self):
         if self.log.first():
             return self.log.first().at
