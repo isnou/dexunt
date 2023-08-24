@@ -439,7 +439,7 @@ class Order(models.Model):
         if self.log.first():
             return self.log.first().at
     def tracking_log(self):
-        return self.log.all().exclude(content='collected').distinct('content', 'id')
+        return self.log.all().exclude(content='collected').distinct()
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
