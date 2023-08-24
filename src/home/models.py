@@ -425,7 +425,7 @@ class Order(models.Model):
     def scale(self):
         if self.status == 'placed':
             log = self.log.all().get(content='placed')
-            return log.width()/self.WIDTH
+            return (log.width()+(log.width()/2))/self.WIDTH
         if self.status == 'pend':
             log = self.log.all().filter(content='pend').first()
             return log.width()/self.WIDTH
