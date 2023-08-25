@@ -1468,40 +1468,46 @@ def customer_orders(request, action):
         return render(request, url, context)
 #                                                                        #
 @login_required
-def customer_settings(request, action):
+def customer_discount(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/settings/profile.html"
-        update_profile_form = UpdateProfileForm()
-        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+        url = direction + "/management/customer/discount/list.html"
 
         context = {
-            'nav_side': 'settings',
-            'update_profile_form': update_profile_form,
-            'password_form': password_form,
+            'nav_side': 'discount',
         }
         return render(request, url, context)
-    if action == 'edit_profile':
-        if request.method == 'POST':
-            update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
-            if update_profile_form.is_valid():
-                user = update_profile_form.save()
-                login(request, user)
-            else:
-                request.session['error_messages'] = update_profile_form.errors
-            return redirect('customer-settings', 'main')
-    if action == 'edit_password':
-        if request.method == 'POST':
-            change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
-            if change_password_form.is_valid():
-                change_password_form.save()
-                update_session_auth_hash(request, change_password_form.user)
-            else:
-                request.session['error_messages'] = change_password_form.errors
-            return redirect('customer-settings', 'main')
+#                                                                        #
+@login_required
+def customer_points(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/customer/points/home.html"
+
+        context = {
+            'nav_side': 'points',
+        }
+        return render(request, url, context)
+#                                                                        #
+@login_required
+def customer_wallet(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/customer/wallet/home.html"
+
+        context = {
+            'nav_side': 'my-wallet',
+        }
+        return render(request, url, context)
 #                                                                        #
 @login_required
 def customer_address(request, action):
@@ -1542,18 +1548,40 @@ def customer_address(request, action):
         return redirect('customer-address', 'main')
 #                                                                        #
 @login_required
-def customer_wallet(request, action):
+def customer_settings(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/wallet/home.html"
+        url = direction + "/management/customer/settings/profile.html"
+        update_profile_form = UpdateProfileForm()
+        password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
 
         context = {
-            'nav_side': 'my-wallet',
+            'nav_side': 'settings',
+            'update_profile_form': update_profile_form,
+            'password_form': password_form,
         }
         return render(request, url, context)
+    if action == 'edit_profile':
+        if request.method == 'POST':
+            update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
+            if update_profile_form.is_valid():
+                user = update_profile_form.save()
+                login(request, user)
+            else:
+                request.session['error_messages'] = update_profile_form.errors
+            return redirect('customer-settings', 'main')
+    if action == 'edit_password':
+        if request.method == 'POST':
+            change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+            if change_password_form.is_valid():
+                change_password_form.save()
+                update_session_auth_hash(request, change_password_form.user)
+            else:
+                request.session['error_messages'] = change_password_form.errors
+            return redirect('customer-settings', 'main')
 #                                                                        #
 # ---------------------------------------------------------------------- #
 
