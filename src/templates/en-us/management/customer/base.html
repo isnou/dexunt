@@ -167,16 +167,16 @@
                 </a>
               </li>
 
-              <!-- promotions -->
+              <!-- Discounts -->
               <li class="nav-item">
-                <a class="nav-link {% if nav_side == 'promotions' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
+                <a class="nav-link {% if nav_side == 'discount' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
                   <i class="fa fa-percent me-3 fa-lg"></i>Discounts
                 </a>
               </li>
 
               <!-- points -->
               <li class="nav-item">
-                <a class="nav-link {% if nav_side == 'points' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
+                <a class="nav-link {% if nav_side == 'points' %} active {% endif %}" aria-current="page" href="{% url 'customer-points' 'main' %}?init=True">
                   <i class="fa fa-gift me-3 fa-lg"></i>Points
                     {% if user.unreviewed_orders.count %}
                     <i class="fa fa-circle-dot fa-2xs ms-2" style="writing-mode: vertical-lr;"></i>
