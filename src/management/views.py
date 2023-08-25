@@ -1488,7 +1488,7 @@ def customer_points(request, action):
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/points/home.html"
+        url = direction + "/management/customer/points/list.html"
 
         context = {
             'nav_side': 'points',
