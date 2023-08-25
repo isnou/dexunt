@@ -179,13 +179,8 @@
                 <a class="nav-link {% if nav_side == 'points' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
                   <i class="fa fa-gift me-3 fa-lg"></i>Points
                     {% if user.unreviewed_orders.count %}
-                    {% if nav_side == 'points' %}
-                    <i class="fa-solid fa-bell ms-8" style="color: #00;"></i>
-                    {% else %}
-                    <i class="fa-solid fa-bell ms-8" style="color: #ff;"></i>
+                    <i class="fa-solid fa-bell ms-8"></i>
                     {% endif %}
-                    {% endif %}
-
                 </a>
               </li>
 
