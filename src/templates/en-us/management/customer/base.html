@@ -180,9 +180,9 @@
                   <i class="fa fa-gift me-3 fa-lg"></i>Points
                     {% if user.unreviewed_orders.count %}
                     {% if nav_side == 'points' %}
-                    <span class="badge bg-white ms-2">{{ user.unreviewed_orders.count }}</span>
+                    <i class="fa-solid fa-bell" style="color: #00;"></i>
                     {% else %}
-                    <span class="badge bg-dark ms-2">{{ user.unreviewed_orders.count }}</span>
+                    <i class="fa-solid fa-bell"style="color: #ff;"></i>
                     {% endif %}
                     {% endif %}
 
