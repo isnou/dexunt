@@ -327,7 +327,8 @@ class User(AbstractUser):
                 if o.status == 'confirmed':
                     count += 1
             return count
-
+    def unreviewed_orders(self):
+        return self.all_orders.all().filter(status='paid')
     def client_name(self):
         return self.first_name + ' ' + self.last_name
 #                                                                        #
