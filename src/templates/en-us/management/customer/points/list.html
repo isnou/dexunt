@@ -210,7 +210,7 @@
         {% for product in order.selected_products.all %}
         <tr>
             <td class="align-middle border-top-0 w-0">
-                <a href="#">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#comment_{{ product.id }}">
                     <img src="{% get_media_prefix %}{{ product.image }}" class="icon-shape icon-xl">
                 </a>
                 <small>X {{ product.quantity }}</small>
@@ -236,4 +236,51 @@
         </tbody>
   </table>
 </div>
+{% endblock %}
+
+<!-- modals -->
+{% block modals %}
+
+{% for order in user.unreviewed_orders.all %}
+{% for product in order.selected_products.all %}
+<!-- comment modal -->
+<div class="modal fade" id="comment_{{ product.id }}" tabindex="-1"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="mb-5 d-flex align-items-center justify-content-between">
+          <h1 class="modal-title fs-5" id="track_my_order_modal_label"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class=" w-100 ">
+
+          <div class="mb-4">
+            <h1 class="mt-3 mb-0 h4">Make a Review</h1>
+            <small>Put your order reference </small>
+          </div>
+          <form>
+            <div class="row g-3">
+              <div class="col">
+                <label for="order_code" class="visually-hidden">Order Code</label>
+                <input type="text" class="form-control" id="order_code"
+                       placeholder="#6F4HU8I" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-danger">Check</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="my-10 text-center">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endfor %}
+
 {% endblock %}
