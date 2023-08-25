@@ -5,6 +5,14 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # ------------------------------- Orders ------------------------------- #
 class Log(models.Model):
+    PLACED_WIDTH = 100
+    PEND_WIDTH = 315
+    CONFIRMED_WIDTH = 530
+    PROCESSED_WIDTH = 740
+    CONTROLLED_WIDTH = 1200
+    HANDED_WIDTH = 1400
+    PAID_WIDTH = 1700
+    REFUND_WIDTH = 1700
     # ----- Technical ----- #
     content = models.CharField(max_length=500, default='created', null=True)
     at = models.DateTimeField(auto_now_add=True)
@@ -24,21 +32,21 @@ class Log(models.Model):
             return False
     def width(self):
         if self.content == 'placed':
-            return 100
+            return self.PLACED_WIDTH
         if self.content == 'pend':
-            return 315
+            return self.PEND_WIDTH
         if self.content == 'confirmed':
-            return 530
+            return self.CONFIRMED_WIDTH
         if self.content == 'processed':
-            return 740
+            return self.PROCESSED_WIDTH
         if self.content == 'controlled':
-            return 1200
+            return self.CONTROLLED_WIDTH
         if self.content == 'handed':
-            return 1400
+            return self.HANDED_WIDTH
         if self.content == 'paid':
-            return 1700
+            return self.PAID_WIDTH
         if self.content == 'refund':
-            return 1700
+            return self.REFUND_WIDTH
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #

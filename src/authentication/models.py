@@ -327,13 +327,13 @@ class User(AbstractUser):
                 if o.status == 'confirmed':
                     count += 1
             return count
+
     def client_name(self):
         return self.first_name + ' ' + self.last_name
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:
         request.session['users_filter'] = new_filter
-
     if request.session.get('users_filter', None) == 'all':
         return users_list
     if request.session.get('users_filter', None) == 'costumers':
