@@ -201,7 +201,6 @@
             <th>Product</th>
             <th>Order</th>
             <th>Date</th>
-            <th>Status</th>
             <th>Price</th>
         </tr>
         </thead>
@@ -230,177 +229,12 @@
                 <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             </td>
             <td class="align-middle border-top-0">
-                <span class="badge bg-warning">{{ order.status }}</span>
-            </td>
-            <td class="align-middle border-top-0">
                 {{ product.price|floatformat:"2g" }}<small>DZD</small>
             </td>
         </tr>
         {% endfor %}
         {% endif %}
         {% endfor %}
-
-
-
-        <!-- Table body -->
-        <tr>
-            <td class="align-middle border-top-0 w-0">
-              <a href="account-orders.html#"> <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce"
-                  class="icon-shape icon-xl"></a>
-
-            </td>
-            <td class="align-middle border-top-0">
-
-              <a href="account-orders.html#" class="fw-semi-bold text-inherit">
-                <h6 class="mb-0">Haldiram's Nagpur Aloo Bhujia</h6>
-              </a>
-              <span><small class="text-muted">400g</small></span>
-
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="text-inherit">#14899</a>
-
-            </td>
-            <td class="align-middle border-top-0">
-              March 5, 2023
-
-            </td>
-            <td class="align-middle border-top-0">
-              <span class="badge bg-warning">Processing</span>
-            </td>
-            <td class="align-middle border-top-0">
-              $15.00
-            </td>
-          </tr>
-          <tr>
-            <td class="align-middle border-top-0 w-0">
-              <a href="account-orders.html#"> <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce"
-                  class="icon-shape icon-xl"></a>
-
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="fw-semi-bold text-inherit">
-                <h6 class="mb-0">Nutri Choise Biscuit</h6>
-              </a>
-              <span><small class="text-muted">2 Pkt</small></span>
-
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="text-inherit">#14658
-              </a>
-            </td>
-            <td class="align-middle border-top-0">
-              July 9, 2023
-            </td>
-            <td class="align-middle border-top-0">
-              <span class="badge bg-success">Completed</span>
-            </td>
-            <td class="align-middle border-top-0">
-              $45.00
-            </td>
-          </tr>
-          <tr>
-            <td class="align-middle border-top-0 w-0">
-            <a href="account-orders.html#"> <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce"
-                  class="icon-shape icon-xl"></a>
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="text-inherit">
-                <h6 class="mb-0">Cadbury Dairy Milk 5 Star Bites </h6>
-                <span><small class="text-muted">202 g</small></span>
-              </a>
-
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="text-inherit">#13778
-              </a>
-            </td>
-            <td class="align-middle border-top-0">
-              Oct 03, 2023
-            </td>
-            <td class="align-middle border-top-0">
-              <span class="badge bg-success">Completed</span>
-            </td>
-            <td class="align-middle border-top-0">
-              $99.00
-            </td>
-          </tr>
-          <tr>
-            <td class="align-middle border-top-0 w-0">
-              <a href="account-orders.html#"> <img src="../assets/images/products/product-img-4.jpg" alt="Ecommerce"
-                  class="icon-shape icon-xl"></a>
-
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="fw-semi-bold text-inherit">
-                <h6 class="mb-0">Onion Flavour Potato </h6>
-              </a>
-              <span><small class="text-muted">100 g</small></span>
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="text-inherit">#13746
-              </a>
-            </td>
-            <td class="align-middle border-top-0">
-              March 5, 2023
-            </td>
-            <td class="align-middle border-top-0">
-              <span class="badge bg-success">Completed</span>
-            </td>
-            <td class="align-middle border-top-0">
-              $12.00
-            </td>
-          </tr>
-          <tr>
-            <td class="align-middle border-top-0 w-0">
-              <a href="account-orders.html#"> <img src="../assets/images/products/product-img-5.jpg" alt="Ecommerce"
-                  class="icon-shape icon-xl"></a>
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="fw-semi-bold text-inherit">
-                <h6 class="mb-0">Salted Instant Popcorn </h6>
-              </a>
-              <span><small class="text-muted">500 g</small></span>
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="text-inherit">#13566
-              </a>
-            </td>
-            <td class="align-middle border-top-0">
-              July 9, 2023
-            </td>
-            <td class="align-middle border-top-0">
-              <span class="badge bg-danger">Cancel</span>
-            </td>
-            <td class="align-middle border-top-0">
-              $6.00
-            </td>
-          </tr>
-          <tr>
-            <td class="align-middle border-top-0 w-0">
-              <a href="account-orders.html#"> <img src="../assets/images/products/product-img-6.jpg" alt="Ecommerce"
-                  class="icon-shape icon-xl"></a>
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="fw-semi-bold text-inherit">
-                <h6 class="mb-0">Blueberry Greek Yogurt </h6>
-              </a>
-              <span><small class="text-muted">500 g</small></span>
-            </td>
-            <td class="align-middle border-top-0">
-              <a href="account-orders.html#" class="text-inherit">#12094
-              </a>
-            </td>
-            <td class="align-middle border-top-0">
-              Oct 03, 2023
-            </td>
-            <td class="align-middle border-top-0">
-              <span class="badge bg-success">Completed</span>
-            </td>
-            <td class="align-middle border-top-0">
-              $18.00
-            </td>
-          </tr>
         </tbody>
   </table>
 </div>
