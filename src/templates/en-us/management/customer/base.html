@@ -163,42 +163,42 @@
               <!-- orders -->
               <li class="nav-item">
                 <a class="nav-link {% if nav_side == 'orders' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
-                  <i class="fa fa-bag-shopping"></i>Orders
+                  <i class="fa fa-bag-shopping me-3 fa-lg"></i>Orders
                 </a>
               </li>
 
               <!-- promotions -->
               <li class="nav-item">
                 <a class="nav-link {% if nav_side == 'promotions' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
-                  <i class="fa-solid fa-bullhorn"></i>Promotions
+                  <i class="fa-solid fa-bullhorn me-3 fa-lg"></i>Promotions
                 </a>
               </li>
 
               <!-- points -->
               <li class="nav-item">
                 <a class="nav-link {% if nav_side == 'points' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
-                  <i class="fa-solid fa-gift"></i>Points
+                  <i class="fa-solid fa-gift me-3 fa-lg"></i>Points
                 </a>
               </li>
 
               <!-- wallet -->
               <li class="nav-item">
                 <a class="nav-link" href="account-payment-method.html">
-                    <i class="fa-solid fa-credit-card"></i>Wallet
+                    <i class="fa-solid fa-credit-card me-3 fa-lg"></i>Wallet
                 </a>
               </li>
 
               <!-- address -->
               <li class="nav-item">
                 <a class="nav-link {% if nav_side == 'address' %} active {% endif %}" aria-current="page" href="{% url 'customer-address' 'main' %}?init=True">
-                  <i class="fa-solid fa-location-dot"></i>Address
+                  <i class="fa-solid fa-location-dot me-3 fa-lg"></i>Address
                 </a>
               </li>
 
               <!-- settings -->
               <li class="nav-item">
                 <a class="nav-link {% if nav_side == 'settings' %} active {% endif %}" aria-current="page" href="{% url 'customer-settings' 'main' %}?init=True">
-                  <i class="fa-solid fa-gear"></i>Settings
+                  <i class="fa-solid fa-gear me-3 fa-lg"></i>Settings
                 </a>
               </li>
 
@@ -210,7 +210,7 @@
               <!-- logout -->
               <li class="nav-item">
                 <a class="nav-link " href="{% url 'logout' %}">
-                  <i class="fa-solid fa-right-from-bracket"></i>Log out
+                  <i class="fa-solid fa-right-from-bracket me-3 fa-lg"></i>Log out
                 </a>
               </li>
             </ul>
