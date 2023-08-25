@@ -43,7 +43,7 @@
     <div class="container">
       <div class="row">
         <div class="text-md-end">
-            POINTS: {{ user.points }}<small>GP</small> BALANCE: {{ user.wallet.balance|floatformat:"0g" }}<small>DZD</small>
+            {{ user.points }}<small class="me-2">GP</small> {{ user.wallet.balance|floatformat:"2g" }}<small>DZD</small>
         </div>
       </div>
     </div>
