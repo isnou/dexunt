@@ -1494,6 +1494,11 @@ def customer_points(request, action):
             'nav_side': 'points',
         }
         return render(request, url, context)
+    if action == 'complete_order':
+        if request.method == 'POST':
+            selected_order = request.user.all_orders.all().get(id=request.POST.get('order_id', False))
+            selected_order.completed(request)
+            return redirect('customer-points', 'main')
 #                                                                        #
 @login_required
 def customer_wallet(request, action):

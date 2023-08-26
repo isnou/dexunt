@@ -162,6 +162,14 @@ class Option(models.Model):
         self.is_activated = False
         super().save()
         self.variant.activate()
+    def add_a_review(self, request):
+        comment = request.POST.get('comment', False)
+        rating = request.POST.get('rating', False)
+        Review(content=comment,
+               rates=rating,
+               option=self,
+               client=request.user
+               ).save()
     # ----- variables ----- #
     def can_be_activated(self):
         if self.variant.product.store:
