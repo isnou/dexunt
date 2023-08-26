@@ -215,7 +215,7 @@
                 <small>X {{ product.quantity }}</small>
             </td>
             <td class="align-middle border-top-0">
-                <a href="#" class="fw-semi-bold text-inherit">
+                <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}" class="fw-semi-bold text-inherit">
                     <h6 class="mb-0">{{ product.en_title }}</h6>
                 </a>
                 <span><small class="text-muted text-wrap">{{ product.en_detail }}</small></span><br>
