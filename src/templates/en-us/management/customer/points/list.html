@@ -264,7 +264,7 @@
                     <form action="{% url 'customer-settings' '#' %}" method="post">
                         {% csrf_token %}
 
-                        <div class="row mb-4">
+                        <div class="form-control mb-4">
                             <fieldset class="rating">
                                 <input type="radio" id="star5" name="rating" value="5" />
                                 <label for="star5">5 stars</label>
@@ -280,8 +280,8 @@
                         </div>
 
                         <div class="form-floating mb-8">
-                            <textarea class="form-control" name="comment" placeholder="put your comment here" rows="10"></textarea>
-                            <label>Comment</label>
+                            <textarea class="form-control" name="comment" rows="10"></textarea>
+                            <label>put your comment here</label>
                         </div>
                     </form>
                 </div>
