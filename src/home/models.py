@@ -6,11 +6,11 @@ from phonenumber_field.modelfields import PhoneNumberField
 # ------------------------------- Orders ------------------------------- #
 class Log(models.Model):
     PLACED_WIDTH = 100
-    PEND_WIDTH = 315
-    CONFIRMED_WIDTH = 530
-    PROCESSED_WIDTH = 740
-    CONTROLLED_WIDTH = 1200
-    HANDED_WIDTH = 1350
+    PEND_WIDTH = 250
+    CONFIRMED_WIDTH = 500
+    PROCESSED_WIDTH = 750
+    CONTROLLED_WIDTH = 1000
+    HANDED_WIDTH = 1250
     PAID_WIDTH = 1500
     REFUND_WIDTH = 1750
     COMPLETED_WIDTH = 1750
