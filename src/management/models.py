@@ -206,7 +206,10 @@ class Option(models.Model):
         rate = 0
         for r in self.reviews.all():
             rate += r.rates
-        return rate/self.reviews.all().count()
+        if self.reviews.all().count():
+            return rate/self.reviews.all().count()
+        else:
+            return None
     def review_star_one(self):
         if self.rates() == 0:
             return ''
