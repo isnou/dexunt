@@ -214,10 +214,14 @@
                 <span><small class="text-muted text-wrap">{{ product.price|floatformat:"2g" }} <small>DZD</small></small></span>
             </td>
             <td class="align-middle">
+                {% if forloop.counter == 1 %}
                 <a href="{% url 'order-tracking' 'main' %}?order_ref={{ order.ref }}" class="text-inherit">#{{ order.ref }}</a>
+                {% endif %}
             </td>
             <td class="align-middle">
+                {% if forloop.counter == 1 %}
                 <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
+                {% endif %}
             </td>
             <td class="align-end">
                 {% if forloop.counter == 1 %}
