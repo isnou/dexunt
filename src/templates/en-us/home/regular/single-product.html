@@ -451,7 +451,7 @@
                           {% if selected_option %}
                           {{ selected_option.rates }}
                           {% else %}
-                          {{ selected_variant.option_set.all.first.rates }}
+                          {{ selected_variant.option_set.all.first.rates|floatformat:"1g" }}
                           {% endif %}
                           out of 5
                         </span>
