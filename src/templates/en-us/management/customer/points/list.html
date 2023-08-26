@@ -269,10 +269,8 @@
                             <textarea class="form-control" name="comment" rows="10"></textarea>
                             <label>put your comment here</label>
                         </div>
-
-                        <div class="row g-3">
-                            <div class="col">
-                                <fieldset class="rating">
+                        <div class="input-group mb-4">
+                            <fieldset class="rating">
                                 <input type="radio" id="star5" name="rating" value="5" />
                                 <label for="star5">5 stars</label>
                                 <input type="radio" id="star4" name="rating" value="4" />
@@ -284,6 +282,12 @@
                                 <input type="radio" id="star1" name="rating" value="1" />
                                 <label for="star1">1 star</label>
                             </fieldset>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="order_code" class="visually-hidden">Order Code</label>
+                                <input type="text" class="form-control" id="order_code" placeholder="#6F4HU8I" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
                             </div>
                             <div class="col-auto">
                                 <button type="submit" class="btn btn-danger">Check</button>
