@@ -10,8 +10,8 @@ class Log(models.Model):
     CONFIRMED_WIDTH = 530
     PROCESSED_WIDTH = 740
     CONTROLLED_WIDTH = 1200
-    HANDED_WIDTH = 1400
-    PAID_WIDTH = 1650
+    HANDED_WIDTH = 1350
+    PAID_WIDTH = 1500
     REFUND_WIDTH = 1750
     COMPLETED_WIDTH = 1750
     # ----- Technical ----- #
