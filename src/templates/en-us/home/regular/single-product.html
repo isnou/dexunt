@@ -449,7 +449,7 @@
 
                         <span class="ms-3">
                           {% if selected_option %}
-                          {{ selected_option.rates }}
+                          {{ selected_option.rates|floatformat:"1g" }}
                           {% else %}
                           {{ selected_variant.option_set.all.first.rates|floatformat:"1g" }}
                           {% endif %}
