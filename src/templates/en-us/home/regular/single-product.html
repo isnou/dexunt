@@ -422,29 +422,32 @@
                 <div class="col-md-4">
                   <div class="me-lg-12 mb-6 mb-md-0">
                     <div class="mb-5">
-                      <!-- title -->
                       <h4 class="mb-3">Customer reviews</h4>
                       <span>
-                        <!-- rating -->
-                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
+                        <small class="text-warning">
                           <i class="bi bi-star-fill"></i>
                           <i class="bi bi-star-fill"></i>
                           <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-half"></i></small>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-half"></i>
+                        </small>
+
                         <span class="ms-3">
                           {% if selected_option %}
                           {{ selected_option.rates }}
                           {% else %}
                           {{ selected_variant.option_set.all.first.rates }}
                           {% endif %}
-                          out of 5</span>
+                          out of 5
+                        </span>
 
                         <small class="ms-3">
                           {% if selected_option %}
                           {{ selected_option.reviews.all.count }}
                           {% else %}
                           {{ selected_variant.option_set.all.first.reviews.all.count }}
-                          {% endif %} global ratings
+                          {% endif %}
+                          global ratings
                         </small>
                       </span>
                     </div>
@@ -478,6 +481,7 @@
                           <i class="bi bi-star-fill text-warning"></i>
                           <i class="bi bi-star-fill text-warning"></i>
                           <i class="bi bi-star-fill text-warning"></i>
+                          {{ review.rates }}
                         </div>
                         <!-- text-->
                         <p>
@@ -507,6 +511,7 @@
                           <i class="bi bi-star-fill text-warning"></i>
                           <i class="bi bi-star-fill text-warning"></i>
                           <i class="bi bi-star-fill text-warning"></i>
+                          {{ review.rates }}
                         </div>
                         <!-- text-->
                         <p>
