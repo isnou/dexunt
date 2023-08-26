@@ -209,7 +209,7 @@
         {% for product in order.selected_products.all %}
         <tr>
             <td class="align-middle border-top-0 w-0">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#comment_{{ product.id }}">
+                <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}">
                     <img src="{% get_media_prefix %}{{ product.image }}" class="icon-shape icon-xl">
                 </a>
                 <small>X {{ product.quantity }}</small>
@@ -226,7 +226,7 @@
             </td>
             <td class="align-middle border-top-0">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#comment_{{ product.id }}">
-                    <i class="fa-solid fa-message"></i>
+                    <i class="fa-regular fa-message text-muted"></i>
                 </a>
             </td>
         </tr>
