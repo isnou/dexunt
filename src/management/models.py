@@ -181,6 +181,31 @@ class Option(models.Model):
         for r in self.reviews.all():
             rate += r.rates
         return rate/self.reviews.all().count()
+    def review_star_one(self):
+        if self.rates() == 1:
+            return '-fill'
+        if self.rates() > 0 & self.rates() < 1:
+            return '-half'
+    def review_star_two(self):
+        if self.rates() == 2:
+            return '-fill'
+        if self.rates() > 1 & self.rates() < 2:
+            return '-half'
+    def review_star_three(self):
+        if self.rates() == 3:
+            return '-fill'
+        if self.rates() > 2 & self.rates() < 3:
+            return '-half'
+    def review_star_four(self):
+        if self.rates() == 4:
+            return '-fill'
+        if self.rates() > 3 & self.rates() < 4:
+            return '-half'
+    def review_star_five(self):
+        if self.rates() == 5:
+            return '-fill'
+        if self.rates() > 4 & self.rates() < 5:
+            return '-half'
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #

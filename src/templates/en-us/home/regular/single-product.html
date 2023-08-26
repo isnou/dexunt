@@ -425,11 +425,19 @@
                       <h4 class="mb-3">Customer reviews</h4>
                       <span>
                         <small class="text-warning">
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-half"></i>
+                          {% if selected_option %}
+                          <i class="bi bi-star{{ selected_option.review_star_one }}"></i>
+                          <i class="bi bi-star{{ selected_option.review_star_two }}"></i>
+                          <i class="bi bi-star{{ selected_option.review_star_three }}"></i>
+                          <i class="bi bi-star{{ selected_option.review_star_four }}"></i>
+                          <i class="bi bi-star{{ selected_option.review_star_five }}"></i>
+                          {% else %}
+                          <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_one }}"></i>
+                          <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_two }}"></i>
+                          <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_three }}"></i>
+                          <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_four }}"></i>
+                          <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_five }}"></i>
+                          {% endif %}
                         </small>
 
                         <span class="ms-3">
