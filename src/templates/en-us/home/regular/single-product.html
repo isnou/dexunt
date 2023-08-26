@@ -316,14 +316,12 @@
               data-bs-target="#details-tab-pane" type="button" role="tab" aria-controls="details-tab-pane"
               aria-selected="false">Information</button>
           </li>
-          {% if selected_option %}
           <!-- nav reviews -->
           <li class="nav-item" role="presentation">
             <!-- btn --> <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
               data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
               aria-selected="false">Reviews</button>
           </li>
-          {% endif %}
           <!-- nav item -->
           <li class="nav-item" role="presentation">
             <!-- btn --> <button class="nav-link" id="sellerInfo-tab" data-bs-toggle="tab"
@@ -404,7 +402,6 @@
               </div>
             </div>
           </div>
-          {% if selected_option %}
           <!-- tab reviews -->
           <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
             <div class="my-8">
@@ -423,7 +420,14 @@
                           <i class="bi bi-star-fill"></i>
                           <i class="bi bi-star-half"></i></small>
                         <span class="ms-3">4.1 out of 5</span>
-                        <small class="ms-3"> {{ selected_option.reviews.all.count }} global ratings</small>
+
+                        <small class="ms-3">
+                          {% if selected_option %}
+                          {{ selected_option.reviews.all.count }}
+                          {% else %}
+                          {{ selected_variant.option_set.all.first.reviews.all.count }}
+                          {% endif %} global ratings
+                        </small>
                       </span>
                     </div>
                     <div class="mb-8">
@@ -720,7 +724,6 @@
 
 
           </div>
-          {% endif %}
           <!-- tab pane -->
           <div class="tab-pane fade" id="sellerInfo-tab-pane" role="tabpanel" aria-labelledby="sellerInfo-tab"
             tabindex="0">...</div>
