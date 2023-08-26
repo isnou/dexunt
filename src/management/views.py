@@ -1221,7 +1221,7 @@ def member_orders(request, action):
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/member/orders/list.html"
-        all_orders = Order.objects.all().order_by('-updated_at')
+        all_orders = Order.objects.all().order_by('-id')
 
         if all_orders.count():
             paginate = True
