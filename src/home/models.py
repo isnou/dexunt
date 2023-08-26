@@ -377,15 +377,19 @@ class Order(models.Model):
         super().save()
         self.new_log(request)
     def completed(self, request):
-        self.status = 'completed'
         if self.retained_points:
             if self.client:
                 self.client.points = self.retained_points
                 self.client.save()
         selected_product = self.selected_products.all().get(id=request.POST.get('product_id', False))
         selected_product.option.add_a_review(request)
-        selected_product.status = self.status
+        selected_product.status = 'completed'
         selected_product.save()
+        new_status = 'completed'
+        for p in self.selected_products.all():
+            if not p.status == 'completed':
+                new_status = 'paid'
+        self.status = new_status
         super().save()
         self.new_log(request)
 
