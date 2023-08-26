@@ -209,7 +209,7 @@ class Option(models.Model):
         if self.reviews.all().count():
             return rate/self.reviews.all().count()
         else:
-            return None
+            return 0
     def review_star_one(self):
         if self.rates() == 0:
             return ''
