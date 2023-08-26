@@ -418,7 +418,11 @@
                           <i class="bi bi-star-fill"></i>
                           <i class="bi bi-star-fill"></i>
                           <i class="bi bi-star-half"></i></small><span class="ms-3">4.1 out of 5</span><small
-                          class="ms-3">11,130 global ratings</small></span>
+                          class="ms-3">
+                        {% if selected_option %}
+                        {{ selected_option.reviews.all.count }}
+                        {% endif %}
+                        global ratings</small></span>
                     </div>
                     <div class="mb-8">
                       <!-- progress -->

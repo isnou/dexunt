@@ -176,6 +176,11 @@ class Option(models.Model):
             return self.variant.product.store.is_activated
         else:
             return False
+    def rates(self):
+        rate = 0
+        for r in self.reviews.all():
+            rate += r.rates
+        return rate/self.reviews.all().count()
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
