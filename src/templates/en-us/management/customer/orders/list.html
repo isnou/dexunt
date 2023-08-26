@@ -210,28 +210,28 @@
         {% if not order.status == 'created' %}
         {% for product in order.selected_products.all %}
         <tr>
-            <td class="align-middle border-top-0 w-0">
+            <td class="align-middle w-0">
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}">
                     <img src="{% get_media_prefix %}{{ product.image }}" class="icon-shape icon-xl">
                 </a>
                 <small>X {{ product.quantity }}</small>
             </td>
-            <td class="align-middle border-top-0">
+            <td class="align-middle">
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}" class="fw-semi-bold text-inherit">
                     <h6 class="mb-0">{{ product.en_title }}</h6>
                 </a>
                 <span><small class="text-muted text-wrap">{{ product.en_detail }}</small></span><br>
                 <span><small class="text-muted text-wrap">{{ product.price|floatformat:"2g" }} <small>DZD</small></small></span>
             </td>
-            <td class="align-middle border-top-0">
+            <td class="align-middle">
                 <a href="{% url 'order-tracking' 'main' %}?order_ref={{ order.ref }}" class="text-inherit">#{{ order.ref }}</a>
             </td>
-            <td class="align-middle border-top-0">
+            <td class="align-middle">
                 <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             </td>
-            <td class="align-middle border-top-0">
+            <td class="align-end">
                 <a href="{% url 'order-tracking' 'main' %}?order_ref={{ order.ref }}">
-                    <i class="fa-regular fa-location-dot text-muted"></i>
+                    <i class="fa fa-location-dot text-muted"></i>
                 </a>
             </td>
         </tr>
