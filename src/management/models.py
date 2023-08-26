@@ -11,9 +11,9 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
     option = models.ForeignKey(
-        'management.Option', on_delete=models.CASCADE, null=True)
-    user = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, null=True)
+        'management.Option', on_delete=models.CASCADE, related_name='reviews', null=True)
+    client = models.ForeignKey(
+        'authentication.User', on_delete=models.CASCADE, related_name='reviews', null=True)
     # ----- content ----- #
     content = models.CharField(max_length=500, blank=True, null=True)
     rates = models.IntegerField(default=0)

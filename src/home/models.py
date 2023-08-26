@@ -365,7 +365,7 @@ class Order(models.Model):
         self.status = 'paid'
         if self.retained_points:
             if self.client:
-                self.client.points = self.retained_points
+                # self.client.points = self.retained_points
                 self.client.save()
         request.user.add_funds('paid-order-#' + self.ref, self.retained_total_price)
         for p in self.selected_products.all():
@@ -377,6 +377,11 @@ class Order(models.Model):
             p.save()
         super().save()
         self.new_log(request)
+
+    def refund_request(self, request):
+        self.refunded_by = request.user
+        self.refunded_at = timezone.now()
+        super().save()
 
     def refund(self, request):
         self.refunded_by = request.user
