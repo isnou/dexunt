@@ -13,6 +13,7 @@ class Log(models.Model):
     HANDED_WIDTH = 1400
     PAID_WIDTH = 1700
     REFUND_WIDTH = 1700
+    COMPLETED_WIDTH = 1800
     # ----- Technical ----- #
     content = models.CharField(max_length=500, default='created', null=True)
     at = models.DateTimeField(auto_now_add=True)
@@ -45,6 +46,8 @@ class Log(models.Model):
             return self.HANDED_WIDTH
         if self.content == 'paid':
             return self.PAID_WIDTH
+        if self.content == 'completed':
+            return self.COMPLETED_WIDTH
         if self.content == 'refund':
             return self.REFUND_WIDTH
 #                                                                        #
@@ -471,7 +474,7 @@ class Order(models.Model):
             return (log.width()+47.9)/self.WIDTH
         if self.status == 'refund':
             return self.WIDTH
-        if self.status == 'reviewed':
+        if self.status == 'completed':
             return self.WIDTH
     def tracking_log(self):
         logs = self.log.all().exclude(content='collected')
