@@ -199,8 +199,8 @@
         <tr>
             <th>&nbsp;</th>
             <th>Product</th>
-            <th>Order</th>
             <th>Date</th>
+            <th></th>
         </tr>
         </thead>
 
@@ -222,10 +222,12 @@
                 <span><small class="text-muted text-wrap">{{ product.price|floatformat:"2g" }} <small>DZD</small></small></span>
             </td>
             <td class="align-middle border-top-0">
-                <a href="{% url 'order-tracking' 'main' %}?order_ref={{ order.ref }}" class="text-inherit">#{{ order.ref }}</a>
+                <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             </td>
             <td class="align-middle border-top-0">
-                <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#comment_{{ product.id }}">
+                    <i class="fa-solid fa-message"></i>
+                </a>
             </td>
         </tr>
         {% endfor %}
