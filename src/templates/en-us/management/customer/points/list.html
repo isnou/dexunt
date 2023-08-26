@@ -263,7 +263,7 @@
                     <form action="{% url 'customer-settings' '#' %}" method="post">
                         {% csrf_token %}
                         <div class="form-floating mb-8">
-                            <textarea class="form-control" name="comment" rows="10"></textarea>
+                            <textarea class="form-control" name="comment" placeholder="comment here" rows="10"></textarea>
                             <label>put your comment here</label>
                         </div>
                         <div class="row mb-4 g-3">
