@@ -17,6 +17,47 @@ class Review(models.Model):
     # ----- content ----- #
     content = models.CharField(max_length=500, blank=True, null=True)
     rates = models.IntegerField(default=0)
+    # ----- variables ----- #
+    def review_star_one(self):
+        if self.rates == 0:
+            return ''
+        if self.rates > 0:
+            if self.rates < 1:
+                return '-half'
+            else:
+                return '-fill'
+    def review_star_two(self):
+        if self.rates < 1:
+            return ''
+        if self.rates > 1:
+            if self.rates < 2:
+                return '-half'
+            else:
+                return '-fill'
+    def review_star_three(self):
+        if self.rates < 2:
+            return ''
+        if self.rates > 2:
+            if self.rates < 3:
+                return '-half'
+            else:
+                return '-fill'
+    def review_star_four(self):
+        if self.rates < 3:
+            return ''
+        if self.rates > 3:
+            if self.rates < 4:
+                return '-half'
+            else:
+                return '-fill'
+    def review_star_five(self):
+        if self.rates < 4:
+            return ''
+        if self.rates > 4:
+            if self.rates < 5:
+                return '-half'
+            else:
+                return '-fill'
 #                                                                        #
 class Album(models.Model):
     # ----- media ----- #
@@ -185,23 +226,26 @@ class Option(models.Model):
         if self.rates() == 0:
             return ''
         if self.rates() > 0:
-            return '-fill'
-        if self.rates() < 1:
-            return '-half'
+            if self.rates() < 1:
+                return '-half'
+            else:
+                return '-fill'
     def review_star_two(self):
         if self.rates() < 1:
             return ''
         if self.rates() > 1:
-            return '-fill'
-        if self.rates() < 2:
-            return '-half'
+            if self.rates() < 2:
+                return '-half'
+            else:
+                return '-fill'
     def review_star_three(self):
         if self.rates() < 2:
             return ''
         if self.rates() > 2:
-            return '-fill'
-        if self.rates() < 3:
-            return '-half'
+            if self.rates() < 3:
+                return '-half'
+            else:
+                return '-fill'
     def review_star_four(self):
         if self.rates() < 3:
             return ''
@@ -210,14 +254,14 @@ class Option(models.Model):
                 return '-half'
             else:
                 return '-fill'
-
     def review_star_five(self):
         if self.rates() < 4:
             return ''
         if self.rates() > 4:
-            return '-fill'
-        if self.rates() < 5:
-            return '-half'
+            if self.rates() < 5:
+                return '-half'
+            else:
+                return '-fill'
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
