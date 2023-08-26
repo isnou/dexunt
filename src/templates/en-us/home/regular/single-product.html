@@ -521,15 +521,19 @@
                         <h4>Reviews</h4>
                       </div>
                     </div>
+                    {% if selected_option %}
+                    {% for review in selected_option.reviews.all %}
                     <div class="d-flex border-bottom pb-6 mb-6">
-                      <img src="../assets/images/avatar/avatar-10.jpg" alt="" class="rounded-circle avatar-lg">
                       <div class="ms-5">
                         <h6 class="mb-1">
-                          Shankar Subbaraman
+                          {% if review.client.first_name %}
+                          {{ review.client.first_name }} {{ review.client.last_name }}
+                          {% else %}
+                          {{ review.client.username }}
+                          {% endif %}
                         </h6>
                         <p class="small">
-                          <span class="text-muted">30 December 2022</span>
-                          <span class="text-primary ms-3 fw-bold">Verified Purchase</span>
+                          <span class="text-muted">{{ review.created_at }}</span>
                         </p>
                         <!-- rating -->
                         <div class=" mb-2">
@@ -538,26 +542,49 @@
                           <i class="bi bi-star-fill text-warning"></i>
                           <i class="bi bi-star-fill text-warning"></i>
                           <i class="bi bi-star-fill text-warning"></i>
-                          <span class="ms-3 text-dark fw-bold">Need to recheck the weight at delivery point</span>
                         </div>
                         <!-- text-->
-                        <p>Product quality is good. But, weight seemed less than 1kg. Since it is being sent in open
-                          package, there is a possibility of pilferage in between. FreshCart sends the veggies and
-                          fruits through sealed plastic covers and Barcode on the weight etc. .
+                        <p>
+                          {{ review.content }}
                         </p>
-                        <div>
-                          <div class="border icon-shape icon-lg border-2 ">
-                            <img src="../assets/images/products/product-img-1.jpg" alt="" class="img-fluid ">
-                          </div>
-                          <div class="border icon-shape icon-lg border-2 ms-1 ">
-                            <img src="../assets/images/products/product-img-2.jpg" alt="" class="img-fluid ">
-                          </div>
-                          <div class="border icon-shape icon-lg border-2 ms-1 ">
-                            <img src="../assets/images/products/product-img-3.jpg" alt="" class="img-fluid ">
-                          </div>
-                        </div>
                       </div>
                     </div>
+                    {% endfor %}
+                    {% else %}
+                    {% for review in selected_variant.option_set.all.first.reviews.all %}
+                    <div class="d-flex border-bottom pb-6 mb-6">
+                      <div class="ms-5">
+                        <h6 class="mb-1">
+                          {% if review.client.first_name %}
+                          {{ review.client.first_name }} {{ review.client.last_name }}
+                          {% else %}
+                          {{ review.client.username }}
+                          {% endif %}
+                        </h6>
+                        <p class="small">
+                          <span class="text-muted">{{ review.created_at }}</span>
+                        </p>
+                        <!-- rating -->
+                        <div class=" mb-2">
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <!-- text-->
+                        <p>
+                          {{ review.content }}
+                        </p>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+
+
+
+
                     <div class="d-flex border-bottom pb-6 mb-6 pt-4">
                       <!-- img --><img src="../assets/images/avatar/avatar-12.jpg" alt=""
                         class="rounded-circle avatar-lg">
