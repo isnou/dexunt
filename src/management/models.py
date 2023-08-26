@@ -182,13 +182,12 @@ class Option(models.Model):
             rate += r.rates
         return rate/self.reviews.all().count()
     def review_star_one(self):
-        if self.rates() == 0:
-            return ''
-        if self.rates() >= 1:
+        if self.rates() == 1:
             return '-fill'
-        if self.rates() > 0:
-            if self.rates() < 1:
-                return '-half'
+        elif self.rates() > 0 and self.rates() < 1:
+            return '-half'
+        else:
+            return ''
     def review_star_two(self):
         if self.rates() < 1:
             return ''
