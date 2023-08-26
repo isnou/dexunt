@@ -11,9 +11,9 @@ class Log(models.Model):
     PROCESSED_WIDTH = 740
     CONTROLLED_WIDTH = 1200
     HANDED_WIDTH = 1400
-    PAID_WIDTH = 1700
-    REFUND_WIDTH = 1700
-    COMPLETED_WIDTH = 1800
+    PAID_WIDTH = 1650
+    REFUND_WIDTH = 1750
+    COMPLETED_WIDTH = 1750
     # ----- Technical ----- #
     content = models.CharField(max_length=500, default='created', null=True)
     at = models.DateTimeField(auto_now_add=True)
