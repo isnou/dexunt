@@ -207,7 +207,7 @@ class Option(models.Model):
             return ''
         if self.rates() > 3:
             return '-fill'
-        if self.rates() < 4:
+        if self.rates() < 4.0:
             return '-half'
     def review_star_five(self):
         if self.rates() < 4:
