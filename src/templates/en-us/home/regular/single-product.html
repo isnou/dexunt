@@ -353,10 +353,9 @@
         <!-- tab content -->
         <div class="tab-content" id="myTabContent">
           <!-- tab product details -->
-          <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
-            tabindex="0">
+          <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
             <div class="my-8">
-              {% for description in selected_variant.description.all %}
+              {% for description in selected_variant.description_set.all %}
               <div class="mb-6">
                 <!-- text -->
                 <h4 class="mb-1">{{ description.en_title|title }}</h4>
@@ -456,13 +455,6 @@
                           {% endif %}
                           out of 5
                         </span>
-                      </span>
-                      <span class="mt-2">
-                        {% if selected_option %}
-                        Sales : {{ selected_option.sale }}
-                        {% else %}
-                        Sales : {{ selected_variant.option_set.all.first.sale }}
-                        {% endif %}
                       </span>
                     </div>
                   </div>
