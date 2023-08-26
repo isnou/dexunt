@@ -456,15 +456,13 @@
                           {% endif %}
                           out of 5
                         </span>
-
-                        <small class="ms-3">
-                          {% if selected_option %}
-                          {{ selected_option.reviews.all.count }}
-                          {% else %}
-                          {{ selected_variant.option_set.all.first.reviews.all.count }}
-                          {% endif %}
-                          global ratings
-                        </small>
+                      </span>
+                      <span class="mt-2">
+                        {% if selected_option %}
+                        Sales : {{ selected_option.sale }}
+                        {% else %}
+                        Sales : {{ selected_variant.option_set.all.first.sale }}
+                        {% endif %}
                       </span>
                     </div>
                   </div>
