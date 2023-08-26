@@ -75,12 +75,10 @@
       <div class="col-md-6">
         <div class="ps-lg-10 mt-6 mt-md-0">
           <!-- content -->
-          {% if selected_variant.product.store %}
-          <a href="#" class="mb-4 d-block">{{ selected_variant.product.store.name }}</a>
-          {% elif selected_variant.product.brand %}
+          {% if selected_variant.product.brand %}
           <a href="#" class="mb-4 d-block">{{ selected_variant.product.brand }}</a>
           {% else %}
-          <a href="#" class="mb-4 d-block">dexunt</a>
+          <a href="#" class="mb-4 d-block">{{ selected_variant.product.store.name }}</a>
           {% endif %}
 
           <!-- heading -->
