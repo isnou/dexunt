@@ -182,44 +182,40 @@ class Option(models.Model):
             rate += r.rates
         return rate/self.reviews.all().count()
     def review_star_one(self):
-        if self.rates() >= 1:
-            return '-fill'
-        elif self.rates() < 2:
-            return '-half'
-        else:
+        if self.rates() == 0:
             return ''
+        if self.rates() > 0:
+            return '-fill'
+        if self.rates() < 1:
+            return '-half'
     def review_star_two(self):
         if self.rates() < 1:
             return ''
-        if self.rates() >= 2:
-            return '-fill'
         if self.rates() > 1:
-            if self.rates() < 2:
-                return '-half'
+            return '-fill'
+        if self.rates() < 2:
+            return '-half'
     def review_star_three(self):
+        if self.rates() < 2:
+            return ''
+        if self.rates() > 2:
+            return '-fill'
+        if self.rates() < 3:
+            return '-half'
+    def review_star_four(self):
         if self.rates() < 3:
             return ''
-        if self.rates() >= 3:
+        if self.rates() > 3:
             return '-fill'
-        if self.rates() > 2:
-            if self.rates() < 3:
-                return '-half'
-    def review_star_four(self):
+        if self.rates() < 4:
+            return '-half'
+    def review_star_five(self):
         if self.rates() < 4:
             return ''
-        if self.rates() >= 4:
-            return '-fill'
-        if self.rates() > 3:
-            if self.rates() < 4:
-                return '-half'
-    def review_star_five(self):
-        if self.rates() < 5:
-            return ''
-        if self.rates() >= 5:
-            return '-fill'
         if self.rates() > 4:
-            if self.rates() < 5:
-                return '-half'
+            return '-fill'
+        if self.rates() < 5:
+            return '-half'
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
