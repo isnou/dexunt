@@ -52,7 +52,7 @@
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table table-hover">
       <tbody>
       {% for order in all_orders %}
-      {% if not order.status == 'created' %}
+      {% if not order.status == 'created' or not order.status == 'completed' %}
       <!-- orders list -->
       <tr class="border-top {% if order.status == 'placed' %} bg-light {% endif %}">
         <td class="table-column-pe-0">
