@@ -199,7 +199,7 @@
         {% for order in user.all_orders.all %}
         {% if not order.status == 'created' %}
         {% for product in order.selected_products.all %}
-        <tr>
+        <tr class="{% if forloop.counter == 1 %} border-dark {% endif %} border-light {% endif %}">
             <td class="align-middle w-0">
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}">
                     <img src="{% get_media_prefix %}{{ product.image }}" class="icon-shape icon-xl">
