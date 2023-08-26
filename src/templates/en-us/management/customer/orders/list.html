@@ -220,7 +220,7 @@
                 <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             </td>
             <td class="align-end">
-                {% if forloop.count == 1 %}
+                {% if forloop.counter == 1 %}
                 <a href="{% url 'order-tracking' 'main' %}?order_ref={{ order.ref }}">
                     <i class="fa fa-location-dot fa-xl text-muted"></i>
                 </a>
