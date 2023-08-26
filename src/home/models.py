@@ -7,7 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Log(models.Model):
     PLACED_WIDTH = 100
     PEND_WIDTH = 250
-    CONFIRMED_WIDTH = 500
+    CONFIRMED_WIDTH = 400
     PROCESSED_WIDTH = 750
     CONTROLLED_WIDTH = 1000
     HANDED_WIDTH = 1250
