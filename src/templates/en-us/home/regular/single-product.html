@@ -431,30 +431,35 @@
                     <div class="mb-5">
                       <h4 class="mb-3">Customer reviews</h4>
                       <span>
+                        {% if selected_option %}
+                        <span class="me-3">
+                          {{ selected_option.rates|floatformat:"1g" }}
+                        </span>
                         <small class="text-warning">
-                          {% if selected_option %}
                           <i class="bi bi-star{{ selected_option.review_star_one }}"></i>
                           <i class="bi bi-star{{ selected_option.review_star_two }}"></i>
                           <i class="bi bi-star{{ selected_option.review_star_three }}"></i>
                           <i class="bi bi-star{{ selected_option.review_star_four }}"></i>
                           <i class="bi bi-star{{ selected_option.review_star_five }}"></i>
-                          {% else %}
+                        </small>
+                        <span class="ms-3">
+                          ({{ selected_option.reviews.all.count }} reviews)
+                        </span>
+                        {% else %}
+                        <span class="me-3">
+                          {{ selected_variant.option_set.all.first.rates|floatformat:"1g" }}
+                        </span>
+                        <small class="text-warning">
                           <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_one }}"></i>
                           <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_two }}"></i>
                           <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_three }}"></i>
                           <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_four }}"></i>
                           <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_five }}"></i>
-                          {% endif %}
                         </small>
-
                         <span class="ms-3">
-                          {% if selected_option %}
-                          {{ selected_option.rates|floatformat:"1g" }}
-                          {% else %}
-                          {{ selected_variant.option_set.all.first.rates|floatformat:"1g" }}
-                          {% endif %}
-                          /5
+                          ({{ selected_variant.option_set.all.first.reviews.all.count }} reviews)
                         </span>
+                        {% endif %}
                       </span>
                     </div>
                   </div>
