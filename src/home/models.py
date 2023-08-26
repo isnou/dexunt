@@ -488,6 +488,8 @@ class Order(models.Model):
                 logs = logs.exclude(id=l.id)
             content = l.content
         return logs
+    def unreviewed_products(self):
+        return self.selected_products.all().exclude(status='completed')
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
