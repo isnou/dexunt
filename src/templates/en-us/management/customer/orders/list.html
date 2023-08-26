@@ -194,17 +194,7 @@
 
 <!-- table -->
 <div class="table-responsive-xxl border-0">
-    <table class="table mb-0 text-nowrap table-centered ">
-        <thead class="bg-light">
-        <tr>
-            <th>&nbsp;</th>
-            <th>Product</th>
-            <th>Order</th>
-            <th>Date</th>
-            <th></th>
-        </tr>
-        </thead>
-
+    <table class="table mt-6 text-nowrap table-centered ">
         <tbody>
         {% for order in user.all_orders.all %}
         {% if not order.status == 'created' %}
@@ -231,7 +221,7 @@
             </td>
             <td class="align-end">
                 <a href="{% url 'order-tracking' 'main' %}?order_ref={{ order.ref }}">
-                    <i class="fa fa-location-dot text-muted"></i>
+                    <i class="fa fa-location-dot fa-2xl text-muted"></i>
                 </a>
             </td>
         </tr>
