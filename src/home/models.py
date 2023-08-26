@@ -387,7 +387,7 @@ class Order(models.Model):
         selected_product.save()
         new_status = 'completed'
         for p in self.selected_products.all():
-            if not p.status == 'completed':
+            if p.status == 'paid':
                 new_status = 'paid'
         self.status = new_status
         super().save()
