@@ -244,54 +244,52 @@
 {% for order in user.unreviewed_orders.all %}
 {% for product in order.selected_products.all %}
 <!-- comment modal -->
-<div class="modal fade" id="comment_{{ product.id }}" tabindex="-1"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+<div class="modal fade" id="comment_{{ product.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
-      <div class="modal-body">
-        <div class="mb-5 d-flex align-items-center justify-content-between">
-          <h1 class="modal-title fs-5" id="track_my_order_modal_label"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class=" w-100 ">
+            <div class="modal-body">
+                <div class="mb-5 d-flex align-items-center justify-content-between">
+                    <h1 class="modal-title fs-5" id="track_my_order_modal_label"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-          <div class="mb-4">
-            <h1 class="mt-3 mb-0 h4">Make a Review</h1>
-            <small>Put your order reference </small>
-          </div>
-          <form>
+                <div class=" w-100 ">
 
-              <fieldset class="rating">
-    <input type="radio" id="star5" name="rating" value="5" />
-    <label for="star5">5 stars</label>
-    <input type="radio" id="star4" name="rating" value="4" />
-    <label for="star4">4 stars</label>
-    <input type="radio" id="star3" name="rating" value="3" />
-    <label for="star3">3 stars</label>
-    <input type="radio" id="star2" name="rating" value="2" />
-    <label for="star2">2 stars</label>
-    <input type="radio" id="star1" name="rating" value="1" />
-    <label for="star1">1 star</label>
-</fieldset>
+                    <div class="mb-4">
+                        <h1 class="mt-3 mb-0 h4">Make a Review</h1>
+                        <small>Put your order reference </small>
+                    </div>
 
-            <div class="row g-3">
-              <div class="col">
-                <label for="order_code" class="visually-hidden">Order Code</label>
-                <input type="text" class="form-control" id="order_code" placeholder="#6F4HU8I" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
-              </div>
-              <div class="col-auto">
-                <button type="submit" class="btn btn-danger">Check</button>
-              </div>
+                    <form action="{% url 'customer-settings' '#' %}" method="post">
+                        {% csrf_token %}
+
+                        <div class="row mb-4">
+                            <fieldset class="rating">
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label for="star5">5 stars</label>
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label for="star4">4 stars</label>
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label for="star3">3 stars</label>
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label for="star2">2 stars</label>
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label for="star1">1 star</label>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-floating mb-8">
+                            <textarea class="form-control" name="comment" placeholder="put your comment here"></textarea>
+                            <label>Comment</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="my-10 text-center">
+                </div>
             </div>
-          </form>
         </div>
-        <div class="my-10 text-center">
-        </div>
-      </div>
-
     </div>
-  </div>
 </div>
 {% endfor %}
 {% endfor %}
