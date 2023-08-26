@@ -97,9 +97,23 @@
           <!-- reviews -->
           <div class="mb-4">
             <small class="text-warning">
-              <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
               <i class="bi bi-star-half"></i>
-            </small><a href="shop-single-2.html#" class="ms-2">(30 reviews)</a>
+            </small>
+            <a href="shop-single-2.html#" class="ms-2">
+              {% if selected_option %}
+              {% if selected_option.reviews.all.count %}
+              ({{ selected_option.reviews.all.count }} reviews)
+              {% endif %}
+              {% else %}
+              {% if selected_variant.option_set.all.first.reviews.all.count %}
+              ({{ selected_variant.option_set.all.first.reviews.all.count }} reviews)
+              {% endif %}
+              {% endif %}
+            </a>
           </div>
 
           {% if user.is_customer or not user.is_authenticated %}
