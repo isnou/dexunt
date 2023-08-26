@@ -18,46 +18,31 @@ class Review(models.Model):
     content = models.CharField(max_length=500, blank=True, null=True)
     rates = models.IntegerField(default=0)
     # ----- variables ----- #
-    def review_star_one(self):
-        if self.rates == 0:
-            return ''
+    def star_one(self):
         if self.rates > 0:
-            if self.rates < 1:
-                return '-half'
-            else:
-                return '-fill'
-    def review_star_two(self):
-        if self.rates < 1:
+            return '-fill'
+        else:
             return ''
+    def star_two(self):
         if self.rates > 1:
-            if self.rates < 2:
-                return '-half'
-            else:
-                return '-fill'
-    def review_star_three(self):
-        if self.rates < 2:
+            return '-fill'
+        else:
             return ''
+    def star_three(self):
         if self.rates > 2:
-            if self.rates < 3:
-                return '-half'
-            else:
-                return '-fill'
-    def review_star_four(self):
-        if self.rates < 3:
+            return '-fill'
+        else:
             return ''
+    def star_four(self):
         if self.rates > 3:
-            if self.rates < 4:
-                return '-half'
-            else:
-                return '-fill'
-    def review_star_five(self):
-        if self.rates < 4:
+            return '-fill'
+        else:
             return ''
+    def star_five(self):
         if self.rates > 4:
-            if self.rates < 5:
-                return '-half'
-            else:
-                return '-fill'
+            return '-fill'
+        else:
+            return ''
 #                                                                        #
 class Album(models.Model):
     # ----- media ----- #
