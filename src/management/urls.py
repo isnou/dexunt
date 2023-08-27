@@ -23,7 +23,7 @@ urlpatterns = [
     path('<str:action>/member/wallet', views.member_wallet, name='member-wallet'),
     # ---- customer ---- #
     path('<str:action>/customer/orders', views.customer_orders, name='customer-orders'),
-    path('<str:action>/customer/points', views.customer_points, name='customer-points'),
+    path('<str:action>/customer/transactions', views.customer_points, name='customer-transactions'),
     path('<str:action>/customer/settings', views.customer_settings, name='customer-settings'),
     path('<str:action>/customer/address', views.customer_address, name='customer-address'),
     # ---- provider ---- #

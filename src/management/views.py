@@ -1482,16 +1482,16 @@ def customer_discount(request, action):
         return render(request, url, context)
 #                                                                        #
 @login_required
-def customer_points(request, action):
+def customer_transactions(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
     # --------------- main page ------------------- #
     if action == 'main':
-        url = direction + "/management/customer/points/list.html"
+        url = direction + "/management/customer/transactions/list.html"
 
         context = {
-            'nav_side': 'points',
+            'nav_side': 'transactions',
         }
         return render(request, url, context)
     if action == 'complete_order':
