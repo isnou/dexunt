@@ -237,7 +237,6 @@
 <div class="modal fade" id="comment_{{ product.id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-
             <div class="modal-body">
                 <div class="mb-5 d-flex align-items-center justify-content-between">
                     <h1 class="modal-title fs-5" id="track_my_order_modal_label"></h1>
@@ -250,7 +249,7 @@
                 </div>
 
                 <div class="w-100 p-8">
-                    <form action="{% url 'customer-points' 'complete_order' %}" method="post">
+                    <form action="{% url 'customer-transactions' 'complete_order' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="order_id" value="{{ order.id }}">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
@@ -280,7 +279,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
                 </div>
             </div>
         </div>
