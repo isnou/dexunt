@@ -325,7 +325,6 @@ class Order(models.Model):
             request.session['cart_ref'] = None
         for p in self.selected_products.all():
             p.place_order()
-        self.retained_points = self.points()
         self.retained_price = self.price()
         self.retained_total_price = self.total_price()
         self.status = 'placed'
@@ -377,14 +376,14 @@ class Order(models.Model):
         super().save()
         self.new_log(request)
     def completed(self, request):
-        if self.retained_points:
-            if self.client:
-                self.client.points = self.retained_points
-                self.client.save()
         selected_product = self.selected_products.all().get(id=request.POST.get('product_id', False))
         selected_product.option.add_a_review(request)
         selected_product.status = 'completed'
         selected_product.save()
+        self.retained_points += selected_product.points()
+        if self.client:
+            self.client.points += selected_product.points()
+            self.client.save()
         new_status = 'completed'
         for p in self.selected_products.all():
             if p.status == 'paid':
