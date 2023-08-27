@@ -437,7 +437,7 @@ class Store(models.Model):
     def balance(self):
         balance = 0
         for o in self.orders.all():
-            if o.status == 'paid':
+            if o.status == 'paid' or o.status == 'completed':
                 balance += o.total_cost()
         for transaction in self.user.wallet.transactions.all():
             if transaction.confirmed:
@@ -449,7 +449,7 @@ class Store(models.Model):
     def sales(self):
         amount = 0
         for o in self.orders.all():
-            if o.status == 'paid':
+            if o.status == 'paid' or o.status == 'completed':
                 amount += o.total_cost()
         return amount
 #                                                                        #
