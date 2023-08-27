@@ -188,10 +188,12 @@
 <div class="d-flex justify-content-between mb-10">
     <h2 class="mb-2">Address</h2>
 
-    <h6 class="text-danger">Please check your e-mail and follow instructions to validate.</h6>
 
     <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address </a>
 </div>
+
+<h6 class="text-danger">Please check your e-mail and follow instructions to validate.</h6>
+
 
 <div class="row">
     {% for address in user.delivery_addresses.all %}
