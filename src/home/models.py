@@ -474,7 +474,7 @@ class Order(models.Model):
             log = self.log.all().get(content='handed')
             return (log.width()+47.9)/self.WIDTH
         if self.status == 'paid':
-            log = self.log.all().get(content='paid')
+            log = self.log.all().filter(content='paid').first()
             return (log.width()+47.9)/self.WIDTH
         if self.status == 'refund':
             return self.WIDTH
