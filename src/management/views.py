@@ -1829,7 +1829,7 @@ def provider_sales(request, action):
     if action == 'main':
         url = direction + "/management/provider/sales/list.html"
 
-        orders = request.user.store.orders.all()
+        orders = request.user.store.orders.all().order_by('-id')
 
         if request.GET.get('init', None):
             request.session['orders-page'] = None
