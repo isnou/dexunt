@@ -391,8 +391,10 @@ class Order(models.Model):
                 new_status = None
         if new_status:
             self.status = new_status
+            super().save()
             self.new_log(request)
-        super().save()
+        else:
+            super().save()
 
     def refund_request(self, request):
         self.refunded_by = request.user
