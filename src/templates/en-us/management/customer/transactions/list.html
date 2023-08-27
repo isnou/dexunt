@@ -188,7 +188,10 @@
 <div class="d-flex justify-content-between {% if user.is_activated %} mb-10 {% endif %}">
     <h2 class="mb-2">My transactions</h2>
 
-    <h6 class="text-muted">{{ user.points }}<small class="ms-1 me-3">GP</small> {{ user.wallet.balance|floatformat:"2g" }}<small class="ms-1">DZD</small></h6>
+    <h5>
+        <strong>{{ user.points }}</strong><small class="text-muted ms-1 me-3">GP</small>
+        <strong>{{ user.wallet.balance|floatformat:"2g" }}</strong><small class="text-muted ms-1">DZD</small>
+    </h5>
 </div>
 {% if not user.is_activated %}
 <h6 class="text-danger mb-10">Please check your e-mail and follow instructions to validate.</h6>
