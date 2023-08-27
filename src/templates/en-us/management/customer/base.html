@@ -162,7 +162,7 @@
 
               <!-- Discounts -->
               <li class="nav-item">
-                <a class="nav-link {% if nav_side == 'discount' %} active {% endif %}" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
+                <a class="nav-link {% if nav_side == 'discount' %} active {% endif %} disabled" aria-disabled="true" aria-current="page" href="{% url 'customer-orders' 'main' %}?init=True">
                   <i class="fa fa-percent me-3 fa-lg"></i>Discounts
                 </a>
               </li>
