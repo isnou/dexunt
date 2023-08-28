@@ -314,8 +314,8 @@
                         <input type="hidden" name="order_id" value="{{ order.id }}">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
 
-                        <div class="form-floating mb-8">
-                            <textarea class="form-control" name="comment" placeholder="" maxlength="300" required></textarea>
+                        <div class="mb-8">
+                            <textarea class="form-control" name="comment" placeholder="please describe the defect encountered." maxlength="300" rows="10" required></textarea>
                         </div>
                         <div class="row text-end">
                             <button type="submit" class="btn btn-danger">submit</button>
