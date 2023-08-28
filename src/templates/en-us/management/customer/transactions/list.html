@@ -220,9 +220,12 @@
             <td class="align-middle">
                 <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             </td>
-            <td class="align-middle">
+            <td class="align-middle text-end">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#comment_{{ product.id }}">
                     <i class="fa-regular fa-message fa-xl text-muted"></i>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#refund_{{ product.id }}">
+                    <i class="fa fa-reply fa-xl text-muted ms-3"></i>
                 </a>
             </td>
         </tr>
@@ -274,7 +277,7 @@
                                 <label for="star3_{{ product.id }}">3 stars</label>
                                 <input type="radio" id="star2_{{ product.id }}" name="rating" value=2 />
                                 <label for="star2_{{ product.id }}">2 stars</label>
-                                <input type="radio" id="star1_{{ product.id }}" name="rating" value=1 />
+                                <input type="radio" id="star1_{{ product.id }}" name="rating" value=1 required />
                                 <label for="star1_{{ product.id }}">1 star</label>
                             </fieldset>
                             </div>
