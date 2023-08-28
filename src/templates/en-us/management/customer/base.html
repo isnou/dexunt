@@ -172,7 +172,7 @@
                 <a class="nav-link {% if nav_side == 'transactions' %} active {% endif %}" aria-current="page" href="{% url 'customer-transactions' 'main' %}?init=True">
                   <i class="fa fa-arrow-right-arrow-left me-3 fa-lg"></i>Transactions
                     {% if user.unreviewed_orders.count %}
-                    <strong>{{ user.unreviewed_orders.count }}</strong>
+                    <strong class="ms-2">({{ user.unreviewed_orders.count }})</strong>
                     {% endif %}
                 </a>
               </li>
