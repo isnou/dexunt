@@ -172,7 +172,7 @@
                 <a class="nav-link {% if nav_side == 'transactions' %} active {% endif %}" aria-current="page" href="{% url 'customer-transactions' 'main' %}?init=True">
                   <i class="fa fa-arrow-right-arrow-left me-3 fa-lg"></i>Transactions
                     {% if user.unreviewed_orders.count %}
-                    <i class="fa fa-circle-dot fa-2xs ms-2" style="writing-mode: vertical-lr;"></i>
+                    <i class="fa fa-circle fa-2xs ms-2" style="writing-mode: vertical-lr;"></i>
                     {% endif %}
                 </a>
               </li>
