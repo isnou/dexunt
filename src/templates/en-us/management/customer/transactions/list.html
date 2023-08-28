@@ -254,7 +254,7 @@
                 </div>
 
                 <div class="w-100 p-8">
-                    <form action="{% url 'customer-transactions' 'complete_order' %}" method="post" class="needs-validation" novalidate>
+                    <form action="{% url 'customer-transactions' 'complete_order' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="order_id" value="{{ order.id }}">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
@@ -274,7 +274,7 @@
                                 <label for="star3_{{ product.id }}">3 stars</label>
                                 <input type="radio" id="star2_{{ product.id }}" name="rating" value=2 />
                                 <label for="star2_{{ product.id }}">2 stars</label>
-                                <input type="radio" id="star1_{{ product.id }}" name="rating" value=1 required />
+                                <input type="radio" id="star1_{{ product.id }}" name="rating" value=1 />
                                 <label for="star1_{{ product.id }}">1 star</label>
                             </fieldset>
                             </div>
