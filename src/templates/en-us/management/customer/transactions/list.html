@@ -305,18 +305,17 @@
 
                 <div class="mb-4 text-center">
                     <h1 class="mt-3 mb-0 h4">Refund Request</h1>
-                    <small>refund message.</small>
+                    <small>please describe the defect encountered.</small>
                 </div>
 
                 <div class="w-100 p-8">
-                    <form action="{% url 'customer-transactions' 'complete_order' %}" method="post" class="needs-validation" novalidate>
+                    <form action="{% url 'customer-transactions' 'refund_request' %}" method="post" class="needs-validation" novalidate>
                         {% csrf_token %}
                         <input type="hidden" name="order_id" value="{{ order.id }}">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
 
                         <div class="form-floating mb-8">
                             <textarea class="form-control" name="comment" placeholder="" maxlength="300" required></textarea>
-                            <label>submit your dispute here</label>
                         </div>
                         <div class="row text-end">
                             <button type="submit" class="btn btn-danger">submit</button>
