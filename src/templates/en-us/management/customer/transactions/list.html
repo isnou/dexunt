@@ -257,7 +257,7 @@
                 </div>
 
                 <div class="w-100 p-8">
-                    <form action="{% url 'customer-transactions' 'complete_order' %}" method="post" class="needs-validation" novalidate>
+                    <form action="{% url 'customer-transactions' 'complete_order' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="order_id" value="{{ order.id }}">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
