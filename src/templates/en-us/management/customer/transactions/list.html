@@ -221,6 +221,9 @@
                 <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
             </td>
             <td class="align-middle">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#refund_{{ product.id }}">
+                    <i class="fa-regular fa-reply fa-xl text-muted"></i>
+                </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#comment_{{ product.id }}">
                     <i class="fa-regular fa-message fa-xl text-muted"></i>
                 </a>
