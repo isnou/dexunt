@@ -171,8 +171,8 @@
               <li class="nav-item">
                 <a class="nav-link {% if nav_side == 'transactions' %} active {% endif %}" aria-current="page" href="{% url 'customer-transactions' 'main' %}?init=True">
                   <i class="fa fa-arrow-right-arrow-left me-3 fa-lg"></i>Transactions
-                    {% if user.unreviewed_orders.count %}
-                    <strong class="ms-2">({{ user.unreviewed_orders.count }})</strong>
+                    {% if user.unreviewed_orders_count %}
+                    <strong class="ms-2">({{ user.unreviewed_orders_count }})</strong>
                     {% endif %}
                 </a>
               </li>
