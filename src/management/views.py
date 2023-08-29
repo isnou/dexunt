@@ -1287,6 +1287,48 @@ def member_orders(request, action):
         return redirect('member-orders', 'main')
 #                                                                        #
 @login_required
+def member_refunds(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+    direction = request.session.get('language')
+    items_by_page = 20
+
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/member/refunds/list.html"
+        all_orders = request.user.refund_requests().order_by('-id')
+
+        if all_orders.count():
+            paginate = True
+        else:
+            paginate = False
+
+        if request.GET.get('init', None):
+            request.session['orders-page'] = None
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+            request.session['orders-page'] = page
+        else:
+            page = request.session.get('orders-page')
+
+        paginator = Paginator(all_orders, items_by_page)
+        try:
+            all_orders = paginator.page(page)
+        except PageNotAnInteger:
+            all_orders = paginator.page(1)
+        except EmptyPage:
+            all_orders = paginator.page(paginator.num_pages)
+
+        context = {
+            'provider_requests': transactions_select('provider-requests'),
+            'nav_side': 'orders',
+            'all_orders': all_orders,
+            'paginate': paginate,
+        }
+        return render(request, url, context)
+#                                                                        #
+@login_required
 def member_profile(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'

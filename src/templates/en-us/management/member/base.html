@@ -287,7 +287,7 @@
 
             <!-- Refund Requests -->
             <div class="nav-item">
-              <a class="nav-link {% if nav_side == 'refund_requests' %} active {% endif %}" href="{% url 'member-orders' 'main' %}?init=True" data-placement="left">
+              <a class="nav-link {% if nav_side == 'refund_requests' %} active {% endif %}" href="{% url 'member-refunds' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-reply nav-icon"></i>
                 <span class="nav-link-title">Refunds
                   {% if refund_requests.count %}
