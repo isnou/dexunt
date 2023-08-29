@@ -1322,7 +1322,7 @@ def member_refunds(request, action):
 
         context = {
             'provider_requests': transactions_select('provider-requests'),
-            'nav_side': 'orders',
+            'nav_side': 'refund_requests',
             'all_orders': all_orders,
             'paginate': paginate,
         }
