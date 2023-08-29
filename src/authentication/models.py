@@ -332,7 +332,8 @@ class User(AbstractUser):
         count = 0
         for o in self.unreviewed_orders():
             for p in o.selected_products.all():
-                count += 1
+                if not p.status == 'refund_request':
+                    count += 1
         return count
     def client_name(self):
         return self.first_name + ' ' + self.last_name
