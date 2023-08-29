@@ -37,7 +37,7 @@
         {% for product in orders %}
         <tr class="{% if product.status == 'confirmed' %} bg-light {% endif %}">
           <td class="table-column-pe-0">
-            #{{ product.order.ref }}
+            <span class="{% if product.status == 'refund_request' %} text-danger {% else %} text-muted {% endif %} fs-6">#{{ product.order.ref }}</span>
           </td>
           <!-- product title and image -->
           <td class="table-column-ps-0">
