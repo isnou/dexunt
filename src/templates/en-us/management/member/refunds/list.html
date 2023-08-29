@@ -84,6 +84,7 @@
         <!-- price -->
         <td>
           <span class="d-block h4 text-start"><small>{{ product.quantity }} x {{ product.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
+          {{ product.order.total_price|floatformat:"0g" }} <small>DZD</small>
         </td>
         <!-- product actions -->
         <td class="text-end">
