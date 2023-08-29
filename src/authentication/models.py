@@ -311,7 +311,6 @@ class User(AbstractUser):
                         amount = selected_transaction.amount
                         ).save()
             selected_transaction.wallet.update()
-
         self.wallet.update()
     # ----- variables ----- #
     def new_orders_count(self):

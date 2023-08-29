@@ -196,6 +196,13 @@ class Option(models.Model):
                option=self,
                client=request.user
                ).save()
+    def refund_request(self, request):
+        comment = request.POST.get('comment', False)
+        Review(content=comment,
+               show=False,
+               option=self,
+               client=request.user
+               ).save()
     # ----- variables ----- #
     def can_be_activated(self):
         if self.variant.product.store:
@@ -204,10 +211,10 @@ class Option(models.Model):
             return False
     def rates(self):
         rate = 0
-        for r in self.reviews.all():
+        for r in self.reviews.all().filter(show=True):
             rate += r.rates
-        if self.reviews.all().count():
-            return rate/self.reviews.all().count()
+        if self.reviews.all().filter(show=True).count():
+            return rate/self.reviews.all().filter(show=True).count()
         else:
             return 0
     def review_star_one(self):

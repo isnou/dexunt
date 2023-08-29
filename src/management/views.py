@@ -1499,6 +1499,11 @@ def customer_transactions(request, action):
             selected_order = request.user.all_orders.all().get(id=request.POST.get('order_id', False))
             selected_order.completed(request)
             return redirect('customer-points', 'main')
+    if action == 'refund_request':
+        if request.method == 'POST':
+            selected_order = request.user.all_orders.all().get(id=request.POST.get('order_id', False))
+            selected_order.refund_request(request)
+            return redirect('customer-points', 'main')
 #                                                                        #
 @login_required
 def customer_wallet(request, action):

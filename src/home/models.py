@@ -392,11 +392,11 @@ class Order(models.Model):
             self.status = new_status
             self.new_log(request)
         super().save()
-
     def refund_request(self, request):
-        self.refunded_by = request.user
-        self.refunded_at = timezone.now()
-        super().save()
+        selected_product = self.selected_products.all().get(id=request.POST.get('product_id', False))
+        selected_product.option.refund_request(request)
+        selected_product.status = 'refund_request'
+        selected_product.save()
 
     def refund(self, request):
         self.refunded_by = request.user
