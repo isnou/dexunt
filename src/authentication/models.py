@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from add_ons import functions
 from django.utils import timezone, dateformat
 from PIL import Image
-from home.models import Cart, Order
+from home.models import Cart, Order, SelectedProduct
 from management.models import Store
 
 
@@ -337,6 +337,9 @@ class User(AbstractUser):
                 if not p.status == 'refund_request':
                     count += 1
         return count
+    def refund_requests(self):
+        if self.is_superuser or self.is_admin or self.is_member:
+            return SelectedProduct.objects.all().filter(status='refund_request')
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:
