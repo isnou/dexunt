@@ -397,6 +397,14 @@ class Order(models.Model):
         selected_product.option.refund_request(request)
         selected_product.status = 'refund_request'
         selected_product.save()
+        new_status = 'completed'
+        for p in self.selected_products.all():
+            if p.status == 'paid':
+                new_status = None
+        if new_status:
+            self.status = new_status
+            self.new_log(request)
+        super().save()
 
     def refund(self, request):
         self.refunded_by = request.user
