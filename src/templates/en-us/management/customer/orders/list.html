@@ -210,8 +210,8 @@
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}" class="fw-semi-bold text-inherit">
                     <h6 class="mb-0 {% if product.status == 'refund_request' %} text-danger {% endif %}">{{ product.en_title }}</h6>
                 </a>
-                <span><small class="text-muted text-wrap {% if product.status == 'refund_request' %} text-danger {% endif %}">{{ product.en_detail }}</small></span><br>
-                <span><small class="text-muted text-wrap {% if product.status == 'refund_request' %} text-danger {% endif %}">{{ product.price|floatformat:"2g" }} <small>DZD</small></small></span>
+                <span><small class="text-wrap {% if product.status == 'refund_request' %} text-danger {% else %} text-muted {% endif %}">{{ product.en_detail }}</small></span><br>
+                <span><small class="text-wrap {% if product.status == 'refund_request' %} text-danger {% else %} text-muted {% endif %}">{{ product.price|floatformat:"2g" }} <small>DZD</small></small></span>
             </td>
             <td class="align-middle">
                 {% if forloop.counter == 1 %}
