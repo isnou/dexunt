@@ -203,6 +203,7 @@
         <tbody>
         {% for order in user.unreviewed_orders.all %}
         {% for product in order.unreviewed_products.all %}
+        {% if product.status == 'refund_request' %}
         <tr>
             <td class="align-middle w-0">
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}">
@@ -229,6 +230,7 @@
                 </a>
             </td>
         </tr>
+        {% endif %}
         {% endfor %}
         {% endfor %}
         </tbody>
