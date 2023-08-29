@@ -285,18 +285,18 @@
             </div>
             <!-- End Orders -->
 
-            {% if refund_requests.count %}
             <!-- Refund Requests -->
             <div class="nav-item">
               <a class="nav-link {% if nav_side == 'refund_requests' %} active {% endif %}" href="{% url 'member-orders' 'main' %}?init=True" data-placement="left">
-                <i class="fa fa-cart-shopping nav-icon"></i>
+                <i class="fa fa-reply nav-icon"></i>
                 <span class="nav-link-title">Refunds
+                  {% if refund_requests.count %}
                   <span class="badge bg-danger rounded-pill ms-1">{{ refund_requests.count }}</span>
+                  {% endif %}
                 </span>
               </a>
             </div>
             <!-- End Refund Requests -->
-            {% endif %}
 
             <!-- My Wallet -->
             <div class="nav-item">
