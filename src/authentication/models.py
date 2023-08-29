@@ -313,6 +313,8 @@ class User(AbstractUser):
             selected_transaction.wallet.update()
         self.wallet.update()
     # ----- variables ----- #
+    def client_name(self):
+        return self.first_name + ' ' + self.last_name
     def new_orders_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
             count = 0
@@ -335,8 +337,6 @@ class User(AbstractUser):
                 if not p.status == 'refund_request':
                     count += 1
         return count
-    def client_name(self):
-        return self.first_name + ' ' + self.last_name
 #                                                                        #
 def users_filter(request, users_list, new_filter):
     if new_filter:
