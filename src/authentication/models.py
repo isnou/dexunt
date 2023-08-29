@@ -337,7 +337,10 @@ class User(AbstractUser):
                 if not p.status == 'refund_request':
                     count += 1
         return count
-    def refund_requests(self):
+    def refund_requests_count(self):
+        if self.is_superuser or self.is_admin or self.is_member:
+            return SelectedProduct.objects.all().filter(status='refund_request')
+    def refunds(self):
         if self.is_superuser or self.is_admin or self.is_member:
             return SelectedProduct.objects.all().filter(status='refund_request')
 #                                                                        #

@@ -1291,12 +1291,12 @@ def member_refunds(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 20
+    items_by_page = 1
 
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/member/refunds/list.html"
-        all_orders = request.user.refund_requests().order_by('-id')
+        all_orders = request.user.refunds().order_by('-id')
 
         if all_orders.count():
             paginate = True

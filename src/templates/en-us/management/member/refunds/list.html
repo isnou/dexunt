@@ -52,68 +52,9 @@
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table table-hover">
       <tbody>
       {% for order in all_orders %}
-      {% if not order.status == 'created' and not order.status == 'completed' %}
-      <!-- orders list -->
-      <tr class="border-top {% if order.status == 'placed' %} bg-light {% endif %}">
-        <td class="table-column-pe-0">
-        </td>
-        <!-- order ref -->
-        <td>
-          <span class="d-block h4 text-start">
-            <a type="button"  href="#" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
-              <small><i class="fa-solid fa-hashtag"></i>
-                {{ order.ref }}
-                {% if order.client %}
-                <i class="fa-regular fa-user ms-4"></i>
-                {% endif %}
-              </small>
-            </a>
-          </span>
-        </td>
-        <!-- client phone -->
-        <td>
-          {% if not order.delivery_code %}
-          <span class="d-block h4 text-start"><small><a href="tel:{{ order.client_phone }}">{{ order.client_phone }}</a></small></span>
-          {% else %}
-          <span class="d-block h4 text-start"><small><i class="fa-solid fa-hashtag"></i> {{ order.delivery_code }}</small></span>
-          {% endif %}
-        </td>
-        <!-- status -->
-        <td>
-          <span class="d-block h4 text-start">
-            {% if not order.status == 'placed' and not order.status == 'paid'%}
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: {{ order.progress }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            {% endif %}
-
-            {% if order.status == 'placed' %}
-            <span class="d-block h5 text-center">
-              NEW
-            </span>
-            {% endif %}
-
-            {% if order.status == 'paid' %}
-            <span class="d-block h5 text-center">
-              PAID
-            </span>
-            {% endif %}
-          </span>
-        </td>
-        <!-- creation date -->
-        <td class="text-end">
-          <span class="d-block h4 text-end">
-            <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
-            <!-- toggle details -->
-            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">
-              <i class="fa fa-chevron-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Details"></i>
-            </button>
-          </span>
-        </td>
-      </tr>
       {% for product in order.selected_products.all %}
       <!-- products list -->
-      <tr class="collapse {% if product.status == 'processed' or product.lack_of_quantity %} bg-light show {% endif %}" id="collapse_{{ order.id }}">
+      <tr>
         <td class="table-column-pe-0">
         </td>
         <!-- product title and image -->
@@ -155,7 +96,6 @@
         </td>
       </tr>
       {% endfor %}
-      {% endif %}
       {% endfor %}
       </tbody>
     </table>

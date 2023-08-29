@@ -290,8 +290,8 @@
               <a class="nav-link {% if nav_side == 'refund_requests' %} active {% endif %}" href="{% url 'member-refunds' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-reply nav-icon"></i>
                 <span class="nav-link-title">Refunds
-                  {% if refund_requests.count %}
-                  <span class="badge bg-danger rounded-pill ms-1">{{ refund_requests.count }}</span>
+                  {% if refund_requests_count %}
+                  <span class="badge bg-danger rounded-pill ms-1">{{ refund_requests_count }}</span>
                   {% endif %}
                 </span>
               </a>
