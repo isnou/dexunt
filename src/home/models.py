@@ -101,12 +101,10 @@ class SelectedProduct(models.Model):
             self.option.quantity -= self.quantity
             self.option.save()
             self.status = 'processed'
-            self.store = self.option.variant.product.store
             super().save()
             self.new_log()
     def collected(self, request):
         self.status = 'collected'
-        self.store = self.option.variant.product.store
         super().save()
         new_log = Log(content='collected',
                       store=self.store,
