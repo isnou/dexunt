@@ -250,11 +250,11 @@
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {% if order.coupon %}
-                      {% if order.coupon.is_subtractive %}
-                      {{ order.coupon.value|floatformat:"0g" }} <small>DZD</small>
+                      {% if product.order.coupon %}
+                      {% if product.order.coupon.is_subtractive %}
+                      {{ product.order.coupon.value|floatformat:"0g" }} <small>DZD</small>
                       {% else %}
-                      {{ order.coupon.value|floatformat:"0g" }} %
+                      {{ product.order.coupon.value|floatformat:"0g" }} %
                       {% endif %}
                       {% else %}
                       No discount
