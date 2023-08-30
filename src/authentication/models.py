@@ -333,9 +333,8 @@ class User(AbstractUser):
     def unreviewed_orders_count(self):
         count = 0
         for o in self.unreviewed_orders():
-            for p in o.selected_products.all():
-                if not p.status == 'refund_request':
-                    count += 1
+            for p in o.selected_products.all().exclude(status='refund_request'):
+                count += 1
         return count
     def refund_requests_count(self):
         if self.is_superuser or self.is_admin or self.is_member:
