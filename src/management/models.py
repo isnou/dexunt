@@ -435,6 +435,8 @@ class Store(models.Model):
         self.is_activated = False
         super().save()
     # ----- variables ----- #
+    def completed_orders(self):
+        return self.orders.all().filter(status='completed')
     def all_variants(self):
         variant_ids = []
         for p in self.product_set.all():
@@ -443,9 +445,8 @@ class Store(models.Model):
         return Variant.objects.filter(id__in=variant_ids)
     def balance(self):
         balance = 0
-        for o in self.orders.all():
-            if o.status == 'paid' or o.status == 'completed':
-                balance += o.total_cost()
+        for o in self.completed_orders():
+            balance += o.total_cost()
         for transaction in self.user.wallet.transactions.all():
             if transaction.confirmed:
                 if transaction.add:
@@ -455,9 +456,8 @@ class Store(models.Model):
         return balance
     def sales(self):
         amount = 0
-        for o in self.orders.all():
-            if o.status == 'paid' or o.status == 'completed':
-                amount += o.total_cost()
+        for o in self.completed_orders():
+            amount += o.total_cost()
         return amount
 #                                                                        #
 class FlashProduct(models.Model):
