@@ -421,7 +421,7 @@ class Order(models.Model):
     def delivery_quotients(self):
         value = 0
         for p in self.selected_products.all():
-            value += p.option.delivery_quotient()
+            value += p.option.delivery_quotient
         return value
     def delivery_price(self):
         value = 0
