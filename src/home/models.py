@@ -167,7 +167,7 @@ class SelectedProduct(models.Model):
         amount = float(self.retained_price) + (self.order.delivery_price() * float(self.option.delivery_quotient) / self.order.delivery_quotients_sum())
         if self.order.coupon:
             if self.order.coupon.is_subtractive:
-                amount = amount - (self.coupon.value / self.order.selected_products.all().count())
+                amount = amount - (self.order.coupon.value / self.order.selected_products.all().count())
             else:
                 amount = amount - ((amount * self.coupon.value) / 100)
         return amount
