@@ -1291,7 +1291,7 @@ def member_refunds(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    items_by_page = 1
+    items_by_page = 20
 
     # --------------- main page ------------------- #
     if action == 'main':
