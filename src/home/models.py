@@ -143,6 +143,12 @@ class SelectedProduct(models.Model):
             return self.retained_cost * self.quantity
         else:
             return self.cost() * self.quantity
+    def delivery_price(self):
+        if self.order.municipality:
+            if self.order.delivery_type == 'HOME':
+                return int(float(self.order.municipality.home_delivery_price) * self.option.delivery_quotient / 100)
+            if self.order.delivery_type == 'DESK':
+                return int(float(self.order.municipality.desk_delivery_price) * self.option.delivery_quotient / 100)
     def points(self):
         return self.option.points * self.quantity
     def en_title(self):
@@ -405,24 +411,17 @@ class Order(models.Model):
             self.status = new_status
             self.new_log(request)
         super().save()
-
-    def refund(self, request):
+    def refund_accepted(self, request):
         self.refunded_by = request.user
         self.refunded_at = timezone.now()
         super().save()
     # ----- variables ----- #
     def delivery_price(self):
-        delivery_q = 0
+        value = 0
         if self.selected_products.all().count():
             for p in self.selected_products.all():
-                delivery_q += p.option.delivery_quotient
-            delivery_q = float(delivery_q / self.selected_products.all().count())
-
-            if self.municipality:
-                if self.delivery_type == 'HOME':
-                    return int(float(self.municipality.home_delivery_price) * delivery_q / 100)
-                if self.delivery_type == 'DESK':
-                    return int(float(self.municipality.desk_delivery_price) * delivery_q / 100)
+                value += p.delivery_price
+            return float(value / self.selected_products.all().count())
     def price(self):
         price = 0
         for p in self.selected_products.all():
