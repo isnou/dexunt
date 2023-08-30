@@ -169,7 +169,7 @@ class SelectedProduct(models.Model):
             if self.order.coupon.is_subtractive:
                 amount = amount - (float(self.order.coupon.value) / self.order.selected_products.all().count())
             else:
-                amount = amount - ((amount * self.coupon.value) / 100)
+                amount = amount - (float(amount * self.order.coupon.value) / 100)
         return amount
 
 #                                                                        #
