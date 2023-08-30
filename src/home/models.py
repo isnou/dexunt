@@ -420,7 +420,7 @@ class Order(models.Model):
         value = 0
         if self.selected_products.all().count():
             for p in self.selected_products.all():
-                value += p.delivery_price
+                value += p.delivery_price()
             return float(value / self.selected_products.all().count())
     def price(self):
         price = 0
