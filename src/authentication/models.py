@@ -333,7 +333,7 @@ class User(AbstractUser):
     def unreviewed_orders_count(self):
         count = 0
         for o in self.unreviewed_orders():
-            for p in o.selected_products.all():
+            for p in o.unreviewed_products.all():
                 if not p.status == 'refund_request':
                     count += 1
         return count
