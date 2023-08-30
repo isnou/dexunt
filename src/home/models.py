@@ -149,6 +149,8 @@ class SelectedProduct(models.Model):
                 return int(float(self.order.municipality.home_delivery_price) * self.option.delivery_quotient / 100)
             if self.order.delivery_type == 'DESK':
                 return int(float(self.order.municipality.desk_delivery_price) * self.option.delivery_quotient / 100)
+        else:
+            return 0
     def points(self):
         return self.option.points * self.quantity
     def en_title(self):
