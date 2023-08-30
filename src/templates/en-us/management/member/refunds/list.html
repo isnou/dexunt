@@ -291,60 +291,16 @@
             </div>
           </div>
         </div>
-
-            <h4 class="mt-4 text-center">Received</h4>
-            <p class="mt-4 text-center body-text">at :{{ product.received.at }}</p>
-
+        <h4 class="mt-4 text-center">Product Received</h4>
+        <p class="mt-4 text-center body-text">at :{{ product.received.at }}</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        {% if order.status == 'placed' or order.status == 'pend' %}
-        <a type="button" href="{% url 'member-orders' 'confirmed_order' %}?order_id={{ order.id }}" class="btn btn-white">Confirmed</a>
-        <a type="button" href="{% url 'member-orders' 'no_answer' %}?order_id={{ order.id }}" class="btn btn-white">No answer</a>
-        {% endif %}
-
-        {% if order.status == 'processed' %}
-        <a type="button" href="{% url 'member-orders' 'controlled_quality' %}?order_id={{ order.id }}" class="btn btn-white">Quality control</a>
-        {% endif %}
-
-        {% if order.status == 'controlled' %}
-        <form action="{% url 'member-orders' 'handed_over' %}" id="delivery_from_{{ order.id }}" class="js-validate need-validate" novalidate method="post">
-          {% csrf_token %}
-          <input type="hidden" name="order_id" value="{{ order.id }}">
-          <input type="text" class="form-control" name="delivery_code" required>
-          <span class="invalid-feedback text-center">delivery code required.</span>
-        </form>
-        <button type="submit" form="delivery_from_{{ order.id }}" class="btn btn-white">On delivery</button>
-        {% endif %}
-
-        {% if order.status == 'handed' %}
-        <a type="button" href="{% url 'member-orders' 'paid' %}?order_id={{ order.id }}" class="btn btn-white">Paid</a>
-        <a type="button" href="{% url 'member-orders' 'refund' %}?order_id={{ order.id }}" class="btn btn-white">Refund</a>
-        {% endif %}
+        <a type="button" href="{% url 'member-orders' 'refund_declined' %}?order_id={{ order.id }}" class="btn btn-white">Time Exceeded</a>
+        <a type="button" href="{% url 'member-orders' 'refund_accepted' %}?product_id={{ product.id }}" class="btn btn-white">Accept</a>
       </div>
     </div>
   </div>
 </div>
-
-<!-- piked up product modal -->
-{% for product in order.selected_products.all %}
-<div id="product_collected_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>{{ product.en_title }} x {{ product.quantity }} has been piked up ,click yes to confirm.</p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a type="button" class="btn btn-primary" href="{% url 'member-orders' 'collected' %}?order_id={{ order.id }}&product_id={{ product.id }}">Yes</a>
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
 {% endfor %}
 {% endblock %}
