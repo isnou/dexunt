@@ -171,7 +171,7 @@ class SelectedProduct(models.Model):
             else:
                 amount = amount - (amount * float(self.order.coupon.value) / 100)
         return amount
-    def refund_logs(self):
+    def refund_requested(self):
         return self.order.log.all().get(content='paid')
 #                                                                        #
 class Coupon(models.Model):

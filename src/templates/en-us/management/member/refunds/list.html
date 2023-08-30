@@ -153,7 +153,7 @@
   <!-- end footer -->
   {% else %}
   <div class="text-center mb-4 mt-4">
-    There is no orders yet .
+    no refunds .
   </div>
   {% endif %}
 </div>
@@ -295,24 +295,15 @@
         <div class="card mb-4">
           <div class="card-body">
               <ul class="step step-timeline-md mt-5">
-                {% for log in product.refund_logs %}
                 <li class="step-item">
                   <div class="step-content-wrapper">
                     <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
                     <div class="step-content">
-                      {% if log.content == 'paid' %}
-                      <h4>Received</h4>
-                      {% endif %}
-
-                      {% if log.content == 'refund_request' %}
                       <h4>Refund Requested</h4>
-                      {% endif %}
-
-                      <p class="step-text">at :{{ log.at }}</p>
+                      <p class="step-text">at :{{ product.refund_requested.at }}</p>
                     </div>
                   </div>
                 </li>
-                {% endfor %}
               </ul>
           </div>
         </div>
