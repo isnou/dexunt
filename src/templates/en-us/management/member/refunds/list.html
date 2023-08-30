@@ -84,8 +84,8 @@
         <!-- price -->
         <td>
           <span class="d-block h4 text-start"><small>{{ product.quantity }} x {{ product.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
+          {{ product.refund_amount|floatformat:"0g" }} <small>DZD</small>
           {{ product.order.total_price|floatformat:"0g" }} <small>DZD</small>
-          {{ product.order.delivery_price|floatformat:"0g" }} <small>DZD</small>
           <small>
             <span class="d-block text-body fs-6 text-wrap">
               {{ product.order.ref }}
