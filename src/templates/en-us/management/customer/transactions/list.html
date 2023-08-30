@@ -203,7 +203,6 @@
         <tbody>
         {% for order in user.unreviewed_orders.all %}
         {% for product in order.unreviewed_products.all %}
-        {% if not product.status == 'refund_request' %}
         <tr>
             <td class="align-middle w-0">
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}">
@@ -217,6 +216,7 @@
                 </a>
                 <span><small class="text-muted text-wrap">{{ product.en_detail }}</small></span><br>
                 <span><small class="text-muted text-wrap">{{ product.price|floatformat:"2g" }} <small>DZD</small></small></span>
+                {{ product.status }}
             </td>
             <td class="align-middle">
                 <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
@@ -230,7 +230,6 @@
                 </a>
             </td>
         </tr>
-        {% endif %}
         {% endfor %}
         {% endfor %}
         </tbody>
