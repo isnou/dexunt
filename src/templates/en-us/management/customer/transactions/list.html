@@ -202,7 +202,7 @@
     <table class="table mt-6 text-nowrap table-centered ">
         <tbody>
         {% for order in user.unreviewed_orders.all %}
-        {% for product in order %}
+        {% for product in order.unreviewed_products.all %}
         <tr>
             <td class="align-middle w-0">
                 <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.option.variant.id }}&option_id={{ product.option.id }}">

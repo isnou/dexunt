@@ -497,7 +497,7 @@ class Order(models.Model):
             content = l.content
         return logs
     def unreviewed_products(self):
-        return self.selected_products.all().exclude(status='completed')
+        return self.selected_products.all()
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
