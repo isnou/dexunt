@@ -386,7 +386,7 @@ class Order(models.Model):
             self.client.save()
         new_status = 'completed'
         for p in self.selected_products.all():
-            if p.status == 'paid' or p.status == 'refund_request':
+            if p.status == 'paid':
                 new_status = None
         if new_status:
             self.status = new_status
@@ -399,7 +399,7 @@ class Order(models.Model):
         selected_product.save()
         new_status = 'completed'
         for p in self.selected_products.all():
-            if p.status == 'paid' or p.status == 'refund_request':
+            if p.status == 'paid':
                 new_status = None
         if new_status:
             self.status = new_status
