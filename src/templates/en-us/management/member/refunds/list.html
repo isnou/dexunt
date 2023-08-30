@@ -292,46 +292,9 @@
           </div>
         </div>
 
-        <div class="card mb-4">
-          <div class="card-body text-center">
+            <h4 class="mt-4 text-center">Received</h4>
+            <p class="mt-4 text-center body-text">at :{{ product.received.at }}</p>
 
-            <h4>Received</h4>
-            <p class="step-text">at :{{ product.received.at }}</p>
-
-          </div>
-        </div>
-
-        <div class="card border border-dark">
-          {% if order.status == 'placed' or order.status == 'pend' %}
-          <span class="d-block text-body fs-4 mt-4 mb-4">
-            Please call the client to confirm the order
-          </span>
-          {% endif %}
-
-          {% if order.status == 'confirmed' %}
-          <span class="d-block text-body fs-4 mt-4 mb-4">
-            Products needs to be prepared by providers and piked up by a member
-          </span>
-          {% endif %}
-
-          {% if order.status == 'processed' %}
-          <span class="d-block text-body fs-4 mt-4 mb-4">
-            Waiting for products to be prepared by providers
-          </span>
-          {% endif %}
-
-          {% if order.status == 'controlled' %}
-          <span class="d-block text-body fs-4 mt-4 mb-4">
-            Add tracking number before giving delivery
-          </span>
-          {% endif %}
-
-          {% if order.status == 'handed' %}
-          <span class="d-block text-body fs-4 mt-4 mb-4">
-            Confirm the payment
-          </span>
-          {% endif %}
-        </div>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
