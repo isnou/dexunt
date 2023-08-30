@@ -268,8 +268,8 @@
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {% if order.delivery_price %}
-                      {{ order.delivery_price|floatformat:"0g" }} <small>DZD</small>
+                      {% if product.order.delivery_price %}
+                      {{ product.order.delivery_price|floatformat:"0g" }} <small>DZD</small>
                       {% else %}
                       Free
                       {% endif %}
@@ -282,7 +282,7 @@
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {{ order.total_price|floatformat:"0g" }} <small>DZD</small>
+                      {{ product.refund_amount|floatformat:"0g" }} <small>DZD</small>
                     </span>
                   </td>
                 </tr>
@@ -295,7 +295,7 @@
         <div class="card mb-4">
           <div class="card-body">
               <ul class="step step-timeline-md mt-5">
-                {% for log in order.log.all %}
+                {% for log in product.order.log.all %}
                 <li class="step-item">
                   <div class="step-content-wrapper">
                     <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
