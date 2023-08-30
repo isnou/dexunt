@@ -58,7 +58,7 @@
         </td>
         <!-- product title and image -->
         <td class="table-column-ps-0">
-          <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.option.variant.product.id }}">
+          <a type="button" class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ product.id }}">
             <div class="flex-shrink-0">
               <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.image }}">
             </div>
@@ -154,9 +154,9 @@
 </div>
 <!-- end all orders  -->
 
-{% for order in all_orders %}
+{% for product in all_orders %}
 <!-- view order modal -->
-<div id="view_order_modal_{{ order.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="view_order_modal_{{ product.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="align-self: center;">
