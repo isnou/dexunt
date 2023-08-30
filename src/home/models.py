@@ -164,7 +164,14 @@ class SelectedProduct(models.Model):
     def ar_detail(self):
         return self.option.variant.ar_spec + ' ' + self.option.ar_value
     def refund_amount(self):
-        return float(self.retained_price) + (self.order.delivery_price() * float(self.option.delivery_quotient) / self.order.delivery_quotients())
+        amount = float(self.retained_price) + (self.order.delivery_price() * float(self.option.delivery_quotient) / self.order.delivery_quotients_sum())
+        if self.order.coupon:
+            if self.order.coupon.is_subtractive:
+                amount = amount - (self.coupon.value / self.order.selected_products.all().count())
+            else:
+                amount = amount - ((amount * self.coupon.value) / 100)
+        return amount
+
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
@@ -418,7 +425,7 @@ class Order(models.Model):
         self.refunded_at = timezone.now()
         super().save()
     # ----- variables ----- #
-    def delivery_quotients(self):
+    def delivery_quotients_sum(self):
         value = 0
         for p in self.selected_products.all():
             value += p.option.delivery_quotient
