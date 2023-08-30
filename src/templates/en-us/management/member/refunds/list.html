@@ -296,7 +296,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a type="button" href="{% url 'member-orders' 'refund_declined' %}?order_id={{ order.id }}" class="btn btn-white">Time Exceeded</a>
+        <a type="button" href="{% url 'member-orders' 'refund_declined' %}?order_id={{ order.id }}" class="btn btn-white">Decline</a>
         <a type="button" href="{% url 'member-orders' 'refund_accepted' %}?product_id={{ product.id }}" class="btn btn-white">Accept</a>
       </div>
     </div>
