@@ -295,36 +295,19 @@
         <div class="card mb-4">
           <div class="card-body">
               <ul class="step step-timeline-md mt-5">
-                {% for log in product.order.log.all %}
+                {% for log in product.refund_logs %}
                 <li class="step-item">
                   <div class="step-content-wrapper">
                     <span class="step-icon step-icon-soft-primary"><i class="fa-solid fa-circle-dot"></i></span>
                     <div class="step-content">
-
-                      {% if log.content == 'collected' %}
-                      <a class="d-flex align-items-center" href="#">
-                        <div class="flex-shrink-0">
-                          <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ log.selected_product.image }}">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                          <small>
-                            <span class="d-block text-body fs-6 text-wrap">
-                              {{ log.selected_product.en_title }} {{ log.selected_product.en_detail }}
-                            </span>
-                          </small>
-                        </div>
-                      </a>
-                      {% else %}
-                      <h4>{{ log.content|title }}</h4>
+                      {% if log.content == 'paid' %}
+                      <h4>Received</h4>
                       {% endif %}
 
-                      {% if not log.content == 'processed' and not log.content == 'placed' %}
-                      <p class="step-text">by :{{ log.user }}</p>
+                      {% if log.content == 'refund_request' %}
+                      <h4>Refund Requested</h4>
                       {% endif %}
 
-                      {% if log.content == 'handed' %}
-                      <p class="step-text">code #{{ order.delivery_code }}</p>
-                      {% endif %}
                       <p class="step-text">at :{{ log.at }}</p>
                     </div>
                   </div>
