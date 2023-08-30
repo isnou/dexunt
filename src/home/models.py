@@ -163,6 +163,8 @@ class SelectedProduct(models.Model):
         return self.option.variant.product.ar_title
     def ar_detail(self):
         return self.option.variant.ar_spec + ' ' + self.option.ar_value
+    def refund_amount(self):
+        return self.retained_price + (self.order.delivery_price()/self.order.selected_products.all().count())
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
