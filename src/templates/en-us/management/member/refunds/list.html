@@ -224,11 +224,11 @@
 
                   <td>
                     <span class="d-block text-dark fs-6">
-                      Sub Total
+                      Order Total
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {{ order.price|floatformat:"0g" }} <small>DZD</small>
+                      {{ product.order.total_price|floatformat:"0g" }} <small>DZD</small>
                     </span>
                   </td>
                 </tr>
@@ -236,14 +236,11 @@
                 <tr>
                   <td>
                     <span class="d-block text-dark fs-6">
-                      Gift Points
+                      Products Quantity
                     </span>
 
                     <span class="d-block text-body fs-6">
-                      {{ order.points }}
-                      {% if order.client %}
-                      ({{ order.client.points }})
-                      {% endif %}
+                      {{ product.order.selected_products.all.count }}
                     </span>
                   </td>
 
