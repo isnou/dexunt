@@ -171,6 +171,8 @@ class SelectedProduct(models.Model):
             else:
                 amount = amount - (amount * float(self.order.coupon.value) / 100)
         return amount
+    def refund_logs(self):
+        return self.log.all()
 #                                                                        #
 class Coupon(models.Model):
     # ----- Technical ----- #
@@ -510,8 +512,6 @@ class Order(models.Model):
         return logs
     def unreviewed_products(self):
         return self.selected_products.all().exclude(status='completed')
-    def refund_logs(self):
-        return self.log.all().filter(content='paid').filter(content='refund_request')
 #                                                                        #
 def get_order(request):
     selected_cart = get_cart(request)
