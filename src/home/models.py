@@ -322,7 +322,6 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if not self.secret_key:
             self.secret_key = functions.serial_number_generator(6)
-        super().save()
         if not self.ref:
             self.ref = str(self.id+1).zfill(6)
         super().save()
@@ -539,7 +538,6 @@ def get_order(request):
             selected_order = Order(coupon=coupon,
                                    client=request.user)
             selected_order.save()
-
     for p in selected_cart.selected_products.all():
         p.order = selected_order
         p.save()
