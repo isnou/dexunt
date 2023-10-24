@@ -431,10 +431,10 @@
               <span class="avatar avatar-xxl avatar-4x3 text-center mb-2">
                 <img class="avatar-img card-dashed shadow-none" src="{% get_media_prefix %}{{ album.image }}" style="width: 80%;">
 
-                <a href="{% url 'admin-manage-products' 'delete_image' %}?album_id={{ album.id }}" class="icon icon-lg icon-circle">
+                <a href="{% url 'admin-manage-products' 'delete_image' %}?album_id={{ album.id }}">
                   <i class="fa fa-trash fa-2xl"></i>
                 </a>
-                
+
               </span>
             </div>
           </div>
