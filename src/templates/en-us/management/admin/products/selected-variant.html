@@ -439,16 +439,14 @@
           <div class="col-lg-6 col-sm-6 mb-2">
             <div class="card-dashed">
               <!-- add photo -->
-              <a class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add_photo_modal">
+              <a href="javascript:;" class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add_photo_modal">
                 <div class="flex-shrink-0">
                   <img class="avatar avatar-lg" src="{% static 'home-page/images/custom/add-image.png' %}">
                 </div>
               </a>
               <!-- end add photo -->
-
             </div>
           </div>
-
           {% endif %}
         </div>
       </div>
@@ -527,6 +525,63 @@
 
 
 <!-- options modals & forms -->
+<!-- add photo modal -->
+<div id="add_photo_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="modal-body">
+        <div >
+          <!-- title -->
+          <div class="text-center mb-7">
+            <h2>Add a photo</h2>
+          </div>
+          <!-- end title -->
+
+          <form action="{% url 'admin-manage-products' 'add_image' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="option_id" value='{{ option.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Image</span>
+
+              <!-- photo input -->
+              <div class="mb-3">
+                <div class="col text-center">
+                  <label class="avatar avatar-xxl avatar-uploader" for="add_photo_input" style="width: 50%; height: 50%;">
+                    <img id="add_photo" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}" style="width: 50%;">
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="option_image" id="add_photo_input" data-hs-file-attach-options='{
+                        "textTarget": "#add_photo",
+                        "mode": "image",
+                        "targetAttr": "src",
+                        "allowTypes": [".png", ".jpeg", ".jpg"]
+                        }' required>
+                    <span class="invalid-feedback text-center">please upload an image.</span>
+                  </label>
+                </div>
+              </div>
+              <!-- end photo input -->
+
+              <div class="d-grid mb-4">
+                <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- End Patient -->
+      </div>
+      <!-- End Body -->
+    </div>
+  </div>
+</div>
+
+
 {% for option in selected_variant.option_set.all %}
 <!-- activate option form -->
 <form action="{% url 'admin-manage-products' 'activate_option' %}" id="activate_option_form_{{ option.id }}_{{ variant.id }}" method="post">
@@ -980,113 +1035,5 @@
   </div>
 </div>
 <!-- end delete feature modal -->
-{% endfor %}
-
-<!-- description modals & forms -->
-{% for description in selected_variant.description_set.all %}
-<!-- delete description form -->
-<form action="{% url 'admin-manage-products' 'delete_description' %}" id="delete_description_{{ description.id }}" class="js-validate need-validate" novalidate method="post">
-  {% csrf_token %}
-  <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-  <input type="hidden" name="description_id" value='{{ description.id }}'>
-</form>
-
-<!-- delete description modal -->
-<div id="delete_description_modal_{{ description.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>click yes to delete {{ description.en_title }}.</p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="delete_description_{{ description.id }}">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end delete description modal -->
-
-<!-- edit description modal -->
-<div id="edit_description_modal_{{ description.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit feature</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <form action="{% url 'admin-manage-products' 'edit_description' %}" class="js-validate need-validate" novalidate method="post">
-          {% csrf_token %}
-          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-          <input type="hidden" name="description_id" value='{{ description.id }}'>
-
-          <div class="row mb-4">
-
-            <span class="divider-center mb-2">Titles</span>
-
-            <!-- feature english title -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">english</span>
-              <input type="text" class="form-control" name="{{ description_form.en_title.name }}" value="{{ description.en_title }}" required>
-              <span class="invalid-feedback text-center">required field.</span>
-            </div>
-            <!-- end feature english title -->
-
-            <!-- feature french title -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">french</span>
-              <input type="text" class="form-control" name="{{ description_form.fr_title.name }}" value="{{ description.fr_title }}">
-            </div>
-            <!-- end feature french title -->
-
-            <!-- feature arabic title -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">arabic</span>
-              <input type="text" class="form-control" name="{{ description_form.ar_title.name }}" value="{{ description.ar_title }}" dir="rtl">
-            </div>
-            <!-- end feature arabic title -->
-
-            <span class="divider-center mb-2">Content</span>
-
-            <!-- product english content -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">english</span>
-              <textarea class="form-control" name="{{ description_form.en_content.name }}" placeholder="{{ description.en_content }}" rows="4"></textarea>
-            </div>
-            <!-- end product english description -->
-
-            <!-- product french content -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">french</span>
-              <textarea class="form-control" name="{{ description_form.fr_content.name }}" placeholder="{{ description.fr_content }}" rows="4"></textarea>
-            </div>
-            <!-- end product french content -->
-
-            <!-- product arabic content -->
-            <div class="input-group mb-2">
-              <span class="input-group-text" style="width: 25%;">arabic</span>
-              <textarea class="form-control" name="{{ description_form.ar_content.name }}" placeholder="{{ description.ar_content }}" rows="4" dir="rtl"></textarea>
-            </div>
-            <!-- end product arabic content -->
-
-          </div>
-
-          <!-- submit -->
-          <div class="d-grid mb-4">
-            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-          </div>
-          <!-- end submit -->
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end delete description modal -->
 {% endfor %}
 {% endblock %}
