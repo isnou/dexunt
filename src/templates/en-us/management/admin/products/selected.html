@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="col">
-                      {% if variant.album_set.all.count %}
+                      {% if not variant.has_no_photos %}
                       <small>Photos : {{ variant.album_set.all.count }}</small>
                       {% else %}
                       <small>
