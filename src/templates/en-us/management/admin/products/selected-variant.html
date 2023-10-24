@@ -450,6 +450,23 @@
     </div>
     {% else %}
     <!-- dropzone -->
+    <script>
+        Dropzone.options.variantUploadImages = {
+            paramName: "variant_image",
+            maxFilesize: 1024,
+            maxFiles: 4,
+            previewTemplate: document.getElementById('preview-template').innerHTML,
+            uploadprogress: function(file, progress, bytesSent) {
+            if (file.previewElement) {
+              var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
+              progressElement.style.width = progress + "%";
+              progressElement.querySelector('.progress-text').textContent = progress + "%";
+              }
+            }
+        };
+        Dropzone.discover();
+    </script>
+
     <div class="card mb-3 mb-lg-5">
       <!-- Header -->
       <div class="card-header card-header-content-between">
@@ -541,9 +558,9 @@
           </div>
           <!-- end title -->
 
-          <form action="{% url 'admin-manage-products' 'add_image' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+          <form action="{% url 'admin-manage-products' 'add_images' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="hidden" name="option_id" value='{{ option.id }}'>
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
 
             <div class="row mb-4">
               <span class="divider-center mb-2">Image</span>
@@ -553,7 +570,7 @@
                 <div class="col text-center">
                   <label class="avatar avatar-xxl avatar-uploader" for="add_photo_input" style="width: 50%; height: 50%;">
                     <img id="add_photo" class="avatar-img" src="{% static 'home-page/images/custom/add-image.png' %}" style="width: 50%;">
-                    <input type="file" class="js-file-attach avatar-uploader-input" name="option_image" id="add_photo_input" data-hs-file-attach-options='{
+                    <input type="file" class="js-file-attach avatar-uploader-input" name="variant_image" id="add_photo_input" data-hs-file-attach-options='{
                         "textTarget": "#add_photo",
                         "mode": "image",
                         "targetAttr": "src",
