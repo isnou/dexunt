@@ -356,7 +356,7 @@ class Variant(models.Model):
         if self.album_set.all().count() < 4:
             return True
         else:
-            return True
+            return False
     def has_no_photos(self):
         if not self.album_set.all().count():
             return True
