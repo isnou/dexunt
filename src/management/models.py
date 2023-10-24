@@ -86,27 +86,6 @@ class Feature(models.Model):
         if self.ar_content:
             self.tags += (', ' + self.ar_content)
         super().save()
-#                                                                        #
-class Description(models.Model):
-    # ----- Technical ----- #
-    has_image = models.BooleanField(default=False)
-    image_to_the_right = models.BooleanField(default=False)
-    # ----- relations ----- #
-    variant = models.ForeignKey(
-        'management.Variant', on_delete=models.CASCADE, null=True)
-    # ----- content ----- #
-    en_title = models.CharField(max_length=100, blank=True, null=True)
-    fr_title = models.CharField(max_length=100, blank=True, null=True)
-    ar_title = models.CharField(max_length=100, blank=True, null=True)
-    # ----- #
-    en_content = models.TextField(max_length=500, null=True)
-    fr_content = models.TextField(max_length=500, null=True)
-    ar_content = models.TextField(max_length=500, null=True)
-    # ----- media ----- #
-    file_name = models.CharField(max_length=500, blank=True)
-    def get_image_path(self, filename):
-        return self.file_name.lower()
-    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 # ---------------------------------------------------------------------- #
 
 # ------------------------------ Inventory ----------------------------- #
