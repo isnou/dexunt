@@ -352,7 +352,7 @@ class Product(models.Model):
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
     # ---- media ---- #
-    def get_file_path(self):
+    def get_file_path(self, request):
         return self.en_title.lower()
 
     en_description = models.FileField(upload_to=get_file_path, blank=True, null=True)
