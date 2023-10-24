@@ -493,14 +493,12 @@ def manage_products(request, action):
         variant_form = VariantForm()
         option_form = OptionForm()
         feature_form = FeatureForm()
-        description_form = DescriptionForm()
         context = {
             'nav_side': 'products',
             'selected_variant': selected_variant,
             'variant_form': variant_form,
             'option_form': option_form,
             'feature_form': feature_form,
-            'description_form': description_form,
         }
         return render(request, url, context)
     if action == 'edit_variant':
