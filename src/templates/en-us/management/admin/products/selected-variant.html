@@ -167,85 +167,6 @@
   </div>
 </div>
 <!-- end add feature modal -->
-
-<!-- add description modal -->
-<div id="add_description" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="add_new_product_modal_title">
-          <div class="text-center mb-7">
-            <h2>Add Description</h2>
-          </div>
-          <form action="{% url 'admin-manage-products' 'add_description' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
-
-            <div class="row mb-4">
-
-              <span class="divider-center mb-2">Title</span>
-
-              <!-- english title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <input type="text" class="form-control" name="{{ description_form.en_title.name }}" placeholder="storage tips" required>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end english title -->
-
-              <!-- french title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <input type="text" class="form-control" name="{{ description_form.fr_title.name }}" placeholder="conseils de stockage">
-              </div>
-              <!-- end french title -->
-
-              <!-- arabic title -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <input type="text" class="form-control" name="{{ description_form.ar_title.name }}" placeholder="نصائح التخزين" dir="rtl">
-              </div>
-              <!-- end arabic title -->
-
-              <span class="divider-center mb-2">Content</span>
-
-              <!-- product english content -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <textarea class="form-control" name="{{ description_form.en_content.name }}" placeholder="" rows="4"></textarea>
-              </div>
-              <!-- end product english description -->
-
-              <!-- product french content -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <textarea class="form-control" name="{{ description_form.fr_content.name }}" placeholder="" rows="4"></textarea>
-              </div>
-              <!-- end product french content -->
-
-              <!-- product arabic content -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <textarea class="form-control" name="{{ description_form.ar_content.name }}" placeholder="" rows="4" dir="rtl"></textarea>
-              </div>
-              <!-- end product arabic content -->
-            </div>
-
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end add description modal -->
 {% endblock %}
 
 <!-- product content -->
@@ -253,102 +174,69 @@
 <!-- selected variant  -->
 <div class="row">
   <div class="col-lg-8 mb-3 mb-lg-0">
-    {% if selected_variant.album_set.all.count %}
-    <!-- photos -->
+    <!-- features -->
     <div class="card mb-2">
-      <div class="card-header">
-        <h5 class="card-header-title">Photos</h5>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          {% for album in selected_variant.album_set.all %}
-          <div class="col">
-            <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
-              {% csrf_token %}
-              <input type="hidden" name="album_id" value='{{ album.id }}'>
-            </form>
-
-            <div class="row" style="justify-content: center;">
-              <span class="avatar avatar-xxl avatar-4x3 text-center mb-2">
-                <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 45%;">
-              </span>
-
-              <button class="btn btn-white btn-icon" form="delete_image_{{ album.id }}">
-                <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-              </button>
-            </div>
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">Features</h5>
           </div>
-          {% endfor %}
         </div>
-      </div>
-    </div>
-    {% else %}
-    <!-- dropzone -->
-    <div class="card mb-3 mb-lg-5">
-      <!-- Header -->
-      <div class="card-header card-header-content-between">
-        <h4 class="card-header-title">Photos</h4>
-      </div>
-      <!-- End Header -->
+        <!-- end title -->
 
-      <!-- Body -->
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- add feature button -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
+            <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Feature"></i>
+          </button>
+          <!-- end add feature button -->
+        </div>
+        <!-- end title bar -->
+      </div>
       <div class="card-body">
-        <form action="{% url 'admin-manage-products' 'add_images' %}" id="variant_upload_images" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+        <!-- table -->
+        <div class="table-responsive">
+          <table id="feature_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+            <tbody>
+            {% for feature in selected_variant.feature_set.all %}
+            <tr>
+              <!-- feature action -->
+              <td class="text-start">
+                <!-- edit feature button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
+                  <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </button>
+                <!-- end edit feature button -->
 
-          <div class="fallback">
-            <input name="variant_image" type="file" multiple />
-          </div>
+                <!-- delete option button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
+                  <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                </button>
+                <!-- end delete option button -->
+              </td>
 
-          <div class="dz-message">
-            <img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image.png' %}" data-hs-theme-appearance="default">
-            <img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image-dark.png' %}" data-hs-theme-appearance="dark">
-
-            <h5>Drag and drop your file here</h5>
-            <p class="mb-2">or</p>
-            <span class="btn btn-white btn-sm">Browse files</span>
-          </div>
-
-          <div id="preview-template" style="display: none;">
-            <div class="col h-100 mb-5 me-4">
-              <div class="dz-preview dz-file-preview" style="width: 100%;">
-                <div class="row dz-details media mt-4">
-                  <div class="avatar avatar-xl avatar-square avatar-centered mb-3">
-                    <img class="avatar-img" data-dz-thumbnail>
-                  </div>
-                  <div class="media-body dz-file-wrapper">
-                    <h6 class="dz-filename">
-                      <span class="dz-title" data-dz-name></span>
-                    </h6>
-                    <span class="dz-size fs-5" data-dz-size></span>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="progress flex-grow-1 me-2">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-dz-uploadprogress></div>
-                  </div>
-                  <span class="progress-text"></span>
-                </div>
-
-                <div class="d-flex align-items-center">
-                  <div class="dz-success-mark">
-                    <i class="bi bi-check-lg fs-2"></i>
-                  </div>
-                  <div class="dz-error-mark">
-                    <span class="fa fa-times-circle"></span>
-                  </div>
-                  <div class="dz-error-message">
-                    <small data-dz-errormessage></small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+              <!-- feature title & value -->
+              <td class="text-start">
+                <h6 class="text-body">
+                  <small>{{ feature.en_name }} : {{ feature.en_content }}</small>
+                </h6>
+                <h6 class="text-body">
+                  <small>{{ feature.fr_name }} : {{ feature.fr_content }}</small>
+                </h6>
+                <h6 class="text-body" dir="rtl">
+                  <small>{{ feature.ar_name }} : {{ feature.ar_content }}</small>
+                </h6>
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- end table -->
       </div>
     </div>
-    {% endif %}
 
     <!-- options -->
     <div class="card mb-2">
@@ -519,138 +407,107 @@
     </div>
   </div>
 
-  <!-- features -->
+
   <div class="col-lg-4">
-    <div class="card mb-2">
-      <div class="card-header card-header-content-md-between">
-        <!-- title -->
-        <div class="mb-md-0">
-          <div class="flex-grow-1">
-            <h5 class="text-inherit mb-0">Features</h5>
-          </div>
-        </div>
-        <!-- end title -->
 
-        <!-- title bar -->
-        <div class="d-grid d-sm-flex gap-2">
-          <!-- add feature button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
-            <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Feature"></i>
-          </button>
-          <!-- end add feature button -->
-        </div>
-        <!-- end title bar -->
+
+    {% if selected_variant.album_set.all.count %}
+    <!-- photos -->
+    <div class="card mb-2">
+      <div class="card-header">
+        <h5 class="card-header-title">Photos</h5>
       </div>
       <div class="card-body">
-        <!-- table -->
-        <div class="table-responsive">
-          <table id="feature_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-            <tbody>
-            {% for feature in selected_variant.feature_set.all %}
-            <tr>
-              <!-- feature action -->
-              <td class="text-start">
-                <!-- edit feature button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
-                  <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-                </button>
-                <!-- end edit feature button -->
+        <div class="row">
+          {% for album in selected_variant.album_set.all %}
+          <div class="col">
+            <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="album_id" value='{{ album.id }}'>
+            </form>
 
-                <!-- delete option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
-                  <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-                </button>
-                <!-- end delete option button -->
-              </td>
+            <div class="row" style="justify-content: center;">
+              <span class="avatar avatar-xxl avatar-4x3 text-center mb-2">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 45%;">
+              </span>
 
-              <!-- feature title & value -->
-              <td class="text-start">
-                <h6 class="text-body">
-                  <small>{{ feature.en_name }} : {{ feature.en_content }}</small>
-                </h6>
-                <h6 class="text-body">
-                  <small>{{ feature.fr_name }} : {{ feature.fr_content }}</small>
-                </h6>
-                <h6 class="text-body" dir="rtl">
-                  <small>{{ feature.ar_name }} : {{ feature.ar_content }}</small>
-                </h6>
-              </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <!-- end table -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <!-- descriptions -->
-  <div class="col">
-    <div class="card mb-2">
-      <div class="card-header card-header-content-md-between">
-        <!-- title -->
-        <div class="mb-md-0">
-          <div class="flex-grow-1">
-            <h5 class="text-inherit mb-0">Description</h5>
+              <button class="btn btn-white btn-icon" form="delete_image_{{ album.id }}">
+                <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+              </button>
+            </div>
           </div>
+          {% endfor %}
         </div>
-        <!-- end title -->
-
-        <!-- title bar -->
-        <div class="d-grid d-sm-flex gap-2">
-          <!-- add description button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_description">
-            <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Description"></i>
-          </button>
-          <!-- end add description button -->
-        </div>
-        <!-- end title bar -->
-      </div>
-      <div class="card-body">
-        <!-- table -->
-        <div class="table-responsive">
-          <table id="description_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-            <tbody>
-            {% for description in selected_variant.description_set.all %}
-            <tr>
-              <!-- description action -->
-              <td class="text-start">
-                <!-- edit description button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_description_modal_{{ description.id }}">
-                  <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
-                </button>
-                <!-- end edit description button -->
-
-                <!-- delete description button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_description_modal_{{ description.id }}">
-                  <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-                </button>
-                <!-- end delete description button -->
-              </td>
-
-              <!-- description title & value -->
-              <td class="text-center">
-                <h6 class="text-body">
-                  {{ description.en_title }}
-                </h6>
-                <h6 class="text-body">
-                  {{ description.fr_title }}
-                </h6>
-                <h6 class="text-body" dir="rtl">
-                  {{ description.ar_title }}
-                </h6>
-              </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <!-- end table -->
       </div>
     </div>
+    {% else %}
+    <!-- dropzone -->
+    <div class="card mb-3 mb-lg-5">
+      <!-- Header -->
+      <div class="card-header card-header-content-between">
+        <h4 class="card-header-title">Photos</h4>
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="card-body">
+        <form action="{% url 'admin-manage-products' 'add_images' %}" id="variant_upload_images" class="dropzone dz-dropzone dz-dropzone-card" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+          <div class="fallback">
+            <input name="variant_image" type="file" multiple />
+          </div>
+
+          <div class="dz-message">
+            <img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image.png' %}" data-hs-theme-appearance="default">
+            <img class="avatar avatar-xl avatar-4x3 mb-3" src="{% static 'home-page/images/custom/add-image-dark.png' %}" data-hs-theme-appearance="dark">
+
+            <h5>Drag and drop your file here</h5>
+            <p class="mb-2">or</p>
+            <span class="btn btn-white btn-sm">Browse files</span>
+          </div>
+
+          <div id="preview-template" style="display: none;">
+            <div class="col h-100 mb-5 me-4">
+              <div class="dz-preview dz-file-preview" style="width: 100%;">
+                <div class="row dz-details media mt-4">
+                  <div class="avatar avatar-xl avatar-square avatar-centered mb-3">
+                    <img class="avatar-img" data-dz-thumbnail>
+                  </div>
+                  <div class="media-body dz-file-wrapper">
+                    <h6 class="dz-filename">
+                      <span class="dz-title" data-dz-name></span>
+                    </h6>
+                    <span class="dz-size fs-5" data-dz-size></span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="progress flex-grow-1 me-2">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-dz-uploadprogress></div>
+                  </div>
+                  <span class="progress-text"></span>
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <div class="dz-success-mark">
+                    <i class="bi bi-check-lg fs-2"></i>
+                  </div>
+                  <div class="dz-error-mark">
+                    <span class="fa fa-times-circle"></span>
+                  </div>
+                  <div class="dz-error-message">
+                    <small data-dz-errormessage></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% endif %}
+
   </div>
 </div>
 <!-- end selected variant  -->

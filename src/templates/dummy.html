@@ -3692,3 +3692,160 @@
                                 </li>
 
 
+
+
+
+
+
+
+<!-- add description modal -->
+<div id="add_description" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add Description</h2>
+          </div>
+          <form action="{% url 'admin-manage-products' 'add_description' %}" class="js-validate need-validate" novalidate method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+
+            <div class="row mb-4">
+
+              <span class="divider-center mb-2">Title</span>
+
+              <!-- english title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <input type="text" class="form-control" name="{{ description_form.en_title.name }}" placeholder="storage tips" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end english title -->
+
+              <!-- french title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <input type="text" class="form-control" name="{{ description_form.fr_title.name }}" placeholder="conseils de stockage">
+              </div>
+              <!-- end french title -->
+
+              <!-- arabic title -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <input type="text" class="form-control" name="{{ description_form.ar_title.name }}" placeholder="نصائح التخزين" dir="rtl">
+              </div>
+              <!-- end arabic title -->
+
+              <span class="divider-center mb-2">Content</span>
+
+              <!-- product english content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <textarea class="form-control" name="{{ description_form.en_content.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product english description -->
+
+              <!-- product french content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <textarea class="form-control" name="{{ description_form.fr_content.name }}" placeholder="" rows="4"></textarea>
+              </div>
+              <!-- end product french content -->
+
+              <!-- product arabic content -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <textarea class="form-control" name="{{ description_form.ar_content.name }}" placeholder="" rows="4" dir="rtl"></textarea>
+              </div>
+              <!-- end product arabic content -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add description modal -->
+
+
+
+
+
+<div class="row">
+  <!-- descriptions -->
+  <div class="col">
+    <div class="card mb-2">
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">Description</h5>
+          </div>
+        </div>
+        <!-- end title -->
+
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- add description button -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_description">
+            <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Description"></i>
+          </button>
+          <!-- end add description button -->
+        </div>
+        <!-- end title bar -->
+      </div>
+      <div class="card-body">
+        <!-- table -->
+        <div class="table-responsive">
+          <table id="description_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+            <tbody>
+            {% for description in selected_variant.description_set.all %}
+            <tr>
+              <!-- description action -->
+              <td class="text-start">
+                <!-- edit description button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_description_modal_{{ description.id }}">
+                  <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </button>
+                <!-- end edit description button -->
+
+                <!-- delete description button -->
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_description_modal_{{ description.id }}">
+                  <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                </button>
+                <!-- end delete description button -->
+              </td>
+
+              <!-- description title & value -->
+              <td class="text-center">
+                <h6 class="text-body">
+                  {{ description.en_title }}
+                </h6>
+                <h6 class="text-body">
+                  {{ description.fr_title }}
+                </h6>
+                <h6 class="text-body" dir="rtl">
+                  {{ description.ar_title }}
+                </h6>
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- end table -->
+      </div>
+    </div>
+  </div>
+</div>
+
