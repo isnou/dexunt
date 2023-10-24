@@ -69,8 +69,9 @@
               </td>
 
               <td>
-
-                <input type="file" name="fr_description" value="{{ selected_product.fr_description }}">
+                <div>
+                  <embed src="{% get_media_prefix %}{{ selected_product.fr_description }}" width="500" height="375" type="application/pdf">
+                </div>
               </td>
             </tr>
 
@@ -80,7 +81,9 @@
               </td>
 
               <td>
-                {{ selected_product.en_description }}
+                <div>
+                  <embed src="{% get_media_prefix %}{{ selected_product.en_description }}" width="500" height="375" type="application/pdf">
+                </div>
               </td>
             </tr>
 
@@ -90,7 +93,10 @@
               </td>
 
               <td>
-                {{ selected_product.ar_description }}
+
+                <div>
+                  <embed src="{% get_media_prefix %}{{ selected_product.ar_description }}" width="500" height="375" type="application/pdf">
+                </div>
               </td>
             </tr>
 
