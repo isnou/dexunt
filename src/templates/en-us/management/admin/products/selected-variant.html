@@ -441,7 +441,7 @@
 
           {% for album in selected_variant.album_set.all %}
           <!-- image -->
-          <label class="avatar avatar-xxl avatar-circle avatar-uploader profile-cover-avatar" for="edit_up{{ album.id }}">
+          <label class="avatar avatar-xxl avatar-square avatar-uploader profile-cover-avatar" for="edit_up{{ album.id }}">
             <img id="edit_{{ album.id }}" class="avatar-img" src="{% get_media_prefix %}{{ album.image }}">
 
             <input type="file" class="js-file-attach avatar-uploader-input" id="edit_up{{ album.id }}"
@@ -453,6 +453,10 @@
             }'>
 
             <span class="avatar-uploader-trigger">
+              <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
+            </span>
+
+            <span class="avatar-delete-trigger">
               <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
             </span>
           </label>
