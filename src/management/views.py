@@ -522,11 +522,10 @@ def manage_products(request, action):
             album.save()
             return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_image':
-        if request.method == 'POST':
-            album_id = request.POST.get('album_id', False)
-            album = Album.objects.all().get(id=album_id)
-            album.delete()
-            return redirect('admin-manage-products', 'view_variant')
+        album_id = request.GET.get('album_id', False)
+        album = Album.objects.all().get(id=album_id)
+        album.delete()
+        return redirect('admin-manage-products', 'view_variant')
 
     if action == 'add_feature':
         if request.method == 'POST':
