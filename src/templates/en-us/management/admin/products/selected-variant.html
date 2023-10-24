@@ -421,7 +421,7 @@
       <div class="card-body">
         <div class="row">
           {% for album in selected_variant.album_set.all %}
-          <div class="col-lg-6 mb-2">
+          <div class="col-lg-4 col-sm-6 mb-2">
             <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="album_id" value='{{ album.id }}'>
