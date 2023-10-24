@@ -421,7 +421,7 @@
       <div class="card-body">
         <div class="row">
           {% for album in selected_variant.album_set.all %}
-          <div class="col mb-2">
+          <div class="col">
             <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="album_id" value='{{ album.id }}'>
@@ -429,12 +429,12 @@
 
             <div class="row" style="justify-content: center;">
               <span class="avatar avatar-xxl avatar-4x3 text-center mb-2">
-                <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 45%;">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 50%;">
               </span>
 
-              <button class="btn btn-white btn-icon mb-2" form="delete_image_{{ album.id }}">
+              <a href="{% url 'admin-manage-products' 'delete_image' %}?album_id={{ album.id }}">
                 <i class="fa fa-trash avatar-uploader-icon shadow-sm"></i>
-              </button>
+              </a>
             </div>
           </div>
           {% endfor %}
