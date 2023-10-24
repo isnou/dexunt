@@ -521,6 +521,7 @@ def manage_products(request, action):
             album.variant = selected_variant
             album.save()
             return redirect('admin-manage-products', 'view_variant')
+
     if action == 'delete_image':
         album_id = request.GET.get('album_id', False)
         album = Album.objects.all().get(id=album_id)
