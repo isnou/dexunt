@@ -62,7 +62,7 @@
           {% if not selected_option.has_image %}
           {% for album in selected_variant.album_set.all %}
           <div>
-            <img src="{% get_media_prefix %}{{ album.image }}" alt="" class="w-100 rounded">
+            <img src="{% get_media_prefix %}{{ album.image }}" alt="" class="w-100 rounded" style="cursor: pointer;">
           </div>
           {% endfor %}
           {% endif %}
