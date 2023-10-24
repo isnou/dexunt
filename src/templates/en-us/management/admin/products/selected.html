@@ -89,7 +89,9 @@
 
               <td>
                 <div>
-                   <iframe src="{{ selected_product.en_description.url }}" style="width:500px; height:800px;"></iframe>
+                  <object data="test.pdf" type="application/pdf" title="SamplePdf" width="500" height="720">
+                    <embed src="{{ selected_product.en_description.url }}" >
+                  </object>
                 </div>
               </td>
             </tr>
