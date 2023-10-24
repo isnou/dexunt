@@ -421,7 +421,7 @@
       <div class="card-body">
         <div class="row">
           {% for album in selected_variant.album_set.all %}
-          <div class="col">
+          <div class="col mb-2">
             <form action="{% url 'admin-manage-products' 'delete_image' %}" id="delete_image_{{ album.id }}" method="post">
               {% csrf_token %}
               <input type="hidden" name="album_id" value='{{ album.id }}'>
@@ -433,35 +433,10 @@
               </span>
 
               <button class="btn btn-white btn-icon mb-2" form="delete_image_{{ album.id }}">
-                <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                <i class="fa fa-trash avatar-uploader-icon shadow-sm"></i>
               </button>
             </div>
           </div>
-          {% endfor %}
-
-          {% for album in selected_variant.album_set.all %}
-          <!-- option photo -->
-            <div class="mb-3">
-              <div class="col text-center">
-                <label class="avatar avatar-xxl avatar-uploader" style="width: 50%; height: 50%;" for="edit_up_{{ album.id }}">
-                  <img id="presentation_image_{{ album.id }}" class="avatar-img" src="{% get_media_prefix %}{{ album.image }}" style="width: 50%;">
-                  <input type="file" class="js-file-attach avatar-uploader-input" name="option_image" id="edit_up_{{ album.id }}"
-                         data-hs-file-attach-options='{
-                      "textTarget": "#presentation_image_{{ album.id }}",
-                      "mode": "image",
-                      "targetAttr": "src",
-                      "allowTypes": [".png", ".jpeg", ".jpg"]
-                      }'>
-                  <span class="avatar-uploader-trigger">
-                    <i class="fa fa-pencil avatar-uploader-icon shadow-sm"></i>
-                  </span>
-                </label>
-                <a href="#">
-                  <i class="fa fa-trash avatar-uploader-icon shadow-sm"></i>
-                </a>
-              </div>
-            </div>
-            <!-- end option photo -->
           {% endfor %}
 
         </div>
