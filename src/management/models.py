@@ -353,12 +353,12 @@ class Variant(models.Model):
         super().save()
     # ----- variables ----- #
     def needs_more_photos(self):
-        if self.album_set.all().count < 4:
+        if self.album_set.all().count() < 4:
             return True
         else:
             return True
     def has_no_photos(self):
-        if not self.album_set.all().count:
+        if not self.album_set.all().count():
             return True
         else:
             return False
