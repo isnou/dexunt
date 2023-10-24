@@ -45,9 +45,110 @@
 <!-- product content -->
 {% block content %}
 <div class="row">
-  <!-- variants -->
+  <!-- description -->
   <div class="col-lg-8 mb-3 mb-lg-0">
     <div class="card mb-2">
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-2 mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">Description</h5>
+          </div>
+        </div>
+        <!-- end title -->
+      </div>
+
+      <div class="card-body">
+        <!-- table -->
+        <div class="table-responsive">
+          <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+            <tbody>
+            <tr>
+              <td class="table-column-ps-0">
+                Frensh description
+              </td>
+
+              <!-- actions -->
+              <td>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="table-column-ps-0">
+                English description
+              </td>
+
+              <!-- actions -->
+              <td>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="table-column-ps-0">
+                Arabic description
+              </td>
+
+              <!-- actions -->
+              <td>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- end table -->
+      </div>
+    </div>
+  </div>
+
+  <!-- product details -->
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-header-title">Product Details</h4>
+      </div>
+
+      <div class="card-body">
+        <form action="{% url 'admin-manage-products' 'edit_product' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+          <div class="row mb-4">
+            <span class="divider-center mb-2">Main Informations</span>
+            <!-- product english title -->
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" name="{{ product_form.en_title.name }}" value="{{ selected_product.en_title }}" required>
+              <span class="invalid-feedback text-center">required field.</span>
+            </div>
+            <!-- end product english title -->
+
+            <!-- product french title -->
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" name="{{ product_form.fr_title.name }}" value="{{ selected_product.fr_title }}">
+            </div>
+            <!-- end product french title -->
+
+            <!-- product arabic title -->
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" name="{{ product_form.ar_title.name }}" value="{{ selected_product.ar_title }}" dir="rtl">
+            </div>
+            <!-- end product arabic title -->
+          </div>
+          <!-- submit -->
+          <div class="d-grid mb-4">
+            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+          </div>
+          <!-- end submit -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row mt-2">
+
+  <!-- variants -->
+  <div class="card">
       <div class="card-header card-header-content-md-between">
         <!-- title -->
         <div class="mb-2 mb-md-0">
@@ -56,12 +157,6 @@
           </div>
         </div>
         <!-- end title -->
-
-        <!-- title bar -->
-        <div class="d-grid d-sm-flex gap-2">
-
-        </div>
-        <!-- end title bar -->
       </div>
 
       <div class="card-body">
@@ -202,86 +297,6 @@
         <!-- end table -->
       </div>
     </div>
-  </div>
-
-  <!-- product details -->
-  <div class="col-lg-4">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-header-title">Product Details</h4>
-      </div>
-
-      <div class="card-body">
-        <form action="{% url 'admin-manage-products' 'edit_product' %}" class="js-validate need-validate" novalidate method="post">
-          {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-          <div class="row mb-4">
-            <span class="divider-center mb-2">Main Informations</span>
-            <!-- product english title -->
-            <div class="input-group mb-2">
-              <input type="text" class="form-control" name="{{ product_form.en_title.name }}" value="{{ selected_product.en_title }}" required>
-              <span class="invalid-feedback text-center">required field.</span>
-            </div>
-            <!-- end product english title -->
-
-            <!-- product french title -->
-            <div class="input-group mb-2">
-              <input type="text" class="form-control" name="{{ product_form.fr_title.name }}" value="{{ selected_product.fr_title }}">
-            </div>
-            <!-- end product french title -->
-
-            <!-- product arabic title -->
-            <div class="input-group mb-2">
-              <input type="text" class="form-control" name="{{ product_form.ar_title.name }}" value="{{ selected_product.ar_title }}" dir="rtl">
-            </div>
-            <!-- end product arabic title -->
-          </div>
-          <!-- submit -->
-          <div class="d-grid mb-4">
-            <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-          </div>
-          <!-- end submit -->
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="row mt-2">
-  <!-- description -->
-  <div class="card">
-    <div class="card-header card-header-content-md-between">
-      <!-- title -->
-      <div class="mb-2 mb-md-0">
-        <div class="flex-grow-1">
-          <h5 class="text-inherit mb-0">Description</h5>
-        </div>
-      </div>
-      <!-- end title -->
-
-      <!-- title bar -->
-      <div class="d-grid d-sm-flex gap-2">
-
-      </div>
-      <!-- end title bar -->
-    </div>
-
-    <div class="card-body">
-      <!-- table -->
-      <div class="table-responsive">
-        <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-          <tbody>
-          <tr>
-            <!-- variant title and image -->
-              <td class="table-column-ps-0">
-              </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- variants modals & forms -->
