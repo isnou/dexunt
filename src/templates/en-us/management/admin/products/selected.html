@@ -70,7 +70,7 @@
 
               <td>
                 <div>
-                  <embed src="{{ selected_product.fr_description.url }}" width="500" height="375" type="application/pdf">
+                  <embed src="{{ request.scheme }}://{{ request.get_host }}{{ selected_product.fr_description }}" width="500" height="375" type="application/pdf">
                 </div>
               </td>
             </tr>
@@ -82,7 +82,7 @@
 
               <td>
                 <div>
-                  <embed src="{{ request.scheme }}://{{ request.get_host }}{{ selected_product.en_description }}" width="500" height="375" type="application/pdf">
+                  <embed src="{{ selected_product.en_description.url }}" width="500" height="375" type="application/pdf">
                 </div>
               </td>
             </tr>
