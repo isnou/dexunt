@@ -69,6 +69,9 @@
               </td>
 
               <td>
+              </td>
+
+              <td>
                 <div>
                   <embed src="{{ request.scheme }}://{{ request.get_host }}{{ selected_product.fr_description }}" width="500" height="375" type="application/pdf">
                 </div>
@@ -81,6 +84,10 @@
               </td>
 
               <td>
+                {{ selected_product.en_description }}
+              </td>
+
+              <td>
                 <div>
                   <embed src="{{ selected_product.en_description.url }}" width="500" height="375" type="application/pdf">
                 </div>
@@ -90,6 +97,9 @@
             <tr>
               <td class="table-column-ps-0">
                 Arabic description
+              </td>
+
+              <td>
               </td>
 
               <td>
