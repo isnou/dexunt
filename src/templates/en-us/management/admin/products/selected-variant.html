@@ -450,23 +450,6 @@
     </div>
     {% else %}
     <!-- dropzone -->
-    <script>
-        Dropzone.options.variantUploadImages = {
-            paramName: "variant_image",
-            maxFilesize: 1024,
-            maxFiles: 4,
-            previewTemplate: document.getElementById('preview-template').innerHTML,
-            uploadprogress: function(file, progress, bytesSent) {
-            if (file.previewElement) {
-              var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
-              progressElement.style.width = progress + "%";
-              progressElement.querySelector('.progress-text').textContent = progress + "%";
-              }
-            }
-        };
-        Dropzone.discover();
-    </script>
-
     <div class="card mb-3 mb-lg-5">
       <!-- Header -->
       <div class="card-header card-header-content-between">
