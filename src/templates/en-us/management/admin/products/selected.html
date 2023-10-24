@@ -68,15 +68,9 @@
                 Frensh description
               </td>
 
-              <!-- actions -->
               <td>
-                <form>
-                  <label for="btnAttachFormFile" class="js-file-attach form-attachment-btn btn btn-sm btn-primary"
-                         data-hs-file-attach-options='{
-                         "textTarget": "[for=\"customFile\"]"
-                         }'>File input example</label>
-                  <input class="form-attachment-btn-label" type="file" id="btnAttachFormFile">
-                </form>
+                {{ selected_product.fr_description }}
+                <input type="file" name="fr_description">
               </td>
             </tr>
 
