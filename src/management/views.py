@@ -446,9 +446,9 @@ def manage_products(request, action):
         product_form = ProductForm()
         variant_form = VariantForm()
 
-        en_product_description_form = ENProductDescriptionForm(request.POST, instance=selected_product)
-        fr_product_description_form = FRProductDescriptionForm(request.POST, instance=selected_product)
-        ar_product_description_form = ARProductDescriptionForm(request.POST, instance=selected_product)
+        en_product_description_form = ENProductDescriptionForm(instance=selected_product)
+        fr_product_description_form = FRProductDescriptionForm(instance=selected_product)
+        ar_product_description_form = ARProductDescriptionForm(instance=selected_product)
 
         context = {
             'nav_side': 'products',
