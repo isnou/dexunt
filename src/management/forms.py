@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from .models import Product ,Variant ,Feature ,Option ,FlashProduct, Store
 from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class ProductForm(ModelForm):
     class Meta:
@@ -55,9 +56,9 @@ class ARProductDescriptionForm(forms.ModelForm):
         fields = ['ar_description']
 
 class ProductDescriptionForm(forms.ModelForm):
-    en_description = forms.CharField(widget=CKEditorWidget())
-    fr_description = forms.CharField(widget=CKEditorWidget())
-    ar_description = forms.CharField(widget=CKEditorWidget())
+    en_description = forms.CharField(widget=CKEditorUploadingWidget())
+    fr_description = forms.CharField(widget=CKEditorUploadingWidget())
+    ar_description = forms.CharField(widget=CKEditorUploadingWidget())
     class Meta:
         model = Product
         fields = ('en_title', 'fr_title', 'ar_title', 'en_description', 'fr_description', 'ar_description')
