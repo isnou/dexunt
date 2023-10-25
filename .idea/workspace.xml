@@ -95,11 +95,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/site/public/static" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/member/refunds" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/customer/points" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/home" />
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/customer" />
-      <recent name="$PROJECT_DIR$/src/templates/en-us/home/regular" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/templates/en-us/management/customer" />
