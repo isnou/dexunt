@@ -60,9 +60,20 @@
 
       <div class="card-body">
 
-                  <object data="en_description.pdf" type="application/pdf" width="800" height="900">
-                    <embed src="{{ selected_product.en_description.url }}" >
-                  </object>
+                  <!-- CKEditor -->
+                <div class="mb-4">
+                  {{ en_product_description_form }}
+                </div>
+
+        <div class="mb-4">
+                  {{ fr_product_description_form }}
+                </div>
+
+        <div class="mb-4">
+                  {{ ar_product_description_form }}
+                </div>
+                <!-- End CKEditor -->
+
         <!-- table -->
         <div class="table-responsive">
           <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dexunt/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dexunt/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/en-us/management/admin/products/selected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/en-us/management/admin/products/selected.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +101,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1465</line>
+          <line>1473</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -110,12 +111,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1296</line>
+          <line>1304</line>
           <option name="timeStamp" value="261" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1321</line>
+          <line>1329</line>
           <option name="timeStamp" value="262" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -137,6 +138,11 @@
           <url>file://$PROJECT_DIR$/src/management/models.py</url>
           <line>357</line>
           <option name="timeStamp" value="272" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/management/views.py</url>
+          <line>395</line>
+          <option name="timeStamp" value="273" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
