@@ -38,19 +38,19 @@ class StoreForm(ModelForm):
                   'ar_description', 'en_address', 'fr_address', 'ar_address')
 
 class ENProductDescriptionForm(forms.ModelForm):
-    en_description = forms.CharField(widget=CKEditorWidget())
+    en_description = forms.CharField(widget=CKEditorUploadingWidget())
     class Meta:
         model = Product
         fields = ['en_description']
 
 class FRProductDescriptionForm(forms.ModelForm):
-    fr_description = forms.CharField(widget=CKEditorWidget())
+    fr_description = forms.CharField(widget=CKEditorUploadingWidget())
     class Meta:
         model = Product
         fields = ['fr_description']
 
 class ARProductDescriptionForm(forms.ModelForm):
-    ar_description = forms.CharField(widget=CKEditorWidget())
+    ar_description = forms.CharField(widget=CKEditorUploadingWidget())
     class Meta:
         model = Product
         fields = ['ar_description']
