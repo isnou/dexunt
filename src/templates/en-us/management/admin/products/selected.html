@@ -64,23 +64,23 @@
         <div class="mb-4">
           <form action="#" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
-            <!-- CKEditor -->
             <div class="mb-4">
               {{ en_product_description_form.media }}
               {{ en_product_description_form.en_description }}
             </div>
-            <!-- End CKEditor -->
+
+            <div class="mb-4">
+              {{ fr_product_description_form.media }}
+              {{ fr_product_description_form.fr_description }}
+            </div>
+
+            <div class="mb-4">
+              {{ ar_product_description_form.media }}
+              {{ ar_product_description_form.ar_description }}
+            </div>
           </form>
         </div>
-
-        <div class="mb-4">
-                  {{ fr_product_description_form }}
-                </div>
-
-        <div class="mb-4">
-                  {{ ar_product_description_form }}
-                </div>
-                <!-- End CKEditor -->
+        <!-- End CKEditor -->
 
         <!-- table -->
         <div class="table-responsive">
