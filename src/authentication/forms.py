@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.core.validators import RegexValidator
 from phonenumber_field.formfields import PhoneNumberField
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=60, label='Username')
     password = forms.CharField(min_length=6, widget=forms.PasswordInput, label='Password')

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_user_agents',
     'phonenumber_field',
     'mathfilters',
+    'ckeditor',
     'management',
     'home',
 ]

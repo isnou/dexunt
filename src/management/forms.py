@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from .models import Product ,Variant ,Feature ,Option ,FlashProduct, Store
+from ckeditor.widgets import CKEditorWidget
 
 class ProductForm(ModelForm):
     class Meta:
@@ -34,3 +35,21 @@ class StoreForm(ModelForm):
         model = Store
         fields = ('name', 'en_activity', 'fr_activity', 'ar_activity', 'en_description', 'fr_description',
                   'ar_description', 'en_address', 'fr_address', 'ar_address')
+
+class ENProductDescriptionForm(forms.ModelForm):
+    en_description = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Product
+        fields = ['en_description']
+
+class FRProductDescriptionForm(forms.ModelForm):
+    fr_description = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Product
+        fields = ['fr_description']
+
+class ARProductDescriptionForm(forms.ModelForm):
+    ar_description = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Product
+        fields = ['ar_description']
