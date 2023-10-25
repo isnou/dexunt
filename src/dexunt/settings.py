@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'mathfilters',
     'ckeditor',
+    'ckeditor_uploader',
     'management',
     'home',
 ]
