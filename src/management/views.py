@@ -7,7 +7,8 @@ from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct, Store
-from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm,StoreForm
+from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm, StoreForm
+from .forms import ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
 from authentication.models import User, users_filter, reset_users
@@ -445,11 +446,18 @@ def manage_products(request, action):
         product_form = ProductForm()
         variant_form = VariantForm()
 
+        en_product_description_form = ENProductDescriptionForm(request.POST, instance=selected_product)
+        fr_product_description_form = FRProductDescriptionForm(request.POST, instance=selected_product)
+        ar_product_description_form = ARProductDescriptionForm(request.POST, instance=selected_product)
+
         context = {
             'nav_side': 'products',
             'selected_product': selected_product,
             'product_form': product_form,
             'variant_form': variant_form,
+            'en_product_description_form': en_product_description_form,
+            'fr_product_description_form': fr_product_description_form,
+            'ar_product_description_form': ar_product_description_form,
         }
         return render(request, url, context)
     if action == 'edit_product':
