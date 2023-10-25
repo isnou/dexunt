@@ -60,10 +60,18 @@
 
       <div class="card-body">
 
-                  <!-- CKEditor -->
-                <div class="mb-4">
-                  {{ en_product_description_form }}
-                </div>
+        <!-- CKEditor -->
+        <div class="mb-4">
+          <form action="#" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <!-- CKEditor -->
+            <div class="mb-4">
+              {{ en_product_description_form.media }}
+              {{ en_product_description_form.en_description }}
+            </div>
+            <!-- End CKEditor -->
+          </form>
+        </div>
 
         <div class="mb-4">
                   {{ fr_product_description_form }}
