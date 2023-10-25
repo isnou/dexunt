@@ -60,4 +60,4 @@ class ProductDescriptionForm(forms.ModelForm):
     ar_description = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Product
-        fields = ('en_description', 'fr_description', 'ar_description', 'en_title', 'fr_title', 'ar_title')
+        fields = ('en_title', 'fr_title', 'ar_title', 'en_description', 'fr_description', 'ar_description')
