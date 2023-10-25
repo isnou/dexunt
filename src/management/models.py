@@ -352,13 +352,10 @@ class Product(models.Model):
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
-    # ---- media ---- #
-    def get_file_path(self, request):
-        return self.en_title.lower()
-
-    en_description = models.FileField(upload_to=get_file_path, blank=True, null=True)
-    fr_description = models.FileField(upload_to=get_file_path, blank=True, null=True)
-    ar_description = models.FileField(upload_to=get_file_path, blank=True, null=True)
+    # ----- #
+    en_description = RichTextField(blank=True, null=True)
+    fr_description = RichTextField(blank=True, null=True)
+    ar_description = RichTextField(blank=True, null=True)
     # ----- #
     brand = models.CharField(max_length=80, blank=True, null=True)
     # ----- functions ----- #
