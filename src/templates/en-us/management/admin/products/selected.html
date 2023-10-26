@@ -106,12 +106,12 @@
                 </a>
 
                 <!-- fr description show -->
-                <a class="btn btn-ghost btn-icon" href="{% url 'admin-manage-products' 'edit_fr_description' %}?product_id={{ selected_product.id }}">
+                <a class="btn btn-ghost btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#fr_description_show_modal">
                   <i class="fa fa-eye me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"></i>
                 </a>
                 {% else %}
                 <!-- fr description add -->
-                <a class="btn btn-ghost btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#fr_description_edit_modal">
+                <a class="btn btn-ghost btn-icon" href="{% url 'admin-manage-products' 'edit_fr_description' %}?product_id={{ selected_product.id }}">
                   <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
                 </a>
                 {% endif %}
@@ -458,6 +458,34 @@
       </div>
       <div class="modal-body text-center">
         {{ selected_product.en_description|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- fr description show modal -->
+<div id="fr_description_show_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        {{ selected_product.fr_description|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ar description show modal -->
+<div id="ar_description_show_modal" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-8">
+        {{ selected_product.ar_description|safe }}
       </div>
     </div>
   </div>
