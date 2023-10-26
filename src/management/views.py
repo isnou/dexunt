@@ -446,16 +446,11 @@ def manage_products(request, action):
         product_form = ProductForm()
         variant_form = VariantForm()
 
-        fr_product_description_form = FRProductDescriptionForm(instance=selected_product)
-        ar_product_description_form = ARProductDescriptionForm(instance=selected_product)
-
         context = {
             'nav_side': 'products',
             'selected_product': selected_product,
             'product_form': product_form,
             'variant_form': variant_form,
-            'fr_product_description_form': fr_product_description_form,
-            'ar_product_description_form': ar_product_description_form,
         }
         return render(request, url, context)
     if action == 'edit_product':
@@ -482,6 +477,44 @@ def manage_products(request, action):
                 'description': 'en',
                 'selected_product': selected_product,
                 'en_product_description_form': en_product_description_form,
+            }
+            return render(request, url, context)
+    if action == 'edit_fr_description':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_product_form = FRProductDescriptionForm(request.POST, instance=selected_product)
+            selected_product_form.save()
+            return redirect('admin-manage-products', 'view_product')
+        else:
+            product_id = request.GET.get('product_id')
+            selected_product = Product.objects.all().get(id=product_id)
+            url = direction + "/management/admin/products/description.html"
+            fr_product_description_form = FRProductDescriptionForm(instance=selected_product)
+            context = {
+                'nav_side': 'products',
+                'description': 'fr',
+                'selected_product': selected_product,
+                'fr_product_description_form': fr_product_description_form,
+            }
+            return render(request, url, context)
+    if action == 'edit_ar_description':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id', False)
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_product_form = ARProductDescriptionForm(request.POST, instance=selected_product)
+            selected_product_form.save()
+            return redirect('admin-manage-products', 'view_product')
+        else:
+            product_id = request.GET.get('product_id')
+            selected_product = Product.objects.all().get(id=product_id)
+            url = direction + "/management/admin/products/description.html"
+            ar_product_description_form = ARProductDescriptionForm(instance=selected_product)
+            context = {
+                'nav_side': 'products',
+                'description': 'ar',
+                'selected_product': selected_product,
+                'ar_product_description_form': ar_product_description_form,
             }
             return render(request, url, context)
 

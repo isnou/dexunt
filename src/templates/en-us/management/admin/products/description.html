@@ -60,6 +60,30 @@
         </form>
         <!-- End CKEditor -->
         {% endif %}
+
+        {% if description == 'fr' %}
+        <!-- CKEditor -->
+        <form action="{% url 'admin-manage-products' 'edit_fr_description' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
+          {{ fr_product_description_form.media }}
+          {{ fr_product_description_form.fr_description }}
+        </form>
+        <!-- End CKEditor -->
+        {% endif %}
+
+        {% if description == 'ar' %}
+        <!-- CKEditor -->
+        <form action="{% url 'admin-manage-products' 'edit_ar_description' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
+          {{ ar_product_description_form.media }}
+          {{ ar_product_description_form.ar_description }}
+        </form>
+        <!-- End CKEditor -->
+        {% endif %}
       </div>
     </div>
   </div>
