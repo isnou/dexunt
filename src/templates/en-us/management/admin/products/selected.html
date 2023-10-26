@@ -471,7 +471,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <!-- CKEditor -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CKEditor -->
         <form action="{% url 'admin-manage-products' 'edit_en_description' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
@@ -480,8 +486,4 @@
           {{ en_product_description_form.en_description }}
         </form>
         <!-- End CKEditor -->
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}

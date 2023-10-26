@@ -152,7 +152,7 @@ CKEDITOR_CONFIGS = {
         # 'skin': 'minimalist',
         # 'skin': 'moono',
         'skin': 'n1theme',
-        
+
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
         ],
