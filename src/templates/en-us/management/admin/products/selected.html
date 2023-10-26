@@ -70,20 +70,22 @@
               </td>
 
               <td class="text-end">
+                {% if selected_product.en_description %}
                 <!-- en description show -->
                 <a class="btn btn-white btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#en_description_show_modal">
                   <i class="fa fa-eye me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"></i>
                 </a>
 
-                <!-- fr description edit -->
+                <!-- en description edit -->
                 <a class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
                   <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </a>
-
-                <!-- delete variant -->
-                <a class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
-                  <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                {% else %}
+                <!-- en description add -->
+                <a class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
+                  <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
                 </a>
+                {% endif %}
               </td>
             </tr>
             <tr>
@@ -412,7 +414,6 @@
   <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">english description show</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
@@ -423,11 +424,10 @@
 </div>
 
 <!-- en description edit modal -->
-<div id="en_description_edit_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="en_description_edit_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">English Description Edit</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
@@ -439,21 +439,6 @@
           {{ en_product_description_form.en_description }}
         </form>
         <!-- End CKEditor -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- en description delete modal -->
-<div id="en_description_delete_modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">english description show</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        {{ en_product_description_form.en_description|safe }}
       </div>
     </div>
   </div>
