@@ -71,18 +71,18 @@
 
               <td class="text-end">
                 {% if selected_product.en_description %}
-                <!-- en description show -->
-                <a class="btn btn-white btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#en_description_show_modal">
-                  <i class="fa fa-eye me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"></i>
-                </a>
-
                 <!-- en description edit -->
-                <a class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
+                <a class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
                   <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </a>
+                
+                <!-- en description show -->
+                <a class="btn btn-ghost btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#en_description_show_modal">
+                  <i class="fa fa-eye me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"></i>
                 </a>
                 {% else %}
                 <!-- en description add -->
-                <a class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
+                <a class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
                   <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
                 </a>
                 {% endif %}
