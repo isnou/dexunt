@@ -8,7 +8,7 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct, Store
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm, StoreForm
-from .forms import ProductDescriptionForm, ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
+from .forms import ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
 from authentication.models import User, users_filter, reset_users
@@ -445,8 +445,6 @@ def manage_products(request, action):
 
         product_form = ProductForm()
         variant_form = VariantForm()
-
-        product_description_form = ProductDescriptionForm(instance=selected_product)
         en_product_description_form = ENProductDescriptionForm(instance=selected_product)
         fr_product_description_form = FRProductDescriptionForm(instance=selected_product)
         ar_product_description_form = ARProductDescriptionForm(instance=selected_product)
@@ -456,7 +454,9 @@ def manage_products(request, action):
             'selected_product': selected_product,
             'product_form': product_form,
             'variant_form': variant_form,
-            'product_description_form': product_description_form,
+            'en_product_description_form': en_product_description_form,
+            'fr_product_description_form': fr_product_description_form,
+            'ar_product_description_form': ar_product_description_form,
         }
         return render(request, url, context)
     if action == 'edit_product':
@@ -466,11 +466,11 @@ def manage_products(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('admin-manage-products', 'view_product')
-    if action == 'edit_description':
+    if action == 'edit_en_description':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ProductDescriptionForm(request.POST, instance=selected_product)
+            selected_product_form = ENProductDescriptionForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('admin-manage-products', 'view_product')
 
