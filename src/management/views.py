@@ -446,6 +446,7 @@ def manage_products(request, action):
         product_form = ProductForm()
         variant_form = VariantForm()
 
+        product_description_form = ProductDescriptionForm(instance=selected_product)
         en_product_description_form = ENProductDescriptionForm(instance=selected_product)
         fr_product_description_form = FRProductDescriptionForm(instance=selected_product)
         ar_product_description_form = ARProductDescriptionForm(instance=selected_product)
@@ -455,9 +456,7 @@ def manage_products(request, action):
             'selected_product': selected_product,
             'product_form': product_form,
             'variant_form': variant_form,
-            'en_product_description_form': en_product_description_form,
-            'fr_product_description_form': fr_product_description_form,
-            'ar_product_description_form': ar_product_description_form,
+            'product_description_form': product_description_form,
         }
         return render(request, url, context)
     if action == 'edit_product':

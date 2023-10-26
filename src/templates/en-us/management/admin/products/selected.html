@@ -476,8 +476,8 @@
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
-          {{ en_product_description_form.media }}
-          {{ en_product_description_form.en_description }}
+          {{ product_description_form.media }}
+          {{ product_description_form.en_description }}
         </form>
         <!-- End CKEditor -->
       </div>
