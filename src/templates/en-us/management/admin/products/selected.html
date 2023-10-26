@@ -450,13 +450,13 @@
 {% endfor %}
 
 <!-- en description show modal -->
-<div id="en_description_show_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+<div id="en_description_show_modal" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
+      <div class="modal-body p-10 m-10">
         {{ selected_product.en_description|safe }}
       </div>
     </div>
@@ -464,13 +464,13 @@
 </div>
 
 <!-- fr description show modal -->
-<div id="fr_description_show_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+<div id="fr_description_show_modal" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
+      <div class="modal-body p-10">
         {{ selected_product.fr_description|safe }}
       </div>
     </div>
@@ -484,7 +484,7 @@
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center p-8">
+      <div class="modal-body p-10">
         {{ selected_product.ar_description|safe }}
       </div>
     </div>
