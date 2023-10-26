@@ -465,6 +465,7 @@
 
 <!-- en description edit modal -->
 <div id="en_description_edit_modal" class="modal fade">
+  {{ en_product_description_form.media }}
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -475,8 +476,6 @@
         <form action="{% url 'admin-manage-products' 'edit_en_description' %}" method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-
-          {{ en_product_description_form.media }}
           {{ en_product_description_form.en_description }}
         </form>
         <!-- End CKEditor -->
