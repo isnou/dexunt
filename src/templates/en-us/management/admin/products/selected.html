@@ -90,20 +90,58 @@
                 {% endif %}
               </td>
             </tr>
+
             <tr>
               <td class="table-column-ps-0">
-                Frensh description
+                <div class="text-dark">
+                  French Description
+                </div>
               </td>
 
-              <td>
+              <td class="text-end">
+                {% if selected_product.fr_description %}
+                <!-- fr description edit -->
+                <a class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#fr_description_edit_modal">
+                  <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </a>
+
+                <!-- fr description show -->
+                <a class="btn btn-ghost btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#fr_description_show_modal">
+                  <i class="fa fa-eye me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"></i>
+                </a>
+                {% else %}
+                <!-- fr description add -->
+                <a class="btn btn-ghost btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#fr_description_edit_modal">
+                  <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
+                </a>
+                {% endif %}
               </td>
             </tr>
+
             <tr>
               <td class="table-column-ps-0">
-                Arabic description
+                <div class="text-dark">
+                  Arabic Description
+                </div>
               </td>
 
-              <td>
+              <td class="text-end">
+                {% if selected_product.ar_description %}
+                <!-- ar description edit -->
+                <a class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#ar_description_edit_modal">
+                  <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+                </a>
+
+                <!-- ar description show -->
+                <a class="btn btn-ghost btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#ar_description_show_modal">
+                  <i class="fa fa-eye me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"></i>
+                </a>
+                {% else %}
+                <!-- ar description add -->
+                <a class="btn btn-ghost btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#ar_description_edit_modal">
+                  <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
+                </a>
+                {% endif %}
               </td>
             </tr>
             </tbody>
@@ -434,7 +472,7 @@
       </div>
       <div class="modal-body text-center">
         <!-- CKEditor -->
-        <form action="#" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'admin-manage-products' 'edit_en_description' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
 
           {{ en_product_description_form.media }}
