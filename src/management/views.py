@@ -466,11 +466,11 @@ def manage_products(request, action):
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('admin-manage-products', 'view_product')
-    if action == 'edit_en_description':
+    if action == 'edit_description':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
-            selected_product_form = ENProductDescriptionForm(request.POST, instance=selected_product)
+            selected_product_form = ProductDescriptionForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('admin-manage-products', 'view_product')
 
