@@ -66,12 +66,12 @@
             <tbody>
             <tr>
               <td class="table-column-ps-0">
-                English description
+                English Description
               </td>
 
-              <td>
+              <td class="text-end">
                 <!-- en description show -->
-                <a class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_show_modal">
+                <a class="btn btn-white btn-icon" href="javascript:;" data-bs-toggle="modal" data-bs-target="#en_description_show_modal">
                   <i class="fa fa-eye me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"></i>
                 </a>
 
@@ -81,14 +81,9 @@
                 </a>
 
                 <!-- delete variant -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
+                <a class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
                   <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-                </button>
-              </td>
-
-              <td>
-                <div>
-                </div>
+                </a>
               </td>
             </tr>
             <tr>
@@ -98,16 +93,10 @@
 
               <td>
               </td>
-
-              <td>
-              </td>
             </tr>
             <tr>
               <td class="table-column-ps-0">
                 Arabic description
-              </td>
-
-              <td>
               </td>
 
               <td>
@@ -427,7 +416,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        {{ en_product_description_form.en_description|safe }}
+        {{ selected_product.en_description|safe }}
       </div>
     </div>
   </div>
@@ -448,16 +437,6 @@
 
           {{ en_product_description_form.media }}
           {{ en_product_description_form.en_description }}
-
-          <div class="mb-4">
-              {{ fr_product_description_form.media }}
-              {{ fr_product_description_form.fr_description }}
-            </div>
-
-            <div class="mb-4">
-              {{ ar_product_description_form.media }}
-              {{ ar_product_description_form.ar_description }}
-            </div>
         </form>
         <!-- End CKEditor -->
       </div>
