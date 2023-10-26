@@ -355,9 +355,6 @@ class Product(models.Model):
     fr_title = models.CharField(max_length=200, blank=True, null=True)
     ar_title = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
-    en_description = RichTextUploadingField(config_name='default', blank=True, null=True)
-    fr_description = RichTextUploadingField(config_name='default', blank=True, null=True)
-    ar_description = RichTextUploadingField(config_name='default', blank=True, null=True)
     # ----- #
     brand = models.CharField(max_length=80, blank=True, null=True)
     # ----- functions ----- #
