@@ -8,7 +8,7 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct, Store
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm, StoreForm
-from .forms import ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
+from .forms import ProductDescriptionForm, ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
 from authentication.models import User, users_filter, reset_users
