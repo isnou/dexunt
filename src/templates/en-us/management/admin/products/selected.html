@@ -464,21 +464,15 @@
 </div>
 
 <!-- en description edit modal -->
-<div id="en_description_edit_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+<div id="en_description_edit_modal" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CKEditor -->
-        <form action="{% url 'admin-manage-products' 'edit_en_description' %}" class="js-validate need-validate" novalidate method="post">
+        <!-- CKEditor -->
+        <form action="{% url 'admin-manage-products' 'edit_en_description' %}" method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
@@ -486,4 +480,8 @@
           {{ en_product_description_form.en_description }}
         </form>
         <!-- End CKEditor -->
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
