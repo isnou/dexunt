@@ -472,12 +472,12 @@
       </div>
       <div class="modal-body text-center">
         <!-- CKEditor -->
-        <form action="{% url 'admin-manage-products' 'edit_description' %}" class="js-validate need-validate" novalidate method="post">
+        <form action="{% url 'admin-manage-products' 'edit_en_description' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
-          {{ product_description_form.media }}
-          {{ product_description_form.en_description }}
+          {{ en_product_description_form.media }}
+          {{ en_product_description_form.en_description }}
         </form>
         <!-- End CKEditor -->
       </div>
