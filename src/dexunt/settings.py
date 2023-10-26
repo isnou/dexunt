@@ -149,8 +149,8 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_CONFIGS = {
     'default': {
-        'skin': 'minimalist',
-        #'skin': 'n1theme',
+        # 'skin': 'minimalist',
+        'skin': 'n1theme',
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
         ],
