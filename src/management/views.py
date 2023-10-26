@@ -445,7 +445,7 @@ def manage_products(request, action):
 
         product_form = ProductForm()
         variant_form = VariantForm()
-        en_product_description_form = ENProductDescriptionForm(instance=selected_product)
+
         fr_product_description_form = FRProductDescriptionForm(instance=selected_product)
         ar_product_description_form = ARProductDescriptionForm(instance=selected_product)
 
@@ -454,7 +454,6 @@ def manage_products(request, action):
             'selected_product': selected_product,
             'product_form': product_form,
             'variant_form': variant_form,
-            'en_product_description_form': en_product_description_form,
             'fr_product_description_form': fr_product_description_form,
             'ar_product_description_form': ar_product_description_form,
         }
@@ -473,6 +472,18 @@ def manage_products(request, action):
             selected_product_form = ENProductDescriptionForm(request.POST, instance=selected_product)
             selected_product_form.save()
             return redirect('admin-manage-products', 'view_product')
+        else:
+            product_id = request.GET.get('product_id')
+            selected_product = Product.objects.all().get(id=product_id)
+            url = direction + "/management/admin/products/description.html"
+            en_product_description_form = ENProductDescriptionForm(instance=selected_product)
+            context = {
+                'nav_side': 'products',
+                'description': 'en',
+                'selected_product': selected_product,
+                'en_product_description_form': en_product_description_form,
+            }
+            return render(request, url, context)
 
     if action == 'duplicate_variant':
         if request.method == 'POST':

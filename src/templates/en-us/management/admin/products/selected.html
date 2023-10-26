@@ -74,7 +74,7 @@
               <td class="text-end">
                 {% if selected_product.en_description %}
                 <!-- en description edit -->
-                <a class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
+                <a class="btn btn-ghost btn-icon" href="{% url 'admin-manage-products' 'edit_en_description' %}?product_id={{ selected_product.id }}">
                   <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </a>
 
@@ -84,7 +84,7 @@
                 </a>
                 {% else %}
                 <!-- en description add -->
-                <a class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#en_description_edit_modal">
+                <a class="btn btn-ghost btn-icon" href="{% url 'admin-manage-products' 'edit_en_description' %}?product_id={{ selected_product.id }}">
                   <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
                 </a>
                 {% endif %}
@@ -458,28 +458,6 @@
       </div>
       <div class="modal-body text-center">
         {{ selected_product.en_description|safe }}
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- en description edit modal -->
-<div id="en_description_edit_modal" class="modal fade">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <!-- CKEditor -->
-        <form action="{% url 'admin-manage-products' 'edit_en_description' %}" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-
-          {{ en_product_description_form.media }}
-          {{ en_product_description_form.en_description }}
-        </form>
-        <!-- End CKEditor -->
       </div>
     </div>
   </div>
