@@ -91,7 +91,7 @@ def product_page(request, action):
         if option_id:
             selected_option = Option.objects.all().get(id=option_id)
         else:
-            selected_option = None
+            selected_option = selected_variant.selected_option()
 
         context = {
             'source_page': 'product-page',
