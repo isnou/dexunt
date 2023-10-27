@@ -246,17 +246,12 @@
                                 ({{ variant.selected_option.reviews.all.count }} reviews)
                             </span>
                         </div>
-
-
-                            <small>
-                                {{ variant.selected_option.rates }}
-                            </small>
                         {% endif %}
                         <div class="d-flex justify-content-between mt-4">
                             <div>
-                                <span class="text-dark">{{ variant.selected_option.price|floatformat:"2g" }} DZD</span>
+                                <span class="text-dark">{{ variant.selected_option.price|floatformat:"0g" }} DZD</span>
                                 {% if variant.selected_option.discount %}
-                                <span class="text-decoration-line-through text-muted">{{ variant.selected_option.discount|floatformat:"2g" }} DZD</span>
+                                <span class="text-decoration-line-through text-muted">{{ variant.selected_option.discount|floatformat:"0g" }} DZD</span>
                                 {% endif %}
                             </div>
                         </div>

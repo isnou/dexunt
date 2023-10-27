@@ -199,7 +199,7 @@ class Option(models.Model):
             else:
                 return '-fill'
     def review_star_two(self):
-        if self.rates() < 1:
+        if self.rates() <= 1:
             return ''
         if self.rates() > 1:
             if self.rates() < 2:
@@ -207,7 +207,7 @@ class Option(models.Model):
             else:
                 return '-fill'
     def review_star_three(self):
-        if self.rates() < 2:
+        if self.rates() <= 2:
             return ''
         if self.rates() > 2:
             if self.rates() < 3:
@@ -215,7 +215,7 @@ class Option(models.Model):
             else:
                 return '-fill'
     def review_star_four(self):
-        if self.rates() < 3:
+        if self.rates() <= 3:
             return ''
         if self.rates() > 3:
             if self.rates() < 4:
