@@ -328,6 +328,7 @@ class Variant(models.Model):
             if o.is_activated:
                 activation = True
         self.is_activated = activation
+
         super().save()
     # ----- variables ----- #
     def needs_more_photos(self):
