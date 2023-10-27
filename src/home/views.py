@@ -3,7 +3,7 @@ from add_ons.functions import serial_number_generator
 from add_ons.variables import get_cart
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Cart, SelectedProduct, get_order
+from .models import Cart, SelectedProduct
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
 from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store
@@ -156,7 +156,7 @@ def order_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     direction = request.session.get('language')
-    selected_order = get_order(request)
+    selected_order = get_cart(request).get_order(request)
 
     request.session['coupon_message'] = None
     provinces = Province.objects.all()

@@ -2,7 +2,6 @@ from django.db import models
 from add_ons import functions
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
-from add_ons.variables import get_cart
 
 # ------------------------------- Orders ------------------------------- #
 class Log(models.Model):
@@ -265,6 +264,36 @@ class Cart(models.Model):
         for p in self.selected_products.all():
             points += p.points()
         return points
+    def get_order(self, request):
+        coupon = self.coupon
+        if not request.user.is_authenticated:
+            if not request.session.get('order_ref', None):
+                selected_order = Order(coupon=coupon)
+                selected_order.save()
+                request.session['order_ref'] = selected_order.ref
+            else:
+                if Order.objects.all().filter(ref=request.session.get('order_ref')).exists():
+                    selected_order = Order.objects.all().get(ref=request.session.get('order_ref'))
+                    selected_order.coupon = coupon
+                    selected_order.save()
+                else:
+                    selected_order = Order(coupon=coupon)
+                    selected_order.save()
+                    request.session['order_ref'] = selected_order.ref
+        else:
+            if request.user.all_orders.all().filter(status='created').exists():
+                selected_order = request.user.all_orders.all().get(status='created')
+                selected_order.coupon = coupon
+                selected_order.save()
+            else:
+                selected_order = Order(coupon=coupon,
+                                       client=request.user)
+                selected_order.save()
+        for p in self.selected_products.all():
+            p.order = selected_order
+            p.save()
+
+        return selected_order
 #                                                                        #
 class Order(models.Model):
     WIDTH = 1900
@@ -494,38 +523,6 @@ class Order(models.Model):
         return logs
     def unreviewed_products(self):
         return self.selected_products.all().exclude(status='completed')
-#                                                                        #
-def get_order(request):
-    selected_cart = get_cart(request)
-    coupon = selected_cart.coupon
-    if not request.user.is_authenticated:
-        if not request.session.get('order_ref', None):
-            selected_order = Order(coupon=coupon)
-            selected_order.save()
-            request.session['order_ref'] = selected_order.ref
-        else:
-            if Order.objects.all().filter(ref=request.session.get('order_ref')).exists():
-                selected_order = Order.objects.all().get(ref=request.session.get('order_ref'))
-                selected_order.coupon=coupon
-                selected_order.save()
-            else:
-                selected_order = Order(coupon=coupon)
-                selected_order.save()
-                request.session['order_ref'] = selected_order.ref
-    else:
-        if request.user.all_orders.all().filter(status='created').exists():
-            selected_order = request.user.all_orders.all().get(status='created')
-            selected_order.coupon = coupon
-            selected_order.save()
-        else:
-            selected_order = Order(coupon=coupon,
-                                   client=request.user)
-            selected_order.save()
-    for p in selected_cart.selected_products.all():
-        p.order = selected_order
-        p.save()
-
-    return selected_order
 # ---------------------------------------------------------------------- #
 
 
