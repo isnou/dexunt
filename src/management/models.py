@@ -223,7 +223,13 @@ class Option(models.Model):
             else:
                 return '-fill'
     def review_star_five(self):
-        return ''
+        if self.rates() < 4:
+            return ''
+        if self.rates() > 4:
+            if self.rates() < 5:
+                return '-half'
+            else:
+                return '-fill'
     def asin(self):
         return self.upc[:10]
 # ---------------------------------------------------------------------- #
