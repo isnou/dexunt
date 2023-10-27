@@ -46,7 +46,7 @@ def home_page(request):
     for f in all_flash_products:
         f.clean()
 
-    published_products = all_products[:10]
+    published_products = all_products
     published_flash_products = all_flash_products[:4]
 
     context = {
