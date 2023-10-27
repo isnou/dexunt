@@ -300,6 +300,7 @@ class Variant(models.Model):
         new_variant = Variant(en_spec = self.en_spec,
                               fr_spec = self.fr_spec,
                               ar_spec = self.ar_spec,
+                              product = self.product
                               )
         new_variant.save()
         if self.option_set.all().count:
@@ -313,12 +314,6 @@ class Variant(models.Model):
                 f.pk = None
                 f.save()
                 new_variant.feature_set.add(f)
-        if self.description_set.all().count:
-            for d in self.description_set.all():
-                d.pk = None
-                d.save()
-                new_variant.description_set.add(d)
-        self.product.variant_set.add(new_variant)
     def deactivate(self):
         for o in self.option_set.all():
             o.is_activated = False
