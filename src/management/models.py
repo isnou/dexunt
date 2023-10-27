@@ -238,6 +238,8 @@ class Option(models.Model):
                 return '-half'
             else:
                 return '-fill'
+    def asin(self):
+        return self.upc[:10]
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
@@ -338,6 +340,8 @@ class Variant(models.Model):
             return True
         else:
             return False
+    def asin(self):
+        return self.option_set.all().first().asin()
 #                                                                        #
 class Product(models.Model):
     # ----- relations ----- #
