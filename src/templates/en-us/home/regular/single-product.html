@@ -325,26 +325,39 @@
       <div class="col-md-12">
         <ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
           <!-- nav product details -->
+          {% if selected_variant.product.en_description %}
           <li class="nav-item" role="presentation">
-            <!-- btn --> <button class="nav-link active" id="product-tab" data-bs-toggle="tab"
+            <!-- btn -->
+            <button class="nav-link active" id="product-tab" data-bs-toggle="tab"
               data-bs-target="#product-tab-pane" type="button" role="tab" aria-controls="product-tab-pane"
               aria-selected="true">Product Details</button>
           </li>
+          {% else %}
+          <li class="nav-item" role="presentation">
+            <!-- btn -->
+            <button class="nav-link" data-bs-toggle="tab"
+              data-bs-target="#" type="button" role="tab" aria-controls="product-tab-pane"
+              aria-selected="false" disabled>Product Details</button>
+          </li>
+          {% endif %}
           <!-- nav information -->
           <li class="nav-item" role="presentation">
-            <!-- btn --> <button class="nav-link" id="details-tab" data-bs-toggle="tab"
+            <!-- btn -->
+            <button class="nav-link {% if not selected_variant.product.en_description %} active {% endif %}" id="details-tab" data-bs-toggle="tab"
               data-bs-target="#details-tab-pane" type="button" role="tab" aria-controls="details-tab-pane"
               aria-selected="false">Information</button>
           </li>
           <!-- nav reviews -->
           <li class="nav-item" role="presentation">
-            <!-- btn --> <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
+            <!-- btn -->
+            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
               data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
               aria-selected="false">Reviews</button>
           </li>
           <!-- nav item -->
           <li class="nav-item" role="presentation">
-            <!-- btn --> <button class="nav-link" id="sellerInfo-tab" data-bs-toggle="tab"
+            <!-- btn -->
+            <button class="nav-link" id="sellerInfo-tab" data-bs-toggle="tab"
               data-bs-target="#sellerInfo-tab-pane" type="button" role="tab" aria-controls="sellerInfo-tab-pane"
               aria-selected="false" disabled>Seller
               Info</button>
@@ -353,13 +366,13 @@
         <!-- tab content -->
         <div class="tab-content" id="myTabContent">
           <!-- tab product details -->
-          <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
+          <div class="tab-pane fade {% if selected_variant.product.en_description %} show active {% endif %}" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
             <div class="my-4">
               {{ selected_variant.product.en_description|safe }}
             </div>
           </div>
           <!-- tab information -->
-          <div class="tab-pane fade" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
+          <div class="tab-pane fade {% if not selected_variant.product.en_description %} show active {% endif %}" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
             <div class="my-8">
               <div class="row">
                 <div class="col-12">
