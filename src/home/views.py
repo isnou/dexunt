@@ -37,7 +37,7 @@ def home_page(request):
     signup_form = SignupForm()
 
     all_stores = Store.objects.all().filter(is_activated=True).order_by('?')[:6]
-    all_products = Variant.objects.all().filter(is_activated=True)
+    all_products = Variant.objects.all().filter(is_activated=True)[:15]
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
 
     for p in all_products:
@@ -46,7 +46,7 @@ def home_page(request):
     for f in all_flash_products:
         f.clean()
 
-    published_products = all_products
+    published_products = all_products[:10]
     published_flash_products = all_flash_products[:4]
 
     context = {
