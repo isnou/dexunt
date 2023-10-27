@@ -225,6 +225,7 @@
                                 {{ variant.product.en_title }}
                             </a>
                         </h2>
+                        {% if variant.selected_option.reviews.all.count %}
                         <div class="text-warning">
                             <small>
                                 <i class="bi bi-star{{ variant.selected_option.review_star_one }}"></i>
@@ -237,6 +238,7 @@
                                 ({{ variant.selected_option.reviews.all.count }} reviews)
                             </span>
                         </div>
+                        {% endif %}
                         <div class="d-flex justify-content-between mt-4">
                             <div>
                                 <span class="text-dark">{{ variant.selected_option.price|floatformat:"2g" }} DZD</span>
