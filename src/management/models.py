@@ -223,7 +223,7 @@ class Option(models.Model):
             else:
                 return '-fill'
     def review_star_five(self):
-        if self.rates() < 4:
+        if self.rates() <= 4:
             return ''
         if self.rates() > 4:
             if self.rates() < 5:
