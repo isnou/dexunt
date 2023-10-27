@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from add_ons import functions
+from add_ons.functions import serial_number_generator
+from add_ons.variables import get_cart
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Cart, SelectedProduct, get_cart, get_order
