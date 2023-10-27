@@ -2,6 +2,7 @@ from django.db import models
 from add_ons import functions
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
+from add_ons.variables import get_cart
 
 # ------------------------------- Orders ------------------------------- #
 class Log(models.Model):
