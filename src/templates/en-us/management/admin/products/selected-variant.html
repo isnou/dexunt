@@ -433,7 +433,7 @@
           </div>
           {% endfor %}
 
-          {% if selected_variant.needs_more_photos %}
+          {% if not selected_variant.full_album %}
           <div class="col-lg-6 col-sm-6 align-self-center mb-2">
             <!-- add photo -->
             <a href="javascript:;" class="text-start" data-bs-toggle="modal" data-bs-target="#add_photo_modal">
