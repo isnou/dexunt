@@ -242,13 +242,15 @@
                                 <i class="bi bi-star{{ variant.selected_option.review_star_four }}"></i>
                                 <i class="bi bi-star{{ variant.selected_option.review_star_five }}"></i>
                             </small>
-                            <small>
-                                {{ variant.selected_option.rates }}
-                            </small>
                             <span class="text-muted small">
                                 ({{ variant.selected_option.reviews.all.count }} reviews)
                             </span>
                         </div>
+
+
+                            <small>
+                                {{ variant.selected_option.rates }}
+                            </small>
                         {% endif %}
                         <div class="d-flex justify-content-between mt-4">
                             <div>
