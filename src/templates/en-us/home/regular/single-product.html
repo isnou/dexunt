@@ -397,7 +397,11 @@
                     <tbody>
                       <tr>
                         <th>ASIN</th>
-                        <td>SB0025UJ75W</td>
+                        {% if selected_option %}
+                        <td>{{ selected_option.asin }}</td>
+                        {% else %}
+                        <td>{{ selected_variant.asin }}</td>
+                        {% endif %}
                       </tr>
                       <tr>
                         <th>Best Sellers Rank</th>
