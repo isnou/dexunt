@@ -227,21 +227,21 @@
                         </h2>
                         <div class="text-warning">
                             <small>
-                                <i class="bi bi-star{{ variant.option_set.all.first.review_star_one }}"></i>
-                                <i class="bi bi-star{{ variant.option_set.all.first.review_star_two }}"></i>
-                                <i class="bi bi-star{{ variant.option_set.all.first.review_star_three }}"></i>
-                                <i class="bi bi-star{{ variant.option_set.all.first.review_star_four }}"></i>
-                                <i class="bi bi-star{{ variant.option_set.all.first.review_star_five }}"></i>
+                                <i class="bi bi-star{{ variant.selected_option.review_star_one }}"></i>
+                                <i class="bi bi-star{{ variant.selected_option.review_star_two }}"></i>
+                                <i class="bi bi-star{{ variant.selected_option.review_star_three }}"></i>
+                                <i class="bi bi-star{{ variant.selected_option.review_star_four }}"></i>
+                                <i class="bi bi-star{{ variant.selected_option.review_star_five }}"></i>
                             </small>
                             <span class="text-muted small">
-                                ({{ variant.option_set.all.first.reviews.all.count }} reviews)
+                                ({{ variant.selected_option.reviews.all.count }} reviews)
                             </span>
                         </div>
                         <div class="d-flex justify-content-between mt-4">
                             <div>
-                                <span class="text-dark">{{ variant.option_set.first.price|floatformat:"2g" }} DZD</span>
-                                {% if variant.option_set.first.discount %}
-                                <span class="text-decoration-line-through text-muted">{{ variant.option_set.first.discount|floatformat:"2g" }} DZD</span>
+                                <span class="text-dark">{{ variant.selected_option.price|floatformat:"2g" }} DZD</span>
+                                {% if variant.selected_option.discount %}
+                                <span class="text-decoration-line-through text-muted">{{ variant.selected_option.discount|floatformat:"2g" }} DZD</span>
                                 {% endif %}
                             </div>
                         </div>

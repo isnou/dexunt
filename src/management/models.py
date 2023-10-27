@@ -12,10 +12,8 @@ class Review(models.Model):
     show = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
-    option = models.ForeignKey(
-        'management.Option', on_delete=models.CASCADE, related_name='reviews', null=True)
-    client = models.ForeignKey(
-        'authentication.User', on_delete=models.CASCADE, related_name='reviews', null=True)
+    option = models.ForeignKey('management.Option', on_delete=models.CASCADE, related_name='reviews', null=True)
+    client = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='reviews', null=True)
     # ----- content ----- #
     content = models.CharField(max_length=500, blank=True, null=True)
     rates = models.IntegerField(default=0)
@@ -53,8 +51,7 @@ class Album(models.Model):
         return self.file_name.lower()
     image = models.ImageField(upload_to=get_image_path)
     # ----- relations ----- #
-    variant = models.ForeignKey(
-        'management.Variant', on_delete=models.CASCADE, null=True)
+    variant = models.ForeignKey('management.Variant', on_delete=models.CASCADE, null=True)
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Album"
@@ -63,8 +60,7 @@ class Feature(models.Model):
     # ----- Technical ----- #
     tags = models.CharField(max_length=2000, blank=True, null=True)
     # ----- relations ----- #
-    variant = models.ForeignKey(
-        'management.Variant', on_delete=models.CASCADE, null=True)
+    variant = models.ForeignKey('management.Variant', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     en_name = models.CharField(max_length=100, blank=True, null=True)
     fr_name = models.CharField(max_length=100, blank=True, null=True)
@@ -104,9 +100,7 @@ class Option(models.Model):
     max_quantity = models.IntegerField(default=0)
     tags = models.CharField(max_length=800, blank=True, null=True)
     # ----- relations ----- #
-    # many selected_products #
-    variant = models.ForeignKey(
-        'management.Variant', on_delete=models.CASCADE, null=True)
+    variant = models.ForeignKey('management.Variant', on_delete=models.CASCADE, null=True)
     # ----- media ----- #
     file_name = models.CharField(max_length=500, blank=True)
     def get_image_path(self, filename):
@@ -160,11 +154,9 @@ class Option(models.Model):
         new_option.save()
         self.variant.option_set.add(new_option)
     def activate(self):
-        if not self.variant.is_activated:
-            self.variant.is_activated = True
-            self.variant.save()
         self.is_activated = True
         super().save()
+        self.variant.activate()
     def deactivate(self):
         self.is_activated = False
         super().save()
@@ -254,12 +246,7 @@ class Variant(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     tags = models.CharField(max_length=9000, blank=True, null=True)
     # ----- relations ----- #
-    # many options #
-    # many album_set #
-    # many feature_set #
-    # many description_set #
-    product = models.ForeignKey(
-        'management.Product', on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey('management.Product', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     en_spec = models.CharField(max_length=200, blank=True, null=True)
     fr_spec = models.CharField(max_length=200, blank=True, null=True)
@@ -328,7 +315,6 @@ class Variant(models.Model):
             if o.is_activated:
                 activation = True
         self.is_activated = activation
-
         super().save()
     # ----- variables ----- #
     def needs_more_photos(self):
@@ -343,12 +329,16 @@ class Variant(models.Model):
             return False
     def asin(self):
         return self.option_set.all().first().asin()
+    def selected_option(self):
+        option = self.option_set.all().first()
+        for o in self.option_set.all():
+            if o.rates() > option.rates():
+                option = o
+        return option
 #                                                                        #
 class Product(models.Model):
     # ----- relations ----- #
-    # many variants #
-    store = models.ForeignKey(
-        'management.Store', on_delete=models.CASCADE, null=True)
+    store = models.ForeignKey('management.Store', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
@@ -374,10 +364,6 @@ class Store(models.Model):
     # ----- #
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
-    # ----- relations ----- #
-    # many products #
-    # many orders #
-    # one user #
     # ----- content ----- #
     name = models.CharField(max_length=200, unique=True, null=True)
     en_activity = models.CharField(max_length=300, blank=True, null=True)
