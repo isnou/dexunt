@@ -105,10 +105,10 @@
           <!-- prices -->
           <div class="fs-4">
             {% if selected_option.discount %}
-            <span class="text-decoration-line-through text-muted"><small>DZD {{ selected_option.price }}</small></span>
-            <span class="fw-bold text-dark">DZD {{ selected_option.discount }}</span>
+            <span class="text-decoration-line-through text-muted"><small>DZD {{ selected_option.price|floatformat:"0g" }}</small></span>
+            <span class="fw-bold text-dark">DZD {{ selected_option.discount|floatformat:"0g" }}</span>
             {% else %}
-            <span class="fw-bold text-dark">DZD {{ selected_option.price }}</span>
+            <span class="fw-bold text-dark">DZD {{ selected_option.price|floatformat:"0g" }}</span>
             {% endif %}
           </div>
           {% endif %}
