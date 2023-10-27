@@ -3,6 +3,7 @@ from add_ons.functions import serial_number_generator
 from add_ons.variables import get_cart
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
+from .models import Cart, SelectedProduct, get_order
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
 from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store

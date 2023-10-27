@@ -317,6 +317,12 @@ class Variant(models.Model):
         self.is_activated = activation
         super().save()
     # ----- variables ----- #
+    def selected_option(self):
+        option = self.option_set.all().first()
+        for o in self.option_set.all():
+            if o.rates() > option.rates():
+                option = o
+        return option
     def needs_more_photos(self):
         if self.album_set.all().count() < 4:
             return True
@@ -329,12 +335,6 @@ class Variant(models.Model):
             return False
     def asin(self):
         return self.option_set.all().first().asin()
-    def selected_option(self):
-        option = self.option_set.all().first()
-        for o in self.option_set.all():
-            if o.rates() > option.rates():
-                option = o
-        return option
 #                                                                        #
 class Product(models.Model):
     # ----- relations ----- #
