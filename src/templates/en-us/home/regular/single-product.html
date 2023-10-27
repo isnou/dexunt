@@ -354,21 +354,8 @@
         <div class="tab-content" id="myTabContent">
           <!-- tab product details -->
           <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
-            <div class="my-8">
-              {% for description in selected_variant.description_set.all %}
-              <div class="mb-6">
-                <!-- text -->
-                <h4 class="mb-1">{{ description.en_title|title }}</h4>
-                <p class="mb-0">{{ description.en_content|capfirst }}</p>
-              </div>
-              {% endfor %}
-
-              {% if selected_product.en_note %}
-              <div>
-                <h5 class="mb-1">Note</h5>
-                <p class="mb-0">{{ selected_product.en_note }}</p>
-              </div>
-              {% endif %}
+            <div class="my-4">
+              {{ selected_variant.product.en_description|safe }}
             </div>
           </div>
           <!-- tab information -->
