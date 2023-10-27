@@ -334,9 +334,10 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if not self.secret_key:
             self.secret_key = functions.serial_number_generator(6)
+        super().save()
         if not self.ref:
             self.ref = str(self.id+1).zfill(6)
-        super().save()
+            super().save()
     def new_log(self, request):
         new_log = Log(content=self.status,
                       order=self)
