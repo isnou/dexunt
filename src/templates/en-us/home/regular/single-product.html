@@ -15,14 +15,10 @@
         <!-- breadcrumb -->
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="shop-single-2.html#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'home-page' %}">Home</a></li>
             <li class="breadcrumb-item"><a href="{% url 'product-page' 'regular_product' %}?variant_id={{ selected_variant.id }}">{{ selected_variant.product.en_title }}</a></li>
-            {% if selected_option %}
             <li class="breadcrumb-item"><a href="{% url 'product-page' 'regular_product' %}?variant_id={{ selected_variant.id }}">{{ selected_variant.en_spec }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ selected_option.en_value }}</li>
-            {% else %}
-            <li class="breadcrumb-item active" aria-current="page">{{ selected_variant.en_spec }}</li>
-            {% endif %}
           </ol>
         </nav>
       </div>
@@ -38,14 +34,12 @@
       <div class="col-md-6">
         <!-- zooms -->
         <div class="slider slider-for">
-          {% if selected_option %}
           {% if selected_option.has_image %}
           <div>
             <div class="zoom" onmousemove="zoom(event)" style="background-image: url('{% get_media_prefix %}{{ selected_option.image }}')">
               <img src="{% get_media_prefix %}{{ selected_option.image }}" alt="">
             </div>
           </div>
-          {% endif %}
           {% endif %}
 
           {% for album in selected_variant.album_set.all %}
@@ -83,31 +77,16 @@
 
           <!-- heading -->
           <h2 class="mb-1">{{ selected_variant.product.en_title }} {{ selected_variant.en_spec }}</h2>
-
-          {% if selected_variant.option_set.all.count == 1 %}
-          <span class="fw-bold text-muted mb-1">{{ selected_variant.option_set.all.first.en_value }}</span>
-          {% endif %}
-
-          {% if selected_option %}
           <span class="fw-bold text-muted mb-1">{{ selected_option.en_value }}</span>
-          {% endif %}
 
           <!-- reviews -->
           <div class="mb-4">
             <small class="text-warning">
-              {% if selected_option %}
               <i class="bi bi-star{{ selected_option.review_star_one }}"></i>
               <i class="bi bi-star{{ selected_option.review_star_two }}"></i>
               <i class="bi bi-star{{ selected_option.review_star_three }}"></i>
               <i class="bi bi-star{{ selected_option.review_star_four }}"></i>
               <i class="bi bi-star{{ selected_option.review_star_five }}"></i>
-              {% else %}
-              <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_one }}"></i>
-              <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_two }}"></i>
-              <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_three }}"></i>
-              <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_four }}"></i>
-              <i class="bi bi-star{{ selected_variant.option_set.all.first.review_star_five }}"></i>
-              {% endif %}
             </small>
             <a href="shop-single-2.html#" class="ms-2">
               {% if selected_option %}
@@ -125,22 +104,11 @@
           {% if user.is_customer or not user.is_authenticated %}
           <!-- prices -->
           <div class="fs-4">
-            {% if selected_option %}
             {% if selected_option.discount %}
             <span class="text-decoration-line-through text-muted"><small>DZD {{ selected_option.price }}</small></span>
             <span class="fw-bold text-dark">DZD {{ selected_option.discount }}</span>
             {% else %}
             <span class="fw-bold text-dark">DZD {{ selected_option.price }}</span>
-            {% endif %}
-
-            {% else %}
-
-            {% if selected_variant.option_set.all.first.discount %}
-            <span class="text-decoration-line-through text-muted"><small>DZD {{ selected_variant.option_set.all.first.price }}</small></span>
-            <span class="fw-bold text-dark">DZD {{ selected_variant.option_set.all.first.discount }}</span>
-            {% else %}
-            <span class="fw-bold text-dark">DZD {{ selected_variant.option_set.all.first.price }}</span>
-            {% endif %}
             {% endif %}
           </div>
           {% endif %}
