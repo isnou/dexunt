@@ -288,7 +288,7 @@
 
                 {% if selected_product.variant_set.all.count > 1 %}
                 <!-- delete variant -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}">
+                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ variant.id }}">
                   <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
                 {% endif %}
@@ -352,13 +352,6 @@
   <input type="hidden" name="variant_id" value='{{ variant.id }}'>
 </form>
 
-<!-- delete variant form -->
-<form action="{% url 'admin-manage-products' 'delete_variant' %}" id="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-  <input type="hidden" name="variant_id" value='{{ variant.id }}'>
-</form>
-
 <!-- duplicate variant form -->
 <form action="{% url 'admin-manage-products' 'duplicate_variant' %}" id="duplicate_variant_form_{{ variant.id }}" method="post">
   {% csrf_token %}
@@ -408,7 +401,7 @@
 </div>
 
 <!-- delete variant modal -->
-<div id="delete_variant_modal_{{ selected_product.id }}_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}" aria-hidden="true">
+<div id="delete_variant_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="delete_variant_modal_title_{{ selected_product.id }}_{{ variant.id }}" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -420,7 +413,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="delete_variant_form_{{ selected_product.id }}_{{ variant.id }}">Yes</button>
+        <a class="btn btn-primary" href="{% url 'admin-manage-products' 'delete_variant' %}?variant_id={{ variant.id }}">Yes</a>
       </div>
     </div>
   </div>

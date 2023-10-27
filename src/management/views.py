@@ -525,11 +525,12 @@ def manage_products(request, action):
             selected_variant.duplicate()
             return redirect('admin-manage-products', 'view_product')
     if action == 'delete_variant':
-        if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-            selected_variant = Variant.objects.all().get(id=variant_id)
-            selected_variant.delete()
-            return redirect('admin-manage-products', 'view_product')
+        variant_id = request.GET.get('variant_id')
+        selected_variant = Variant.objects.all().get(id=variant_id)
+        selected_product = selected_variant.product
+        request.session['product_id'] = selected_product.id
+        selected_variant.delete()
+        return redirect('admin-manage-products', 'view_product')
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"
@@ -608,32 +609,6 @@ def manage_products(request, action):
             selected_feature = Feature.objects.all().get(id=feature_id)
             selected_feature_form = FeatureForm(request.POST, instance=selected_feature)
             selected_feature_form.save()
-            return redirect('admin-manage-products', 'view_variant')
-
-    if action == 'add_description':
-        if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-            selected_variant = Variant.objects.all().get(id=variant_id)
-            new_description = Description()
-            new_description.save()
-            selected_description_form = DescriptionForm(request.POST, instance=new_description)
-            selected_description_form.save()
-            selected_variant.description_set.add(new_description)
-            return redirect('admin-manage-products', 'view_variant')
-    if action == 'delete_description':
-        if request.method == 'POST':
-            description_id = request.POST.get('description_id', False)
-            selected_description = Description.objects.all().get(id=description_id)
-            selected_description.variant = None
-            selected_description.save()
-            selected_description.delete()
-            return redirect('admin-manage-products', 'view_variant')
-    if action == 'edit_description':
-        if request.method == 'POST':
-            description_id = request.POST.get('description_id', False)
-            selected_description = Description.objects.all().get(id=description_id)
-            selected_description_form = DescriptionForm(request.POST, instance=selected_description)
-            selected_description_form.save()
             return redirect('admin-manage-products', 'view_variant')
 
     if action == 'duplicate_option':
