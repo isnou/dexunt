@@ -1,17 +1,21 @@
-def home_page(request):
+def language(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    language = request.session.get('language')
+    selected_language = request.session.get('language')
+    en_us = False
+    fr_fr = False
+    ar_dz = False
 
-    if language == 'en-us':
-        track_my_order = 'track my order'
-    elif language == 'fr-fr':
-        track_my_order = 'suivre ma commande'
-    elif language == 'ar-dz':
-        track_my_order = 'تابع طلبي'
-    else:
-        track_my_order = ''
+    if selected_language == 'en-us':
+        en_us = True
+    if selected_language == 'fr-fr':
+        fr_fr = True
+    if selected_language == 'ar-dz':
+        ar_dz = True
+
 
     return {
-        'track_my_order': track_my_order
+        'en_us': en_us,
+        'fr_fr': fr_fr,
+        'ar_dz': ar_dz,
     }
