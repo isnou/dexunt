@@ -115,6 +115,13 @@
           </td>
           <!-- product actions -->
           <td class="text-end">
+            {% if option.is_activated %}
+            <!-- deactivate -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
+              <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
+            </button>
+            {% endif %}
+
             {% if option.quantity %}
             <!-- remove quantity -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#remove_quantity_modal_{{ option.id }}">
@@ -131,13 +138,6 @@
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
               <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
-
-            {% if option.is_activated %}
-            <!-- deactivate -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
-              <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
-            </button>
-            {% endif %}
           </td>
         </tr>
         <!-- end products list -->
