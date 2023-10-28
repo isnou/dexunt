@@ -324,7 +324,11 @@
 
             <div class="row mb-4">
               <span class="text-center">
-                Click yes to deactivate {{ option.variant.product.en_title }} ,{{ option.variant.en_spec }} .
+                Click yes to deactivate.
+              </span>
+              <br>
+              <span class="text-center">
+                {{ option.variant.product.en_title|title }} ,{{ option.variant.en_spec|title }} ,{{ option.en_value|title }}.
               </span>
             </div>
             <div class="d-flex justify-content-end gap-3">
