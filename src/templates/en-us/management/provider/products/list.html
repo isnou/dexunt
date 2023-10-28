@@ -61,7 +61,7 @@
         {% for variant in variants %}
         {% for option in variant.option_set.all %}
         <!-- products list -->
-        <tr class="{% if not option.is_activated %}text-danger{% endif %}">
+        <tr>
           <td class="table-column-pe-0">
           </td>
           <!-- product title and image -->
