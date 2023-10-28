@@ -883,12 +883,23 @@
         </div>
 
         <div class=" w-100 ">
+          {% if en_us %}
           <div class="text-center text-md-center fs-5 mb-5">
-            Pour le français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
+            Pour le Français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
           </div>
           <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
             للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
           </div>
+          {% endif %}
+
+          {% if fr_fr %}
+          <div class="text-center text-md-center fs-5 mb-5">
+            For English <button form="english_language_form" class="btn btn-ghost-info"> click here </button>
+          </div>
+          <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
+            للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
+          </div>
+          {% endif %}
         </div>
 
         <form action="{% url 'change-language' %}" id="french_language_form" method="post">
@@ -900,6 +911,12 @@
         <form action="{% url 'change-language' %}" id="arabic_language_form" method="post">
           {% csrf_token %}
           <input type="hidden" name="language" value='ar-dz'>
+          <input type="hidden" name="page" value='home-page'>
+        </form>
+
+        <form action="{% url 'change-language' %}" id="english_language_form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="language" value='en-us'>
           <input type="hidden" name="page" value='home-page'>
         </form>
 
