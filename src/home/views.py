@@ -12,8 +12,6 @@ from authentication.models import User
 
 
 def home_page(request):
-    request.session['language'] = None
-    request.session['direction'] = None
     selected_cart = get_cart(request)
 
     if request.user.is_authenticated:
