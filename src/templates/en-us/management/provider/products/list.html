@@ -61,7 +61,7 @@
         {% for variant in variants %}
         {% for option in variant.option_set.all %}
         <!-- products list -->
-        <tr>
+        <tr class="{% if not option.is_activated %}text-danger{% endif %}">
           <td class="table-column-pe-0">
           </td>
           <!-- product title and image -->
@@ -132,10 +132,12 @@
               <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
 
+            {% if not option.is_activated %}
             <!-- deactivate -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
               <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
             </button>
+            {% endif %}
           </td>
         </tr>
         <!-- end products list -->
@@ -315,10 +317,10 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Deactivate Product</h2>
+            <h2>Deactivate Option</h2>
           </div>
 
-          <form action="{% url 'provider-products' 'edit_price' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'provider-products' 'deactivate' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="option_id" value="{{ option.id }}">
 

@@ -1894,6 +1894,12 @@ def provider_products(request, action):
                 selected_option.quantity -= quantity
                 selected_option.save()
             return redirect('provider-products', 'main')
+    if action == 'deactivate':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            selected_option = Option.objects.all().get(id=option_id)
+            selected_option.deactivate()
+            return redirect('provider-products', 'main')
 #                                                                        #
 @login_required
 def provider_sales(request, action):
