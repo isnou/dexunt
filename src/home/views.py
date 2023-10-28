@@ -253,6 +253,5 @@ def change_language(request):
         request.session['direction'] = 'rtl'
     if language == 'en-us' or language == 'fr-fr':
         request.session['direction'] = 'ltr'
-        
-    if page == 'home-page':
-        return redirect('home-page')
+
+    return redirect('home-page')
