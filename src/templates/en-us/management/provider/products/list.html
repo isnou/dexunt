@@ -132,7 +132,7 @@
               <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
 
-            {% if not option.is_activated %}
+            {% if option.is_activated %}
             <!-- deactivate -->
             <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
               <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
