@@ -24,6 +24,7 @@ def home_page(request):
 
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
+    if not request.session.get('direction', None):
         request.session['direction'] = 'ltr'
     direction = request.session.get('direction')
 
