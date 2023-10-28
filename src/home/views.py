@@ -246,14 +246,13 @@ def order_tracking(request, action):
         return render(request, url, context)
 
 def change_language(request):
-    if request.method == 'POST':
-        language = request.POST.get('language', False)
-        page = request.POST.get('page', False)
-        request.session['language'] = language
-        if language == 'ar-dz':
-            request.session['direction'] = 'rtl'
-        if language == 'en-us' or language == 'fr-fr':
-            request.session['direction'] = 'ltr'
+    language = request.GET.get('language', False)
 
-        if page == 'home-page':
-            return redirect('home-page')
+    request.session['language'] = language
+    if language == 'ar-dz':
+        request.session['direction'] = 'rtl'
+    if language == 'en-us' or language == 'fr-fr':
+        request.session['direction'] = 'ltr'
+        
+    if page == 'home-page':
+        return redirect('home-page')

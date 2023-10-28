@@ -57,19 +57,33 @@
 
         <div class="col-md-6 col-12 text-center text-md-end">
           <div class="dropdown">
-            <a class="dropdown-toggle text-decoration-none  text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="text-decoration-none  text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="feather-icon icon-globe me-2"></i>
+              {% if en_us %}
               English
+              {% endif %}
+
+              {% if fr_fr %}
+              French
+              {% endif %}
             </a>
 
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item " href="#">
+                {% if en_us %}
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr">
                   Français
                 </a>
+                {% endif %}
+
+                {% if fr_fr %}
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us">
+                  Français
+                </a>
+                {% endif %}
               </li>
               <li>
-                <a class="dropdown-item " href="#">
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=ar-dz">
                    العربية
                 </a>
               </li>
@@ -886,8 +900,7 @@
   </div>
 </div>
 <!-- change language modal -->
-<div class="modal fade" id="change_language_modal" tabindex="-1" aria-labelledby="change_language_label"
-  aria-hidden="true">
+<div class="modal fade" id="change_language_modal" tabindex="-1" aria-labelledby="change_language_label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
