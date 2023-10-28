@@ -51,7 +51,13 @@
             |
           </span>
           <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#track_my_order_modal">
-            {{ track_my_order|title }}
+            {% if en_us %}
+            Track my order
+            {% endif %}
+
+            {% if fr_fr %}
+            Track my order
+            {% endif %}
             <i class="feather-icon icon-map-pin ms-2"></i>
           </a>
         </div>
