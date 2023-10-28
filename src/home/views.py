@@ -24,7 +24,8 @@ def home_page(request):
 
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
 
     url = direction + "/home/main.html"
 
@@ -62,19 +63,11 @@ def home_page(request):
     }
     return render(request, url, context)
 
-def change_language(request):
-    if request.method == 'POST':
-        language = request.POST.get('language', False)
-        page = request.POST.get('page', False)
-        request.session['language'] = language
-
-        if page == 'home-page':
-            return redirect('home-page')
-
 def product_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
 
     if action == 'regular_product':
         url = direction + "/home/regular/single-product.html"
@@ -103,7 +96,8 @@ def product_page(request, action):
 def shopping_cart_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     selected_cart = get_cart(request)
 
     coupon_message = request.session.get('coupon_message')
@@ -155,7 +149,8 @@ def shopping_cart_page(request, action):
 def order_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     selected_order = get_cart(request).get_order(request)
 
     request.session['coupon_message'] = None
@@ -234,7 +229,8 @@ def order_page(request, action):
 def order_tracking(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/home/order-tracking.html"
@@ -247,3 +243,16 @@ def order_tracking(request, action):
             'selected_order': selected_order,
         }
         return render(request, url, context)
+
+def change_language(request):
+    if request.method == 'POST':
+        language = request.POST.get('language', False)
+        page = request.POST.get('page', False)
+        request.session['language'] = language
+        if language == 'ar-dz':
+            request.session['direction'] = 'rtl'
+        if language == 'en-us' or language == 'fr-fr':
+            request.session['direction'] = 'ltr'
+
+        if page == 'home-page':
+            return redirect('home-page')

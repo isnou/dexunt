@@ -1,4 +1,4 @@
-def admin_home_page(request):
+def home_page(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
     language = request.session.get('language')

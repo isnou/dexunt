@@ -25,7 +25,8 @@ from authentication.forms import UpdateProfileForm, UpdatePhotoForm
 def admin_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/home.html"
@@ -53,7 +54,8 @@ def admin_home(request, action):
 def manage_users(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # -- main page -- #
@@ -197,7 +199,8 @@ def manage_users(request, action):
 def manage_stores(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # -- main page -- #
@@ -291,7 +294,8 @@ def manage_stores(request, action):
 def manage_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -662,7 +666,8 @@ def manage_products(request, action):
 def manage_flash(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/flash/list.html"
@@ -764,7 +769,8 @@ def manage_flash(request, action):
 def manage_orders(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/orders/list.html"
@@ -842,7 +848,8 @@ def manage_orders(request, action):
 def manage_shipping(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -982,7 +989,8 @@ def manage_shipping(request, action):
 def manage_coupon(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/coupon/list.html"
