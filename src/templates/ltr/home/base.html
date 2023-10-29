@@ -53,24 +53,24 @@
           <div class="dropdown">
             <a class="text-decoration-none  text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="feather-icon icon-globe me-2"></i>
-              {% if language == 'en-us' %}
+              {% if en_us %}
               English
               {% endif %}
 
-              {% if language == 'fr-fr' %}
+              {% if fr_fr %}
               French
               {% endif %}
             </a>
 
             <ul class="dropdown-menu">
               <li>
-                {% if language == 'en-us' %}
+                {% if en_us %}
                 <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr">
                   Français
                 </a>
                 {% endif %}
 
-                {% if language == 'fr-fr' %}
+                {% if fr_fr %}
                 <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us">
                   English
                 </a>
