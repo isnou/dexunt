@@ -152,8 +152,8 @@
                         <div class="col-lg-7">
                             <div class="col">
                                 <a href="shop-single.html" class="text-inherit">
-                                    <h6 class="mb-0">{{ product.en_title }}</h6>
-                                    <small class="text-muted">{{ product.en_detail }}</small>
+                                    <h6 class="mb-0">{{ product.ar_title }}</h6>
+                                    <small class="text-muted">{{ product.ar_detail }}</small>
                                 </a>
                             </div>
                             <div class="col">
@@ -197,7 +197,7 @@
         <div class="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
             {% for variant in published_products %}
             <div class="col">
-                <div class="card card-product border-0">
+                <div class="card card-product border-0" dir="rtl">
                     <div class="card-body">
                         <div class="text-center position-relative">
                             {% if not variant.is_available %}
@@ -230,7 +230,7 @@
                         </div>
                         <h2 class="fs-6">
                             <a href="#" class="text-inherit text-decoration-none">
-                                {{ variant.product.en_title }}
+                                {{ variant.product.ar_title }}
                             </a>
                         </h2>
                         {% if variant.selected_option.reviews.all.count %}
