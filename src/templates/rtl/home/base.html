@@ -37,7 +37,7 @@
 
 <body>
 <!-- navigation -->
-<header class="border-bottom border-bottom-lg-0">
+<header class="border-bottom border-bottom-lg-0" dir="rtl">
   <!-- language & tracking topbar -->
   <div class="py-2 mb-5 bg-dark">
     <div class="container">
@@ -53,32 +53,17 @@
           <div class="dropdown">
             <a class="text-decoration-none  text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="feather-icon icon-globe me-2"></i>
-              {% if language == 'en-us' %}
-              English
-              {% endif %}
-
-              {% if language == 'fr-fr' %}
-              French
-              {% endif %}
+              العربية
             </a>
 
             <ul class="dropdown-menu">
               <li>
-                {% if language == 'en-us' %}
                 <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr">
                   Français
                 </a>
-                {% endif %}
 
-                {% if language == 'fr-fr' %}
                 <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us">
                   English
-                </a>
-                {% endif %}
-              </li>
-              <li>
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=ar-dz">
-                   العربية
                 </a>
               </li>
             </ul>
