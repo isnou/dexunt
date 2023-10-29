@@ -17,7 +17,8 @@ def language(request):
 
 
     return {
-        'txt_track_my_order':text_selector(selected_language, 'track my order', 'suivre ma commande', 'تابع طلبي'),
+        'txt_track_my_order':text_selector('Track my order', 'Suivre ma commande', 'تابع طلبي', selected_language),
+        'txt_search_holder':text_selector('Search for products', 'Rechercher des produits', 'البحث عن المنتجات', selected_language),
         'en_us': en_us,
         'fr_fr': fr_fr,
         'ar_dz': ar_dz,
