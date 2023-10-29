@@ -5,4 +5,10 @@ def serial_number_generator(length):
     result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
     return result_str
 
-
+def text_selector(language, en_text, fr_text, ar_text):
+    if language == 'en-us':
+        return en_text
+    if language == 'fr-fr':
+        return fr_text
+    if language == 'ar-dz':
+        return ar_text
