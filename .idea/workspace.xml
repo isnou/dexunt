@@ -2,13 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change beforePath="$PROJECT_DIR$/src/templates/rtl/home/raw-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/home/raw-base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/rtl/home/regular/guest/checkout-review.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/home/regular/guest/checkout-review.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/rtl/home/regular/guest/order-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/home/regular/guest/order-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/rtl/home/regular/member/checkout-review.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/home/regular/member/checkout-review.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/rtl/home/regular/member/order-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/home/regular/member/order-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/rtl/home/regular/shopping-cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/home/regular/shopping-cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/rtl/home/regular/single-product.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/home/regular/single-product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/admin/coupon/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/admin/coupon/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/cash/sales/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/cash/sales/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/cash/wallet/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/cash/wallet/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/customer/address/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/customer/address/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/customer/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/customer/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/customer/orders/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/customer/orders/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/customer/settings/password.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/customer/settings/password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/customer/settings/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/customer/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/customer/transactions/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/customer/transactions/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/member/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/member/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/member/orders/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/member/orders/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/member/payments/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/member/payments/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/member/refunds/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/member/refunds/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/member/settings/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/member/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/member/wallet/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/member/wallet/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/provider/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/provider/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/provider/products/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/provider/products/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/provider/sales/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/provider/sales/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/provider/settings/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/provider/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/provider/settings/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/provider/settings/store.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/provider/wallet/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/provider/wallet/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/seller/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/seller/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/coupon/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/coupon/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/flash/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/flash/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/orders/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/orders/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/orders/selected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/orders/selected.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/description.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/description.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/selected-variant.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/selected-variant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/selected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/products/selected.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/shipping/provinces.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/shipping/provinces.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/shipping/selected_province.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/shipping/selected_province.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/stores/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/stores/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/stores/selected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/stores/selected.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/users/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/users/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/admin/users/selected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/admin/users/selected.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/cash/members/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/cash/members/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/cash/providers/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/cash/providers/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/cash/sales/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/cash/sales/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/cash/wallet/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/cash/wallet/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/customer/address/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/customer/address/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/customer/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/customer/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/customer/orders/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/customer/orders/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/customer/settings/password.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/customer/settings/password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/customer/settings/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/customer/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/customer/transactions/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/customer/transactions/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/member/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/member/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/member/orders/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/member/orders/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/member/payments/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/member/payments/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/member/refunds/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/member/refunds/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/member/settings/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/member/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/member/wallet/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/member/wallet/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/provider/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/provider/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/provider/products/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/provider/products/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/provider/sales/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/provider/sales/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/provider/settings/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/provider/settings/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/provider/settings/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/provider/settings/store.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/provider/wallet/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/provider/wallet/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/rtl/management/seller/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/rtl/management/seller/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
