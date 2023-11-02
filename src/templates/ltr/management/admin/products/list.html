@@ -42,10 +42,20 @@
 
             <div class="row mb-4">
               <span class="divider-center mb-2">Main Informations</span>
+              <!-- product brand -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">brand</span>
+                <input type="text" class="form-control" name="en_title" placeholder="Delta Children">
+                <span class="text-muted">
+                  <small>leave blank if the supplier name is the brand.</small>
+                </span>
+              </div>
+              <!-- end product brand -->
+
               <!-- product english title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english title</span>
-                <input type="text" class="form-control" name="{{ product_form.en_title.name }}" placeholder="Deluxe Toy Box" required>
+                <input type="text" class="form-control" name="en_title" placeholder="Deluxe Toy Box" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english title -->
@@ -53,14 +63,14 @@
               <!-- product french title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french title</span>
-                <input type="text" class="form-control" name="{{ product_form.fr_title.name }}" placeholder="Coffre à jouets Deluxe">
+                <input type="text" class="form-control" name="fr_title" placeholder="Coffre à jouets Deluxe">
               </div>
               <!-- end product french title -->
 
               <!-- product arabic title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic title</span>
-                <input type="text" class="form-control" name="{{ product_form.ar_title.name }}" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
+                <input type="text" class="form-control" name="ar_title" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
               </div>
               <!-- end product arabic title -->
 
@@ -69,7 +79,7 @@
               <!-- product english spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english spec</span>
-                <input type="text" class="form-control" name="{{ variant_form.en_spec.name }}" placeholder="Blue" required>
+                <input type="text" class="form-control" name="en_spec" placeholder="Blue" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english spec -->
@@ -77,14 +87,14 @@
               <!-- product french spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french spec</span>
-                <input type="text" class="form-control" name="{{ variant_form.fr_spec.name }}" placeholder="Bleu">
+                <input type="text" class="form-control" name="fr_spec" placeholder="Bleu">
               </div>
               <!-- end product french spec -->
 
               <!-- product arabic spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic spec</span>
-                <input type="text" class="form-control" name="{{ variant_form.ar_spec.name }}" placeholder="أزرق" dir="rtl">
+                <input type="text" class="form-control" name="ar_spec" placeholder="أزرق" dir="rtl">
               </div>
               <!-- end product arabic spec -->
 
@@ -93,7 +103,7 @@
               <!-- option english -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english value</span>
-                <input type="text" class="form-control" name="{{ option_form.en_value.name }}" placeholder="Full" required>
+                <input type="text" class="form-control" name="en_value" placeholder="Full" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product english -->
@@ -101,21 +111,21 @@
               <!-- option french -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french value</span>
-                <input type="text" class="form-control" name="{{ option_form.fr_value.name }}" placeholder="Complet">
+                <input type="text" class="form-control" name="fr_value" placeholder="Complet">
               </div>
               <!-- end option french -->
 
               <!-- product arabic spec -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic value</span>
-                <input type="text" class="form-control" name="{{ option_form.ar_value.name }}" placeholder="مكتمل" dir="rtl">
+                <input type="text" class="form-control" name="ar_value" placeholder="مكتمل" dir="rtl">
               </div>
               <!-- end product arabic spec -->
 
               <!-- upc -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">UPC</span>
-                <input type="text" class="form-control" name="{{ option_form.upc.name }}" placeholder="leave empty to auto generate" maxlength="20">
+                <input type="text" class="form-control" name="upc" placeholder="leave empty to auto generate" maxlength="20">
               </div>
               <!-- end upc -->
 
@@ -124,7 +134,7 @@
               <!-- product cost -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">cost</span>
-                <input type="number" class="form-control" name="{{ option_form.cost.name }}" placeholder="2000" required>
+                <input type="number" class="form-control" name="cost" placeholder="2000" required>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -133,7 +143,7 @@
               <!-- product price -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">price</span>
-                <input type="number" class="form-control" name="{{ option_form.price.name }}" min="0" required>
+                <input type="number" class="form-control" name="price" min="0" required>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -142,7 +152,7 @@
               <!-- product discount -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">discount</span>
-                <input type="number" class="form-control" name="{{ option_form.discount.name }}" value=0>
+                <input type="number" class="form-control" name="discount" value=0>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
               </div>
               <!-- end product discount -->
@@ -152,14 +162,14 @@
               <!-- product quantity -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">quantity</span>
-                <input type="number" class="form-control" min=0 name="{{ option_form.quantity.name }}" value=0 placeholder="40">
+                <input type="number" class="form-control" min=0 name="quantity" value=0 placeholder="40">
               </div>
               <!-- end product quantity -->
 
               <!-- product max quantity -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">showcase quantity</span>
-                <input type="number" class="form-control" min=1 name="{{ option_form.max_quantity.name }}" value=0 placeholder="3">
+                <input type="number" class="form-control" min=1 name="max_quantity" value=0 placeholder="3">
                 <span class="invalid-feedback text-center">minimum 1 quantity is required</span>
               </div>
               <!-- end product max quantity -->
@@ -169,7 +179,7 @@
               <!-- product delivery quotient -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">delivery quotient</span>
-                <input type="text" class="form-control" min="0" name="{{ option_form.delivery_quotient.name }}" value=100 placeholder="34">
+                <input type="text" class="form-control" min="0" name="delivery_quotient" value=100 placeholder="34">
                 <span class="input-group-text" style="width: 20%;">%</span>
               </div>
               <!-- end product delivery quotient -->
@@ -177,7 +187,7 @@
               <!-- product gift points -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">gift points</span>
-                <input type="text" class="form-control" min="0" name="{{ option_form.points.name }}" value=0 placeholder="300">
+                <input type="text" class="form-control" min="0" name="points" value=0 placeholder="300">
                 <span class="input-group-text" style="width: 20%;">GP</span>
               </div>
               <!-- end product gift points -->
