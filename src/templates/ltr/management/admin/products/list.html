@@ -131,7 +131,7 @@
               <!-- product cost -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">cost</span>
-                <input type="number" class="form-control" name="cost" placeholder="2000" required>
+                <input type="number" class="form-control" name="cost" min="0" required>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -159,14 +159,14 @@
               <!-- product quantity -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">quantity</span>
-                <input type="number" class="form-control" min=0 name="quantity" value=0 placeholder="40">
+                <input type="number" class="form-control" min=0 name="quantity" value=0>
               </div>
               <!-- end product quantity -->
 
               <!-- product max quantity -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">max quantity</span>
-                <input type="number" class="form-control" min=1 name="max_quantity" value=0 placeholder="3">
+                <input type="number" class="form-control" min=1 name="max_quantity" value=0>
                 <span class="invalid-feedback text-center">minimum 1 quantity is required</span>
               </div>
               <!-- end product max quantity -->
@@ -176,7 +176,7 @@
               <!-- product delivery quotient -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">delivery</span>
-                <input type="text" class="form-control" min="0" name="delivery_quotient" value=100 placeholder="34">
+                <input type="text" class="form-control" min="0" name="delivery_quotient" value=100>
                 <span class="input-group-text" style="width: 20%;">%</span>
               </div>
               <!-- end product delivery quotient -->
@@ -184,7 +184,7 @@
               <!-- product gift points -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">gift points</span>
-                <input type="text" class="form-control" min="0" name="points" value=0 placeholder="300">
+                <input type="text" class="form-control" min="0" name="points" value=0>
                 <span class="input-group-text" style="width: 20%;">GP</span>
               </div>
               <!-- end product gift points -->
