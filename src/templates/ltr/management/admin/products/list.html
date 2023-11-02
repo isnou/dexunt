@@ -42,16 +42,6 @@
 
             <div class="row mb-4">
               <span class="divider-center mb-2">Main Informations</span>
-              <!-- product brand -->
-              <div class="input-group mb-1">
-                <span class="input-group-text" style="width: 25%;">brand</span>
-                <input type="text" class="form-control" name="en_title" placeholder="Delta Children">
-              </div>
-              <span class="text-muted mb-2">
-                <small>leave blank if the supplier name is the brand.</small>
-              </span>
-              <!-- end product brand -->
-
               <!-- product english title -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english title</span>
@@ -73,6 +63,16 @@
                 <input type="text" class="form-control" name="ar_title" placeholder="صندوق ألعاب ديلوكس" dir="rtl">
               </div>
               <!-- end product arabic title -->
+
+              <!-- product brand -->
+              <div class="input-group mb-1">
+                <span class="input-group-text" style="width: 25%;">brand</span>
+                <input type="text" class="form-control" name="en_title" placeholder="Delta Children">
+              </div>
+              <span class="text-muted mb-2">
+                <small>leave blank if the supplier name is the brand.</small>
+              </span>
+              <!-- end product brand -->
 
               <span class="divider-center mb-2">Specs</span>
 
@@ -168,7 +168,7 @@
 
               <!-- product max quantity -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">showcase quantity</span>
+                <span class="input-group-text" style="width: 25%;">max quantity</span>
                 <input type="number" class="form-control" min=1 name="max_quantity" value=0 placeholder="3">
                 <span class="invalid-feedback text-center">minimum 1 quantity is required</span>
               </div>
@@ -178,7 +178,7 @@
 
               <!-- product delivery quotient -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">delivery quotient</span>
+                <span class="input-group-text" style="width: 25%;">delivery</span>
                 <input type="text" class="form-control" min="0" name="delivery_quotient" value=100 placeholder="34">
                 <span class="input-group-text" style="width: 20%;">%</span>
               </div>
