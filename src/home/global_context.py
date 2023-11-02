@@ -9,5 +9,6 @@ def session_language(request):
     return {
         'txt_track_my_order':text_selector('Track my order', 'Suivre ma commande', 'تابع طلبي', language),
         'txt_search_holder':text_selector('Search for products', 'Rechercher des produits', 'البحث عن المنتجات', language),
+        'txt_empty_cart': text_selector('Your cart is empty !', 'Votre panier est vide !', 'سلة التسوق فارغة !', language),
         'language': language,
     }
