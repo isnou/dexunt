@@ -202,12 +202,12 @@
                         <div class="text-center position-relative">
                             {% if not variant.is_available %}
                             <div class=" position-absolute top-0 start-0">
-                                <span class="badge bg-gray-400">Out Of Stock</span>
+                                <span class="badge bg-gray-400">نفاد الكمية</span>
                             </div>
                             {% else %}
                             {% if not variant.selected_option.reviews.all.count %}
                             <div class=" position-absolute top-0 start-0">
-                                <span class="badge bg-danger">New</span>
+                                <span class="badge bg-danger">جديد</span>
                             </div>
                             {% endif %}
                             {% endif %}
