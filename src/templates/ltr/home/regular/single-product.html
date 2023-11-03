@@ -351,10 +351,10 @@
                   <table class="table table-striped">
                     <!-- table -->
                     <tbody>
-                    {% for feature in selected_variant.feature.all %}
+                    {% for feature in selected_variant.feature_set.all %}
                       <tr>
-                        <th>{{ feature.en_name|title }}</th>
-                        <td>{{ feature.en_content|capfirst }}</td>
+                        <th>{{ feature.name|title }}</th>
+                        <td>{{ feature.content|capfirst }}</td>
                       </tr>
                     {% endfor %}
                     </tbody>
