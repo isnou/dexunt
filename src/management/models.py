@@ -86,46 +86,6 @@ class Feature(models.Model):
         super().save()
 # ---------------------------------------------------------------------- #
 
-# ----------------------------- Collections ---------------------------- #
-class Department(models.Model):
-    # ----- Technical ----- #
-    is_activated = models.BooleanField(default=False)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
-    # ----- content ----- #
-    en_name = models.CharField(max_length=300, blank=True, null=True)
-    fr_name = models.CharField(max_length=300, blank=True, null=True)
-    ar_name = models.CharField(max_length=300, blank=True, null=True)
-    # ----- #
-    icon = models.CharField(max_length=500, blank=True, null=True)
-#                                                                        #
-class Category(models.Model):
-    # ----- Technical ----- #
-    is_activated = models.BooleanField(default=False)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
-    # ----- relations ----- #
-    department = models.ForeignKey('management.Department', on_delete=models.CASCADE, null=True)
-    # ----- content ----- #
-    en_name = models.CharField(max_length=300, blank=True, null=True)
-    fr_name = models.CharField(max_length=300, blank=True, null=True)
-    ar_name = models.CharField(max_length=300, blank=True, null=True)
-    # ----- #
-    icon = models.CharField(max_length=500, blank=True, null=True)
-#                                                                        #
-class Collection(models.Model):
-    # ----- Technical ----- #
-    is_activated = models.BooleanField(default=False)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
-    # ----- relations ----- #
-    category = models.ForeignKey('management.Category', on_delete=models.CASCADE, blank=True, null=True)
-    # ----- content ----- #
-    en_name = models.CharField(max_length=300, blank=True, null=True)
-    fr_name = models.CharField(max_length=300, blank=True, null=True)
-    ar_name = models.CharField(max_length=300, blank=True, null=True)
-# ---------------------------------------------------------------------- #
-
 # ------------------------------ Inventory ----------------------------- #
 class Option(models.Model):
     # ----- Technical ----- #
@@ -384,7 +344,6 @@ class Variant(models.Model):
 class Product(models.Model):
     # ----- relations ----- #
     store = models.ForeignKey('management.Store', on_delete=models.CASCADE, null=True)
-    collection = models.ManyToManyField(Collection, related_name='products', blank=True)
     # ----- content ----- #
     en_title = models.CharField(max_length=200, blank=True, null=True)
     fr_title = models.CharField(max_length=200, blank=True, null=True)
@@ -402,6 +361,46 @@ class Product(models.Model):
             v.save()
 # ---------------------------------------------------------------------- #
 
+# ----------------------------- Collections ---------------------------- #
+class Department(models.Model):
+    # ----- Technical ----- #
+    is_activated = models.BooleanField(default=False)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
+    # ----- content ----- #
+    en_name = models.CharField(max_length=300, blank=True, null=True)
+    fr_name = models.CharField(max_length=300, blank=True, null=True)
+    ar_name = models.CharField(max_length=300, blank=True, null=True)
+    # ----- #
+    icon = models.CharField(max_length=500, blank=True, null=True)
+#                                                                        #
+class Category(models.Model):
+    # ----- Technical ----- #
+    is_activated = models.BooleanField(default=False)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
+    # ----- relations ----- #
+    department = models.ForeignKey('management.Department', on_delete=models.CASCADE, null=True)
+    # ----- content ----- #
+    en_name = models.CharField(max_length=300, blank=True, null=True)
+    fr_name = models.CharField(max_length=300, blank=True, null=True)
+    ar_name = models.CharField(max_length=300, blank=True, null=True)
+    # ----- #
+    icon = models.CharField(max_length=500, blank=True, null=True)
+#                                                                        #
+class Collection(models.Model):
+    # ----- Technical ----- #
+    is_activated = models.BooleanField(default=False)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
+    # ----- relations ----- #
+    category = models.ForeignKey('management.Category', on_delete=models.CASCADE, blank=True, null=True)
+    product = models.ManyToManyField(Product, related_name='collections', blank=True)
+    # ----- content ----- #
+    en_name = models.CharField(max_length=300, blank=True, null=True)
+    fr_name = models.CharField(max_length=300, blank=True, null=True)
+    ar_name = models.CharField(max_length=300, blank=True, null=True)
+# ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
 class Store(models.Model):
