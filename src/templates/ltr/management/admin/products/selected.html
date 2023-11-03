@@ -37,7 +37,7 @@
     </h6>
     {% else %}
     <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_brand">
-      <i class="bi-plus-lg me-1"></i>
+      <i class="fa fa-plus me-1"></i>
       <span class="text-muted fs-6">
         add a brand
       </span>
@@ -366,8 +366,6 @@
 </form>
 
 
-
-
 <!-- activate variant modal -->
 <div id="activate_variant_modal_{{ variant.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -482,6 +480,45 @@
       </div>
       <div class="modal-body px-10 mx-10 mb-4">
         {{ selected_product.ar_description|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- product modals & forms -->
+<!-- add a brand modal -->
+<div id="add_a_brand" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body mx-4">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add A Brand</h2>
+          </div>
+          <form id="add_brand_form" action="{% url 'admin-manage-products' 'add_a_brand' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+
+            <div class="row mb-4">
+              <!-- product brand -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">brand</span>
+                <input type="text" class="form-control" name="brand" placeholder="Delta Child" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product brand -->
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="add_brand_form">Yes</button>
       </div>
     </div>
   </div>
