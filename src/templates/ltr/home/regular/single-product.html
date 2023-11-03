@@ -76,8 +76,13 @@
           <a href="#" class="mb-4 d-block">{{ selected_variant.product.store.name }}</a>
 
           <!-- heading -->
-          <span class="fw-bold h4 mb-2">{{ selected_variant.product.en_title|title }}, {{ selected_variant.en_spec|title }}, {{ selected_option.en_value|title }}</span>
+          <div class="mb-4">
+            <span class="fw-bold h4">
+              {{ selected_variant.product.en_title|title }}, {{ selected_variant.en_spec|title }}, {{ selected_option.en_value|title }}
+            </span>
+          </div>
 
+          {% if selected_option.reviews.all.count %}
           <!-- reviews -->
           <div class="mb-4">
             <small class="text-warning">
@@ -88,7 +93,6 @@
               <i class="bi bi-star{{ selected_option.review_star_five }}"></i>
             </small>
             <a href="shop-single-2.html#" class="ms-2">
-              {% if selected_option %}
               {% if selected_option.reviews.all.count %}
               ({{ selected_option.reviews.all.count }} reviews)
               {% endif %}
@@ -96,9 +100,9 @@
               {% if selected_variant.option_set.all.first.reviews.all.count %}
               ({{ selected_variant.option_set.all.first.reviews.all.count }} reviews)
               {% endif %}
-              {% endif %}
             </a>
           </div>
+          {% endif %}
 
           {% if user.is_customer or not user.is_authenticated %}
           <!-- prices -->
