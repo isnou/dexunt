@@ -304,9 +304,7 @@
           {% else %}
           <li class="nav-item" role="presentation">
             <!-- btn -->
-            <button class="nav-link" data-bs-toggle="tab"
-              data-bs-target="#" type="button" role="tab" aria-controls="product-tab-pane"
-              aria-selected="false" disabled>Product Details</button>
+            <button class="nav-link" type="button" disabled>Product Details</button>
           </li>
           {% endif %}
           <!-- nav information -->
@@ -317,12 +315,19 @@
               aria-selected="false">Information</button>
           </li>
           <!-- nav reviews -->
+          {% if selected_option.reviews.all.count %}
           <li class="nav-item" role="presentation">
             <!-- btn -->
             <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
               data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
               aria-selected="false">Reviews</button>
           </li>
+          {% else %}
+          <li class="nav-item" role="presentation">
+            <!-- btn -->
+            <button class="nav-link" type="button" disabled>Reviews</button>
+          </li>
+          {% endif %}
           <!-- nav item -->
           <li class="nav-item" role="presentation">
             <!-- btn -->
