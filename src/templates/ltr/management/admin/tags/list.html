@@ -62,16 +62,21 @@
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}&init=True">
             <div class="ms-3">
-              <span class="d-block h5 text-inherit">{{ province.en_name|title }} - {{ province.en_delivery_time }}</span>
-              <span class="d-block h5 text-inherit">{{ province.fr_name|title }} - {{ province.fr_delivery_time }}</span>
-              <span class="d-block h5 text-inherit" dir="rtl">{{ province.ar_name }} - {{ province.ar_delivery_time }}</span>
+              <span class="d-block h5 text-inherit">{{ tag.title }}</span>
             </div>
           </a>
         </td>
 
         <td>
-          <h4 class="text-inherit text-body">delivery to home :{{ province.home_delivery_price|floatformat:"2g" }} DZD</h4>
-          <h4 class="text-inherit text-body">delivery to desk :{{ province.desk_delivery_price|floatformat:"2g" }} DZD</h4>
+          <span class="text-inherit text-body h5">Products ({{ tag.product.all.count }})</span>
+        </td>
+
+        <td>
+          <span class="text-inherit text-body h5">Variants ({{ tag.variant.all.count }})</span>
+        </td>
+
+        <td>
+          <span class="text-inherit text-body h5">Options ({{ tag.option.all.count }})</span>
         </td>
         <!-- province actions -->
         <td class="text-end">
