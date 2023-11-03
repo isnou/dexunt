@@ -4,7 +4,7 @@ from management import models
 
 def RequestExposerMiddleware(get_response):
     def middleware(request):
-        models.exposed_request = request
+        models.global_request = request
         response = get_response(request)
         return response
     return middleware
