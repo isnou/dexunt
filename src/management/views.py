@@ -7,6 +7,7 @@ from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct, Store
+from .models import Tag
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm, StoreForm
 from .forms import ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
@@ -1059,47 +1060,45 @@ def manage_tags(request, action):
         request.session['language'] = 'en-us'
         request.session['direction'] = 'ltr'
     direction = request.session.get('direction')
+
+    nav_side = 'tags'
+    items_by_page = 6
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/tags/list.html"
 
-        try:
-            all_coupons = Coupon.objects.all()
-        except Coupon.DoesNotExist:
-            raise Http404("No coupons")
+        all_tags = Tag.objects.all()
 
-        for c in all_coupons:
-            c.clean()
+        if request.GET.get('init', None):
+            request.session['tags-page'] = None
 
-        if all_coupons.count():
-            paginate = True
+        if not request.session.get('coupons_filter', None):
+            request.session['coupons_filter'] = 'all'
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+            request.session['tags-page'] = page
         else:
-            paginate = False
+            page = request.session.get('tags-page')
 
-        page = request.GET.get('page', 1)
-        paginator = Paginator(all_coupons, 6)
+        paginator = Paginator(all_tags, items_by_page)
         try:
-            all_coupons = paginator.page(page)
+            all_tags = paginator.page(page)
         except PageNotAnInteger:
-            all_coupons = paginator.page(1)
+            all_tags = paginator.page(1)
         except EmptyPage:
-            all_coupons = paginator.page(paginator.num_pages)
+            all_tags = paginator.page(paginator.num_pages)
 
-        coupon_form = CouponForm()
         context = {
-            'nav_side': 'tags',
-            'all_coupons': all_coupons,
-            'paginate': paginate,
-            'coupon_form': coupon_form,
+            'nav_side': nav_side,
+            'all_tags': all_tags,
         }
         return render(request, url, context)
-    if action == 'add_new_coupon':
+    if action == 'add_new_tag':
         if request.method == 'POST':
-            coupon_form = CouponForm(request.POST)
-            coupon_form.save()
-
-            return redirect('admin-manage-coupon', 'main')
-    if action == 'delete_coupon':
+            Tag(title=request.POST.get('title', False)).save()
+            return redirect('admin-manage-tags', 'main')
+    if action == 'delete_tag':
         if request.method == 'POST':
             coupon_id = request.POST.get('coupon_id', False)
             selected_coupon = Coupon.objects.all().get(id=coupon_id)

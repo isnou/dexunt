@@ -11,115 +11,19 @@
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
-        <li class="breadcrumb-item active" aria-current="page">provinces</li>
+        <li class="breadcrumb-item active" aria-current="page">tags</li>
       </ol>
     </nav>
-    <h1 class="page-header-title">Provinces</h1>
-    <h6 class="text-muted">Provinces list</h6>
+    <h1 class="page-header-title">Tags</h1>
+    <h6 class="text-muted">Tags list</h6>
   </div>
   <div class="col-sm-auto">
-    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_province">
-      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add new province"></i>
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_tag">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add a tag"></i>
     </button>
   </div>
   <!-- end all products  -->
 </div>
-
-<!-- add province modal -->
-<div id="add_province" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="add_new_product_modal_title">
-          <div class="text-center mb-7">
-            <h2>Add province</h2>
-          </div>
-          <form action="{% url 'admin-manage-shipping' 'add_province' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-
-            <div class="row mb-4">
-              <span class="divider-center mb-2">Municipality Name</span>
-
-              <!-- english name -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <input type="text" class="form-control" name="{{ province_form.en_name.name }}" placeholder="Algiers" required>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end english name -->
-
-              <!-- french name -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <input type="text" class="form-control" name="{{ province_form.fr_name.name }}" placeholder="Alger">
-              </div>
-              <!-- end french name -->
-
-              <!-- arabic name -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <input type="text" class="form-control" name="{{ province_form.ar_name.name }}" placeholder="الجزائر" dir="rtl">
-              </div>
-              <!-- end arabic name -->
-
-              <span class="divider-center mb-2">Delivery Time</span>
-
-              <!-- french delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <input type="text" class="form-control" name="{{ province_form.en_delivery_time.name }}" placeholder="Three to Four Days">
-              </div>
-              <!-- end french delivery time -->
-
-              <!-- english delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <input type="text" class="form-control" name="{{ province_form.fr_delivery_time.name }}" placeholder="Trois à Quatre Jours">
-              </div>
-              <!-- end english delivery time -->
-
-              <!-- arabic delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <input type="text" class="form-control" name="{{ province_form.ar_delivery_time.name }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
-              </div>
-              <!-- end arabic delivery time -->
-
-              <span class="divider-center mb-2">Delivery Price</span>
-
-              <!-- price -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">to home</span>
-                <input type="number" class="form-control" name="{{ province_form.home_delivery_price.name }}" min="0" placeholder="1000" required>
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end price -->
-
-              <!-- price -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">to desk</span>
-                <input type="number" class="form-control" name="{{ province_form.desk_delivery_price.name }}" min="0" placeholder="800">
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-              </div>
-              <!-- end price -->
-            </div>
-
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end add province modal -->
 {% endblock %}
 
 <!-- product content -->
@@ -366,4 +270,42 @@
   </div>
 </div>
 {% endfor %}
+
+<!-- add a tag modal -->
+<div id="add_a_tag" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add a tag</h2>
+          </div>
+          <form action="{% url 'admin-manage-tags' 'add_new_tag' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+
+            <div class="row mb-4">
+              <!-- english name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">name</span>
+                <input type="text" class="form-control" name="title" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end english name -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add a tag modal -->
 {% endblock %}

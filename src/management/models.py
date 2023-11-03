@@ -399,7 +399,7 @@ class Tag(models.Model):
     variant = models.ManyToManyField(Variant, related_name='tags', blank=True)
     option = models.ManyToManyField(Option, related_name='tags', blank=True)
     # ----- content ----- #
-    title = models.CharField(max_length=300, blank=True, null=True)
+    title = models.CharField(max_length=300, unique=True, null=True)
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
