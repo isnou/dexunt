@@ -79,10 +79,11 @@ def product_page(request, action):
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', None)
             option_id = request.POST.get('option_id', None)
-        elif request.method == 'GET':
+        else:
             variant_id = request.GET.get('variant_id', None)
             option_id = request.GET.get('option_id', None)
-        else:
+
+        if not variant_id:
             variant_id = request.session.get('variant_id')
             option_id = request.session.get('option_id')
 
