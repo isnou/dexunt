@@ -58,19 +58,21 @@
       <tr>
         <td class="table-column-pe-0">
         </td>
-        <!-- province info -->
+        <!-- tag title -->
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}&init=True">
-            <div class="ms-3">
-              <span class="d-block h5 text-inherit">{{ tag.title }}</span>
-            </div>
+            <a href="javascript:;" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ tag.id }}">
+              <i class="fa fa-x me-1"></i>
+              <strong class="text-dark h5">{{ tag.title }}</strong>
+            </a>
+
           </a>
         </td>
 
         <td>
           <span class="text-inherit text-body h5">Products ({{ tag.product.all.count }})</span>
         </td>
-        
+
         <!-- province actions -->
         <td class="text-end">
           <!-- edit municipality -->
