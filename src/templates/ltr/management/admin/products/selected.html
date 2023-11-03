@@ -31,7 +31,7 @@
   <div class="col-sm-auto">
     {% if selected_product.brand %}
     <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#delete_brand">
-      <span class="text-muted fs-6">
+      <span class="text-dark fw-bold fs-6">
         {{ selected_product.brand }}
       </span>
       <i class="fa fa-trash ms-1"></i>
@@ -39,7 +39,7 @@
     {% else %}
     <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_brand">
       <i class="fa fa-plus me-1"></i>
-      <span class="text-dark fw-bold fs-6">
+      <span class="text-muted fs-6">
         add a brand
       </span>
     </a>
