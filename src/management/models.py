@@ -128,13 +128,6 @@ class Option(models.Model):
         if self.discount:
             if self.price < self.discount:
                 self.discount = None
-        self.tags = ''
-        if self.en_value:
-            self.tags += ('' + self.en_value)
-        if self.fr_value:
-            self.tags += (', ' + self.fr_value)
-        if self.ar_value:
-            self.tags += (', ' + self.ar_value)
         super().save()
     def duplicate(self):
         new_option = Option(delivery_quotient = self.delivery_quotient,
@@ -424,31 +417,6 @@ class Store(models.Model):
     fr_address = models.CharField(max_length=300, blank=True, null=True)
     ar_address = models.CharField(max_length=300, blank=True, null=True)
     # ----- functions ----- #
-    def save(self, *args, **kwargs):
-        self.tags = ''
-        if self.name:
-            self.tags += (', ' + self.name)
-        if self.en_activity:
-            self.tags += (', ' + self.en_activity)
-        if self.fr_activity:
-            self.tags += (', ' + self.fr_activity)
-        if self.ar_activity:
-            self.tags += (', ' + self.ar_activity)
-
-        if self.en_description:
-            self.tags += (', ' + self.en_description)
-        if self.fr_description:
-            self.tags += (', ' + self.fr_description)
-        if self.ar_description:
-            self.tags += (', ' + self.ar_description)
-
-        if self.en_address:
-            self.tags += (', ' + self.en_address)
-        if self.fr_address:
-            self.tags += (', ' + self.fr_address)
-        if self.ar_address:
-            self.tags += (', ' + self.ar_address)
-        super().save()
     def activate(self):
         if not self.user.profile_photo or not self.name:
             self.is_activated = False
