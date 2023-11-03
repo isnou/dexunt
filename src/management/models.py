@@ -352,7 +352,7 @@ class Product(models.Model):
             v.save()
     # ----- variables ----- #
     def title(self):
-        language = request.session.get('language')
+        language = global_request.session.get('language')
         if language == 'en-us':
             return self.en_title
         if language == 'fr-fr':
