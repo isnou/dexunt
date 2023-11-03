@@ -1,0 +1,364 @@
+{% extends "ltr/management/admin/base.html" %}
+{% load static %}
+
+<!-- title -->
+{% block title %}<title>Dexunt | eCommerce & Logistic | Management | Municipality</title>{% endblock %}
+
+<!-- header -->
+{% block page_header %}
+<div class="row align-items-end">
+  <!-- all products  -->
+  <div class="col-sm mb-2 mb-sm-0">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-no-gutter">
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{% url 'admin-manage-shipping' 'main' %}">provinces</a></li>
+        <li class="breadcrumb-item active" aria-current="page">municipalities</li>
+      </ol>
+    </nav>
+    <h1 class="page-header-title">Municipalities</h1>
+    <h6 class="text-muted">{{ selected_province.en_name }} municipalities list</h6>
+  </div>
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_municipality">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add municipality"></i>
+    </button>
+  </div>
+  <!-- end all products  -->
+</div>
+
+<!-- add municipality modal -->
+<div id="add_municipality" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add municipality</h2>
+          </div>
+          <form action="{% url 'admin-manage-shipping' 'add_municipality' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Municipality Name</span>
+
+              <!-- product english name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_name.name }}" placeholder="Kouba" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end product english name -->
+
+              <!-- product french name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_name.name }}" placeholder="Kouba">
+              </div>
+              <!-- end product french name -->
+
+              <!-- product arabic name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_name.name }}" placeholder="القبة" dir="rtl">
+              </div>
+              <!-- end product arabic name -->
+
+              <span class="divider-center mb-2">Delivery Time</span>
+
+              <!-- french delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_delivery_time.name }}" value="{{ selected_province.en_delivery_time }}" placeholder="Three to Four Days">
+              </div>
+              <!-- end french delivery time -->
+
+              <!-- english delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_delivery_time.name }}" value="{{ selected_province.fr_delivery_time }}" placeholder="Trois à Quatre Jours">
+              </div>
+              <!-- end english delivery time -->
+
+              <!-- arabic delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_delivery_time.name }}" value="{{ selected_province.ar_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
+              </div>
+              <!-- end arabic delivery time -->
+
+              <span class="divider-center mb-2">Delivery Price</span>
+
+              <!-- price to home -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">to home</span>
+                <input type="number" class="form-control" name="{{ municipality_form.home_delivery_price.name }}" value="{{ selected_province.home_delivery_price }}" min="0" placeholder="1000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end price to home -->
+
+              <!-- price to desk -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">to desk</span>
+                <input type="number" class="form-control" name="{{ municipality_form.desk_delivery_price.name }}" value="{{ selected_province.desk_delivery_price }}" min="0" placeholder="800">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end price to desk -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add municipality modal -->
+{% endblock %}
+
+<!-- province content -->
+{% block content %}
+<!-- all municipalities  -->
+<div class="card">
+  <!-- header -->
+  <div class="card-header card-header-content-md-between">
+    <!-- search -->
+    <div class="mb-2 mb-md-0">
+    </div>
+    <!-- end search -->
+
+    <!-- title bar -->
+    <div class="d-grid d-sm-flex gap-2">
+    </div>
+    <!-- end title bar -->
+  </div>
+  <!-- end header -->
+
+  {% if paginate %}
+  <!-- table -->
+  <div class="table-responsive">
+    <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+      <tbody>
+      {% for municipality in municipalities %}
+      <!-- municipalities list -->
+      <tr>
+        <td class="table-column-pe-0">
+        </td>
+        <!-- municipality info -->
+        <td class="table-column-ps-0 text-start">
+          <h5 class="text-inherit">{{ municipality.en_name|title }} - {{ municipality.en_delivery_time }}</h5>
+          <h5 class="text-inherit">{{ municipality.fr_name|title }} - {{ municipality.fr_delivery_time }}</h5>
+          <h5 class="text-inherit" dir="rtl">{{ municipality.ar_name }} - {{ municipality.ar_delivery_time }}</h5>
+        </td>
+
+        <td>
+          <h4 class="text-inherit text-body">delivery to home :{{ municipality.home_delivery_price|floatformat:"2g" }} DZD</h4>
+          <h4 class="text-inherit text-body">delivery to desk :{{ municipality.desk_delivery_price|floatformat:"2g" }} DZD</h4>
+        </td>
+        <!-- municipality actions -->
+        <td class="text-end">
+          <!-- edit municipality -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_modal_{{ municipality.id }}">
+            <i class="fa fa-pencil fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          </button>
+
+          <!-- delete municipality -->
+          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_modal_{{ municipality.id }}">
+            <i class="fa fa-trash fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+          </button>
+        </td>
+      </tr>
+      <!-- end products list -->
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- end table -->
+
+  <!-- footer -->
+  <div class="card-footer">
+    <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+      <!-- Pagination -->
+      <nav>
+        {% if municipalities.has_other_pages %}
+        <ul class="pagination justify-content-center">
+          {% if municipalities.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ municipalities.previous_page_number }}" tabindex="-1">Previous</a>
+          </li>
+          {% endif %}
+
+          {% for i in municipalities.paginator.page_range %}
+          {% if municipalities.number == i %}
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+
+          {% if municipalities.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ municipalities.next_page_number }}">Next</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+          </li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </nav>
+      <!-- End Pagination -->
+    </div>
+    <!-- End Row -->
+  </div>
+  <!-- end footer -->
+  {% else %}
+  <div class="card-footer">
+    <div class="row text-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        {{ selected_province.en_name }} has no registred municipalities .
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<!-- end all municipalities  -->
+
+{% for municipality in municipalities %}
+<!-- delete municipality form -->
+<form action="{% url 'admin-manage-shipping' 'delete_municipality' %}" id="delete_form_{{ municipality.id }}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
+  <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
+</form>
+
+<!-- edit municipality modal -->
+<div id="edit_modal_{{ municipality.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>{{ municipality.en_name }}</h2>
+          </div>
+          <form action="{% url 'admin-manage-shipping' 'edit_municipality' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="province_id" value='{{ selected_province.id }}'>
+            <input type="hidden" name="municipality_id" value='{{ municipality.id }}'>
+
+            <div class="row mb-4">
+              <span class="divider-center mb-2">Municipality Name</span>
+
+              <!-- municipality english name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_name.name }}" placeholder="Kouba" value="{{ municipality.en_name }}" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end municipality english name -->
+
+              <!-- municipality french name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_name.name }}" placeholder="Kouba" value="{{ municipality.fr_name }}">
+              </div>
+              <!-- end municipality french name -->
+
+              <!-- municipality arabic name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_name.name }}" placeholder="القبة" value="{{ municipality.ar_name }}" dir="rtl">
+              </div>
+              <!-- end municipality arabic name -->
+
+              <span class="divider-center mb-2">Delivery Time</span>
+
+              <!-- english delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english</span>
+                <input type="text" class="form-control" name="{{ municipality_form.en_delivery_time.name }}" value="{{ municipality.en_delivery_time }}" placeholder="Three to Four Days">
+              </div>
+              <!-- end english delivery time -->
+
+              <!-- french delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french</span>
+                <input type="text" class="form-control" name="{{ municipality_form.fr_delivery_time.name }}" value="{{ municipality.fr_delivery_time }}" placeholder="Trois à Quatre Jours">
+              </div>
+              <!-- end french delivery time -->
+
+              <!-- arabic delivery time -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic</span>
+                <input type="text" class="form-control" name="{{ municipality_form.ar_delivery_time.name }}" value="{{ municipality.ar_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
+              </div>
+              <!-- end arabic delivery time -->
+
+              <span class="divider-center mb-2">Delivery Price</span>
+
+              <!-- to home -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">to home</span>
+                <input type="number" class="form-control" name="{{ municipality_form.home_delivery_price.name }}" value="{{ municipality.home_delivery_price }}" min="0" placeholder="1000" required>
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end to home -->
+
+              <!-- to desk -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">to desk</span>
+                <input type="number" class="form-control" name="{{ municipality_form.desk_delivery_price.name }}" value="{{ municipality.desk_delivery_price }}" min="0" placeholder="800">
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end to desk -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete municipality modal -->
+<div id="delete_modal_{{ municipality.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete {{ municipality.en_name }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_form_{{ municipality.id }}">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
