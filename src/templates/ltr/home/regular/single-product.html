@@ -73,11 +73,7 @@
       <div class="col-md-6">
         <div class="ps-lg-10 mt-6 mt-md-0">
           <!-- content -->
-          {% if selected_variant.product.brand %}
-          <a href="#" class="mb-4 d-block">{{ selected_variant.product.brand }}</a>
-          {% else %}
           <a href="#" class="mb-4 d-block">{{ selected_variant.product.store.name }}</a>
-          {% endif %}
 
           <!-- heading -->
           <h2 class="mb-1">{{ selected_variant.product.en_title }} {{ selected_variant.en_spec }}</h2>
@@ -255,16 +251,13 @@
 
                   {% endif %}
                 </tr>
+
+                {% if selected_product.brand %}
                 <tr>
                   <td>Brand:</td>
-                  {% if variant.product.store %}
-                  <td>{{ variant.product.store.name }}</td>
-                  {% elif variant.product.brand %}
-                  <td>{{ variant.product.brand }}</td>
-                  {% else %}
-                  <td>dexunt</td>
-                  {% endif %}
+                  <td>{{ selected_product.brand }}</td>
                 </tr>
+                {% endif %}
               </tbody>
             </table>
           </div>
