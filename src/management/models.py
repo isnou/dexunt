@@ -98,7 +98,6 @@ class Option(models.Model):
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
     max_quantity = models.IntegerField(default=0)
-    tags = models.CharField(max_length=800, blank=True, null=True)
     # ----- relations ----- #
     variant = models.ForeignKey('management.Variant', on_delete=models.CASCADE, null=True)
     # ----- media ----- #
@@ -244,7 +243,6 @@ class Variant(models.Model):
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     created_at = models.DateTimeField(blank=True, null=True)
-    tags = models.CharField(max_length=9000, blank=True, null=True)
     # ----- relations ----- #
     product = models.ForeignKey('management.Product', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -400,6 +398,17 @@ class Collection(models.Model):
     en_name = models.CharField(max_length=300, blank=True, null=True)
     fr_name = models.CharField(max_length=300, blank=True, null=True)
     ar_name = models.CharField(max_length=300, blank=True, null=True)
+#                                                                        #
+class Tag(models.Model):
+    # ----- Technical ----- #
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
+    # ----- relations ----- #
+    product = models.ManyToManyField(Product, related_name='tags', blank=True)
+    variant = models.ManyToManyField(Variant, related_name='tags', blank=True)
+    option = models.ManyToManyField(Variant, related_name='tags', blank=True)
+    # ----- content ----- #
+    title = models.CharField(max_length=300, blank=True, null=True)
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
