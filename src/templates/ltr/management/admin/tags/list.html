@@ -48,10 +48,10 @@
   </div>
   <!-- end header -->
 
-  {% if all_tags.has_other_pages %}
+  {% if all_tags %}
   <!-- table -->
   <div class="table-responsive">
-    <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+    <table id="all_tags_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
       {% for tag in all_tags %}
       <!-- tags list -->
@@ -139,7 +139,7 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        No tags registred .
+        No registred tags.
       </div>
     </div>
   </div>
