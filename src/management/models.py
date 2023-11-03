@@ -377,6 +377,14 @@ class Product(models.Model):
             return self.fr_title
         if language == 'ar-dz':
             return self.ar_title
+    def description(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_description
+        if language == 'fr-fr':
+            return self.fr_description
+        if language == 'ar-dz':
+            return self.ar_description
 # ---------------------------------------------------------------------- #
 
 # ----------------------------- Collections ---------------------------- #

@@ -28,6 +28,9 @@ def home_page(request):
         request.session['direction'] = 'ltr'
     direction = request.session.get('direction')
 
+    request.session['variant_id'] = None
+    request.session['option_id'] = None
+
     url = direction + "/home/main.html"
 
     if request.session.get('error_messages'):
@@ -74,16 +77,16 @@ def product_page(request, action):
         url = direction + "/home/regular/single-product.html"
 
         if request.method == 'POST':
-            variant_id = request.POST.get('variant_id', False)
-            option_id = request.POST.get('option_id', False)
+            request.session['variant_id'] = request.POST.get('variant_id', None)
+            request.session['option_id'] = request.POST.get('option_id', None)
         else:
-            variant_id = request.GET.get('variant_id')
-            option_id = request.GET.get('option_id')
+            request.session['variant_id'] = request.GET.get('variant_id', None)
+            request.session['option_id'] = request.GET.get('option_id', None)
 
-        selected_variant = Variant.objects.all().get(id=variant_id)
+        selected_variant = Variant.objects.all().get(id=request.session.get('variant_id'))
 
-        if option_id:
-            selected_option = Option.objects.all().get(id=option_id)
+        if request.session.get('option_id', None):
+            selected_option = Option.objects.all().get(id=request.session.get('option_id'))
         else:
             selected_option = selected_variant.selected_option()
 
@@ -247,6 +250,7 @@ def order_tracking(request, action):
 
 def change_language(request):
     language = request.GET.get('language', False)
+    source = request.GET.get('source_page', None)
 
     request.session['language'] = language
     if language == 'ar-dz':
@@ -254,4 +258,16 @@ def change_language(request):
     if language == 'en-us' or language == 'fr-fr':
         request.session['direction'] = 'ltr'
 
-    return redirect('home-page')
+    if source == 'home-page':
+        return redirect('home-page')
+    if source == 'product-page':
+        return redirect('product-page', 'regular_product')
+    if source == 'shopping-cart':
+        return redirect('shopping-cart', 'main')
+    if source == 'order-page':
+        return redirect('order-page', 'main')
+
+
+
+
+

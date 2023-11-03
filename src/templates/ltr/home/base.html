@@ -65,19 +65,19 @@
             <ul class="dropdown-menu">
               <li>
                 {% if language == 'en-us' %}
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr">
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr&source_page={{ source_page }}">
                   Français
                 </a>
                 {% endif %}
 
                 {% if language == 'fr-fr' %}
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us">
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us&source_page={{ source_page }}">
                   English
                 </a>
                 {% endif %}
               </li>
               <li>
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=ar-dz">
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=ar-dz&source_page={{ source_page }}">
                    العربية
                 </a>
               </li>
