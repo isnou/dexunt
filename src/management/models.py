@@ -363,8 +363,6 @@ class Product(models.Model):
 class Department(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
     # ----- content ----- #
     en_name = models.CharField(max_length=300, blank=True, null=True)
     fr_name = models.CharField(max_length=300, blank=True, null=True)
@@ -375,8 +373,6 @@ class Department(models.Model):
 class Category(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
     # ----- relations ----- #
     department = models.ForeignKey('management.Department', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -389,8 +385,6 @@ class Category(models.Model):
 class Collection(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
     # ----- relations ----- #
     category = models.ForeignKey('management.Category', on_delete=models.CASCADE, blank=True, null=True)
     product = models.ManyToManyField(Product, related_name='collections', blank=True)
@@ -400,9 +394,6 @@ class Collection(models.Model):
     ar_name = models.CharField(max_length=300, blank=True, null=True)
 #                                                                        #
 class Tag(models.Model):
-    # ----- Technical ----- #
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
     # ----- relations ----- #
     product = models.ManyToManyField(Product, related_name='tags', blank=True)
     variant = models.ManyToManyField(Variant, related_name='tags', blank=True)
