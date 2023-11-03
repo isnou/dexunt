@@ -31,10 +31,10 @@
   <div class="col-sm-auto">
     {% if selected_product.brand %}
     <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#delete_brand">
-      <i class="fa fa-trash me-1"></i>
       <span class="text-muted fs-6">
         {{ selected_product.brand }}
       </span>
+      <i class="fa fa-trash ms-1"></i>
     </a>
     {% else %}
     <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_brand">
@@ -527,7 +527,7 @@
 </div>
 
 <!-- delete brand modal -->
-<div id="delete_brand_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="delete_brand" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
