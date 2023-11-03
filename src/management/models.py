@@ -350,6 +350,15 @@ class Product(models.Model):
         for v in self.variant_set.all():
             v.set_tags()
             v.save()
+    # ----- variables ----- #
+    def title(self):
+        language = request.session.get('language')
+        if language == 'en-us':
+            return self.en_title
+        if language == 'fr-fr':
+            return self.fr_title
+        if language == 'ar-dz':
+            return self.ar_title
 # ---------------------------------------------------------------------- #
 
 # ----------------------------- Collections ---------------------------- #
