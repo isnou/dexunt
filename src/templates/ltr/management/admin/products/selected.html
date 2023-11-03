@@ -34,6 +34,15 @@
         {{ selected_product.brand }}
       </span>
     </h6>
+    {% else %}
+    <h6>
+      <a type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_brand">
+        <span class="text-muted ms-1">
+          add a brand
+        </span>
+        <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add a brand"></i>
+      </a>
+    </h6>
     {% endif %}
   </div>
   <div class="col-sm-auto">
