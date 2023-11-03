@@ -30,11 +30,12 @@
   </div>
   <div class="col-sm-auto">
     {% if selected_product.brand %}
-    <h6>
-      <span class="text-muted ms-1">
+    <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#delete_brand">
+      <i class="fa fa-trash me-1"></i>
+      <span class="text-muted fs-6">
         {{ selected_product.brand }}
       </span>
-    </h6>
+    </a>
     {% else %}
     <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_brand">
       <i class="fa fa-plus me-1"></i>
@@ -497,7 +498,7 @@
       </div>
 
       <div class="modal-body mx-4">
-        <div id="add_new_product_modal_title">
+        <div>
           <div class="text-center mb-7">
             <h2>Add A Brand</h2>
           </div>
@@ -520,6 +521,25 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete brand modal -->
+<div id="delete_brand_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete brand.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <a class="btn btn-primary" href="{% url 'admin-manage-products' 'delete_brand' %}?product_id={{ selected_product.id }}">Yes</a>
       </div>
     </div>
   </div>
