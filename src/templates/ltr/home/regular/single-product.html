@@ -102,6 +102,13 @@
               {% endif %}
             </a>
           </div>
+          {% else %}
+          <!-- new product -->
+          <div class="mb-4">
+            <small class="text-warning">
+              NEW
+            </small>
+          </div>
           {% endif %}
 
           {% if user.is_customer or not user.is_authenticated %}
