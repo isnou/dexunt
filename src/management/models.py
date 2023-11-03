@@ -69,21 +69,23 @@ class Feature(models.Model):
     en_content = models.TextField(max_length=500, null=True)
     fr_content = models.TextField(max_length=500, null=True)
     ar_content = models.TextField(max_length=500, null=True)
-    def save(self):
-        self.tags = ''
-        if self.en_name:
-            self.tags += (', ' + self.en_name)
-        if self.fr_name:
-            self.tags += (', ' + self.fr_name)
-        if self.ar_name:
-            self.tags += (', ' + self.ar_name)
-        if self.en_content:
-            self.tags += (', ' + self.en_content)
-        if self.fr_content:
-            self.tags += (', ' + self.fr_content)
-        if self.ar_content:
-            self.tags += (', ' + self.ar_content)
-        super().save()
+    # ----- functions ----- #
+    def name(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_name
+        if language == 'fr-fr':
+            return self.fr_name
+        if language == 'ar-dz':
+            return self.ar_name
+    def content(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_content
+        if language == 'fr-fr':
+            return self.fr_content
+        if language == 'ar-dz':
+            return self.ar_content
 # ---------------------------------------------------------------------- #
 
 # ------------------------------ Inventory ----------------------------- #
@@ -119,6 +121,14 @@ class Option(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
+    def value(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_value
+        if language == 'fr-fr':
+            return self.fr_value
+        if language == 'ar-dz':
+            return self.ar_value
     def save(self, *args, **kwargs):
         if not self.upc:
             self.upc = functions.serial_number_generator(20).upper()
@@ -308,6 +318,14 @@ class Variant(models.Model):
         self.is_activated = activation
         super().save()
     # ----- variables ----- #
+    def spec(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_spec
+        if language == 'fr-fr':
+            return self.fr_spec
+        if language == 'ar-dz':
+            return self.ar_spec
     def selected_option(self):
         option = self.option_set.all().first()
         for o in self.option_set.all():
