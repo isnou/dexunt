@@ -7,7 +7,7 @@
 <!-- header -->
 {% block page_header %}
 <div class="row align-items-end">
-  <!-- all products  -->
+  <!-- all tags  -->
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
@@ -22,13 +22,13 @@
       <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add a tag"></i>
     </button>
   </div>
-  <!-- end all products  -->
+  <!-- end all tags  -->
 </div>
 {% endblock %}
 
 <!-- product content -->
 {% block content %}
-<!-- all provinces  -->
+<!-- all tags  -->
 <div class="card">
   <!-- header -->
   <div class="card-header card-header-content-md-between">
@@ -48,13 +48,13 @@
   </div>
   <!-- end header -->
 
-  {% if paginate %}
+  {% if all_tags.has_other_pages %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
       <tbody>
-      {% for province in provinces %}
-      <!-- provinces list -->
+      {% for tag in all_tags %}
+      <!-- tags list -->
       <tr>
         <td class="table-column-pe-0">
         </td>
@@ -86,8 +86,7 @@
           </button>
         </td>
       </tr>
-      <!-- end products list -->
-
+      <!-- end tags list -->
       {% endfor %}
       </tbody>
     </table>
@@ -99,16 +98,16 @@
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
       <!-- Pagination -->
       <nav>
-        {% if provinces.has_other_pages %}
+        {% if all_tags.has_other_pages %}
         <ul class="pagination justify-content-center">
-          {% if provinces.has_previous %}
+          {% if all_tags.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ provinces.previous_page_number }}" tabindex="-1">Previous</a>
+            <a class="page-link" href="?page={{ all_tags.previous_page_number }}" tabindex="-1">Previous</a>
           </li>
           {% endif %}
 
-          {% for i in provinces.paginator.page_range %}
-          {% if provinces.number == i %}
+          {% for i in all_tags.paginator.page_range %}
+          {% if all_tags.number == i %}
           <li class="page-item active">
             <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
           </li>
@@ -119,9 +118,9 @@
           {% endif %}
           {% endfor %}
 
-          {% if all_provinces.has_next %}
+          {% if all_tags.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ provinces.next_page_number }}">Next</a>
+            <a class="page-link" href="?page={{ all_tags.next_page_number }}">Next</a>
           </li>
           {% else %}
           <li class="page-item disabled">
@@ -140,136 +139,14 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        No province registred .
+        No tags registred .
       </div>
     </div>
   </div>
   {% endif %}
 </div>
-<!-- end all provinces  -->
+<!-- end all tags  -->
 
-{% for province in provinces %}
-<!-- delete province form -->
-<form action="{% url 'admin-manage-shipping' 'delete_province' %}" id="delete_form_{{ province.id }}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="province_id" value='{{ province.id }}'>
-</form>
-
-<!-- edit province modal -->
-<div id="edit_modal_{{ province.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <div class="text-center mb-7">
-            <h2>{{ province.en_name }}</h2>
-          </div>
-          <form action="{% url 'admin-manage-shipping' 'edit_province' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="province_id" value='{{ province.id }}'>
-
-            <div class="row mb-4">
-              <span class="divider-center mb-2">Province Name</span>
-
-              <!-- province english name -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <input type="text" class="form-control" name="{{ province_form.en_name.name }}" placeholder="Algiers" value="{{ province.en_name }}" required>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end province english name -->
-
-              <!-- province french name -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <input type="text" class="form-control" name="{{ province_form.fr_name.name }}" placeholder="Alger" value="{{ province.fr_name }}">
-              </div>
-              <!-- end province french name -->
-
-              <!-- province arabic name -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <input type="text" class="form-control" name="{{ province_form.ar_name.name }}" placeholder="الجزائر" value="{{ province.ar_name }}" dir="rtl">
-              </div>
-              <!-- end province arabic name -->
-
-              <span class="divider-center mb-2">Delivery Time</span>
-
-              <!-- english delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english</span>
-                <input type="text" class="form-control" name="{{ province_form.en_delivery_time.name }}" value="{{ province.en_delivery_time }}" placeholder="Three to Four Days">
-              </div>
-              <!-- end english delivery time -->
-
-              <!-- french delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french</span>
-                <input type="text" class="form-control" name="{{ province_form.fr_delivery_time.name }}" value="{{ province.fr_delivery_time }}" placeholder="Trois à Quatre Jours">
-              </div>
-              <!-- end french delivery time -->
-
-              <!-- arabic delivery time -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic</span>
-                <input type="text" class="form-control" name="{{ province_form.ar_delivery_time.name }}" value="{{ province.ar_delivery_time }}" placeholder="ثلاثة إلى أربعة أيام" dir="rtl">
-              </div>
-              <!-- end arabic delivery time -->
-
-              <span class="divider-center mb-2">Delivery Price</span>
-
-              <!-- to home -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">to home</span>
-                <input type="number" class="form-control" name="{{ province_form.home_delivery_price.name }}" value="{{ province.home_delivery_price }}" min="0" placeholder="1000" required>
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end to home -->
-
-              <!-- to desk -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">to desk</span>
-                <input type="number" class="form-control" name="{{ province_form.desk_delivery_price.name }}" value="{{ province.desk_delivery_price }}" min="0" placeholder="800">
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-              </div>
-              <!-- end to desk -->
-            </div>
-
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- delete province modal -->
-<div id="delete_modal_{{ province.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>click yes to delete {{ province.en_name }}.</p>
-      </div>
-      <div class="modal-footer" style="align-self: center;">
-        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" form="delete_form_{{ province.id }}">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
 
 <!-- add a tag modal -->
 <div id="add_a_tag" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
