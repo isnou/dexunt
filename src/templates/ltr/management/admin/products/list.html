@@ -289,11 +289,10 @@
             </a>
             {% else %}
             <!-- assign a store -->
-            <span class="d-block text-body text-center fs-6">
-              <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#assign_a_store_{{ variant.id }}">
-                <i class="fa fa-store" data-bs-toggle="tooltip" data-bs-placement="top" title="Store" style="width: 70%;"></i>
-              </button>
-            </span>
+            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#assign_a_store_{{ variant.id }}">
+              <i class="fa fa-plus me-1"></i>
+              <strong class="text-dark">link a store</strong>
+            </a>
             {% endif %}
           </td>
           <!-- product actions -->
