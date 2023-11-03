@@ -77,18 +77,24 @@ def product_page(request, action):
         url = direction + "/home/regular/single-product.html"
 
         if request.method == 'POST':
-            request.session['variant_id'] = request.POST.get('variant_id', None)
-            request.session['option_id'] = request.POST.get('option_id', None)
+            variant_id = request.POST.get('variant_id', None)
+            option_id = request.POST.get('option_id', None)
+        elif request.method == 'GET':
+            variant_id = request.GET.get('variant_id', None)
+            option_id = request.GET.get('option_id', None)
         else:
-            request.session['variant_id'] = request.GET.get('variant_id', None)
-            request.session['option_id'] = request.GET.get('option_id', None)
+            variant_id = request.session.get('variant_id')
+            option_id = request.session.get('option_id')
 
-        selected_variant = Variant.objects.all().get(id=request.session.get('variant_id'))
+        selected_variant = Variant.objects.all().get(id=variant_id)
 
-        if request.session.get('option_id', None):
-            selected_option = Option.objects.all().get(id=request.session.get('option_id'))
+        if option_id:
+            selected_option = Option.objects.all().get(id=option_id)
         else:
             selected_option = selected_variant.selected_option()
+
+        request.session['variant_id'] = request.GET.get('variant_id', None)
+        request.session['option_id'] = request.GET.get('option_id', None)
 
         context = {
             'source_page': 'product-page',
