@@ -459,10 +459,24 @@ def manage_products(request, action):
         return render(request, url, context)
     if action == 'edit_product':
         if request.method == 'POST':
-            product_id = request.POST.get('product_id', False)
+            product_id = request.POST.get('product_id')
             selected_product = Product.objects.all().get(id=product_id)
             selected_product_form = ProductForm(request.POST, instance=selected_product)
             selected_product_form.save()
+            return redirect('admin-manage-products', 'view_product')
+    if action == 'add_a_brand':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id')
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_product.brand = request.POST.get('brand')
+            selected_product.save()
+            return redirect('admin-manage-products', 'view_product')
+    if action == 'delete_brand':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id')
+            selected_product = Product.objects.all().get(id=product_id)
+            selected_product.brand = None
+            selected_product.save()
             return redirect('admin-manage-products', 'view_product')
     if action == 'edit_en_description':
         if request.method == 'POST':

@@ -503,6 +503,7 @@
           </div>
           <form id="add_brand_form" action="{% url 'admin-manage-products' 'add_a_brand' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
+            <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
             <div class="row mb-4">
               <!-- product brand -->
@@ -514,7 +515,7 @@
               <!-- end product brand -->
             </div>
 
-            <div class="row">
+            <div class="row mx-10">
               <button class="btn btn-primary" type="submit">Yes</button>
             </div>
           </form>
