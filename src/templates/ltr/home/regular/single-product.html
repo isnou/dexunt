@@ -337,7 +337,7 @@
           <!-- tab product details -->
           <div class="tab-pane fade {% if selected_variant.product.en_description %} show active {% endif %}" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
             <div class="my-4">
-              {{ selected_variant.product.en_description|safe }}
+              {{ selected_variant.product.description|safe }}
             </div>
           </div>
           <!-- tab information -->
