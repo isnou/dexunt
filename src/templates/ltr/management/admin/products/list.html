@@ -278,20 +278,15 @@
           <td>
             {% if variant.product.store %}
             <!-- unassign a store -->
-            <span class="d-block text-body fs-6">
-              <button type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
-                <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
-              </button>
-
-              {% if not variant.product.store.is_activated %}
-              <strong data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivated" style="color: #ff7d00;">
-                {{ variant.product.store.name }}
-                <i class="fa fa-triangle-exclamation ms-2"></i>
-              </strong>
+            <a type="button" class="badge {% if variant.product.store.is_activated %} badge-light {% else %} badge-danger {% endif %}" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
+              {% if variant.product.store.is_activated %}
+              <i class="fa fa-x me-1"></i>
+              <strong class="text-dark">{{ variant.product.store.name }}</strong>
               {% else %}
               <strong class="text-dark">{{ variant.product.store.name }}</strong>
+              <i class="fa fa-triangle-exclamation ms-1"></i>
               {% endif %}
-            </span>
+            </a>
             {% else %}
             <!-- assign a store -->
             <span class="d-block text-body text-center fs-6">
