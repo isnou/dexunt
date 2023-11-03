@@ -93,14 +93,15 @@
               <i class="bi bi-star{{ selected_option.review_star_five }}"></i>
             </small>
             <a href="shop-single-2.html#" class="ms-2">
-              {% if selected_option.reviews.all.count %}
               ({{ selected_option.reviews.all.count }} reviews)
-              {% endif %}
-              {% else %}
-              {% if selected_variant.option_set.all.first.reviews.all.count %}
-              ({{ selected_variant.option_set.all.first.reviews.all.count }} reviews)
-              {% endif %}
             </a>
+          </div>
+          {% else %}
+          <!-- new product -->
+          <div class="mb-4">
+            <small class="text-warning">
+              NEW
+            </small>
           </div>
           {% endif %}
 
