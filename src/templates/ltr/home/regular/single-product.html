@@ -252,10 +252,10 @@
                   {% endif %}
                 </tr>
 
-                {% if selected_product.brand %}
+                {% if selected_variant.product.brand %}
                 <tr>
                   <td>Brand:</td>
-                  <td>{{ selected_product.brand }}</td>
+                  <td>{{ selected_variant.product.brand }}</td>
                 </tr>
                 {% endif %}
               </tbody>
