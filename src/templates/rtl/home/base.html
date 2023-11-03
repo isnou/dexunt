@@ -58,11 +58,11 @@
 
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr">
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr&source_page={{ source_page }}">
                   Français
                 </a>
 
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us">
+                <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us&source_page={{ source_page }}">
                   English
                 </a>
               </li>
