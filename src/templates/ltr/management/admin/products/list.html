@@ -278,7 +278,7 @@
           <td>
             {% if variant.product.store %}
             <!-- unassign a store -->
-            <a type="button" class="badge {% if variant.product.store.is_activated %} badge-light {% else %} badge-danger {% endif %}" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
+            <a href="javascript:;" class="badge {% if variant.product.store.is_activated %} badge-light {% else %} badge-danger {% endif %}" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
               {% if variant.product.store.is_activated %}
               <i class="fa fa-x me-1"></i>
               <strong class="text-dark">{{ variant.product.store.name }}</strong>
@@ -289,7 +289,7 @@
             </a>
             {% else %}
             <!-- assign a store -->
-            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#assign_a_store_{{ variant.id }}">
+            <a href="javascript:;" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#assign_a_store_{{ variant.id }}">
               <i class="fa fa-link me-1"></i>
               <strong class="text-dark">assign</strong>
             </a>
