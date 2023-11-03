@@ -60,12 +60,8 @@
         </td>
         <!-- tag title -->
         <td class="table-column-ps-0">
-          <a class="d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}&init=True">
-            <a href="javascript:;" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ tag.id }}">
-              <i class="fa fa-x me-1"></i>
-              <strong class="text-dark h5">{{ tag.title }}</strong>
-            </a>
-
+          <a class="btn btn-light d-flex align-items-center" href="{% url 'admin-manage-shipping' 'view_province' %}?province_id={{ province.id }}&init=True">
+            <strong class="text-dark h5">{{ tag.title }}</strong>
           </a>
         </td>
 
