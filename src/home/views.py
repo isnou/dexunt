@@ -93,8 +93,8 @@ def product_page(request, action):
         else:
             selected_option = selected_variant.selected_option()
 
-        request.session['variant_id'] = request.GET.get('variant_id', None)
-        request.session['option_id'] = request.GET.get('option_id', None)
+        request.session['variant_id'] = selected_variant.id
+        request.session['option_id'] = selected_option.id
 
         context = {
             'source_page': 'product-page',
