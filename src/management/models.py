@@ -406,7 +406,7 @@ class Tag(models.Model):
     # ----- relations ----- #
     product = models.ManyToManyField(Product, related_name='tags', blank=True)
     variant = models.ManyToManyField(Variant, related_name='tags', blank=True)
-    option = models.ManyToManyField(Variant, related_name='tags', blank=True)
+    option = models.ManyToManyField(Option, related_name='tags', blank=True)
     # ----- content ----- #
     title = models.CharField(max_length=300, blank=True, null=True)
 # ---------------------------------------------------------------------- #
