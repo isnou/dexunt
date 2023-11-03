@@ -281,9 +281,9 @@
             <a href="javascript:;" class="badge {% if variant.product.store.is_activated %} badge-light {% else %} badge-danger {% endif %}" data-bs-toggle="modal" data-bs-target="#unassign_a_store_{{ variant.id }}">
               {% if variant.product.store.is_activated %}
               <i class="fa fa-x me-1"></i>
-              <strong class="text-dark">{{ variant.product.store.name }}</strong>
+              <strong class="text-dark h-5">{{ variant.product.store.name }}</strong>
               {% else %}
-              <strong class="text-dark">{{ variant.product.store.name }}</strong>
+              <strong class="text-danger h-5">{{ variant.product.store.name }}</strong>
               <i class="fa fa-triangle-exclamation ms-1"></i>
               {% endif %}
             </a>
