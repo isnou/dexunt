@@ -4,7 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from add_ons import functions
 from PIL import Image
 from ckeditor_uploader.fields import RichTextUploadingField
-from django.template.context_processors import request 
 
 
 # ---------------------------- Requirements ---------------------------- #
