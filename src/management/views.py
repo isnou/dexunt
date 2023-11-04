@@ -1112,20 +1112,18 @@ def manage_tags(request, action):
             Tag(title=request.POST.get('title', False)).save()
             return redirect('admin-manage-tags', 'main')
     if action == 'delete_tag':
-        if request.method == 'POST':
-            tag_id = request.POST.get('tag_id', False)
-            selected_tag = Tag.objects.all().get(id=tag_id)
-            for p in selected_tag.product.all():
-                selected_tag.product.remove(p)
-            selected_tag.delete()
+        tag_id = request.GET.get('tag_id', False)
+        selected_tag = Tag.objects.all().get(id=tag_id)
+        for p in selected_tag.product.all():
+            selected_tag.product.remove(p)
+        selected_tag.delete()
+        return redirect('admin-manage-tags', 'main')
     if action == 'empty_tag':
-        if request.method == 'POST':
-            tag_id = request.POST.get('tag_id', False)
-            selected_tag = Tag.objects.all().get(id=tag_id)
-            for p in selected_tag.product.all():
-                selected_tag.product.remove(p)
-
-            return redirect('admin-manage-coupon', 'main')
+        tag_id = request.GET.get('tag_id', False)
+        selected_tag = Tag.objects.all().get(id=tag_id)
+        for p in selected_tag.product.all():
+            selected_tag.product.remove(p)
+        return redirect('admin-manage-tags', 'main')
 # ---------------------------------------------------------------------- #
 
 
