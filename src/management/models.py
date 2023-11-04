@@ -386,6 +386,12 @@ class Product(models.Model):
         if language == 'ar-dz':
             return self.ar_description
     def unselected_tags(self):
+        selected_tags = Tag.objects.all()
+        for t in Tag.objects.all():
+            for o_t in self.tags.all():
+                if t.id == o_t.id:
+                    selected_tags.exclude(id=o_t.id)
+        return selected_tags
 # ---------------------------------------------------------------------- #
 
 # ----------------------------- Collections ---------------------------- #
