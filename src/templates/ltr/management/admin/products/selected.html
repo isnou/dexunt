@@ -70,7 +70,7 @@
         <div class="table-responsive">
           <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <tbody>
-            <tr class="my-4">
+            <tr>
               <td class="table-column-ps-0">
                 <div class="text-dark">
                   English
@@ -96,7 +96,7 @@
                 {% endif %}
               </td>
             </tr>
-            <tr class="my-4">
+            <tr>
               <td class="table-column-ps-0">
                 <div class="text-dark">
                   French
@@ -122,7 +122,7 @@
                 {% endif %}
               </td>
             </tr>
-            <tr class="my-4">
+            <tr>
               <td class="table-column-ps-0">
                 <div class="text-dark">
                   Arabic
@@ -200,8 +200,8 @@
 </div>
 
 <div class="row">
+  <!-- variants -->
   <div class="mb-3">
-    <!-- variants -->
     <div class="card">
       <div class="card-header card-header-content-md-between">
         <!-- title -->
@@ -369,6 +369,11 @@
       </div>
 
       <div class="card-body">
+
+        <form id="edit_tag_form" action="{% url 'admin-manage-products' 'edit_tags' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
         <div class="row">
           {% for tag in selected_product.tags.all %}
           <div class="col-sm mb-2 mb-sm-0">
@@ -381,6 +386,9 @@
           </div>
           {% endfor %}
         </div>
+
+        </form>
+
       </div>
     </div>
   </div>
