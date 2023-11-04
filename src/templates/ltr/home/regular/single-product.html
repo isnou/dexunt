@@ -16,9 +16,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="{% url 'home-page' %}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'product-page' 'regular_product' %}?variant_id={{ selected_variant.id }}">{{ selected_variant.product.en_title }}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'product-page' 'regular_product' %}?variant_id={{ selected_variant.id }}">{{ selected_variant.en_spec }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ selected_option.en_value }}</li>
+            <li class="breadcrumb-item"><a href="{% url 'product-page' 'regular_product' %}?variant_id={{ selected_variant.id }}">{{ selected_variant.product.title }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'product-page' 'regular_product' %}?variant_id={{ selected_variant.id }}">{{ selected_variant.spec }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ selected_option.value }}</li>
           </ol>
         </nav>
       </div>
@@ -159,7 +159,7 @@
                     {% if option.has_image %}
                     <img src="{% get_media_prefix %}{{ option.image }}"  class="rounded" width="56" height="56">
                     {% else %}
-                    <div class="text-truncate">{{ option.en_value|title }}</div>
+                    <div class="text-truncate">{{ option.value|title }}</div>
                     {% endif %}
                   </div>
                 </div>
@@ -171,7 +171,7 @@
                     {% if option.has_image %}
                     <img src="{% get_media_prefix %}{{ option.image }}"  class="rounded" width="56" height="56">
                     {% else %}
-                    <div class="text-truncate">{{ option.en_value|title }}</div>
+                    <div class="text-truncate">{{ option.value|title }}</div>
                     {% endif %}
                   </div>
                 </div>

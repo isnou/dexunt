@@ -385,6 +385,7 @@ class Product(models.Model):
             return self.fr_description
         if language == 'ar-dz':
             return self.ar_description
+    def unselected_tags(self):
 # ---------------------------------------------------------------------- #
 
 # ----------------------------- Collections ---------------------------- #
