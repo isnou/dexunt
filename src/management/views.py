@@ -1080,7 +1080,7 @@ def manage_tags(request, action):
     if action == 'main':
         url = direction + "/management/admin/tags/list.html"
 
-        all_tags = Tag.objects.all()
+        all_tags = Tag.objects.all().order_by('-title')
 
         if request.GET.get('init', None):
             request.session['tags-page'] = None
