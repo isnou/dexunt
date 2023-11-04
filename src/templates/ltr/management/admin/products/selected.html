@@ -352,6 +352,10 @@
         <div class="mb-2 mb-md-0">
           <div class="flex-grow-1">
             <h5 class="text-inherit mb-0">Tags</h5>
+            <!-- delete tags -->
+            <a href="javascript:;" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags_modal">
+              <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete tags"></i>
+            </a>
           </div>
         </div>
         <!-- end title -->
@@ -370,23 +374,22 @@
 
       <div class="card-body">
 
-        <form id="edit_tag_form" action="{% url 'admin-manage-products' 'edit_tags' %}" class="js-validate need-validate" novalidate method="post">
+        <form id="delete_tags_form" action="{% url 'admin-manage-products' 'delete_tags' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
-        <div class="row">
-          {% for tag in selected_product.tags.all %}
-          <div class="col-sm mb-2 mb-sm-0">
-            <label class="form-control" for="tag_{{ tag.id }}">
-              <span class="form-check">
-                <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
-                <span class="form-check-label">{{ tag.title }}</span>
-              </span>
-            </label>
+          <div class="row">
+            {% for tag in selected_product.tags.all %}
+            <div class="col-sm mb-2 mb-sm-0">
+              <label class="form-control" for="tag_{{ tag.id }}">
+                <span class="form-check">
+                  <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
+                  <span class="form-check-label">{{ tag.title }}</span>
+                </span>
+              </label>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-        </div>
-
         </form>
 
       </div>
@@ -631,5 +634,22 @@
   </div>
 </div>
 
+<div id="delete_tags_modal" class="modal fade" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete the selected tags.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_tags_form">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
