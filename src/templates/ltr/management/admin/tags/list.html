@@ -31,6 +31,10 @@
 <!-- all tags  -->
 <div class="card">
   {% if all_tags %}
+  {% for tag in all_tags %}
+  <span class="badge bg-secondary">{{ tag.title }}</span>
+  {% endfor %}
+
   <div class="row p-4">
     {% for tag in all_tags %}
     <div class="col-sm mb-2 mb-sm-0">
