@@ -52,6 +52,67 @@
 <!-- product content -->
 {% block content %}
 <div class="row">
+  <div class="mb-3">
+    <!-- tags -->
+    <div class="card">
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-2 mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">
+              Tags
+
+              {% if selected_product.tags.all.count %}
+              <!-- delete tags -->
+              <a href="javascript:;" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags_modal">
+                <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete tags"></i>
+              </a>
+              {% endif %}
+            </h5>
+          </div>
+        </div>
+        <!-- end title -->
+
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- add feature button -->
+          <a href="javascript:;" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_tag">
+            <i class="fa fa-plus me-1"></i>
+            add a tag
+          </a>
+          <!-- end add feature button -->
+        </div>
+        <!-- end title bar -->
+      </div>
+
+      {% if selected_product.tags.all.count %}
+      <div class="card-body">
+
+        <form id="delete_tags_form" action="{% url 'admin-manage-products' 'delete_tags' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
+          <div class="row">
+            {% for tag in selected_product.tags.all %}
+            <div class="col-sm mb-2 mb-sm-0">
+              <label class="form-control" for="tag_{{ tag.id }}">
+                <span class="form-check">
+                  <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
+                  <span class="form-check-label">{{ tag.title }}</span>
+                </span>
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </form>
+
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <!-- description -->
   <div class="col-lg-8 mb-3 mb-lg-0">
     <div class="card" style="height: 96%;">
@@ -339,67 +400,6 @@
         </div>
         <!-- end table -->
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="mb-lg-0">
-    <!-- tags -->
-    <div class="card">
-      <div class="card-header card-header-content-md-between">
-        <!-- title -->
-        <div class="mb-2 mb-md-0">
-          <div class="flex-grow-1">
-            <h5 class="text-inherit mb-0">
-              Tags
-
-              {% if selected_product.tags.all.count %}
-              <!-- delete tags -->
-              <a href="javascript:;" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags_modal">
-                <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete tags"></i>
-              </a>
-              {% endif %}
-            </h5>
-          </div>
-        </div>
-        <!-- end title -->
-
-        <!-- title bar -->
-        <div class="d-grid d-sm-flex gap-2">
-          <!-- add feature button -->
-          <a href="javascript:;" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_tag">
-            <i class="fa fa-plus me-1"></i>
-            add a tag
-          </a>
-          <!-- end add feature button -->
-        </div>
-        <!-- end title bar -->
-      </div>
-
-      {% if selected_product.tags.all.count %}
-      <div class="card-body">
-
-        <form id="delete_tags_form" action="{% url 'admin-manage-products' 'delete_tags' %}" class="js-validate need-validate" novalidate method="post">
-          {% csrf_token %}
-          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
-
-          <div class="row">
-            {% for tag in selected_product.tags.all %}
-            <div class="col-sm mb-2 mb-sm-0">
-              <label class="form-control" for="tag_{{ tag.id }}">
-                <span class="form-check">
-                  <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
-                  <span class="form-check-label">{{ tag.title }}</span>
-                </span>
-              </label>
-            </div>
-            {% endfor %}
-          </div>
-        </form>
-
-      </div>
-      {% endif %}
     </div>
   </div>
 </div>
