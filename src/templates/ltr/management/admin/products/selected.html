@@ -621,7 +621,7 @@
 
           <div class="row">
             {% for tag in selected_product.unselected_tags %}
-            <div class="col-sm mb-2 mb-sm-0">
+            <div class="col-sm mb-2">
               <label class="form-control" for="selected_tag_{{ tag.id }}">
                 <span class="form-check">
                   <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="selected_tag_{{ tag.id }}">
