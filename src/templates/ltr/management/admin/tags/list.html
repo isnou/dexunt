@@ -114,7 +114,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-primary" href="{% url 'admin-manage-products' 'delete_variant' %}?variant_id={{ variant.id }}">Yes</a>
+        <a class="btn btn-primary" href="{% url 'admin-manage-tags' 'delete_tag' %}?tag_id={{ tag.id }}">Yes</a>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-primary" href="{% url 'admin-manage-products' 'delete_variant' %}?variant_id={{ variant.id }}">Yes</a>
+        <a class="btn btn-primary" href="{% url 'admin-manage-tags' 'empty_tag' %}?tag_id={{ tag.id }}">Yes</a>
       </div>
     </div>
   </div>
