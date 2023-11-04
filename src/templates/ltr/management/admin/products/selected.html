@@ -579,30 +579,34 @@
 
 <!-- add a tag modal -->
 <div id="add_a_tag" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <form id="add_tag_form" action="{% url 'admin-manage-products' 'add_a_tag' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
-        <div class="row">
-          {% for t in selected_product.unselected_tags %}
-          <div class="col-sm mb-2 mb-sm-0">
-            <label class="form-control" for="selected_tag_{{ t.id }}">
-              <span class="form-check">
-                <input type="checkbox" class="form-check-input" name="checked_tag" id="selected_tag_{{ t.id }}">
-                <span class="form-check-label">{{ t.title }}</span>
-              </span>
-            </label>
+          <div class="row">
+            {% for t in selected_product.unselected_tags %}
+            <div class="col-sm mb-2 mb-sm-0">
+              <label class="form-control" for="selected_tag_{{ t.id }}">
+                <span class="form-check">
+                  <input type="checkbox" class="form-check-input" name="checked_tags" id="selected_tag_{{ t.id }}">
+                  <span class="form-check-label">{{ t.title }}</span>
+                </span>
+              </label>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-        </div>
+        </form>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-primary" href="{% url 'admin-manage-products' 'delete_brand' %}?product_id={{ selected_product.id }}">Yes</a>
+        <button class="btn btn-primary" form="add_tag_form">Yes</button>
       </div>
     </div>
   </div>
