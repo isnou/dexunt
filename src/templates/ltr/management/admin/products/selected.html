@@ -369,6 +369,16 @@
       </div>
 
       <div class="card-body">
+        {% for tag in selected_product.tags %}
+        <div class="col-sm mb-2 mb-sm-0">
+          <label class="form-control" for="tag_{{ tag.id }}">
+            <span class="form-check">
+              <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
+              <span class="form-check-label">{{ tag.title }}</span>
+            </span>
+          </label>
+        </div>
+        {% endfor %}
 
       </div>
     </div>
@@ -586,17 +596,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="add_tag_form" action="{% url 'admin-manage-products' 'add_a_tag' %}" class="js-validate need-validate" novalidate method="post">
+        <form id="add_tag_form" action="{% url 'admin-manage-products' 'add_tags' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
           <div class="row">
-            {% for t in selected_product.unselected_tags %}
+            {% for tag in selected_product.unselected_tags %}
             <div class="col-sm mb-2 mb-sm-0">
-              <label class="form-control" for="selected_tag_{{ t.id }}">
+              <label class="form-control" for="selected_tag_{{ tag.id }}">
                 <span class="form-check">
-                  <input type="checkbox" class="form-check-input" name="checked_tags" id="selected_tag_{{ t.id }}">
-                  <span class="form-check-label">{{ t.title }}</span>
+                  <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="selected_tag_{{ tag.id }}">
+                  <span class="form-check-label">{{ tag.title }}</span>
                 </span>
               </label>
             </div>
