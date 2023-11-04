@@ -535,7 +535,6 @@ def manage_products(request, action):
                 'ar_product_description_form': ar_product_description_form,
             }
             return render(request, url, context)
-
     if action == 'duplicate_variant':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', None)
@@ -549,6 +548,15 @@ def manage_products(request, action):
         request.session['product_id'] = selected_product.id
         selected_variant.delete()
         return redirect('admin-manage-products', 'view_product')
+    if action == 'add_tags':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id')
+            checked_tags = request.POST.getlist('checked_tags')
+            selected_product = Product.objects.all().get(id=product_id)
+            for c_t in checked_tags:
+                tag = Tag.objects.all().get(id=c_t)
+                tag.product.add(selected_product)
+            return redirect('admin-manage-products', 'view_product')
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"
