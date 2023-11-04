@@ -576,4 +576,29 @@
     </div>
   </div>
 </div>
+
+<!-- add a tag modal -->
+<div id="add_a_tag" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        {% for t in selected_product.unselected_tags %}
+        <a href="javascript:;" class="btn btn-ghost">
+          {{ t.title }}
+        </a>
+        {% endfor %}
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <a class="btn btn-primary" href="{% url 'admin-manage-products' 'delete_brand' %}?product_id={{ selected_product.id }}">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
