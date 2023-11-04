@@ -388,7 +388,7 @@ class Product(models.Model):
     def unselected_tags(self):
         selected_tags = Tag.objects.all()
         for o_t in self.tags.all():
-            selected_tags.exclude(id=1)
+            selected_tags = selected_tags.exclude(id=o_t.id)
         return selected_tags
 # ---------------------------------------------------------------------- #
 
