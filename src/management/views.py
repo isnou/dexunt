@@ -564,7 +564,7 @@ def manage_products(request, action):
             selected_product = Product.objects.all().get(id=product_id)
             for c_t in checked_tags:
                 tag = Tag.objects.all().get(id=c_t)
-                tag.product.delete(selected_product)
+                tag.product.remove(selected_product)
             return redirect('admin-manage-products', 'view_product')
     # --------------- selected variant ------------ #
     if action == 'view_variant':
