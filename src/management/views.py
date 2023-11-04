@@ -601,7 +601,6 @@ def manage_products(request, action):
             selected_variant_form = VariantForm(request.POST, instance=selected_variant)
             selected_variant_form.save()
             return redirect('admin-manage-products', 'view_variant')
-
     if action == 'add_images':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', None)
@@ -612,13 +611,11 @@ def manage_products(request, action):
             album.variant = selected_variant
             album.save()
             return redirect('admin-manage-products', 'view_variant')
-
     if action == 'delete_image':
         album_id = request.GET.get('album_id', False)
         album = Album.objects.all().get(id=album_id)
         album.delete()
         return redirect('admin-manage-products', 'view_variant')
-
     if action == 'add_feature':
         if request.method == 'POST':
             variant_id = request.POST.get('variant_id', False)
@@ -645,7 +642,6 @@ def manage_products(request, action):
             selected_feature_form = FeatureForm(request.POST, instance=selected_feature)
             selected_feature_form.save()
             return redirect('admin-manage-products', 'view_variant')
-
     if action == 'duplicate_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
@@ -1117,9 +1113,17 @@ def manage_tags(request, action):
             return redirect('admin-manage-tags', 'main')
     if action == 'delete_tag':
         if request.method == 'POST':
-            coupon_id = request.POST.get('coupon_id', False)
-            selected_coupon = Coupon.objects.all().get(id=coupon_id)
-            selected_coupon.delete()
+            tag_id = request.POST.get('tag_id', False)
+            selected_tag = Tag.objects.all().get(id=tag_id)
+            for p in selected_tag.product.all():
+                selected_tag.product.remove(p)
+            selected_tag.delete()
+    if action == 'empty_tag':
+        if request.method == 'POST':
+            tag_id = request.POST.get('tag_id', False)
+            selected_tag = Tag.objects.all().get(id=tag_id)
+            for p in selected_tag.product.all():
+                selected_tag.product.remove(p)
 
             return redirect('admin-manage-coupon', 'main')
 # ---------------------------------------------------------------------- #

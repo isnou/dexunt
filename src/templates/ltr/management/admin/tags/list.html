@@ -32,19 +32,26 @@
 <div class="card">
 
   {% if all_tags %}
-  <div class="row">
+  <div class="row p-4">
     {% for tag in all_tags %}
     <div class="col-sm mb-2 mb-sm-0">
       <a class="btn btn-light align-items-center" href="javascript:;">
-        <i class="fa fa-x me-1"></i>
-        <strong class="text-dark h5">{{ tag.title }} ({{ tag.product.all.count }})</strong>
+        <strong class="text-dark h5">
+          {{ tag.title }}
+          {% if tag.product.all.count %}
+          ({{ tag.product.all.count }})
+          {% endif %}
+        </strong>
+      </a>
+      <a class="btn btn-light align-items-center" href="javascript:;">
+        <i class="fa fa-trash me-1"></i>
       </a>
     </div>
     {% endfor %}
   </div>
 
   {% else %}
-  <div class="card-footer">
+  <div class="row p-4">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
         No registred tags.
