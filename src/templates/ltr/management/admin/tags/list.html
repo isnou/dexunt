@@ -32,9 +32,8 @@
 <div class="card">
   {% if all_tags %}
 
-  <div class="row m-4">
+  <div class="m-4">
     {% for tag in all_tags %}
-    <div class="col-lg-2 col-md-3 col-sm-4 mx-1 mb-2">
       <span class="badge bg-light text-dark m-1">
         <strong class="text-dark h5 ms-2">
           {{ tag.title }}
@@ -51,7 +50,6 @@
           <i class="fa fa-trash"></i>
         </a>
       </span>
-    </div>
     {% endfor %}
   </div>
   {% else %}
