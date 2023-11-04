@@ -587,9 +587,12 @@
       </div>
       <div class="modal-body text-center">
         {% for t in selected_product.unselected_tags %}
-        <a href="javascript:;" class="btn btn-ghost">
-          {{ t.title }}
-        </a>
+        <div class="col">
+          <div class="form-check form-check-inline">
+            <input type="checkbox" id="selected_tag_{{ t.id }}" name="checked_tag" class="form-check-input">
+            <label class="form-check-label" for="selected_tag_{{ t.id }}">{{ t.title }}</label>
+          </div>
+        </div>
         {% endfor %}
       </div>
       <div class="modal-footer" style="align-self: center;">
