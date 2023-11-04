@@ -369,7 +369,7 @@
       </div>
 
       <div class="card-body">
-        {% for tag in selected_product.tags %}
+        {% for tag in selected_product.tags.all %}
         <div class="col-sm mb-2 mb-sm-0">
           <label class="form-control" for="tag_{{ tag.id }}">
             <span class="form-check">
