@@ -1075,7 +1075,7 @@ def manage_tags(request, action):
     direction = request.session.get('direction')
 
     nav_side = 'tags'
-    items_by_page = 8
+    items_by_page = 60
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/tags/list.html"
