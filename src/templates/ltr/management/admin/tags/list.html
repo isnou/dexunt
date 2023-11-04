@@ -36,7 +36,7 @@
     {% for tag in all_tags %}
     <div class="col-3 mb-2">
       <span class="badge bg-light text-dark">
-        <strong class="text-dark h5">
+        <strong class="text-dark h5 ms-2">
           {{ tag.title }}
           {% if tag.product.all.count %}
           ({{ tag.product.all.count }})
@@ -47,12 +47,9 @@
           <i class="fa fa-link-slash"></i>
         </a>
         {% endif %}
-
         <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete_tag_{{ tag.id }}">
           <i class="fa fa-trash"></i>
         </a>
-
-
       </span>
     </div>
     {% endfor %}
