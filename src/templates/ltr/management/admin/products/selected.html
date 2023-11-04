@@ -354,11 +354,12 @@
             <h5 class="text-inherit mb-0">
               Tags
 
+              {% if selected_product.tags.all.count %}
               <!-- delete tags -->
-            <a href="javascript:;" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags_modal">
-              <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete tags"></i>
-            </a>
-              
+              <a href="javascript:;" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags_modal">
+                <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete tags"></i>
+              </a>
+              {% endif %}
             </h5>
           </div>
         </div>
@@ -376,6 +377,7 @@
         <!-- end title bar -->
       </div>
 
+      {% if selected_product.tags.all.count %}
       <div class="card-body">
 
         <form id="delete_tags_form" action="{% url 'admin-manage-products' 'delete_tags' %}" class="js-validate need-validate" novalidate method="post">
@@ -397,6 +399,7 @@
         </form>
 
       </div>
+      {% endif %}
     </div>
   </div>
 </div>
