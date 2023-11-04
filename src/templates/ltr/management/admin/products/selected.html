@@ -343,6 +343,37 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="mb-lg-0">
+    <!-- tags -->
+    <div class="card">
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-2 mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">Tags</h5>
+          </div>
+        </div>
+        <!-- end title -->
+
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- add feature button -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
+            <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Feature"></i>
+          </button>
+          <!-- end add feature button -->
+        </div>
+        <!-- end title bar -->
+      </div>
+
+      <div class="card-body">
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- variants modals & forms -->
 {% for variant in selected_product.variant_set.all %}
 <!-- activate variant form -->
