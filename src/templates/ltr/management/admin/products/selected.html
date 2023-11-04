@@ -585,15 +585,20 @@
         <h5 class="modal-title"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
-        {% for t in selected_product.unselected_tags %}
-        <div class="col">
-          <div class="form-check form-check-inline">
-            <input type="checkbox" id="selected_tag_{{ t.id }}" name="checked_tag" class="form-check-input">
-            <label class="form-check-label" for="selected_tag_{{ t.id }}">{{ t.title }}</label>
+      <div class="modal-body">
+
+        <div class="row">
+          {% for t in selected_product.unselected_tags %}
+          <div class="col-sm mb-2 mb-sm-0">
+            <label class="form-control" for="selected_tag_{{ t.id }}">
+              <span class="form-check">
+                <input type="checkbox" class="form-check-input" name="checked_tag" id="selected_tag_{{ t.id }}">
+                <span class="form-check-label">{{ t.title }}</span>
+              </span>
+            </label>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
