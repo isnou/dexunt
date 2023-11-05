@@ -388,7 +388,7 @@ class Product(models.Model):
     def selected_variant(self):
         variant = self.variant_set.all().first()
         for v in self.variant_set.all():
-            if v.selected_option.rates() > variant.selected_option.rates():
+            if v.selected_option().rates() > variant.selected_option().rates():
                 variant = v
         return variant
     def unselected_tags(self):
