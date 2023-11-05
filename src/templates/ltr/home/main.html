@@ -198,17 +198,17 @@
 <section class="my-lg-14 my-8">
     <div class="container">
         <div class="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
-            {% for variant in published_products %}
+            {% for product in grid_products %}
             <div class="col">
                 <div class="card card-product border-0">
                     <div class="card-body">
                         <div class="text-center position-relative">
-                            {% if not variant.is_available %}
+                            {% if not product.selected_variant.is_available %}
                             <div class=" position-absolute top-0 start-0">
                                 <span class="badge bg-gray-400">Out Of Stock</span>
                             </div>
                             {% else %}
-                            {% if not variant.selected_option.reviews.all.count %}
+                            {% if not product.selected_variant.selected_option.reviews.all.count %}
                             <div class=" position-absolute top-0 start-0">
                                 <span class="badge bg-danger">New</span>
                             </div>
@@ -216,45 +216,43 @@
                             {% endif %}
 
 
-                            <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ variant.id }}">
-                                <img src="{% get_media_prefix %}{{ variant.album_set.all.first.image }}" class="mb-3 img-fluid">
+                            <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}">
+                                <img src="{% get_media_prefix %}{{ product.selected_variant.album_set.all.first.image }}" class="mb-3 img-fluid">
                             </a>
                         </div>
                         <div class="text-small mb-1">
-                            {% if variant.product.store %}
+                            {% if product.brand  %}
+                            <small class="text-inherit text-decoration-none">{{ product.brand }}</small>
+                            {% else product.store %}
                             <a href="#" class="text-inherit text-decoration-none">
-                                <small>{{ variant.product.store.name }}</small>
+                                <small>{{ product.store.name }}</small>
                             </a>
-                            {% elif variant.product.brand %}
-                            <small class="text-inherit text-decoration-none">{{ variant.product.brand }}</small>
-                            {% else %}
-                            <small class="text-inherit text-decoration-none">dexunt</small>
                             {% endif %}
                         </div>
                         <h2 class="fs-6">
                             <a href="#" class="text-inherit text-decoration-none">
-                                {{ variant.product.en_title }}
+                                {{ product.title }}
                             </a>
                         </h2>
-                        {% if variant.selected_option.reviews.all.count %}
+                        {% if product.selected_variant.selected_option.reviews.all.count %}
                         <div class="text-warning">
                             <small>
-                                <i class="bi bi-star{{ variant.selected_option.review_star_one }}"></i>
-                                <i class="bi bi-star{{ variant.selected_option.review_star_two }}"></i>
-                                <i class="bi bi-star{{ variant.selected_option.review_star_three }}"></i>
-                                <i class="bi bi-star{{ variant.selected_option.review_star_four }}"></i>
-                                <i class="bi bi-star{{ variant.selected_option.review_star_five }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_one }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_two }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_three }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_four }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_five }}"></i>
                             </small>
                             <span class="text-muted small">
-                                ({{ variant.selected_option.reviews.all.count }} reviews)
+                                ({{ product.selected_variant.selected_option.reviews.all.count }} reviews)
                             </span>
                         </div>
                         {% endif %}
                         <div class="d-flex justify-content-between mt-4">
                             <div>
-                                <span class="text-dark">{{ variant.selected_option.price|floatformat:"0g" }} DZD</span>
-                                {% if variant.selected_option.discount %}
-                                <span class="text-decoration-line-through text-muted">{{ variant.selected_option.discount|floatformat:"0g" }} DZD</span>
+                                <span class="text-dark">{{ product.selected_variant.selected_option.price|floatformat:"0g" }} DZD</span>
+                                {% if product.selected_variant.selected_option.discount %}
+                                <span class="text-decoration-line-through text-muted">{{ product.selected_variant.selected_option.discount|floatformat:"0g" }} DZD</span>
                                 {% endif %}
                             </div>
                         </div>
