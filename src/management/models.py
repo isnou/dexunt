@@ -286,8 +286,8 @@ class Variant(models.Model):
         if language == 'ar-dz':
             return self.ar_spec
     def selected_option(self):
-        option = self.option_set.all().first()
-        for o in self.option_set.all():
+        option = self.option_set.all().exclude(is_activated=False).first()
+        for o in self.option_set.all().exclude(is_activated=False):
             if o.is_activated and o.rates_quotient() > option.rates_quotient():
                 option = o
         return option
@@ -350,9 +350,9 @@ class Product(models.Model):
         if language == 'ar-dz':
             return self.ar_description
     def selected_variant(self):
-        variant = self.variant_set.all().first()
-        for v in self.variant_set.all():
-            if v.is_activated and v.selected_option().rates_quotient() > variant.selected_option().rates_quotient():
+        variant = self.variant_set.all().exclude(is_activated=False).first()
+        for v in self.variant_set.all().exclude(is_activated=False):
+            if v.selected_option().rates_quotient() > variant.selected_option().rates_quotient():
                 variant = v
         return variant
     def unselected_tags(self):
