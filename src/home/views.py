@@ -43,7 +43,7 @@ def home_page(request):
     signup_form = SignupForm()
 
     all_stores = Store.objects.all().filter(is_activated=True).order_by('?')[:6]
-    all_products = Variant.objects.all().filter(is_activated=True).order_by('option.sale')[:15]
+    all_products = Variant.objects.all().filter(is_activated=True).selected_option().order_by('sale')[:15]
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
 
     for p in all_products:
