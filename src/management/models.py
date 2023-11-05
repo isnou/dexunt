@@ -286,7 +286,7 @@ class Variant(models.Model):
         if language == 'ar-dz':
             return self.ar_spec
     def selected_option(self):
-        option = self.option_set.all().rates_quotient()
+        option = self.option_set.all().first()
         for o in self.option_set.all():
             if o.rates_quotient() > option.rates_quotient():
                 option = o
