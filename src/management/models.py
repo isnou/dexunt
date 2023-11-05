@@ -120,14 +120,6 @@ class Option(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
-    def value(self):
-        language = global_request.session.get('language')
-        if language == 'en-us':
-            return self.en_value
-        if language == 'fr-fr':
-            return self.fr_value
-        if language == 'ar-dz':
-            return self.ar_value
     def save(self, *args, **kwargs):
         if not self.upc:
             self.upc = functions.serial_number_generator(20).upper()
@@ -178,6 +170,14 @@ class Option(models.Model):
                client=request.user
                ).save()
     # ----- variables ----- #
+    def value(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_value
+        if language == 'fr-fr':
+            return self.fr_value
+        if language == 'ar-dz':
+            return self.ar_value
     def can_be_activated(self):
         if self.variant.product.store:
             return self.variant.product.store.is_activated
@@ -191,6 +191,8 @@ class Option(models.Model):
             return rate/self.reviews.all().filter(show=True).count()
         else:
             return 0
+    def rates_quotient(self):
+        return self.rates() * self.sale
     def review_star_one(self):
         if self.rates() == 0:
             return ''
@@ -322,9 +324,9 @@ class Variant(models.Model):
         if language == 'ar-dz':
             return self.ar_spec
     def selected_option(self):
-        option = self.option_set.all().first()
+        option = self.option_set.all().rates_quotient()
         for o in self.option_set.all():
-            if o.rates() > option.rates():
+            if o.rates_quotient() > option.rates_quotient():
                 option = o
         return option
     def needs_more_photos(self):
@@ -383,7 +385,7 @@ class Product(models.Model):
     def selected_variant(self):
         variant = self.variant_set.all().first()
         for v in self.variant_set.all():
-            if v.selected_option().rates() > variant.selected_option().rates():
+            if v.selected_option().rates_quotient() > variant.selected_option().rates_quotient():
                 variant = v
         return variant
     def unselected_tags(self):
