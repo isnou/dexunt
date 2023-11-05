@@ -285,6 +285,11 @@ class Variant(models.Model):
             return self.fr_spec
         if language == 'ar-dz':
             return self.ar_spec
+    def image(self):
+        if not self.selected_option().has_image:
+            return self.album_set.all().first().image
+        else:
+            return self.selected_option().image
     def selected_option(self):
         option = self.option_set.all().exclude(is_activated=False).first()
         for o in self.option_set.all().exclude(is_activated=False):
@@ -350,10 +355,7 @@ class Product(models.Model):
         if language == 'ar-dz':
             return self.ar_description
     def image(self):
-        if not self.selected_variant().selected_option().has_image:
-            return self.selected_variant().album_set.all().first().image
-        else:
-            return self.selected_variant().selected_option().image
+        return self.selected_variant().image()
     def selected_variant(self):
         variant = self.variant_set.all().exclude(is_activated=False).first()
         for v in self.variant_set.all().exclude(is_activated=False):
