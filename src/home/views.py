@@ -46,11 +46,6 @@ def home_page(request):
     all_products = Product.objects.all().filter(is_activated=True)[:15]
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
 
-    for p in all_products:
-        p.clean()
-
-    for f in all_flash_products:
-        f.clean()
 
     grid_products = all_products[:10]
     published_flash_products = all_flash_products[:4]

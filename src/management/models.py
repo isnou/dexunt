@@ -250,39 +250,6 @@ class Variant(models.Model):
     fr_spec = models.CharField(max_length=200, blank=True, null=True)
     ar_spec = models.CharField(max_length=200, blank=True, null=True)
     # ----- functions ----- #
-    def clean(self):
-        quantity = 0
-        for option in self.option_set.all():
-            quantity += option.quantity
-        if quantity:
-            self.is_available = True
-        else:
-            self.is_available = False
-        super().save()
-    def set_tags(self):
-        self.tags = ''
-        if self.product.en_title:
-            self.tags += ('' + self.product.en_title)
-        if self.product.fr_title:
-            self.tags += (', ' + self.product.fr_title)
-        if self.product.ar_title:
-            self.tags += (', ' + self.product.ar_title)
-
-        if self.en_spec:
-            self.tags += (', ' + self.en_spec)
-        if self.fr_spec:
-            self.tags += (', ' + self.fr_spec)
-        if self.ar_spec:
-            self.tags += (', ' + self.ar_spec)
-
-        if self.option_set.all().count():
-            for o in self.option_set.all():
-                self.tags += (', ' + o.tags)
-        if self.feature.all().count():
-            for f in self.feature.all():
-                self.tags += (', ' + f.tags)
-
-        super().save()
     def duplicate(self):
         new_variant = Variant(en_spec = self.en_spec,
                               fr_spec = self.fr_spec,
@@ -301,12 +268,6 @@ class Variant(models.Model):
                 f.pk = None
                 f.save()
                 new_variant.feature_set.add(f)
-    def deactivate(self):
-        for o in self.option_set.all():
-            o.is_activated = False
-            o.save()
-        self.is_activated = False
-        super().save()
     def activate(self):
         activation = False
         for o in self.option_set.all():
@@ -314,6 +275,7 @@ class Variant(models.Model):
                 activation = True
         self.is_activated = activation
         super().save()
+        self.product.activate()
     # ----- variables ----- #
     def spec(self):
         language = global_request.session.get('language')
@@ -348,6 +310,8 @@ class Variant(models.Model):
         return self.option_set.all().first().asin()
 #                                                                        #
 class Product(models.Model):
+    # ----- Technical ----- #
+    is_activated = models.BooleanField(default=False)
     # ----- relations ----- #
     store = models.ForeignKey('management.Store', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -361,10 +325,13 @@ class Product(models.Model):
     # ----- #
     brand = models.CharField(max_length=80, blank=True, null=True)
     # ----- functions ----- #
-    def update_tags(self):
+    def activate(self):
+        activation = False
         for v in self.variant_set.all():
-            v.set_tags()
-            v.save()
+            if v.is_activated:
+                activation = True
+        self.is_activated = activation
+        super().save()
     # ----- variables ----- #
     def title(self):
         language = global_request.session.get('language')
