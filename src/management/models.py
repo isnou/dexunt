@@ -385,11 +385,24 @@ class Product(models.Model):
             return self.fr_description
         if language == 'ar-dz':
             return self.ar_description
+    def selected_variant(self):
+        variant = self.variant_set.all().first()
+        for v in self.variant_set.all():
+            if v.selected_option.rates() > variant.selected_option.rates():
+                variant = v
+        return variant
     def unselected_tags(self):
         selected_tags = Tag.objects.all()
         for o_t in self.tags.all():
             selected_tags = selected_tags.exclude(id=o_t.id)
         return selected_tags
+    def related_products(self):
+        products_ids = []
+        for t in self.tags.all():
+            for p in t.product.all():
+                if not p.id in products_ids:
+                    products_ids.append(p.id)
+        return Product.objects.all().filter(id__in=products_ids)
 # ---------------------------------------------------------------------- #
 
 # ----------------------------- Collections ---------------------------- #
