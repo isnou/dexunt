@@ -402,7 +402,7 @@ class Product(models.Model):
             for p in t.product.all():
                 if not p.id in products_ids:
                     products_ids.append(p.id)
-        return Product.objects.all().filter(id__in=products_ids)
+        return Product.objects.all().filter(id__in=products_ids).exclude(id=self.id)
 # ---------------------------------------------------------------------- #
 
 # ----------------------------- Collections ---------------------------- #
