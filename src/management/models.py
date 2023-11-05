@@ -363,7 +363,7 @@ class Product(models.Model):
     def related_products(self):
         products_ids = []
         for t in self.tags.all():
-            for p in t.product.all():
+            for p in t.product.all().exclude(is_activated=False):
                 if not p.id in products_ids:
                     products_ids.append(p.id)
         return Product.objects.all().filter(id__in=products_ids).exclude(id=self.id).order_by('?')[:5]
