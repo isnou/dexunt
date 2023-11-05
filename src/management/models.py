@@ -288,7 +288,7 @@ class Variant(models.Model):
     def selected_option(self):
         option = self.option_set.all().first()
         for o in self.option_set.all():
-            if o.rates_quotient() > option.rates_quotient():
+            if o.is_activated and o.rates_quotient() > option.rates_quotient():
                 option = o
         return option
     def needs_more_photos(self):
@@ -352,7 +352,7 @@ class Product(models.Model):
     def selected_variant(self):
         variant = self.variant_set.all().first()
         for v in self.variant_set.all():
-            if v.selected_option().rates_quotient() > variant.selected_option().rates_quotient():
+            if v.is_activated and v.selected_option().rates_quotient() > variant.selected_option().rates_quotient():
                 variant = v
         return variant
     def unselected_tags(self):
