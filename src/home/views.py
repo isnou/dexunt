@@ -43,7 +43,7 @@ def home_page(request):
     signup_form = SignupForm()
 
     all_stores = Store.objects.all().filter(is_activated=True).order_by('?')[:6]
-    all_products = Variant.objects.all().filter(is_activated=True).selected_option().order_by('sale')[:15]
+    all_products = Product.objects.all().filter(is_activated=True)[:15]
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
 
     for p in all_products:
@@ -52,7 +52,7 @@ def home_page(request):
     for f in all_flash_products:
         f.clean()
 
-    published_products = all_products[:10]
+    grid_products = all_products[:10]
     published_flash_products = all_flash_products[:4]
 
     context = {
@@ -61,7 +61,7 @@ def home_page(request):
         'login_form': login_form,
         'signup_form': signup_form,
         'selected_cart': selected_cart,
-        'published_products': published_products,
+        'grid_products': grid_products,
         'published_flash_products': published_flash_products,
         'all_stores': all_stores,
     }
