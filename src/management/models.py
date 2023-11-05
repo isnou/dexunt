@@ -57,8 +57,6 @@ class Album(models.Model):
         verbose_name_plural = "Album"
 #                                                                        #
 class Feature(models.Model):
-    # ----- Technical ----- #
-    tags = models.CharField(max_length=2000, blank=True, null=True)
     # ----- relations ----- #
     variant = models.ForeignKey('management.Variant', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -96,6 +94,7 @@ class Option(models.Model):
     # ----- #
     upc = models.CharField(max_length=20, unique=True, null=True)
     # ----- #
+    like = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
@@ -241,10 +240,6 @@ class Variant(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
     is_available = models.BooleanField(default=False)
-    # ----- #
-    like = models.IntegerField(default=0)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
     created_at = models.DateTimeField(blank=True, null=True)
     # ----- relations ----- #
     product = models.ForeignKey('management.Product', on_delete=models.CASCADE, null=True)
