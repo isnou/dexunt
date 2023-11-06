@@ -1114,27 +1114,10 @@
 <script src="{% static 'ltr/landing-page/js/vendors/zoom.js' %}"></script>
 <script src="{% static 'ltr/landing-page/js/vendors/increment-value.js' %}"></script>
 
+<script src="{% static 'ltr/landing-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'ltr/landing-page/js/vendors/countdown.js' %}"></script>
 
-<!-- HTMX -->
-<script src="{% static 'htmx/htmx.min.js' %}"></script>
-<!-- Mask inputs -->
-<script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
-<!-- Form Validation JS -->
-<script>
-(() => {
-  'use strict'
-  const forms = document.querySelectorAll('.needs-validation')
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
-</script>
+
 
 </body>
 </html>
