@@ -185,6 +185,33 @@
     </div>
   </div>
 
+  {% if errors %}
+  <div class="container text-center col-8" >
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+      {% if errors.username.0 %}
+      <strong>{{ errors.username.0 }}</strong><br>
+      {% endif %}
+
+      {% if errors.password1.0 %}
+      <strong>{{ errors.password1.0 }}</strong><br>
+      {% endif %}
+
+      {% if errors.password2.0 %}
+      <strong>{{ errors.password2.0 }}</strong><br>
+      {% endif %}
+
+      {% if errors.phone_number.0 %}
+      <strong>{{ errors.phone_number.0 }}</strong><br>
+      {% endif %}
+
+      {% if errors.login %}
+      <strong>{{ errors.login }}</strong><br>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
 </header>
 
 {% if user.is_customer or not user.is_authenticated %}
@@ -1021,43 +1048,6 @@
 </footer>
 
 <!-- Javascript-->
-<!-- Libs JS -->
-<script src="{% static 'ltr/landing-page/libs/jquery/dist/jquery.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/simplebar/dist/simplebar.min.js' %}"></script>
-<!-- Theme JS -->
-<script src="{% static 'ltr/landing-page/js/theme.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/slick-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/tns-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/zoom.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/increment-value.js' %}"></script>
-
-<script src="{% static 'ltr/landing-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/countdown.js' %}"></script>
-
-
-<!-- HTMX -->
-<script src="{% static 'htmx/htmx.min.js' %}"></script>
-<!-- Mask inputs -->
-<script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
-<!-- Form Validation JS -->
-<script>
-(() => {
-  'use strict'
-  const forms = document.querySelectorAll('.needs-validation')
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
-</script>
 
 </body>
 </html>
