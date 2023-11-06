@@ -888,59 +888,6 @@
     </div>
   </div>
 </div>
-<!-- change language modal -->
-<div class="modal fade" id="change_language_modal" tabindex="-1" aria-labelledby="change_language_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <div class="mb-5 d-flex align-items-center justify-content-between">
-          <h1 class="modal-title fs-5" id="change_language_label"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class=" w-100 ">
-          {% if en_us %}
-          <div class="text-center text-md-center fs-5 mb-5">
-            Pour le Français <button form="french_language_form" class="btn btn-ghost-info"> cliquez ici </button>
-          </div>
-          <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
-            للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
-          </div>
-          {% endif %}
-
-          {% if fr_fr %}
-          <div class="text-center text-md-center fs-5 mb-5">
-            For English <button form="english_language_form" class="btn btn-ghost-info"> click here </button>
-          </div>
-          <div class="text-center text-md-center fs-5 mb-5" dir="rtl">
-            للغة العربية <button form="arabic_language_form" class="btn btn-ghost-info"> اضغط هنا </button>
-          </div>
-          {% endif %}
-        </div>
-
-        <form action="{% url 'change-language' %}" id="french_language_form" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="language" value='fr-fr'>
-          <input type="hidden" name="page" value='home-page'>
-        </form>
-
-        <form action="{% url 'change-language' %}" id="arabic_language_form" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="language" value='ar-dz'>
-          <input type="hidden" name="page" value='home-page'>
-        </form>
-
-        <form action="{% url 'change-language' %}" id="english_language_form" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="language" value='en-us'>
-          <input type="hidden" name="page" value='home-page'>
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div>
 <!-- login modal -->
 <div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modal_label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -1118,6 +1065,26 @@
 <script src="{% static 'ltr/landing-page/js/vendors/countdown.js' %}"></script>
 
 
+<!-- HTMX -->
+<script src="{% static 'htmx/htmx.min.js' %}"></script>
+<!-- Mask inputs -->
+<script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
+<!-- Form Validation JS -->
+<script>
+(() => {
+  'use strict'
+  const forms = document.querySelectorAll('.needs-validation')
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
 
 </body>
 </html>
