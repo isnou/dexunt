@@ -391,12 +391,11 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
     def add_collection(self, request):
-        new_collection = Collection(en_name=request.POST.get('en_name', None),
-                                    fr_name=request.POST.get('fr_name', None),
-                                    ar_name=request.POST.get('ar_name', None),
-                                    )
-        new_collection.save()
-        new_collection.category.add(self)
+        Collection(en_name=request.POST.get('en_name', None),
+                   fr_name=request.POST.get('fr_name', None),
+                   ar_name=request.POST.get('ar_name', None),
+                   category=self
+                   ).save()
     # ----- variables ----- #
     def name(self):
         language = global_request.session.get('language')
