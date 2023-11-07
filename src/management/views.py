@@ -1132,7 +1132,8 @@ def manage_tags(request, action):
 def cash_wallet(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1191,7 +1192,8 @@ def cash_wallet(request, action):
 def cash_sales(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1239,7 +1241,8 @@ def cash_sales(request, action):
 def cash_members(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1287,7 +1290,8 @@ def cash_members(request, action):
 def cash_providers(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1330,7 +1334,6 @@ def cash_providers(request, action):
             'providers_income': transactions_select('providers-income'),
         }
         return render(request, url, context)
-#                                                                        #
 # ---------------------------------------------------------------------- #
 
 
@@ -1339,7 +1342,8 @@ def cash_providers(request, action):
 def member_orders(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1414,7 +1418,8 @@ def member_orders(request, action):
 def member_refunds(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1456,7 +1461,8 @@ def member_refunds(request, action):
 def member_profile(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/member/settings/profile.html"
@@ -1500,7 +1506,8 @@ def member_profile(request, action):
 def member_payments(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1559,7 +1566,8 @@ def member_payments(request, action):
 def member_wallet(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1622,7 +1630,8 @@ def member_wallet(request, action):
 def customer_orders(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/orders/list.html"
@@ -1637,7 +1646,8 @@ def customer_orders(request, action):
 def customer_discount(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/discount/list.html"
@@ -1651,7 +1661,8 @@ def customer_discount(request, action):
 def customer_transactions(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/transactions/list.html"
@@ -1675,7 +1686,8 @@ def customer_transactions(request, action):
 def customer_wallet(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/wallet/home.html"
@@ -1689,7 +1701,8 @@ def customer_wallet(request, action):
 def customer_address(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/address/edit.html"
@@ -1727,7 +1740,8 @@ def customer_address(request, action):
 def customer_settings(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/customer/settings/profile.html"
@@ -1767,7 +1781,8 @@ def customer_settings(request, action):
 def seller_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/seller/home.html"
@@ -1785,7 +1800,8 @@ def seller_home(request, action):
 def provider_home(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/provider/home.html"
@@ -1799,7 +1815,8 @@ def provider_home(request, action):
 def provider_profile(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/provider/settings/profile.html"
@@ -1842,7 +1859,8 @@ def provider_profile(request, action):
 def provider_store(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/provider/settings/store.html"
@@ -1884,7 +1902,8 @@ def provider_store(request, action):
 def provider_products(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -1999,7 +2018,8 @@ def provider_products(request, action):
 def provider_sales(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
@@ -2047,7 +2067,8 @@ def provider_sales(request, action):
 def provider_wallet(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
-    direction = request.session.get('language')
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
     items_by_page = 20
 
     # --------------- main page ------------------- #
