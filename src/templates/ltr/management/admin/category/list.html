@@ -560,7 +560,7 @@
       <div class="modal-body mx-4">
         <div>
           <div class="text-center mb-7">
-            <h2>Add a collection</h2>
+            <h2>Add a collection to {{ category.name }}</h2>
           </div>
           <form action="{% url 'admin-manage-categories' 'add_a_collection' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
