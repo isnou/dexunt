@@ -83,7 +83,25 @@
             </a>
           </span>
         </td>
-        <!-- creation date -->
+
+        <!-- activation -->
+        <td>
+          {% if category.can_be_activated %}
+          <span class="text-center">
+            {% if category.is_activated %}
+            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+              <i class="fa fa-toggle-on"></i>
+            </a>
+            {% else %}
+            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+              <i class="fa fa-toggle-off"></i>
+            </a>
+            {% endif %}
+          </span>
+          {% endif %}
+        </td>
+
+        <!-- collections collapse -->
         <td class="text-end">
           <span class="d-block h4 text-end">
             {% if category.collections.all.count %}
@@ -98,8 +116,6 @@
       {% for collection in category.collections.all %}
       <!-- products list -->
       <tr class="collapse {% if product.status == 'processed' %} bg-light show {% endif %}" id="collapse_{{ category.id }}">
-        <td class="table-column-pe-0">
-        </td>
         <!-- product title and image -->
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.option.variant.product.id }}">

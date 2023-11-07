@@ -405,6 +405,11 @@ class Category(models.Model):
             return self.fr_name
         if language == 'ar-dz':
             return self.ar_name
+    def can_be_activated(self):
+        activate = True
+        if not self.icon or not self.fr_name or not self.ar_name or not self.collections.all().count():
+            activate = False
+        return activate
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
