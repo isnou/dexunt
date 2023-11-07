@@ -124,15 +124,13 @@
         <!-- products -->
         <td>
           <span class="d-block h4 text-start">
-            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_collection_{{ category.id }}">
-              <i class="fa fa-plus me-1"></i>
-              <span class="text-muted fs-6">
-                add products
-                {% if collection.products.all.count %}
-                ({{ collection.products.all.count }})
-                {% endif %}
-              </span>
-            </a>
+            <span class="text-muted fs-6">
+              {% if collection.products.all.count %}
+              ({{ collection.products.all.count }}) linked products
+              {% else %}
+              no linked products
+              {% endif %}
+            </span>
           </span>
         </td>
         <!-- collection activation -->
