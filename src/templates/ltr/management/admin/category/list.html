@@ -7,7 +7,7 @@
 <!-- header -->
 {% block page_header %}
 <div class="row align-items-end">
-  <!-- all orders  -->
+  <!-- categories  -->
   <div class="col-sm mb-2 mb-sm-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-no-gutter">
@@ -16,7 +16,12 @@
     </nav>
     <h1 class="page-header-title">Categories</h1>
   </div>
-  <!-- end all orders  -->
+  <div class="col-sm-auto">
+    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_category">
+      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add a category"></i>
+    </button>
+  </div>
+  <!-- end categories  -->
 </div>
 {% endblock %}
 
@@ -41,10 +46,6 @@
 
     <!-- title bar -->
     <div class="d-grid d-sm-flex gap-2">
-      <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_category">
-        <i class="bi-plus-lg me-1"></i>
-        add a category
-      </button>
     </div>
     <!-- end title bar -->
   </div>
@@ -60,40 +61,29 @@
       <tr class="border-top {% if order.status == 'placed' %} bg-light {% endif %}">
         <td class="table-column-pe-0">
         </td>
-        <!-- order ref -->
+        <!-- category icon -->
         <td>
           <span class="d-block h4 text-start">
             <a type="button"  href="#" data-bs-toggle="modal" data-bs-target="#">
-              <small><i class="fa fa-{{ category.icon }}"></i>
+              <small>
+                <i class="fa fa-{{ category.icon }} me-2"></i>
                 {{ category.name }}
               </small>
             </a>
           </span>
         </td>
-        <!-- client phone -->
-        <td>
-          <span class="d-block h4 text-start"><small><a href="tel:{{ order.client_phone }}">{{ order.client_phone }}</a></small></span>
-        </td>
-        <!-- status -->
+        <!-- category name -->
         <td>
           <span class="d-block h4 text-start">
-            {% if not order.status == 'placed' and not order.status == 'paid'%}
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: {{ order.progress }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            {% endif %}
-
-            {% if order.status == 'placed' %}
-            <span class="d-block h5 text-center">
-              NEW
-            </span>
-            {% endif %}
-
-            {% if order.status == 'paid' %}
-            <span class="d-block h5 text-center">
-              PAID
-            </span>
-            {% endif %}
+            <small>{{ category.en_name }}</small>
+            <small>{{ category.fr_name }}</small>
+            <small>{{ category.ar_name }}</small>
+          </span>
+        </td>
+        <!-- collections -->
+        <td>
+          <span class="d-block h4 text-start">
+            collections :
           </span>
         </td>
         <!-- creation date -->
