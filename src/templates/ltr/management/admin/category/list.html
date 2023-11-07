@@ -63,7 +63,7 @@
         <td>
           <span class="d-block h4 text-start">
             <a type="button"  href="#" data-bs-toggle="modal" data-bs-target="#">
-              <i class="fa fa-{{ category.icon }} me-2" data-bs-toggle="tooltip" data-bs-placement="right" title="en de"></i>
+              <i class="fa fa-{{ category.icon|title }} me-2" data-bs-toggle="tooltip" data-bs-placement="right" title="en: {{ category.en_name }}/fr: {{ category.fr_name }}/ar: {{ category.ar_name }}"></i>
               <small>{{ category.name }}</small>
             </a>
           </span>
@@ -72,7 +72,15 @@
         <!-- collections -->
         <td>
           <span class="d-block h4 text-start">
-            <small>collections :{{ category.collections.all.count }}</small>
+            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_collection">
+              <i class="fa fa-plus me-1"></i>
+              <span class="text-muted fs-6">
+                add a collection
+                {% if category.collections.all.count %}
+                ({{ category.collections.all.count }})
+                {% endif %}
+              </span>
+            </a>
           </span>
         </td>
         <!-- creation date -->
