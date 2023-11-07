@@ -443,7 +443,7 @@ class Collection(models.Model):
             return self.ar_name
     def check_activation(self):
         activate = True
-        if not self.icon or not self.fr_name or not self.ar_name:
+        if not self.fr_name or not self.ar_name:
             activate = False
         return activate
 #                                                                        #
