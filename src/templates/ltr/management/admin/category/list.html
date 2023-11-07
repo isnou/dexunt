@@ -98,10 +98,10 @@
         </td>
         <!-- collections collapse -->
         <td>
-          <a type="button" class="btn btn-ghost btn-icon me-2" data-bs-toggle="modal" data-bs-target="#">
-            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete category"></i>
-          </a>
           <span class="d-block h4 text-end">
+            <a type="button" class="btn btn-ghost btn-icon me-2" data-bs-toggle="modal" data-bs-target="#">
+              <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete category"></i>
+            </a>
             {% if category.collections.all.count %}
             <!-- toggle details -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ category.id }}" aria-expanded="false">
