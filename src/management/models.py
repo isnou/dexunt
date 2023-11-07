@@ -394,7 +394,8 @@ class Category(models.Model):
         new_collection = Collection(en_name=request.POST.get('en_name', None),
                                     fr_name=request.POST.get('fr_name', None),
                                     ar_name=request.POST.get('ar_name', None),
-                                    ).save()
+                                    )
+        new_collection.save()
         new_collection.category.add(self)
     # ----- variables ----- #
     def name(self):
