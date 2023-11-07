@@ -386,7 +386,7 @@ class Category(models.Model):
     fr_name = models.CharField(max_length=300, blank=True, null=True)
     ar_name = models.CharField(max_length=300, blank=True, null=True)
     # ----- #
-    icon = models.CharField(max_length=500, blank=True, null=True)
+    icon = models.CharField(max_length=300, blank=True, null=True)
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Categories"
