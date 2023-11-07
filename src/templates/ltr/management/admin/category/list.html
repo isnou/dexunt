@@ -50,7 +50,7 @@
   </div>
   <!-- end header -->
 
-  {% if categories.has_other_pages %}
+  {% if categories %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table table-hover">
@@ -172,7 +172,7 @@
       <nav>
         {% if categories.has_other_pages %}
         <ul class="pagination justify-content-center">
-          {% if all_orders.has_previous %}
+          {% if categories.has_previous %}
           <li class="page-item">
             <a class="page-link" href="?page={{ categories.previous_page_number }}" tabindex="-1">Previous</a>
           </li>
