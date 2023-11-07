@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Product ,Variant ,Feature ,Option ,FlashProduct, Store
+from .models import Product ,Variant ,Feature ,Option ,FlashProduct, Store, Category
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class ProductForm(ModelForm):

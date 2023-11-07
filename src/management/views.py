@@ -1166,10 +1166,14 @@ def manage_categories(request, action):
             'categories': categories,
         }
         return render(request, url, context)
-    if action == 'add_new_tag':
+    if action == 'add_a_category':
         if request.method == 'POST':
-            Tag(title=request.POST.get('title', False)).save()
-            return redirect('admin-manage-tags', 'main')
+            Category(en_name=request.POST.get('en_name', None),
+                     fr_name=request.POST.get('fr_name', None),
+                     ar_name=request.POST.get('ar_name', None),
+                     icon=request.POST.get('icon', None)
+                     ).save()
+            return redirect('admin-manage-categories', 'main')
     if action == 'delete_tag':
         tag_id = request.GET.get('tag_id', False)
         selected_tag = Tag.objects.all().get(id=tag_id)
