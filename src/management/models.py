@@ -337,6 +337,18 @@ class Product(models.Model):
                 activation = True
         self.is_activated = activation
         super().save()
+    def add_tag(self, ta_id):
+        tag = Tag.objects.all().get(id=ta_id)
+        tag.product.add(self)
+    def remove_tag(self, ta_id):
+        tag = Tag.objects.all().get(id=ta_id)
+        tag.product.remove(self)
+    def add_collection(self, co_id):
+        collection = Collection.objects.all().get(id=co_id)
+        collection.product.add(self)
+    def remove_collection(self, co_id):
+        collection = Collection.objects.all().get(id=co_id)
+        collection.product.remove(self)
     # ----- variables ----- #
     def title(self):
         language = global_request.session.get('language')

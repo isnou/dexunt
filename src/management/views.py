@@ -554,8 +554,7 @@ def manage_products(request, action):
             checked_tags = request.POST.getlist('checked_tags')
             selected_product = Product.objects.all().get(id=product_id)
             for c_t in checked_tags:
-                tag = Tag.objects.all().get(id=c_t)
-                tag.product.add(selected_product)
+                selected_product.add_tag(c_t)
             return redirect('admin-manage-products', 'view_product')
     if action == 'delete_tags':
         if request.method == 'POST':
@@ -563,8 +562,23 @@ def manage_products(request, action):
             checked_tags = request.POST.getlist('checked_tags')
             selected_product = Product.objects.all().get(id=product_id)
             for c_t in checked_tags:
-                tag = Tag.objects.all().get(id=c_t)
-                tag.product.remove(selected_product)
+                selected_product.remove_tag(c_t)
+            return redirect('admin-manage-products', 'view_product')
+    if action == 'add_collections':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id')
+            checked_collections = request.POST.getlist('checked_collections')
+            selected_product = Product.objects.all().get(id=product_id)
+            for c_t in checked_collections:
+                selected_product.add_collection(c_t)
+            return redirect('admin-manage-products', 'view_product')
+    if action == 'delete_collections':
+        if request.method == 'POST':
+            product_id = request.POST.get('product_id')
+            checked_collections = request.POST.getlist('checked_collections')
+            selected_product = Product.objects.all().get(id=product_id)
+            for c_t in checked_collections:
+                selected_product.remove_collection(c_t)
             return redirect('admin-manage-products', 'view_product')
     # --------------- selected variant ------------ #
     if action == 'view_variant':
