@@ -65,7 +65,7 @@
               {% if selected_product.tags.all.count %}
               <!-- delete tags -->
               <a href="javascript:;" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags_modal">
-                <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete tags"></i>
+                <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
               </a>
               {% endif %}
             </h5>
@@ -106,6 +106,65 @@
           </div>
         </form>
 
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="mb-3">
+    <!-- tags -->
+    <div class="card">
+      <div class="card-header card-header-content-md-between">
+        <!-- title -->
+        <div class="mb-2 mb-md-0">
+          <div class="flex-grow-1">
+            <h5 class="text-inherit mb-0">
+              Collections
+
+              {% if selected_product.collections.all.count %}
+              <!-- delete tags -->
+              <a href="javascript:;" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_collections_modal">
+                <i class="fa fa-trash ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+              </a>
+              {% endif %}
+            </h5>
+          </div>
+        </div>
+        <!-- end title -->
+
+        <!-- title bar -->
+        <div class="d-grid d-sm-flex gap-2">
+          <!-- add feature button -->
+          <a href="javascript:;" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_collection">
+            <i class="fa fa-plus me-1"></i>
+            add collection
+          </a>
+          <!-- end add feature button -->
+        </div>
+        <!-- end title bar -->
+      </div>
+
+      {% if selected_product.collections.all.count %}
+      <div class="card-body">
+        <form id="delete_collections_form" action="{% url 'admin-manage-products' 'delete_collections' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
+          <div class="row">
+            {% for collection in selected_product.collections.all %}
+            <div class="col-sm mb-2 mb-sm-0">
+              <label class="form-control" for="collection_{{ collection.id }}">
+                <span class="form-check">
+                  <input type="checkbox" class="form-check-input" value="{{ collection.id }}" name="checked_collections" id="collection_{{ collection.id }}">
+                  <span class="form-check-label">{{ collection.name }}</span>
+                </span>
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </form>
       </div>
       {% endif %}
     </div>
@@ -659,4 +718,42 @@
     </div>
   </div>
 </div>
+
+<!-- add collections modal -->
+<div id="add_collection" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="add_collection_form" action="{% url 'admin-manage-products' 'add_tags' %}" class="js-validate need-validate" novalidate method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
+
+          <div class="row">
+            {% for collection in selected_product.unselected_collections %}
+            <div class="col-sm mb-2">
+              <label class="form-control" for="selected_collection_{{ collection.id }}">
+                <span class="form-check">
+                  <input type="checkbox" class="form-check-input" value="{{ collection.id }}" name="checked_collections" id="selected_collection_{{ collection.id }}">
+                  <span class="form-check-label">{{ collection.title }}</span>
+                </span>
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="add_collection_form">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 {% endblock %}
