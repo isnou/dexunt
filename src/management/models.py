@@ -410,15 +410,12 @@ class Category(models.Model):
         if language == 'ar-dz':
             return self.ar_name
     def check_collection_activation(self):
-        activate = True
         if not self.collections.all().count():
-            activate = False
+            return False
         else:
             for c in self.collections.all():
-                if not c.is_activated:
-                    activate = False
-                    break
-        return activate
+                if c.is_activated:
+                    return True
     def check_activation(self):
         if not self.icon or not self.fr_name or not self.ar_name or not self.check_collection_activation():
             return False
