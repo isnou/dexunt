@@ -412,7 +412,7 @@ class Collection(models.Model):
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     # ----- relations ----- #
-    category = models.ForeignKey('management.Category', on_delete=models.CASCADE, blank=True, null=True)
+    category = models.ForeignKey('management.Category', related_name='collections', on_delete=models.CASCADE, blank=True, null=True)
     product = models.ManyToManyField(Product, related_name='collections', blank=True)
     # ----- content ----- #
     en_name = models.CharField(max_length=300, blank=True, null=True)
