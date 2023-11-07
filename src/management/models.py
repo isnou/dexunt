@@ -411,8 +411,12 @@ class Category(models.Model):
             activate = False
         else:
             for c in self.collections.all():
+                if not c.is_activated:
+                    activate = False
+                    break
                 if not c.check_activation():
                     activate = False
+                    break
         return activate
     def check_activation(self):
         activate = True
