@@ -50,7 +50,7 @@
   </div>
   <!-- end header -->
 
-  {% if paginate %}
+  {% if categories.has_other_pages %}
   <!-- table -->
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table table-hover">
@@ -170,16 +170,16 @@
     <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
       <!-- Pagination -->
       <nav>
-        {% if all_orders.has_other_pages %}
+        {% if categories.has_other_pages %}
         <ul class="pagination justify-content-center">
           {% if all_orders.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ all_orders.previous_page_number }}" tabindex="-1">Previous</a>
+            <a class="page-link" href="?page={{ categories.previous_page_number }}" tabindex="-1">Previous</a>
           </li>
           {% endif %}
 
-          {% for i in all_orders.paginator.page_range %}
-          {% if all_orders.number == i %}
+          {% for i in categories.paginator.page_range %}
+          {% if categories.number == i %}
           <li class="page-item active">
             <a class="page-link" href="?page={{ i }}">{{ i }} <span class="visually-hidden">(current)</span></a>
           </li>
@@ -190,9 +190,9 @@
           {% endif %}
           {% endfor %}
 
-          {% if all_orders.has_next %}
+          {% if categories.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ all_orders.next_page_number }}">Next</a>
+            <a class="page-link" href="?page={{ categories.next_page_number }}">Next</a>
           </li>
           {% else %}
           <li class="page-item disabled">
@@ -211,7 +211,7 @@
   <div class="card-footer">
     <div class="row text-center">
       <div class="col-sm mb-2 mb-sm-0">
-        Your don't have orders yet .
+        No categories .
       </div>
     </div>
   </div>
