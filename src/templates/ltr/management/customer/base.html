@@ -4,11 +4,9 @@
 <head>
     <!-- title block -->
     {% block title %} {% endblock %}
-
-    <link rel="stylesheet" href="{% static 'home-page/libs/tiny-slider/dist/tiny-slider.css' %}"/>
-    <link rel="stylesheet" href="{% static 'home-page/libs/slick-carousel/slick/slick.css' %}"/>
-    <link rel="stylesheet" href="{% static 'home-page/libs/slick-carousel/slick/slick-theme.css' %}"/>
-    <script src="https://kit.fontawesome.com/f9c426c597.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/tiny-slider/dist/tiny-slider.css' %}"/>
+    <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick.css' %}"/>
+    <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick-theme.css' %}"/>
 
     <!-- meta tags -->
     <meta charset="utf-8">
@@ -17,22 +15,25 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-M8S4MT3EYG');
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-M8S4MT3EYG');
     </script>
 
     <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'home-page/images/favicon/favicon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon/favicon.png' %}">
 
     <!-- Libs CSS -->
-    <link rel="stylesheet" href="{% static 'home-page/libs/bootstrap-icons/font/bootstrap-icons.css' %}"/>
-    <link rel="stylesheet" href="{% static 'home-page/libs/feather-webfont/dist/feather-icons.css' %}"/>
-    <link rel="stylesheet" href="{% static 'home-page/libs/simplebar/dist/simplebar.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/bootstrap-icons/font/bootstrap-icons.css' %}"/>
+    <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/feather-webfont/dist/feather-icons.css' %}"/>
+    <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/simplebar/dist/simplebar.min.css' %}"/>
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="{% static 'home-page/css/theme.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'ltr/landing-page/css/theme.min.css' %}"/>
+
+    <!-- JQuery -->
+    <script src="{% static 'ltr/landing-page/libs/jquery/dist/jquery.min.js' %}"></script>
 
     <!-- Stars Rating CSS -->
     <link rel="stylesheet" href="{% static 'css-stars-rater/main.css' %}"/>
@@ -733,20 +734,20 @@
 </footer>
 <!-- Javascript-->
 <!-- Libs JS -->
-<script src="{% static 'home-page/libs/jquery/dist/jquery.min.js' %}"></script>
-<script src="{% static 'home-page/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'home-page/libs/simplebar/dist/simplebar.min.js' %}"></script>
+<script src="{% static 'ltr/home-page/libs/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'ltr/home-page/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'ltr/home-page/libs/simplebar/dist/simplebar.min.js' %}"></script>
 
 <!-- Theme JS -->
-<script src="{% static 'home-page/js/theme.min.js' %}"></script>
-<script src="{% static 'home-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
-<script src="{% static 'home-page/js/vendors/countdown.js' %}"></script>
-<script src="{% static 'home-page/libs/slick-carousel/slick/slick.min.js' %}"></script>
-<script src="{% static 'home-page/js/vendors/slick-slider.js' %}"></script>
-<script src="{% static 'home-page/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
-<script src="{% static 'home-page/js/vendors/tns-slider.js' %}"></script>
-<script src="{% static 'home-page/js/vendors/zoom.js' %}"></script>
-<script src="{% static 'home-page/js/vendors/increment-value.js' %}"></script>
+<script src="{% static 'ltr/home-page/js/theme.min.js' %}"></script>
+<script src="{% static 'ltr/home-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'ltr/home-page/js/vendors/countdown.js' %}"></script>
+<script src="{% static 'ltr/home-page/libs/slick-carousel/slick/slick.min.js' %}"></script>
+<script src="{% static 'ltr/home-page/js/vendors/slick-slider.js' %}"></script>
+<script src="{% static 'ltr/home-page/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
+<script src="{% static 'ltr/home-page/js/vendors/tns-slider.js' %}"></script>
+<script src="{% static 'ltr/home-page/js/vendors/zoom.js' %}"></script>
+<script src="{% static 'ltr/home-page/js/vendors/increment-value.js' %}"></script>
 
 <!-- HTMX -->
 <script src="{% static 'htmx/htmx.min.js' %}"></script>
