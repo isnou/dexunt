@@ -390,6 +390,12 @@ class Category(models.Model):
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Categories"
+    def add_collection(self, request):
+        Collection(en_name=request.POST.get('en_name', None),
+                   fr_name=request.POST.get('fr_name', None),
+                   ar_name=request.POST.get('ar_name', None),
+                   category=self
+                   ).save()
     # ----- variables ----- #
     def name(self):
         language = global_request.session.get('language')
@@ -412,6 +418,15 @@ class Collection(models.Model):
     en_name = models.CharField(max_length=300, blank=True, null=True)
     fr_name = models.CharField(max_length=300, blank=True, null=True)
     ar_name = models.CharField(max_length=300, blank=True, null=True)
+    # ----- variables ----- #
+    def name(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_name
+        if language == 'fr-fr':
+            return self.fr_name
+        if language == 'ar-dz':
+            return self.ar_name
 #                                                                        #
 class Tag(models.Model):
     # ----- relations ----- #
