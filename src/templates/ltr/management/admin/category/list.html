@@ -86,15 +86,15 @@
 
         <!-- activation -->
         <td>
-          {% if category.can_be_activated %}
+          {% if category.check_activation %}
           <span class="text-center">
             {% if category.is_activated %}
             <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
-              <i class="fa fa-toggle-on"></i>
+              <i class="fa fa-toggle-on fa-2xl"></i>
             </a>
             {% else %}
             <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
-              <i class="fa fa-toggle-off"></i>
+              <i class="fa fa-toggle-off fa-2xl"></i>
             </a>
             {% endif %}
           </span>
@@ -115,7 +115,7 @@
       </tr>
       {% for collection in category.collections.all %}
       <!-- products list -->
-      <tr class="collapse {% if product.status == 'processed' %} bg-light show {% endif %}" id="collapse_{{ category.id }}">
+      <tr class="collapse {% if not collection.is_activated %} bg-light show {% endif %}" id="collapse_{{ category.id }}">
         <!-- product title and image -->
         <td class="table-column-ps-0">
           <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.option.variant.product.id }}">
