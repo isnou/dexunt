@@ -1134,7 +1134,7 @@ def manage_categories(request, action):
     direction = request.session.get('direction')
 
     nav_side = 'categories'
-    items_by_page = 1
+    items_by_page = 10
     # --------------- main page ------------------- #
     if action == 'main':
         url = direction + "/management/admin/category/list.html"
