@@ -86,18 +86,17 @@
 
         <!-- activation -->
         <td>
+          
+          {% if not category.is_activated %}
           {% if category.check_activation %}
-          <span class="text-center">
-            {% if category.is_activated %}
-            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
-              <i class="fa fa-toggle-on fa-2xl"></i>
-            </a>
-            {% else %}
-            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
-              <i class="fa fa-toggle-off fa-2xl"></i>
-            </a>
-            {% endif %}
-          </span>
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fa fa-toggle-off fa-2xl"></i>
+          </a>
+          {% endif %}
+          {% else %}
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fa fa-toggle-on fa-2xl"></i>
+          </a>
           {% endif %}
         </td>
 
