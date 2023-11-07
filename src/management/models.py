@@ -411,7 +411,7 @@ class Category(models.Model):
             activate = False
         else:
             for c in self.collections.all():
-                if not c.is_activated:
+                if not c.check_activation():
                     activate = False
         return activate
     def check_activation(self):
@@ -441,6 +441,11 @@ class Collection(models.Model):
             return self.fr_name
         if language == 'ar-dz':
             return self.ar_name
+    def check_activation(self):
+        activate = True
+        if not self.icon or not self.fr_name or not self.ar_name:
+            activate = False
+        return activate
 #                                                                        #
 class Tag(models.Model):
     # ----- relations ----- #
