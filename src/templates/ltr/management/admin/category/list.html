@@ -68,7 +68,6 @@
             </a>
           </span>
         </td>
-
         <!-- collections -->
         <td>
           <span class="d-block h4 text-start">
@@ -83,10 +82,8 @@
             </a>
           </span>
         </td>
-
         <!-- activation -->
         <td>
-
           {% if not category.is_activated %}
           {% if category.check_activation %}
           <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
@@ -99,9 +96,11 @@
           </a>
           {% endif %}
         </td>
-
         <!-- collections collapse -->
-        <td class="text-end">
+        <td>
+          <a type="button" class="btn btn-ghost btn-icon me-2" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete category"></i>
+          </a>
           <span class="d-block h4 text-end">
             {% if category.collections.all.count %}
             <!-- toggle details -->
@@ -116,41 +115,42 @@
       <!-- products list -->
       <tr class="collapse {% if not collection.is_activated %} bg-light show {% endif %}" id="collapse_{{ category.id }}">
         <!-- product title and image -->
-        <td class="table-column-ps-0">
-          <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_product' %}?product_id={{ product.option.variant.product.id }}">
-            <div class="flex-shrink-0">
-              <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ product.image }}">
-            </div>
-            <div class="flex-grow-1 ms-3">
-              <h5 class="text-inherit h5 me-2">{{ collection.name }}</h5>
-              <small>
-                <span class="d-block text-body fs-6 text-wrap">
-                  {{ product.en_detail }}
-                </span>
-              </small>
-            </div>
-            {% if product.lack_of_quantity %}
-            <strong data-bs-toggle="tooltip" data-bs-placement="top" title="lack of quantity" style="color: #ff0000;">
-              <i class="fa fa-triangle-exclamation me-4"></i>
-            </strong>
-            {% endif %}
-          </a>
-        </td>
-        <!-- # -->
-        <td>
-          {{ product.status }}
-        </td>
-        <!-- price -->
-        <td>
-          <span class="d-block h4 text-start"><small>{{ product.quantity }} x {{ product.total_price|floatformat:"0g" }} <small>DZD</small></small></span>
-        </td>
-        <!-- product actions -->
         <td class="text-end">
-          {% if product.status == 'processed' %}
-          <a type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#product_collected_{{ product.id }}">
-            <i class="fa fa-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Piked up"></i>
+          <h5 class="text-inherit h5 me-2">{{ collection.name }}</h5>
+        </td>
+        <!-- collection name -->
+        <td>
+          <span class="d-block h4 text-start">
+            <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_collection_{{ category.id }}">
+              <i class="fa fa-plus me-1"></i>
+              <span class="text-muted fs-6">
+                add products
+                {% if collection.products.all.count %}
+                ({{ collection.products.all.count }})
+                {% endif %}
+              </span>
+            </a>
+          </span>
+        </td>
+        <!-- collection activation -->
+        <td>
+          {% if not collection.is_activated %}
+          {% if collection.check_activation %}
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fa fa-toggle-off fa-2xl"></i>
           </a>
           {% endif %}
+          {% else %}
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fa fa-toggle-on fa-2xl"></i>
+          </a>
+          {% endif %}
+        </td>
+        <!-- collection actions -->
+        <td class="text-end">
+          <a type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete collection"></i>
+          </a>
         </td>
       </tr>
       {% endfor %}
@@ -575,7 +575,7 @@
       <div class="modal-body mx-4">
         <div>
           <div class="text-center mb-7">
-            <h2>Add a collection to {{ category.name }}</h2>
+            <h2>Add a {{ category.name|title }} collection</h2>
           </div>
           <form action="{% url 'admin-manage-categories' 'add_a_collection' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}

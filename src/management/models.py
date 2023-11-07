@@ -396,6 +396,10 @@ class Category(models.Model):
                    ar_name=request.POST.get('ar_name', None),
                    category=self
                    ).save()
+    def activate(self):
+        if self.check_activation():
+            self.is_activated = True
+            super().save()
     # ----- variables ----- #
     def name(self):
         language = global_request.session.get('language')
@@ -414,15 +418,11 @@ class Category(models.Model):
                 if not c.is_activated:
                     activate = False
                     break
-                if not c.check_activation():
-                    activate = False
-                    break
         return activate
     def check_activation(self):
-        activate = True
         if not self.icon or not self.fr_name or not self.ar_name or not self.check_collection_activation():
-            activate = False
-        return activate
+            return False
+        return True
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
@@ -436,6 +436,11 @@ class Collection(models.Model):
     en_name = models.CharField(max_length=300, blank=True, null=True)
     fr_name = models.CharField(max_length=300, blank=True, null=True)
     ar_name = models.CharField(max_length=300, blank=True, null=True)
+    # ----- functions ----- #
+    def activate(self):
+        if self.check_activation():
+            self.is_activated = True
+            super().save()
     # ----- variables ----- #
     def name(self):
         language = global_request.session.get('language')
@@ -446,10 +451,11 @@ class Collection(models.Model):
         if language == 'ar-dz':
             return self.ar_name
     def check_activation(self):
-        activate = True
+        if not self.product.all().count():
+            return False
         if not self.fr_name or not self.ar_name:
-            activate = False
-        return activate
+            return False
+        return True
 #                                                                        #
 class Tag(models.Model):
     # ----- relations ----- #
