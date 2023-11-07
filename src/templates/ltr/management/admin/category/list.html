@@ -82,29 +82,22 @@
         <!-- collections -->
         <td>
           <span class="d-block h4 text-start">
-            collections :
+            <small>collections :{{ category.collections.all.count }}</small>
           </span>
         </td>
         <!-- creation date -->
         <td class="text-end">
           <span class="d-block h4 text-end">
-            {% if order.status == 'created' %}
-            <!-- delete order -->
-            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_order_modal_{{ order.id }}">
-              <i class="bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
-            </button>
-            {% else %}
-            <!-- order creation date -->
-            <small>{{ order.creation_date|date:'M' }} {{ order.creation_date|date:'d' }} , {{ order.creation_date|time:'H' }}:{{ order.creation_date|time:'i' }}</small>
-            {% endif %}
+            {% if category.collections.all.count %}
             <!-- toggle details -->
-            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="false">
+            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="collapse" data-bs-target="#collapse_{{ category.id }}" aria-expanded="false">
               <i class="fa fa-chevron-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Show Details"></i>
             </button>
+            {% endif %}
           </span>
         </td>
       </tr>
-      {% for product in order.selected_products.all %}
+      {% for collection in category.collections.all %}
       <!-- products list -->
       <tr class="collapse {% if product.status == 'processed' %} bg-light show {% endif %}" id="collapse_{{ order.id }}">
         <td class="table-column-pe-0">
