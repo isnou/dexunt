@@ -1189,7 +1189,7 @@ def manage_categories(request, action):
         return redirect('admin-manage-tags', 'main')
     if action == 'add_a_collection':
         if request.method == 'POST':
-            category_id = request.GET.get('category_id', False)
+            category_id = request.POST.get('category_id', False)
             category = Category.objects.all().get(id=category_id)
             category.add_collection(request)
             return redirect('admin-manage-categories', 'main')
