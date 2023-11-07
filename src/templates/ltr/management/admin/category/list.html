@@ -99,8 +99,11 @@
         <!-- collections collapse -->
         <td>
           <span class="d-block h4 text-end">
-            <a type="button" class="btn btn-ghost btn-icon me-2" data-bs-toggle="modal" data-bs-target="#">
-              <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete category"></i>
+            <a type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#">
+              <i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+            </a>
+            <a type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#">
+              <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
             </a>
             {% if category.collections.all.count %}
             <!-- toggle details -->
@@ -115,7 +118,7 @@
       <!-- products list -->
       <tr class="collapse {% if not collection.is_activated %} bg-light show {% endif %}" id="collapse_{{ category.id }}">
         <!-- product title and image -->
-        <td class="text-end">
+        <td class="text-center">
           <h5 class="text-inherit h5 me-2">{{ collection.name }}</h5>
         </td>
         <!-- collection name -->
@@ -148,8 +151,11 @@
         </td>
         <!-- collection actions -->
         <td class="text-end">
+          <a type="button" class="btn btn-ghost btn-icon me-1" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
+          </a>
           <a type="button" class="btn btn-ghost btn-icon ms-2" data-bs-toggle="modal" data-bs-target="#">
-            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete collection"></i>
+            <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
           </a>
         </td>
       </tr>
