@@ -367,6 +367,11 @@ class Product(models.Model):
         for o_t in self.tags.all():
             selected_tags = selected_tags.exclude(id=o_t.id)
         return selected_tags
+    def unselected_collections(self):
+        selected_collections = Collection.objects.all()
+        for col in self.collections.all():
+            selected_collections = selected_collections.exclude(id=col.id)
+        return selected_collections
     def related_products(self):
         products_ids = []
         for t in self.tags.all():
