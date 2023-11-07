@@ -33,7 +33,7 @@
           <div class="input-group-prepend input-group-text">
             <i class="bi-search"></i>
           </div>
-          <input id="datatableSearch" type="search" class="form-control" placeholder="Search orders" aria-label="Search orders">
+          <input id="datatableSearch" type="search" class="form-control" placeholder="Search categories" aria-label="Search categories">
         </div>
       </form>
     </div>
@@ -41,6 +41,10 @@
 
     <!-- title bar -->
     <div class="d-grid d-sm-flex gap-2">
+      <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_category">
+        <i class="bi-plus-lg me-1"></i>
+        add a category
+      </button>
     </div>
     <!-- end title bar -->
   </div>
@@ -51,7 +55,7 @@
   <div class="table-responsive">
     <table id="all_products_table" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table table-hover">
       <tbody>
-      {% for order in all_orders %}
+      {% for category in categories %}
       <!-- orders list -->
       <tr class="border-top {% if order.status == 'placed' %} bg-light {% endif %}">
         <td class="table-column-pe-0">
@@ -59,12 +63,9 @@
         <!-- order ref -->
         <td>
           <span class="d-block h4 text-start">
-            <a type="button"  href="#" data-bs-toggle="modal" data-bs-target="#view_order_modal_{{ order.id }}">
-              <small><i class="fa-solid fa-hashtag"></i>
-                {{ order.ref }}
-                {% if order.client %}
-                <i class="fa-regular fa-user ms-4"></i>
-                {% endif %}
+            <a type="button"  href="#" data-bs-toggle="modal" data-bs-target="#">
+              <small><i class="fa fa-{{ category.icon }}"></i>
+                {{ category.name }}
               </small>
             </a>
           </span>
@@ -505,5 +506,67 @@
 </div>
 {% endfor %}
 {% endfor %}
+
+
+
+<!-- add a category modal -->
+<div id="add_a_category" class="modal fade" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mx-4">
+        <div id="add_new_product_modal_title">
+          <div class="text-center mb-7">
+            <h2>Add a category</h2>
+          </div>
+          <form action="{% url 'admin-manage-categories' 'add_a_category' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+
+            <div class="row mb-4">
+              <!-- english name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english name</span>
+                <input type="text" class="form-control" name="en_name" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end english name -->
+
+              <!-- french name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french name</span>
+                <input type="text" class="form-control" name="fr_name">
+              </div>
+              <!-- end french name -->
+
+              <!-- arabic name -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic name</span>
+                <input type="text" class="form-control" name="ar_name" dir="rtl">
+              </div>
+              <!-- end arabic name -->
+
+              <span class="divider-center mb-2">Font Awesome Icon</span>
+
+              <!-- icon -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">reference</span>
+                <input type="text" class="form-control" name=icon">
+              </div>
+              <!-- end icon -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
