@@ -61,24 +61,16 @@
       <tr class="border-top">
         <td class="table-column-pe-0">
         </td>
-        <!-- category icon -->
+        <!-- category name & icon -->
         <td>
           <span class="d-block h4 text-start">
             <a type="button"  href="#" data-bs-toggle="modal" data-bs-target="#">
-              <i class="fa fa-{{ category.icon }} me-2"></i>
+              <i class="fa fa-{{ category.icon }} me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="en: {{ category.en_name }}/fr: {{ category.fr_name }}/ar: {{ category.ar_name }}"></i>
+              <small>{{ category.name }}</small>
             </a>
           </span>
         </td>
-        <!-- category name -->
-        <td>
-          <span class="d-block h4 text-start">
-            <a type="button"  href="#" data-bs-toggle="modal" data-bs-target="#">
-              <small>{{ category.en_name }}</small><br>
-              <small>{{ category.fr_name }}</small><br>
-              <small>{{ category.ar_name }}</small>
-            </a>
-          </span>
-        </td>
+
         <!-- collections -->
         <td>
           <span class="d-block h4 text-start">
