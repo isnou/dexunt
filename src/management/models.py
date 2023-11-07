@@ -395,7 +395,7 @@ class Category(models.Model):
                                     fr_name=request.POST.get('fr_name', None),
                                     ar_name=request.POST.get('ar_name', None),
                                     ).save()
-        new_collection.add(self)
+        new_collection.category.add(self)
     # ----- variables ----- #
     def name(self):
         language = global_request.session.get('language')
