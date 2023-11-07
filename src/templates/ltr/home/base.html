@@ -1037,55 +1037,6 @@
   </div>
 </footer>
 
-<!-- Javascript-->
-<!-- Libs JS -->
-<script src="{% static 'ltr/landing-page/libs/jquery/dist/jquery.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/simplebar/dist/simplebar.min.js' %}"></script>
-<!-- Theme JS -->
-<script src="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/slick-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/tns-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/zoom.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/increment-value.js' %}"></script>
-
-<script src="{% static 'ltr/landing-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/countdown.js' %}"></script>
-
-
-<!-- HTMX -->
-<script src="{% static 'htmx/htmx.min.js' %}"></script>
-<!-- Mask inputs -->
-<script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
-<!-- Form Validation JS -->
-<script>
-(() => {
-  'use strict'
-  const forms = document.querySelectorAll('.needs-validation')
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
-</script>
-
-<!-- fontawesome JS -->
-<script src="https://kit.fontawesome.com/f9c426c597.js" crossorigin="anonymous"></script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-M8S4MT3EYG');
-</script>
 
 </body>
 </html>
