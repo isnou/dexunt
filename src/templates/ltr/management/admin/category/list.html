@@ -97,7 +97,7 @@
       </tr>
       {% for collection in category.collections.all %}
       <!-- products list -->
-      <tr class="collapse {% if product.status == 'processed' %} bg-light show {% endif %}" id="collapse_{{ order.id }}">
+      <tr class="collapse {% if product.status == 'processed' %} bg-light show {% endif %}" id="collapse_{{ category.id }}">
         <td class="table-column-pe-0">
         </td>
         <!-- product title and image -->
