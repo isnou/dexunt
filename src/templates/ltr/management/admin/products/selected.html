@@ -728,7 +728,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="add_collection_form" action="{% url 'admin-manage-products' 'add_tags' %}" class="js-validate need-validate" novalidate method="post">
+        <form id="add_collection_form" action="{% url 'admin-manage-products' 'add_collections' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
           <input type="hidden" name="product_id" value='{{ selected_product.id }}'>
 
@@ -754,6 +754,23 @@
   </div>
 </div>
 
-
+<!-- delete collections modal -->
+<div id="delete_collections_modal" class="modal fade" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to delete the selected collections.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" form="delete_collections_form">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
