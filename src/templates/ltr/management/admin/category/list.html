@@ -117,11 +117,11 @@
       {% for collection in category.collections.all %}
       <!-- products list -->
       <tr class="collapse {% if not collection.is_activated %} bg-light show {% endif %}" id="collapse_{{ category.id }}">
-        <!-- product title and image -->
-        <td class="text-center">
-          <h5 class="text-inherit h5 me-2">{{ collection.name }}</h5>
-        </td>
         <!-- collection name -->
+        <td class="text-center">
+          <h5 class="text-inherit h5 me-2">{{ collection.name|title }}</h5>
+        </td>
+        <!-- products -->
         <td>
           <span class="d-block h4 text-start">
             <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#add_a_collection_{{ category.id }}">
