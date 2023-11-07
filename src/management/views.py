@@ -1187,6 +1187,13 @@ def manage_categories(request, action):
         for p in selected_tag.product.all():
             selected_tag.product.remove(p)
         return redirect('admin-manage-tags', 'main')
+    if action == 'add_a_collection':
+        if request.method == 'POST':
+            category_id = request.GET.get('category_id', False)
+            category = Category.objects.all().get(id=category_id)
+            category.add_collection(request)
+            return redirect('admin-manage-categories', 'main')
+
 # ---------------------------------------------------------------------- #
 
 
