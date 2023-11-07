@@ -1139,7 +1139,7 @@ def manage_categories(request, action):
     if action == 'main':
         url = direction + "/management/admin/category/list.html"
 
-        categories = Category.objects.all().order_by('title')
+        categories = Category.objects.all().order_by('en_name')
 
         if request.GET.get('init', None):
             request.session['categories-page'] = None
