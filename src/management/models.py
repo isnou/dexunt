@@ -390,6 +390,15 @@ class Category(models.Model):
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Categories"
+    # ----- variables ----- #
+    def name(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_name
+        if language == 'fr-fr':
+            return self.fr_name
+        if language == 'ar-dz':
+            return self.ar_name
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
