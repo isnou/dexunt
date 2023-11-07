@@ -432,7 +432,7 @@ class Tag(models.Model):
     # ----- relations ----- #
     product = models.ManyToManyField(Product, related_name='tags', blank=True)
     # ----- content ----- #
-    title = models.CharField(max_length=300, unique=True, null=True)
+    title = models.CharField(max_length=240, unique=True, null=True)
 # ---------------------------------------------------------------------- #
 
 # -------------------------- Special Products -------------------------- #
