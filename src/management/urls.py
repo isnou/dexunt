@@ -12,6 +12,7 @@ urlpatterns = [
     path('<str:action>/shipping', views.manage_shipping, name='admin-manage-shipping'),
     path('<str:action>/coupon', views.manage_coupon, name='admin-manage-coupon'),
     path('<str:action>/tags', views.manage_tags, name='admin-manage-tags'),
+    path('<str:action>/categories', views.manage_categories, name='admin-manage-categories'),
     # ---- cash manager ---- #
     path('<str:action>/cash/wallet', views.cash_wallet, name='cash-wallet'),
     path('<str:action>/cash/sales', views.cash_sales, name='cash-sales'),

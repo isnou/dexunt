@@ -6,7 +6,7 @@ from add_ons import functions
 from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
-from .models import Product, Variant, Option, Feature, Album, FlashProduct, Store
+from .models import Product, Variant, Option, Feature, Album, FlashProduct, Store, Collection, Category
 from .models import Tag
 from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm, StoreForm
 from .forms import ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
@@ -1105,6 +1105,65 @@ def manage_tags(request, action):
         context = {
             'nav_side': nav_side,
             'all_tags': all_tags,
+        }
+        return render(request, url, context)
+    if action == 'add_new_tag':
+        if request.method == 'POST':
+            Tag(title=request.POST.get('title', False)).save()
+            return redirect('admin-manage-tags', 'main')
+    if action == 'delete_tag':
+        tag_id = request.GET.get('tag_id', False)
+        selected_tag = Tag.objects.all().get(id=tag_id)
+        for p in selected_tag.product.all():
+            selected_tag.product.remove(p)
+        selected_tag.delete()
+        return redirect('admin-manage-tags', 'main')
+    if action == 'empty_tag':
+        tag_id = request.GET.get('tag_id', False)
+        selected_tag = Tag.objects.all().get(id=tag_id)
+        for p in selected_tag.product.all():
+            selected_tag.product.remove(p)
+        return redirect('admin-manage-tags', 'main')
+#                                                                        #
+@login_required
+@permission_required('management.delete_option')
+def manage_categories(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
+
+    nav_side = 'categories'
+    items_by_page = 60
+    # --------------- main page ------------------- #
+    if action == 'main':
+        url = direction + "/management/admin/category/list.html"
+
+        categories = Category.objects.all().order_by('title')
+
+        if request.GET.get('init', None):
+            request.session['categories-page'] = None
+
+        if not request.session.get('categories_filter', None):
+            request.session['categories_filter'] = 'all'
+
+        if request.GET.get('page', None):
+            page = request.GET.get('page', 1)
+            request.session['categories-page'] = page
+        else:
+            page = request.session.get('categories-page')
+
+        paginator = Paginator(categories, items_by_page)
+        try:
+            categories = paginator.page(page)
+        except PageNotAnInteger:
+            categories = paginator.page(1)
+        except EmptyPage:
+            categories = paginator.page(paginator.num_pages)
+
+        context = {
+            'nav_side': nav_side,
+            'categories': categories,
         }
         return render(request, url, context)
     if action == 'add_new_tag':

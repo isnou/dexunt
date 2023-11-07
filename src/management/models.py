@@ -242,7 +242,7 @@ class Variant(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
     is_available = models.BooleanField(default=False)
-    created_at = models.DateTimeField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
     product = models.ForeignKey('management.Product', on_delete=models.CASCADE, null=True)
     # ----- content ----- #
@@ -380,18 +380,22 @@ class Product(models.Model):
 class Category(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
-    # ----- relations ----- #
-    department = models.ForeignKey('management.Department', on_delete=models.CASCADE, null=True)
+    rates = models.IntegerField(default=0)
     # ----- content ----- #
     en_name = models.CharField(max_length=300, blank=True, null=True)
     fr_name = models.CharField(max_length=300, blank=True, null=True)
     ar_name = models.CharField(max_length=300, blank=True, null=True)
     # ----- #
     icon = models.CharField(max_length=500, blank=True, null=True)
+    # ----- functions ----- #
+    class Meta:
+        verbose_name_plural = "Categories"
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
+    rate = models.IntegerField(default=0)
+    sale = models.IntegerField(default=0)
     # ----- relations ----- #
     category = models.ForeignKey('management.Category', on_delete=models.CASCADE, blank=True, null=True)
     product = models.ManyToManyField(Product, related_name='collections', blank=True)
