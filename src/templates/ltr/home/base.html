@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick.css' %}"/>
   <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick-theme.css' %}"/>
 
+  <!-- meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Favicon icon-->
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon/favicon.png' %}">
@@ -1037,6 +1040,7 @@
 <!-- Javascript-->
 <!-- Libs JS -->
 <script src="{% static 'ltr/landing-page/libs/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'ltr/landing-page/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'ltr/landing-page/libs/simplebar/dist/simplebar.min.js' %}"></script>
 <!-- Theme JS -->
 <script src="{% static 'ltr/landing-page/js/theme.min.js' %}"></script>
@@ -1050,8 +1054,7 @@
 <script src="{% static 'ltr/landing-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
 <script src="{% static 'ltr/landing-page/js/vendors/countdown.js' %}"></script>
 
-<!-- fontawesome JS -->
-<script src="https://kit.fontawesome.com/f9c426c597.js" crossorigin="anonymous"></script>
+
 <!-- HTMX -->
 <script src="{% static 'htmx/htmx.min.js' %}"></script>
 <!-- Mask inputs -->
@@ -1072,6 +1075,18 @@
   })
 })()
 </script>
+
+<!-- fontawesome JS -->
+<script src="https://kit.fontawesome.com/f9c426c597.js" crossorigin="anonymous"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M8S4MT3EYG');
+  </script>
 
 </body>
 </html>
