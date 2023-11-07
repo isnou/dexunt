@@ -377,16 +377,6 @@ class Product(models.Model):
 # ---------------------------------------------------------------------- #
 
 # ----------------------------- Collections ---------------------------- #
-class Department(models.Model):
-    # ----- Technical ----- #
-    is_activated = models.BooleanField(default=False)
-    # ----- content ----- #
-    en_name = models.CharField(max_length=300, blank=True, null=True)
-    fr_name = models.CharField(max_length=300, blank=True, null=True)
-    ar_name = models.CharField(max_length=300, blank=True, null=True)
-    # ----- #
-    icon = models.CharField(max_length=500, blank=True, null=True)
-#                                                                        #
 class Category(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
