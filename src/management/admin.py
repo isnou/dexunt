@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Variant, Option, Album, Feature, FlashProduct, Store, Review, Tag
+from .models import Product, Variant, Option, Album, Feature, FlashProduct, Store, Review, Tag, Category, Collection
 from .forms import ProductDescriptionForm
 
 
@@ -11,6 +11,8 @@ admin.site.register(FlashProduct)
 admin.site.register(Store)
 admin.site.register(Review)
 admin.site.register(Tag)
+admin.site.register(Category)
+admin.site.register(Collection)
 
 class ProductAdmin(admin.ModelAdmin):
     form = ProductDescriptionForm
