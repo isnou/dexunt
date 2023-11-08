@@ -137,12 +137,12 @@
         <td>
           {% if not collection.is_activated %}
           {% if collection.check_activation %}
-          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="activate_collection_{{ category.id }}_{{ collection.id }}">
             <i class="fa fa-toggle-off fa-2xl"></i>
           </a>
           {% endif %}
           {% else %}
-          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#">
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="deactivate_collection_{{ category.id }}_{{ collection.id }}">
             <i class="fa fa-toggle-on fa-2xl"></i>
           </a>
           {% endif %}
@@ -620,5 +620,45 @@
     </div>
   </div>
 </div>
+{% for collection in category.collections.all %}
+<!-- deactivate collection modal -->
+<div id="deactivate_collection_{{ category.id }}_{{ collection.id }}" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to deactivate {{ collection.name|name }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <a href="{% url 'admin-manage-categories' 'deactivate_collection' %}?collection_id={{ collection.id }}" class="btn btn-primary">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- activate collection modal -->
+<div id="activate_collection_{{ category.id }}_{{ collection.id }}" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>click yes to activate {{ collection.name|name }}.</p>
+      </div>
+      <div class="modal-footer" style="align-self: center;">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+        <a href="{% url 'admin-manage-categories' 'activate_collection' %}?collection_id={{ collection.id }}" class="btn btn-primary">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endfor %}
+{% endfor %}
+
 {% endblock %}

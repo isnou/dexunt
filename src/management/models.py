@@ -417,6 +417,9 @@ class Category(models.Model):
         if self.check_activation():
             self.is_activated = True
             super().save()
+    def deactivate(self):
+        self.is_activated = False
+        super().save()
     # ----- variables ----- #
     def name(self):
         language = global_request.session.get('language')
@@ -433,6 +436,7 @@ class Category(models.Model):
             for c in self.collections.all():
                 if c.is_activated:
                     return True
+            return False
     def check_activation(self):
         if not self.icon or not self.fr_name or not self.ar_name or not self.check_collection_activation():
             return False
@@ -455,6 +459,10 @@ class Collection(models.Model):
         if self.check_activation():
             self.is_activated = True
             super().save()
+    def deactivate(self):
+        self.is_activated = False
+        super().save()
+        self.category.activate()
     # ----- variables ----- #
     def name(self):
         language = global_request.session.get('language')
