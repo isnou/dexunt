@@ -634,7 +634,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a href="{% url 'admin-manage-categories' 'deactivate_collection' %}?collection_id={{ collection.id }}" class="btn btn-primary">Yes</a>
+        <a href="{% url 'admin-manage-categories' 'deactivate_category' %}?category_id={{ category.id }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
   </div>
@@ -653,7 +653,7 @@
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a href="{% url 'admin-manage-categories' 'activate_collection' %}?collection_id={{ collection.id }}" class="btn btn-primary">Yes</a>
+        <a href="{% url 'admin-manage-categories' 'activate_category' %}?category_id={{ category.id }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
   </div>
