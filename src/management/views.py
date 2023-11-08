@@ -580,6 +580,7 @@ def manage_products(request, action):
             for c_t in checked_collections:
                 selected_product.remove_collection(c_t)
             return redirect('admin-manage-products', 'view_product')
+
     # --------------- selected variant ------------ #
     if action == 'view_variant':
         url = direction + "/management/admin/products/selected-variant.html"
@@ -1188,6 +1189,34 @@ def manage_categories(request, action):
                      icon = request.POST.get('icon', None)
                      ).save()
             return redirect('admin-manage-categories', 'main')
+    if action == 'activate_category':
+        category_id = request.GET.get('category_id', False)
+        selected_category = Category.objects.all().get(id=category_id)
+        selected_category.activate()
+        return redirect('admin-manage-categories', 'main')
+    if action == 'deactivate_category':
+        category_id = request.GET.get('category_id', False)
+        selected_category = Category.objects.all().get(id=category_id)
+        selected_category.deactivate()
+        return redirect('admin-manage-categories', 'main')
+    if action == 'add_a_collection':
+        if request.method == 'POST':
+            category_id = request.POST.get('category_id', False)
+            category = Category.objects.all().get(id=category_id)
+            category.add_collection(request)
+            return redirect('admin-manage-categories', 'main')
+    if action == 'activate_collection':
+        collection_id = request.GET.get('collection_id', False)
+        selected_collection = Collection.objects.all().get(id=collection_id)
+        selected_collection.activate()
+        return redirect('admin-manage-categories', 'main')
+    if action == 'deactivate_collection':
+        collection_id = request.GET.get('collection_id', False)
+        selected_collection = Collection.objects.all().get(id=collection_id)
+        selected_collection.deactivate()
+        return redirect('admin-manage-categories', 'main')
+
+
     if action == 'delete_tag':
         tag_id = request.GET.get('tag_id', False)
         selected_tag = Tag.objects.all().get(id=tag_id)
@@ -1201,12 +1230,6 @@ def manage_categories(request, action):
         for p in selected_tag.product.all():
             selected_tag.product.remove(p)
         return redirect('admin-manage-tags', 'main')
-    if action == 'add_a_collection':
-        if request.method == 'POST':
-            category_id = request.POST.get('category_id', False)
-            category = Category.objects.all().get(id=category_id)
-            category.add_collection(request)
-            return redirect('admin-manage-categories', 'main')
 
 # ---------------------------------------------------------------------- #
 
