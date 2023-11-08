@@ -622,7 +622,7 @@
 </div>
 {% for collection in category.collections.all %}
 <!-- deactivate collection modal -->
-<div id="deactivate_collection_{{ category.id }}_{{ collection.id }}" class="modal fade">
+<div id="deactivate_collection_{{ category.id }}_{{ collection.id }}" class="modal fade" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -641,7 +641,7 @@
 </div>
 
 <!-- activate collection modal -->
-<div id="activate_collection_{{ category.id }}_{{ collection.id }}" class="modal fade">
+<div id="activate_collection_{{ category.id }}_{{ collection.id }}" class="modal fade" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
