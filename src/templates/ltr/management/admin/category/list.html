@@ -137,12 +137,12 @@
         <td>
           {% if not collection.is_activated %}
           {% if collection.check_activation %}
-          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="activate_collection_{{ category.id }}_{{ collection.id }}">
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#activate_collection_{{ category.id }}_{{ collection.id }}">
             <i class="fa fa-toggle-off fa-2xl"></i>
           </a>
           {% endif %}
           {% else %}
-          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="deactivate_collection_{{ category.id }}_{{ collection.id }}">
+          <a type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#deactivate_collection_{{ category.id }}_{{ collection.id }}">
             <i class="fa fa-toggle-on fa-2xl"></i>
           </a>
           {% endif %}
