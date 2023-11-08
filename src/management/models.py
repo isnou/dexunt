@@ -416,6 +416,8 @@ class Category(models.Model):
     def activate(self):
         if self.check_activation():
             self.is_activated = True
+        else:
+            self.is_activated = False
             super().save()
     def deactivate(self):
         self.is_activated = False
