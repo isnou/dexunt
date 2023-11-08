@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 from .models import Cart, SelectedProduct
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
-from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store
+from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store, Category
 from management.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
@@ -45,6 +45,7 @@ def home_page(request):
     all_stores = Store.objects.all().filter(is_activated=True).order_by('?')[:6]
     all_products = Product.objects.all().filter(is_activated=True)[:15]
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
+    categories = Category.objects.all().filter(is_activated=True).order_by('rates')
 
 
     grid_products = all_products[:10]
@@ -59,6 +60,7 @@ def home_page(request):
         'grid_products': grid_products,
         'published_flash_products': published_flash_products,
         'all_stores': all_stores,
+        'categories': categories,
     }
     return render(request, url, context)
 

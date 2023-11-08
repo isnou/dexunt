@@ -340,6 +340,79 @@
               Categories
             </a>
             <ul class="dropdown-menu dropdown-menu-lg">
+              {% for category in categories %}
+              <li class="dropdown-menu-list">
+                <a href="javascript:;" class="dropdown-item d-flex justify-content-between mb-1 py-1 " data-bs-toggle="dropdown" aria-expanded="false">
+                  <div>
+                    <i class="fa fa-{{ category.icon }}"></i>
+                    <span class="ms-1">{{ category.name|title }}</span>
+                  </div>
+                  <div>
+                    <i class="feather-icon icon-chevron-right"></i>
+                  </div>
+                </a>
+
+                <div class="dropdown-menu-list-submenu">
+                  <div>
+                    <ul class="list-unstyled">
+                      {% for collection in category.collections.all %}
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">{{ collection.name|title }}</a>
+                      </li>
+                      {% endfor %}
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Fresh Vegetables</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Herbs & Seasonings</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Fresh Fruits</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Organic Fruits & Vegetables</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Cuts & Sprouts</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Exotic Fruits & Veggies</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Flower Bouquets, Bunches</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Specialty</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <ul class="list-unstyled">
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Banana & Papaya</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Kiwi, Citrus Fruit</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Apples & Pomegranate</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Seasonal Fruits</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Mangoes</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" class="dropdown-item">Fruit Baskets</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+
               <li class="dropdown-menu-list">
                 <a href="javascript:;" class="dropdown-item d-flex justify-content-between mb-1 py-1 " data-bs-toggle="dropdown" aria-expanded="false">
                   <div>
