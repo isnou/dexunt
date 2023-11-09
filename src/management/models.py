@@ -444,11 +444,11 @@ class Category(models.Model):
             return True
         return False
     def first_collection_list(self):
-        return self.collections.all().order_by('rates')[:2]
+        return self.collections.all().order_by('rate')[:2]
     def second_collection_list(self):
-        return self.collections.all().order_by('rates')[2:4]
+        return self.collections.all().order_by('rate')[2:4]
     def third_collection_list(self):
-        return self.collections.all().order_by('rates')[4:6]
+        return self.collections.all().order_by('rate')[4:6]
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
