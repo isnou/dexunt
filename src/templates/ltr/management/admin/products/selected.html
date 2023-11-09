@@ -158,7 +158,7 @@
               <label class="form-control" for="collection_{{ collection.id }}">
                 <span class="form-check">
                   <input type="checkbox" class="form-check-input" value="{{ collection.id }}" name="checked_collections" id="collection_{{ collection.id }}">
-                  <span class="form-check-label">{{ collection.name }}</span>
+                  <span class="form-check-label">{{ collection.category.name|title }} - {{ collection.name|title }}</span>
                 </span>
               </label>
             </div>
@@ -424,13 +424,13 @@
               <!-- value -->
               <td class="text-start">
                 <h6 class="text-body">
-                  <small>{{ selected_product.en_title }} - {{ variant.en_spec }}</small>
+                  <small>{{ selected_product.en_title|title }} - {{ variant.en_spec|title }}</small>
                 </h6>
                 <h6 class="text-body">
-                  <small>{{ selected_product.fr_title }} - {{ variant.fr_spec }}</small>
+                  <small>{{ selected_product.fr_title|title }} - {{ variant.fr_spec|title }}</small>
                 </h6>
                 <h6 class="text-body" dir="rtl">
-                  <small>{{ selected_product.ar_title }} - {{ variant.ar_spec }}</small>
+                  <small>{{ selected_product.ar_title|title }} - {{ variant.ar_spec|title }}</small>
                 </h6>
               </td>
 
@@ -496,7 +496,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <p>click yes to activate {{ variant.en_spec }}.</p>
+        <p>click yes to activate {{ variant.spec }}.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
@@ -515,7 +515,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <p>click yes to deactivate {{ variant.en_spec }}.</p>
+        <p>click yes to deactivate {{ variant.spec|title }}.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
@@ -534,7 +534,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <p>click yes to delete {{ variant.en_spec }}.</p>
+        <p>click yes to delete {{ variant.spec|title }}.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
@@ -553,7 +553,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <p>click yes to duplicate {{ selected_product.en_title }} - {{ variant.en_spec }}.</p>
+        <p>click yes to duplicate {{ selected_product.title|title }} - {{ variant.spec|title }}.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
@@ -737,7 +737,7 @@
               <label class="form-control" for="selected_collection_{{ collection.id }}">
                 <span class="form-check">
                   <input type="checkbox" class="form-check-input" value="{{ collection.id }}" name="checked_collections" id="selected_collection_{{ collection.id }}">
-                  <span class="form-check-label">{{ collection.name }}</span>
+                  <span class="form-check-label">{{ collection.category.name|title }} - {{ collection.name|title }}</span>
                 </span>
               </label>
             </div>

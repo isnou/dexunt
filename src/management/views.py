@@ -1199,6 +1199,21 @@ def manage_categories(request, action):
         selected_category = Category.objects.all().get(id=category_id)
         selected_category.deactivate()
         return redirect('admin-manage-categories', 'main')
+    if action == 'delete_category':
+        category_id = request.GET.get('category_id', False)
+        selected_category = Category.objects.all().get(id=category_id)
+        for c in selected_category.collections.all():
+            c.delete()
+        selected_category.delete()
+        return redirect('admin-manage-categories', 'main')
+    if action == 'empty_category':
+        category_id = request.GET.get('category_id', False)
+        selected_category = Category.objects.all().get(id=category_id)
+        for c in selected_category.collections.all():
+            for p in c.product.all():
+                c.product.remove(p)
+        return redirect('admin-manage-categories', 'main')
+
     if action == 'add_a_collection':
         if request.method == 'POST':
             category_id = request.POST.get('category_id', False)
@@ -1215,7 +1230,17 @@ def manage_categories(request, action):
         selected_collection = Collection.objects.all().get(id=collection_id)
         selected_collection.deactivate()
         return redirect('admin-manage-categories', 'main')
-
+    if action == 'delete_collection':
+        collection_id = request.GET.get('collection_id', False)
+        selected_collection = Collection.objects.all().get(id=collection_id)
+        selected_collection.delete()
+        return redirect('admin-manage-categories', 'main')
+    if action == 'empty_collection':
+        collection_id = request.GET.get('collection_id', False)
+        selected_collection = Collection.objects.all().get(id=collection_id)
+        for p in selected_collection.product.all():
+            selected_collection.product.remove(p)
+        return redirect('admin-manage-categories', 'main')
 
     if action == 'delete_tag':
         tag_id = request.GET.get('tag_id', False)
