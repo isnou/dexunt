@@ -354,7 +354,7 @@
 
                 <div class="dropdown-menu-list-submenu">
                   <div>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled d-flex justify-content-between">
                       {% for collection in category.first_collection_list %}
                       <li>
                         <a href="javascript:;" class="dropdown-item">{{ collection.name|title }}</a>
@@ -364,7 +364,7 @@
                   </div>
 
                   <div>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled d-flex justify-content-between">
                       {% for collection in category.second_collection_list %}
                       <li>
                         <a href="javascript:;" class="dropdown-item">{{ collection.name|title }}</a>
@@ -374,7 +374,7 @@
                   </div>
 
                   <div>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled d-flex justify-content-between">
                       {% for collection in category.third_collection_list %}
                       <li>
                         <a href="javascript:;" class="dropdown-item">{{ collection.name|title }}</a>
