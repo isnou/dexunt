@@ -443,6 +443,12 @@ class Category(models.Model):
         if self.icon and self.fr_name and self.ar_name and self.check_collection_activation():
             return True
         return False
+    def first_collection_list(self):
+        return self.collections.all().order_by('rates')[:2]
+    def second_collection_list(self):
+        return self.collections.all().order_by('rates')[2:4]
+    def third_collection_list(self):
+        return self.collections.all().order_by('rates')[4:6]
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
