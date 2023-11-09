@@ -418,7 +418,7 @@ class Category(models.Model):
             self.is_activated = True
         else:
             self.is_activated = False
-            super().save()
+        super().save()
     def deactivate(self):
         self.is_activated = False
         super().save()
@@ -438,11 +438,11 @@ class Category(models.Model):
             for c in self.collections.all():
                 if c.is_activated:
                     return True
-            return False
+        return False
     def check_activation(self):
-        if not self.icon or not self.fr_name or not self.ar_name or not self.check_collection_activation():
-            return False
-        return True
+        if self.icon and self.fr_name and self.ar_name and self.check_collection_activation():
+            return True
+        return False
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
