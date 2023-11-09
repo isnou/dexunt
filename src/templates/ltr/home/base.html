@@ -353,7 +353,7 @@
                 </a>
 
                 <div class="dropdown-menu-list-submenu">
-                  <div class="d-flex justify-content-between">
+                  <div>
                     <ul class="list-unstyled">
                       {% for collection in category.first_collection_list %}
                       <li>
@@ -363,7 +363,7 @@
                     </ul>
                   </div>
 
-                  <div class="d-flex justify-content-between">
+                  <div>
                     <ul class="list-unstyled">
                       {% for collection in category.second_collection_list %}
                       <li>
@@ -373,11 +373,11 @@
                     </ul>
                   </div>
 
-                  <div class="d-flex justify-content-between">
+                  <div>
                     <ul class="list-unstyled">
                       {% for collection in category.third_collection_list %}
                       <li>
-                        <a href="javascript:;" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="javascript:;" class="dropdown-item  d-flex justify-content-between">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
