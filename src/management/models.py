@@ -488,6 +488,8 @@ class Collection(models.Model):
         if not self.fr_name or not self.ar_name:
             return False
         return True
+    def all_product(self):
+        return self.product.all().filter(is_activated=True)
 #                                                                        #
 class Tag(models.Model):
     # ----- relations ----- #
