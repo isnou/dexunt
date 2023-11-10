@@ -135,9 +135,6 @@ class User(AbstractUser):
     points = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     # ----- relations ----- #
-    # many selected_products #
-    # many delivery_addresses #
-    # many all_orders #
     wallet = models.OneToOneField(
         Wallet,
         on_delete=models.PROTECT,

@@ -222,7 +222,8 @@
             <div class="card mb-4 bg-light border-0">
                 <!-- card body -->
                 <div class="card-body p-9">
-                    <h2 class="mb-0 fs-1">{{ selected_collection.category.name|title }} | {{ selected_collection.name|title }}</h2>
+                    <img src="{% get_media_prefix %}{{ selected_collection.user.profile_photo }}" class="img-fluid">
+                    <h2 class="mb-0 fs-1">{{ selected_store.name|title }}</h2>
                 </div>
             </div>
             <!-- list icon -->
