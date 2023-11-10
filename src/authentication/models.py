@@ -130,8 +130,6 @@ class User(AbstractUser):
     is_member = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_cash_manager = models.BooleanField(default=False)
-    # ----- #
-    tags = models.CharField(max_length=5000, blank=True, null=True)
     points = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
     # ----- relations ----- #
@@ -181,15 +179,6 @@ class User(AbstractUser):
                 new_store = Store()
                 new_store.save()
                 self.store = new_store
-        self.tags = ''
-        if self.first_name:
-            self.tags += (', ' + self.first_name)
-        if self.last_name:
-            self.tags += (', ' + self.last_name)
-        if self.province:
-            self.tags += (', ' + self.province)
-        if self.municipality:
-            self.tags += (', ' + self.municipality)
         super().save()
     def change_role(self, new_role):
         self.is_customer = False
