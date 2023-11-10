@@ -217,7 +217,7 @@
 
 
                             <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}">
-                                <img src="{% get_media_prefix %}{{ product.image }}" class="mb-3 img-fluid">
+                                <img src="{% get_media_prefix %}{{ product.image }}" alt="{{ product.image.file_name }}" class="mb-3 img-fluid">
                             </a>
                         </div>
                         <div class="text-small mb-1">
