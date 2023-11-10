@@ -533,6 +533,8 @@ class Store(models.Model):
         self.is_activated = False
         super().save()
     # ----- variables ----- #
+    def logo(self):
+        return self.user.profile_photo
     def completed_orders(self):
         return self.orders.all().filter(status='completed')
     def all_variants(self):
