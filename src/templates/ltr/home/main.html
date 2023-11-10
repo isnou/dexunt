@@ -221,17 +221,13 @@
                             </a>
                         </div>
                         <div class="text-small mb-1">
-                            {% if product.brand  %}
-                            <small class="text-inherit text-decoration-none">{{ product.brand }}</small>
-                            {% else %}
-                            <a href="#" class="text-inherit text-decoration-none">
-                                <small>{{ product.store.name }}</small>
+                            <a href="{% url 'shop-page' 'grid' %}?collection_id={{ selected_collection.id }}" class="text-decoration-none text-muted">
+                                <small>{{ product.selected_collection.name|title }}</small>
                             </a>
-                            {% endif %}
                         </div>
                         <h2 class="fs-6">
-                            <a href="#" class="text-inherit text-decoration-none">
-                                {{ product.title }}
+                            <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}" class="text-inherit text-decoration-none">
+                                {{ product.title|title }}
                             </a>
                         </h2>
                         {% if product.selected_variant.selected_option.reviews.all.count %}

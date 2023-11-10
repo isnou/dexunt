@@ -374,6 +374,8 @@ class Product(models.Model):
             if v.selected_option().rates_quotient() > variant.selected_option().rates_quotient():
                 variant = v
         return variant
+    def selected_collection(self):
+        return self.collections.all().first()
     def unselected_tags(self):
         selected_tags = Tag.objects.all()
         for o_t in self.tags.all():

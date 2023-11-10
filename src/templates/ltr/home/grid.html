@@ -258,7 +258,7 @@
                                     <!-- product image -->
                                     <img src="{% get_media_prefix %}{{ product.image }}" alt="{{ product.image.file_name }}" class="mb-3 img-fluid">
                                 </a>
-                                
+
                                 <!-- product action btn -->
                                 <div class="card-product-action">
                                     <a href="shop-grid-3-column.html#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal">
@@ -274,45 +274,41 @@
                             </div>
                             <!-- heading -->
                             <div class="text-small mb-1">
-                                <a href="shop-grid-3-column.html#!" class="text-decoration-none text-muted">
-                                    <small>Snack & Munchies</small>
+                                <a href="{% url 'shop-page' 'grid' %}?collection_id={{ selected_collection.id }}" class="text-decoration-none text-muted">
+                                    <small>{{ product.selected_collection.name|title }}</small>
                                 </a>
                             </div>
                             <h2 class="fs-6">
-                                <a href="shop-single.html" class="text-inherit text-decoration-none">
-                                    Haldiram's Sev Bhujia
+                                <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}" class="text-inherit text-decoration-none">
+                                    {{ product.title|title }}
                                 </a>
                             </h2>
-                            <div>
 
-                                <!-- rating -->
-                                <small class="text-warning">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
+                            {% if product.selected_variant.selected_option.reviews.all.count %}
+                            <div class="text-warning">
+                                <small>
+                                    <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_one }}"></i>
+                                    <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_two }}"></i>
+                                    <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_three }}"></i>
+                                    <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_four }}"></i>
+                                    <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_five }}"></i>
                                 </small>
-                                <span class="text-muted small">4.5(149)</span>
+                                <span class="text-muted small">
+                                    ({{ product.selected_variant.selected_option.reviews.all.count }} reviews)
+                                </span>
                             </div>
-                            <!-- price -->
+                            {% endif %}
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <div>
-                                    <span class="text-dark">$18</span>
-                                    <span class="text-decoration-line-through text-muted">$24</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="shop-grid-3-column.html#!" class="btn btn-primary btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg> Add
-                                    </a>
+                                    <span class="text-dark">{{ product.selected_variant.selected_option.price|floatformat:"0g" }} DZD</span>
+                                    {% if product.selected_variant.selected_option.discount %}
+                                    <span class="text-decoration-line-through text-muted">{{ product.selected_variant.selected_option.discount|floatformat:"0g" }} DZD</span>
+                                    {% endif %}
                                 </div>
                             </div>
+                            
+
+
                         </div>
                     </div>
                 </div>
