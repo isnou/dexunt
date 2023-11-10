@@ -64,6 +64,20 @@ def home_page(request):
     }
     return render(request, url, context)
 
+def shop_page(request, action):
+    if not request.session.get('language', None):
+        request.session['language'] = 'en-us'
+        request.session['direction'] = 'ltr'
+    direction = request.session.get('direction')
+
+    if action == 'grid':
+        url = direction + "/home/grid.html"
+
+        context = {
+            'source_page': 'grid-page',
+        }
+        return render(request, url, context)
+
 def product_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
