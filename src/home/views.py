@@ -30,7 +30,7 @@ def home_page(request):
 
     request.session['variant_id'] = None
     request.session['option_id'] = None
-    request.session['collection'] = None
+    request.session['collection_id'] = None
 
     url = direction + "/home/main.html"
 
@@ -75,7 +75,7 @@ def shop_page(request, action):
         url = direction + "/home/grid.html"
         if request.GET.get('collection_id', False):
             collection_id = request.GET.get('collection_id')
-            request.session['collection'] = collection_id
+            request.session['collection_id'] = collection_id
         else:
             collection_id = request.session.get('collection_id')
 
