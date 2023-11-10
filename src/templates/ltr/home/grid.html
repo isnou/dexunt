@@ -205,8 +205,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="shop-grid-3-column.html#!">Home</a></li>
-                        <li class="breadcrumb-item"><a href="shop-grid-3-column.html#!">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Snacks & Munchies</li>
+                        <li class="breadcrumb-item"><a href="shop-grid-3-column.html#!">{{ selected_collection.selected_category.name|title }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ selected_collection.name|title }}</li>
                     </ol>
                 </nav>
             </div>
@@ -223,7 +223,7 @@
             <div class="card mb-4 bg-light border-0">
                 <!-- card body -->
                 <div class="card-body p-9">
-                    <h2 class="mb-0 fs-1">Snacks & Munchies</h2>
+                    <h2 class="mb-0 fs-1">{{ selected_collection.name|title }}</h2>
                 </div>
             </div>
             <!-- list icon -->

@@ -357,7 +357,7 @@
                     <ul class="list-unstyled">
                       {% for collection in category.first_collection_list %}
                       <li>
-                        <a href="{% url 'shop-page' 'grid' %}" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="{% url 'shop-page' 'grid' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
@@ -367,7 +367,7 @@
                     <ul class="list-unstyled">
                       {% for collection in category.second_collection_list %}
                       <li>
-                        <a href="{% url 'shop-page' 'grid' %}" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="{% url 'shop-page' 'grid' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
@@ -377,7 +377,7 @@
                     <ul class="list-unstyled">
                       {% for collection in category.third_collection_list %}
                       <li>
-                        <a href="{% url 'shop-page' 'grid' %}" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="{% url 'shop-page' 'grid' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>

@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 from .models import Cart, SelectedProduct
 from .models import Coupon, apply_coupon
 from .models import Province, Municipality
-from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store, Category
+from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store, Category, Collection
 from management.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
 
@@ -72,9 +72,12 @@ def shop_page(request, action):
 
     if action == 'grid':
         url = direction + "/home/grid.html"
+        collection_id = request.GET.get('collection_id', None)
+        selected_collection = Collection.objects.all().get(id=collection_id)
 
         context = {
-            'source_page': 'grid-page',
+            'selected_collection': selected_collection,
+            'source_page': 'grid-shop-page',
         }
         return render(request, url, context)
 
@@ -284,6 +287,8 @@ def change_language(request):
         return redirect('shopping-cart', 'main')
     if source == 'order-page':
         return redirect('order-page', 'main')
+    if source == 'grid-shop-page':
+        return redirect('shop-page', 'grid')
 
 
 
