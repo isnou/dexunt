@@ -30,6 +30,7 @@ def home_page(request):
 
     request.session['variant_id'] = None
     request.session['option_id'] = None
+    request.session['collection'] = None
 
     url = direction + "/home/main.html"
 
@@ -72,12 +73,25 @@ def shop_page(request, action):
 
     if action == 'grid':
         url = direction + "/home/grid.html"
-        collection_id = request.GET.get('collection_id', None)
+        if request.GET.get('collection_id', False):
+            collection_id = request.GET.get('collection_id')
+            request.session['collection'] = collection_id
+        else:
+            collection_id = request.session.get('collection_id')
+
         selected_collection = Collection.objects.all().get(id=collection_id)
+
+        login_form = LoginForm()
+        signup_form = SignupForm()
+
+        categories = Category.objects.all().filter(is_activated=True).order_by('rates')
 
         context = {
             'selected_collection': selected_collection,
             'source_page': 'grid-shop-page',
+            'login_form': login_form,
+            'signup_form': signup_form,
+            'categories': categories,
         }
         return render(request, url, context)
 
