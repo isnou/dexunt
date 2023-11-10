@@ -47,8 +47,8 @@
           <div class="d-flex justify-content-center">
             <div class="avatar-group avatar-group-sm avatar-circle card-avatar-group">
               {% for product in published_products.all %}
-              <a class="avatar" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ product.en_title }}">
-                <img class="avatar-img" src="{% get_media_prefix %}{{ product.album.all.0.image }}">
+              <a class="avatar" href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ product.title|title }}">
+                <img class="avatar-img" src="{% get_media_prefix %}{{ product.image }}">
               </a>
               {% endfor %}
             </div>
