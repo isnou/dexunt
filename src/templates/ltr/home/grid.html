@@ -274,7 +274,7 @@
                             </div>
                             <!-- heading -->
                             <div class="text-small mb-1">
-                                <a href="{% url 'shop-page' 'grid' %}?collection_id={{ selected_collection.id }}" class="text-decoration-none text-muted">
+                                <a href="{% url 'shop-page' 'grid' %}?collection_id={{ product.selected_collection.id }}" class="text-decoration-none text-muted">
                                     <small>{{ product.selected_collection.name|title }}</small>
                                 </a>
                             </div>
@@ -306,7 +306,7 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            
+
 
 
                         </div>
