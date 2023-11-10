@@ -125,7 +125,6 @@ class User(AbstractUser):
     # ----- #
     is_customer = models.BooleanField(default=True)
     is_provider = models.BooleanField(default=False)
-    is_investor = models.BooleanField(default=False)
     is_seller = models.BooleanField(default=False)
     is_member = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
