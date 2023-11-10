@@ -275,7 +275,7 @@
                             <!-- heading -->
                             <div class="text-small mb-1">
                                 <a href="{% url 'shop-page' 'grid' %}?collection_id={{ product.selected_collection.id }}" class="text-decoration-none text-muted">
-                                    <small>{{ product.selected_collection.name|title }}</small>
+                                    <small>{{ product.selected_collection.category.name|title }}|{{ product.selected_collection.name|title }}</small>
                                 </a>
                             </div>
                             <h2 class="fs-6">
