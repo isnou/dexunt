@@ -95,6 +95,30 @@ def shop_page(request, action):
         }
         return render(request, url, context)
 
+    if action == 'store':
+        url = direction + "/home/store.html"
+        if request.GET.get('store_id', False):
+            store_id = request.GET.get('store_id')
+            request.session['store_id'] = store_id
+        else:
+            store_id = request.session.get('store_id')
+
+        selected_store = Store.objects.all().get(id=store_id)
+
+        login_form = LoginForm()
+        signup_form = SignupForm()
+
+        categories = Category.objects.all().filter(is_activated=True).order_by('rates')
+
+        context = {
+            'selected_store': selected_store,
+            'source_page': 'grid-shop-page',
+            'login_form': login_form,
+            'signup_form': signup_form,
+            'categories': categories,
+        }
+        return render(request, url, context)
+
 def product_page(request, action):
     if not request.session.get('language', None):
         request.session['language'] = 'en-us'
