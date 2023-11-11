@@ -17,14 +17,14 @@
   <script src="https://kit.fontawesome.com/f9c426c597.js" crossorigin="anonymous"></script>
 
   <!-- CSS Implementing Plugins -->
-  <link rel="stylesheet" href="{% static 'management/css/vendor.min.css' %}"/>
-  <link rel="stylesheet" href="{% static 'management/vendor/bootstrap-icons/font/bootstrap-icons.css' %}"/>
+  <link rel="stylesheet" href="{% static 'ltr/management/css/vendor.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'ltr/management/vendor/bootstrap-icons/font/bootstrap-icons.css' %}"/>
 
   <!-- CSS Template -->
-  <link rel="stylesheet" href="{% static 'management/css/theme.min.css.v.1.0.css' %}">
+  <link rel="stylesheet" href="{% static 'ltr/management/css/theme.min.css.v.1.0.css' %}">
 
-  <link rel="preload" href="{% static 'management/css/theme.min.css' %}" data-hs-appearance="default" as="style">
-  <link rel="preload" href="{% static 'management/css/theme-dark.min.css' %}" data-hs-appearance="dark" as="style">
+  <link rel="preload" href="{% static 'ltr/management/css/theme.min.css' %}" data-hs-appearance="default" as="style">
+  <link rel="preload" href="{% static 'ltr/management/css/theme-dark.min.css' %}" data-hs-appearance="dark" as="style">
 
   <script>
             window.hs_config = {"autopath":"@@autopath","deleteLine":"hs-builder:delete","deleteLine:build":"hs-builder:build-delete","deleteLine:dist":"hs-builder:dist-delete","previewMode":false,"startPath":"/index.html","vars":{"themeFont":"https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap","version":"?v=1.0"},"layoutBuilder":{"extend":{"switcherSupport":true},"header":{"layoutMode":"default","containerMode":"container-fluid"},"sidebarLayout":"default"},"themeAppearance":{"layoutSkin":"default","sidebarSkin":"default","styles":{"colors":{"primary":"#377dff","transparent":"transparent","white":"#fff","dark":"132144","gray":{"100":"#f9fafc","900":"#1e2022"}},"font":"Inter"}},"languageDirection":{"lang":"en"},"skipFilesFromBundle":{"dist":["assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","assets/js/demo.js"],"build":["assets/css/theme.css","assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside-mini-cache.js","assets/js/demo.js","assets/css/theme-dark.css","assets/css/docs.css","assets/vendor/icon-set/style.css","assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js","assets/js/demo.js"]},"minifyCSSFiles":["assets/css/theme.css","assets/css/theme-dark.css"],"copyDependencies":{"dist":{"*assets/js/theme-custom.js":""},"build":{"*assets/js/theme-custom.js":"","node_modules/bootstrap-icons/font/*fonts/**":"assets/css"}},"buildFolder":"","replacePathsToCDN":{},"directoryNames":{"src":"./src","dist":"./dist","build":"./build"},"fileNames":{"dist":{"js":"theme.min.js","css":"theme.min.css"},"build":{"css":"theme.min.css","js":"theme.min.js","vendorCSS":"vendor.min.css","vendorJS":"vendor.min.js"}},"fileTypes":"jpg|png|svg|mp4|webm|ogv|json"}
@@ -112,17 +112,17 @@
 </head>
 
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
-  <script src="{% static 'management/js/hs.theme-appearance.js' %}"></script>
+  <script src="{% static 'ltr/management/js/hs.theme-appearance.js' %}"></script>
 
   <!-------------  Navbar  ------------>
   <header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
     <div class="navbar-nav-wrap">
       <!-- Dexunt Logo -->
       <a class="navbar-brand" href="{% url 'admin-manage-home' 'main' %}" aria-label="Front">
-        <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
-        <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
-        <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
-        <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="dark">
+        <img class="navbar-brand-logo" src="{% static 'images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
+        <img class="navbar-brand-logo" src="{% static 'images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
+        <img class="navbar-brand-logo-mini" src="{% static 'images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
+        <img class="navbar-brand-logo-mini" src="{% static 'images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="dark">
       </a>
       <!-- End Dexunt Logo -->
       <div class="navbar-nav-wrap-content-start">
@@ -507,10 +507,10 @@
       <div class="navbar-vertical-footer-offset">
         <!-- Dexunt Logo -->
         <a class="navbar-brand" href="{% url 'provider-sales' 'main' %}" aria-label="Front">
-          <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
-          <img class="navbar-brand-logo" src="{% static 'home-page/images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
-          <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
-          <img class="navbar-brand-logo-mini" src="{% static 'home-page/images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="dark">
+          <img class="navbar-brand-logo" src="{% static 'images/logo/logo.png' %}" alt="Logo" data-hs-theme-appearance="default">
+          <img class="navbar-brand-logo" src="{% static 'images/logo/logo-white.png' %}" alt="Logo" data-hs-theme-appearance="dark">
+          <img class="navbar-brand-logo-mini" src="{% static 'images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="default">
+          <img class="navbar-brand-logo-mini" src="{% static 'images/favicon/favicon.png' %}" alt="Logo" data-hs-theme-appearance="dark">
         </a>
         <!-- End Dexunt Logo -->
 
@@ -704,10 +704,10 @@
   <!-------------  End Modals  -------->
 
   <!-- JS Implementing Plugins -->
-  <script src="{% static 'management/js/vendor.min.js' %}"></script>
+  <script src="{% static 'ltr/management/js/vendor.min.js' %}"></script>
 
   <!-- JS Front -->
-  <script src="{% static 'management/js/theme.min.js' %}"></script>
+  <script src="{% static 'ltr/management/js/theme.min.js' %}"></script>
 
   <!-- JS Plugins Init. -->
   <script>
