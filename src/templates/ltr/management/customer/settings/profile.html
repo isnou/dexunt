@@ -200,12 +200,6 @@
                 {% csrf_token %}
 
                 <div class="form-floating mb-8">
-                    <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" maxlength="{{ update_profile_form.username.field.max_length }}" value="{{ user.username }}" placeholder="Username" required>
-                    <label>Username</label>
-                    <span class="invalid-feedback text-start">please provide a correct username.</span>
-                </div>
-
-                <div class="form-floating mb-8">
                     {% if user.first_name %}
                     <input type="text" class="form-control" name="{{ update_profile_form.first_name.name }}" value="{{ user.first_name }}" placeholder="First name">
                     {% else %}

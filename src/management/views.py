@@ -1879,12 +1879,14 @@ def customer_settings(request, action):
     if action == 'main':
         url = direction + "/management/customer/settings/profile.html"
         update_profile_form = UpdateProfileForm()
+        update_username_form = UsernameChangeForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
 
         context = {
             'nav_side': 'settings',
             'update_profile_form': update_profile_form,
             'password_form': password_form,
+            'update_username_form': update_username_form,
         }
         return render(request, url, context)
     if action == 'edit_profile':
@@ -1899,9 +1901,15 @@ def customer_settings(request, action):
     if action == 'edit_password':
         if request.method == 'POST':
             change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+
             if change_password_form.is_valid():
                 change_password_form.save()
                 update_session_auth_hash(request, change_password_form.user)
+                update_username_form = UsernameChangeForm(request.POST, instance=request.user)
+                if update_username_form.is_valid():
+                    update_username_form.save()
+                else:
+                    request.session['error_messages'] = update_username_form.errors
             else:
                 request.session['error_messages'] = change_password_form.errors
             return redirect('customer-settings', 'main')
@@ -1953,6 +1961,7 @@ def provider_profile(request, action):
     if action == 'main':
         url = direction + "/management/provider/settings/profile.html"
         update_profile_form = UpdateProfileForm()
+        update_username_form = UsernameChangeForm()
         password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
 
         if request.session.get('error_messages'):
@@ -1964,6 +1973,7 @@ def provider_profile(request, action):
         context = {
             'nav_side': 'profile',
             'password_form': password_form,
+            'update_username_form': update_username_form,
             'update_profile_form': update_profile_form,
             'errors': errors
         }
