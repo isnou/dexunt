@@ -61,7 +61,6 @@
                 <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
               </span>
             </label>
-
           </div>
 
           <div class="d-flex justify-content-end gap-3">
@@ -84,7 +83,6 @@
       <div class="card-body">
         <form action="{% url 'provider-store' 'edit_store' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
-
           <div class="mb-4">
             <label class="form-label">Name</label>
             {% if user.store.name %}
@@ -96,95 +94,41 @@
           </div>
 
           <div class="mb-4">
-            <label class="form-label">Activity (english)</label>
+            <label class="form-label">Address</label>
+            {% if user.store.address %}
+            <input type="text" class="form-control" name="{{ store_form.address.name }}" value="{{ user.store.address }}">
+            {% else %}
+            <input type="text" class="form-control" name="{{ store_form.address.name }}" placeholder="">
+            {% endif %}
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Activity description(english)</label>
             {% if user.store.en_activity %}
             <input type="text" class="form-control" name="{{ store_form.en_activity.name }}" value="{{ user.store.en_activity }}">
             {% else %}
             <input type="text" class="form-control" name="{{ store_form.en_activity.name }}" placeholder="">
             {% endif %}
-            <span class="invalid-feedback text-start">This field is required.</span>
           </div>
 
           <div class="mb-4">
-            <label class="form-label">Activity (french)</label>
+            <label class="form-label">Activity description (french)</label>
             {% if user.store.fr_activity %}
             <input type="text" class="form-control" name="{{ store_form.fr_activity.name }}" value="{{ user.store.fr_activity }}">
             {% else %}
             <input type="text" class="form-control" name="{{ store_form.fr_activity.name }}" placeholder="">
             {% endif %}
-            <span class="invalid-feedback text-start">This field is required.</span>
           </div>
 
           <div class="mb-4">
-            <label class="form-label">Activity (arabic)</label>
+            <label class="form-label">Activity description (arabic)</label>
             {% if user.store.ar_activity %}
             <input type="text" class="form-control" name="{{ store_form.ar_activity.name }}" value="{{ user.store.ar_activity }}" dir="rtl">
             {% else %}
             <input type="text" class="form-control" name="{{ store_form.ar_activity.name }}" placeholder="" dir="rtl">
             {% endif %}
           </div>
-
-          <div class="mb-3">
-            <label class="form-label" >Description (english)</label>
-            {% if user.store.en_description %}
-            <textarea class="form-control" name="{{ store_form.en_description.name }}" placeholder="{{ user.store.en_description }}" rows="4"></textarea>
-            {% else %}
-            <textarea class="form-control" name="{{ store_form.en_description.name }}" placeholder="" rows="4"></textarea>
-            {% endif %}
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" >Description (french)</label>
-            {% if user.store.fr_description %}
-            <textarea class="form-control" name="{{ store_form.fr_description.name }}" placeholder="{{ user.store.fr_description }}" rows="4"></textarea>
-            {% else %}
-            <textarea class="form-control" name="{{ store_form.fr_description.name }}" placeholder="" rows="4"></textarea>
-            {% endif %}
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" >Description (arabic)</label>
-            {% if user.store.ar_description %}
-            <textarea class="form-control" name="{{ store_form.ar_description.name }}" placeholder="{{ user.store.ar_description }}" dir="rtl" rows="4"></textarea>
-            {% else %}
-            <textarea class="form-control" name="{{ store_form.ar_description.name }}" placeholder="" dir="rtl" rows="4"></textarea>
-            {% endif %}
-          </div>
-
-
-
-
-
-          <div class="mb-4">
-            <label class="form-label">Store address (english)</label>
-            {% if user.store.en_address %}
-            <input type="text" class="form-control" name="{{ store_form.en_address.name }}" value="{{ user.store.en_address }}">
-            {% else %}
-            <input type="text" class="form-control" name="{{ store_form.en_address.name }}" placeholder="">
-            {% endif %}
-            <span class="invalid-feedback text-start">This field is required.</span>
-          </div>
-
-          <div class="mb-4">
-            <label class="form-label">Store address (french)</label>
-            {% if user.store.fr_address %}
-            <input type="text" class="form-control" name="{{ store_form.fr_address.name }}" value="{{ user.store.fr_address }}">
-            {% else %}
-            <input type="text" class="form-control" name="{{ store_form.fr_address.name }}" placeholder="">
-            {% endif %}
-            <span class="invalid-feedback text-start">This field is required.</span>
-          </div>
-
-          <div class="mb-4">
-            <label class="form-label">Store address (arabic)</label>
-            {% if user.store.ar_address %}
-            <input type="text" class="form-control" name="{{ store_form.ar_address.name }}" value="{{ user.store.ar_address }}" dir="rtl">
-            {% else %}
-            <input type="text" class="form-control" name="{{ store_form.ar_address.name }}" placeholder="" dir="rtl">
-            {% endif %}
-          </div>
-
-
+          
           <div class="d-flex justify-content-end gap-3">
             <button type="submit" class="btn btn-white">Save</button>
           </div>

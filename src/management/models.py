@@ -501,24 +501,19 @@ class Tag(models.Model):
 # -------------------------- Special Products -------------------------- #
 class Store(models.Model):
     # ----- Technical ----- #
-    tags = models.CharField(max_length=5000, blank=True, null=True)
     is_activated = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     # ----- #
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
+    refund = models.IntegerField(default=0)
     # ----- content ----- #
     name = models.CharField(max_length=200, unique=True, null=True)
+    address = models.CharField(max_length=400, blank=True, null=True)
+    # ----- #
     en_activity = models.CharField(max_length=300, blank=True, null=True)
     fr_activity = models.CharField(max_length=300, blank=True, null=True)
     ar_activity = models.CharField(max_length=300, blank=True, null=True)
-    # ----- #
-    en_description = models.CharField(max_length=600, blank=True, null=True)
-    fr_description = models.CharField(max_length=600, blank=True, null=True)
-    ar_description = models.CharField(max_length=600, blank=True, null=True)
-    # ----- #
-    en_address = models.CharField(max_length=300, blank=True, null=True)
-    fr_address = models.CharField(max_length=300, blank=True, null=True)
-    ar_address = models.CharField(max_length=300, blank=True, null=True)
     # ----- functions ----- #
     def activate(self):
         if not self.user.profile_photo or not self.name:
