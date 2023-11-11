@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/landing-page/images/custom/add-image-dark.png" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/images/icons/add-image-dark.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/landing-page/images/custom/add-image.png" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/images/icons/add-image.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/landing-page/images/custom/no-image.png" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/images/icons/no-image.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/management/favicon/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/management/img/flash.png" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/images/icons/flash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/management/img/img_download.png" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/images/icons/img_download.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/management/img/products.png" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/images/icons/products.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/management/logo/logo-white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/management/logo/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/admin/products/selected-variant.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/admin/products/selected-variant.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/admin/products/selected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/admin/products/selected.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/management/provider/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/management/provider/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
