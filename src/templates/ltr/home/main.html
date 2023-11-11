@@ -272,7 +272,7 @@
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-6 g-6">
             {% for store in all_stores %}
             <div class="col">
-                <a href="#" class="text-decoration-none text-inherit">
+                <a href="{% url 'shop-page' 'store' %}?store_id={{ store.id }}" class="text-decoration-none text-inherit">
                     <div class="card card-product">
                         <div class="card-body text-center">
                             <img src="{% get_media_prefix %}{{ store.user.profile_photo }}" class="img-fluid">
