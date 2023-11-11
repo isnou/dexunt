@@ -14,9 +14,10 @@ from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
 from authentication.models import User, users_filter, reset_users
 from authentication.models import Transaction, transactions_select
-from django.contrib.auth.forms import PasswordChangeForm
+
 from django.contrib.auth import update_session_auth_hash
-from authentication.forms import UpdateProfileForm, UpdatePhotoForm
+from django.contrib.auth.forms import PasswordChangeForm
+from authentication.forms import UpdateProfileForm, UsernameChangeForm, UpdatePhotoForm
 
 
 
@@ -1904,7 +1905,6 @@ def customer_settings(request, action):
             else:
                 request.session['error_messages'] = change_password_form.errors
             return redirect('customer-settings', 'main')
-#                                                                        #
 # ---------------------------------------------------------------------- #
 
 
@@ -1980,9 +1980,15 @@ def provider_profile(request, action):
     if action == 'change_password':
         if request.method == 'POST':
             change_password_form = PasswordChangeForm(user=request.user, data=request.POST or None)
+
             if change_password_form.is_valid():
                 change_password_form.save()
                 update_session_auth_hash(request, change_password_form.user)
+                update_username_form = UsernameChangeForm(request.POST, instance=request.user)
+                if update_username_form.is_valid():
+                    update_username_form.save()
+                else:
+                    request.session['error_messages'] = update_username_form.errors
             else:
                 request.session['error_messages'] = change_password_form.errors
             return redirect('provider-profile', 'main')

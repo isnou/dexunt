@@ -34,12 +34,6 @@
         <form action="{% url 'provider-profile' 'edit_profile' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
 
-          <div class="mb-4">
-            <label class="form-label">Username</label>
-            <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" value="{{ user.username }}" required>
-            <span class="invalid-feedback text-start">This field is required.</span>
-          </div>
-
           <div class="row">
             <div class="col-sm-6">
               <div class="mb-4">
@@ -94,6 +88,15 @@
       <div class="card-body">
         <form action="{% url 'provider-profile' 'change_password' %}" class="js-validate need-validate" novalidate method="post">
           {% csrf_token %}
+
+          <!-- Username -->
+          <div class="mb-4">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" name="{{ update_profile_form.username.name }}" value="{{ user.username }}" required>
+            <span class="invalid-feedback text-start">This field is required.</span>
+          </div>
+          <!-- End Username -->
+
           <!-- Old Password -->
           <div class="mb-4">
             <label class="col-sm-3 col-form-label form-label">Current password</label>
