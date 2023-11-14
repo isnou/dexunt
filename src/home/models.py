@@ -227,10 +227,11 @@ class Cart(models.Model):
         'home.Coupon', on_delete=models.CASCADE, blank=True, null=True)
     # ----- functions ----- #
     def __str__(self):
-        return self.user.username
-
-
-    def save(self, *args, **kwargs):
+        if self.ref:
+            return self.ref
+        else:
+            return self.user.username
+    def save_with_ref(self, *args, **kwargs):
         if not self.ref:
             self.ref = 'CART-' + functions.serial_number_generator(15).upper()
         super().save()

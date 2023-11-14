@@ -4,7 +4,7 @@ def get_cart(request):
     if not request.user.is_authenticated:
         if not request.session.get('cart_ref', None):
             selected_cart = Cart()
-            selected_cart.save()
+            selected_cart.save_with_ref()
             request.session['cart_ref'] = selected_cart.ref
         else:
             ref = request.session.get('cart_ref')
@@ -12,7 +12,7 @@ def get_cart(request):
                 selected_cart = Cart.objects.all().get(ref=ref)
             else:
                 selected_cart = Cart()
-                selected_cart.save()
+                selected_cart.save_with_ref()
                 request.session['cart_ref'] = selected_cart.ref
     else:
         selected_cart = request.user.cart
