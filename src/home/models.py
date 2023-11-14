@@ -67,6 +67,7 @@ class SelectedProduct(models.Model):
     order = models.ForeignKey(
         'home.Order', on_delete=models.CASCADE, related_name='selected_products', null=True)
     # ----- content ----- #
+    quantity = models.IntegerField(default=0)
     retained_points = models.IntegerField(default=0)
     retained_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     retained_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
@@ -561,8 +562,6 @@ class Province(models.Model):
     # ----- #
     home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    # ----- relations ----- #
-    # related to many municipalities #
 # ---------------------------------------------------------------------- #
 
 

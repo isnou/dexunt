@@ -49,7 +49,7 @@ class Like(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
     option = models.ForeignKey('management.Option', on_delete=models.CASCADE, related_name='likes', null=True)
-    client = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='liked_products', null=True)
+    client = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='liked', null=True)
 #                                                                        #
 class Album(models.Model):
     # ----- media ----- #
@@ -191,6 +191,11 @@ class Option(models.Model):
             return self.variant.product.store.is_activated
         else:
             return False
+    def likes(self):
+        like = 0
+        for l in self.likes.all():
+            like += 1
+        return like
     def rates(self):
         rate = 0
         for r in self.reviews.all().filter(show=True):

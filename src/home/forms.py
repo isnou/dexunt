@@ -5,14 +5,12 @@ from .models import Province, Municipality, Coupon
 class ProvinceForm(ModelForm):
     class Meta:
         model = Province
-        fields = ('en_name', 'fr_name', 'ar_name', 'en_delivery_time', 'fr_delivery_time', 'ar_delivery_time',
-                  'home_delivery_price', 'desk_delivery_price')
+        fields = ('en_name', 'fr_name', 'ar_name', 'home_delivery_price', 'desk_delivery_price')
 
 class MunicipalityForm(ModelForm):
     class Meta:
         model = Municipality
-        fields = ('en_name', 'fr_name', 'ar_name', 'en_delivery_time', 'fr_delivery_time', 'ar_delivery_time',
-                  'home_delivery_price', 'desk_delivery_price')
+        fields = ('en_name', 'fr_name', 'ar_name', 'home_delivery_price', 'desk_delivery_price')
 
 class CouponForm(ModelForm):
     class Meta:
