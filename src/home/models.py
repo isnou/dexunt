@@ -56,6 +56,7 @@ class SelectedProduct(models.Model):
     lack_of_quantity = models.BooleanField(default=False)
     # ----- #
     status = models.CharField(max_length=50, default='created', null=True)
+    # confirmed|processed|in_delivery|in_refund|delivered|completed|refunded #
     # ----- relations ----- #
     store = models.ForeignKey(
         'management.Store', on_delete=models.CASCADE, related_name='orders', null=True)
@@ -66,22 +67,21 @@ class SelectedProduct(models.Model):
     order = models.ForeignKey(
         'home.Order', on_delete=models.CASCADE, related_name='selected_products', null=True)
     # ----- content ----- #
-    quantity = models.IntegerField(default=1)
     retained_points = models.IntegerField(default=0)
     retained_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     retained_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
+    def new_log(self):
+        new_log = Log(content=self.status,
+                      store=self.store,
+                      selected_product=self)
+        new_log.save()
     def quantity_control(self):
         if self.quantity > self.option.quantity:
             self.lack_of_quantity = True
         else:
             self.lack_of_quantity = False
         super().save()
-    def new_log(self):
-        new_log = Log(content=self.status,
-                      store=self.store,
-                      selected_product=self)
-        new_log.save()
     def place_order(self):
         self.quantity_control()
         self.cart = None
@@ -312,9 +312,8 @@ class Order(models.Model):
     delivery_code = models.CharField(max_length=30, blank=True, null=True)
     # ----- #
     status = models.CharField(max_length=50, default='created', null=True)
+    # confirmed|processed|controlled|in_delivery|completed|cancelled|pend #
     # ----- relations ----- #
-    # related to many selected_products #
-    # related to many log #
     coupon = models.ForeignKey(
         'home.Coupon', blank=True, on_delete=models.CASCADE, null=True)
     municipality = models.ForeignKey(
@@ -358,37 +357,37 @@ class Order(models.Model):
         self.status = 'placed'
         super().save()
         self.new_log(request)
-    def confirm(self, request):
+    def confirming(self, request):
         for p in self.selected_products.all():
             p.confirm()
         self.status = 'confirmed'
         super().save()
         self.new_log(request)
-    def cancel(self, request):
+    def canceling(self, request):
         self.status = 'cancelled'
         super().save()
         self.new_log(request)
-    def pend(self, request):
+    def pending(self, request):
         self.status = 'pend'
         super().save()
         new_log = Log(content='pend',
                       user=request.user,
                       order=self)
         new_log.save()
-    def process(self):
+    def processing(self):
         self.status = 'processed'
         super().save()
         new_log = Log(content=self.status,
                       order=self)
         new_log.save()
-    def controlled(self, request):
+    def controlling(self, request):
         self.status = 'controlled'
         super().save()
         self.new_log(request)
-    def handed(self, request):
+    def picking_up(self, request):
         delivery_code = request.POST.get('delivery_code', False)
         self.delivery_code = delivery_code
-        self.status = 'handed'
+        self.status = 'in_delivery'
         super().save()
         self.new_log(request)
     def paid(self, request):
@@ -534,9 +533,10 @@ class Municipality(models.Model):
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
-    en_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    fr_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    ar_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    home_time_from = models.DurationField()
+    home_time_to = models.DurationField()
+    desk_time_from = models.DurationField()
+    desk_time_to = models.DurationField()
     # ----- #
     home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
@@ -554,9 +554,10 @@ class Province(models.Model):
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
-    en_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    fr_delivery_time = models.CharField(max_length=200, blank=True, null=True)
-    ar_delivery_time = models.CharField(max_length=200, blank=True, null=True)
+    home_time_from = models.DurationField()
+    home_time_to = models.DurationField()
+    desk_time_from = models.DurationField()
+    desk_time_to = models.DurationField()
     # ----- #
     home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)

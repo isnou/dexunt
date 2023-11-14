@@ -16,33 +16,40 @@ class Review(models.Model):
     client = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='reviews', null=True)
     # ----- content ----- #
     content = models.CharField(max_length=500, blank=True, null=True)
-    rates = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0)
     # ----- variables ----- #
     def star_one(self):
-        if self.rates > 0:
+        if self.rate > 0:
             return '-fill'
         else:
             return ''
     def star_two(self):
-        if self.rates > 1:
+        if self.rate > 1:
             return '-fill'
         else:
             return ''
     def star_three(self):
-        if self.rates > 2:
+        if self.rate > 2:
             return '-fill'
         else:
             return ''
     def star_four(self):
-        if self.rates > 3:
+        if self.rate > 3:
             return '-fill'
         else:
             return ''
     def star_five(self):
-        if self.rates > 4:
+        if self.rate > 4:
             return '-fill'
         else:
             return ''
+#                                                                        #
+class Like(models.Model):
+    # ----- Technical ----- #
+    created_at = models.DateTimeField(auto_now_add=True)
+    # ----- relations ----- #
+    option = models.ForeignKey('management.Option', on_delete=models.CASCADE, related_name='likes', null=True)
+    client = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='liked_products', null=True)
 #                                                                        #
 class Album(models.Model):
     # ----- media ----- #
@@ -94,9 +101,10 @@ class Option(models.Model):
     # ----- #
     upc = models.CharField(max_length=20, unique=True, null=True)
     # ----- #
-    like = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
     delivery_quotient = models.IntegerField(default=100)
+    delivery_time_from = models.DurationField()
+    delivery_time_to = models.DurationField()
+    # ----- #
     points = models.IntegerField(default=0)
     max_quantity = models.IntegerField(default=0)
     # ----- relations ----- #
@@ -158,7 +166,7 @@ class Option(models.Model):
         comment = request.POST.get('comment', False)
         rating = request.POST.get('rating', False)
         Review(content=comment,
-               rates=rating,
+               rate=rating,
                option=self,
                client=request.user
                ).save()
@@ -186,13 +194,23 @@ class Option(models.Model):
     def rates(self):
         rate = 0
         for r in self.reviews.all().filter(show=True):
-            rate += r.rates
+            rate += r.rate
         if self.reviews.all().filter(show=True).count():
             return rate/self.reviews.all().filter(show=True).count()
         else:
             return 0
+    def sales(self):
+        sale = 0
+        for s in self.selected_products.all().filter(status='completed'):
+            sale += 1
+        return sale
+    def refunds(self):
+        refund = 0
+        for s in self.selected_products.all().filter(status='refunded'):
+            refund += 1
+        return refund
     def rates_quotient(self):
-        return self.rates() * self.sale
+        return self.rates() * self.sale()
     def review_star_one(self):
         if self.rates() == 0:
             return ''
@@ -457,6 +475,7 @@ class Collection(models.Model):
     is_activated = models.BooleanField(default=False)
     rate = models.IntegerField(default=0)
     sale = models.IntegerField(default=0)
+    refund = models.IntegerField(default=0)
     # ----- relations ----- #
     category = models.ForeignKey('management.Category', related_name='collections', on_delete=models.CASCADE, blank=True, null=True)
     product = models.ManyToManyField(Product, related_name='collections', blank=True)
