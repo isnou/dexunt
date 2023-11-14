@@ -223,13 +223,10 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # ----- relations ----- #
-    # related to many selected_products #
     coupon = models.ForeignKey(
         'home.Coupon', on_delete=models.CASCADE, blank=True, null=True)
     # ----- functions ----- #
     def __str__(self):
-        if self.user:
-            return self.user.username
         return self.ref
 
 
