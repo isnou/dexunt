@@ -230,8 +230,7 @@ class Cart(models.Model):
     def __str__(self):
         if self.user:
             return self.user.username
-        else:
-            return self.ref
+        return self.ref
 
 
     def save(self, *args, **kwargs):
