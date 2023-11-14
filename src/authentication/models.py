@@ -359,7 +359,8 @@ def reset_users():
             if not c.created_at <= timezone.now():
                 c.delete()
     for u in users:
-        u.wallet.update()
+        u.cart.ref = None
+        u.cart.save()
 # ---------------------------------------------------------------------- #
 
 
