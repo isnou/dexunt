@@ -227,7 +227,7 @@ class Cart(models.Model):
         'home.Coupon', on_delete=models.CASCADE, blank=True, null=True)
     # ----- functions ----- #
     def __str__(self):
-        return self.ref
+        return self.user.username
 
 
     def save(self, *args, **kwargs):
