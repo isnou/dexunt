@@ -9,10 +9,12 @@ from .models import Province, Municipality
 from management.models import Product, Variant, Option, Feature, Album, FlashProduct, Store, Category, Collection
 from management.forms import ProductForm, VariantForm, FeatureForm, OptionForm
 from authentication.models import User
+from authentication.models import reset_users
 
 
 def home_page(request):
     selected_cart = get_cart(request)
+    reset_users()
 
     if request.user.is_authenticated:
         if request.user.is_provider:
