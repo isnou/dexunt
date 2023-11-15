@@ -4,8 +4,8 @@ from django.contrib.auth.models import AbstractUser
 from add_ons import functions
 from django.utils import timezone, dateformat
 from PIL import Image
-from home.models import Cart, Order, SelectedProduct
-from management.models import Store
+from home.models import Cart, Order, SelectedProduct, Municipality, Province
+from management.models import Store, Review
 
 
 # ------------------------------ Setting ------------------------------- #
@@ -358,6 +358,12 @@ def reset_users():
         if not c.selected_products.all().count():
             if not c.created_at <= timezone.now():
                 c.delete()
+    for r in Review.objects.all():
+        r.delete()
+    for m in Municipality.objects.all():
+        m.delete()
+    for p in Province.objects.all():
+        p.delete()
     for u in users:
         u.cart.ref = None
         u.cart.save()
