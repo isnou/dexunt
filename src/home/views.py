@@ -13,8 +13,9 @@ from authentication.models import reset_users
 
 
 def home_page(request):
-    selected_cart = get_cart(request)
     reset_users()
+    selected_cart = get_cart(request)
+
 
     if request.user.is_authenticated:
         if request.user.is_provider:
