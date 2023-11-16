@@ -3988,6 +3988,16 @@
 
 
 
+class ProductDescriptionForm(forms.ModelForm):
+    en_description = forms.CharField(widget=CKEditorUploadingWidget())
+    fr_description = forms.CharField(widget=CKEditorUploadingWidget())
+    ar_description = forms.CharField(widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Product
+        fields = ('en_title', 'fr_title', 'ar_title', 'en_description', 'fr_description', 'ar_description')
+
+
+
                 <div>
                   <embed src="{{ request.scheme }}://{{ request.get_host }}{{ selected_product.fr_description }}" width="500" height="375" type="application/pdf">
                 </div>
