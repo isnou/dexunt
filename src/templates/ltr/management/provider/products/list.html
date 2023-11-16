@@ -285,7 +285,11 @@
 
             <div class="row mb-3 px-4">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
+                {% if option.production_capacity_quantity %}
+                <input type="number" class="form-control" value="{{ option.production_capacity_quantity }}" name="quantity" min="0" required>
+                {% else %}
                 <input type="number" class="form-control" placeholder="quantity" name="quantity" min="0" required>
+                {% endif %}
                 <span class="invalid-feedback text-start">Please enter quantity to add.</span>
               </div>
             </div>
