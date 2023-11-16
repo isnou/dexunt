@@ -75,14 +75,14 @@
                 {% if store.logo %}
                 <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ store.logo }}">
                 {% else %}
-                <span class="badge bg-warning">no images</span>
+                <span class="badge bg-warning">no logo</span>
                 {% endif %}
               </div>
               <div class="flex-grow-1 ms-3">
                 {% if store.name %}
                 <span class="d-block h5 text-inherit">{{ store.name }}</span>
                 {% else %}
-                <span class="d-block h5 text-danger">no name</span>
+                <span class="badge bg-warning">no name</span>
                 {% endif %}
               </div>
             </a>
