@@ -56,10 +56,12 @@
       <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
         <thead class="thead-light">
         <tr>
-          <th>Name</th>
-          <th>Balance</th>
-          <th>Incomes</th>
-          <th></th>
+          <th>name</th>
+          <th>balance</th>
+          <th>incomes</th>
+          <th>products</th>
+          <th>sales</th>
+          <th>rates</th>
           <th></th>
         </tr>
         </thead>
@@ -82,7 +84,7 @@
                 {% if store.name %}
                 <span class="d-block h5 text-inherit">{{ store.name }}</span>
                 {% else %}
-                <span class="badge bg-warning">no name</span>
+                <span class="badge bg-danger">no name</span>
                 {% endif %}
               </div>
             </a>
@@ -105,7 +107,15 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">Sales :{{ store.sale }} Rates :{{ store.rate }}</span>
+            <span class="d-block fs-5">{{ store.products_count }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ store.rates }}</span>
+          </td>
+
+          <td>
+            <span class="d-block fs-5">{{ store.sales }}</span>
           </td>
 
           <td class="text-end">
