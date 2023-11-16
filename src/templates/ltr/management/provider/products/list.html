@@ -61,7 +61,7 @@
         {% for variant in variants %}
         {% for option in variant.option_set.all %}
         <!-- products list -->
-        <tr  class="{% if option.new %}bg-light{% endif %}">
+        <tr  class="{% if not option.store_task %}bg-light{% endif %}">
           <td class="table-column-pe-0">
           </td>
           <!-- product title and image -->
