@@ -118,7 +118,7 @@ class Option(models.Model):
     # ----- #
     restricted_quantity = models.IntegerField(default=0)
     production_capacity_quantity = models.IntegerField(default=0)
-    production_capacity_time = models.DurationField()
+    production_capacity_time = models.DurationField(blank=True, null=True)
     delivery_quotient = models.IntegerField(default=100)
     points = models.IntegerField(default=0)
     # ----- #
