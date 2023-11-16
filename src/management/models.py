@@ -181,7 +181,7 @@ class Option(models.Model):
             return self.variant.product.store.is_activated
         else:
             return False
-    def store_task(self):
+    def new(self):
         if self.production_capacity_quantity and self.production_capacity_time and self.cost:
             return True
         else:
@@ -577,7 +577,7 @@ class Store(models.Model):
         for p in self.product_set.all():
             for v in p.variant_set.all():
                 for o in v.option_set.all():
-                    if not o.store_task():
+                    if not o.new():
                         option_ids.append(o.id)
         return Option.objects.filter(id__in=option_ids)
     def balance(self):
