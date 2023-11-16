@@ -49,7 +49,7 @@ class Like(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
     option = models.ForeignKey('management.Option', on_delete=models.CASCADE, related_name='likes', null=True)
-    client = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='liked', null=True)
+    client = models.ForeignKey('authentication.User', on_delete=models.CASCADE, related_name='likes', null=True)
 #                                                                        #
 class Album(models.Model):
     # ----- media ----- #
@@ -100,13 +100,6 @@ class Option(models.Model):
     is_activated = models.BooleanField(default=False)
     # ----- #
     upc = models.CharField(max_length=20, unique=True, null=True)
-    # ----- #
-    delivery_quotient = models.IntegerField(default=100)
-    delivery_time_from = models.DurationField()
-    delivery_time_to = models.DurationField()
-    # ----- #
-    points = models.IntegerField(default=0)
-    max_quantity = models.IntegerField(default=0)
     # ----- relations ----- #
     variant = models.ForeignKey('management.Variant', on_delete=models.CASCADE, null=True)
     # ----- media ----- #
@@ -123,9 +116,15 @@ class Option(models.Model):
     fr_note = models.CharField(max_length=500, blank=True, null=True)
     ar_note = models.CharField(max_length=500, blank=True, null=True)
     # ----- #
-    quantity = models.IntegerField(default=0)
+    restricted_quantity = models.IntegerField(default=0)
+    production_capacity_quantity = models.IntegerField(default=0)
+    production_capacity_time = models.DurationField()
+    delivery_quotient = models.IntegerField(default=100)
+    points = models.IntegerField(default=0)
+    # ----- #
     cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    min_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     discount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # ----- functions ----- #
     def save(self, *args, **kwargs):
@@ -141,7 +140,7 @@ class Option(models.Model):
     def duplicate(self):
         new_option = Option(delivery_quotient = self.delivery_quotient,
                             points = self.points,
-                            max_quantity = self.max_quantity,
+                            restricted_quantity = self.restricted_quantity,
                             en_value = self.en_value,
                             fr_value = self.fr_value,
                             ar_value = self.ar_value,
@@ -150,6 +149,7 @@ class Option(models.Model):
                             ar_note = self.ar_note,
                             cost = self.cost,
                             price = self.price,
+                            min_price = self.min_price,
                             discount = self.discount
                             )
         new_option.save()

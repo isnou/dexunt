@@ -53,10 +53,8 @@ class Log(models.Model):
 #                                                                        #
 class SelectedProduct(models.Model):
     # ----- Technical ----- #
-    lack_of_quantity = models.BooleanField(default=False)
-    # ----- #
     status = models.CharField(max_length=50, default='created', null=True)
-    # confirmed|processed|in_delivery|in_refund|delivered|completed|refunded #
+    # confirmed|out_of_capacity|processed|in_delivery|in_refund|delivered|completed|refunded #
     # ----- relations ----- #
     store = models.ForeignKey(
         'management.Store', on_delete=models.CASCADE, related_name='orders', null=True)
@@ -301,21 +299,16 @@ class Cart(models.Model):
 class Order(models.Model):
     WIDTH = 1900
     # ----- Technical ----- #
+    type = models.CharField(max_length=50, default='regular', null=True)
+    # regular|gift_card|my_qr|is_custom|is_flash #
     updated_at = models.DateTimeField(auto_now=True)
-    is_regular = models.BooleanField(default=True)
-    is_flash = models.BooleanField(default=False)
-    is_custom = models.BooleanField(default=False)
-    my_qr = models.BooleanField(default=False)
-    gift_card = models.BooleanField(default=False)
-    # ----- #
     cash_on_delivery = models.BooleanField(default=True)
-    # ----- #
-    ref = models.CharField(max_length=6, unique=True, null=True)
-    secret_key = models.CharField(max_length=6, unique=True, null=True)
-    delivery_code = models.CharField(max_length=30, blank=True, null=True)
     # ----- #
     status = models.CharField(max_length=50, default='created', null=True)
     # confirmed|processed|controlled|in_delivery|completed|cancelled|pend #
+    ref = models.CharField(max_length=6, unique=True, null=True)
+    secret_key = models.CharField(max_length=6, unique=True, null=True)
+    delivery_code = models.CharField(max_length=30, blank=True, null=True)
     # ----- relations ----- #
     coupon = models.ForeignKey(
         'home.Coupon', blank=True, on_delete=models.CASCADE, null=True)
@@ -536,17 +529,15 @@ class Municipality(models.Model):
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
-    home_time_from = models.DurationField()
-    home_time_to = models.DurationField()
-    desk_time_from = models.DurationField()
-    desk_time_to = models.DurationField()
-    # ----- #
     home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    home_delivery_time_from = models.DurationField()
+    home_delivery_time_up_to = models.DurationField()
+    # ----- #
     desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    desk_delivery_time_from = models.DurationField()
+    desk_delivery_time_up_to = models.DurationField()
     # ----- relations ----- #
-    # related to many order #
-    province = models.ForeignKey(
-        'home.Province', on_delete=models.CASCADE, null=True)
+    province = models.ForeignKey('home.Province', on_delete=models.CASCADE, null=True)
     # ----- functions ----- #
     class Meta:
         verbose_name_plural = "Municipalities"
@@ -557,13 +548,13 @@ class Province(models.Model):
     fr_name = models.CharField(max_length=200, blank=True, null=True)
     ar_name = models.CharField(max_length=200, blank=True, null=True)
     # ----- #
-    home_time_from = models.DurationField()
-    home_time_to = models.DurationField()
-    desk_time_from = models.DurationField()
-    desk_time_to = models.DurationField()
-    # ----- #
     home_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    home_delivery_time_from = models.DurationField()
+    home_delivery_time_up_to = models.DurationField()
+    # ----- #
     desk_delivery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    desk_delivery_time_from = models.DurationField()
+    desk_delivery_time_up_to = models.DurationField()
 # ---------------------------------------------------------------------- #
 
 
