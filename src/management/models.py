@@ -564,7 +564,7 @@ class Store(models.Model):
             for v in p.variant_set.all():
                 for o in v.option_set.all():
                     option_ids.append(o.id)
-        return Option.objects.filter(id__in=variant_ids)
+        return Option.objects.filter(id__in=option_ids)
     def balance(self):
         balance = 0
         for o in self.completed_orders():
