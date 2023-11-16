@@ -281,8 +281,18 @@
             {% csrf_token %}
             <input type="hidden" name="option_id" value="{{ option.id }}">
 
+            <span class="divider-center mb-2">Produce :</span>
+
             <div class="row mb-3">
-              <div class="col text-center">
+              <div class="input-group input-group-merge input-group-borderless input-group-flush">
+                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="0" required>
+                <span class="invalid-feedback text-start">Please enter quantity to add.</span>
+              </div>
+            </div>
+
+            <span class="divider-center mb-2">In :</span>
+            <div class="row mb-3">
+              <div class="col-6 text-start">
                 <!-- 24h -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
@@ -310,17 +320,37 @@
                 </div>
                 <!-- end 72h -->
               </div>
-            </div>
 
-            <div class="row mb-4">
-              <div class="input-group input-group-merge input-group-borderless input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="fa fa-plus"></i>
+              <div class="col-6 text-end">
+                <!-- 4 day -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    <input type="radio" class="form-check-input" name="duration" value="4days" checked>
+                    <label class="form-check-label">4 Days</label>
+                  </div>
                 </div>
-                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="0" required>
-                <span class="invalid-feedback text-start">Please enter quantity to add.</span>
+                <!-- end 4 day -->
+
+                <!-- one week -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    <input type="radio" class="form-check-input" name="duration" value="one_week">
+                    <label class="form-check-label">One Week</label>
+                  </div>
+                </div>
+                <!-- end one week -->
+
+                <!-- one month -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    <input type="radio" class="form-check-input" name="duration" value="one_month">
+                    <label class="form-check-label">One Month</label>
+                  </div>
+                </div>
+                <!-- end one month -->
               </div>
             </div>
+
             <div class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-white">Save</button>
             </div>
