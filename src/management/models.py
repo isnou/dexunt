@@ -558,6 +558,13 @@ class Store(models.Model):
             for v in p.variant_set.all():
                 variant_ids.append(v.id)
         return Variant.objects.filter(id__in=variant_ids)
+    def all_products(self):
+        option_ids = []
+        for p in self.product_set.all():
+            for v in p.variant_set.all():
+                for o in v.option_set.all():
+                    option_ids.append(o.id)
+        return Option.objects.filter(id__in=variant_ids)
     def balance(self):
         balance = 0
         for o in self.completed_orders():
@@ -579,6 +586,11 @@ class Store(models.Model):
         for o in self.completed_orders():
             sale += 1
         return sale
+    def rates(self):
+        rate = 0
+        for p in self.all_products():
+            rate += p.rates()
+        return rate
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #
