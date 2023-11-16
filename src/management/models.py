@@ -569,11 +569,16 @@ class Store(models.Model):
                 else:
                     balance -= transaction.amount
         return balance
-    def sales(self):
+    def incomes(self):
         amount = 0
         for o in self.completed_orders():
             amount += o.total_cost()
         return amount
+    def sales(self):
+        sale = 0
+        for o in self.completed_orders():
+            sale += 1
+        return sale
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #
