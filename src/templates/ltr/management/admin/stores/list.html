@@ -79,7 +79,11 @@
                 {% endif %}
               </div>
               <div class="flex-grow-1 ms-3">
+                {% if store.name %}
                 <span class="d-block h5 text-inherit">{{ store.name }}</span>
+                {% else %}
+                <span class="d-block h5 text-danger">no name</span>
+                {% endif %}
               </div>
             </a>
           </td>
@@ -101,7 +105,7 @@
           </td>
 
           <td>
-            <span class="d-block fs-5">Sales :{{ store.sale }}|Rates :{{ store.rate }}</span>
+            <span class="d-block fs-5">Sales :{{ store.sale }} Rates :{{ store.rate }}</span>
           </td>
 
           <td class="text-end">
