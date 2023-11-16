@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import timedelta
 from django.core.validators import MaxValueValidator, MinValueValidator
 from add_ons import functions
 from PIL import Image
@@ -152,6 +153,10 @@ class Option(models.Model):
                             )
         new_option.save()
         self.variant.option_set.add(new_option)
+    def add_production_capacity(self, request):
+        self.production_capacity_quantity = int(request.POST.get('quantity', False))
+        self.production_capacity_time = timedelta(days=7)
+        super().save()
     def activate(self):
         self.is_activated = True
         super().save()

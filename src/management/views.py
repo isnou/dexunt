@@ -2138,13 +2138,11 @@ def provider_products(request, action):
             selected_option.is_activated = False
             selected_option.save()
             return redirect('provider-products', 'main')
-    if action == 'add_quantity':
+    if action == 'edit_capacity':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
-            quantity = int(request.POST.get('quantity', False))
             selected_option = Option.objects.all().get(id=option_id)
-            selected_option.quantity += quantity
-            selected_option.save()
+            selected_option.add_production_capacity(request)
             return redirect('provider-products', 'main')
     if action == 'remove_quantity':
         if request.method == 'POST':

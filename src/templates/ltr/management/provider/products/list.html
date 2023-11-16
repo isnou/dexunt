@@ -122,16 +122,9 @@
             </button>
             {% endif %}
 
-            {% if option.quantity %}
-            <!-- remove quantity -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#remove_quantity_modal_{{ option.id }}">
-              <i class="fa fa-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove"></i>
-            </button>
-            {% endif %}
-
-            <!-- add quantity -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_quantity_modal_{{ option.id }}">
-              <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Add"></i>
+            <!-- edit capacity -->
+            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_capacity_modal_{{ option.id }}">
+              <i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
             </button>
 
             <!-- price -->
@@ -271,8 +264,8 @@
   </div>
 </div>
 
-<!-- add quantity modal -->
-<div id="add_quantity_modal_{{ option.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- edit capacity modal -->
+<div id="edit_capacity_modal_{{ option.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-close">
@@ -281,12 +274,43 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Add quantity</h2>
+            <h2>Edit Production Capacity</h2>
           </div>
 
-          <form action="{% url 'provider-products' 'add_quantity' %}" class="js-validate need-validate" novalidate method="post">
+          <form action="{% url 'provider-products' 'edit_capacity' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
             <input type="hidden" name="option_id" value="{{ option.id }}">
+
+            <div class="row mb-3">
+              <div class="col text-center">
+                <!-- 24h -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    <input type="radio" class="form-check-input" name="duration" value="24h" checked>
+                    <label class="form-check-label">24 H</label>
+                  </div>
+                </div>
+                <!-- end 24h -->
+
+                <!-- 48h -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    <input type="radio" class="form-check-input" name="duration" value="48h">
+                    <label class="form-check-label">48 H</label>
+                  </div>
+                </div>
+                <!-- end 48h -->
+
+                <!-- 72h -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    <input type="radio" class="form-check-input" name="duration" value="72h">
+                    <label class="form-check-label">72 H</label>
+                  </div>
+                </div>
+                <!-- end 72h -->
+              </div>
+            </div>
 
             <div class="row mb-4">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
