@@ -577,7 +577,8 @@ class Store(models.Model):
         for p in self.product_set.all():
             for v in p.variant_set.all():
                 for o in v.option_set.all():
-                    option_ids.append(o.id)
+                    if not o.store_task():
+                        option_ids.append(o.id)
         return Option.objects.filter(id__in=option_ids)
     def balance(self):
         balance = 0
