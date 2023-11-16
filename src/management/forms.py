@@ -17,8 +17,9 @@ class OptionForm(ModelForm):
     upc = forms.CharField(required=False)
     class Meta:
         model = Option
-        fields = ('en_value', 'fr_value', 'ar_value', 'cost', 'price', 'discount', 'points', 'delivery_quotient',
-                   'upc', 'max_quantity', 'quantity', 'en_note', 'fr_note', 'ar_note')
+        fields = ('en_value', 'fr_value', 'ar_value', 'cost', 'price', 'min_price', 'discount', 'points','upc',
+                  'delivery_quotient', 'restricted_quantity', 'production_capacity_quantity',
+                   'en_note', 'fr_note', 'ar_note')
 
 class FlashForm(ModelForm):
     class Meta:
