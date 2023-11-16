@@ -98,6 +98,7 @@ class Option(models.Model):
     # ----- Technical ----- #
     has_image = models.BooleanField(default=False)
     is_activated = models.BooleanField(default=False)
+    out_of_stock = models.BooleanField(default=False)
     # ----- #
     upc = models.CharField(max_length=20, unique=True, null=True)
     # ----- relations ----- #
@@ -175,6 +176,16 @@ class Option(models.Model):
                client=request.user
                ).save()
     # ----- variables ----- #
+    def can_be_activated(self):
+        if self.variant.product.store:
+            return self.variant.product.store.is_activated
+        else:
+            return False
+    def store_task(self):
+        if self.production_capacity_quantity and self.production_capacity_time and self.cost:
+            return True
+        else:
+            return False
     def value(self):
         language = global_request.session.get('language')
         if language == 'en-us':
@@ -183,11 +194,14 @@ class Option(models.Model):
             return self.fr_value
         if language == 'ar-dz':
             return self.ar_value
-    def can_be_activated(self):
-        if self.variant.product.store:
-            return self.variant.product.store.is_activated
-        else:
-            return False
+    def note(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            return self.en_note
+        if language == 'fr-fr':
+            return self.fr_note
+        if language == 'ar-dz':
+            return self.ar_note
     def likes(self):
         like = 0
         for l in self.likes.all():
@@ -557,6 +571,14 @@ class Store(models.Model):
             for v in p.variant_set.all():
                 for o in v.option_set.all():
                     option_ids.append(o.id)
+        return Option.objects.filter(id__in=option_ids)
+    def new_products(self):
+        option_ids = []
+        for p in self.product_set.all():
+            for v in p.variant_set.all():
+                for o in v.option_set.all():
+                    if o.store_task():
+                        option_ids.append(o.id)
         return Option.objects.filter(id__in=option_ids)
     def balance(self):
         balance = 0

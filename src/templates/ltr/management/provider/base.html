@@ -542,6 +542,9 @@
               <a class="nav-link {% if nav_side == 'my_products' %} active {% endif %}" href="{% url 'provider-products' 'main' %}?init=True" data-placement="left">
                 <i class="fa fa-cart-flatbed nav-icon"></i>
                 <span class="nav-link-title">My Products</span>
+                {% if user.store.new_products.count %}
+                <span class="badge bg-primary rounded-pill ms-1">{{ user.store.new_products.count }}</span>
+                {% endif %}
               </a>
             </div>
             <!-- End My Products -->
