@@ -141,9 +141,6 @@ class Option(models.Model):
         new_option = Option(delivery_quotient = self.delivery_quotient,
                             points = self.points,
                             restricted_quantity = self.restricted_quantity,
-                            en_value = self.en_value,
-                            fr_value = self.fr_value,
-                            ar_value = self.ar_value,
                             en_note = self.en_note,
                             fr_note = self.fr_note,
                             ar_note = self.ar_note,
@@ -274,11 +271,7 @@ class Variant(models.Model):
     ar_spec = models.CharField(max_length=200, blank=True, null=True)
     # ----- functions ----- #
     def duplicate(self):
-        new_variant = Variant(en_spec = self.en_spec,
-                              fr_spec = self.fr_spec,
-                              ar_spec = self.ar_spec,
-                              product = self.product
-                              )
+        new_variant = Variant(product = self.product)
         new_variant.save()
         if self.option_set.all().count:
             for o in self.option_set.all():

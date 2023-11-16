@@ -32,7 +32,7 @@ class FeatureForm(ModelForm):
 class StoreForm(ModelForm):
     class Meta:
         model = Store
-        fields = ('name', 'en_activity', 'fr_activity', 'ar_activity', 'address')
+        fields = ('name', 'address', 'en_activity', 'fr_activity', 'ar_activity')
 
 class ENProductDescriptionForm(forms.ModelForm):
     en_description = forms.CharField(widget=CKEditorUploadingWidget())
