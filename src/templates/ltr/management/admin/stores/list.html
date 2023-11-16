@@ -70,7 +70,7 @@
         <!-- Table Actions -->
         <tr>
           <td>
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="{% url 'shop-page' 'store' %}?store_id={{ store.id }}">
               <div class="flex-shrink-0">
                 {% if store.logo %}
                 <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ store.logo }}">
