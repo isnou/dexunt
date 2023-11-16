@@ -99,15 +99,15 @@
           </td>
 
           <td>
-            {% if store.sales > 0 %}
-            <span class="d-block fs-5 text-success">{{ store.sales|floatformat:"0g" }} <small>DZD</small></span>
+            {% if store.incomes > 0 %}
+            <span class="d-block fs-5 text-success">{{ store.incomes|floatformat:"0g" }} <small>DZD</small></span>
             {% else %}
-            <span class="d-block fs-5 text-danger">{{ store.sales|floatformat:"0g" }} <small>DZD</small></span>
+            <span class="d-block fs-5 text-danger">{{ store.incomes|floatformat:"0g" }} <small>DZD</small></span>
             {% endif %}
           </td>
 
           <td>
-            <span class="d-block fs-5">{{ store.products_count }}</span>
+            <span class="d-block fs-5">{{ store.completed_orders.count }}</span>
           </td>
 
           <td>
