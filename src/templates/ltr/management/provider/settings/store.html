@@ -46,6 +46,10 @@
               "allowTypes": [".png", ".jpeg", ".jpg"]
               }' required>
               <span class="invalid-feedback text-center">please upload your logo.</span>
+              
+              <span class="avatar-uploader-trigger">
+                <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
+              </span>
               {% else %}
               <img id="editAvatarNoImg" class="avatar-img" src="{% static 'images/icons/image.png' %}">
               <input type="file" class="js-file-attach avatar-uploader-input" name="{{ update_photo_form.profile_photo.name }}" data-hs-file-attach-options='{
@@ -55,11 +59,11 @@
               "allowTypes": [".png", ".jpeg", ".jpg"]
               }' required>
               <span class="invalid-feedback text-center">please upload your logo.</span>
-              {% endif %}
 
               <span class="avatar-uploader-trigger">
-                <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
+                <i class="bi-plus avatar-uploader-icon shadow-sm"></i>
               </span>
+              {% endif %}
             </label>
           </div>
 
