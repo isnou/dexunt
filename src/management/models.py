@@ -527,10 +527,6 @@ class Store(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    # ----- #
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
-    refund = models.IntegerField(default=0)
     # ----- content ----- #
     name = models.CharField(max_length=200, unique=True, null=True)
     address = models.CharField(max_length=400, blank=True, null=True)
