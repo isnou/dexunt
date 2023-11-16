@@ -155,7 +155,19 @@ class Option(models.Model):
         self.variant.option_set.add(new_option)
     def add_production_capacity(self, request):
         self.production_capacity_quantity = int(request.POST.get('quantity', False))
-        self.production_capacity_time = timedelta(days=7)
+        duration = request.POST.get('duration', False)
+        if duration == '24h':
+            self.production_capacity_time = timedelta(hours=24)
+        if duration == 'two_days':
+            self.production_capacity_time = timedelta(days=2)
+        if duration == 'three_days':
+            self.production_capacity_time = timedelta(days=3)
+        if duration == 'four_days':
+            self.production_capacity_time = timedelta(days=4)
+        if duration == 'one_week':
+            self.production_capacity_time = timedelta(weeks=1)
+        if duration == 'one_month':
+            self.production_capacity_time = timedelta(weeks=4)
         super().save()
     def activate(self):
         self.is_activated = True
