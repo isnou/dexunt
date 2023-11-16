@@ -17,7 +17,7 @@ class OptionForm(ModelForm):
     upc = forms.CharField(required=False)
     class Meta:
         model = Option
-        fields = ('en_value', 'fr_value', 'ar_value', 'upc', 'en_note', 'fr_note', 'ar_note')
+        fields = ('en_value', 'fr_value', 'ar_value', 'upc')
 
 class FlashForm(ModelForm):
     class Meta:
