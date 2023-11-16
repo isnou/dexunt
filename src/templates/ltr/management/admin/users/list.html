@@ -190,13 +190,11 @@
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#change_modal_{{ selected_user.id }}">
               <i class="fa fa-user fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Change"></i>
             </a>
-            {% elif selected_user.is_cash_manager %}
+            {% endif %}
+
+            {% if selected_user.is_cash_manager %}
             <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#add_cash_modal_{{ selected_user.id }}">
               <i class="fa fa-coins fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Cash"></i>
-            </a>
-            {% else %}
-            <a type="button" class="text-body me-3" data-bs-toggle="modal" data-bs-target="#reset_modal_{{ selected_user.id }}">
-              <i class="fa fa-repeat fa-flip-horizontal fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset"></i>
             </a>
             {% endif %}
 
@@ -330,25 +328,6 @@
     </div>
   </div>
   <!-- End Delete User Modal -->
-
-  <!-- Reset User Modal -->
-  <div id="reset_modal_{{ selected_user.id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <p>click yes to reset {{ selected_user.username }} (all related products ,store will be lost) .</p>
-        </div>
-        <div class="modal-footer" style="align-self: center;">
-          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary" form="reset_user_form_{{ selected_user.id }}">Yes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Reset User Modal -->
 
   <!-- Add Cash Modal -->
   <div id="add_cash_modal_{{ selected_user.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
