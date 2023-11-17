@@ -226,14 +226,14 @@
                 {% if option.is_activated %}
                 <!-- deactivate option button -->
                 <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#deactivate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-toggle-on" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate" style="width: 100%;"></i>
+                  <i class="fa fa-toggle-on" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate" style="width: 80%;"></i>
                 </button>
                 {% else %}
 
                 {% if option.can_be_activated %}
                 <!-- activate option button -->
                 <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-toggle-off" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate" style="width: 100%;"></i>
+                  <i class="fa fa-toggle-off" data-bs-toggle="tooltip" data-bs-placement="top" title="Activate" style="width: 80%;"></i>
                 </button>
                 {% else %}
                 <strong data-bs-toggle="tooltip" class="btn btn-ghost btn-icon me-2" data-bs-placement="top" title="check store" style="color: #ff0000;">
