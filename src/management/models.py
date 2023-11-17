@@ -244,7 +244,10 @@ class Option(models.Model):
             refund += 1
         return refund
     def rate_by_sales(self):
-        return self.rates() * self.sale()
+        if not self.sale():
+            return 0
+        else:
+            return self.rates() * self.sale()
     def review_star_one(self):
         if self.rates() == 0:
             return ''
