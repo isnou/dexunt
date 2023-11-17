@@ -185,9 +185,9 @@
                 {% endif %}
               </div>
               <div class="flex-grow-1 ms-3">
-                <h5 class="text-inherit me-2">{{ variant.product.en_title }}</h5>
+                <h5 class="text-inherit me-2">{{ variant.product.title|title }}</h5>
                 <span class="d-block text-body fs-6">
-                  <small> {{ variant.en_spec }} </small>
+                  <small> {{ variant.spec|title }} </small>
                 </span>
               </div>
             </a>
@@ -197,9 +197,9 @@
             {% for option in variant.option_set.all %}
             <span class="d-block text-body fs-6">
               <small>
-                {{ option.en_value }}
-                {% if not option.is_activated or not variant.is_activated %}
-                <span class="badge bg-warning">not activated</span>
+                {{ option.value|title }}
+                {% if not option.is_activated %}
+                <span class="badge bg-danger">not activated</span>
                 {% endif %}
 
                 {% if option.out_of_stock %}

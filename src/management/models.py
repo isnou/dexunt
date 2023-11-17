@@ -168,6 +168,7 @@ class Option(models.Model):
             self.production_capacity_time = timedelta(weeks=4)
         if duration == 'limited_stock':
             self.production_capacity_time = timedelta(days=365)
+            self.out_of_stock = False
         super().save()
     def activate(self):
         self.is_activated = True
@@ -242,7 +243,7 @@ class Option(models.Model):
         for s in self.selected_products.all().filter(status='refunded'):
             refund += 1
         return refund
-    def rates_quotient(self):
+    def rate_by_sales(self):
         return self.rates() * self.sale()
     def review_star_one(self):
         if self.rates() == 0:
@@ -346,7 +347,6 @@ class Option(models.Model):
 class Variant(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
-    is_available = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     # ----- relations ----- #
     product = models.ForeignKey('management.Product', on_delete=models.CASCADE, null=True)
@@ -392,9 +392,9 @@ class Variant(models.Model):
         else:
             return self.selected_option().image
     def selected_option(self):
-        option = self.option_set.all().first()
-        for o in self.option_set.all():
-            if o.is_activated and o.rates_quotient() > option.rates_quotient():
+        option = self.option_set.all().filter(is_activated=True).first()
+        for o in self.option_set.all().filter(is_activated=True):
+            if o.rate_by_sales() > option.rate_by_sales():
                 option = o
         return option
     def needs_more_photos(self):
