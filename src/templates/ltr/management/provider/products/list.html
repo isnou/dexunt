@@ -95,7 +95,7 @@
             <span class="badge bg-warning">NO CAPACITY</span>
             {% endif %}
 
-            {% if not option.production_capacity_quantity and not option.limited_stock %}
+            {% if not option.production_capacity_quantity and not option.limited_stock and option.production_capacity_time %}
             <span class="badge bg-secondary">NO CAPACITY</span>
             {% endif %}
 
