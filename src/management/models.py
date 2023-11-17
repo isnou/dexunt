@@ -156,6 +156,10 @@ class Option(models.Model):
     def add_production_capacity(self, request):
         self.production_capacity_quantity = int(request.POST.get('quantity', False))
         duration = request.POST.get('duration', False)
+        if self.production_capacity_quantity:
+            self.out_of_stock = False
+        else:
+            self.out_of_stock = True
         if duration == '24h':
             self.production_capacity_time = timedelta(hours=24)
         if duration == 'two_days':
@@ -168,10 +172,6 @@ class Option(models.Model):
             self.production_capacity_time = timedelta(weeks=4)
         if duration == 'limited_stock':
             self.production_capacity_time = timedelta(days=365)
-            if self.production_capacity_quantity:
-                self.out_of_stock = False
-            else:
-                self.out_of_stock = True
         super().save()
     def activate(self):
         self.is_activated = True
