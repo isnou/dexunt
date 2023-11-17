@@ -403,14 +403,14 @@
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
                 <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_variant_modal_{{ variant.id }}">
-                  <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
+                  <i class="fa fa-clone fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
                 </button>
                 {% endif %}
 
                 {% if selected_product.variant_set.all.count > 1 %}
                 <!-- delete variant -->
                 <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_variant_modal_{{ variant.id }}">
-                  <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+                  <i class="fa fa-trash fa-xl me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
                 {% endif %}
               </td>
