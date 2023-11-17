@@ -205,8 +205,9 @@
                 {% if option.out_of_stock %}
                 <span class="badge bg-danger">ou of stock</span>
                 {% else %}
+
                 {% if option.production_capacity_quantity %}
-                <strong class="text-dark">{{ option.production_capacity_quantity }} per {{ option.capacity_time_safe }}</strong>
+                <strong class="text-dark">{{ option.production_capacity}}</strong>
                 {% else %}
                 <span class="badge bg-danger">not available</span>
                 {% endif %}
