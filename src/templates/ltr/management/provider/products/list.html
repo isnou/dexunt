@@ -184,7 +184,7 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Edit price</h2>
+            <h2>Edit Price</h2>
           </div>
 
           <form action="{% url 'provider-products' 'edit_price' %}" class="js-validate need-validate" novalidate method="post">
@@ -196,7 +196,12 @@
                 <div class="input-group-prepend input-group-text">
                   <i class="fa fa-coins"></i>
                 </div>
+                {% if option.cost %}
+                <input type="number" class="form-control" value="{{ option.cost }}" name="price" min="0" required>
+                {% else %}
                 <input type="number" class="form-control" placeholder="price" name="price" min="0" required>
+                {% endif %}
+
                 <span class="invalid-feedback text-start">Please enter your new price.</span>
               </div>
             </div>
