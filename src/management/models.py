@@ -284,6 +284,19 @@ class Option(models.Model):
                 return '-fill'
     def asin(self):
         return self.upc[:10]
+    def capacity_time(self):
+        if self.production_capacity_time == timedelta(hours=24):
+            return 'select_1'
+        if self.production_capacity_time == timedelta(days=2):
+            return 'select_2'
+        if self.production_capacity_time == timedelta(days=3):
+            return 'select_3'
+        if self.production_capacity_time == timedelta(days=4):
+            return 'select_4'
+        if self.production_capacity_time == timedelta(weeks=1):
+            return 'select_5'
+        if self.production_capacity_time == timedelta(weeks=4):
+            return 'select_6'
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
