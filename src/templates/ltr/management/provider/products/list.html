@@ -99,18 +99,18 @@
           <td class="text-end">
             {% if option.is_activated %}
             <!-- deactivate -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
+            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
               <i class="fa fa-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
             </button>
             {% endif %}
 
             <!-- edit capacity -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_capacity_modal_{{ option.id }}">
+            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_capacity_modal_{{ option.id }}">
               <i class="fa fa-bars-progress" data-bs-toggle="tooltip" data-bs-placement="top" title="Production Capacity"></i>
             </button>
 
             <!-- price -->
-            <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
+            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_price_modal_{{ option.id }}">
               <i class="fa fa-coins" data-bs-toggle="tooltip" data-bs-placement="top" title="Price"></i>
             </button>
           </td>
@@ -203,42 +203,6 @@
                 {% endif %}
 
                 <span class="invalid-feedback text-start">Please enter your new price.</span>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end gap-3">
-              <button type="submit" class="btn btn-white">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- remove quantity modal -->
-<div id="remove_quantity_modal_{{ option.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <div class="text-center mb-7">
-            <h2>Remove quantity</h2>
-          </div>
-
-          <form action="{% url 'provider-products' 'remove_quantity' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="option_id" value="{{ option.id }}">
-
-            <div class="row mb-4">
-              <div class="input-group input-group-merge input-group-borderless input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="fa fa-minus"></i>
-                </div>
-                <input type="number" class="form-control" placeholder="quantity"  name="quantity" max="{{ option.quantity }}" min="0" required>
-                <span class="invalid-feedback text-start">Quantity to remove must not exceed inventory.</span>
               </div>
             </div>
             <div class="d-flex justify-content-end gap-3">
