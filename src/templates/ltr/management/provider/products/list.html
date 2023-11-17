@@ -239,8 +239,6 @@
             {% csrf_token %}
             <input type="hidden" name="option_id" value="{{ option.id }}">
 
-            <span class="divider-center mb-2">Produce :</span>
-
             <div class="row mb-3 px-6">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 {% if option.production_capacity_quantity %}
@@ -252,7 +250,7 @@
               </div>
             </div>
 
-            <span class="divider-center mb-2">Per :</span>
+            <span class="divider-center mb-2"></span>
 
             <div class="row mb-3 px-4">
               <div class="col-6 text-start">
@@ -265,7 +263,7 @@
                     <input type="radio" class="form-check-input" name="duration" value="one_day">
                     {% endif %}
 
-                    <label class="form-check-label">One Day</label>
+                    <label class="form-check-label">Per Day</label>
                   </div>
                 </div>
                 <!-- end one day -->
@@ -279,7 +277,7 @@
                     <input type="radio" class="form-check-input" name="duration" value="one_month">
                     {% endif %}
 
-                    <label class="form-check-label">One Month</label>
+                    <label class="form-check-label">Per Month</label>
                   </div>
                 </div>
                 <!-- end one month -->
