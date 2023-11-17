@@ -132,10 +132,10 @@ class Option(models.Model):
     def save(self, *args, **kwargs):
         if not self.upc:
             self.upc = functions.serial_number_generator(20).upper()
-        if self.cost:
+        if self.cost and self.price:
             if self.price < self.cost:
                 self.cost = None
-        if self.discount:
+        if self.discount and self.price:
             if self.price < self.discount:
                 self.discount = None
         super().save()
