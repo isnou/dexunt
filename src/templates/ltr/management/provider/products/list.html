@@ -93,13 +93,18 @@
           <td>
             {% if not option.production_capacity_time %}
             <span class="badge bg-warning">NO CAPACITY</span>
-            {% else %}
-
-            {% if option.out_of_stock %}
-            <span class="badge bg-secondary">OUT OF STOCK</span>
-            {% else %}
-            <strong class="text-dark">{{ option.production_capacity}}</strong>
             {% endif %}
+
+            {% if not option.production_capacity_quantity and not option.limited_stock %}
+            <span class="badge bg-secondary">NO CAPACITY</span>
+            {% endif %}
+
+            {% if option.out_of_stock and option.limited_stock %}
+            <span class="badge bg-secondary">OUT OF STOCK</span>
+            {% endif %}
+
+            {% if option.production_capacity_quantity %}
+            <strong class="text-dark">{{ option.production_capacity}}</strong>
             {% endif %}
           </td>
           <!-- product actions -->
