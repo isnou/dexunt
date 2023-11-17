@@ -154,7 +154,7 @@ class Option(models.Model):
     def add_production_capacity(self, request):
         self.production_capacity_quantity = int(request.POST.get('quantity', False))
         duration = request.POST.get('duration', False)
-        if duration == '24h':
+        if duration == 'one_day':
             self.production_capacity_time = timedelta(hours=24)
         if duration == 'one_month':
             self.production_capacity_time = timedelta(weeks=4)
@@ -185,17 +185,22 @@ class Option(models.Model):
                client=request.user
                ).save()
     # ----- variables ----- #
-    def can_be_activated(self):
-        if self.variant.product.store:
-            return self.variant.product.store.is_activated
-        else:
-            return False
     def store_ready(self):
         if self.production_capacity_time and self.cost:
-            if self.production_capacity_quantity or self.production_capacity_time == timedelta(days=365):
+            if self.production_capacity_quantity or self.limited_stock():
                 return True
             else:
                 return False
+        else:
+            return False
+    def limited_stock(self):
+        if self.production_capacity_time == timedelta(days=365):
+            return True
+        else:
+            return False
+    def can_be_activated(self):
+        if self.variant.product.store:
+            return self.variant.product.store.is_activated
         else:
             return False
     def value(self):
