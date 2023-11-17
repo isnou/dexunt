@@ -198,19 +198,21 @@
             <span class="d-block text-body fs-6">
               <small>
                 {{ option.value|title }}
+
                 {% if not option.is_activated %}
                 <span class="badge bg-danger">INACTIVE</span>
                 {% endif %}
 
+                {% if option.store_ready %}
+                <span class="badge bg-warning">NOT READY</span>
+                {% else %}
+
                 {% if option.out_of_stock %}
                 <span class="badge bg-dark">OUT OF STOCK</span>
                 {% else %}
-
-                {% if option.production_capacity_quantity %}
                 <strong class="text-dark">{{ option.production_capacity}}</strong>
-                {% else %}
-                <span class="badge bg-dark">UNAVAILABLE</span>
                 {% endif %}
+
                 {% endif %}
               </small>
             </span>

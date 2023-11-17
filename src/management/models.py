@@ -168,7 +168,10 @@ class Option(models.Model):
             self.production_capacity_time = timedelta(weeks=4)
         if duration == 'limited_stock':
             self.production_capacity_time = timedelta(days=365)
-            self.out_of_stock = False
+            if self.production_capacity_quantity:
+                self.out_of_stock = False
+            else:
+                self.out_of_stock = True
         super().save()
     def activate(self):
         self.is_activated = True
