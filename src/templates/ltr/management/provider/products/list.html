@@ -86,17 +86,17 @@
               {{ option.cost|floatformat:"0g" }} DZD
             </span>
             {% else %}
-            <span class="badge bg-warning">NO PRICE</span>
+            <span class="badge bg-danger">NO PRICE</span>
             {% endif %}
           </td>
           <!-- capacity -->
           <td>
             {% if not option.store_ready %}
-            <span class="badge bg-warning">NOT READY</span>
+            <span class="badge bg-danger">NOT READY</span>
             {% else %}
 
             {% if option.out_of_stock %}
-            <span class="badge bg-dark">OUT OF STOCK</span>
+            <span class="badge bg-warning">OUT OF STOCK</span>
             {% else %}
             <strong class="text-dark">{{ option.production_capacity}}</strong>
             {% endif %}
