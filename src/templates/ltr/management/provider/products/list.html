@@ -249,7 +249,7 @@
                 {% if option.production_capacity_quantity %}
                 <input type="number" class="form-control" value="{{ option.production_capacity_quantity }}" name="quantity" min="0" required>
                 {% else %}
-                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="0" required>
+                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="1" required>
                 {% endif %}
                 <span class="invalid-feedback text-start">Please enter quantity to add.</span>
               </div>
