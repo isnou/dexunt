@@ -147,7 +147,10 @@ def product_page(request, action):
         if option_id:
             selected_option = Option.objects.all().get(id=option_id)
         else:
-            selected_option = selected_variant.selected_option()
+            if selected_variant.selected_option():
+                selected_option = selected_variant.selected_option()
+            else:
+                selected_option = selected_variant.admin_selected_option()
 
         request.session['variant_id'] = selected_variant.id
         request.session['option_id'] = selected_option.id

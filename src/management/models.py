@@ -399,6 +399,12 @@ class Variant(models.Model):
             if o.rate_by_sales() > option.rate_by_sales():
                 option = o
         return option
+    def admin_selected_option(self):
+        option = self.option_set.all().first()
+        for o in self.option_set.all():
+            if o.rate_by_sales() > option.rate_by_sales():
+                option = o
+        return option
     def needs_more_photos(self):
         if self.album_set.all().count() < 4:
             return True
