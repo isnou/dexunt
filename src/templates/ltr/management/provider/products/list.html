@@ -84,19 +84,6 @@
             {% else %}
             <span class="badge bg-warning">no price</span>
             {% endif %}
-            <span class="d-block text-dark fs-6">
-                | <span>{{ option.cost|floatformat:"0g" }} DZD</span>
-                | <strong>{{ option.sale }}</strong> sales
-                {% if not option.is_activated or not variant.is_activated %}
-                <span class="badge bg-warning">deactivated</span>
-                {% endif %}
-
-                {% if not option.quantity %}
-                <span class="badge bg-danger">unavailable</span>
-                {% else %}
-                | <strong>{{ option.quantity }}</strong> available
-                {% endif %}
-            </span>
           </td>
           <!-- capacity -->
           <td>
