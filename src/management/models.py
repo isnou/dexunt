@@ -203,8 +203,11 @@ class Option(models.Model):
         else:
             return False
     def store_ready(self):
-        if self.production_capacity_quantity and self.production_capacity_time and self.cost:
-            return True
+        if self.production_capacity_time and self.cost:
+            if self.production_capacity_quantity or self.production_capacity_time == timedelta(days=365):
+                return True
+            else:
+                return False
         else:
             return False
     def value(self):
