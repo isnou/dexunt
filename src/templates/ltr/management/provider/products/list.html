@@ -71,7 +71,7 @@
                 <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ variant.image }}">
               </div>
               <div class="flex-grow-1 ms-3">
-                <h5 class="text-inherit me-2">{{ variant.product.title }}, {{ variant.spec }}, {{ option.value }}</h5>
+                <h5 class="text-inherit me-2">{{ variant.product.title|title }}, {{ variant.spec|title}}, {{ option.value|title }}</h5>
               </div>
             </a>
           </td>
