@@ -239,7 +239,7 @@
             {% csrf_token %}
             <input type="hidden" name="option_id" value="{{ option.id }}">
 
-            <div class="row mb-3 px-6">
+            <div class="row mb-5 px-6">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 {% if option.production_capacity_quantity %}
                 <input type="number" class="form-control" value="{{ option.production_capacity_quantity }}" name="quantity" min="0" required>
@@ -249,8 +249,6 @@
                 <span class="invalid-feedback text-start">Please enter quantity to add.</span>
               </div>
             </div>
-
-            <span class="divider-center mb-2"></span>
 
             <div class="row mb-3 px-4">
               <div class="col-6 text-start">
