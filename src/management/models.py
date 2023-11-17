@@ -199,10 +199,7 @@ class Option(models.Model):
         else:
             return False
     def store_task(self):
-        if self.production_capacity_quantity and self.production_capacity_time and self.cost:
-            return True
-        else:
-            return False
+        return True
     def value(self):
         language = global_request.session.get('language')
         if language == 'en-us':
