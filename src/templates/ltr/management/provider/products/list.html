@@ -256,63 +256,19 @@
 
             <div class="row mb-3 px-4">
               <div class="col-6 text-start">
-                <!-- 24h -->
+                <!-- one day -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
                     {% if not option.capacity_time or option.capacity_time == 'one_day' %}
-                    <input type="radio" class="form-check-input" name="duration" value="24h" checked>
+                    <input type="radio" class="form-check-input" name="duration" value="one_day" checked>
                     {% else %}
-                    <input type="radio" class="form-check-input" name="duration" value="24h">
+                    <input type="radio" class="form-check-input" name="duration" value="one_day">
                     {% endif %}
 
-                    <label class="form-check-label">24h</label>
+                    <label class="form-check-label">One Day</label>
                   </div>
                 </div>
-                <!-- end 24h -->
-
-                <!-- two days -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if option.capacity_time == 'two_days' %}
-                    <input type="radio" class="form-check-input" name="duration" value="two_days" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="duration" value="two_days">
-                    {% endif %}
-
-                    <label class="form-check-label">Two Days</label>
-                  </div>
-                </div>
-                <!-- end two days -->
-
-                <!-- three days -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if option.capacity_time == 'three_days' %}
-                    <input type="radio" class="form-check-input" name="duration" value="three_days" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="duration" value="three_days">
-                    {% endif %}
-
-                    <label class="form-check-label">Three Days</label>
-                  </div>
-                </div>
-                <!-- end three days -->
-              </div>
-
-              <div class="col-6 text-end">
-                <!-- one week -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if option.capacity_time == 'one_week' %}
-                    <input type="radio" class="form-check-input" name="duration" value="one_week" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="duration" value="one_week">
-                    {% endif %}
-
-                    <label class="form-check-label">One Week</label>
-                  </div>
-                </div>
-                <!-- end one week -->
+                <!-- end one day -->
 
                 <!-- one month -->
                 <div class="input-group input-group-borderless mb-2">
@@ -327,7 +283,9 @@
                   </div>
                 </div>
                 <!-- end one month -->
+              </div>
 
+              <div class="col-6 text-end">
                 <!-- limited stock -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">

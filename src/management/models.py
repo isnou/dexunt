@@ -156,12 +156,6 @@ class Option(models.Model):
         duration = request.POST.get('duration', False)
         if duration == '24h':
             self.production_capacity_time = timedelta(hours=24)
-        if duration == 'two_days':
-            self.production_capacity_time = timedelta(days=2)
-        if duration == 'three_days':
-            self.production_capacity_time = timedelta(days=3)
-        if duration == 'one_week':
-            self.production_capacity_time = timedelta(weeks=1)
         if duration == 'one_month':
             self.production_capacity_time = timedelta(weeks=4)
         if duration == 'limited_stock':
@@ -290,57 +284,33 @@ class Option(models.Model):
     def capacity_time(self):
         if self.production_capacity_time == timedelta(hours=24):
             return 'one_day'
-        if self.production_capacity_time == timedelta(days=2):
-            return 'two_days'
-        if self.production_capacity_time == timedelta(days=3):
-            return 'three_days'
-        if self.production_capacity_time == timedelta(days=365):
-            return 'limited_stock'
-        if self.production_capacity_time == timedelta(weeks=1):
-            return 'one_week'
         if self.production_capacity_time == timedelta(weeks=4):
             return 'one_month'
+        if self.production_capacity_time == timedelta(days=365):
+            return 'limited_stock'
     def production_capacity(self):
         language = global_request.session.get('language')
         if language == 'en-us':
             if self.production_capacity_time == timedelta(hours=24):
                 return str(self.production_capacity_quantity) + ' per day'
-            if self.production_capacity_time == timedelta(days=2):
-                return str(self.production_capacity_quantity) + ' per 48 h'
-            if self.production_capacity_time == timedelta(days=3):
-                return str(self.production_capacity_quantity) + ' per 72 h'
-            if self.production_capacity_time == timedelta(days=365):
-                return 'limited stock' + ' (' + str(self.production_capacity_quantity) + ')'
-            if self.production_capacity_time == timedelta(weeks=1):
-                return str(self.production_capacity_quantity) + ' per week'
             if self.production_capacity_time == timedelta(weeks=4):
                 return str(self.production_capacity_quantity) + ' per month'
+            if self.production_capacity_time == timedelta(days=365):
+                return 'limited stock' + ' (' + str(self.production_capacity_quantity) + ')'
         if language == 'fr-fr':
             if self.production_capacity_time == timedelta(hours=24):
                 return str(self.production_capacity_quantity) + ' par jour'
-            if self.production_capacity_time == timedelta(days=2):
-                return str(self.production_capacity_quantity) + ' par 48 h'
-            if self.production_capacity_time == timedelta(days=3):
-                return str(self.production_capacity_quantity) + ' par 72 h'
-            if self.production_capacity_time == timedelta(days=365):
-                return 'stock limité' + ' (' + str(self.production_capacity_quantity) + ')'
-            if self.production_capacity_time == timedelta(weeks=1):
-                return str(self.production_capacity_quantity) + 'par semaine'
             if self.production_capacity_time == timedelta(weeks=4):
                 return str(self.production_capacity_quantity) + ' par mois'
+            if self.production_capacity_time == timedelta(days=365):
+                return 'stock limité' + ' (' + str(self.production_capacity_quantity) + ')'
         if language == 'ar-dz':
             if self.production_capacity_time == timedelta(hours=24):
-                return 'يوم'
-            if self.production_capacity_time == timedelta(days=2):
-                return '48 ساعة'
-            if self.production_capacity_time == timedelta(days=3):
-                return '72 ساعة'
-            if self.production_capacity_time == timedelta(days=365):
-                return 'كمية محدودة'
-            if self.production_capacity_time == timedelta(weeks=1):
-                return 'أسبوع'
+                return ' يوميا' + str(self.production_capacity_quantity)
             if self.production_capacity_time == timedelta(weeks=4):
-                return 'شهر'
+                return ' في الشهر' + str(self.production_capacity_quantity)
+            if self.production_capacity_time == timedelta(days=365):
+                return  '(' + str(self.production_capacity_quantity) + ') ' + 'كمية محدودة'
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #
