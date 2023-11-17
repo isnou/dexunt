@@ -61,7 +61,7 @@
         {% for variant in variants %}
         {% for option in variant.option_set.all %}
         <!-- products list -->
-        <tr  class="{% if not option.store_task %}bg-light{% endif %}">
+        <tr  class="{% if not option.store_ready %}bg-light{% endif %}">
           <td class="table-column-pe-0">
           </td>
           <!-- product title and image -->
@@ -238,7 +238,7 @@
 
             <span class="divider-center mb-2">Produce :</span>
 
-            <div class="row mb-3 px-4">
+            <div class="row mb-3 px-6">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 {% if option.production_capacity_quantity %}
                 <input type="number" class="form-control" value="{{ option.production_capacity_quantity }}" name="quantity" min="0" required>
