@@ -246,20 +246,20 @@
                 {% if selected_variant.option_set.all.count > 1 %}
                 <!-- delete option button -->
                 <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" style="width: 100%;"></i>
+                  <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" style="width: 50%;"></i>
                 </button>
                 {% endif %}
 
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
                 <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate" style="width: 100%;"></i>
+                  <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate" style="width: 50%;"></i>
                 </button>
                 {% endif %}
 
                 <!-- edit option button -->
                 <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" style="width: 100%;"></i>
+                  <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" style="width: 50%;"></i>
                 </button>
               </td>
 
