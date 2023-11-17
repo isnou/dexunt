@@ -202,10 +202,10 @@
                 <span class="badge bg-warning">not activated</span>
                 {% endif %}
 
-                {% if not option.quantity %}
-                <span class="badge bg-danger">not available</span>
+                {% if option.out_of_stock %}
+                <span class="badge bg-danger">ou of stock</span>
                 {% else %}
-                <strong class="text-dark">({{ option.quantity }})</strong> available
+                <strong class="text-dark">{{ option.production_capacity_quantity }} per {{ option.capacity_time_safe }}</strong>
                 {% endif %}
               </small>
             </span>
