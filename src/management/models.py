@@ -297,6 +297,47 @@ class Option(models.Model):
             return 'select_5'
         if self.production_capacity_time == timedelta(weeks=4):
             return 'select_6'
+    def capacity_time_safe(self):
+        language = global_request.session.get('language')
+        if language == 'en-us':
+            if self.production_capacity_time == timedelta(hours=24):
+                return 'day'
+            if self.production_capacity_time == timedelta(days=2):
+                return '48 h'
+            if self.production_capacity_time == timedelta(days=3):
+                return '72 h'
+            if self.production_capacity_time == timedelta(days=4):
+                return '96 h'
+            if self.production_capacity_time == timedelta(weeks=1):
+                return 'week'
+            if self.production_capacity_time == timedelta(weeks=4):
+                return 'month'
+        if language == 'fr-fr':
+            if self.production_capacity_time == timedelta(hours=24):
+                return 'jour'
+            if self.production_capacity_time == timedelta(days=2):
+                return '48 h'
+            if self.production_capacity_time == timedelta(days=3):
+                return '72 h'
+            if self.production_capacity_time == timedelta(days=4):
+                return '96 h'
+            if self.production_capacity_time == timedelta(weeks=1):
+                return 'semaine'
+            if self.production_capacity_time == timedelta(weeks=4):
+                return 'mois'
+        if language == 'ar-dz':
+            if self.production_capacity_time == timedelta(hours=24):
+                return 'يوم'
+            if self.production_capacity_time == timedelta(days=2):
+                return '48 ساعة'
+            if self.production_capacity_time == timedelta(days=3):
+                return '72 ساعة'
+            if self.production_capacity_time == timedelta(days=4):
+                return '96 ساعة'
+            if self.production_capacity_time == timedelta(weeks=1):
+                return 'أسبوع'
+            if self.production_capacity_time == timedelta(weeks=4):
+                return 'شهر'
 # ---------------------------------------------------------------------- #
 
 # ------------------------------- Regular ------------------------------ #

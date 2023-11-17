@@ -75,10 +75,16 @@
               </div>
             </a>
           </td>
-          <!-- option -->
+          <!-- price -->
           <td>
+            {% if option.cost %}
             <span class="d-block text-dark fs-6">
-                {{ option.en_value }}
+              {{ option.cost|floatformat:"0g" }} DZD
+            </span>
+            {% else %}
+            <span class="badge bg-warning">no price</span>
+            {% endif %}
+            <span class="d-block text-dark fs-6">
                 | <span>{{ option.cost|floatformat:"0g" }} DZD</span>
                 | <strong>{{ option.sale }}</strong> sales
                 {% if not option.is_activated or not variant.is_activated %}
@@ -91,6 +97,16 @@
                 | <strong>{{ option.quantity }}</strong> available
                 {% endif %}
             </span>
+          </td>
+          <!-- capacity -->
+          <td>
+            {% if option.store_task %}
+            <span class="d-block text-dark fs-6">
+              {{ option.production_capacity_quantity }} per {{ option.capacity_time_safe }}
+            </span>
+            {% else %}
+            <span class="badge bg-warning">no capacity</span>
+            {% endif %}
           </td>
           <!-- product actions -->
           <td class="text-end">
