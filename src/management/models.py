@@ -391,6 +391,8 @@ class Variant(models.Model):
             return self.album_set.all().first().image
         else:
             return self.selected_option().image
+    def admin_image(self):
+        return self.album_set.all().first().image
     def selected_option(self):
         option = self.option_set.all().filter(is_activated=True).first()
         for o in self.option_set.all().filter(is_activated=True):
