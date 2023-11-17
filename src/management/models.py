@@ -297,21 +297,21 @@ class Option(models.Model):
             return 'one_week'
         if self.production_capacity_time == timedelta(weeks=4):
             return 'one_month'
-    def capacity_time_safe(self):
+    def production_capacity(self):
         language = global_request.session.get('language')
         if language == 'en-us':
             if self.production_capacity_time == timedelta(hours=24):
-                return 'day'
+                return str(self.production_capacity_quantity) + 'per day'
             if self.production_capacity_time == timedelta(days=2):
-                return '48 h'
+                return str(self.production_capacity_quantity) + 'per 48 h'
             if self.production_capacity_time == timedelta(days=3):
-                return '72 h'
+                return str(self.production_capacity_quantity) + 'per 72 h'
             if self.production_capacity_time == timedelta(days=365):
-                return 'limited stock'
+                return 'limited stock' + ' (' + str(self.production_capacity_quantity) + ')'
             if self.production_capacity_time == timedelta(weeks=1):
-                return 'week'
+                return str(self.production_capacity_quantity) + 'per week'
             if self.production_capacity_time == timedelta(weeks=4):
-                return 'month'
+                return str(self.production_capacity_quantity) + 'per month'
         if language == 'fr-fr':
             if self.production_capacity_time == timedelta(hours=24):
                 return 'jour'
