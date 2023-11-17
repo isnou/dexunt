@@ -335,6 +335,12 @@ class Variant(models.Model):
         super().save()
         self.product.activate()
     # ----- variables ----- #
+    def selected_option(self):
+        option = self.option_set.all().exclude(is_activated=False).first()
+        for o in self.option_set.all().exclude(is_activated=False):
+            if o.is_activated and o.rates_quotient() > option.rates_quotient():
+                option = o
+        return option
     def spec(self):
         language = global_request.session.get('language')
         if language == 'en-us':
@@ -348,12 +354,6 @@ class Variant(models.Model):
             return self.album_set.all().first().image
         else:
             return self.selected_option().image
-    def selected_option(self):
-        option = self.option_set.all().exclude(is_activated=False).first()
-        for o in self.option_set.all().exclude(is_activated=False):
-            if o.is_activated and o.rates_quotient() > option.rates_quotient():
-                option = o
-        return option
     def needs_more_photos(self):
         if self.album_set.all().count() < 4:
             return True
