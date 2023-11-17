@@ -403,8 +403,7 @@ def manage_products(request, action):
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
             selected_product = Product.objects.all().get(id=product_id)
-            selected_product.store = None
-            selected_product.save()
+            selected_product.unassign_store()
             return redirect('admin-manage-products', 'main')
     # -- search partial show -- #
     if action == 'search_products':

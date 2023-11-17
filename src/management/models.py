@@ -439,6 +439,14 @@ class Product(models.Model):
     # ----- #
     brand = models.CharField(max_length=80, blank=True, null=True)
     # ----- functions ----- #
+    def unassign_store(self):
+        self.store = None
+        super().save()
+        for v in self.variant_set.all():
+            for o in v.option_set.all():
+                o.production_capacity_time = None
+                o.production_capacity_quantity = 0
+                o.save()
     def activate(self):
         activation = False
         for v in self.variant_set.all():
