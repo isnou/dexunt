@@ -132,12 +132,10 @@ class Option(models.Model):
     def save(self, *args, **kwargs):
         if not self.upc:
             self.upc = functions.serial_number_generator(20).upper()
-        if self.cost and self.price:
-            if self.price < self.cost:
-                self.cost = None
-        if self.discount and self.price:
-            if self.price < self.discount:
-                self.discount = None
+        if self.production_capacity_quantity:
+            self.out_of_stock = False
+        else:
+            self.out_of_stock = True
         super().save()
     def duplicate(self):
         new_option = Option(delivery_quotient = self.delivery_quotient,
@@ -156,10 +154,6 @@ class Option(models.Model):
     def add_production_capacity(self, request):
         self.production_capacity_quantity = int(request.POST.get('quantity', False))
         duration = request.POST.get('duration', False)
-        if self.production_capacity_quantity:
-            self.out_of_stock = False
-        else:
-            self.out_of_stock = True
         if duration == '24h':
             self.production_capacity_time = timedelta(hours=24)
         if duration == 'two_days':
