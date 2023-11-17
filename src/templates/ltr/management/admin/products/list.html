@@ -207,9 +207,11 @@
                 <span class="badge bg-warning">NOT READY</span>
                 {% else %}
 
-                {% if option.out_of_stock %}
+                {% if option.out_of_stock and option.limited_stock %}
                 <span class="badge bg-secondary">OUT OF STOCK</span>
-                {% else %}
+                {% endif %}
+
+                {% if option.production_capacity_quantity %}
                 <strong class="text-dark">{{ option.production_capacity}}</strong>
                 {% endif %}
 
