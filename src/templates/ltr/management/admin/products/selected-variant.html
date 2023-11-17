@@ -230,8 +230,6 @@
                 </button>
                 {% else %}
 
-
-
                 {% if option.can_be_activated %}
                 <!-- activate option button -->
                 <button type="button" class="btn btn-ghost btn-icon me-4" data-bs-toggle="modal" data-bs-target="#activate_option_modal_{{ option.id }}_{{ variant.id }}">
@@ -243,26 +241,24 @@
                 </strong>
                 {% endif %}
 
-
-
                 {% endif %}
 
                 {% if selected_variant.option_set.all.count > 1 %}
                 <!-- delete option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
                 {% endif %}
 
                 {% if forloop.counter == 1 %}
                 <!-- duplicate option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#duplicate_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate"></i>
                 </button>
                 {% endif %}
 
                 <!-- edit option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </button>
               </td>
@@ -282,9 +278,15 @@
 
               <!-- price , discount & quantity-->
               <td>
+                {% if option.price %}
                 <h6 class="text-body">
                   <small>Price :{{ option.price|floatformat:"2g" }} DZD</small>
                 </h6>
+                {% else %}
+                <h6 class="text-danger">
+                  <small>No Price</small>
+                </h6>
+                {% endif %}
 
                 {% if option.discount %}
                 <h6 class="text-body">
@@ -296,14 +298,22 @@
                 </h6>
                 {% endif %}
 
-                {% if option.quantity %}
+                {% if option.min_price %}
                 <h6 class="text-body">
-                  <small>Quantity :{{ option.quantity }}</small>
+                  <small>Min Price :{{ option.min_price|floatformat:"2g" }} DZD</small>
                 </h6>
                 {% else %}
-                <small>
-                  <span class="badge bg-danger">unavailable</span>
-                </small>
+                <h6 class="text-body">
+                  <small>No Min Price</small>
+                </h6>
+                {% endif %}
+
+                {% if option.out_of_stock and option.limited_stock %}
+                <span class="badge bg-secondary">OUT OF STOCK</span>
+                {% endif %}
+
+                {% if option.production_capacity_quantity %}
+                <strong class="text-dark">{{ option.production_capacity}}</strong>
                 {% endif %}
 
                 {% if not option.is_activated %}
