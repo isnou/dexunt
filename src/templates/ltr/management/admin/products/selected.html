@@ -349,7 +349,7 @@
                 <a class="d-flex align-items-center" href="{% url 'admin-manage-products' 'view_variant' %}?variant_id={{ variant.id }}">
                   <div class="flex-shrink-0">
                     {% if variant.album_set.all.count %}
-                    
+                    <img class="avatar avatar-lg" src="{% get_media_prefix %}{{ variant.admin_image }}">
                     {% else %}
                     <img class="avatar avatar-lg" src="{% static 'images/icons/no-image.png' %}">
                     {% endif %}
@@ -357,20 +357,11 @@
 
                   <div class="ms-3">
                     <div class="col">
-                      {% if not variant.is_available %}
-                      <small>
-                        <span class="badge bg-danger">
-                        <i class="fa fa-circle-exclamation"></i>
-                          unavailable
-                        </span>
-                      </small>
-                      {% endif %}
-
                       {% if not variant.is_activated %}
                       <small>
                         <span class="badge bg-danger">
-                        <i class="fa fa-circle-exclamation"></i>
-                          deactivated
+                          <i class="fa fa-circle-exclamation"></i>
+                          DEACTIVATED
                         </span>
                       </small>
                       {% endif %}
@@ -383,7 +374,7 @@
                       <small>
                         <span class="badge bg-danger">
                           <i class="fa fa-triangle-exclamation"></i>
-                          photos
+                          PHOTOS
                         </span>
                       </small>
                       {% endif %}
@@ -427,28 +418,34 @@
               <!-- value -->
               <td class="text-start">
                 <h6 class="text-body">
-                  <small>{{ selected_product.en_title|title }} - {{ variant.en_spec|title }}</small>
+                  <small>{{ selected_product.title|title }}, {{ variant.spec|title }}</small>
                 </h6>
                 <h6 class="text-body">
-                  <small>{{ selected_product.fr_title|title }} - {{ variant.fr_spec|title }}</small>
+                  <small>{{ selected_product.title|title }}, {{ variant.spec|title }}</small>
                 </h6>
                 <h6 class="text-body" dir="rtl">
-                  <small>{{ selected_product.ar_title|title }} - {{ variant.ar_spec|title }}</small>
+                  <small>{{ selected_product.title|title }}, {{ variant.spec|title }}</small>
                 </h6>
               </td>
 
               <!-- price , discount-->
               <td>
+                {% if variant.admin_selected_option.price %}
                 <h6 class="text-body">
-                  <small>Price :{{ variant.option_set.first.price|floatformat:"2g" }} DZD</small>
-                </h6>
-
-                {% if variant.option_set.first.discount %}
-                <h6 class="text-body">
-                  <small>Discount :{{ variant.option_set.first.discount|floatformat:"2g" }} DZD</small>
+                  <small>Price :{{ variant.admin_selected_option.price|floatformat:"2g" }} DZD</small>
                 </h6>
                 {% else %}
+                <h6 class="text-warning">
+                  <small>No Price</small>
+                </h6>
+                {% endif %}
+
+                {% if variant.admin_selected_option.discount %}
                 <h6 class="text-body">
+                  <small>Discount :{{ variant.admin_selected_option.discount|floatformat:"2g" }} DZD</small>
+                </h6>
+                {% else %}
+                <h6 class="text-warning">
                   <small>No Discount</small>
                 </h6>
                 {% endif %}
