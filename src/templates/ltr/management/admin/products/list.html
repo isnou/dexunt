@@ -199,17 +199,17 @@
               <small>
                 {{ option.value|title }}
                 {% if not option.is_activated %}
-                <span class="badge bg-danger">not activated</span>
+                <span class="badge bg-danger">INACTIVE</span>
                 {% endif %}
 
                 {% if option.out_of_stock %}
-                <span class="badge bg-danger">ou of stock</span>
+                <span class="badge bg-light">OUT OF STOCK</span>
                 {% else %}
 
                 {% if option.production_capacity_quantity %}
                 <strong class="text-dark">{{ option.production_capacity}}</strong>
                 {% else %}
-                <span class="badge bg-danger">not available</span>
+                <span class="badge bg-light">UNAVAILABLE</span>
                 {% endif %}
                 {% endif %}
               </small>
