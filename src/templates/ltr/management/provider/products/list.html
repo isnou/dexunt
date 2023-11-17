@@ -296,7 +296,11 @@
 
             <span class="divider-center mb-2">Per :</span>
 
-            {{ option.production_capacity_time }}
+            {{ option.production_capacity_time.hour }}
+            {{ option.production_capacity_time.day }}
+            {{ option.production_capacity_time.week }}
+            {{ option.production_capacity_time.month }}
+
 
             <div class="row mb-3 px-4">
               <div class="col-6 text-start">
