@@ -309,17 +309,15 @@
                 {% endif %}
 
                 {% if option.out_of_stock and option.limited_stock %}
-                <span class="badge bg-secondary">OUT OF STOCK</span>
+                <h6 class="text-secondary">
+                  <small>Out Of Stock</small>
+                </h6>
                 {% endif %}
 
                 {% if option.production_capacity_quantity %}
-                <strong class="text-dark">{{ option.production_capacity}}</strong>
-                {% endif %}
-
-                {% if not option.is_activated %}
-                <small>
-                  <span class="badge bg-warning">deactivated</span>
-                </small>
+                <h6 class="text-secondary">
+                  <small>{{ option.production_capacity}}</small>
+                </h6>
                 {% endif %}
               </td>
 
