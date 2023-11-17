@@ -162,12 +162,12 @@ class Option(models.Model):
             self.production_capacity_time = timedelta(days=2)
         if duration == 'three_days':
             self.production_capacity_time = timedelta(days=3)
-        if duration == 'four_days':
-            self.production_capacity_time = timedelta(days=4)
         if duration == 'one_week':
             self.production_capacity_time = timedelta(weeks=1)
         if duration == 'one_month':
             self.production_capacity_time = timedelta(weeks=4)
+        if duration == 'limited_stock':
+            self.production_capacity_time = timedelta(days=365)
         super().save()
     def activate(self):
         self.is_activated = True
@@ -286,17 +286,17 @@ class Option(models.Model):
         return self.upc[:10]
     def capacity_time(self):
         if self.production_capacity_time == timedelta(hours=24):
-            return 'select_1'
+            return 'one_day'
         if self.production_capacity_time == timedelta(days=2):
-            return 'select_2'
+            return 'two_days'
         if self.production_capacity_time == timedelta(days=3):
-            return 'select_3'
-        if self.production_capacity_time == timedelta(days=4):
-            return 'select_4'
+            return 'three_days'
+        if self.production_capacity_time == timedelta(days=365):
+            return 'limited_stock'
         if self.production_capacity_time == timedelta(weeks=1):
-            return 'select_5'
+            return 'one_week'
         if self.production_capacity_time == timedelta(weeks=4):
-            return 'select_6'
+            return 'one_month'
     def capacity_time_safe(self):
         language = global_request.session.get('language')
         if language == 'en-us':
@@ -306,8 +306,8 @@ class Option(models.Model):
                 return '48 h'
             if self.production_capacity_time == timedelta(days=3):
                 return '72 h'
-            if self.production_capacity_time == timedelta(days=4):
-                return '96 h'
+            if self.production_capacity_time == timedelta(days=365):
+                return 'limited stock'
             if self.production_capacity_time == timedelta(weeks=1):
                 return 'week'
             if self.production_capacity_time == timedelta(weeks=4):
@@ -319,8 +319,8 @@ class Option(models.Model):
                 return '48 h'
             if self.production_capacity_time == timedelta(days=3):
                 return '72 h'
-            if self.production_capacity_time == timedelta(days=4):
-                return '96 h'
+            if self.production_capacity_time == timedelta(days=365):
+                return 'stock limité'
             if self.production_capacity_time == timedelta(weeks=1):
                 return 'semaine'
             if self.production_capacity_time == timedelta(weeks=4):
@@ -332,8 +332,8 @@ class Option(models.Model):
                 return '48 ساعة'
             if self.production_capacity_time == timedelta(days=3):
                 return '72 ساعة'
-            if self.production_capacity_time == timedelta(days=4):
-                return '96 ساعة'
+            if self.production_capacity_time == timedelta(days=365):
+                return 'كمية محدودة'
             if self.production_capacity_time == timedelta(weeks=1):
                 return 'أسبوع'
             if self.production_capacity_time == timedelta(weeks=4):

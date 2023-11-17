@@ -256,7 +256,7 @@
                 <!-- 24h -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if not option.capacity_time or option.capacity_time == 'select_1' %}
+                    {% if not option.capacity_time or option.capacity_time == 'one_day' %}
                     <input type="radio" class="form-check-input" name="duration" value="24h" checked>
                     {% else %}
                     <input type="radio" class="form-check-input" name="duration" value="24h">
@@ -270,7 +270,7 @@
                 <!-- two days -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if option.capacity_time == 'select_2' %}
+                    {% if option.capacity_time == 'two_days' %}
                     <input type="radio" class="form-check-input" name="duration" value="two_days" checked>
                     {% else %}
                     <input type="radio" class="form-check-input" name="duration" value="two_days">
@@ -284,7 +284,7 @@
                 <!-- three days -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if option.capacity_time == 'select_3' %}
+                    {% if option.capacity_time == 'three_days' %}
                     <input type="radio" class="form-check-input" name="duration" value="three_days" checked>
                     {% else %}
                     <input type="radio" class="form-check-input" name="duration" value="three_days">
@@ -297,24 +297,10 @@
               </div>
 
               <div class="col-6 text-end">
-                <!-- four days -->
-                <div class="input-group input-group-borderless mb-2">
-                  <div class="form-check mb-3">
-                    {% if option.capacity_time == 'select_4' %}
-                    <input type="radio" class="form-check-input" name="duration" value="four_days" checked>
-                    {% else %}
-                    <input type="radio" class="form-check-input" name="duration" value="four_days">
-                    {% endif %}
-
-                    <label class="form-check-label">Four Days</label>
-                  </div>
-                </div>
-                <!-- end four days -->
-
                 <!-- one week -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if option.capacity_time == 'select_5' %}
+                    {% if option.capacity_time == 'one_week' %}
                     <input type="radio" class="form-check-input" name="duration" value="one_week" checked>
                     {% else %}
                     <input type="radio" class="form-check-input" name="duration" value="one_week">
@@ -328,7 +314,7 @@
                 <!-- one month -->
                 <div class="input-group input-group-borderless mb-2">
                   <div class="form-check mb-3">
-                    {% if option.capacity_time == 'select_6' %}
+                    {% if option.capacity_time == 'one_month' %}
                     <input type="radio" class="form-check-input" name="duration" value="one_month" checked>
                     {% else %}
                     <input type="radio" class="form-check-input" name="duration" value="one_month">
@@ -338,6 +324,20 @@
                   </div>
                 </div>
                 <!-- end one month -->
+
+                <!-- limited stock -->
+                <div class="input-group input-group-borderless mb-2">
+                  <div class="form-check mb-3">
+                    {% if option.capacity_time == 'limited_stock' %}
+                    <input type="radio" class="form-check-input" name="duration" value="limited_stock" checked>
+                    {% else %}
+                    <input type="radio" class="form-check-input" name="duration" value="limited_stock">
+                    {% endif %}
+
+                    <label class="form-check-label">Limited Stock</label>
+                  </div>
+                </div>
+                <!-- end limited stock -->
               </div>
             </div>
 
