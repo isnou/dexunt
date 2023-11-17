@@ -307,25 +307,29 @@
                   <small>No Min Price</small>
                 </h6>
                 {% endif %}
+              </td>
+
+              <!-- sell quantity , delivery quotient & gift points-->
+              <td>
+                {% if option.restricted_quantity %}
+                <h6 class="text-body">
+                  <small>Restricted Quantity :{{ option.restricted_quantity }}</small>
+                </h6>
+                {% else %}
+                <h6 class="text-body">
+                  <small>No Restricted Quantity</small>
+                </h6>
+                {% endif %}
 
                 {% if option.out_of_stock and option.limited_stock %}
                 <h6 class="text-secondary">
                   <small>Out Of Stock</small>
                 </h6>
-                {% endif %}
-
-                {% if option.production_capacity_quantity %}
+                {% else %}
                 <h6 class="text-secondary">
                   <small>{{ option.production_capacity}}</small>
                 </h6>
                 {% endif %}
-              </td>
-
-              <!-- sell quantity , delivery quotient & gift points-->
-              <td>
-                <h6 class="text-body">
-                  <small>Sell Quantity :{{ option.max_quantity }}</small>
-                </h6>
 
                 <h6 class="text-body">
                   <small>Delivery Quotient:{{ option.delivery_quotient }} %</small>
@@ -338,7 +342,7 @@
 
               <td>
                 <h6 class="text-body">
-                  <small>UPC: {{ option.upc }}</small>
+                  <small>UPC: {{ option.asin }}</small>
                 </h6>
               </td>
             </tr>
