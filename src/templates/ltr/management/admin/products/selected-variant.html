@@ -820,7 +820,7 @@
                 {% if option.restricted_quantity %}
                 <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="{{ option.restricted_quantity }}">
                 {% else %}
-                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" placeholder="0">
+                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="0">
                 {% endif %}
               </div>
               {% else %}
