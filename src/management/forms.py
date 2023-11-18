@@ -15,7 +15,7 @@ class VariantForm(ModelForm):
 
 class OptionForm(ModelForm):
     upc = forms.CharField(required=False)
-    restricted_quantity = forms.IntegerField(default=0)
+    restricted_quantity = forms.IntegerField(required=False)
     points = forms.IntegerField(required=False)
     price = forms.DecimalField(required=False)
     discount = forms.DecimalField(required=False)
