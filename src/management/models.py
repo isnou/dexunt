@@ -469,7 +469,7 @@ class Product(models.Model):
     def selected_variant(self):
         variant = self.variant_set.all().exclude(is_activated=False).first()
         for v in self.variant_set.all().exclude(is_activated=False):
-            if v.selected_option().rates_quotient() > variant.selected_option().rates_quotient():
+            if v.selected_option().rate_by_sales() > variant.selected_option().rate_by_sales():
                 variant = v
         return variant
     def selected_collection(self):
