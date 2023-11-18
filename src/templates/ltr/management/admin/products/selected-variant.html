@@ -812,6 +812,23 @@
                 {% endif %}
               </div>
               {% endif %}
+
+
+                {% if option.out_of_stock and option.limited_stock %}
+                <span class="h6 mb-1 text-warning text-start">Out of stock</span>
+                {% elif option.production_capacity %}
+              <span class="h6 mb-1 text-body text-start">{{ option.production_capacity}}</span>
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">restricted quantity</span>
+                {% if option.restricted_quantity %}
+                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="{{ option.restricted_quantity }}">
+                {% else %}
+                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="no restricted quantity">
+                {% endif %}
+              </div>
+                {% else %}
+              <span class="h6 mb-1 text-danger text-start">No production capacity</span>
+                {% endif %}
               <!-- end product restricted quantity -->
 
               <!-- product delivery quotient -->
