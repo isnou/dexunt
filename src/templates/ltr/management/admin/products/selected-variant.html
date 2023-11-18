@@ -794,6 +794,18 @@
                 <span class="input-group-text" style="width: 20%;">DZD</span>
               </div>
               <!-- end product discount -->
+
+              <!-- product min price -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 30%;">min price</span>
+                {% if option.min_price %}
+                <input type="number" class="form-control" name="{{ option_form.min_price.name }}" min="0" value="{{ option.min_price }}">
+                {% else %}
+                <input type="number" class="form-control" name="{{ option_form.min_price.name }}" min="0" placeholder="no min price">
+                {% endif %}
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end product min price -->
               {% else %}
               <span class="h6 my-3 text-danger text-start">No cost mentioned</span>
               {% endif %}

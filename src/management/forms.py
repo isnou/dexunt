@@ -15,9 +15,15 @@ class VariantForm(ModelForm):
 
 class OptionForm(ModelForm):
     upc = forms.CharField(required=False)
+    restricted_quantity = forms.IntegerField(required=False)
+    points = forms.IntegerField(required=False)
+    price = forms.DecimalField(required=False)
+    discount = forms.DecimalField(required=False)
+    min_price = forms.DecimalField(required=False)
     class Meta:
         model = Option
-        fields = ('en_value', 'fr_value', 'ar_value', 'upc')
+        fields = ('en_value', 'fr_value', 'ar_value', 'upc', 'restricted_quantity', 'delivery_quotient', 'points',
+                  'price', 'discount', 'min_price')
 
 class FlashForm(ModelForm):
     class Meta:
