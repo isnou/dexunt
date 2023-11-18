@@ -162,9 +162,10 @@ class Option(models.Model):
             self.production_capacity_time = timedelta(days=365)
         super().save()
     def activate(self):
-        self.is_activated = True
-        super().save()
-        self.variant.activate()
+        if self.product_ready():
+            self.is_activated = True
+            super().save()
+            self.variant.activate()
     def deactivate(self):
         self.is_activated = False
         super().save()
@@ -191,6 +192,11 @@ class Option(models.Model):
                 return True
             else:
                 return False
+        else:
+            return False
+    def product_ready(self):
+        if self.store_ready() and self.price:
+            return True
         else:
             return False
     def limited_stock(self):
