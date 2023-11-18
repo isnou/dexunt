@@ -186,8 +186,11 @@ class Option(models.Model):
                ).save()
     # ----- variables ----- #
     def store_ready(self):
-        if self.is_activated:
-            return True
+        if self.production_capacity_time and self.cost and self.is_activated:
+            if self.production_capacity_quantity or self.limited_stock():
+                return True
+            else:
+                return False
         else:
             return False
     def limited_stock(self):
