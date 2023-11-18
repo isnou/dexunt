@@ -77,6 +77,10 @@
               <div class="flex-grow-1 ms-3">
                 <h5 class="text-inherit me-2">{{ variant.product.title|title }}, {{ variant.spec|title}}, {{ option.value|title }}</h5>
               </div>
+
+              {% if not option.is_activated %}
+              <span class="badge bg-secondary">NOT ACTIVATED</span>
+              {% endif %}
             </a>
           </td>
           <!-- price -->
