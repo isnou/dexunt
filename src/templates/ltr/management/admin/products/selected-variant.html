@@ -261,13 +261,6 @@
                 <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_option_modal_{{ option.id }}_{{ variant.id }}">
                   <i class="fa fa-pen-to-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </button>
-
-                {% if option.production_capacity %}
-                <!-- restrict quantity button -->
-                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#restrict_quantity_modal_{{ option.id }}_{{ variant.id }}">
-                  <i class="fa fa-cubes-stacked" data-bs-toggle="tooltip" data-bs-placement="top" title="Restrict Quantity"></i>
-                </button>
-                {% endif %}
               </td>
 
               <!-- value -->
@@ -817,6 +810,24 @@
               <span class="h6 my-3 text-danger text-start">No cost mentioned</span>
               {% endif %}
 
+              <!-- product restricted quantity -->
+              {% if option.out_of_stock and option.limited_stock %}
+              <span class="h6 my-3 text-warning text-start">Out Of Stock</span>
+              {% elif option.production_capacity %}
+              <span class="h6 my-3 text-body text-start">{{ option.production_capacity}}</span>
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 30%;">restricted quantity</span>
+                {% if option.restricted_quantity %}
+                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="{{ option.restricted_quantity }}">
+                {% else %}
+                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" placeholder="no restricted quantity">
+                {% endif %}
+              </div>
+              {% else %}
+              <span class="h6 my-3 text-danger text-start">No production capacity</span>
+              {% endif %}
+              <!-- end product restricted quantity -->
+
               <!-- product delivery quotient -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 30%;">delivery quotient</span>
@@ -840,70 +851,6 @@
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end upc -->
-            </div>
-
-            <!-- submit -->
-            <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
-            </div>
-            <!-- end submit -->
-          </form>
-        </div>
-        <!-- End Patient -->
-      </div>
-      <!-- End Body -->
-    </div>
-  </div>
-</div>
-
-<!-- restrict quantity modal -->
-<div id="restrict_quantity_modal_{{ option.id }}_{{ variant.id }}" class="modal fade">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <!-- Header -->
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <!-- End Header -->
-
-      <!-- Body -->
-      <div class="modal-body">
-        <div>
-          <!-- title -->
-          <div class="text-center mb-7">
-            <h2>Restrict sell quantity {{ option.en_value }}</h2>
-          </div>
-          <!-- end title -->
-
-          <!-- restrict quantity form -->
-          <form action="{% url 'admin-manage-products' 'restrict_quantity' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="option_id" value='{{ option.id }}'>
-
-            <div class="row mb-4">
-              <!-- product restricted quantity -->
-              {% if option.out_of_stock and option.limited_stock %}
-              <span class="h6 my-3 text-warning text-start">Out Of Stock</span>
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 30%;">restricted quantity</span>
-                {% if option.restricted_quantity %}
-                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="{{ option.restricted_quantity }}">
-                {% else %}
-                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="no restricted quantity">
-                {% endif %}
-              </div>
-              {% else %}
-              <span class="h6 my-3 text-body text-start">{{ option.production_capacity}}</span>
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 30%;">restricted quantity</span>
-                {% if option.restricted_quantity %}
-                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="{{ option.restricted_quantity }}">
-                {% else %}
-                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="no restricted quantity">
-                {% endif %}
-              </div>
-              {% endif %}
-              <!-- end product restricted quantity -->
             </div>
 
             <!-- submit -->
