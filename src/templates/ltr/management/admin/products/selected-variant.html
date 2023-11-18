@@ -724,7 +724,7 @@
 
 <!-- edit option modal -->
 <div id="edit_option_modal_{{ option.id }}_{{ variant.id }}" class="modal fade">
-  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <!-- Header -->
       <div class="modal-close">
@@ -750,7 +750,7 @@
 
               <!-- option english -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">english option</span>
+                <span class="input-group-text" style="width: 30%;">english option</span>
                 <input type="text" class="form-control" name="{{ option_form.en_value.name }}" value="{{ option.en_value }}" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
@@ -758,25 +758,25 @@
 
               <!-- option french -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">french option</span>
+                <span class="input-group-text" style="width: 30%;">french option</span>
                 <input type="text" class="form-control" name="{{ option_form.fr_value.name }}" value="{{ option.fr_value }}">
               </div>
               <!-- end option french -->
 
               <!-- product arabic spec -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">arabic option</span>
+                <span class="input-group-text" style="width: 30%;">arabic option</span>
                 <input type="text" class="form-control" name="{{ option_form.ar_value.name }}" value="{{ option.ar_value }}" dir="rtl">
               </div>
               <!-- end product arabic spec -->
 
-              <span class="divider-center mb-2 mt-2">Internal informations</span>
+              <span class="divider-center  my-2">Internal informations</span>
 
               {% if option.cost %}
               <!-- product price -->
-              <span class="h6 mb-1 text-body text-start">Product cost is: {{ option.cost|floatformat:"0g" }} <small>DZD</small></span>
+              <span class="h6 my-3 text-body text-start">Product cost is: {{ option.cost|floatformat:"0g" }} <small>DZD</small></span>
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">price</span>
+                <span class="input-group-text" style="width: 30%;">price</span>
                 <input type="number" class="form-control" name="{{ option_form.price.name }}" min="0" value="{{ option.price }}" required>
                 <span class="input-group-text" style="width: 20%;">DZD</span>
                 <span class="invalid-feedback text-center">required field.</span>
@@ -785,7 +785,7 @@
 
               <!-- product discount -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">discount</span>
+                <span class="input-group-text" style="width: 30%;">discount</span>
                 {% if option.discount %}
                 <input type="number" class="form-control" name="{{ option_form.discount.name }}" min="0" value="{{ option.discount }}">
                 {% else %}
@@ -795,16 +795,16 @@
               </div>
               <!-- end product discount -->
               {% else %}
-              <span class="h6 mb-1 text-danger text-start">No cost mentioned</span>
+              <span class="h6 my-3 text-danger text-start">No cost mentioned</span>
               {% endif %}
 
               <!-- product restricted quantity -->
               {% if option.out_of_stock and option.limited_stock %}
-              <span class="h6 mb-1 text-warning text-start">Out Of Stock</span>
+              <span class="h6 my-3 text-warning text-start">Out Of Stock</span>
               {% elif option.production_capacity %}
-              <span class="h6 mb-1 text-body text-start">{{ option.production_capacity}}</span>
+              <span class="h6 my-3 text-body text-start">{{ option.production_capacity}}</span>
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">restricted quantity</span>
+                <span class="input-group-text" style="width: 30%;">restricted quantity</span>
                 {% if option.restricted_quantity %}
                 <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="{{ option.restricted_quantity }}">
                 {% else %}
@@ -812,13 +812,13 @@
                 {% endif %}
               </div>
               {% else %}
-              <span class="h6 mb-1 text-danger text-start">No production capacity</span>
+              <span class="h6 my-3 text-danger text-start">No production capacity</span>
               {% endif %}
               <!-- end product restricted quantity -->
 
               <!-- product delivery quotient -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">delivery quotient</span>
+                <span class="input-group-text" style="width: 30%;">delivery quotient</span>
                 <input type="number" class="form-control" name="{{ option_form.delivery_quotient.name }}" min="0" value="{{ option.delivery_quotient }}">
                 <span class="input-group-text" style="width: 20%;">%</span>
               </div>
@@ -826,7 +826,7 @@
 
               <!-- product gift points -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">gift points</span>
+                <span class="input-group-text" style="width: 30%;">gift points</span>
                 <input type="number" class="form-control" name="{{ option_form.points.name }}" min="0" value="{{ option.points }}">
                 <span class="input-group-text" style="width: 20%;">GP</span>
               </div>
@@ -834,7 +834,7 @@
 
               <!-- upc -->
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">UPC</span>
+                <span class="input-group-text" style="width: 30%;">UPC</span>
                 <input type="text" class="form-control" name="{{ option_form.upc.name }}" value="{{ option.upc }}" maxlength="20" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
