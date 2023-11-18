@@ -670,6 +670,13 @@ def manage_products(request, action):
             selected_option_form = OptionForm(request.POST, instance=selected_option)
             selected_option_form.save()
             return redirect('admin-manage-products', 'view_variant')
+    if action == 'restrict_quantity':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            selected_option = Option.objects.all().get(id=option_id)
+            selected_option_form = OptionForm(request.POST, instance=selected_option)
+            selected_option_form.save()
+            return redirect('admin-manage-products', 'view_variant')
     if action == 'delete_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
