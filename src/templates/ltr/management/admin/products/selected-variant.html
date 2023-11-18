@@ -743,7 +743,6 @@
             <input type="hidden" name="option_id" value='{{ option.id }}'>
 
             <div class="row mb-4">
-              <span class="divider-center mb-2">Option value</span>
 
               <!-- option english -->
               <div class="input-group mb-2">
@@ -767,18 +766,17 @@
               </div>
               <!-- end product arabic spec -->
 
+
               <span class="divider-center mb-2">Prices</span>
 
-              <!-- product cost -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">cost</span>
-                <input type="number" class="form-control" name="{{ option_form.cost.name }}" min="0" value="{{ option.cost }}" required>
-                <span class="input-group-text" style="width: 20%;">DZD</span>
-                <span class="invalid-feedback text-center">required field.</span>
-              </div>
-              <!-- end product cost -->
 
               <!-- product price -->
+              {% if option.cost %}
+              <span class="h5 mb-2 text-body text-center">Product cost is: {{ option.cost }} <small>DZD</small></span>
+              {% else %}
+              <span class="h5 mb-2 text-danger text-center">No Cost Mentioned</span>
+              {% endif %}
+              
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">price</span>
                 <input type="number" class="form-control" name="{{ option_form.price.name }}" min="0" value="{{ option.price }}" required>
@@ -786,6 +784,18 @@
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end product price -->
+
+              <!-- product discount -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">discount</span>
+                {% if option.discount %}
+                <input type="number" class="form-control" name="{{ option_form.discount.name }}" min="0" value="{{ option.discount }}">
+                {% else %}
+                <input type="number" class="form-control" name="{{ option_form.discount.name }}" min="0" placeholder="no discount">
+                {% endif %}
+                <span class="input-group-text" style="width: 20%;">DZD</span>
+              </div>
+              <!-- end product discount -->
 
               <!-- product discount -->
               <div class="input-group mb-2">
