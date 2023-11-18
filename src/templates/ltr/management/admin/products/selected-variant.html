@@ -766,17 +766,11 @@
               </div>
               <!-- end product arabic spec -->
 
+              <span class="divider-center mb-2 mt-2">Internal Informations</span>
 
-              <span class="divider-center mb-2 mt-2">Prices</span>
-
-
-              <!-- product price -->
               {% if option.cost %}
+              <!-- product price -->
               <span class="h6 mb-1 text-body text-start">Product cost is: {{ option.cost|floatformat:"0g" }} <small>DZD</small></span>
-              {% else %}
-              <span class="h6 mb-1 text-danger text-start">No Cost Mentioned</span>
-              {% endif %}
-
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">price</span>
                 <input type="number" class="form-control" name="{{ option_form.price.name }}" min="0" value="{{ option.price }}" required>
@@ -796,16 +790,15 @@
                 <span class="input-group-text" style="width: 20%;">DZD</span>
               </div>
               <!-- end product discount -->
-
-              <span class="divider-center mb-2 mt-2">Internal Informations</span>
+              {% else %}
+              <span class="h6 mb-1 text-danger text-start">No Cost Mentioned</span>
+              {% endif %}
 
               <!-- product restricted quantity -->
               {% if option.out_of_stock and option.limited_stock %}
               <span class="h6 mb-1 text-warning text-start">Out Of Stock</span>
               {% else %}
               <span class="h6 mb-1 text-body text-start">{{ option.production_capacity}}</span>
-              {% endif %}
-
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">restricted quantity</span>
                 {% if option.restricted_quantity %}
@@ -814,6 +807,7 @@
                 <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="no restricted quantity">
                 {% endif %}
               </div>
+              {% endif %}
               <!-- end product restricted quantity -->
 
               <!-- product delivery quotient -->
