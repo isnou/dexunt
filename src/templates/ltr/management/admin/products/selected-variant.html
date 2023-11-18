@@ -280,7 +280,7 @@
               <td>
                 {% if option.price %}
                 <h6 class="text-body">
-                  <small>Price :{{ option.price|floatformat:"2g" }} DZD</small>
+                  <small>Price :{{ option.price|floatformat:"0g" }} DZD</small>
                 </h6>
                 {% else %}
                 <h6 class="text-danger">
@@ -290,7 +290,7 @@
 
                 {% if option.discount %}
                 <h6 class="text-body">
-                  <small>Discount :{{ option.discount|floatformat:"2g" }} DZD</small>
+                  <small>Discount :{{ option.discount|floatformat:"0g" }} DZD</small>
                 </h6>
                 {% else %}
                 <h6 class="text-body">
@@ -300,7 +300,7 @@
 
                 {% if option.min_price %}
                 <h6 class="text-body">
-                  <small>Min Price :{{ option.min_price|floatformat:"2g" }} DZD</small>
+                  <small>Min Price :{{ option.min_price|floatformat:"0g" }} DZD</small>
                 </h6>
                 {% else %}
                 <h6 class="text-body">
@@ -767,16 +767,16 @@
               <!-- end product arabic spec -->
 
 
-              <span class="divider-center mb-2">Prices</span>
+              <span class="divider-center mb-2 mt-2">Prices</span>
 
 
               <!-- product price -->
               {% if option.cost %}
-              <span class="h5 mb-2 text-body text-center">Product cost is: {{ option.cost }} <small>DZD</small></span>
+              <span class="h6 mb-1 text-body text-start">Product cost is: {{ option.cost|floatformat:"0g" }} <small>DZD</small></span>
               {% else %}
-              <span class="h5 mb-2 text-danger text-center">No Cost Mentioned</span>
+              <span class="h6 mb-1 text-danger text-start">No Cost Mentioned</span>
               {% endif %}
-              
+
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">price</span>
                 <input type="number" class="form-control" name="{{ option_form.price.name }}" min="0" value="{{ option.price }}" required>
@@ -797,35 +797,24 @@
               </div>
               <!-- end product discount -->
 
-              <!-- product discount -->
+              <span class="divider-center mb-2 mt-2">Internal Informations</span>
+
+              <!-- product restricted quantity -->
+              {% if option.out_of_stock and option.limited_stock %}
+              <span class="h6 mb-1 text-warning text-start">Out Of Stock</span>
+              {% else %}
+              <span class="h6 mb-1 text-body text-start">{{ option.production_capacity}}</span>
+              {% endif %}
+
               <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">discount</span>
-                {% if option.discount %}
-                <input type="number" class="form-control" name="{{ option_form.discount.name }}" min="0" value="{{ option.discount }}">
+                <span class="input-group-text" style="width: 25%;">restricted quantity</span>
+                {% if option.restricted_quantity %}
+                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="{{ option.restricted_quantity }}">
                 {% else %}
-                <input type="number" class="form-control" name="{{ option_form.discount.name }}" min="0" placeholder="no discount">
+                <input type="number" class="form-control" name="{{ option_form.restricted_quantity.name }}" min="0" value="no restricted quantity">
                 {% endif %}
-                <span class="input-group-text" style="width: 20%;">DZD</span>
               </div>
-              <!-- end product discount -->
-
-              <span class="divider-center mb-2">Quantities</span>
-
-              <!-- product quantity -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">quantity</span>
-                <input type="number" class="form-control" name="{{ option_form.quantity.name }}" min="0" value="{{ option.quantity }}">
-              </div>
-              <!-- end product quantity -->
-
-              <!-- product max quantity -->
-              <div class="input-group mb-2">
-                <span class="input-group-text" style="width: 25%;">sell quantity</span>
-                <input type="number" class="form-control" name="{{ option_form.max_quantity.name }}" min="0" value="{{ option.max_quantity }}">
-              </div>
-              <!-- end product max quantity -->
-
-              <span class="divider-center mb-2">Internal Informations</span>
+              <!-- end product restricted quantity -->
 
               <!-- product delivery quotient -->
               <div class="input-group mb-2">
