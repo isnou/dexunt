@@ -311,50 +311,13 @@
             </div>
 
             {% if option.is_activated and option.limited_stock %}
-            <span class="text-danger h-6 text-start my-2">
+            <div class="card card-bordered text-danger h-6 text-start my-2">
               <small>Please note, changing production type will deactivate the product for up to 24 hours.</small>
-            </span>
+            </div>
             {% endif %}
 
             <div class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-white">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- deactivate modal -->
-<div id="deactivate_modal_{{ option.id }}" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-close">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <div class="text-center mb-7">
-            <h2>Deactivate Option</h2>
-          </div>
-
-          <form action="{% url 'provider-products' 'deactivate' %}" class="js-validate need-validate" novalidate method="post">
-            {% csrf_token %}
-            <input type="hidden" name="option_id" value="{{ option.id }}">
-
-            <div class="row mb-4">
-              <span class="text-center">
-                Click yes to deactivate.
-              </span>
-              <br>
-              <span class="text-center">
-                {{ option.variant.product.en_title|title }} ,{{ option.variant.en_spec|title }} ,{{ option.en_value|title }}.
-              </span>
-            </div>
-            <div class="d-flex justify-content-center gap-3">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" type="submit">Yes</button>
             </div>
           </form>
         </div>
