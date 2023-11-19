@@ -547,23 +547,29 @@
 
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
+          {% if not selected_variant.dimensions_exists %}
           <!-- add dimensions button -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_dimensions">
             <i class="fa fa-ruler-combined me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Dimensions"></i>
           </button>
           <!-- end add dimensions button -->
+          {% endif %}
 
+          {% if not selected_variant.weight %}
           <!-- add weight button -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_weight">
             <i class="fa fa-weight-hanging me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Weight"></i>
           </button>
           <!-- end add weight button -->
+          {% endif %}
 
+          {% if not selected_variant.color %}
           <!-- add color button -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_color">
             <i class="fa fa-palette me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Color"></i>
           </button>
           <!-- end add color button -->
+          {% endif %}
 
           <!-- add feature button -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">

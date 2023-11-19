@@ -386,6 +386,11 @@ class Variant(models.Model):
             if o.rate_by_sales() > option.rate_by_sales():
                 option = o
         return option
+    def dimensions_exists(self):
+        if self.feature_set.all().filter(en_name='dimensions').exists():
+            return True
+        else:
+            return False
     def needs_more_photos(self):
         if self.album_set.all().count() < 4:
             return True
