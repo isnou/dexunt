@@ -160,15 +160,15 @@ class Option(models.Model):
             self.production_capacity_time = timedelta(weeks=4)
         if duration == 'limited_stock':
             self.production_capacity_time = timedelta(days=365)
-        super().save()
+        self.save()
     def activate(self):
         if self.product_ready():
             self.is_activated = True
-            super().save()
+            self.save()
             self.variant.activate()
     def deactivate(self):
         self.is_activated = False
-        super().save()
+        self.save()
         self.variant.activate()
     def add_a_review(self, request):
         comment = request.POST.get('comment', False)
