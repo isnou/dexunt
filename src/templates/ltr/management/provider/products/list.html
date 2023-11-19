@@ -211,7 +211,7 @@
                   <i class="fa fa-coins"></i>
                 </div>
                 {% if option.cost %}
-                <input type="number" class="form-control" value="{{ option.cost }}" name="price" min="0" required>
+                <input type="number" class="form-control" value="{{ option.cost|floatformat:'0g' }}" name="price" min="0" required>
                 {% else %}
                 <input type="number" class="form-control" placeholder="price" name="price" min="0" required>
                 {% endif %}
