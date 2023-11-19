@@ -2163,13 +2163,13 @@ def provider_products(request, action):
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
             option.stop_production()
-            return redirect('admin-manage-products', 'view_variant')
+            return redirect('provider-products', 'view_variant')
     if action == 'start_production':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
             option.start_production()
-            return redirect('admin-manage-products', 'view_variant')
+            return redirect('provider-products', 'view_variant')
 #                                                                        #
 @login_required
 def provider_sales(request, action):
