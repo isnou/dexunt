@@ -205,11 +205,11 @@
             {% csrf_token %}
             <input type="hidden" name="option_id" value="{{ option.id }}">
 
-
-
             <div class="row mb-4 px-4">
               {% if option.is_activated %}
-              <span class="text-danger text-start">Please note, changing the price will deactivate the product for up to 24 hours.</span>
+              <span class="text-danger h-6 text-start">
+                <small>Please note, changing the price will deactivate the product for up to 24 hours.</small>
+              </span>
               {% endif %}
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 <div class="input-group-prepend input-group-text">
@@ -263,6 +263,13 @@
             </div>
 
             <div class="row mb-3 px-4">
+
+              {% if option.is_activated and option.limited_stock %}
+              <span class="text-danger h-6 text-start">
+                <small>Please note, changing production type will deactivate the product for up to 24 hours.</small>
+              </span>
+              {% endif %}
+
               <div class="col-6 text-start">
                 <!-- one day -->
                 <div class="input-group input-group-borderless mb-2">
