@@ -95,9 +95,11 @@
           </td>
           <!-- capacity -->
           <td>
-            {% if option.out_of_stock %}
+            {% if option.limited_stock and option.out_of_stock %}
             <span class="badge bg-secondary">OUT OF STOCK</span>
-            {% elif option.out_of_stock and not option.limited_stock and not option.production_capacity_quantity %}
+            {% elif not option.limited_stock and option.out_of_stock and option.production_capacity_quantity %}
+            <span class="badge bg-secondary">OUT OF STOCK</span>
+            {% elif not option.limited_stock and not option.production_capacity_quantity %}
             <span class="badge bg-warning">NO CAPACITY</span>
             {% else %}
             <strong class="text-dark">{{ option.production_capacity}}</strong>
