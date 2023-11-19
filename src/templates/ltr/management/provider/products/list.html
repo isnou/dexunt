@@ -118,7 +118,6 @@
               <i class="fa fa-play fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Start"></i>
             </button>
             {% endif %}
-
             <!-- edit capacity -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_capacity_modal_{{ option.id }}">
               <i class="fa fa-gear fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Production Capacity"></i>
@@ -340,6 +339,80 @@
               <br>
               <span class="text-center">
                 {{ option.variant.product.en_title|title }} ,{{ option.variant.en_spec|title }} ,{{ option.en_value|title }}.
+              </span>
+            </div>
+            <div class="d-flex justify-content-center gap-3">
+              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+              <button class="btn btn-primary" type="submit">Yes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- start production modal -->
+<div id="start_production_modal_{{ option.id }}" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>Start production</h2>
+          </div>
+
+          <form action="{% url 'provider-products' 'start_production' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="option_id" value="{{ option.id }}">
+
+            <div class="row mb-4">
+              <span class="text-center">
+                Click yes to start production.
+              </span>
+              <br>
+              <span class="text-center">
+                {{ option.variant.product.title|title }} ,{{ option.variant.spec|title }} ,{{ option.value|title }}.
+              </span>
+            </div>
+            <div class="d-flex justify-content-center gap-3">
+              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+              <button class="btn btn-primary" type="submit">Yes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- stop production modal -->
+<div id="stop_production_modal_{{ option.id }}" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>Stop production</h2>
+          </div>
+
+          <form action="{% url 'provider-products' 'stop_production' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="option_id" value="{{ option.id }}">
+
+            <div class="row mb-4">
+              <span class="text-center">
+                Click yes to stop production.
+              </span>
+              <br>
+              <span class="text-center">
+                {{ option.variant.product.title|title }} ,{{ option.variant.spec|title }} ,{{ option.value|title }}.
               </span>
             </div>
             <div class="d-flex justify-content-center gap-3">

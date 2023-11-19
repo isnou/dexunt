@@ -690,17 +690,17 @@ def manage_products(request, action):
             selected_option.image = None
             selected_option.save()
             return redirect('admin-manage-products', 'view_variant')
-    if action == 'activate_option':
+    if action == 'stop_production':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
-            option.activate()
+            option.stop_production()
             return redirect('admin-manage-products', 'view_variant')
-    if action == 'deactivate_option':
+    if action == 'start_production':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
-            option.deactivate()
+            option.start_production()
             return redirect('admin-manage-products', 'view_variant')
 #                                                                        #
 @login_required
