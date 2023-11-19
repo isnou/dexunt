@@ -391,6 +391,16 @@ class Variant(models.Model):
             return True
         else:
             return False
+    def weight_exists(self):
+        if self.feature_set.all().filter(en_name='weight').exists():
+            return True
+        else:
+            return False
+    def color_exists(self):
+        if self.feature_set.all().filter(en_name='color').exists():
+            return True
+        else:
+            return False
     def needs_more_photos(self):
         if self.album_set.all().count() < 4:
             return True

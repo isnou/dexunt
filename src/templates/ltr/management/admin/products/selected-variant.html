@@ -555,7 +555,7 @@
           <!-- end add dimensions button -->
           {% endif %}
 
-          {% if not selected_variant.weight %}
+          {% if not selected_variant.weight_exists %}
           <!-- add weight button -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_weight">
             <i class="fa fa-weight-hanging me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Weight"></i>
@@ -563,7 +563,7 @@
           <!-- end add weight button -->
           {% endif %}
 
-          {% if not selected_variant.color %}
+          {% if not selected_variant.color_exists %}
           <!-- add color button -->
           <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_color">
             <i class="fa fa-palette me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Color"></i>
