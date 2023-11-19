@@ -156,8 +156,10 @@ class Option(models.Model):
         duration = request.POST.get('duration', False)
         if duration == 'one_day':
             self.production_capacity_time = timedelta(hours=24)
+            self.deactivate()
         if duration == 'one_month':
             self.production_capacity_time = timedelta(weeks=4)
+            self.deactivate()
         if duration == 'limited_stock':
             self.production_capacity_time = timedelta(days=365)
         self.save()
