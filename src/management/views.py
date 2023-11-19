@@ -2131,7 +2131,7 @@ def provider_products(request, action):
     if action == 'edit_price':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
-            price = int(request.POST.get('price', False))
+            price = request.POST.get('price', False)
             selected_option = Option.objects.all().get(id=option_id)
             selected_option.cost = price
             selected_option.is_activated = False
