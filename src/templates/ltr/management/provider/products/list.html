@@ -95,9 +95,9 @@
           </td>
           <!-- capacity -->
           <td>
-            {% if option.out_of_stock and option.limited_stock %}
+            {% if option.out_of_stock %}
             <span class="badge bg-secondary">OUT OF STOCK</span>
-            {% elif option.out_of_stock and not option.limited_stock or not option.production_capacity_time %}
+            {% elif not option.limited_stock and not option.production_capacity_quantity %}
             <span class="badge bg-warning">NO CAPACITY</span>
             {% else %}
             <strong class="text-dark">{{ option.production_capacity}}</strong>
@@ -106,20 +106,20 @@
           <!-- product actions -->
           <td class="text-end">
             {% if option.is_activated and option.production_capacity_quantity and not option.limited_stock %}
-            <!-- out of stock -->
-            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
-              <i class="fa fa-pause fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
+            <!-- stop production -->
+            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#stop_production_modal_{{ option.id }}">
+              <i class="fa fa-pause fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop"></i>
             </button>
             {% elif option.is_activated and not option.production_capacity_quantity and not option.limited_stock  %}
-            <!-- deactivate -->
-            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
-              <i class="fa fa-play fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
+            <!-- start production -->
+            <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#start_production_modal_{{ option.id }}">
+              <i class="fa fa-play fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Start"></i>
             </button>
             {% endif %}
 
             <!-- edit capacity -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_capacity_modal_{{ option.id }}">
-              <i class="fa fa-sliders fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Production Capacity"></i>
+              <i class="fa fa-gear fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Production Capacity"></i>
             </button>
 
             <!-- price -->
