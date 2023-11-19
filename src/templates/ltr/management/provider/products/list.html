@@ -108,9 +108,7 @@
             {% if option.is_activated %}
             <!-- deactivate -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
-              <i class="fa fa-play fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
-
-              
+              <i class="fa fa-x fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
             </button>
             {% endif %}
 
@@ -245,9 +243,9 @@
             <div class="row mb-5 px-6">
               <div class="input-group input-group-merge input-group-borderless input-group-flush">
                 {% if option.production_capacity_quantity %}
-                <input type="number" class="form-control" value="{{ option.production_capacity_quantity }}" name="quantity" min="1" required>
+                <input type="number" class="form-control" value="{{ option.production_capacity_quantity }}" name="quantity" min="0" required>
                 {% else %}
-                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="1" required>
+                <input type="number" class="form-control" placeholder="quantity" name="quantity" min="0" required>
                 {% endif %}
                 <span class="invalid-feedback text-start">Please enter quantity to add.</span>
               </div>
