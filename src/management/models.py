@@ -132,7 +132,7 @@ class Option(models.Model):
     def save(self, *args, **kwargs):
         if not self.upc:
             self.upc = functions.serial_number_generator(20).upper()
-        if not self.production_capacity_quantity:
+        if self.limited_stock() and not self.production_capacity_quantity:
             self.out_of_stock = True
         else:
             self.out_of_stock = False
