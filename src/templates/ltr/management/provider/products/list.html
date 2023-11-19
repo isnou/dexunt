@@ -107,12 +107,12 @@
           </td>
           <!-- product actions -->
           <td class="text-end">
-            {% if option.is_activated and option.production_capacity_quantity and not option.limited_stock %}
+            {% if option.is_activated and option.out_of_stock and not option.limited_stock %}
             <!-- stop production -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#stop_production_modal_{{ option.id }}">
               <i class="fa fa-pause fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Stop"></i>
             </button>
-            {% elif option.is_activated and not option.production_capacity_quantity and not option.limited_stock  %}
+            {% elif option.is_activated and not option.out_of_stock and not option.limited_stock  %}
             <!-- start production -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#start_production_modal_{{ option.id }}">
               <i class="fa fa-play fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Start"></i>
