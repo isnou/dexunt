@@ -110,7 +110,7 @@
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
               <i class="fa fa-pause fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
             </button>
-            {% else %}
+            {% elif option.is_activated and not option.production_capacity_quantity  %}
             <!-- deactivate -->
             <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#deactivate_modal_{{ option.id }}">
               <i class="fa fa-play fa-xl" data-bs-toggle="tooltip" data-bs-placement="top" title="Deactivate"></i>
