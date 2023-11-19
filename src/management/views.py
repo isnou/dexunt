@@ -690,17 +690,17 @@ def manage_products(request, action):
             selected_option.image = None
             selected_option.save()
             return redirect('admin-manage-products', 'view_variant')
-    if action == 'stop_production':
+    if action == 'activate_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
-            option.stop_production()
+            option.activate()
             return redirect('admin-manage-products', 'view_variant')
-    if action == 'start_production':
+    if action == 'deactivate_option':
         if request.method == 'POST':
             option_id = request.POST.get('option_id', False)
             option = Option.objects.all().get(id=option_id)
-            option.start_production()
+            option.deactivate()
             return redirect('admin-manage-products', 'view_variant')
 #                                                                        #
 @login_required
@@ -2158,6 +2158,18 @@ def provider_products(request, action):
             selected_option = Option.objects.all().get(id=option_id)
             selected_option.deactivate()
             return redirect('provider-products', 'main')
+    if action == 'stop_production':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            option = Option.objects.all().get(id=option_id)
+            option.stop_production()
+            return redirect('admin-manage-products', 'view_variant')
+    if action == 'start_production':
+        if request.method == 'POST':
+            option_id = request.POST.get('option_id', False)
+            option = Option.objects.all().get(id=option_id)
+            option.start_production()
+            return redirect('admin-manage-products', 'view_variant')
 #                                                                        #
 @login_required
 def provider_sales(request, action):
