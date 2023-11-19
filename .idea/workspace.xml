@@ -119,12 +119,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/models.py</url>
-          <line>442</line>
+          <line>448</line>
           <option name="timeStamp" value="309" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/models.py</url>
-          <line>389</line>
+          <line>395</line>
           <option name="timeStamp" value="310" />
         </line-breakpoint>
       </breakpoints>

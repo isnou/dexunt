@@ -185,6 +185,12 @@ class Option(models.Model):
                option=self,
                client=request.user
                ).save()
+    def start_production(self):
+        self.out_of_stock = False
+        super().save()
+    def stop_production(self):
+        self.out_of_stock = True
+        super().save()
     # ----- variables ----- #
     def store_ready(self):
         if self.production_capacity_time and self.cost:
