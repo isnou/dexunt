@@ -219,11 +219,15 @@
                 <span class="invalid-feedback text-start">Please enter your new price.</span>
               </div>
             </div>
+
             {% if option.is_activated %}
-            <span class="text-danger h-6 text-start my-2">
-              <small>Please note, changing the price will deactivate the product for up to 24 hours.</small>
-            </span>
+            <div class="card card-bordered my-2">
+              <span class="text-danger h-6 text-start p-4">
+                <small>Please note, changing the price will deactivate the product for up to 24 hours.</small>
+              </span>
+            </div>
             {% endif %}
+            
             <div class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-white">Save</button>
             </div>
@@ -261,6 +265,14 @@
                 <span class="invalid-feedback text-start">Please enter quantity to add.</span>
               </div>
             </div>
+
+            {% if option.is_activated and option.limited_stock %}
+            <div class="card card-bordered my-2">
+              <span class="text-danger h-6 text-start p-4">
+                <small>Please note, changing production type will deactivate the product for up to 24 hours.</small>
+              </span>
+            </div>
+            {% endif %}
 
             <div class="row mb-3 px-4">
               <div class="col-6 text-start">
@@ -309,14 +321,6 @@
                 <!-- end limited stock -->
               </div>
             </div>
-
-            {% if option.is_activated and option.limited_stock %}
-            <div class="card card-bordered my-2">
-              <span class="text-danger h-6 text-start p-2">
-                <small>Please note, changing production type will deactivate the product for up to 24 hours.</small>
-              </span>
-            </div>
-            {% endif %}
 
             <div class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-white">Save</button>
