@@ -134,7 +134,7 @@ class Option(models.Model):
             self.upc = functions.serial_number_generator(20).upper()
         if self.limited_stock() and not self.production_capacity_quantity:
             self.out_of_stock = True
-        else:
+        elif self.limited_stock() and self.production_capacity_quantity:
             self.out_of_stock = False
         super().save()
     def duplicate(self):
