@@ -88,8 +88,119 @@
 </div>
 <!-- end edit variant modal -->
 
+<!-- add dimensions modal -->
+<div id="add_dimensions" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>Add dimensions</h2>
+          </div>
+          <form action="{% url 'admin-manage-products' 'add_feature' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+            <input type="hidden" name="{{ feature_form.en_name.name }}" value='dimensions'>
+            <input type="hidden" name="{{ feature_form.fr_name.name }}" value='dimensions'>
+            <input type="hidden" name="{{ feature_form.ar_name.name }}" value='الأبعاد'>
 
+            <div class="row mb-4">
 
+              <!-- feature english value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english value</span>
+                <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" placeholder="400mm x 200mm" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end feature english value -->
+
+              <!-- feature french value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french value</span>
+                <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" placeholder="400mm x 200mm">
+              </div>
+              <!-- end feature french value -->
+
+              <!-- feature arabic value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic value</span>
+                <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" placeholder="400 مم × 200 مم" dir="rtl">
+              </div>
+              <!-- end feature arabic value -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add dimensions modal -->
+
+<!-- add weight modal -->
+<div id="add_weight" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>Add weight</h2>
+          </div>
+          <form action="{% url 'admin-manage-products' 'add_feature' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+            <input type="hidden" name="variant_id" value='{{ selected_variant.id }}'>
+            <input type="hidden" name="{{ feature_form.en_name.name }}" value='weight'>
+            <input type="hidden" name="{{ feature_form.fr_name.name }}" value='poids'>
+            <input type="hidden" name="{{ feature_form.ar_name.name }}" value='الوزن'>
+
+            <div class="row mb-4">
+
+              <!-- feature english value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">english value</span>
+                <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" placeholder="3 kg" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end feature english value -->
+
+              <!-- feature french value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">french value</span>
+                <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" placeholder="3 kg">
+              </div>
+              <!-- end feature french value -->
+
+              <!-- feature arabic value -->
+              <div class="input-group mb-2">
+                <span class="input-group-text" style="width: 25%;">arabic value</span>
+                <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" placeholder="3 كجم" dir="rtl">
+              </div>
+              <!-- end feature arabic value -->
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Confirm</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add weight modal -->
 
 <!-- add color modal -->
 <div id="add_color" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
