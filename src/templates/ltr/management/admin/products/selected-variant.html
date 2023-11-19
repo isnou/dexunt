@@ -376,8 +376,38 @@
 
         <!-- title bar -->
         <div class="d-grid d-sm-flex gap-2">
+          <!-- add width button -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_width">
+            <i class="fa fa-arrows-left-right me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Width"></i>
+          </button>
+          <!-- end add width button -->
+
+          <!-- add height button -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_height">
+            <i class="fa fa-arrows-up-down me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Height"></i>
+          </button>
+          <!-- end add height button -->
+
+          <!-- add depth button -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_depth">
+            <i class="fa fa-up-right-and-down-left-from-center me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Depth"></i>
+          </button>
+          <!-- end add depth button -->
+
+          <!-- add weight button -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_weight">
+            <i class="fa fa-weight-hanging me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Weight"></i>
+          </button>
+          <!-- end add weight button -->
+
+          <!-- add color button -->
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_color">
+            <i class="fa fa-palette me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Color"></i>
+          </button>
+          <!-- end add color button -->
+
           <!-- add feature button -->
-          <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
+          <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_feature">
             <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add Feature"></i>
           </button>
           <!-- end add feature button -->
@@ -394,13 +424,13 @@
               <!-- feature action -->
               <td class="text-start">
                 <!-- edit feature button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#edit_feature_modal_{{ feature.id }}">
                   <i class="fa fa-pencil me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i>
                 </button>
                 <!-- end edit feature button -->
 
                 <!-- delete option button -->
-                <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
+                <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_feature_modal_{{ feature.id }}">
                   <i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
                 </button>
                 <!-- end delete option button -->
