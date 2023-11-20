@@ -298,7 +298,7 @@ def manage_products(request, action):
         request.session['language'] = 'en-us'
         request.session['direction'] = 'ltr'
     direction = request.session.get('direction')
-    items_by_page = 2
+    items_by_page = 20
 
     # --------------- main page ------------------- #
     if action == 'main':
