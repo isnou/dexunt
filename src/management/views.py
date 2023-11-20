@@ -2134,8 +2134,7 @@ def provider_products(request, action):
             price = request.POST.get('price', False)
             selected_option = Option.objects.all().get(id=option_id)
             selected_option.cost = price
-            selected_option.is_activated = False
-            selected_option.save()
+            selected_option.deactivate()
             return redirect('provider-products', 'main')
     if action == 'edit_capacity':
         if request.method == 'POST':
