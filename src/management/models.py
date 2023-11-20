@@ -132,10 +132,11 @@ class Option(models.Model):
     def save(self, *args, **kwargs):
         if not self.upc:
             self.upc = functions.serial_number_generator(20).upper()
-        if self.limited_stock() and not self.production_capacity_quantity:
-            self.out_of_stock = True
-        elif self.limited_stock() and self.production_capacity_quantity:
-            self.out_of_stock = False
+        if self.limited_stock():
+            if self.production_capacity_quantity:
+                self.out_of_stock = False
+            else:
+                self.out_of_stock = True
         super().save()
     def duplicate(self):
         new_option = Option(delivery_quotient = self.delivery_quotient,
@@ -208,8 +209,11 @@ class Option(models.Model):
         else:
             return False
     def limited_stock(self):
-        if self.production_capacity_time == timedelta(days=365):
-            return True
+        if self.production_capacity_time:
+            if self.production_capacity_time == timedelta(days=365):
+                return True
+            else:
+                return False
         else:
             return False
     def can_be_activated(self):

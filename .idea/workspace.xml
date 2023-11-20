@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py" />
+    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
+      <change beforePath="$PROJECT_DIR$/src/management/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/models.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,28 +99,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1731</line>
+          <line>1730</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/management/views.py</url>
-          <line>1584</line>
+          <line>1583</line>
           <option name="timeStamp" value="262" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/authentication/models.py</url>
           <line>359</line>
           <option name="timeStamp" value="304" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/management/models.py</url>
-          <line>450</line>
-          <option name="timeStamp" value="309" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/management/models.py</url>
-          <line>397</line>
-          <option name="timeStamp" value="310" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
