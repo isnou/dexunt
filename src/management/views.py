@@ -385,7 +385,6 @@ def manage_products(request, action):
                 new_product.delete()
                 new_variant.delete()
                 new_option.delete()
-                return redirect('admin-manage-products', 'main')
     if action == 'delete_product':
         if request.method == 'POST':
             product_id = request.POST.get('product_id', False)
