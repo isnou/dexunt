@@ -132,11 +132,12 @@ class Option(models.Model):
     def save(self, *args, **kwargs):
         if not self.upc:
             self.upc = functions.serial_number_generator(20).upper()
-        if self.limited_stock():
-            if self.production_capacity_quantity:
-                self.out_of_stock = False
-            else:
-                self.out_of_stock = True
+        else:
+            if self.limited_stock():
+                if self.production_capacity_quantity:
+                    self.out_of_stock = False
+                else:
+                    self.out_of_stock = True
         super().save()
     def duplicate(self):
         new_option = Option(delivery_quotient = self.delivery_quotient,
