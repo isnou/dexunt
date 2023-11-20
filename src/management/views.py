@@ -8,7 +8,7 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Variant, Option, Feature, Album, FlashProduct, Store, Collection, Category
 from .models import Tag
-from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm, StoreForm, MainOptionForm
+from .forms import ProductForm, VariantForm, FeatureForm, OptionForm, FlashForm, StoreForm, EmptyOptionForm
 from .forms import ENProductDescriptionForm, FRProductDescriptionForm, ARProductDescriptionForm
 from home.forms import ProvinceForm, MunicipalityForm, CouponForm
 from home.models import Province, Municipality, Coupon, Order, Cart
@@ -360,7 +360,7 @@ def manage_products(request, action):
             new_product.save()
             new_product_form = ProductForm(request.POST, instance=new_product)
             new_variant_form = VariantForm(request.POST, instance=new_variant)
-            new_option_form = MainOptionForm(request.POST, instance=new_option)
+            new_option_form = EmptyOptionForm(request.POST, instance=new_option)
 
             if new_product_form.is_valid():
                 new_product_form.save()

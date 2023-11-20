@@ -25,7 +25,7 @@ class OptionForm(ModelForm):
         fields = ('en_value', 'fr_value', 'ar_value', 'upc', 'restricted_quantity', 'delivery_quotient', 'points',
                   'price', 'discount', 'min_price')
 
-class MainOptionForm(ModelForm):
+class EmptyOptionForm(ModelForm):
     upc = forms.CharField(required=False)
     class Meta:
         model = Option
