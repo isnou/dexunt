@@ -269,7 +269,7 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Add color</h2>
+            <h2>Add scent</h2>
           </div>
           <form action="{% url 'admin-manage-products' 'add_feature' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
@@ -283,7 +283,7 @@
               <!-- feature english value -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">english value</span>
-                <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" placeholder="blue" required>
+                <input type="text" class="form-control" name="{{ feature_form.en_content.name }}" placeholder="lavender" required>
                 <span class="invalid-feedback text-center">required field.</span>
               </div>
               <!-- end feature english value -->
@@ -291,14 +291,14 @@
               <!-- feature french value -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">french value</span>
-                <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" placeholder="bleue">
+                <input type="text" class="form-control" name="{{ feature_form.fr_content.name }}" placeholder="lavande">
               </div>
               <!-- end feature french value -->
 
               <!-- feature arabic value -->
               <div class="input-group mb-2">
                 <span class="input-group-text" style="width: 25%;">arabic value</span>
-                <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" placeholder="أزرق" dir="rtl">
+                <input type="text" class="form-control" name="{{ feature_form.ar_content.name }}" placeholder="الخزامى" dir="rtl">
               </div>
               <!-- end feature arabic value -->
             </div>
