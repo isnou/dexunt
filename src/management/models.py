@@ -533,7 +533,7 @@ class Product(models.Model):
                 badge_value = 'نفاذ المخزون'
             badge_color = 'gray-400'
 
-        if self.selected_variant().is_new():
+        elif self.selected_variant().is_new():
             value = 'new'
             language = global_request.session.get('language')
             if language == 'en-us':
