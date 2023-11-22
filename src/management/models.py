@@ -518,35 +518,38 @@ class Product(models.Model):
     def image(self):
         return self.selected_variant().image()
     def status(self):
-        if self.selected_variant().selected_option().out_of_stock:
-            return 'out_of_stock'
-        if self.selected_variant().is_new():
-            return 'new'
-    def badge_value(self):
-        if self.status() == 'out_of_stock':
-            language = global_request.session.get('language')
-            if language == 'en-us':
-                return 'out of stock'
-            if language == 'fr-fr':
-                return 'rupture de stock'
-            if language == 'ar-dz':
-                return 'نفاذ المخزون'
-        elif self.status() == 'new':
-            language = global_request.session.get('language')
-            if language == 'en-us':
-                return 'new'
-            if language == 'fr-fr':
-                return 'nouveau'
-            if language == 'ar-dz':
-                return 'جديد'
-        else:
+        value = None
+        badge_value = None
+        badge_color = None
 
-            return None
-    def badge_color(self):
-        if self.status() == 'out_of_stock':
-            return 'gray-400'
-        if self.status() == 'new':
-            return 'danger'
+        if self.selected_variant().selected_option().out_of_stock:
+            value = 'out_of_stock'
+            language = global_request.session.get('language')
+            if language == 'en-us':
+                badge_value = 'out of stock'
+            if language == 'fr-fr':
+                badge_value = 'rupture de stock'
+            if language == 'ar-dz':
+                badge_value = 'نفاذ المخزون'
+            badge_color = 'gray-400'
+
+        if self.selected_variant().is_new():
+            value = 'new'
+            language = global_request.session.get('language')
+            if language == 'en-us':
+                badge_value = 'new'
+            if language == 'fr-fr':
+                badge_value = 'nouveau'
+            if language == 'ar-dz':
+                badge_value = 'جديد'
+            badge_color = 'danger'
+
+        values = {
+            'value': value,
+            'badge_value': badge_value,
+            'badge_color': badge_color,
+        }
+        return values
     def selected_variant(self):
         variant = self.variant_set.all().exclude(is_activated=False).first()
         for v in self.variant_set.all().exclude(is_activated=False):

@@ -204,9 +204,9 @@
                     <div class="card-body">
                         <div class="text-center position-relative">
 
-                            {% if product.badge_value %}
+                            {% if product.status.value %}
                             <div class=" position-absolute top-0 start-0">
-                                <span class="badge bg-{{ product.badge_color }}">{{ product.badge_value }}</span>
+                                <span class="badge bg-{{ product.status.badge_color }}">{{ product.status.badge_value }}</span>
                             </div>
                             {% endif %}
 
