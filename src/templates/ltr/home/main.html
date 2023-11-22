@@ -206,7 +206,7 @@
 
                             {% if product.status.value %}
                             <div class=" position-absolute top-0 start-0">
-                                <span class="badge bg-{{ product.status.badge_color }}">{{ product.status.badge_value }}</span>
+                                <span class="badge bg-{{ product.status.badge_color }}">{{ product.status.badge_value|upper }}</span>
                             </div>
                             {% endif %}
 
