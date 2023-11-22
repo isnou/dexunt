@@ -203,17 +203,13 @@
                 <div class="card card-product border-0">
                     <div class="card-body">
                         <div class="text-center position-relative">
-                            {% if not product.selected_variant.is_available %}
+
+                            {% if product.badge_value %}
                             <div class=" position-absolute top-0 start-0">
-                                <span class="badge bg-gray-400">Out Of Stock</span>
-                            </div>
-                            {% else %}
-                            {% if not product.selected_variant.selected_option.reviews.all.count %}
-                            <div class=" position-absolute top-0 start-0">
-                                <span class="badge bg-danger">New</span>
+                                <span class="badge bg-gray-400">{{ product.badge_value }}</span>
                             </div>
                             {% endif %}
-                            {% endif %}
+                            
 
                             {% if product.selected_variant.selected_option.discount_percentage %}
                             <div class=" position-absolute top-0 end-0">

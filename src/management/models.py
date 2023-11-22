@@ -400,6 +400,11 @@ class Variant(models.Model):
             if o.rate_by_sales() > option.rate_by_sales():
                 option = o
         return option
+    def is_new(self):
+        if not self.selected_option().reviews.all().count:
+            return True
+        else:
+            return False
     def admin_selected_option(self):
         option = self.option_set.all().first()
         for o in self.option_set.all():
@@ -512,6 +517,26 @@ class Product(models.Model):
             return self.ar_description
     def image(self):
         return self.selected_variant().image()
+    def badge_value(self):
+        if self.selected_variant().selected_option().out_of_stock:
+            language = global_request.session.get('language')
+            if language == 'en-us':
+                return 'out of stock'
+            if language == 'fr-fr':
+                return 'rupture de stock'
+            if language == 'ar-dz':
+                return 'نفاذ المخزون'
+        elif self.selected_variant().selected_option().is_new():
+            language = global_request.session.get('language')
+            if language == 'en-us':
+                return 'new'
+            if language == 'fr-fr':
+                return 'nouveau'
+            if language == 'ar-dz':
+                return 'جديد'
+        else:
+
+            return None
     def selected_variant(self):
         variant = self.variant_set.all().exclude(is_activated=False).first()
         for v in self.variant_set.all().exclude(is_activated=False):
