@@ -521,7 +521,6 @@ class Product(models.Model):
         value = None
         badge_value = None
         badge_color = None
-
         if self.selected_variant().selected_option().out_of_stock:
             value = 'out_of_stock'
             language = global_request.session.get('language')
@@ -532,7 +531,6 @@ class Product(models.Model):
             if language == 'ar-dz':
                 badge_value = 'نفاذ المخزون'
             badge_color = 'gray-400'
-
         elif self.selected_variant().is_new():
             value = 'new'
             language = global_request.session.get('language')
@@ -543,7 +541,6 @@ class Product(models.Model):
             if language == 'ar-dz':
                 badge_value = 'جديد'
             badge_color = 'danger'
-
         values = {
             'value': value,
             'badge_value': badge_value,
