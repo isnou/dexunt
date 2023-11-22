@@ -413,6 +413,11 @@ class Variant(models.Model):
             return True
         else:
             return False
+    def scent_exists(self):
+        if self.feature_set.all().filter(en_name='scent').exists():
+            return True
+        else:
+            return False
     def needs_more_photos(self):
         if self.album_set.all().count() < 4:
             return True
