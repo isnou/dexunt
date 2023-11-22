@@ -356,10 +356,10 @@
                   <table class="table table-striped">
                     <!-- table -->
                     <tbody>
-                    {% for feature in selected_variant.feature_set.all %}
+                    {% for feature in selected_variant.first_list_features %}
                       <tr>
                         <th>{{ feature.name|title }}</th>
-                        <td>{{ feature.content|capfirst }}</td>
+                        <td>{{ feature.content|title }}</td>
                       </tr>
                     {% endfor %}
                     </tbody>
@@ -369,25 +369,19 @@
                   <table class="table table-striped">
                     <!-- table -->
                     <tbody>
+                    {% for feature in selected_variant.second_list_features %}
+                      <tr>
+                        <th>{{ feature.name|title }}</th>
+                        <td>{{ feature.content|title }}</td>
+                      </tr>
+                    {% endfor %}
                       <tr>
                         <th>ASIN</th>
                         <td>{{ selected_option.asin }}</td>
                       </tr>
                       <tr>
-                        <th>Best Sellers Rank</th>
-                        <td>#2 in Fruits</td>
-                      </tr>
-                      <tr>
                         <th>Date First Available</th>
                         <td>{{ selected_variant.created_at }}</td>
-                      </tr>
-                      <tr>
-                        <th>Item Weight</th>
-                        <td>500g</td>
-                      </tr>
-                      <tr>
-                        <th>Generic Name</th>
-                        <td>Banana Robusta</td>
                       </tr>
                     </tbody>
                   </table>
