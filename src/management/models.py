@@ -239,7 +239,7 @@ class Option(models.Model):
             return self.ar_note
     def discount_percentage(self):
         if self.discount:
-            return int(((self.price - self.discount) * self.price) / 100)
+            return int(( 100 * (self.price - self.discount)) / self.price)
         else:
             return False
     def likes(self):
