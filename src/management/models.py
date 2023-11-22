@@ -517,8 +517,13 @@ class Product(models.Model):
             return self.ar_description
     def image(self):
         return self.selected_variant().image()
-    def badge_value(self):
+    def status(self):
         if self.selected_variant().selected_option().out_of_stock:
+            return 'out_of_stock'
+        if self.selected_variant().is_new():
+            return 'new'
+    def badge_value(self):
+        if self.status() == 'out_of_stock':
             language = global_request.session.get('language')
             if language == 'en-us':
                 return 'out of stock'
@@ -526,7 +531,7 @@ class Product(models.Model):
                 return 'rupture de stock'
             if language == 'ar-dz':
                 return 'نفاذ المخزون'
-        elif self.selected_variant().is_new():
+        elif self.status() == 'new':
             language = global_request.session.get('language')
             if language == 'en-us':
                 return 'new'
@@ -537,6 +542,11 @@ class Product(models.Model):
         else:
 
             return None
+    def badge_color(self):
+        if self.status() == 'out_of_stock':
+            return 'gray-400'
+        if self.status() == 'new':
+            return 'danger'
     def selected_variant(self):
         variant = self.variant_set.all().exclude(is_activated=False).first()
         for v in self.variant_set.all().exclude(is_activated=False):
