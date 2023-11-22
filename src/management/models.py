@@ -401,7 +401,10 @@ class Variant(models.Model):
                 option = o
         return option
     def is_new(self):
-        return True
+        if not self.selected_option().reviews.all().count():
+            return True
+        else:
+            return False
     def admin_selected_option(self):
         option = self.option_set.all().first()
         for o in self.option_set.all():
