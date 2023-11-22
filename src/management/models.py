@@ -237,6 +237,11 @@ class Option(models.Model):
             return self.fr_note
         if language == 'ar-dz':
             return self.ar_note
+    def discount_percentage(self):
+        if self.discount:
+            return int(((self.price - self.discount) * self.price) / 100)
+        else:
+            return False
     def likes(self):
         like = 0
         for l in self.likes.all():
