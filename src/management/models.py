@@ -440,7 +440,7 @@ class Variant(models.Model):
         else:
             return False
     def asin(self):
-        return self.option_set.all().first().asin()
+        return self.selected_option().asin()
 #                                                                        #
 class Product(models.Model):
     # ----- Technical ----- #
