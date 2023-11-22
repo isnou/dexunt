@@ -420,10 +420,10 @@ class Variant(models.Model):
             return False
     def first_list_features(self):
         if self.feature_set.all().count():
-            return self.feature_set.all()[0:int(self.feature_set.all().count()/2)]
+            return self.feature_set.all()[int(self.feature_set.all().count() / 2):self.feature_set.all().count()]
     def second_list_features(self):
         if self.feature_set.all().count():
-            return self.feature_set.all()[int(self.feature_set.all().count()/2):self.feature_set.all().count()]
+            return self.feature_set.all()[0:int(self.feature_set.all().count() / 2)]
     def needs_more_photos(self):
         if self.album_set.all().count() < 4:
             return True
