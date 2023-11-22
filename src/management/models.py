@@ -526,7 +526,7 @@ class Product(models.Model):
                 return 'rupture de stock'
             if language == 'ar-dz':
                 return 'نفاذ المخزون'
-        elif self.selected_variant().selected_option().is_new():
+        elif self.selected_option().is_new():
             language = global_request.session.get('language')
             if language == 'en-us':
                 return 'new'
