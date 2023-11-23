@@ -22,8 +22,12 @@
       <i class="fa fa-rotate-right me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="collect tags"></i>
     </button>
 
-    <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_tag">
-      <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add a tag"></i>
+    <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags">
+      <i class="fa fa-trash me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="delete tags"></i>
+    </button>
+
+    <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_tag">
+      <i class="fa fa-plus me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add a tag"></i>
     </button>
   </div>
   <!-- end all tags  -->
@@ -36,13 +40,12 @@
 <div class="card">
   {% if all_tags %}
   <div class="m-4">
-    <form id="delete_tags_form" action="{% url 'admin-manage-products' 'delete_tags' %}" class="js-validate need-validate" novalidate method="post">
+    <form id="delete_tags_form" action="{% url 'admin-manage-tags' 'delete_tags' %}" class="js-validate need-validate" novalidate method="post">
       {% csrf_token %}
 
       <div class="row">
         {% for tag in all_tags %}
         <div class="col-3 p-2">
-
           <label class="form-control position-relative" for="tag_{{ tag.id }}">
             <span class="form-check">
               <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
@@ -58,7 +61,6 @@
               {% endif %}
             </span>
           </label>
-
         </div>
         {% endfor %}
       </div>
@@ -190,10 +192,8 @@
   </div>
 </div>
 
-
-{% for tag in all_tags %}
-<!-- delete a tag modal -->
-<div id="delete_tag_{{ tag.id }}" class="modal fade" >
+<!-- delete tags modal -->
+<div id="delete_tags" class="modal fade" >
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -201,17 +201,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <p>click yes to delete {{ tag.title }}.</p>
+        <p>click yes to delete tags.</p>
       </div>
       <div class="modal-footer" style="align-self: center;">
         <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-primary" href="{% url 'admin-manage-tags' 'delete_tag' %}?tag_id={{ tag.id }}">Yes</a>
+        <button class="btn btn-primary" form="delete_tags_form">Yes</button>
       </div>
     </div>
   </div>
 </div>
 
-{% if tag.product.all.count %}
+
+{% for tag in all_tags %}
 <!-- empty a tag modal -->
 <div id="empty_tag_{{ tag.id }}" class="modal fade" >
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -230,7 +231,6 @@
     </div>
   </div>
 </div>
-{% endif %}
 {% endfor %}
 
 {% endblock %}
