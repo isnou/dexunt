@@ -516,9 +516,6 @@ class Product(models.Model):
             self.tags_from_text(v.en_spec)
             for o in v.option_set.all():
                 self.tags_from_text(o.en_value)
-        for t in Tag.objects.all():
-            if t.product.all().count() < 2:
-                t.delete()
     # ----- variables ----- #
     def title(self):
         language = global_request.session.get('language')
