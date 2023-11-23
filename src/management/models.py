@@ -499,15 +499,16 @@ class Product(models.Model):
         collection = Collection.objects.all().get(id=co_id)
         collection.product.remove(self)
     def tags_form_text(self, text):
-        for t in text:
-            if Tag.objects.all().filter(title=t).exists():
-                if not self.tags.filter(title=t).exists():
-                    tag = Tag.objects.all().get(title=t)
+        for t in text.plit():
+            if t.count() < 4:
+                if Tag.objects.all().filter(title=t).exists():
+                    if not self.tags.filter(title=t).exists():
+                        tag = Tag.objects.all().get(title=t)
+                        tag.product.add(self)
+                else:
+                    tag = Tag(title=t)
+                    tag.save()
                     tag.product.add(self)
-            else:
-                tag = Tag(title=t)
-                tag.save()
-                tag.product.add(self)
     def collect_tags(self):
         self.tags_form_text(self.en_title)
     # ----- variables ----- #
