@@ -505,9 +505,9 @@ class Product(models.Model):
                     tag = self.tags.get(title=t)
                     tag.product.add(self)
             else:
-                Tag(product=self,
-                    title=t,
-                    ).save()
+                tag = Tag(title=t)
+                tag.save()
+                tag.product.add(self)
     # ----- variables ----- #
     def title(self):
         language = global_request.session.get('language')
