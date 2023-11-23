@@ -498,8 +498,8 @@ class Product(models.Model):
     def remove_collection(self, co_id):
         collection = Collection.objects.all().get(id=co_id)
         collection.product.remove(self)
-    def collect_tags(self):
-        for t in self.title().split():
+    def tags_form_text(self, text):
+        for t in text:
             if Tag.objects.all().filter(title=t).exists():
                 if not self.tags.filter(title=t).exists():
                     tag = Tag.objects.all().get(title=t)
@@ -508,6 +508,8 @@ class Product(models.Model):
                 tag = Tag(title=t)
                 tag.save()
                 tag.product.add(self)
+    def collect_tags(self):
+        self.tags_form_text(self.en_title)
     # ----- variables ----- #
     def title(self):
         language = global_request.session.get('language')
