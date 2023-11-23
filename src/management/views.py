@@ -1126,12 +1126,11 @@ def manage_tags(request, action):
         if request.method == 'POST':
             Tag(title=request.POST.get('title', False)).save()
             return redirect('admin-manage-tags', 'main')
-    if action == 'delete_tag':
-        tag_id = request.GET.get('tag_id', False)
-        selected_tag = Tag.objects.all().get(id=tag_id)
-        for p in selected_tag.product.all():
-            selected_tag.product.remove(p)
-        selected_tag.delete()
+    if action == 'delete_tags':
+        if request.method == 'POST':
+            tag_ids = request.POST.getlist('checked_tags')
+            for tag_id in tag_ids:
+                Tag.objects.all().get(id=tag_id).delete()
         return redirect('admin-manage-tags', 'main')
     if action == 'empty_tag':
         tag_id = request.GET.get('tag_id', False)
