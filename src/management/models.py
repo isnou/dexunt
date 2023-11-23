@@ -512,6 +512,10 @@ class Product(models.Model):
                     tag.product.add(self)
     def collect_tags(self):
         self.tags_form_text(self.en_title)
+        for v in self.variant_set.all():
+            self.tags_form_text(v.en_spec)
+            for o in v.option_set.all():
+                self.tags_form_text(o.en_value)
     # ----- variables ----- #
     def title(self):
         language = global_request.session.get('language')
