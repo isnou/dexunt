@@ -641,9 +641,9 @@ class Category(models.Model):
     def first_collection_list(self):
         return self.collections.all()[int(self.collections.all().count() / 2): self.collections.all().count()]
     def second_collection_list(self):
-        return self.collections.all()[0:int(self.collections.all().count() / 2)]
+        return self.collections.all()[:int(self.collections.all().count() / 2)]
     def third_collection_list(self):
-        return self.collections.all().order_by('rate')[:self.collections.all().count()]
+        return self.collections.all().order_by('rate')[:int(self.collections.all().count() / 2)]
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
