@@ -36,24 +36,37 @@
 <div class="card">
   {% if all_tags %}
   <div class="m-4">
-    {% for tag in all_tags %}
-      <span class="badge bg-light text-dark m-1">
-        <strong class="text-dark h5 ms-2">
-          {{ tag.title }}
-          {% if tag.product.all.count %}
-          ({{ tag.product.all.count }})
-          {% endif %}
-        </strong>
-        {% if tag.product.all.count %}
-        <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
+    <form id="delete_tags_form" action="{% url 'admin-manage-products' 'delete_tags' %}" class="js-validate need-validate" novalidate method="post">
+      {% csrf_token %}
+
+      <div class="row">
+        {% for tag in all_tags %}
+        <div class="col-sm mb-2 mb-sm-0">
+          <label class="form-control" for="tag_{{ tag.id }}">
+            <span class="form-check">
+              <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
+              <span class="form-check-label">
+                {{ tag.title }}
+                {% if tag.product.all.count %}
+                ({{ tag.product.all.count }})
+                {% endif %}
+              </span>
+            </span>
+
+
+            {% if tag.product.all.count %}
+            <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
           <i class="fa fa-link-slash"></i>
         </a>
-        {% endif %}
-        <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete_tag_{{ tag.id }}">
+            {% endif %}
+            <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete_tag_{{ tag.id }}">
           <i class="fa fa-x"></i>
         </a>
-      </span>
-    {% endfor %}
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+    </form>
   </div>
 
   {% if all_tags.has_other_pages %}
