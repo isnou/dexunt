@@ -639,9 +639,9 @@ class Category(models.Model):
             return True
         return False
     def first_collection_list(self):
-        return self.collections.all().order_by('rate')[:2]
+        return self.collections.all()[int(self.collections.all().count() / 2): self.collections.all().count()]
     def second_collection_list(self):
-        return self.collections.all().order_by('rate')[2:4]
+        return self.collections.all()[0:int(self.collections.all().count() / 2)]
     def third_collection_list(self):
         return self.collections.all().order_by('rate')[4:6]
 #                                                                        #
