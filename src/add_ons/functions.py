@@ -14,9 +14,15 @@ def text_selector(en_text, fr_text, ar_text, language):
     if language == 'ar-dz':
         return ar_text
 
-def collect_tags():
+def collect_tags(tags):
+    for tag in tags.split():
+        tag = ''.join(filter(str.isalpha, tag))
+        if len(tag) > 2:
+            if not Tag.objects.all().filter(title=tag).exists():
+                Tag(title=tag).save()
     for p in Product.objects.all():
         p.collect_tags()
-    for t in Tag.objects.all():
-        if t.product.all().count() < 2:
-            t.delete()
+
+#    for t in Tag.objects.all():
+#        if t.product.all().count() < 2:
+#            t.delete()

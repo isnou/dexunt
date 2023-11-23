@@ -506,10 +506,6 @@ class Product(models.Model):
                     if not self.tags.filter(title=t).exists():
                         tag = Tag.objects.all().get(title=t)
                         tag.product.add(self)
-                else:
-                    tag = Tag(title=t)
-                    tag.save()
-                    tag.product.add(self)
     def collect_tags(self):
         self.tags_from_text(self.en_title)
         for v in self.variant_set.all():
