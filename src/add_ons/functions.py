@@ -15,5 +15,5 @@ def text_selector(en_text, fr_text, ar_text, language):
         return ar_text
 
 def collect_tags():
-    for p in Product.all():
+    for p in Product.objects.all():
         p.collect_tags()
