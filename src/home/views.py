@@ -47,12 +47,12 @@ def home_page(request):
     signup_form = SignupForm()
 
     all_stores = Store.objects.all().filter(is_activated=True).order_by('?')[:6]
-    all_products = Product.objects.all().filter(is_activated=True)[:15]
+    all_products = Product.objects.all().filter(is_activated=True)
     all_flash_products = FlashProduct.objects.all().exclude(is_activated=False).order_by('?')[:10]
     categories = Category.objects.all().filter(is_activated=True).order_by('rates')
 
 
-    grid_products = all_products[:10]
+    grid_products = all_products
     published_flash_products = all_flash_products[:4]
 
     context = {
