@@ -1139,7 +1139,8 @@ def manage_tags(request, action):
             selected_tag.product.remove(p)
         return redirect('admin-manage-tags', 'main')
     if action == 'collect_tags':
-        collect_tags()
+        if request.method == 'POST':
+            collect_tags(request.POST.get('tags', False))
         return redirect('admin-manage-tags', 'main')
 #                                                                        #
 @login_required
