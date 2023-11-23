@@ -49,14 +49,14 @@
               <span class="form-check-label">
                 {{ tag.title }}
               </span>
-            </span>
 
-            {% if tag.product.all.count %}
-            <a class="btn btn-ghost align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
-              <i class="fa fa-link-slash"></i>
-              ({{ tag.product.all.count }})
-            </a>
-            {% endif %}
+              {% if tag.product.all.count %}
+              <a class="btn btn-ghost align-items-center position-absolute top-0 end-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
+                <i class="fa fa-link-slash"></i>
+                ({{ tag.product.all.count }})
+              </a>
+              {% endif %}
+            </span>
           </label>
 
         </div>
