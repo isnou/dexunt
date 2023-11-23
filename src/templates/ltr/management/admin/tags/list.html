@@ -171,13 +171,13 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Add a tags</h2>
+            <h2>Tags collector</h2>
           </div>
           <form action="{% url 'admin-manage-tags' 'collect_tags' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
 
             <div class="row mb-4">
-              <span class="text-body">click collect to confirm</span>
+              <span class="text-body">this option will delete all existing tags click collect to confirm</span>
             </div>
 
             <!-- submit -->
