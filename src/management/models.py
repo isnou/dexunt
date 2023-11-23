@@ -498,7 +498,7 @@ class Product(models.Model):
     def remove_collection(self, co_id):
         collection = Collection.objects.all().get(id=co_id)
         collection.product.remove(self)
-    def tags_form_text(self, text):
+    def tags_from_text(self, text):
         for t in text.split():
             t = ''.join(filter(str.isalpha, t))
             if len(t) > 2:
@@ -511,7 +511,7 @@ class Product(models.Model):
                     tag.save()
                     tag.product.add(self)
     def collect_tags(self):
-        self.tags_form_text(self.en_title)
+        self.tags_from_text(self.en_title)
         for v in self.variant_set.all():
             self.tags_form_text(v.en_spec)
             for o in v.option_set.all():
