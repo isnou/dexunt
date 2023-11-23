@@ -503,7 +503,7 @@ class Product(models.Model):
             t = ''.join(filter(str.isalpha, t))
             if len(t) > 2:
                 if Tag.objects.all().filter(title=t).exists():
-                    if not self.tags.filter(title=t).exists():
+                    if not self.tags.filter(title__icontains=t).exists():
                         tag = Tag.objects.all().get(title=t)
                         tag.product.add(self)
     def collect_tags(self):

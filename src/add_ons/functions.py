@@ -23,6 +23,7 @@ def collect_tags(tags):
     for p in Product.objects.all():
         p.collect_tags()
 
-#    for t in Tag.objects.all():
-#        if t.product.all().count() < 2:
-#            t.delete()
+def clean_tags():
+    for t in Tag.objects.all():
+        if t.product.all().count() < 2:
+            t.delete()
