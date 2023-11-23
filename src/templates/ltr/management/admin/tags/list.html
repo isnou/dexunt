@@ -52,16 +52,6 @@
                 {% endif %}
               </span>
             </span>
-
-
-            {% if tag.product.all.count %}
-            <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
-          <i class="fa fa-link-slash"></i>
-        </a>
-            {% endif %}
-            <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete_tag_{{ tag.id }}">
-          <i class="fa fa-x"></i>
-        </a>
           </label>
         </div>
         {% endfor %}
