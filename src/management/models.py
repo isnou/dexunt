@@ -499,8 +499,8 @@ class Product(models.Model):
         collection = Collection.objects.all().get(id=co_id)
         collection.product.remove(self)
     def tags_form_text(self, text):
-        for t in text.len():
-            if t.count() < 4:
+        for t in text.split():
+            if len(t) < 4:
                 if Tag.objects.all().filter(title=t).exists():
                     if not self.tags.filter(title=t).exists():
                         tag = Tag.objects.all().get(title=t)
