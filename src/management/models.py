@@ -643,7 +643,7 @@ class Category(models.Model):
     def second_collection_list(self):
         return self.collections.all()[0:int(self.collections.all().count() / 2)]
     def third_collection_list(self):
-        return self.collections.all().order_by('rate')[4:6]
+        return self.collections.all().order_by('rate')[:self.collections.all().count()]
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
