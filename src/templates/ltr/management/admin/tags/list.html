@@ -177,7 +177,12 @@
             {% csrf_token %}
 
             <div class="row mb-4">
-              <span class="text-body">this option will delete all existing tags click collect to confirm</span>
+              <!-- english text -->
+              <div class="input-group mb-2">
+                <input type="text" class="form-control" name="tags" required>
+                <span class="invalid-feedback text-center">required field.</span>
+              </div>
+              <!-- end english text -->
             </div>
 
             <!-- submit -->
