@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from add_ons import functions
-from add_ons import collect_tags
+from add_ons.functions import collect_tags
 from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
