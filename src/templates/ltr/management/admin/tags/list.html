@@ -42,7 +42,7 @@
       <div class="row">
         {% for tag in all_tags %}
         <div class="col-3 mb-2 mb-sm-0">
-
+          <div class="input-group">
           <label class="form-control" for="tag_{{ tag.id }}">
             <span class="form-check">
               <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
@@ -62,6 +62,7 @@
 
             </span>
           </label>
+          </div>
 
         </div>
         {% endfor %}
