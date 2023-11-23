@@ -42,23 +42,25 @@
       <div class="row">
         {% for tag in all_tags %}
         <div class="col-3 mb-2 mb-sm-0">
+          <div class="col-8">
           <label class="form-control" for="tag_{{ tag.id }}">
             <span class="form-check">
               <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="tag_{{ tag.id }}">
               <span class="form-check-label">
                 {{ tag.title }}
-                {% if tag.product.all.count %}
-                ({{ tag.product.all.count }})
-                {% endif %}
               </span>
             </span>
-
-            {% if tag.product.all.count %}
-            <a class="btn btn-light align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
-              <i class="fa fa-link-slash"></i>
-            </a>
-            {% endif %}
           </label>
+          </div>
+
+          <div class="col-4">
+          {% if tag.product.all.count %}
+          <a class="btn btn-ghost align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
+            <i class="fa fa-link-slash"></i>
+            ({{ tag.product.all.count }})
+          </a>
+          {% endif %}
+          </div>
         </div>
         {% endfor %}
       </div>
