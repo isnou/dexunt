@@ -163,7 +163,7 @@
 
 <!-- collect tags modal -->
 <div id="collect_tags" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-close">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -177,7 +177,11 @@
             {% csrf_token %}
 
             <div class="row mb-4">
-              <span class="h-6 text-warning text-start">Please separate tags by a space, a semicolon, a point or a coma.</span>
+              <span class="text-danger text-start h-6 mb-2">
+                <small>
+                  Please separate tags by a space, a semicolon, a point or a coma.
+                </small>
+              </span>
               <!-- english text -->
               <div class="input-group mb-2">
                 <textarea class="form-control" name="tags" rows="10" required></textarea>
@@ -188,7 +192,7 @@
 
             <!-- submit -->
             <div class="d-grid mb-4">
-              <button type="submit" class="btn btn-primary form-control-lg">Collect</button>
+              <button type="submit" class="btn btn-primary form-control-sm">Collect</button>
             </div>
             <!-- end submit -->
           </form>
