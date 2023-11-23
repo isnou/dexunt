@@ -51,12 +51,16 @@
               </span>
             </span>
 
+            <span class="input-group-text">
+
             {% if tag.product.all.count %}
             <a class="btn btn-ghost align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#empty_tag_{{ tag.id }}">
               <i class="fa fa-link-slash"></i>
               ({{ tag.product.all.count }})
             </a>
             {% endif %}
+
+            </span>
           </label>
 
         </div>
