@@ -18,7 +18,7 @@ def collect_tags(tags):
     for tag in tags.split():
         tag = ''.join(filter(str.isalpha, tag))
         if len(tag) > 2:
-            if not Tag.objects.all().filter(title=tag).exists():
+            if not Tag.objects.all().filter(title__icontains=tag).exists():
                 Tag(title=tag).save()
     for p in Product.objects.all():
         p.collect_tags()
