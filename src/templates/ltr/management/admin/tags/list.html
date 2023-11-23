@@ -19,7 +19,7 @@
   </div>
   <div class="col-sm-auto">
     <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#collect_tags">
-      <i class="fa fa-rotate-right me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="collect tags"></i>
+      <i class="fa fa-camera-retro me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="collect tags"></i>
     </button>
 
     <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#delete_tags">
@@ -171,7 +171,7 @@
       <div class="modal-body">
         <div>
           <div class="text-center mb-7">
-            <h2>Add a tag</h2>
+            <h2>Add a tags</h2>
           </div>
           <form action="{% url 'admin-manage-tags' 'collect_tags' %}" class="js-validate need-validate" novalidate method="post">
             {% csrf_token %}
