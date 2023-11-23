@@ -500,7 +500,8 @@ class Product(models.Model):
         collection.product.remove(self)
     def tags_form_text(self, text):
         for t in text.split():
-            if len(t) < 4:
+            t = ''.join(filter(str.isalpha, t))
+            if len(t) > 2:
                 if Tag.objects.all().filter(title=t).exists():
                     if not self.tags.filter(title=t).exists():
                         tag = Tag.objects.all().get(title=t)
