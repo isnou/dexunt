@@ -1,5 +1,5 @@
 import random, string
-from management.models import Product
+from management.models import Product, Tag
 
 def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits
@@ -17,3 +17,7 @@ def text_selector(en_text, fr_text, ar_text, language):
 def collect_tags():
     for p in Product.objects.all():
         p.collect_tags()
+        
+    for t in Tag.objects.all():
+        if t.product.all().count() < 2:
+            t.delete()
