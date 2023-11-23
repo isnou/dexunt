@@ -513,9 +513,9 @@ class Product(models.Model):
     def collect_tags(self):
         self.tags_from_text(self.en_title)
         for v in self.variant_set.all():
-            self.tags_form_text(v.en_spec)
+            self.tags_from_text(v.en_spec)
             for o in v.option_set.all():
-                self.tags_form_text(o.en_value)
+                self.tags_from_text(o.en_value)
         for t in Tag.objects.all():
             if t.product.all().count() < 2:
                 t.delete()
