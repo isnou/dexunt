@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from add_ons import functions
+from add_ons import collect_tags
 from django.utils import timezone
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
@@ -1138,6 +1139,9 @@ def manage_tags(request, action):
         selected_tag = Tag.objects.all().get(id=tag_id)
         for p in selected_tag.product.all():
             selected_tag.product.remove(p)
+        return redirect('admin-manage-tags', 'main')
+    if action == 'collect_tags':
+        collect_tags()
         return redirect('admin-manage-tags', 'main')
 #                                                                        #
 @login_required

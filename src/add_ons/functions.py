@@ -1,4 +1,5 @@
 import random, string
+from management.models import Product
 
 def serial_number_generator(length):
     letters_and_digits = string.ascii_letters + string.digits
@@ -12,3 +13,7 @@ def text_selector(en_text, fr_text, ar_text, language):
         return fr_text
     if language == 'ar-dz':
         return ar_text
+
+def collect_tags():
+    for p in Product.all():
+        p.collect_tags()

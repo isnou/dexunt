@@ -18,6 +18,10 @@
     <h6 class="text-muted">Tags list</h6>
   </div>
   <div class="col-sm-auto">
+    <button type="button" class="btn btn-ghost btn-icon" data-bs-toggle="modal" data-bs-target="#collect_tags">
+      <i class="fa fa-rotate-right me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="collect tags"></i>
+    </button>
+
     <button type="button" class="btn btn-white btn-icon" data-bs-toggle="modal" data-bs-target="#add_a_tag">
       <i class="bi-plus-lg me-1" data-bs-toggle="tooltip" data-bs-placement="left" title="add a tag"></i>
     </button>
@@ -117,7 +121,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div id="add_new_product_modal_title">
+        <div>
           <div class="text-center mb-7">
             <h2>Add a tag</h2>
           </div>
@@ -145,6 +149,38 @@
     </div>
   </div>
 </div>
+
+<!-- collect tags modal -->
+<div id="collect_tags" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-close">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="text-center mb-7">
+            <h2>Add a tag</h2>
+          </div>
+          <form action="{% url 'admin-manage-tags' 'collect_tags' %}" class="js-validate need-validate" novalidate method="post">
+            {% csrf_token %}
+
+            <div class="row mb-4">
+              <span class="text-body">click collect to confirm</span>
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary form-control-lg">Collect</button>
+            </div>
+            <!-- end submit -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% for tag in all_tags %}
 <!-- delete a tag modal -->
