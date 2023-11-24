@@ -341,14 +341,18 @@
                         {% endif %}
                         <div class="d-flex justify-content-between mt-4">
                             <div>
-                                <span class="text-dark">
-                                    {{ product.selected_variant.selected_option.price|floatformat:"0g" }} DZD
-                                </span>
                                 {% if product.selected_variant.selected_option.discount %}
                                 <span class="text-decoration-line-through text-muted">
                                     <small>
-                                        {{ product.selected_variant.selected_option.discount|floatformat:"0g" }} DZD
+                                        {{ product.selected_variant.selected_option.price|floatformat:"0g" }} DZD
                                     </small>
+                                </span>
+                                <span class="text-dark">
+                                    {{ product.selected_variant.selected_option.discount|floatformat:"0g" }} DZD
+                                </span>
+                                {% else %}
+                                <span class="text-dark">
+                                    {{ product.selected_variant.selected_option.price|floatformat:"0g" }} DZD
                                 </span>
                                 {% endif %}
                             </div>
