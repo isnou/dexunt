@@ -679,7 +679,7 @@
 
           <div class="row">
             {% for tag in selected_product.unselected_tags %}
-            <div class="col-sm mb-2">
+            <div class="col-3 p-2">
               <label class="form-control" for="selected_tag_{{ tag.id }}">
                 <span class="form-check">
                   <input type="checkbox" class="form-check-input" value="{{ tag.id }}" name="checked_tags" id="selected_tag_{{ tag.id }}">
@@ -733,7 +733,7 @@
 
           <div class="row">
             {% for collection in selected_product.unselected_collections %}
-            <div class="col-sm mb-2">
+            <div class="col-3 p-2">
               <label class="form-control" for="selected_collection_{{ collection.id }}">
                 <span class="form-check">
                   <input type="checkbox" class="form-check-input" value="{{ collection.id }}" name="checked_collections" id="selected_collection_{{ collection.id }}">
