@@ -590,6 +590,7 @@ class Product(models.Model):
 
 # ----------------------------- Collections ---------------------------- #
 class Category(models.Model):
+    COUNT = Category.objects.all().filter(is_activated=True).count()
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
     rates = models.IntegerField(default=0)
@@ -639,11 +640,11 @@ class Category(models.Model):
             return True
         return False
     def first_collection_list(self):
-        return self.collections.all().filter(is_activated=True)[:Category.objects.all().count()]
+        return self.collections.all().filter(is_activated=True)[:COUNT]
     def second_collection_list(self):
-        return self.collections.all().filter(is_activated=True)[Category.objects.all().count():(Category.objects.all().count() * 2)]
+        return self.collections.all().filter(is_activated=True)[COUNT:(COUNT * 2)]
     def third_collection_list(self):
-        return self.collections.all().filter(is_activated=True).order_by('rate')[:Category.objects.all().count()]
+        return self.collections.all().filter(is_activated=True).order_by('rate')[:COUNT]
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
