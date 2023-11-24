@@ -277,7 +277,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12 mb-6">
+            <div class="col-12 mb-2">
                 <h3 class="mb-1">Fruits & vegetables</h3>
                 <p class="mb-0">eat fresh, stay healthy</p>
             </div>
@@ -288,7 +288,6 @@
                 <div class="card card-product border-0">
                     <div class="card-body">
                         <div class="text-center position-relative">
-
                             {% if product.status.value %}
                             <div class=" position-absolute top-0 start-0">
                                 <span class="badge bg-{{ product.status.badge_color }}">
@@ -297,7 +296,6 @@
                             </div>
                             {% endif %}
 
-
                             {% if product.selected_variant.selected_option.discount_percentage %}
                             <div class=" position-absolute top-0 end-0">
                                 <span class="badge bg-dark">- {{ product.selected_variant.selected_option.discount_percentage }}
@@ -305,7 +303,6 @@
                                 </span>
                             </div>
                             {% endif %}
-
 
                             <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}">
                                 <img src="{% get_media_prefix %}{{ product.image }}" alt="{{ product.image.file_name }}" class="mb-3 img-fluid">
@@ -323,11 +320,11 @@
                             </a>
                             {% endif %}
                         </div>
-                        <h2 class="fs-6">
+                        <h6 class="text-truncate">
                             <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}" class="text-inherit text-decoration-none">
                                 {{ product.title|title }}
                             </a>
-                        </h2>
+                        </h6>
                         {% if product.selected_variant.selected_option.reviews.all.count %}
                         <div class="text-warning">
                             <small>
