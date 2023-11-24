@@ -322,7 +322,7 @@
                         </div>
                         <h6 class="text-truncate">
                             <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}" class="text-inherit text-decoration-none">
-                                {{ product.title|title }}, {{ product.selected_variant.spec|title }}, {{ product.selected_option.value|title }}
+                                {{ product.title|title }}, {{ product.selected_variant.spec|title }}, {{ product.selected_variant.selected_option.value|title }}
                             </a>
                         </h6>
                         {% if product.selected_variant.selected_option.reviews.all.count %}
