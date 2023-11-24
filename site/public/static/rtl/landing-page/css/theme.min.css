@@ -34970,7 +34970,7 @@ table tr:last-child td {
 
 .slick-slider .slick-next:hover,
 .slick-slider .slick-prev:hover {
-  background-color: var(--fc-primary);
+  background-color: #db3030;
   border-color: var(--fc-primary);
   color: var(--fc-white)
 }
@@ -34990,7 +34990,7 @@ table tr:last-child td {
 }
 
 .slick-slider .slick-prev:hover {
-  background: var(--fc-primary);
+  background: #db3030;
   color: var(--fc-white);
   outline: none
 }
@@ -35004,7 +35004,7 @@ table tr:last-child td {
 }
 
 .slick-slider .slick-next:hover {
-  background: var(--fc-primary);
+  background: #db3030;
   color: var(--fc-white);
   outline: none
 }
