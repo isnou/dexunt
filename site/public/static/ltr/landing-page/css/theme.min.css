@@ -34970,8 +34970,8 @@ table tr:last-child td {
 
 .slick-slider .slick-next:hover,
 .slick-slider .slick-prev:hover {
-  background-color: #db3030;
-  border-color: #db3030;
+  background-color: var(--fc-primary);
+  border-color: var(--fc-primary);
   color: var(--fc-white)
 }
 
@@ -35078,8 +35078,8 @@ table tr:last-child td {
 
 .slider-arrow .slick-next:hover,
 .slider-arrow .slick-prev:hover {
-  background-color: #db3030;
-  border-color: #db3030;
+  background-color: var(--fc-primary);
+  border-color: var(--fc-primary);
   color: var(--fc-white)
 }
 
