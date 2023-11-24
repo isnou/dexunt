@@ -274,18 +274,84 @@
 </section>
 
 <!-- products carousel section -->
-<section class="my-lg-14 my-8">
+<section>
     <div class="container">
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-6 g-6">
+        <div class="row">
+            <div class="col-12 mb-6">
+                <h3 class="mb-1">Fruits & vegetables</h3>
+                <p class="mb-0">eat fresh, stay healthy</p>
+            </div>
+        </div>
+        <div class="product-slider ">
             {% for product in grid_products %}
-            <div class="col">
-                <a href="{% url 'shop-page' 'store' %}?store_id={{ store.id }}" class="text-decoration-none text-inherit">
-                    <div class="card card-product">
-                        <div class="card-body text-center">
-                            <img src="{% get_media_prefix %}{{ store.user.profile_photo }}" class="img-fluid">
+            <div class="item">
+                <div class="card card-product">
+                    <div class="card-body">
+                        <div class="text-center position-relative">
+
+                            {% if product.status.value %}
+                            <div class=" position-absolute top-0 start-0">
+                                <span class="badge bg-{{ product.status.badge_color }}">
+                                    {{ product.status.badge_value|upper }}
+                                </span>
+                            </div>
+                            {% endif %}
+
+
+                            {% if product.selected_variant.selected_option.discount_percentage %}
+                            <div class=" position-absolute top-0 end-0">
+                                <span class="badge bg-dark">- {{ product.selected_variant.selected_option.discount_percentage }}
+                                    <i class="fa fa-percent"></i>
+                                </span>
+                            </div>
+                            {% endif %}
+
+
+                            <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}">
+                                <img src="{% get_media_prefix %}{{ product.image }}" alt="{{ product.image.file_name }}" class="mb-3 img-fluid">
+                            </a>
+                        </div>
+
+                        <div class="text-small mb-1">
+                            {% if product.selected_collection %}
+                            <a href="{% url 'shop-page' 'grid' %}?collection_id={{ product.selected_collection.id }}" class="text-decoration-none text-muted">
+                                <small>{{ product.selected_collection.category.name|title }} | {{ product.selected_collection.name|title }}</small>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'shop-page' 'store' %}?store_id={{ product.store.id }}" class="text-decoration-none text-muted">
+                                <small>{{ product.store.name|title }}</small>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <h2 class="fs-6">
+                            <a href="{% url 'product-page' 'regular_product' %}?variant_id={{ product.selected_variant.id }}" class="text-inherit text-decoration-none">
+                                {{ product.title|title }}
+                            </a>
+                        </h2>
+                        {% if product.selected_variant.selected_option.reviews.all.count %}
+                        <div class="text-warning">
+                            <small>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_one }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_two }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_three }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_four }}"></i>
+                                <i class="bi bi-star{{ product.selected_variant.selected_option.review_star_five }}"></i>
+                            </small>
+                            <span class="text-muted small">
+                                ({{ product.selected_variant.selected_option.reviews.all.count }} reviews)
+                            </span>
+                        </div>
+                        {% endif %}
+                        <div class="d-flex justify-content-between mt-4">
+                            <div>
+                                <span class="text-dark">{{ product.selected_variant.selected_option.price|floatformat:"0g" }} DZD</span>
+                                {% if product.selected_variant.selected_option.discount %}
+                                <span class="text-decoration-line-through text-muted">{{ product.selected_variant.selected_option.discount|floatformat:"0g" }} DZD</span>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             {% endfor %}
         </div>
