@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py" />
+    <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
+      <change beforePath="$PROJECT_DIR$/site/public/static/ltr/landing-page/css/theme.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/ltr/landing-page/css/theme.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/public/static/rtl/landing-page/css/theme.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/public/static/rtl/landing-page/css/theme.min.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
