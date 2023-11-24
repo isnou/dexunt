@@ -639,9 +639,9 @@ class Category(models.Model):
             return True
         return False
     def first_collection_list(self):
-        return self.collections.all().filter(is_activated=True)[int(self.collections.all().count() / 2): self.collections.all().count()]
+        return self.collections.all().filter(is_activated=True)[:Category.objects.all().count()]
     def second_collection_list(self):
-        return self.collections.all().filter(is_activated=True)[:int(self.collections.all().count() / 2)]
+        return self.collections.all().filter(is_activated=True)[Category.objects.all().count():(Category.objects.all().count() * 2)]
     def third_collection_list(self):
         return self.collections.all().filter(is_activated=True).order_by('rate')[:int(self.collections.all().count() / 2)]
 #                                                                        #
