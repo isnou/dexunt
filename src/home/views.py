@@ -74,7 +74,7 @@ def shop_page(request, action):
         request.session['direction'] = 'ltr'
     direction = request.session.get('direction')
 
-    if action == 'grid':
+    if action == 'collection':
         url = direction + "/home/grid.html"
         if request.GET.get('collection_id', False):
             collection_id = request.GET.get('collection_id')
@@ -83,6 +83,30 @@ def shop_page(request, action):
             collection_id = request.session.get('collection_id')
 
         selected_collection = Collection.objects.all().get(id=collection_id)
+
+        login_form = LoginForm()
+        signup_form = SignupForm()
+
+        categories = Category.objects.all().filter(is_activated=True).order_by('rates')
+
+        context = {
+            'selected_collection': selected_collection,
+            'source_page': 'grid-shop-page',
+            'login_form': login_form,
+            'signup_form': signup_form,
+            'categories': categories,
+        }
+        return render(request, url, context)
+
+    if action == 'category':
+        url = direction + "/home/grid.html"
+        if request.GET.get('category_id', False):
+            category_id = request.GET.get('category_id')
+            request.session['category_id'] = category_id
+        else:
+            category_id = request.session.get('category_id')
+
+        selected_collection = Category.objects.all().get(id=category_id)
 
         login_form = LoginForm()
         signup_form = SignupForm()

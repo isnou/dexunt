@@ -251,20 +251,21 @@
     <div class="d-block d-lg-none mb-4">
       <a class="btn btn-danger w-100 d-flex justify-content-center align-items-center collapsed" data-bs-toggle="collapse" href="index.html#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         <span class="me-1">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <i class="fa fa-grip fa-xl"></i>
         </span>
         Categories
       </a>
       <div class="mt-2 collapse" id="collapseExample" style="">
         <div class="card card-body">
           <ul class="mb-0 list-unstyled">
-            <li><a class="dropdown-item" href="#">Dairy, Bread &amp; Eggs</a></li>
-            <li><a class="dropdown-item" href="#">Snacks &amp; Munchies</a></li>
-            <li><a class="dropdown-item" href="#">Fruits &amp; Vegetables</a></li>
-            <li><a class="dropdown-item" href="#">Cold Drinks &amp; Juices</a></li>
-            <li><a class="dropdown-item" href="#">Breakfast &amp; Instant Food</a></li>
-            <li><a class="dropdown-item" href="#">Bakery &amp; Biscuits</a></li>
-            <li><a class="dropdown-item" href="#">Chicken, Meat &amp; Fish</a></li>
+            {% for category in categories %}
+            <li>
+              <a class="dropdown-item" href="{% url 'shop-page' 'category' %}?category_id={{ category.id }}">
+                <i class="fa fa-{{ category.icon }} me-1"></i>
+                {{ category.name|title }}
+              </a>
+            </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -357,7 +358,7 @@
                     <ul class="list-unstyled">
                       {% for collection in category.first_collection_list %}
                       <li>
-                        <a href="{% url 'shop-page' 'grid' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
@@ -367,7 +368,7 @@
                     <ul class="list-unstyled">
                       {% for collection in category.second_collection_list %}
                       <li>
-                        <a href="{% url 'shop-page' 'grid' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
@@ -377,7 +378,7 @@
                     <ul class="list-unstyled">
                       {% for collection in category.third_collection_list %}
                       <li>
-                        <a href="{% url 'shop-page' 'grid' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
@@ -637,7 +638,6 @@
 
 <script src="{% static 'ltr/landing-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
 <script src="{% static 'ltr/landing-page/js/vendors/countdown.js' %}"></script>
-
 
 <!-- HTMX -->
 <script src="{% static 'htmx/htmx.min.js' %}"></script>
