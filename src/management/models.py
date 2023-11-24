@@ -590,6 +590,7 @@ class Product(models.Model):
 
 # ----------------------------- Collections ---------------------------- #
 class Category(models.Model):
+    from . import Category
     COUNT = Category.objects.all().filter(is_activated=True).count()
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
