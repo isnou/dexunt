@@ -359,7 +359,7 @@
                     <ul class="list-unstyled">
                       {% for collection in category.first_collection_list %}
                       <li>
-                        <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item">{{ collection.name|title }}</a>
+                        <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item me-10 pe-10">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
