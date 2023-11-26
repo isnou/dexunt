@@ -2,8 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 from django.core.validators import MaxValueValidator, MinValueValidator
-from add_ons.functions import serial_number_generator
-from add_ons.variables import categories
+from add_ons import functions, variables
 from PIL import Image
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -132,7 +131,7 @@ class Option(models.Model):
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.upc:
-            self.upc = serial_number_generator(20).upper()
+            self.upc = functions.serial_number_generator(20).upper()
         if self.limited_stock():
             if self.production_capacity_quantity:
                 self.out_of_stock = False
@@ -640,15 +639,15 @@ class Category(models.Model):
             return True
         return False
     def first_collection_list(self):
-        return self.collections.all().filter(is_activated=True)[:categories().get('count')]
+        return self.collections.all().filter(is_activated=True)[:variables.categories().get('count')]
     def second_collection_list(self):
-        if self.collections.all().filter(is_activated=True).count() >= categories().get('count'):
-            return self.collections.all().filter(is_activated=True)[categories().get('count'):(categories().get('count') * 2)]
+        if self.collections.all().filter(is_activated=True).count() >= variables.categories().get('count'):
+            return self.collections.all().filter(is_activated=True)[variables.categories().get('count'):(variables.categories().get('count') * 2)]
         else:
             return None
     def third_collection_list(self):
-        if self.collections.all().filter(is_activated=True).order_by('rate').count() >= categories().get('count'):
-            return self.collections.all().filter(is_activated=True).order_by('rate')[:categories().get('count')]
+        if self.collections.all().filter(is_activated=True).order_by('rate').count() >= variables.categories().get('count'):
+            return self.collections.all().filter(is_activated=True).order_by('rate')[:variables.categories().get('count')]
         else:
             return None
 #                                                                        #
