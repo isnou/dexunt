@@ -649,7 +649,7 @@ class Category(models.Model):
         }
         return values
     def first_collection_list(self):
-        return self.elements().collections[:self.elements().categories_count]
+        return self.elements().get('collections')[:self.elements().get('categories_count')]
     def second_collection_list(self):
         return self.elements().collections[self.elements().categories_count:(self.elements().categories_count * 2)]
     def third_collection_list(self):
