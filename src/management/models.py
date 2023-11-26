@@ -651,10 +651,10 @@ class Category(models.Model):
     def first_collection_list(self):
         return self.elements().get('collections')[:self.elements().get('categories_count')]
     def second_collection_list(self):
-        return self.elements().collections[self.elements().categories_count:(self.elements().categories_count * 2)]
+        return self.elements().get('collections')[self.elements().get('categories_count'):(self.elements().get('categories_count') * 2)]
     def third_collection_list(self):
-        if self.elements().rated_collections.count() >= self.elements().categories_count:
-            return self.elements().rated_collections[:self.elements().categories_count]
+        if self.elements().get('rated_collections').count() >= self.elements().get('categories_count'):
+            return self.elements().get('rated_collections')[:self.elements().get('categories_count')]
         else:
             return None
 #                                                                        #
