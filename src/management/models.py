@@ -641,7 +641,6 @@ class Category(models.Model):
     def elements(self):
         categories_count = Category.objects.all().filter(is_activated=True).count()
         collections = self.collections.all().filter(is_activated=True)
-        collections_count = collections.count()
         rated_collections = collections.order_by('rate')
         values = {
             'categories_count': categories_count,
@@ -652,7 +651,7 @@ class Category(models.Model):
     def first_collection_list(self):
         return self.elements().get('collections')[:self.elements().get('categories_count')]
     def second_collection_list(self):
-        if self.elements().get('collections_count') >= self.elements().get('categories_count'):
+        if self.elements().get('collections').count() >= self.elements().get('categories_count'):
             return self.elements().get('collections')[self.elements().get('categories_count'):(self.elements().get('categories_count') * 2)]
         else:
             return None
