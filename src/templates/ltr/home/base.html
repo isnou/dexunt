@@ -368,7 +368,7 @@
                     {% endif %}
 
                     {% if category.second_collection_list %}
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled mt-4 border-top border-1">
                       {% for collection in category.second_collection_list %}
                       <li>
                         <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item dropdown-menu-md">{{ collection.name|title }}</a>
