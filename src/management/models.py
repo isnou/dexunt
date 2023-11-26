@@ -639,7 +639,8 @@ class Category(models.Model):
             return True
         return False
     def elements(self):
-        categories_count = Category.objects.all().filter(is_activated=True).count()
+        from add_ons.variables import categories
+        categories_count = categories.get('count')
         collections = self.collections.all().filter(is_activated=True)
         rated_collections = collections.order_by('rate')
         values = {
