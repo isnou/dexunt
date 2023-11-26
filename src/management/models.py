@@ -2,7 +2,8 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 from django.core.validators import MaxValueValidator, MinValueValidator
-from add_ons import functions
+from add_ons.functions import serial_number_generator
+from add_ons.variables import categories
 from PIL import Image
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -131,7 +132,7 @@ class Option(models.Model):
     # ----- functions ----- #
     def save(self, *args, **kwargs):
         if not self.upc:
-            self.upc = functions.serial_number_generator(20).upper()
+            self.upc = serial_number_generator(20).upper()
         if self.limited_stock():
             if self.production_capacity_quantity:
                 self.out_of_stock = False
@@ -638,27 +639,16 @@ class Category(models.Model):
         if self.icon and self.fr_name and self.ar_name and self.check_collection_activation():
             return True
         return False
-    def elements(self):
-        from add_ons.variables import categories
-        categories_count = categories().get('count')
-        collections = self.collections.all().filter(is_activated=True)
-        rated_collections = collections.order_by('rate')
-        values = {
-            'categories_count': categories_count,
-            'collections': collections,
-            'rated_collections': rated_collections,
-        }
-        return values
     def first_collection_list(self):
-        return self.elements().get('collections')[:self.elements().get('categories_count')]
+        return self.collections.all().filter(is_activated=True)[:categories().get('count')]
     def second_collection_list(self):
-        if self.elements().get('collections').count() >= self.elements().get('categories_count'):
-            return self.elements().get('collections')[self.elements().get('categories_count'):(self.elements().get('categories_count') * 2)]
+        if self.collections.all().filter(is_activated=True).count() >= categories().get('count'):
+            return self.collections.all().filter(is_activated=True)[categories().get('count'):(categories().get('count') * 2)]
         else:
             return None
     def third_collection_list(self):
-        if self.elements().get('rated_collections').count() >= self.elements().get('categories_count'):
-            return self.elements().get('rated_collections')[:self.elements().get('categories_count')]
+        if self.collections.all().filter(is_activated=True).order_by('rate').count() >= categories().get('count'):
+            return self.collections.all().filter(is_activated=True).order_by('rate')[:categories().get('count')]
         else:
             return None
 #                                                                        #
