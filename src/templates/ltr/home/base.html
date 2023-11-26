@@ -354,6 +354,7 @@
                 </a>
 
                 <div class="dropdown-menu-list-submenu">
+                  {% if category.first_collection_list %}
                   <div>
                     <ul class="list-unstyled">
                       {% for collection in category.first_collection_list %}
@@ -363,7 +364,9 @@
                       {% endfor %}
                     </ul>
                   </div>
+                  {% endif %}
 
+                  {% if category.second_collection_list %}
                   <div>
                     <ul class="list-unstyled">
                       {% for collection in category.second_collection_list %}
@@ -373,7 +376,9 @@
                       {% endfor %}
                     </ul>
                   </div>
+                  {% endif %}
 
+                  {% if category.third_collection_list %}
                   <div>
                     <ul class="list-unstyled">
                       {% for collection in category.third_collection_list %}
@@ -383,6 +388,7 @@
                       {% endfor %}
                     </ul>
                   </div>
+                  {% endif %}
                 </div>
               </li>
               {% endfor %}

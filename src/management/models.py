@@ -638,12 +638,25 @@ class Category(models.Model):
         if self.icon and self.fr_name and self.ar_name and self.check_collection_activation():
             return True
         return False
+    def elements(self):
+        categories_count = Category.objects.all().filter(is_activated=True).count()
+        collections = self.collections.all().filter(is_activated=True)
+        rated_collections = collections.order_by('rate')
+        values = {
+            'categories_count': categories_count,
+            'collections': collections,
+            'rated_collections': rated_collections,
+        }
+        return values
     def first_collection_list(self):
-        return self.collections.all().filter(is_activated=True)[:Category.objects.all().filter(is_activated=True).count()]
+        return self.elements().collections[:self.elements().categories_count]
     def second_collection_list(self):
-        return self.collections.all().filter(is_activated=True)[Category.objects.all().filter(is_activated=True).count():(Category.objects.all().filter(is_activated=True).count() * 2)]
+        return self.elements().collections[self.elements().categories_count:(self.elements().categories_count * 2)]
     def third_collection_list(self):
-        return self.collections.all().filter(is_activated=True).order_by('rate')[:Category.objects.all().filter(is_activated=True).count()]
+        if self.elements().rated_collections.count() >= self.elements().categories_count:
+            return self.elements().rated_collections[:self.elements().categories_count]
+        else:
+            return None
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
