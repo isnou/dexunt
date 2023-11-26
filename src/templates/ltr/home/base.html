@@ -356,26 +356,27 @@
                 <div class="dropdown-menu-list-submenu">
 
                   <div>
+
+                    {% if category.first_collection_list %}
                     <ul class="list-unstyled">
-                      {% if category.first_collection_list %}
                       {% for collection in category.first_collection_list %}
                       <li>
                         <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item dropdown-menu-md">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
-                      {% endif %}
+                    </ul>
+                    {% endif %}
 
-                      {% if category.second_collection_list %}
-                      <li>
-                        <span class="divider-center mb-2"></span>
-                      </li>
+                    {% if category.second_collection_list %}
+                    <ul class="list-unstyled">
                       {% for collection in category.second_collection_list %}
                       <li>
                         <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item dropdown-menu-md">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
-                      {% endif %}
                     </ul>
+                    {% endif %}
+
                   </div>
 
 
