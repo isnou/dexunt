@@ -1,7 +1,6 @@
-from home.models import Cart, SelectedProduct
-from management.models import Category
-
 def get_cart(request):
+    from home.models import Cart, SelectedProduct
+
     if not request.user.is_authenticated:
         if not request.session.get('cart_ref', None):
             selected_cart = Cart()
@@ -20,6 +19,8 @@ def get_cart(request):
     return selected_cart
 
 def categories():
+    from management.models import Category
+
     activated = Category.objects.all().filter(is_activated=True)
     count = activated.count()
     values = {
