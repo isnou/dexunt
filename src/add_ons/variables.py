@@ -1,3 +1,5 @@
+
+# -------------------------- carts ------------------------- #
 def get_cart(request):
     from home.models import Cart, SelectedProduct
 
@@ -17,7 +19,11 @@ def get_cart(request):
     else:
         selected_cart = request.user.cart
     return selected_cart
+#                                                            #
+# ---------------------------------------------------------- #
 
+
+# ------------------------ categories ---------------------- #
 def categories():
     from management.models import Category
 
@@ -28,3 +34,5 @@ def categories():
         'count': count,
     }
     return values
+#                                                            #
+# ---------------------------------------------------------- #
