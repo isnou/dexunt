@@ -700,7 +700,7 @@ class Category(models.Model):
             return None
     def third_collection_list(self):
         if self.collections.all().filter(is_activated=True).count() >= categories().get('count'):
-            return self.best_sale_collection()[:categories().get('count')]
+            return self.best_sale_collection()
         else:
             return None
 #                                                                        #
