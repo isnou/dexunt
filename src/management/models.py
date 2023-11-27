@@ -641,6 +641,11 @@ class Category(models.Model):
             return self.collections.all().filter(is_activated=True)[categories().get('count'):(categories().get('count') * 2)]
         else:
             return None
+    def third_collection_list(self):
+        if self.collections.all().filter(is_activated=True).order_by('rate').count() >= categories().get('count'):
+            return self.collections.all().filter(is_activated=True).order_by('rate')[:categories().get('count')]
+        else:
+            return None
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
