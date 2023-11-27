@@ -688,7 +688,7 @@ class Category(models.Model):
             return None
     def third_collection_list(self):
         if self.collections.all().filter(is_activated=True).count() >= categories().get('count'):
-            return sorted(self.collections.all().filter(is_activated=True), key=lambda obj: Model.rates())[:categories().get('count')]
+            return None
         else:
             return None
 #                                                                        #
