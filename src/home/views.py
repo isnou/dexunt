@@ -62,7 +62,7 @@ def home_page(request):
         'grid_products': grid_products,
         'published_flash_products': published_flash_products,
         'all_stores': all_stores,
-        'categories': categories(),
+        'categories': categories().get('activated'),
     }
     return render(request, url, context)
 
