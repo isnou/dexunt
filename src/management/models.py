@@ -699,10 +699,7 @@ class Category(models.Model):
         else:
             return None
     def third_collection_list(self):
-        if self.best_rate_collection().count() >= categories().get('count'):
-            return self.best_sale_collection()[:categories().get('count')]
-        else:
-            return None
+        return self.best_sale_collection()[:categories().get('count')]
 #                                                                        #
 class Collection(models.Model):
     # ----- Technical ----- #
