@@ -378,10 +378,10 @@
                   </div>
                   {% endif %}
 
-                  {% if categories.best_rate %}
+                  {% if category.third_collection_list %}
                   <div>
                     <ul class="list-unstyled">
-                      {% for collection in categories.best_rate %}
+                      {% for collection in category.third_collection_list %}
                       <li>
                         <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item dropdown-menu-md">{{ collection.name|title }}</a>
                       </li>

@@ -679,11 +679,28 @@ class Category(models.Model):
         if self.icon and self.fr_name and self.ar_name and self.check_collection_activation():
             return True
         return False
+    def best_sale_collection(self):
+        collection = self.collections.all().first()
+        for c in self.collections.all():
+            if c.sales() > collection.sales():
+                collection = c
+        return collection
+    def best_rate_collection(self):
+        collection = self.collections.all().first()
+        for c in self.collections.all():
+            if c.rates() > collection.rates():
+                collection = c
+        return collection
     def first_collection_list(self):
         return self.collections.all().filter(is_activated=True)[:categories().get('count')]
     def second_collection_list(self):
         if self.collections.all().filter(is_activated=True).count() >= categories().get('count'):
             return self.collections.all().filter(is_activated=True)[categories().get('count'):(categories().get('count') * 2)]
+        else:
+            return None
+    def third_collection_list(self):
+        if self.best_rate_collection().count() >= categories().get('count'):
+            return self.best_sale_collection()[:categories().get('count')]
         else:
             return None
 #                                                                        #

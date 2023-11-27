@@ -44,8 +44,8 @@ def categories():
     values = {
         'activated': activated,
         'count': count,
-        'best_rate': best_rate.collections.all().filter(is_activated=True)[:count],
-        'best_sale': best_sale.collections.all().filter(is_activated=True)[:count],
+        'best_rate': best_rate,
+        'best_sale': best_sale,
     }
     return values
 #                                                            #
