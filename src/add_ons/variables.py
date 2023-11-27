@@ -29,9 +29,23 @@ def categories():
 
     activated = Category.objects.all().filter(is_activated=True)
     count = activated.count()
+
+    best_rate = activated.first()
+    for c in activated:
+        if c.rates() > best_rate.rates():
+            best_rate = c
+
+    best_sale = activated.first()
+    for c in activated:
+        if c.sales() > best_sale.sales():
+            best_sale = c
+
+
     values = {
         'activated': activated,
         'count': count,
+        'best_rate': best_rate.collections.all().filter(is_activated=True)[:count],
+        'best_sale': best_sale.collections.all().filter(is_activated=True)[:count],
     }
     return values
 #                                                            #

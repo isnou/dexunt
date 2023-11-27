@@ -389,6 +389,21 @@ class Variant(models.Model):
             return self.album_set.all().first().image
         else:
             return self.selected_option().image
+    def likes(self):
+        like = 0
+        for o in self.option_set.all():
+            like += o.likes()
+        return like
+    def rates(self):
+        rate = 0
+        for o in self.option_set.all():
+            rate += o.rates()
+        return rate
+    def sales(self):
+        sale = 0
+        for o in self.option_set.all():
+            sale += o.sales()
+        return sale
     def admin_image(self):
         return self.album_set.all().first().image
     def selected_option(self):
@@ -528,6 +543,21 @@ class Product(models.Model):
             return self.ar_description
     def image(self):
         return self.selected_variant().image()
+    def likes(self):
+        like = 0
+        for o in self.variant_set.all():
+            like += o.likes()
+        return like
+    def rates(self):
+        rate = 0
+        for o in self.variant_set.all():
+            rate += o.rates()
+        return rate
+    def sales(self):
+        sale = 0
+        for o in self.variant_set.all():
+            sale += o.sales()
+        return sale
     def status(self):
         value = None
         badge_value = None
@@ -622,6 +652,21 @@ class Category(models.Model):
             return self.fr_name
         if language == 'ar-dz':
             return self.ar_name
+    def likes(self):
+        like = 0
+        for o in self.collections.all():
+            like += o.likes()
+        return like
+    def rates(self):
+        rate = 0
+        for o in self.collections.all():
+            rate += o.rates()
+        return rate
+    def sales(self):
+        sale = 0
+        for o in self.collections.all():
+            sale += o.sales()
+        return sale
     def check_collection_activation(self):
         if not self.collections.all().count():
             return False
@@ -639,11 +684,6 @@ class Category(models.Model):
     def second_collection_list(self):
         if self.collections.all().filter(is_activated=True).count() >= categories().get('count'):
             return self.collections.all().filter(is_activated=True)[categories().get('count'):(categories().get('count') * 2)]
-        else:
-            return None
-    def third_collection_list(self):
-        if self.collections.all().filter(is_activated=True).order_by('rate').count() >= categories().get('count'):
-            return self.collections.all().filter(is_activated=True).order_by('rate')[:categories().get('count')]
         else:
             return None
 #                                                                        #
@@ -675,6 +715,21 @@ class Collection(models.Model):
             return self.fr_name
         if language == 'ar-dz':
             return self.ar_name
+    def likes(self):
+        like = 0
+        for o in self.product.all():
+            like += o.likes()
+        return like
+    def rates(self):
+        rate = 0
+        for o in self.product.all():
+            rate += o.rates()
+        return rate
+    def sales(self):
+        sale = 0
+        for o in self.product.all():
+            sale += o.sales()
+        return sale
     def check_activation(self):
         if not self.product.all().count():
             return False
