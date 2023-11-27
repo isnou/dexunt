@@ -340,7 +340,7 @@
               </span>
               Categories
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg">
+            <ul class="dropdown-menu dropdown-menu-md">
               {% for category in categories %}
               <li class="dropdown-menu-list">
                 <a href="javascript:;" class="dropdown-item d-flex justify-content-between mb-1 py-1 " data-bs-toggle="dropdown" aria-expanded="false">
@@ -354,10 +354,8 @@
                 </a>
 
                 <div class="dropdown-menu-list-submenu">
-
+                  {% if category.first_collection_list %}
                   <div>
-
-                    {% if category.first_collection_list %}
                     <ul class="list-unstyled">
                       {% for collection in category.first_collection_list %}
                       <li>
@@ -365,20 +363,20 @@
                       </li>
                       {% endfor %}
                     </ul>
-                    {% endif %}
+                  </div>
+                  {% endif %}
 
-                    {% if category.second_collection_list %}
-                    <ul class="list-unstyled mt-4 border-top border-1">
+                  {% if category.second_collection_list %}
+                  <div>
+                    <ul class="list-unstyled">
                       {% for collection in category.second_collection_list %}
                       <li>
                         <a href="{% url 'shop-page' 'collection' %}?collection_id={{ collection.id }}" class="dropdown-item dropdown-menu-md">{{ collection.name|title }}</a>
                       </li>
                       {% endfor %}
                     </ul>
-                    {% endif %}
-
                   </div>
-
+                  {% endif %}
 
                   {% if category.third_collection_list %}
                   <div>

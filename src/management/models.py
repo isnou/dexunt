@@ -246,10 +246,7 @@ class Option(models.Model):
         else:
             return False
     def likes(self):
-        like = 0
-        for l in self.likes.all():
-            like += 1
-        return like
+        return self.likes.all().count()
     def rates(self):
         rate = 0
         for r in self.reviews.all().filter(show=True):
@@ -261,7 +258,7 @@ class Option(models.Model):
     def sales(self):
         sale = 0
         for s in self.selected_products.all().filter(status='completed'):
-            sale += 1
+            sale += s.quantity
         return sale
     def refunds(self):
         refund = 0
@@ -592,7 +589,6 @@ class Product(models.Model):
 class Category(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
-    rates = models.IntegerField(default=0)
     # ----- content ----- #
     en_name = models.CharField(max_length=300, blank=True, null=True)
     fr_name = models.CharField(max_length=300, blank=True, null=True)
@@ -654,9 +650,6 @@ class Category(models.Model):
 class Collection(models.Model):
     # ----- Technical ----- #
     is_activated = models.BooleanField(default=False)
-    rate = models.IntegerField(default=0)
-    sale = models.IntegerField(default=0)
-    refund = models.IntegerField(default=0)
     # ----- relations ----- #
     category = models.ForeignKey('management.Category', related_name='collections', on_delete=models.CASCADE, blank=True, null=True)
     product = models.ManyToManyField(Product, related_name='collections', blank=True)
@@ -726,8 +719,6 @@ class Store(models.Model):
     # ----- variables ----- #
     def logo(self):
         return self.user.profile_photo
-    def completed_orders(self):
-        return self.orders.all().filter(status='completed')
     def all_variants(self):
         variant_ids = []
         for p in self.product_set.all():
@@ -765,16 +756,6 @@ class Store(models.Model):
         for o in self.completed_orders():
             amount += o.total_cost()
         return amount
-    def sales(self):
-        sale = 0
-        for o in self.completed_orders():
-            sale += 1
-        return sale
-    def rates(self):
-        rate = 0
-        for p in self.all_products():
-            rate += p.rates()
-        return rate
 #                                                                        #
 class FlashProduct(models.Model):
     # ----- Technical ----- #

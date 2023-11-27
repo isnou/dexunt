@@ -56,8 +56,6 @@ class SelectedProduct(models.Model):
     status = models.CharField(max_length=50, default='created', null=True)
     # confirmed|out_of_capacity|processed|in_delivery|in_refund|delivered|completed|refunded #
     # ----- relations ----- #
-    store = models.ForeignKey(
-        'management.Store', on_delete=models.CASCADE, related_name='orders', null=True)
     option = models.ForeignKey(
         'management.Option', on_delete=models.CASCADE, related_name='selected_products', null=True)
     cart = models.ForeignKey(
