@@ -1,7 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
-from add_ons import functions
+from globals import functions
 from django.utils import timezone, dateformat
 from PIL import Image
 from home.models import Cart, Order, SelectedProduct, Municipality, Province
