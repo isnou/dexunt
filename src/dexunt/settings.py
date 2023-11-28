@@ -56,8 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
-    'management.global_request.RequestExposerMiddleware',
-    'home.global_request.RequestExposerMiddleware',
+    #'management.global_request.RequestExposerMiddleware',
 ]
 
 ROOT_URLCONF = 'dexunt.urls'
@@ -73,7 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'home.global_context.session_language',
+                #'home.global_context.session_language',
             ],
         },
     },

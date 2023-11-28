@@ -17,9 +17,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('home.urls')),
-    path('management/', include('management.urls')),
-    path('users/management/', include('authentication.urls')),
+    path('globals/', include('management.urls')),
+    path('users/', include('authentication.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
