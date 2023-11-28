@@ -51,11 +51,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/home" />
       <recent name="$PROJECT_DIR$/src/global" />
       <recent name="$PROJECT_DIR$/src/add_ons" />
       <recent name="$PROJECT_DIR$/src/templates/ltr/management/admin/category" />
       <recent name="$PROJECT_DIR$/src/templates/ltr/management/admin/tags" />
-      <recent name="$PROJECT_DIR$/site/public/static/rtl" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/site/public/static/images/icons" />

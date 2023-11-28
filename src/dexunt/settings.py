@@ -38,12 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication',
     'django_user_agents',
     'phonenumber_field',
     'mathfilters',
     'ckeditor',
     'ckeditor_uploader',
+    'authentication',
     'globals',
     'home',
 ]
