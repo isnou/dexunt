@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
-    'globals.request.RequestExposerMiddleware',
+    #'globals.request.RequestExposerMiddleware',
 ]
 
 ROOT_URLCONF = 'dexunt.urls'
