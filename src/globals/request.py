@@ -1,5 +1,5 @@
 from django.conf import settings
-from . import models
+from home import models
 
 
 def RequestExposerMiddleware(get_response):
