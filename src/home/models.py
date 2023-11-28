@@ -1,5 +1,5 @@
 from django.db import models
-from add_ons import functions
+from globals import functions
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
