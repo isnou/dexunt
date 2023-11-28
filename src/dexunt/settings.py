@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'ckeditor',
     'ckeditor_uploader',
-    'global',
+    'globals',
 ]
 
 MIDDLEWARE = [
