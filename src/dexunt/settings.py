@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'globals',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
-    #'management.global_request.RequestExposerMiddleware',
+    'globals.request.RequestExposerMiddleware',
 ]
 
 ROOT_URLCONF = 'dexunt.urls'
