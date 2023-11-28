@@ -6,6 +6,7 @@ def serial_number_generator(length):
     return result_str
 #                                                            #
 def text_selector(en_text, fr_text, ar_text, language):
+    global_request
     if language == 'en-us':
         return en_text
     if language == 'fr-fr':
