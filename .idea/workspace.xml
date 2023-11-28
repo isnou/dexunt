@@ -2,32 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/authentication/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/authentication/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/authentication/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/authentication/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/home/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dexunt/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dexunt/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dexunt/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dexunt/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/global_context.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/global_request.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/home/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/global_request.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/views.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +46,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt"
+    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/home"
   }
 }]]></component>
   <component name="RecentsManager">
