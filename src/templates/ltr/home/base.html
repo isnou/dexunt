@@ -2,680 +2,1926 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- title block -->
-  {% block title %} {% endblock %}
-
-  <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/tiny-slider/dist/tiny-slider.css' %}"/>
-  <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick.css' %}"/>
-  <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick-theme.css' %}"/>
-
-  <!-- meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-  <script>
-     window.dataLayer = window.dataLayer || [];
-     function gtag(){dataLayer.push(arguments);}
-     gtag('js', new Date());
-     gtag('config', 'G-M8S4MT3EYG');
-  </script>
+  <!-- title block -->
+  {% block title %} {% endblock %}
 
-  <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon/favicon.png' %}">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'images/favicon/favicon.png' %}">
 
-  <!-- Libs CSS -->
-  <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/bootstrap-icons/font/bootstrap-icons.css' %}"/>
-  <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/feather-webfont/dist/feather-icons.css' %}"/>
-  <link rel="stylesheet" href="{% static 'ltr/landing-page/libs/simplebar/dist/simplebar.min.css' %}"/>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Theme CSS -->
-  <link rel="stylesheet" href="{% static 'ltr/landing-page/css/theme.min.css' %}"/>
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="{% static 'ltr/assets/css/vendor.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ltr/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
 
-  <!-- JQuery -->
-  <script src="{% static 'ltr/landing-page/libs/jquery/dist/jquery.min.js' %}"></script>
+  <!-- CSS Front Template -->
+  <link rel="stylesheet" href="../assets/css/theme.min.css%3Fv=1.0.css' %}">
 </head>
 
 <body>
-<!-- navigation -->
-<header class="pb-lg-5 pb-4 border-bottom border-bottom-lg-0">
-  <!-- language & tracking topbar -->
-  <div class="py-2 bg-dark">
-    <div class="container">
-      <div class="row">
-        <div class="col-6 d-none d-md-block">
-          <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#track_my_order_modal">
-            {{ txt_track_my_order }}
-            <i class="feather-icon icon-map-pin ms-2"></i>
-          </a>
-        </div>
+<header id="header" class="navbar navbar-expand-lg navbar-end navbar-light">
+  <!-- Topbar -->
+    <div class="container navbar-topbar">
+      <nav class="js-mega-menu navbar-nav-wrap">
+        <!-- Toggler -->
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="d-flex justify-content-between align-items-center">
+            <span class="navbar-toggler-text">Topbar</span>
 
-        <div class="col-md-6 col-12 text-center text-md-end">
-          <div class="dropdown">
-            <a class="text-decoration-none  text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="feather-icon icon-globe me-2"></i>
-              {% if language == 'en-us' %}
-              English
-              {% endif %}
-
-              {% if language == 'fr-fr' %}
-              French
-              {% endif %}
-            </a>
-
-            <ul class="dropdown-menu">
-              <li>
-                {% if language == 'en-us' %}
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr&source_page={{ source_page }}">
-                  Français
-                </a>
-                {% endif %}
-
-                {% if language == 'fr-fr' %}
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us&source_page={{ source_page }}">
-                  English
-                </a>
-                {% endif %}
-              </li>
-              <li>
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=ar-dz&source_page={{ source_page }}">
-                   العربية
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end language & tracking topbar -->
-
-  <div class="container pt-5">
-    <div class="row w-100 align-items-center gx-3">
-      <div class="col-xl-7 col-lg-8">
-        <!-- desk search & logo -->
-        <div class="d-flex align-items-center">
-          <a class="navbar-brand d-none d-lg-block" href="{% url 'home-page' %}">
-            <img src="{% static 'images/logo/logo.png' %}" alt="dexunt-logo">
-          </a>
-          {% if user.is_customer or not user.is_authenticated %}
-          <div class=" w-100 ms-4  d-none d-lg-block ">
-            <form action="index-4.html#">
-              <div class="input-group ">
-                <input class="form-control rounded" type="search" placeholder="{{ txt_search_holder }}">
-                <span class="input-group-append">
-                  <button class="btn bg-white border border-start-0 ms-n10 rounded-0 rounded-end" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="feather feather-search">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                  </button>
-                </span>
-              </div>
-            </form>
-          </div>
-          {% endif %}
-        </div>
-        <!-- end desk search & logo -->
-
-        <!-- mobile logo & buttons -->
-        <div class="d-flex justify-content-between align-items-center w-100 d-lg-none">
-          <!-- mobile logo -->
-          <a class="navbar-brand mb-0" href="{% url 'home-page' %}">
-            <img src="{% static 'images/logo/logo.png' %}" alt="dexunt-logo">
-          </a>
-          <!-- end mobile logo -->
-
-          <div class="d-flex align-items-center lh-1">
-            <div class="list-inline me-4">
-              <!-- mobile login button -->
-              <div class="list-inline-item">
-                {% if user.is_authenticated %}
-                <a href="{% url 'router' %}" class="text-reset">
-                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-                </a>
-                {% else %}
-                <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#login_modal">
-                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </a>
-                {% endif %}
-              </div>
-              <!-- end mobile login button -->
-
-              <!-- mobile cart block -->
-              {% block mobile_cart %} {% endblock %}
-            </div>
-
-            {% if user.is_customer or not user.is_authenticated %}
-            <!-- mobile toggle menu button -->
-            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="9" y1="3" x2="9" y2="21"></line>
-              </svg>
-            </button>
-            <!-- end mobile toggle menu button -->
-            {% endif %}
-          </div>
-        </div>
-        <!-- end mobile logo & buttons -->
-      </div>
-
-      <div class="col-xl-5 col-lg-4 d-flex align-items-center ">
-        <div class="list-inline ms-auto d-lg-block d-none">
-          <!-- desk login button -->
-          <div class="list-inline-item me-3">
-            {% if user.is_authenticated %}
-            <a href="{% url 'router' %}" class="text-reset">
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-            </a>
-            {% else %}
-            <a href="#" class="text-reset" data-bs-toggle="modal" data-bs-target="#login_modal">
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            </a>
-            {% endif %}
-          </div>
-          <!-- end desk login button -->
-
-          <!-- desk cart block -->
-          {% block desk_cart %} {% endblock %}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {% if errors %}
-  <div class="container text-center col-8" >
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-      {% if errors.username.0 %}
-      <strong>{{ errors.username.0 }}</strong><br>
-      {% endif %}
-
-      {% if errors.password1.0 %}
-      <strong>{{ errors.password1.0 }}</strong><br>
-      {% endif %}
-
-      {% if errors.password2.0 %}
-      <strong>{{ errors.password2.0 }}</strong><br>
-      {% endif %}
-
-      {% if errors.phone_number.0 %}
-      <strong>{{ errors.phone_number.0 }}</strong><br>
-      {% endif %}
-
-      {% if errors.login %}
-      <strong>{{ errors.login }}</strong><br>
-      {% endif %}
-    </div>
-  </div>
-  {% endif %}
-</header>
-
-{% if user.is_customer or not user.is_authenticated %}
-<div class="navbar p-0">
-  <div class="offcanvas offcanvas-start p-4 p-lg-0 " id="navbar-default">
-    <!-- mobile logo -->
-    <div class="d-flex justify-content-between align-items-center mb-4 d-block d-lg-none">
-      <a href="{% url 'home-page' %}">
-        <img src="{% static 'images/logo/logo.png' %}" alt="dexunt-logo">
-      </a>
-
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <!-- end mobile logo -->
-
-    <!-- mobile search -->
-    <div class="d-block d-lg-none mb-3 ">
-      <form action="index-4.html#">
-        <div class="input-group ">
-          <input class="form-control rounded" type="search" placeholder="Search for products">
-          <span class="input-group-append">
-            <button class="btn bg-white border border-start-0 ms-n10 rounded-0 rounded-end" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
+            <span class="navbar-toggler-default">
+              <i class="bi-chevron-down ms-2"></i>
+            </span>
+            <span class="navbar-toggler-toggled">
+              <i class="bi-chevron-up ms-2"></i>
+            </span>
           </span>
-        </div>
-      </form>
-    </div>
-    <!-- end mobile search -->
+        </button>
+        <!-- End Toggler -->
 
-    <!-- mobile menu categories button -->
-    <div class="d-block d-lg-none mb-4">
-      <a class="btn btn-danger w-100 d-flex justify-content-center align-items-center collapsed" data-bs-toggle="collapse" href="index.html#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <span class="me-1">
-          <i class="fa fa-grip fa-xl"></i>
-        </span>
-        Categories
-      </a>
-      <div class="mt-2 collapse" id="collapseExample" style="">
-        <div class="card card-body">
-          <ul class="mb-0 list-unstyled">
-            {% for category in categories %}
-            <li>
-              <a class="dropdown-item" href="{% url 'shop-page' 'category' %}?category_id={{ category.id }}">
-                <i class="fa fa-{{ category.icon }} me-2"></i>
-                {{ category.name|title }}
-              </a>
+        <div id="topbarNavDropdown" class="navbar-nav-wrap-collapse collapse navbar-collapse navbar-topbar-collapse">
+          <div class="navbar-toggler-wrapper">
+            <div class="navbar-topbar-toggler d-flex justify-content-between align-items-center">
+              <span class="navbar-toggler-text small">Topbar</span>
+
+              <!-- Toggler -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi-x"></i>
+              </button>
+              <!-- End Toggler -->
+            </div>
+          </div>
+
+          <ul class="navbar-nav">
+            <li class="nav-item me-auto">
+              <a class="nav-link" href="../landing-classic-corporate.html"><i class="bi-chevron-left small ms-1"></i> Main demo</a>
             </li>
-            {% endfor %}
+
+            <!-- Demos -->
+            <li class="hs-has-mega-menu nav-item">
+              <a id="demosMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle active" aria-current="page" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Demos</a>
+
+              <!-- Mega Menu -->
+              <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="demosMegaMenu" style="min-width: 40rem;">
+                <!-- Promo -->
+                <div class="navbar-dropdown-menu-promo">
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link " href="../landing-classic-corporate.html">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M15.6 5.59998L20.9 10.9C21.3 11.3 21.3 11.9 20.9 12.3L17.6 15.6L11.6 9.59998L15.6 5.59998ZM2.3 12.3L7.59999 17.6L11.6 13.6L5.59999 7.59998L2.3 10.9C1.9 11.3 1.9 11.9 2.3 12.3Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M17.6 15.6L12.3 20.9C11.9 21.3 11.3 21.3 10.9 20.9L7.59998 17.6L13.6 11.6L17.6 15.6ZM10.9 2.3L5.59998 7.6L9.59998 11.6L15.6 5.6L12.3 2.3C11.9 1.9 11.3 1.9 10.9 2.3Z" fill="#035A4B" />
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">Main</span>
+                          <p class="navbar-dropdown-menu-media-desc">Over 60 corporate, agency, portfolio, account and many more pages.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link " href="../demo-real-estate/index.html">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 3C5.67157 3 5 3.67157 5 4.5V6H3.5C2.67157 6 2 6.67157 2 7.5C2 8.32843 2.67157 9 3.5 9H5V19.5C5 20.3284 5.67157 21 6.5 21C7.32843 21 8 20.3284 8 19.5V9H20.5C21.3284 9 22 8.32843 22 7.5C22 6.67157 21.3284 6 20.5 6H8V4.5C8 3.67157 7.32843 3 6.5 3Z" fill="#035A4B" />
+                              <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M20.5 11H10V17.5C10 18.3284 10.6716 19 11.5 19H15.5C17.3546 19 19.0277 18.2233 20.2119 16.9775C20.1436 16.9922 20.0727 17 20 17C19.4477 17 19 16.5523 19 16V13C19 12.4477 19.4477 12 20 12C20.5523 12 21 12.4477 21 13V15.9657C21.6334 14.9626 22 13.7741 22 12.5C22 11.6716 21.3284 11 20.5 11Z" fill="#035A4B" />
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">Real Estate</span>
+                          <p class="navbar-dropdown-menu-media-desc">Find the latest homes for sale, real estate market data.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link " href="../demo-jobs/index.html">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.3" d="M20 15H4C2.9 15 2 14.1 2 13V7C2 6.4 2.4 6 3 6H21C21.6 6 22 6.4 22 7V13C22 14.1 21.1 15 20 15ZM13 12H11C10.5 12 10 12.4 10 13V16C10 16.5 10.4 17 11 17H13C13.6 17 14 16.6 14 16V13C14 12.4 13.6 12 13 12Z" fill="#035A4B" />
+                              <path d="M14 6V5H10V6H8V5C8 3.9 8.9 3 10 3H14C15.1 3 16 3.9 16 5V6H14ZM20 15H14V16C14 16.6 13.5 17 13 17H11C10.5 17 10 16.6 10 16V15H4C3.6 15 3.3 14.9 3 14.7V18C3 19.1 3.9 20 5 20H19C20.1 20 21 19.1 21 18V14.7C20.7 14.9 20.4 15 20 15Z" fill="#035A4B" />
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">Jobs <span class="badge bg-success rounded-pill ms-1">Hot</span></span>
+                          <p class="navbar-dropdown-menu-media-desc">Search millions of jobs online to find the next step in your career.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+                </div>
+                <!-- End Promo -->
+
+                <!-- Promo -->
+                <div class="navbar-dropdown-menu-promo">
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link active" href="index.html">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20 19H4C2.9 19 2 18.1 2 17H22C22 18.1 21.1 19 20 19Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M20 5H4C3.4 5 3 5.4 3 6V17H21V6C21 5.4 20.6 5 20 5Z" fill="#035A4B" />
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.9167 6.83334H9.91666C9.18899 6.83334 8.66666 7.37744 8.66666 8.08334V13.9167C8.66666 14.6226 9.18899 15.1667 9.91666 15.1667H14.9167C15.1841 15.1667 15.3333 15.0112 15.3333 14.75V14.3333H10.3333C10.1032 14.3333 9.91665 14.1468 9.91665 13.9167C9.91665 13.6866 10.1032 13.5 10.3333 13.5H15.3333V7.25001C15.3333 6.9888 15.1841 6.83334 14.9167 6.83334Z" fill="#035A4B" />
+                              <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="10">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.9167 6.83334H9.91666C9.18899 6.83334 8.66666 7.37744 8.66666 8.08334V13.9167C8.66666 14.6226 9.18899 15.1667 9.91666 15.1667H14.9167C15.1841 15.1667 15.3333 15.0112 15.3333 14.75V14.3333H10.3333C10.1032 14.3333 9.91665 14.1468 9.91665 13.9167C9.91665 13.6866 10.1032 13.5 10.3333 13.5H15.3333V7.25001C15.3333 6.9888 15.1841 6.83334 14.9167 6.83334Z" fill="white" />
+                              </mask>
+                              <g mask="url(#mask0)">
+                              </g>
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">Course <span class="badge bg-success rounded-pill ms-1">Hot</span></span>
+                          <p class="navbar-dropdown-menu-media-desc">Learn on your schedule. An online learning and teaching demo.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link " href="../demo-shop/index.html">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.3" d="M20 22H4C3.4 22 3 21.6 3 21V2H21V21C21 21.6 20.6 22 20 22Z" fill="#035A4B" />
+                              <path d="M12 14C9.2 14 7 11.8 7 9V5C7 4.4 7.4 4 8 4C8.6 4 9 4.4 9 5V9C9 10.7 10.3 12 12 12C13.7 12 15 10.7 15 9V5C15 4.4 15.4 4 16 4C16.6 4 17 4.4 17 5V9C17 11.8 14.8 14 12 14Z" fill="#035A4B" />
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">E-Commerce</span>
+                          <p class="navbar-dropdown-menu-media-desc">Choose an online store &amp; get your business online today!</p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link " href="../demo-app-marketplace/index.html">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.3" d="M18 10V20C18 20.6 18.4 21 19 21C19.6 21 20 20.6 20 20V10H18Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M11 10V17H6V10H4V20C4 20.6 4.4 21 5 21H12C12.6 21 13 20.6 13 20V10H11Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M10 10C10 11.1 9.1 12 8 12C6.9 12 6 11.1 6 10H10Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M18 10C18 11.1 17.1 12 16 12C14.9 12 14 11.1 14 10H18Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M14 4H10V10H14V4Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M17 4H20L22 10H18L17 4Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M7 4H4L2 10H6L7 4Z" fill="#035A4B" />
+                              <path d="M6 10C6 11.1 5.1 12 4 12C2.9 12 2 11.1 2 10H6ZM10 10C10 11.1 10.9 12 12 12C13.1 12 14 11.1 14 10H10ZM18 10C18 11.1 18.9 12 20 12C21.1 12 22 11.1 22 10H18ZM19 2H5C4.4 2 4 2.4 4 3V4H20V3C20 2.4 19.6 2 19 2ZM12 17C12 16.4 11.6 16 11 16H6C5.4 16 5 16.4 5 17C5 17.6 5.4 18 6 18H11C11.6 18 12 17.6 12 17Z" fill="#035A4B" />
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">App Marketplace</span>
+                          <p class="navbar-dropdown-menu-media-desc">Find apps and integrates seamlessly with popular apps.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+                </div>
+                <!-- End Promo -->
+
+                <!-- Promo -->
+                <div class="navbar-dropdown-menu-promo">
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link " href="../demo-help-desk/index.html">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1671 18.1421C22.4827 18.4577 23.0222 18.2331 23.0206 17.7868L23.0039 13.1053V5.52632C23.0039 4.13107 21.8729 3 20.4776 3H8.68815C7.2929 3 6.16183 4.13107 6.16183 5.52632V9H13C14.6568 9 16 10.3431 16 12V15.6316H19.6565L22.1671 18.1421Z" fill="#035A4B" />
+                              <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M1.98508 18V13C1.98508 11.8954 2.88051 11 3.98508 11H11.9851C13.0896 11 13.9851 11.8954 13.9851 13V18C13.9851 19.1046 13.0896 20 11.9851 20H4.10081L2.85695 21.1905C2.53895 21.4949 2.01123 21.2695 2.01123 20.8293V18.3243C1.99402 18.2187 1.98508 18.1104 1.98508 18ZM5.99999 14.5C5.99999 14.2239 6.22385 14 6.49999 14H11.5C11.7761 14 12 14.2239 12 14.5C12 14.7761 11.7761 15 11.5 15H6.49999C6.22385 15 5.99999 14.7761 5.99999 14.5ZM9.49999 16C9.22385 16 8.99999 16.2239 8.99999 16.5C8.99999 16.7761 9.22385 17 9.49999 17H11.5C11.7761 17 12 16.7761 12 16.5C12 16.2239 11.7761 16 11.5 16H9.49999Z" fill="#035A4B" />
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">Help Desk</span>
+                          <p class="navbar-dropdown-menu-media-desc">A customer service demo that helps you balance customer needs.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                    <!-- Promo Link -->
+                    <a class="navbar-dropdown-menu-promo-link" href="../../../contact-us.html" target="_blank">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <span class="svg-icon svg-icon-sm text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M12 17C16.4183 17 20 13.4183 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9C4 13.4183 7.58172 17 12 17Z" fill="#035A4B" />
+                              <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M6.53819 9L10.568 19.3624L11.976 18.8149L13.3745 19.3674L17.4703 9H6.53819ZM9.46188 11H14.5298L11.9759 17.4645L9.46188 11Z" fill="#035A4B" />
+                              <path opacity="0.3" d="M10 22H14V22C14 23.1046 13.1046 24 12 24V24C10.8954 24 10 23.1046 10 22V22Z" fill="#035A4B" />
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 17C8 16.4477 8.44772 16 9 16H15C15.5523 16 16 16.4477 16 17C16 17.5523 15.5523 18 15 18C15.5523 18 16 18.4477 16 19C16 19.5523 15.5523 20 15 20C15.5523 20 16 20.4477 16 21C16 21.5523 15.5523 22 15 22H9C8.44772 22 8 21.5523 8 21C8 20.4477 8.44772 20 9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18C8.44772 18 8 17.5523 8 17Z" fill="#035A4B" />
+                            </svg>
+
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 ms-3">
+                          <span class="navbar-dropdown-menu-media-title">New demo ideas?</span>
+                          <p class="navbar-dropdown-menu-media-desc">
+                            Send us your suggestions <i class="bi-box-arrow-up-right ms-1"></i>
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- End Promo Link -->
+                  </div>
+                  <!-- End Promo Item -->
+
+                  <!-- Promo Item -->
+                  <div class="navbar-dropdown-menu-promo-item">
+                  </div>
+                  <!-- End Promo Item -->
+                </div>
+                <!-- End Promo -->
+              </div>
+              <!-- End Mega Menu -->
+            </li>
+            <!-- End Demos -->
+
+            <!-- Docs -->
+            <li class="hs-has-mega-menu nav-item" data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "maxWidth": "20rem"
+                  }
+                }'>
+              <a id="docsMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Docs</a>
+
+              <!-- Mega Menu -->
+              <div class="hs-mega-menu hs-position-right dropdown-menu" aria-labelledby="docsMegaMenu" style="min-width: 20rem;">
+                <!-- Link -->
+                <a class="navbar-dropdown-menu-media-link" href="../documentation/index.html">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <span class="svg-icon svg-icon-sm text-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M4.85714 1H11.7364C12.0911 1 12.4343 1.12568 12.7051 1.35474L17.4687 5.38394C17.8057 5.66895 18 6.08788 18 6.5292V19.0833C18 20.8739 17.9796 21 16.1429 21H4.85714C3.02045 21 3 20.8739 3 19.0833V2.91667C3 1.12612 3.02045 1 4.85714 1ZM7 13C7 12.4477 7.44772 12 8 12H15C15.5523 12 16 12.4477 16 13C16 13.5523 15.5523 14 15 14H8C7.44772 14 7 13.5523 7 13ZM8 16C7.44772 16 7 16.4477 7 17C7 17.5523 7.44772 18 8 18H11C11.5523 18 12 17.5523 12 17C12 16.4477 11.5523 16 11 16H8Z" fill="#035A4B" />
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.85714 3H14.7364C15.0911 3 15.4343 3.12568 15.7051 3.35474L20.4687 7.38394C20.8057 7.66895 21 8.08788 21 8.5292V21.0833C21 22.8739 20.9796 23 19.1429 23H6.85714C5.02045 23 5 22.8739 5 21.0833V4.91667C5 3.12612 5.02045 3 6.85714 3ZM7 13C7 12.4477 7.44772 12 8 12H15C15.5523 12 16 12.4477 16 13C16 13.5523 15.5523 14 15 14H8C7.44772 14 7 13.5523 7 13ZM8 16C7.44772 16 7 16.4477 7 17C7 17.5523 7.44772 18 8 18H11C11.5523 18 12 17.5523 12 17C12 16.4477 11.5523 16 11 16H8Z" fill="#035A4B" />
+                        </svg>
+
+                      </span>
+                    </div>
+
+                    <div class="flex-grow-1 ms-3">
+                      <span class="navbar-dropdown-menu-media-title">Documentation <span class="badge bg-primary rounded-pill ms-1">v4.3.1</span></span>
+                      <p class="navbar-dropdown-menu-media-desc">Development guides for building projects with Space</p>
+                    </div>
+                  </div>
+                </a>
+                <!-- End Link -->
+
+                <div class="dropdown-divider"></div>
+
+                <!-- Link -->
+                <a class="navbar-dropdown-menu-media-link" href="../snippets/index.html">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <span class="svg-icon svg-icon-sm text-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path opacity="0.3" d="M21 2H13C12.4 2 12 2.4 12 3V13C12 13.6 12.4 14 13 14H21C21.6 14 22 13.6 22 13V3C22 2.4 21.6 2 21 2ZM15.7 8L14 10.1V5.80005L15.7 8ZM15.1 4H18.9L17 6.40002L15.1 4ZM17 9.59998L18.9 12H15.1L17 9.59998ZM18.3 8L20 5.90002V10.2L18.3 8ZM9 2H3C2.4 2 2 2.4 2 3V21C2 21.6 2.4 22 3 22H9C9.6 22 10 21.6 10 21V3C10 2.4 9.6 2 9 2ZM4.89999 12L4 14.8V9.09998L4.89999 12ZM4.39999 4H7.60001L6 8.80005L4.39999 4ZM6 15.2L7.60001 20H4.39999L6 15.2ZM7.10001 12L8 9.19995V14.9L7.10001 12Z" fill="#035A4B" />
+                          <path d="M21 18H13C12.4 18 12 17.6 12 17C12 16.4 12.4 16 13 16H21C21.6 16 22 16.4 22 17C22 17.6 21.6 18 21 18ZM19 21C19 20.4 18.6 20 18 20H13C12.4 20 12 20.4 12 21C12 21.6 12.4 22 13 22H18C18.6 22 19 21.6 19 21Z" fill="#035A4B" />
+                        </svg>
+
+                      </span>
+                    </div>
+
+                    <div class="flex-grow-1 ms-3">
+                      <span class="navbar-dropdown-menu-media-title">Snippets</span>
+                      <p class="navbar-dropdown-menu-media-desc">Move quickly with copy-to-clipboard feature</p>
+                    </div>
+                  </div>
+                </a>
+                <!-- End Link -->
+              </div>
+              <!-- End Mega Menu -->
+            </li>
+            <!-- End Docs -->
           </ul>
         </div>
-      </div>
+      </nav>
     </div>
-    <!-- end mobile menu categories button -->
+    <!-- End Topbar -->
 
-    <!-- mobile menu -->
-    <div class="d-block d-lg-none h-100" data-simplebar="init">
-      <div class="simplebar-wrapper">
-        <div class="simplebar-mask">
-          <div class="simplebar-offset">
-            <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content">
-              <div class="simplebar-content">
-                <ul class="navbar-nav ">
-                  <!-- box  -->
-                  <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                      Box
-                    </a>
-                  </li>
-                  <!-- gift card  -->
-                  <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                      Gift Card
-                    </a>
-                  </li>
-                  <!-- custom made -->
-                  <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                      Custom Made
-                    </a>
-                  </li>
-                  <!-- handcrafted -->
-                  <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                      Handcrafted
-                    </a>
-                  </li>
-                  <!-- my QR -->
-                  <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                      My QR
-                    </a>
-                  </li>
-                  <!-- earn with us -->
-                  <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                      Earn With Us
-                    </a>
-                  </li>
-                </ul>
+    <div class="container">
+      <nav class="js-mega-menu navbar-nav-wrap">
+        <!-- Default Logo -->
+        <a class="navbar-brand" href="#" aria-label="Front">
+          <img class="navbar-brand-logo" src="{% static 'images/logo/logo.png' %}" alt="Logo">
+        </a>
+        <!-- End Default Logo -->
+
+        <!-- Secondary Content -->
+        <div class="navbar-nav-wrap-secondary-content">
+          <!-- Search -->
+          <div class="dropdown dropdown-course-search d-lg-none d-inline-block">
+            <a class="btn btn-ghost-secondary btn-sm btn-icon" href="index.html#" id="navbarCourseSearchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi-search"></i>
+            </a>
+
+            <div class="dropdown-menu dropdown-card" aria-labelledby="navbarCourseSearchDropdown">
+              <!-- Card -->
+              <div class="card card-sm">
+                <div class="card-body">
+                  <form class="input-group input-group-merge">
+                    <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+                    <div class="input-group-append input-group-text">
+                      <i class="bi-search"></i>
+                    </div>
+                  </form>
+                </div>
               </div>
+              <!-- End Card -->
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- end mobile menu -->
-  </div>
-</div>
-<nav class="navbar navbar-expand-lg  navbar-light bg-white  border-top border-1 d-none d-lg-block navbar-default">
-  <div class="container px-0 px-md-3">
-    <div class="me-auto p-4 p-lg-0">
-      <div class="d-none d-lg-block">
-        <!-- desk menu -->
-        <ul class="navbar-nav align-items-center">
-          <!-- categories  -->
-          <li class="dropdown me-4 border-end">
-            <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="me-1">
-                <i class="fa fa-grip fa-xl"></i>
-              </span>
-              Categories
-            </a>
-            <ul class="dropdown-menu dropdown-menu-md">
-              {% for category in categories %}
-              <li class="dropdown-menu-list">
-                <a href="javascript:;" class="dropdown-item d-flex justify-content-between mb-1 py-1 " data-bs-toggle="dropdown" aria-expanded="false">
-                  <div>
-                    <i class="fa fa-{{ category.icon }}"></i>
-                    <span class="ms-1">{{ category.name|title }}</span>
-                  </div>
-                  <div>
-                    <i class="feather-icon icon-chevron-right"></i>
-                  </div>
-                </a>
+          <!-- End Search -->
 
-                <div class="dropdown-menu-list-submenu">
-                  {% if category.first_collection_list %}
-                  <div>
-                    <ul class="list-unstyled">
-                      {% for collection in category.first_collection_list %}
-                      <li>
-                      </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  {% endif %}
-
-                  {% if category.second_collection_list %}
-                  <div>
-                    <ul class="list-unstyled">
-                      {% for collection in category.second_collection_list %}
-                      <li>
-
-                      </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  {% endif %}
-
-                  {% if category.third_collection_list %}
-                  <div>
-                    <ul class="list-unstyled">
-                      {% for collection in category.third_collection_list %}
-                      <li>
-
-                      </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  {% endif %}
-                </div>
-              </li>
-              {% endfor %}
-            </ul>
-          </li>
-          <!-- box  -->
-          <li class="nav-item me-4">
-            <a class="nav-link" href="#">
-              Box
-            </a>
-          </li>
-          <!-- gift card  -->
-          <li class="nav-item me-4">
-            <a class="nav-link" href="#">
-              Gift Card
-            </a>
-          </li>
-          <!-- custom made -->
-          <li class="nav-item me-4">
-            <a class="nav-link" href="#">
-              Custom Made
-            </a>
-          </li>
-          <!-- my QR -->
-          <li class="nav-item me-4">
-            <a class="nav-link" href="#">
-              My QR
-            </a>
-          </li>
-          <!-- become partner -->
-          <li class="nav-item me-4">
-            <a class="nav-link" href="#">
-              Become Partner
-            </a>
-          </li>
-        </ul>
-        <!-- end desk menu -->
-      </div>
-    </div>
-  </div>
-</nav>
-{% endif %}
-
-<!-- modals -->
-{% block modals %} {% endblock %}
-<!-- track my order modal -->
-<div class="modal fade" id="track_my_order_modal" tabindex="-1" aria-labelledby="track_my_order_modal_label"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <div class="mb-5 d-flex align-items-center justify-content-between">
-          <h1 class="modal-title fs-5" id="track_my_order_modal_label"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class=" w-100 ">
-
-          <div class="mb-4">
-            <h1 class="mt-3 mb-0 h4">Order tracking</h1>
-            <small>Put your order reference </small>
+          <div class="d-inline-block ml-auto">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
+              <span class="d-none d-lg-inline-block">Get started</span>
+              <i class="bi-person-fill d-lg-none"></i>
+            </button>
           </div>
-          <form>
-            <div class="row g-3">
-              <div class="col">
-                <label for="order_code" class="visually-hidden">Order Code</label>
-                <input type="text" class="form-control" id="order_code"
-                       placeholder="#6F4HU8I" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
-              </div>
-              <div class="col-auto">
-                <button type="submit" class="btn btn-danger">Check</button>
-              </div>
-            </div>
-          </form>
         </div>
-        <div class="my-10 text-center">
-        </div>
-      </div>
+        <!-- End Secondary Content -->
 
-    </div>
-  </div>
-</div>
-<!-- login modal -->
-<div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modal_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="login_modal_label">Login</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-10">
-            <div class="py-6">
-              <form action="{% url 'login' %}" class="needs-validation" novalidate method="post">
-                {% csrf_token %}
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-default">
+            <i class="bi-list"></i>
+          </span>
+          <span class="navbar-toggler-toggled">
+            <i class="bi-x"></i>
+          </span>
+        </button>
+        <!-- End Toggler -->
 
-                <div class="form-floating mb-8">
-                    <input type="text" class="form-control" id="username" name="{{ login_form.username.name }}" maxlength="{{ login_form.username.field.max_length }}" placeholder="{{ login_form.username.label }}" required>
-                    <label>Username</label>
-                    <span class="invalid-feedback text-start">please provide a correct username.</span>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+
+            <!-- Courses -->
+            <li class="hs-has-sub-menu nav-item">
+              <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-journals me-2"></i> Courses</a>
+
+              <!-- Mega Menu -->
+              <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu" style="min-width: 17rem;">
+                <!-- Development -->
+                <div class="hs-has-sub-menu nav-item">
+                  <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-code-slash dropdown-item-icon"></i> Development</a>
+
+                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="developmentMegaMenu" style="min-width: 14rem;">
+                    <a class="dropdown-item" href="index.html#">All Business</a>
+                    <a class="dropdown-item" href="index.html#">Finance</a>
+                    <a class="dropdown-item" href="index.html#">Entrepreneurship</a>
+                    <a class="dropdown-item" href="index.html#">Communications</a>
+                    <a class="dropdown-item" href="index.html#">Management</a>
+                    <a class="dropdown-item" href="index.html#">Sales</a>
+                    <a class="dropdown-item" href="index.html#">Strategy</a>
+                    <a class="dropdown-item" href="index.html#">Operations</a>
+                    <a class="dropdown-item" href="index.html#">Project management</a>
+                    <a class="dropdown-item" href="index.html#">Business law</a>
+                    <a class="dropdown-item" href="index.html#">Data &amp; Analytics</a>
+                    <a class="dropdown-item" href="index.html#">Other</a>
+                  </div>
                 </div>
+                <!-- End Development -->
 
-                <div class="form-floating mb-8">
-                    <input type="password" class="form-control" id="password" name="{{ login_form.password.name }}" minlength="{{ login_form.password.field.min_length }}" placeholder="{{ login_form.password.label }}" required>
-                    <label>Password</label>
-                    <span class="invalid-feedback text-start">please provide a correct password.</span>
-                </div>
+                <!-- Business -->
+                <div class="hs-has-sub-menu nav-item">
+                  <a id="businessMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-briefcase dropdown-item-icon"></i> Business</a>
 
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-danger">submit</button>
+                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="businessMegaMenu" style="min-width: 14rem;">
+                    <a class="dropdown-item" href="index.html#">All Finance &amp; Accounting</a>
+                    <a class="dropdown-item" href="index.html#">Accounting &amp; Bookkeeping</a>
+                    <a class="dropdown-item" href="index.html#">Compliance</a>
+                    <a class="dropdown-item" href="index.html#">Economics</a>
+                    <a class="dropdown-item" href="index.html#">Finance</a>
+                    <a class="dropdown-item" href="index.html#">Other</a>
+                  </div>
                 </div>
+                <!-- End Business -->
+
+                <!-- Finance & Accounting -->
+                <div class="hs-has-sub-menu nav-item">
+                  <a id="financeAccountingMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-graph-up dropdown-item-icon"></i> Finance &amp; Accounting</a>
+
+                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="financeAccountingMegaMenu" style="min-width: 14rem;">
+                    <a class="dropdown-item" href="index.html#">All IT &amp; Software</a>
+                    <a class="dropdown-item" href="index.html#">IT Sertification</a>
+                    <a class="dropdown-item" href="index.html#">Network &amp; security</a>
+                    <a class="dropdown-item" href="index.html#">Hardware</a>
+                    <a class="dropdown-item" href="index.html#">Operating systems</a>
+                    <a class="dropdown-item" href="index.html#">Other</a>
+                  </div>
+                </div>
+                <!-- End Finance & Accounting -->
+
+                <!-- IT & Software -->
+                <div class="hs-has-sub-menu nav-item">
+                  <a id="ITSoftwareMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-laptop dropdown-item-icon"></i> IT &amp; Software</a>
+
+                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="ITSoftwareMegaMenu" style="min-width: 14rem;">
+                    <a class="dropdown-item" href="index.html#">All Design</a>
+                    <a class="dropdown-item" href="index.html#">Web design</a>
+                    <a class="dropdown-item" href="index.html#">Graphic design</a>
+                    <a class="dropdown-item" href="index.html#">Design tools</a>
+                    <a class="dropdown-item" href="index.html#">User experience</a>
+                    <a class="dropdown-item" href="index.html#">Game design</a>
+                    <a class="dropdown-item" href="index.html#">Design thinking</a>
+                    <a class="dropdown-item" href="index.html#">3D &amp; animation</a>
+                    <a class="dropdown-item" href="index.html#">Fashion</a>
+                    <a class="dropdown-item" href="index.html#">Architectural design</a>
+                    <a class="dropdown-item" href="index.html#">Interior design</a>
+                    <a class="dropdown-item" href="index.html#">Other</a>
+                  </div>
+                </div>
+                <!-- End IT & Software -->
+
+                <!-- Design -->
+                <div class="hs-has-sub-menu nav-item">
+                  <a id="designMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-bezier2 dropdown-item-icon"></i> Design</a>
+
+                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="designMegaMenu" style="min-width: 14rem;">
+                    <a class="dropdown-item" href="index.html#">All Marketing</a>
+                    <a class="dropdown-item" href="index.html#">Digital marketing</a>
+                    <a class="dropdown-item" href="index.html#">Branding</a>
+                    <a class="dropdown-item" href="index.html#">Advertising</a>
+                    <a class="dropdown-item" href="index.html#">Other</a>
+                  </div>
+                </div>
+                <!-- End Design -->
+
+                <!-- Music -->
+                <div class="hs-has-sub-menu nav-item">
+                  <a id="musicMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-music-note-list dropdown-item-icon"></i> Music</a>
+
+                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="musicMegaMenu" style="min-width: 14rem;">
+                    <a class="dropdown-item" href="index.html#">All Musics</a>
+                    <a class="dropdown-item" href="index.html#">Instrument</a>
+                    <a class="dropdown-item" href="index.html#">Production</a>
+                    <a class="dropdown-item" href="index.html#">Music fundamentals</a>
+                    <a class="dropdown-item" href="index.html#">Vocal</a>
+                    <a class="dropdown-item" href="index.html#">Music techniques</a>
+                    <a class="dropdown-item" href="index.html#">Music software</a>
+                    <a class="dropdown-item" href="index.html#">Other</a>
+                  </div>
+                </div>
+                <!-- End Music -->
+              </div>
+              <!-- End Mega Menu -->
+            </li>
+            <!-- End Courses -->
+
+            <!-- Search Form -->
+            <li class="nav-item flex-grow-1 d-none d-lg-inline-block ">
+              <form class="input-group input-group-merge">
+                <div class="input-group-prepend input-group-text">
+                  <i class="bi-search"></i>
+                </div>
+                <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
               </form>
-              <div class="mt-4">
-                <small>
-                  You don't have an account ?
-                  <a href="#" class="text-reset ms-1" data-bs-toggle="modal" data-bs-target="#register_modal">Register</a>
-                  ,it's free.
-                </small>
+            </li>
+            <!-- End Search Form -->
+
+            <!-- Dropdown -->
+            <li class="hs-has-sub-menu nav-item">
+              <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+              <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
+                <a class="dropdown-item " href="courses.html">Courses</a>
+                <a class="dropdown-item " href="course-overview.html">Course Overview</a>
+                <a class="dropdown-item " href="author-profile.html">Author Profile</a>
               </div>
-            </div>
+            </li>
+            <!-- End Dropdown -->
+          </ul>
+        </div>
+        <!-- End Collapse -->
+      </nav>
+    </div>
+  </header>
+
+<main id="content" role="main">
+    <!-- Hero -->
+    <div class="container content-space-2">
+      <div class="row justify-content-md-between align-items-sm-center">
+        <div class="col-8 col-sm-6 col-md-5 mb-5 mb-sm-0">
+          <img class="img-fluid" src="../assets/svg/illustrations/oc-growing.svg" alt="Image Description">
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm-6">
+          <div class="mb-5">
+            <h1 class="display-4 mb-3">
+              Unlock your
+              <br>
+              <span class="text-primary text-highlight-warning">
+                <span class="js-typedjs" data-hs-typed-options='{
+                        "strings": ["future.", "potential.", "skills."],
+                        "typeSpeed": 90,
+                        "loop": true,
+                        "backSpeed": 30,
+                        "backDelay": 2500
+                      }'></span>
+              </span>
+            </h1>
+            <p class="lead">With our platform, you can quantify your skills, grow in your role and stay relevant on critical topics.</p>
+          </div>
+
+          <div class="d-grid d-md-flex gap-3 align-items-md-center">
+            <a class="btn btn-primary" href="../page-login.html">Start a free trial</a>
+
+            <!-- Fancybox -->
+            <a class="video-player video-player-btn" href="https://www.youtube.com/watch?v=d4eDWc8g0e0" role="button" data-fslightbox="youtube-video">
+              <span class="video-player-icon shadow-sm me-2">
+                <i class="bi-play-fill"></i>
+              </span>
+              How it works
+            </a>
+            <!-- End Fancybox -->
           </div>
         </div>
+        <!-- End Col -->
       </div>
+      <!-- End Row -->
     </div>
-  </div>
-</div>
-<!-- register modal -->
-<div class="modal fade" id="register_modal" tabindex="-1" aria-labelledby="register_modal_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="register_modal_label">Register</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-10">
-            <div class="py-6">
-              <form action="{% url 'signup' %}" id="signup_form_modal" class="needs-validation" novalidate method="post">
-                {% csrf_token %}
+    <!-- End Hero -->
 
-                <div class="form-floating mb-8">
-                    <input type="text" class="form-control" id="signup_username" name="{{ signup_form.username.name }}" maxlength="{{ signup_form.username.field.max_length }}" placeholder="Username" required>
-                    <label for="signup_username">Username</label>
-                    <span class="invalid-feedback text-start">please provide a correct username.</span>
-                </div>
+    <!-- Card Grid -->
+    <div class="content-space-b-2 content-space-b-lg-3 bg-img-start" style="background: url(../assets/svg/components/shape-5.svg) center no-repeat;">
+      <div class="position-relative">
+        <div class="container content-space-2">
+          <div class="row align-items-md-center mb-7">
+            <div class="col-md-6 mb-4 mb-md-0">
+              <h2>Check out our newest and most popular programs</h2>
+            </div>
+            <!-- End Col -->
 
-                <div class="form-floating mb-8">
-                    <input type="text" class="form-control" id="signup_first_name" name="{{ signup_form.first_name.name }}" placeholder="First name">
-                    <label for="signup_first_name">First name</label>
-                </div>
+            <div class="col-md-6 text-md-end">
+              <a class="link" href="index.html#">See all programs <i class="bi-chevron-right small ms-1"></i></a>
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
 
-                <div class="form-floating mb-8">
-                    <input type="text" class="form-control" id="signup_last_name" name="{{ signup_form.last_name.name }}" placeholder="Last name">
-                    <label for="signup_last_name">Last name</label>
-                </div>
+          <!-- Swiper Slider -->
+          <div class="swiper-center-mode-end">
+            <div class="js-swiper-course-hero swiper">
+              <div class="swiper-wrapper">
+                <!-- Slide -->
+                <div class="swiper-slide pt-2">
+                  <!-- Card -->
+                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="course-overview.html" style="background-image: url(../assets/img/400x500/img14.jpg); min-height: 15rem;">
+                    <div class="card-body">
+                      <span class="card-subtitle text-white-70">New</span>
+                      <h4 class="card-title text-white">Cloud computing</h4>
 
-                <div class="form-floating mb-8">
-                    <input type="tel" class="form-control" id="signup_phone" name="{{ signup_form.phone_number.name }}" value="+213" placeholder="+213 (000)-000-000" data-mask="+213 (000)-000-000">
-                    <label for="signup_phone">Phone</label>
+                      <div class="card-footer pt-0">
+                        <span class="card-link text-white">Read now</span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- End Card -->
                 </div>
+                <!-- End Slide -->
 
-                <div class="form-floating mb-8">
-                    <input type="password" class="form-control" id="signup_password1" name="{{ signup_form.password1.name }}" minlength="{{ signup_form.password1.field.min_length }}" placeholder="Password" required>
-                    <label for="signup_password1">Password</label>
-                    <span class="invalid-feedback text-start">please provide a correct password.</span>
-                </div>
+                <!-- Slide -->
+                <div class="swiper-slide pt-2">
+                  <!-- Card -->
+                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="course-overview.html" style="background-image: url(../assets/img/400x500/img13.jpg); min-height: 15rem;">
+                    <div class="card-body">
+                      <span class="card-subtitle text-white-70">Phython</span>
+                      <h4 class="card-title text-white">What's new in Phython 3.7.2</h4>
 
-                <div class="form-floating mb-8">
-                    <input type="password" class="form-control" id="signup_password2" name="{{ signup_form.password2.name }}" placeholder="Confirm password" required>
-                    <label for="signup_password2">Confirm password</label>
-                    <span class="invalid-feedback text-start">please provide a correct password.</span>
+                      <div class="card-footer pt-0">
+                        <span class="card-link text-white">Read now</span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- End Card -->
                 </div>
+                <!-- End Slide -->
 
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-danger">submit</button>
+                <!-- Slide -->
+                <div class="swiper-slide pt-2">
+                  <!-- Card -->
+                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="course-overview.html" style="background-image: url(../assets/img/400x500/img15.jpg); min-height: 15rem;">
+                    <div class="card-body">
+                      <span class="card-subtitle text-white-70">Tooling</span>
+                      <h4 class="card-title text-white">Build a staging server</h4>
+
+                      <div class="card-footer pt-0">
+                        <span class="card-link text-white">Read now</span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- End Card -->
                 </div>
-            </form>
-              <div class="mt-4">
-                <small>
-                  Already have an account ?
-                  <a href="#" class="text-reset ms-1" data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
-                </small>
+                <!-- End Slide -->
+
+                <!-- Slide -->
+                <div class="swiper-slide pt-2">
+                  <!-- Card -->
+                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="course-overview.html" style="background-image: url(../assets/img/400x500/img16.jpg); min-height: 15rem;">
+                    <div class="card-body">
+                      <span class="card-subtitle text-white-70">JavaScript</span>
+                      <h4 class="card-title text-white">Laravel, Vue and SPAs</h4>
+
+                      <div class="card-footer pt-0">
+                        <span class="card-link text-white">Read now</span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- End Card -->
+                </div>
+                <!-- End Slide -->
+
+                <!-- Slide -->
+                <div class="swiper-slide pt-2">
+                  <!-- Card -->
+                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="course-overview.html" style="background-image: url(../assets/img/400x500/img17.jpg); min-height: 15rem;">
+                    <div class="card-body">
+                      <span class="card-subtitle text-white-70">Popular</span>
+                      <h4 class="card-title text-white">Artificial Intelligence</h4>
+
+                      <div class="card-footer pt-0">
+                        <span class="card-link text-white">Read now</span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- End Card -->
+                </div>
+                <!-- End Slide -->
+
+                <!-- Slide -->
+                <div class="swiper-slide pt-2">
+                  <!-- Card -->
+                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="course-overview.html" style="background-image: url(../assets/img/400x500/img18.jpg); min-height: 15rem;">
+                    <div class="card-body">
+                      <span class="card-subtitle text-white-70">PHP</span>
+                      <h4 class="card-title text-white">Programming terms explained</h4>
+
+                      <div class="card-footer pt-0">
+                        <span class="card-link text-white">Read now</span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- End Card -->
+                </div>
+                <!-- End Slide -->
               </div>
+
+              <!-- Arrows -->
+              <div class="js-swiper-course-hero-button-next swiper-button-next"></div>
+              <div class="js-swiper-course-hero-button-prev swiper-button-prev"></div>
             </div>
           </div>
+          <!-- End Swiper Slider -->
         </div>
+
+        <div class="w-100 w-md-65 bg-light position-absolute top-0 end-0 bottom-0 zi-n1"></div>
       </div>
     </div>
-  </div>
-</div>
-<!-- end modals -->
+    <!-- End Card Grid -->
 
-<main>
-  <!-- content -->
-  {% block content %} {% endblock %}
-</main>
+    <!-- Card Grid -->
+    <div class="container content-space-sm-2">
+      <!-- Title -->
+      <div class="w-md-75 text-center mx-md-auto mb-9">
+        <h2>Featured courses</h2>
+        <p>Discover your perfect program in our courses.</p>
+      </div>
+      <!-- End Title -->
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 mb-5">
+        <div class="col mb-5">
+          <!-- Card -->
+          <div class="card card-bordered h-100">
+            <!-- Card Pinned -->
+            <div class="card-pinned">
+              <img class="card-img-top" src="../assets/svg/components/card-12.svg" alt="Image Description">
+
+              <div class="card-pinned-top-start">
+                <small class="badge bg-success rounded-pill">Bestseller</small>
+              </div>
+
+              <div class="card-pinned-bottom-start">
+                <div class="d-flex align-items-center flex-wrap">
+                  <!-- Rating -->
+                  <div class="d-flex gap-1">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                  </div>
+                  <!-- End Rating -->
+                  <div class="ms-1">
+                    <span class="fw-semibold text-white me-1">4.91</span>
+                    <span class="text-white-70">(1.5k+ reviews)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card Pinned -->
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <small class="card-subtitle">Code</small>
+
+              <div class="mb-3">
+                <h3 class="card-title">
+                  <a class="text-dark" href="course-overview.html">Complete Python Bootcamp: Go from zero to hero in Python</a>
+                </h3>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="avatar-group avatar-group-xs">
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+                    </a>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-auto">
+                  <ul class="list-inline list-separator small ms-auto">
+                    <li class="list-inline-item">
+                      <i class="bi-book me-1"></i> 10 lessons
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi-clock me-1"></i> 3h 25m
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </div>
+            <!-- End Card Body -->
+
+            <!-- Card Footer -->
+            <div class="card-footer pt-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="me-2">
+                  <span class="d-block text-muted small"><del>$114.99</del></span>
+                  <h5 class="card-title">$99.99</h5>
+                </div>
+                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
+              </div>
+            </div>
+            <!-- End Card Footer -->
+          </div>
+          <!-- End Card -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col mb-5">
+          <!-- Card -->
+          <div class="card card-bordered h-100">
+            <!-- Card Pinned -->
+            <div class="card-pinned">
+              <img class="card-img-top" src="../assets/svg/components/card-13.svg" alt="Image Description">
+
+              <div class="card-pinned-bottom-start">
+                <div class="d-flex align-items-center flex-wrap">
+                  <!-- Rating -->
+                  <div class="d-flex gap-1">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                  </div>
+                  <!-- End Rating -->
+                  <div class="ms-1">
+                    <span class="fw-semibold text-white me-1">4.95</span>
+                    <span class="text-white-70">(1k+ reviews)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card Pinned -->
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <small class="card-subtitle">Design &amp; Illustration</small>
+
+              <div class="mb-3">
+                <h3 class="card-title">
+                  <a class="text-dark" href="course-overview.html">From the Top: Adobe Illustrator for Beginners</a>
+                </h3>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="avatar-group avatar-group-xs">
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Emily Milda" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img8.jpg" alt="Image Description">
+                    </a>
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
+                    </a>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-auto">
+                  <ul class="list-inline list-separator small ms-auto">
+                    <li class="list-inline-item">
+                      <i class="bi-book me-1"></i> 8 lessons
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi-clock me-1"></i> 7h 59m
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </div>
+            <!-- End Card Body -->
+
+            <!-- Card Footer -->
+            <div class="card-footer pt-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="me-2">
+                  <span class="d-block text-muted small"><del>$129.99</del></span>
+                  <h5 class="card-title">$119.99</h5>
+                </div>
+                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
+              </div>
+            </div>
+            <!-- End Card Footer -->
+          </div>
+          <!-- End Card -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col mb-5">
+          <!-- Card -->
+          <div class="card card-bordered h-100">
+            <!-- Card Pinned -->
+            <div class="card-pinned">
+              <img class="card-img-top" src="../assets/svg/components/card-6.svg" alt="Image Description">
+
+              <div class="card-pinned-top-start">
+                <small class="badge bg-success rounded-pill">Featured</small>
+              </div>
+
+              <div class="card-pinned-bottom-start">
+                <div class="d-flex align-items-center flex-wrap">
+                  <!-- Rating -->
+                  <div class="d-flex gap-1">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
+                  </div>
+                  <!-- End Rating -->
+                  <div class="ms-1">
+                    <span class="fw-semibold text-white me-1">4.73</span>
+                    <span class="text-white-70">(4.7k+ reviews)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card Pinned -->
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <small class="card-subtitle">Code</small>
+
+              <div class="mb-3">
+                <h3 class="card-title">
+                  <a class="text-dark" href="course-overview.html">Get started with Vue.js</a>
+                </h3>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="avatar-group avatar-group-xs">
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Aaron Larsson" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+                    </a>
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+                    </a>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-auto">
+                  <ul class="list-inline list-separator small ms-auto">
+                    <li class="list-inline-item">
+                      <i class="bi-book me-1"></i> 25 lessons
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi-clock me-1"></i> 17h 46m
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </div>
+            <!-- End Card Body -->
+
+            <!-- Card Footer -->
+            <div class="card-footer pt-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="me-2">
+                  <span class="d-block text-muted small"><del>$169.99</del></span>
+                  <h5 class="card-title">$129.99</h5>
+                </div>
+                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
+              </div>
+            </div>
+            <!-- End Card Footer -->
+          </div>
+          <!-- End Card -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col mb-5">
+          <!-- Card -->
+          <div class="card card-bordered h-100">
+            <!-- Card Pinned -->
+            <div class="card-pinned">
+              <img class="card-img-top" src="../assets/svg/components/card-15.svg" alt="Image Description">
+
+              <div class="card-pinned-bottom-start">
+                <div class="d-flex align-items-center flex-wrap">
+                  <!-- Rating -->
+                  <div class="d-flex gap-1">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                  </div>
+                  <!-- End Rating -->
+                  <div class="ms-1">
+                    <span class="fw-semibold text-white me-1">4.47</span>
+                    <span class="text-white-70">(3.8k+ reviews)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card Pinned -->
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <small class="card-subtitle">Code</small>
+
+              <div class="mb-3">
+                <h3 class="card-title">
+                  <a class="text-dark" href="course-overview.html">The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</a>
+                </h3>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="avatar-group avatar-group-xs">
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+                    </a>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-auto">
+                  <ul class="list-inline list-separator small ms-auto">
+                    <li class="list-inline-item">
+                      <i class="bi-book me-1"></i> 42 lessons
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi-clock me-1"></i> 31h 5m
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </div>
+            <!-- End Card Body -->
+
+            <!-- Card Footer -->
+            <div class="card-footer pt-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="me-2">
+                  <span class="d-block text-muted small"><del>$159.99</del></span>
+                  <h5 class="card-title">$111.99</h5>
+                </div>
+                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
+              </div>
+            </div>
+            <!-- End Card Footer -->
+          </div>
+          <!-- End Card -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col mb-5">
+          <!-- Card -->
+          <div class="card card-bordered h-100">
+            <!-- Card Pinned -->
+            <div class="card-pinned">
+              <img class="card-img-top" src="../assets/svg/components/card-4.svg" alt="Image Description">
+
+              <div class="card-pinned-bottom-start">
+                <div class="d-flex align-items-center flex-wrap">
+                  <!-- Rating -->
+                  <div class="d-flex gap-1">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
+                  </div>
+                  <!-- End Rating -->
+                  <div class="ms-1">
+                    <span class="fw-semibold text-white me-1">4.64</span>
+                    <span class="text-white-70">(723 reviews)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card Pinned -->
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <small class="card-subtitle">Code</small>
+
+              <div class="mb-3">
+                <h3 class="card-title">
+                  <a class="text-dark" href="course-overview.html">Coding block for WordPress</a>
+                </h3>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="avatar-group avatar-group-xs">
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+                    </a>
+                    <div class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan">
+                      <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
+                    </div>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-auto">
+                  <ul class="list-inline list-separator small ms-auto">
+                    <li class="list-inline-item">
+                      <i class="bi-book me-1"></i> 5 lessons
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi-clock me-1"></i> 8h 12m
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </div>
+            <!-- End Card Body -->
+
+            <!-- Card Footer -->
+            <div class="card-footer pt-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="me-2">
+                  <span class="d-block text-muted small"><del>$64.99</del></span>
+                  <h5 class="card-title">$29.99</h5>
+                </div>
+                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
+              </div>
+            </div>
+            <!-- End Card Footer -->
+          </div>
+          <!-- End Card -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col mb-5">
+          <!-- Card -->
+          <div class="card card-bordered h-100">
+            <!-- Card Pinned -->
+            <div class="card-pinned">
+              <img class="card-img-top" src="../assets/svg/components/card-14.svg" alt="Image Description">
+
+              <div class="card-pinned-top-start">
+                <small class="badge bg-success rounded-pill">Hot</small>
+              </div>
+
+              <div class="card-pinned-bottom-start">
+                <div class="d-flex align-items-center flex-wrap">
+                  <!-- Rating -->
+                  <div class="d-flex gap-1">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                  </div>
+                  <!-- End Rating -->
+                  <div class="ms-1">
+                    <span class="fw-semibold text-white me-1">4.9</span>
+                    <span class="text-white-70">(961 reviews)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card Pinned -->
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <small class="card-subtitle">Design &amp; Illustration</small>
+
+              <div class="mb-3">
+                <h3 class="card-title">
+                  <a class="text-dark" href="course-overview.html">Creative Magazine Layout Design</a>
+                </h3>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="avatar-group avatar-group-xs">
+                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
+                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+                    </a>
+                  </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-auto">
+                  <ul class="list-inline list-separator small ms-auto">
+                    <li class="list-inline-item">
+                      <i class="bi-book me-1"></i> 35 lessons
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi-clock me-1"></i> 21h
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </div>
+            <!-- End Card Body -->
+
+            <!-- Card Footer -->
+            <div class="card-footer pt-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="me-2">
+                  <span class="d-block text-muted small"><del>$179.99</del></span>
+                  <h5 class="card-title">$129.99</h5>
+                </div>
+                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
+              </div>
+            </div>
+            <!-- End Card Footer -->
+          </div>
+          <!-- End Card -->
+        </div>
+        <!-- End Col -->
+      </div>
+      <!-- End Row -->
+
+      <div class="text-center">
+        <a class="btn btn-link" href="courses.html">See all courses <i class="bi-chevron-right small ms-1"></i></a>
+      </div>
+    </div>
+    <!-- End Card Grid -->
+
+    <!-- Testimonials -->
+    <div class="overflow-hidden content-space-2">
+      <div class="position-relative bg-light text-center rounded-2 zi-2 mx-3 mx-md-10">
+        <div class="container content-space-2">
+          <div class="text-center mb-5">
+            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/illustrations/oc-person-2.svg" alt="Illustration">
+          </div>
+
+          <!-- Blockquote -->
+          <figure class="w-md-75 text-center mx-md-auto">
+            <blockquote class="blockquote mb-7">“ The best part about Front Course is the selection. You can find a course for anything you want to learn! Thank you Front Course! You've renewed my passion for learning and my dream of becoming a web developer. ”</blockquote>
+
+            <figcaption class="blockquote-footer mt-2">
+              Martin
+              <span class="blockquote-footer-source">Happy customer</span>
+            </figcaption>
+          </figure>
+          <!-- End Blockquote -->
+        </div>
+
+        <!-- SVG Shape -->
+        <figure class="position-absolute top-0 start-0 mt-10 ms-10">
+          <svg width="70" height="70" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60.6655 74.9992C80.4557 74.9992 96.4988 58.9561 96.4988 39.1659C96.4988 19.3757 80.4557 3.33252 60.6655 3.33252C40.8753 3.33252 24.8322 19.3757 24.8322 39.1659C24.8322 58.9561 40.8753 74.9992 60.6655 74.9992Z" stroke="#97a4af" stroke-width="5" stroke-miterlimit="10" />
+            <path d="M158.5 197.5C168.165 197.5 176 189.665 176 180C176 170.335 168.165 162.5 158.5 162.5C148.835 162.5 141 170.335 141 180C141 189.665 148.835 197.5 158.5 197.5Z" stroke="#97a4af" stroke-width="5" stroke-miterlimit="10" />
+          </svg>
+        </figure>
+        <!-- End SVG Shape -->
+
+        <!-- SVG Shape -->
+        <figure class="position-absolute bottom-0 end-0 mb-n7 me-n7" style="width: 10rem;">
+          <img class="img-fluid" src="../assets/svg/components/dots.svg" alt="Image Description">
+        </figure>
+        <!-- End SVG Shape -->
+      </div>
+    </div>
+    <!-- End Testimonials -->
+
+    <!-- Clients -->
+    <div class="container content-space-t-1 content-space-t-lg-0">
+      <div class="w-lg-75 mx-lg-auto">
+        <div class="row">
+          <div class="col text-center py-3">
+            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/capsule-dark.svg" alt="Logo">
+          </div>
+          <!-- End Col -->
+
+          <div class="col text-center py-3">
+            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/fitbit-dark.svg" alt="Logo">
+          </div>
+          <!-- End Col -->
+
+          <div class="col text-center py-3">
+            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/forbes-dark.svg" alt="Logo">
+          </div>
+          <!-- End Col -->
+
+          <div class="col text-center py-3">
+            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/mailchimp-dark.svg" alt="Logo">
+          </div>
+          <!-- End Col -->
+
+          <div class="col text-center py-3">
+            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/layar-dark.svg" alt="Logo">
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+    </div>
+    <!-- End Clients -->
+
+    <!-- Signup Form -->
+    <div class="container content-space-2 content-space-lg-3">
+      <div class="row justify-content-lg-between align-items-md-center">
+        <div class="col-md-5 mb-7 mb-md-0">
+          <div class="mb-5">
+            <h2>Thousands of experts around the world ready to help you.</h2>
+            <p>See why leading organizations choose Front Course for Business as their destination for employee learning.</p>
+          </div>
+
+          <h4>Learn more about:</h4>
+
+          <!-- List Checked -->
+          <ul class="list-checked list-checked-primary">
+            <li class="list-checked-item">Unlimited access to the top 3,500+ courses</li>
+            <li class="list-checked-item">Fresh content taught by 1,300+ experts – for any learning style</li>
+            <li class="list-checked-item">Actionable learning insights <span class="badge bg-warning text-dark rounded-pill ms-1">Beta</span></li>
+          </ul>
+          <!-- End List Checked -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col-md-7 col-lg-6">
+          <!-- Form -->
+          <form class="js-validate needs-validation" novalidate>
+            <!-- Card -->
+            <div class="card">
+              <div class="card-header bg-primary text-center">
+                <h4 class="card-header-title text-white">Try it free for 7 days <span class="badge bg-warning text-dark rounded-pill ms-1">starting at $59</span></h4>
+              </div>
+
+              <div class="card-body">
+                <div class="row gx-3">
+                  <div class="col-sm-6">
+                    <!-- Form -->
+                    <div class="mb-4">
+                      <label class="form-label" for="signupHeroFormFirstName">First name</label>
+                      <input type="text" class="form-control form-control-lg" name="signupHeroFormNameFirstName" id="signupHeroFormFirstName" placeholder="First name" aria-label="First name" required>
+                      <span class="invalid-feedback">Please enter your first name</span>
+                    </div>
+                    <!-- End Form -->
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-sm-6">
+                    <!-- Form -->
+                    <div class="mb-4">
+                      <label class="form-label" for="signupHeroFormLasttName">Last name</label>
+                      <input type="text" class="form-control form-control-lg" name="signupHeroFormNameLastName" id="signupHeroFormLasttName" placeholder="Last name" aria-label="Last name" required>
+                      <span class="invalid-feedback">Please enter your last name</span>
+                    </div>
+                    <!-- End Form -->
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+
+                <!-- Form -->
+                <div class="mb-4">
+                  <label class="form-label" for="signupHeroFormWorkEmail">Email address</label>
+                  <input type="email" class="form-control form-control-lg" name="signupHeroFormNameWorkEmail" id="signupHeroFormWorkEmail" placeholder="email@site.com" aria-label="email@site.com" required>
+                  <span class="invalid-feedback">Please enter your email address</span>
+                </div>
+                <!-- End Form -->
+
+                <div class="row gx-3">
+                  <div class="col-sm-6">
+                    <!-- Form -->
+                    <div class="mb-4">
+                      <label class="form-label" for="signupHeroFormSignupPassword">Password</label>
+                      <input type="password" class="form-control form-control-lg" name="password" id="signupHeroFormSignupPassword" placeholder="8+ characters required" aria-label="8+ characters required" required>
+                      <span class="invalid-feedback">Your password must include 8+ characters</span>
+                    </div>
+                    <!-- End Form -->
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-sm-6">
+                    <!-- Form -->
+                    <div class="mb-4" data-hs-validation-validate-class>
+                      <label class="form-label" for="signupHeroFormSignupConfirmPassword">Confirm password</label>
+                      <input type="password" class="form-control form-control-lg" name="confirmPassword" id="signupHeroFormSignupConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-validation-equal-field="#signupHeroFormSignupPassword">
+                      <span class="invalid-feedback">Password does not match the confirm password</span>
+                    </div>
+                    <!-- End Form -->
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+
+                <!-- Check -->
+                <div class="form-check mb-4">
+                  <input type="checkbox" class="form-check-input" id="signupHeroFormPrivacyCheck" name="signupFormPrivacyCheck" required>
+                  <label class="form-check-label small" for="signupHeroFormPrivacyCheck"> By submitting this form I have read and acknowledged the <a href="../page-privacy.html">Privacy Policy</a></label>
+                  <span class="invalid-feedback">Please accept our Privacy Policy.</span>
+                </div>
+                <!-- End Check -->
+
+                <div class="row align-items-center">
+                  <div class="col-sm-7 mb-3 mb-sm-0">
+                    <p class="card-text small">Already have an account? <a class="link" href="../page-login.html">Log In</a></p>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-sm-5 text-sm-end">
+                    <button type="submit" class="btn btn-primary btn-lg">Sign up now</button>
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+              </div>
+            </div>
+            <!-- End Card -->
+          </form>
+          <!-- End Form -->
+        </div>
+        <!-- End Col -->
+      </div>
+      <!-- End Row -->
+    </div>
+    <!-- End Signup Form -->
+
+    <!-- CTA -->
+    <div class="container content-space-b-2">
+      <div class="text-center bg-img-start py-6" style="background: url(../assets/svg/components/shape-6.svg) center no-repeat;">
+        <div class="mb-5">
+          <h2>Find the right learning path for you</h2>
+          <p>Answer a few questions and match your goals to our programs.</p>
+        </div>
+
+        <a class="btn btn-primary btn-transition" href="index.html#">Explore by category</a>
+      </div>
+    </div>
+    <!-- End CTA -->
+  </main>
 
 <!-- footer -->
-<footer class="footer bg-dark pb-6 pt-4 pt-md-12">
-  <div class="container">
-    <div class="row align-items-center ">
-      <div class="col-8 col-md-12 col-lg-4">
-        <a href="#"><img src="{% static 'images/logo/logo-white.png' %}" alt=""></a>
+<footer class="bg-dark">
+    <div class="container pb-1 pb-lg-5">
+      <div class="row content-space-t-2">
+        <div class="col-lg-3 mb-7 mb-lg-0">
+          <!-- Logo -->
+          <div class="mb-5">
+            <a class="navbar-brand" href="#" aria-label="Space">
+              <img class="navbar-brand-logo" src="{% static 'images/logo/logo-white.png' %}" alt="White Logo">
+            </a>
+          </div>
+          <!-- End Logo -->
+
+          <!-- List -->
+          <ul class="list-unstyled list-py-1">
+            <li><a class="link-sm link-light" href="index.html#"><i class="bi-geo-alt-fill me-1"></i> 153 Williamson Plaza, Maggieberg</a></li>
+            <li><a class="link-sm link-light" href="tel:1-062-109-9222"><i class="bi-telephone-inbound-fill me-1"></i> +1 (062) 109-9222</a></li>
+          </ul>
+          <!-- End List -->
+
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm mb-7 mb-sm-0">
+          <h5 class="text-white mb-3">Company</h5>
+
+          <!-- List -->
+          <ul class="list-unstyled list-py-1 mb-0">
+            <li><a class="link-sm link-light" href="index.html#">About</a></li>
+            <li><a class="link-sm link-light" href="index.html#">Careers <span class="badge bg-warning text-dark rounded-pill ms-1">We're hiring</span></a></li>
+            <li><a class="link-sm link-light" href="index.html#">Blog</a></li>
+            <li><a class="link-sm link-light" href="index.html#">Customers <i class="bi-box-arrow-up-right small ms-1"></i></a></li>
+            <li><a class="link-sm link-light" href="index.html#">Hire us</a></li>
+          </ul>
+          <!-- End List -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm mb-7 mb-sm-0">
+          <h5 class="text-white mb-3">Features</h5>
+
+          <!-- List -->
+          <ul class="list-unstyled list-py-1 mb-0">
+            <li><a class="link-sm link-light" href="index.html#">Press <i class="bi-box-arrow-up-right small ms-1"></i></a></li>
+            <li><a class="link-sm link-light" href="index.html#">Release Notes</a></li>
+            <li><a class="link-sm link-light" href="index.html#">Integrations</a></li>
+            <li><a class="link-sm link-light" href="index.html#">Pricing</a></li>
+          </ul>
+          <!-- End List -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm mb-7 mb-sm-0">
+          <h5 class="text-white mb-3">Documentation</h5>
+
+          <!-- List -->
+          <ul class="list-unstyled list-py-1 mb-0">
+            <li><a class="link-sm link-light" href="index.html#">Support</a></li>
+            <li><a class="link-sm link-light" href="index.html#">Docs</a></li>
+            <li><a class="link-sm link-light" href="index.html#">Status</a></li>
+            <li><a class="link-sm link-light" href="index.html#">API Reference</a></li>
+            <li><a class="link-sm link-light" href="index.html#">Tech Requirements</a></li>
+          </ul>
+          <!-- End List -->
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm">
+          <h5 class="text-white mb-3">Resources</h5>
+
+          <!-- List -->
+          <ul class="list-unstyled list-py-1 mb-5">
+            <li><a class="link-sm link-light" href="index.html#"><i class="bi-question-circle-fill me-1"></i> Help</a></li>
+            <li><a class="link-sm link-light" href="index.html#"><i class="bi-person-circle me-1"></i> Your Account</a></li>
+          </ul>
+          <!-- End List -->
+        </div>
+        <!-- End Col -->
       </div>
-      <div class="col-4 col-md-12 col-lg-8 text-end">
-        <ul class="list-inline text-md-end mb-0 small">
-          <li class="list-inline-item me-2">
-            <a href="index-4.html#!" class="social-links"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" /></svg>
-            </a>
-          </li>
-          <li class="list-inline-item me-2">
-            <a href="index-4.html#!" class="social-links"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-              <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" /></svg>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="index-4.html#!" class="social-links"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" /></svg>
-            </a>
-          </li>
-        </ul>
+      <!-- End Row -->
+
+      <div class="border-top border-white-10 my-7"></div>
+
+      <div class="row mb-7">
+        <div class="col-sm mb-3 mb-sm-0">
+          <!-- Socials -->
+          <ul class="list-inline list-separator list-separator-light mb-0">
+            <li class="list-inline-item">
+              <a class="link-sm link-light" href="index.html#">Privacy &amp; Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a class="link-sm link-light" href="index.html#">Terms</a>
+            </li>
+            <li class="list-inline-item">
+              <a class="link-sm link-light" href="index.html#">Site Map</a>
+            </li>
+          </ul>
+          <!-- End Socials -->
+        </div>
+
+        <div class="col-sm-auto">
+          <!-- Socials -->
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <a class="btn btn-soft-light btn-xs btn-icon" href="index.html#">
+                <i class="bi-facebook"></i>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+              <a class="btn btn-soft-light btn-xs btn-icon" href="index.html#">
+                <i class="bi-google"></i>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+              <a class="btn btn-soft-light btn-xs btn-icon" href="index.html#">
+                <i class="bi-twitter"></i>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+              <a class="btn btn-soft-light btn-xs btn-icon" href="index.html#">
+                <i class="bi-github"></i>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+              <!-- Button Group -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-soft-light btn-xs dropdown-toggle" id="footerSelectLanguage" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
+                  <span class="d-flex align-items-center">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16" />
+                    <span>English (US)</span>
+                  </span>
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="footerSelectLanguage">
+                  <a class="dropdown-item d-flex align-items-center active" href="index.html#">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16" />
+                    <span>English (US)</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="index.html#">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16" />
+                    <span>Deutsch</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="index.html#">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16" />
+                    <span>Español</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="index.html#">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16" />
+                    <span>中文 (繁體)</span>
+                  </a>
+                </div>
+              </div>
+              <!-- End Button Group -->
+            </li>
+          </ul>
+          <!-- End Socials -->
+        </div>
       </div>
+
+      <!-- Copyright -->
+      <div class="w-md-85 text-lg-center mx-lg-auto">
+        <p class="text-white-50 small">&copy; Front. 2021 Htmlstream. All rights reserved.</p>
+        <p class="text-white-50 small">When you visit or interact with our sites, services or tools, we or our authorised service providers may use cookies for storing information to help provide you with a better, faster and safer experience and for marketing purposes.</p>
+      </div>
+      <!-- End Copyright -->
+    </div>
+  </footer>
+
+<!-- Go To -->
+  <a class="js-go-to go-to position-fixed" href="javascript:;" style="visibility: hidden;" data-hs-go-to-options='{
+       "offsetTop": 700,
+       "position": {
+         "init": {
+           "right": "2rem"
+         },
+         "show": {
+           "bottom": "2rem"
+         },
+         "hide": {
+           "bottom": "-2rem"
+         }
+       }
+     }'>
+    <i class="bi-chevron-up"></i>
+  </a>
+
+
+<!-- Offcanvas Signup -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarSignup">
+    <div class="offcanvas-header justify-content-end border-0 pb-0">
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
-    <hr class="mt-8 opacity-25">
-    <div>
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <span class="small text-muted">Copyright 2023 © Dexunt eCommerce & Logistic.  All rights reserved .</span>
+    <div class="offcanvas-body">
+      <!-- Log in -->
+      <div id="loginOffcanvasFormLogin">
+        <!-- Heading -->
+        <div class="text-center mb-7">
+          <h3 class="modal-title">Log in to Front</h3>
+          <p>Login to manage your account</p>
         </div>
-        <div class="col-lg-6 text-end mb-2 mb-lg-0">
+        <!-- End Heading -->
 
-        </div>
+        <form class="js-validate needs-validation" novalidate>
+          <!-- Form -->
+          <div class="mb-3">
+            <label class="form-label" for="loginOffcanvasFormLoginEmail">Your email</label>
+            <input type="email" class="form-control form-control-lg" name="email" id="loginOffcanvasFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
+            <span class="invalid-feedback">Please enter a valid email address.</span>
+          </div>
+          <!-- End Form -->
+
+          <!-- Form -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <label class="form-label" for="loginOffcanvasFormLoginPassword">Password</label>
+
+              <a class="js-animation-link form-label-link" href="javascript:;" data-hs-show-animation-options='{
+                   "targetSelector": "#loginOffcanvasFormResetPassword",
+                   "groupName": "idForm"
+                 }'>Forgot Password?</a>
+            </div>
+
+            <input type="password" class="form-control form-control-lg" name="password" id="loginOffcanvasFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+            <span class="invalid-feedback">Please enter a valid password.</span>
+          </div>
+          <!-- End Form -->
+
+          <div class="d-grid gap-3 text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+
+            <span class="divider-center">OR</span>
+
+            <button type="submit" class="btn btn-ghost-secondary">
+              <span class="d-flex justify-content-center align-items-center">
+                <img class="avatar avatar-xss me-2" src="../assets/svg/brands/google-icon.svg" alt="Image Description">
+                Log in with Google
+              </span>
+            </button>
+
+            <p>Don't have an account yet?
+              <a class="js-animation-link link" href="javascript:;" role="button" data-hs-show-animation-options='{
+                   "targetSelector": "#loginOffcanvasFormSignup",
+                   "groupName": "idForm"
+                 }'>Sign up</a>
+            </p>
+          </div>
+        </form>
       </div>
+      <!-- End Log in -->
+
+      <!-- Log in -->
+      <div id="loginOffcanvasFormSignup" style="display: none; opacity: 0;">
+        <!-- Heading -->
+        <div class="text-center mb-7">
+          <h3 class="modal-title">Sign up</h3>
+          <p>Fill out the form to get started</p>
+        </div>
+        <!-- End Heading -->
+
+        <form class="js-validate needs-validation" novalidate>
+          <!-- Form -->
+          <div class="mb-3">
+            <label class="form-label" for="loginOffcanvasFormSignupEmail">Your email</label>
+            <input type="email" class="form-control form-control-lg" name="email" id="loginOffcanvasFormSignupEmail" placeholder="email@site.com" aria-label="email@site.com" required>
+            <span class="invalid-feedback">Please enter a valid email address.</span>
+          </div>
+          <!-- End Form -->
+
+          <!-- Form -->
+          <div class="mb-3">
+            <label class="form-label" for="loginOffcanvasFormSignupPassword">Password</label>
+            <input type="password" class="form-control form-control-lg" name="password" id="loginOffcanvasFormSignupPassword" placeholder="8+ characters required" aria-label="8+ characters required" required>
+            <span class="invalid-feedback">Your password is invalid. Please try again.</span>
+          </div>
+          <!-- End Form -->
+
+          <!-- Form -->
+          <div class="mb-3" data-hs-validation-validate-class>
+            <label class="form-label" for="loginOffcanvasFormSignupConfirmPassword">Confirm password</label>
+            <input type="password" class="form-control form-control-lg" name="confirmPassword" id="loginOffcanvasFormSignupConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-validation-equal-field="#loginOffcanvasFormSignupPassword">
+            <span class="invalid-feedback">Password does not match the confirm password.</span>
+          </div>
+          <!-- End Form -->
+
+          <div class="text-center mb-3">
+            <p class="small mb-0">By continuing you agree to our <a href="index.html#">Terms and Conditions</a></p>
+          </div>
+
+          <div class="d-grid gap-3 text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
+
+            <span class="divider-center">OR</span>
+
+            <button type="submit" class="btn btn-ghost-secondary">
+              <span class="d-flex justify-content-center align-items-center">
+                <img class="avatar avatar-xss me-2" src="../assets/svg/brands/google-icon.svg" alt="Image Description">
+                Sign up with Google
+              </span>
+            </button>
+
+            <p>Already have an account?
+              <a class="js-animation-link link" href="javascript:;" role="button" data-hs-show-animation-options='{
+                   "targetSelector": "#loginOffcanvasFormLogin",
+                   "groupName": "idForm"
+                 }'>Log in</a>
+            </p>
+          </div>
+        </form>
+      </div>
+      <!-- End Log in -->
+
+      <!-- Reset Password -->
+      <div id="loginOffcanvasFormResetPassword" style="display: none; opacity: 0;">
+        <!-- Heading -->
+        <div class="text-center mb-7">
+          <h3 class="modal-title">Forgot password</h3>
+          <p>Instructions will be sent to you</p>
+        </div>
+        <!-- End Heading -->
+
+        <form class="js-validate needs-validation" novalidate>
+          <!-- Form -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <label class="form-label" for="signupModalFormResetPasswordEmail" tabindex="0">Your email</label>
+
+              <a class="js-animation-link form-label-link" href="javascript:;" data-hs-show-animation-options='{
+                     "targetSelector": "#loginOffcanvasFormLogin",
+                     "groupName": "idForm"
+                   }'>
+                <i class="bi-chevron-left small"></i> Back to Log in
+              </a>
+            </div>
+
+            <input type="email" class="form-control form-control-lg" name="email" id="signupModalFormResetPasswordEmail" tabindex="1" placeholder="Enter your email address" aria-label="Enter your email address" required>
+            <span class="invalid-feedback">Please enter a valid email address.</span>
+          </div>
+          <!-- End Form -->
+
+          <div class="d-grid gap-3 text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </div>
+        </form>
+      </div>
+      <!-- End Reset Password -->
     </div>
   </div>
-</footer>
 
-<!-- Javascript-->
-<script src="{% static 'ltr/landing-page/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/simplebar/dist/simplebar.min.js' %}"></script>
-<!-- Theme JS -->
-<script src="{% static 'ltr/landing-page/js/theme.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/slick-carousel/slick/slick.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/slick-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/tns-slider.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/zoom.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/increment-value.js' %}"></script>
 
-<script src="{% static 'ltr/landing-page/libs/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
-<script src="{% static 'ltr/landing-page/js/vendors/countdown.js' %}"></script>
+<!-- JS Implementing Plugins -->
+  <script src="{% static 'ltr/assets/js/vendor.min.js' %}"></script>
+
+  <!-- JS Front -->
+  <script src="{% static 'ltr/assets/js/theme.min.js' %}"></script>
+
+  <!-- JS Plugins Init. -->
+  <script>
+    (function() {
+      // INITIALIZATION OF HEADER
+      // =======================================================
+      new HSHeader('#header').init()
+
+
+      // INITIALIZATION OF MEGA MENU
+      // =======================================================
+      new HSMegaMenu('.js-mega-menu', {
+          desktop: {
+            position: 'left'
+          }
+        })
+
+
+      // INITIALIZATION OF SHOW ANIMATIONS
+      // =======================================================
+      new HSShowAnimation('.js-animation-link')
+
+
+      // INITIALIZATION OF BOOTSTRAP VALIDATION
+      // =======================================================
+      HSBsValidation.init('.js-validate', {
+        onSubmit: data => {
+          data.event.preventDefault()
+          alert('Submited')
+        }
+      })
+
+
+      // INITIALIZATION OF BOOTSTRAP DROPDOWN
+      // =======================================================
+      HSBsDropdown.init()
+
+
+      // INITIALIZATION OF GO TO
+      // =======================================================
+      new HSGoTo('.js-go-to')
+
+
+      // INITIALIZATION OF TEXT ANIMATION (TYPING)
+      // =======================================================
+      HSCore.components.HSTyped.init('.js-typedjs')
+
+
+      // INITIALIZATION OF SWIPER
+      // =======================================================
+      var swiper = new Swiper('.js-swiper-course-hero',{
+        preloaderClass: 'custom-swiper-lazy-preloader',
+        navigation: {
+          nextEl: '.js-swiper-course-hero-button-next',
+          prevEl: '.js-swiper-course-hero-button-prev',
+        },
+        slidesPerView: 1,
+        loop: 1,
+        breakpoints: {
+          380: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          580: {
+            slidesPerView: 3,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 15,
+          },
+          1024: {
+            slidesPerView: 6,
+            spaceBetween: 15,
+          },
+        },
+        on: {
+          'imagesReady': function (swiper) {
+            const preloader = swiper.el.querySelector('.js-swiper-course-hero-preloader')
+            preloader.parentNode.removeChild(preloader)
+          }
+        }
+      });
+    })()
+  </script>
 
 <!-- HTMX -->
 <script src="{% static 'htmx/htmx.min.js' %}"></script>
 <!-- Mask inputs -->
 <script src="{% static 'jQuery-mask/src/jquery.mask.js' %}"></script>
-<!-- Form Validation JS -->
-<script>
-(() => {
-  'use strict'
-  const forms = document.querySelectorAll('.needs-validation')
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
-</script>
 
 <!-- fontawesome JS -->
 <script src="https://kit.fontawesome.com/f9c426c597.js" crossorigin="anonymous"></script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-M8S4MT3EYG');
-</script>
 
 </body>
 </html>
