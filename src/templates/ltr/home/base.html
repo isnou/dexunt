@@ -210,11 +210,11 @@
 
             <!-- Dropdown -->
             <li class="hs-has-sub-menu nav-item">
-              <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ selected_language }}
+              <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ selected_language.title }}
               </a>
               <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
-                
+
                 <a class="dropdown-item " href="{% url 'change-language' %}?language={{ second_language.key }}&source_page={{ source_page }}">
                   {{ second_language.title }}
                 </a>

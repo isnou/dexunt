@@ -1,4 +1,4 @@
-from globals.functions import text_selector
+from .functions import text_selector
 
 def text(request):
     if not request.session.get('language', None):
@@ -22,7 +22,6 @@ def text(request):
             'title': 'العربية',
             'key': 'ar-dz',
         }
-
     elif request.session.get('language') == 'ar-dz':
         second_language = {
             'title': 'english',
@@ -44,11 +43,7 @@ def text(request):
             'تابع طلبي'
         ),
         # -------------  language ------------- #
-        'selected_language': text_selector(
-            'english',
-            'français',
-            'العربية'
-        ),
-        'second_language': second_language,
-        'third_language': third_language,
+        'selected_language': request.session.get('selected_language'),
+        'second_language': request.session.get('second_language'),
+        'third_language': request.session.get('third_language'),
     }

@@ -1,3 +1,49 @@
+def session_set(**kwargs):
+    if not global_request.session.get('language', None):
+        global_request.session['language'] = 'en-us'
+
+    if global_request.session.get('language') == 'en-us':
+        global_request.session['selected_language'] = {
+            'title': 'english',
+            'key': 'en-us',
+        }
+        global_request.session['second_language'] = {
+            'title': 'français',
+            'key': 'fr-fr',
+        }
+        global_request.session['third_language'] = {
+            'title': 'العربية',
+            'key': 'ar-dz',
+        }
+
+    if request.session.get('language') == 'fr-fr':
+        global_request.session['selected_language'] = {
+            'title': 'français',
+            'key': 'fr-fr',
+        }
+        global_request.session['second_language'] = {
+            'title': 'english',
+            'key': 'en-us',
+        }
+        global_request.session['third_language'] = {
+            'title': 'العربية',
+            'key': 'ar-dz',
+        }
+
+    if request.session.get('language') == 'ar-dz':
+        global_request.session['selected_language'] = {
+            'title': 'العربية',
+            'key': 'ar-dz',
+        }
+        global_request.session['second_language'] = {
+            'title': 'english',
+            'key': 'en-us',
+        }
+        global_request.session['third_language'] = {
+            'title': 'français',
+            'key': 'fr-fr',
+        }
+#                                                            #
 def serial_number_generator(length):
     import random, string
 
