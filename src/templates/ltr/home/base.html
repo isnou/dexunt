@@ -211,26 +211,18 @@
             <!-- Dropdown -->
             <li class="hs-has-sub-menu nav-item">
               <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {% if language == 'en-us' %}
-                English
-                {% endif %}
-
-                {% if language == 'fr-fr' %}
-                French
-                {% endif %}
+                {{ selected_language }}
               </a>
               <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
-                {% if language == 'en-us' %}
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=fr-fr&source_page={{ source_page }}">
-                  Français
+                
+                <a class="dropdown-item " href="{% url 'change-language' %}?language={{ second_language.key }}&source_page={{ source_page }}">
+                  {{ second_language.title }}
                 </a>
-                {% endif %}
 
-                {% if language == 'fr-fr' %}
-                <a class="dropdown-item " href="{% url 'change-language' %}?language=en-us&source_page={{ source_page }}">
-                  English
+                <a class="dropdown-item " href="{% url 'change-language' %}?language={{ third_language.key }}&source_page={{ source_page }}">
+                  {{ third_language.title }}
                 </a>
-                {% endif %}
+
               </div>
             </li>
             <!-- End Dropdown -->
