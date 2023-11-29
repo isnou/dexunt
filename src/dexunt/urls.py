@@ -22,6 +22,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
-
-# path('shop_manager/', include('shop_manager.urls')),
-# path('sell_manager/', include('sell_manager.urls')),
