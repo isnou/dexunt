@@ -1,8 +1,5 @@
-def session_set(**kwargs):
-    if not global_request.session.get('language', None):
-        global_request.session['language'] = 'en-us'
-
-    if global_request.session.get('language') == 'en-us':
+def session_manager(**kwargs):
+    if kwargs.get('language', None) == 'en-us':
         global_request.session['selected_language'] = {
             'title': 'english',
             'key': 'en-us',
@@ -15,8 +12,7 @@ def session_set(**kwargs):
             'title': 'العربية',
             'key': 'ar-dz',
         }
-
-    if request.session.get('language') == 'fr-fr':
+    if kwargs.get('language', None) == 'fr-fr':
         global_request.session['selected_language'] = {
             'title': 'français',
             'key': 'fr-fr',
@@ -29,8 +25,7 @@ def session_set(**kwargs):
             'title': 'العربية',
             'key': 'ar-dz',
         }
-
-    if request.session.get('language') == 'ar-dz':
+    if kwargs.get('language', None) == 'ar-dz':
         global_request.session['selected_language'] = {
             'title': 'العربية',
             'key': 'ar-dz',
@@ -43,13 +38,6 @@ def session_set(**kwargs):
             'title': 'français',
             'key': 'fr-fr',
         }
-#                                                            #
-def serial_number_generator(length):
-    import random, string
-
-    letters_and_digits = string.ascii_letters + string.digits
-    result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
-    return result_str
 #                                                            #
 def text_selector(en_text, fr_text, ar_text):
     if not global_request.session.get('language', None):
@@ -62,6 +50,13 @@ def text_selector(en_text, fr_text, ar_text):
         return fr_text
     if language == 'ar-dz':
         return ar_text
+#                                                            #
+def serial_number_generator(length):
+    import random, string
+
+    letters_and_digits = string.ascii_letters + string.digits
+    result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
+    return result_str
 #                                                            #
 def collect_tags(tags):
     from management.models import Product, Tag
