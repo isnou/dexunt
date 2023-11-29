@@ -19,63 +19,50 @@
   <link rel="stylesheet" href="{% static 'ltr/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
 
   <!-- CSS Front Template -->
-  <link rel="stylesheet" href="{% static 'ltr/assets/css/theme.min.css.v.1.0.css' %}">
+  <link rel="stylesheet" href="{% static 'ltr/assets/css/theme.min.css' %}">
 </head>
 
 <body>
 <header id="header" class="navbar navbar-expand-lg navbar-end navbar-light">
-  <!-- Topbar -->
-    <div class="container navbar-topbar">
-      <nav class="js-mega-menu navbar-nav-wrap">
-        <!-- Toggler -->
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="d-flex justify-content-between align-items-center">
-            <span class="navbar-toggler-text">Topbar</span>
-
-            <span class="navbar-toggler-default">
-              <i class="bi-chevron-down ms-2"></i>
-            </span>
-            <span class="navbar-toggler-toggled">
-              <i class="bi-chevron-up ms-2"></i>
-            </span>
+  <div class="container navbar-topbar">
+    <nav class="js-mega-menu navbar-nav-wrap">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="d-flex justify-content-between align-items-center">
+          <span class="navbar-toggler-text">Topbar</span>
+          <span class="navbar-toggler-default">
+            <i class="bi-chevron-down ms-2"></i>
           </span>
-        </button>
-        <!-- End Toggler -->
+          <span class="navbar-toggler-toggled">
+            <i class="bi-chevron-up ms-2"></i>
+          </span>
+        </span>
+      </button>
 
-        <div id="topbarNavDropdown" class="navbar-nav-wrap-collapse collapse navbar-collapse navbar-topbar-collapse">
-          <div class="navbar-toggler-wrapper">
-            <div class="navbar-topbar-toggler d-flex justify-content-between align-items-center">
-              <span class="navbar-toggler-text small">Topbar</span>
-
-              <!-- Toggler -->
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi-x"></i>
-              </button>
-              <!-- End Toggler -->
-            </div>
+      <div id="topbarNavDropdown" class="navbar-nav-wrap-collapse collapse navbar-collapse navbar-topbar-collapse">
+        <div class="navbar-toggler-wrapper">
+          <div class="navbar-topbar-toggler d-flex justify-content-between align-items-center">
+            <span class="navbar-toggler-text small">Topbar</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="bi-x"></i>
+            </button>
           </div>
+        </div>
 
-          <ul class="navbar-nav">
-            <li class="nav-item me-auto">
-              <a class="nav-link" href="../landing-classic-corporate.html"><i class="bi-chevron-left small ms-1"></i> Main demo</a>
-            </li>
+        <ul class="navbar-nav">
+          <li class="nav-item me-auto">
+            <a class="nav-link" href="../landing-classic-corporate.html"><i class="bi-chevron-left small ms-1"></i> Main demo</a>
+          </li>
 
-            <!-- Demos -->
-            <li class="hs-has-mega-menu nav-item">
-              <a id="demosMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle active" aria-current="page" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Demos</a>
-
-              <!-- Mega Menu -->
-              <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="demosMegaMenu" style="min-width: 40rem;">
-                <!-- Promo -->
-                <div class="navbar-dropdown-menu-promo">
-                  <!-- Promo Item -->
-                  <div class="navbar-dropdown-menu-promo-item">
-                    <!-- Promo Link -->
-                    <a class="navbar-dropdown-menu-promo-link " href="../landing-classic-corporate.html">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <span class="svg-icon svg-icon-sm text-primary">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <li class="hs-has-mega-menu nav-item">
+            <a id="demosMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle active" aria-current="page" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Demos</a>
+            <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="demosMegaMenu" style="min-width: 40rem;">
+              <div class="navbar-dropdown-menu-promo">
+                <div class="navbar-dropdown-menu-promo-item">
+                  <a class="navbar-dropdown-menu-promo-link " href="../landing-classic-corporate.html">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0">
+                        <span class="svg-icon svg-icon-sm text-primary">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M15.6 5.59998L20.9 10.9C21.3 11.3 21.3 11.9 20.9 12.3L17.6 15.6L11.6 9.59998L15.6 5.59998ZM2.3 12.3L7.59999 17.6L11.6 13.6L5.59999 7.59998L2.3 10.9C1.9 11.3 1.9 11.9 2.3 12.3Z" fill="#035A4B" />
                               <path opacity="0.3" d="M17.6 15.6L12.3 20.9C11.9 21.3 11.3 21.3 10.9 20.9L7.59998 17.6L13.6 11.6L17.6 15.6ZM10.9 2.3L5.59998 7.6L9.59998 11.6L15.6 5.6L12.3 2.3C11.9 1.9 11.3 1.9 10.9 2.3Z" fill="#035A4B" />
                             </svg>
@@ -301,14 +288,14 @@
               </div>
               <!-- End Mega Menu -->
             </li>
-            <!-- End Demos -->
+          <!-- End Demos -->
 
-            <!-- Docs -->
-            <li class="hs-has-mega-menu nav-item" data-hs-mega-menu-item-options='{
-                  "desktop": {
-                    "maxWidth": "20rem"
-                  }
-                }'>
+          <!-- Docs -->
+          <li class="hs-has-mega-menu nav-item" data-hs-mega-menu-item-options='{
+          "desktop": {
+          "maxWidth": "20rem"
+          }
+          }'>
               <a id="docsMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Docs</a>
 
               <!-- Mega Menu -->
