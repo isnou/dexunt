@@ -35,14 +35,6 @@ def change_language(request):
 
     if source == 'home-page':
         return redirect('home-page')
-    if source == 'product-page':
-        return redirect('product-page', 'regular_product')
-    if source == 'shopping-cart':
-        return redirect('shopping-cart', 'main')
-    if source == 'order-page':
-        return redirect('order-page', 'main')
-    if source == 'grid-shop-page':
-        return redirect('shop-page', 'grid')
 
 
 
