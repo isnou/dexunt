@@ -211,31 +211,31 @@
           </li>
           <!-- End Search Form -->
 
-            <!-- Dropdown -->
-            <li class="hs-has-sub-menu nav-item">
-              <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-globe me-2"></i>
-                {{ selected_language.title }}
+          <!-- Language -->
+          <li class="hs-has-sub-menu nav-item">
+            <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-globe me-2"></i>
+              {{ selected_language.title }}
+            </a>
+            <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
+
+              <a class="dropdown-item " href="{% url 'change-language' %}?language={{ second_language.key }}&source_page={{ source_page }}">
+                {{ second_language.title }}
               </a>
-              <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
 
-                <a class="dropdown-item " href="{% url 'change-language' %}?language={{ second_language.key }}&source_page={{ source_page }}">
-                  {{ second_language.title }}
-                </a>
+              <a class="dropdown-item " href="{% url 'change-language' %}?language={{ third_language.key }}&source_page={{ source_page }}">
+                {{ third_language.title }}
+              </a>
 
-                <a class="dropdown-item " href="{% url 'change-language' %}?language={{ third_language.key }}&source_page={{ source_page }}">
-                  {{ third_language.title }}
-                </a>
-
-              </div>
-            </li>
-            <!-- End Dropdown -->
-          </ul>
-        </div>
-        <!-- End Collapse -->
-      </nav>
-    </div>
-  </header>
+            </div>
+          </li>
+          <!-- End Language -->
+        </ul>
+      </div>
+      <!-- End Collapse -->
+    </nav>
+  </div>
+</header>
 
 <main id="content" role="main">
     <!-- Hero -->
