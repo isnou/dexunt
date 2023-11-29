@@ -7,9 +7,6 @@ from authentication.models import User
 
 
 def home_page(request):
-    if not request.session.get('direction', None):
-        request.session['direction'] = 'ltr'
-
     direction = request.session.get('direction')
 
     url = direction + "/home/main.html"
