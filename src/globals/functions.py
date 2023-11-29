@@ -1,5 +1,13 @@
 def session_manager(**kwargs):
+    if kwargs.get('init', None):
+        global_request.session['source'] = kwargs.get('source', None)
+        if not global_request.session.get('direction', None):
+            global_request.session['direction'] = 'ltr'
+        if not global_request.session.get('language', None):
+            global_request.session['language'] = 'en-us'
     if kwargs.get('language', None) == 'en-us':
+        global_request.session['language'] = 'en-us'
+        global_request.session['direction'] = 'ltr'
         global_request.session['selected_language'] = {
             'title': 'english',
             'key': 'en-us',
@@ -13,6 +21,8 @@ def session_manager(**kwargs):
             'key': 'ar-dz',
         }
     if kwargs.get('language', None) == 'fr-fr':
+        global_request.session['language'] = 'fr-fr'
+        global_request.session['direction'] = 'ltr'
         global_request.session['selected_language'] = {
             'title': 'français',
             'key': 'fr-fr',
@@ -26,6 +36,8 @@ def session_manager(**kwargs):
             'key': 'ar-dz',
         }
     if kwargs.get('language', None) == 'ar-dz':
+        global_request.session['language'] = 'ar-dz'
+        global_request.session['direction'] = 'rtl'
         global_request.session['selected_language'] = {
             'title': 'العربية',
             'key': 'ar-dz',
@@ -38,6 +50,12 @@ def session_manager(**kwargs):
             'title': 'français',
             'key': 'fr-fr',
         }
+#                                                            #
+def go_to(**kwargs):
+    from django.shortcuts import redirect
+
+    if kwargs.get('route', None) == 'change-language':
+        return redirect(global_request.session.get('source', None))
 #                                                            #
 def text_selector(en_text, fr_text, ar_text):
     if not global_request.session.get('language', None):

@@ -1,12 +1,6 @@
 from .functions import text_selector, session_manager
 
 def manager(request):
-    if not request.session.get('direction', None):
-        request.session['direction'] = 'ltr'
-
-    if not request.session.get('language', None):
-        request.session['language'] = 'en-us'
-
     session_manager(language = request.session.get('language'))
 
     return {
