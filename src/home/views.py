@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from globals.functions import text_selector, session_manager, go_to
+from globals.functions import text_selector, session_manager
 from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from authentication.models import User
@@ -15,7 +15,8 @@ def home_page(request):
 
 def change_language(request):
     session_manager(language=request.GET.get('language', None))
-    go_to(route='change-language')
+    return redirect(request.session.get('source', None))
+
 
 
 

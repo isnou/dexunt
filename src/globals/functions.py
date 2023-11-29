@@ -51,12 +51,6 @@ def session_manager(**kwargs):
             'key': 'fr-fr',
         }
 #                                                            #
-def go_to(**kwargs):
-    from django.shortcuts import redirect
-
-    if kwargs.get('route', None) == 'change-language':
-        return redirect(global_request.session.get('source', None))
-#                                                            #
 def text_selector(en_text, fr_text, ar_text):
     if not global_request.session.get('language', None):
         global_request.session['language'] = 'en-us'
