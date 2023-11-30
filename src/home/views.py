@@ -9,6 +9,14 @@ def home_page(request):
     url = request.session.get('direction') + "/home/main.html"
 
     context = {
+
+        # ------------------------  page title -------------------------- #
+        'page_title_txt': text_selector(
+            "Dexunt | Trusted & Professional Craftsmen Finder | Home Page",
+            "Dexunt | Recherche d'artisans de confiance et professionnels | Page d'accueil",
+            "ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | الصفحة الرئيسية",
+        ),
+        # ------------------------  head banner ------------------------- #
         'welcome_txt': text_selector(
             'Trusted craftsmen at your service',
             'Des artisans de confiance à votre service',
