@@ -51,6 +51,17 @@ def home_page(request):
             'Notre plateforme permet aux personnes ayant des projets de réparation, de rénovation ou de construction de trouver facilement des artisans de confiance et notés partout en Algérie.',
             'تتيح منصتنا للأشخاص الذين لديهم مشاريع إصلاح أو تجديد أو بناء العثور بسهولة على حرفيين موثوقين ومصنفين في جميع أنحاء الجزائر.',
         ),
+        'how_it_works_txt': text_selector(
+            'How it works',
+            'Comment ça fonctionne',
+            'كيف تعمل',
+        ),
+        'get_quotation_txt': text_selector(
+            'Get quotation',
+            'Obtenir un devis',
+            'إقتبس',
+        ),
+        'how_it_works_video_link': 'https://www.youtube.com/watch?v=d4eDWc8g0e0',
     }
     return render(request, url, context)
 
