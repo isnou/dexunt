@@ -14,7 +14,7 @@ def home_page(request):
             'des artisans de confiance à votre service',
             'حرفيين موثوقين في خدمتكم',
         ),
-        job_title: {
+        'job_title': {
             'painter_txt': text_selector(
                 'painter',
                 'peintre',
