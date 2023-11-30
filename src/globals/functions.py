@@ -51,17 +51,15 @@ def session_manager(**kwargs):
             'key': 'fr-fr',
         }
 #                                                            #
-def text_selector(en_text, fr_text, ar_text):
-    if not global_request.session.get('language', None):
-        global_request.session['language'] = 'en-us'
+def text_selector(**kwargs):
     language = global_request.session.get('language')
 
     if language == 'en-us':
-        return en_text
+        return kwargs.get('en_text', None)
     if language == 'fr-fr':
-        return fr_text
+        return kwargs.get('fr_text', None)
     if language == 'ar-dz':
-        return ar_text
+        return kwargs.get('ar_text', None)
 #                                                            #
 def serial_number_generator(length):
     import random, string
