@@ -6,4 +6,44 @@
 
 <!-- home page content -->
 {% block content %}
+<!-- head banner -->
+<div class="container content-space-2">
+    <div class="row justify-content-md-between align-items-sm-center">
+        <div class="col-8 col-sm-6 col-md-5 mb-5 mb-sm-0">
+            <img class="img-fluid" src="{% static 'images/all/workers.png' %}" alt="Intro Banner">
+        </div>
+
+        <div class="col-sm-6">
+            <div class="mb-5">
+                <h1 class="display-6 mb-3">
+                    {{ welcome_txt }}
+                    <br>
+                    <span class="text-primary text-highlight-warning">
+                        <span class="js-typedjs" data-hs-typed-options='{
+                                "strings": ["{{ job_title.painter_txt }}", "{{ job_title.electrician_txt }}", "{{ job_title.plumber_txt }}", "{{ job_title.mason_txt }}", "{{ job_title.CCTV_technician_txt }}", "{{ job_title.AC_technician_txt }}"],
+                                "typeSpeed": 90,
+                                "loop": true,
+                                "backSpeed": 30,
+                                "backDelay": 1500
+                                }'>
+                        </span>
+                    </span>
+                </h1>
+                <p class="lead">{{ message_txt }}</p>
+            </div>
+
+            <div class="d-grid d-md-flex gap-3 align-items-md-center">
+                <a class="btn btn-primary" href="#">{{ get_quotation_txt }}</a>
+
+                <a class="video-player video-player-btn" href="{{ how_it_works_video_link }}" role="button" data-fslightbox="youtube-video">
+                    <span class="video-player-icon shadow-sm me-2">
+                        <i class="fa fa-play"></i>
+                    </span>
+                    {{ how_it_works_txt }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end head banner -->
 {% endblock %}
