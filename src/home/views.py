@@ -16,34 +16,34 @@ def home_page(request):
         ),
         'job_title': {
             'painter_txt': text_selector(
-                'painter',
-                'peintre',
-                'دهان',
+                'painter.',
+                'peintre.',
+                'دهان.',
             ),
             'electrician_txt': text_selector(
-                'electrician',
-                'électricien',
-                'كهربائي',
+                'electrician.',
+                'électricien.',
+                'كهربائي.',
             ),
             'plumber_txt': text_selector(
-                'plumber',
-                'plombière',
-                'سباك',
+                'plumber.',
+                'plombière.',
+                'سباك.',
             ),
             'mason_txt': text_selector(
-                'mason',
-                'maçon',
-                'بناء',
+                'mason.',
+                'maçon.',
+                'بناء.',
             ),
             'CCTV_technician_txt': text_selector(
-                'CCTV installer',
-                'installateur de vidéosurveillance',
-                'مثبت كاميرات المراقبة',
+                'CCTV installer.',
+                'installateur de vidéosurveillance.',
+                'مثبت كاميرات المراقبة.',
             ),
             'AC_technician_txt': text_selector(
-                'AC installer',
-                'installateur de clim',
-                'مثبت مكيفات',
+                'AC installer.',
+                'installateur de clim.',
+                'مثبت مكيفات.',
             ),
         }
     }
