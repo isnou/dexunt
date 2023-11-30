@@ -10,8 +10,8 @@ def home_page(request):
 
     context = {
         'welcome_txt': text_selector(
-            'trusted craftsmen at your service',
-            'des artisans de confiance à votre service',
+            'Trusted craftsmen at your service',
+            'Des artisans de confiance à votre service',
             'حرفيين موثوقين في خدمتكم',
         ),
         'job_title': {
