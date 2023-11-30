@@ -4,12 +4,16 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from authentication.models import User
 
-
 def home_page(request):
     session_manager(init=True, source='home-page')
     url = request.session.get('direction') + "/home/main.html"
 
     context = {
+        'welcome_txt': text_selector(
+            'your home our commitment',
+            'votre maison notre engagement',
+            'منزلك التزامنا',
+        )
     }
     return render(request, url, context)
 

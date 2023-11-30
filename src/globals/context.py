@@ -5,7 +5,7 @@ def manager(request):
 
     return {
         # ---------------------------  topbar --------------------------- #
-        'login': text_selector(
+        'login_txt': text_selector(
             'login',
             'se connecter',
             'تسجيل'
