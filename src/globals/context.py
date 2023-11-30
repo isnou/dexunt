@@ -6,9 +6,9 @@ def manager(request):
     return {
         # ---------------------------  topbar --------------------------- #
         'login_txt': text_selector(
-            'Login',
-            'Se connecter',
-            'تسجيل'
+            en_text="Login",
+            fr_text="Se connecter",
+            ar_text="تسجيل",
         ),
         # --------------------------  language -------------------------- #
         'selected_language': request.session.get('selected_language', None),
