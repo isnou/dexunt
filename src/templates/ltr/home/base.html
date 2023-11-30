@@ -60,7 +60,7 @@
         <!-- Login -->
         <div class="d-inline-block ml-auto">
           <button class="btn btn-ghost" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
-            <span class="d-none d-lg-inline-block">{{ login_txt }}</span>
+            <span class="d-none d-lg-inline-block">{{ login_txt|title }}</span>
             <i class="fa fa-user d-lg-none"></i>
           </button>
         </div>
@@ -217,16 +217,16 @@
           <li class="hs-has-sub-menu nav-item">
             <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-globe me-2"></i>
-              {{ selected_language.title }}
+              {{ selected_language.title|title }}
             </a>
             <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
 
               <a class="dropdown-item " href="{% url 'change-language' %}?language={{ second_language.key }}">
-                {{ second_language.title }}
+                {{ second_language.title|title }}
               </a>
 
               <a class="dropdown-item " href="{% url 'change-language' %}?language={{ third_language.key }}">
-                {{ third_language.title }}
+                {{ third_language.title|title }}
               </a>
             </div>
           </li>
@@ -250,15 +250,15 @@
         <div class="col-sm-6">
           <div class="mb-5">
             <h1 class="display-4 mb-3">
-              {{ welcome_txt }}
+              {{ welcome_txt|title }}
               <br>
               <span class="text-primary text-highlight-warning">
                 <span class="js-typedjs" data-hs-typed-options='{
-                        "strings": ["{{ job_title.painter_txt }}", "{{ job_title.electrician_txt }}", "{{ job_title.plumber_txt }}", "{{ job_title.mason_txt }}", "{{ job_title.CCTV_technician_txt }}", "{{ job_title.AC_technician_txt }}"],
+                        "strings": ["{{ job_title.painter_txt|title }}", "{{ job_title.electrician_txt|title }}", "{{ job_title.plumber_txt|title }}", "{{ job_title.mason_txt|title }}", "{{ job_title.CCTV_technician_txt|title }}", "{{ job_title.AC_technician_txt|title }}"],
                         "typeSpeed": 90,
                         "loop": true,
                         "backSpeed": 30,
-                        "backDelay": 2500
+                        "backDelay": 1500
                       }'></span>
               </span>
             </h1>
