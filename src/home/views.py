@@ -10,10 +10,42 @@ def home_page(request):
 
     context = {
         'welcome_txt': text_selector(
-            'your home our commitment',
-            'votre maison notre engagement',
-            'منزلك التزامنا',
-        )
+            'trusted tradespersons at your service',
+            'des artisans de confiance à votre service',
+            'حرفيين موثوقين في خدمتكم',
+        ),
+        job_title: {
+            'painter_txt': text_selector(
+                'painter',
+                'peintre',
+                'دهان',
+            ),
+            'electrician_txt': text_selector(
+                'electrician',
+                'électricien',
+                'كهربائي',
+            ),
+            'plumber_txt': text_selector(
+                'plumber',
+                'plombière',
+                'سباك',
+            ),
+            'mason_txt': text_selector(
+                'mason',
+                'maçon',
+                'بناء',
+            ),
+            'CCTV_technician_txt': text_selector(
+                'CCTV installer',
+                'installateur de vidéosurveillance',
+                'مثبت كاميرات المراقبة',
+            ),
+            'AC_technician_txt': text_selector(
+                'AC installer',
+                'installateur de clim',
+                'مثبت مكيفات',
+            ),
+        }
     }
     return render(request, url, context)
 
