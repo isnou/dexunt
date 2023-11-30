@@ -10,7 +10,7 @@ def home_page(request):
 
     context = {
         'welcome_txt': text_selector(
-            'trusted tradespersons at your service',
+            'trusted craftsmen at your service',
             'des artisans de confiance à votre service',
             'حرفيين موثوقين في خدمتكم',
         ),
@@ -45,7 +45,12 @@ def home_page(request):
                 'installateur de clim.',
                 'مثبت مكيفات.',
             ),
-        }
+        },
+        'message_txt': text_selector(
+            'Our platform allows people with repair, renovation or construction projects to easily find trusted and rated craftsmen throughout Algeria.',
+            'Notre plateforme permet aux personnes ayant des projets de réparation, de rénovation ou de construction de trouver facilement des artisans de confiance et notés partout en Algérie.',
+            'تتيح منصتنا للأشخاص الذين لديهم مشاريع إصلاح أو تجديد أو بناء العثور بسهولة على حرفيين موثوقين ومصنفين في جميع أنحاء الجزائر.',
+        ),
     }
     return render(request, url, context)
 
