@@ -64,12 +64,12 @@ def home_page(request):
             fr_text="Comment ça fonctionne",
             ar_text="كيف تعمل",
         ),
-        'get_quotation_txt': text_selector(
-            en_text="Get quotation",
-            fr_text="Obtenir un devis",
-            ar_text="إقتبس",
+        'get_started_txt': text_selector(
+            en_text="Get started",
+            fr_text="Commencer",
+            ar_text="إبدء",
         ),
-        'how_it_works_video_link': 'https://www.youtube.com/watch?v=tbmUvgr28Oo',
+        'how_it_works_video_link': 'https://www.youtube.com/watch?v=d4eDWc8g0e0',
     }
     return render(request, url, context)
 
