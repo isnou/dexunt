@@ -4,7 +4,9 @@ from authentication.forms import LoginForm, SignupForm
 from django.contrib.auth import login, authenticate
 from authentication.models import User
 
-def home_page(request):
+
+# ---------------------------- renders ---------------------------- #
+def home_page(request):# (home-page) #
     session_manager(init=True, source='home-page')
     url = request.session.get('direction') + "/home/main.html"
 
@@ -73,9 +75,14 @@ def home_page(request):
     }
     return render(request, url, context)
 
-def change_language(request):
+# ------------------------- redirections -------------------------- #
+def change_language(request):# (change-language) #
     session_manager(language=request.GET.get('language', None))
     return redirect(request.session.get('source', None))
+#                                                                        #
+def router(request):# (router) #
+    if request.user.is_superuser:
+        return redirect('admin-home')
 
 
 

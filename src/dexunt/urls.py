@@ -18,7 +18,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('home.urls')),
+    path('admin/', include('home.urls')),
     path('users/', include('authentication.urls')),
-    path('admin/', admin.site.urls),
+    path('django/admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

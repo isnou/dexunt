@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'authentication',
     'globals',
     'home',
+    'management',
 ]
 
 MIDDLEWARE = [

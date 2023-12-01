@@ -8,26 +8,37 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
 
-def account_login(request):
-    if request.method == 'POST':
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
-            user = authenticate(
-                username=login_form.cleaned_data['username'],
-                password=login_form.cleaned_data['password'],
-            )
-            if user:
-                login(request, user)
-                return redirect('router')
-            else:
-                request.session['error_messages'] = {'login': 'bad credentials !'}
-                return redirect('home-page')
-        else:
-            return redirect('home-page')
-    else:
-        return redirect('home-page')
+# ---------------------------- renders ---------------------------- #
+def account_login(request, action):# (login) #
+    session_manager(init=True, source='login')
 
-def account_signup(request):
+    if action == 'page':
+        url = request.session.get('direction') + "/authentication/login.html"
+        if request.session.get('error_messages'):
+            errors = request.session.get('error_messages')
+            request.session['error_messages'] = None
+        else:
+            errors = None
+        login_form = LoginForm()
+
+        context = {
+            'errors': errors,
+            'login_form': login_form,
+        }
+        return render(request, url, context)
+    if action == 'auth':
+        if request.method == 'POST':
+            login_form = LoginForm(request.POST)
+            if login_form.is_valid():
+                user = authenticate(
+                    username=login_form.cleaned_data['username'],
+                    password=login_form.cleaned_data['password'],
+                )
+                if user:
+                    login(request, user)
+                    return redirect('router')
+
+def account_signup(request):# (signup) #
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
@@ -140,26 +151,6 @@ def change_password(request):
         return redirect('account-profile-page')
 
     return render(request, url, {'change_password_form': change_password_form})
-
-@login_required
-def router(request):
-    if request.user.is_superuser:
-        return redirect('admin-manage-home', 'main')
-
-    if request.user.is_customer:
-        return redirect('customer-orders', 'main')
-
-    if request.user.is_provider:
-        return redirect('provider-sales', 'main')
-
-    if request.user.is_seller:
-        return redirect('seller-home', 'main')
-
-    if request.user.is_cash_manager:
-        return redirect('cash-wallet', 'main')
-
-    if request.user.is_member:
-        return redirect('member-orders', 'main')
 
 def account_logout(request):
     logout(request)
