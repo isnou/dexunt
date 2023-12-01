@@ -57,7 +57,7 @@ class User(AbstractUser):
     # ----- functions ----- #
     def __str__(self):
         return self.username
-    def save(self, **kwargs):
+    def save(self, *args, **kwargs):
         if kwargs.get('type', None):
             if kwargs.get('type') == 'worker':
                 self.type = 'worker'
