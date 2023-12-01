@@ -69,7 +69,7 @@ def home_page(request):
             fr_text="Obtenir un devis",
             ar_text="إقتبس",
         ),
-        'how_it_works_video_link': 'https://www.youtube.com/watch?v=d4eDWc8g0e0',
+        'how_it_works_video_link': 'https://www.youtube.com/watch?v=tbmUvgr28Oo',
     }
     return render(request, url, context)
 
