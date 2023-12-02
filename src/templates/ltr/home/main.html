@@ -316,4 +316,28 @@
     </div>
   </div>
 <!-- end authentication -->
+
+
+<!-- account -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarAccount">
+    <div class="offcanvas-header justify-content-end border-0 pb-0">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <!-- Status -->
+        <div id="offcanvasNavbarAccountStatus">
+            <div class="text-center mb-7">
+                <h3 class="modal-title">Log in to Dexunt</h3>
+                <p>Login to manage your account</p>
+            </div>
+
+            <div class="d-grid gap-3 text-center">
+                <a href="{% url 'logout' %}" class="btn btn-primary btn-lg">Logout</a>
+            </div>
+        </div>
+        <!-- End Status -->
+    </div>
+  </div>
+<!-- end account -->
 {% endblock %}

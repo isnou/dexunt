@@ -66,7 +66,7 @@
             <span class="d-none d-lg-inline-block">{{ login_txt }}</span>
           </button>
           {% else %}
-          <a class="btn btn-ghost" type="button" href="{% url 'router' %}">
+          <button class="btn btn-ghost" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarAccount" aria-controls="offcanvasNavbarAccount">
             <i class="fa-solid fa-user d-lg-none"></i>
             <span class="d-none d-lg-inline-block">
               <h6 class="text-muted">
@@ -74,7 +74,7 @@
                 <small>{{ user.username }}</small>
               </h6>
             </span>
-          </a>
+          </button>
           {% endif %}
         </div>
         <!-- End Login -->
