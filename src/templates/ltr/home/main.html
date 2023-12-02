@@ -204,13 +204,38 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="signup_password1">Password</label>
-                    <input type="password" class="form-control form-control-lg" name="{{ signup_form.password1.name }}" id="signup_password1" placeholder="8+ characters required" aria-label="8+ characters required" required>
+
+                    <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                        <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password1.name }}" id="signup_password1" placeholder="8+ characters required" aria-label="8+ characters required" required
+                               data-hs-toggle-password-options='{
+                               "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                               "defaultClass": "bi-eye-slash",
+                               "showClass": "bi-eye",
+                               "classChangeTarget": ".js-toggle-passowrd-show-icon-1"
+                               }'>
+                        <a class="js-toggle-password-target-1 input-group-append input-group-text" href="javascript:;">
+                            <i class="js-toggle-passowrd-show-icon-1 bi-eye"></i>
+                        </a>
+                    </div>
                     <span class="invalid-feedback">Your password is invalid. Please try again.</span>
                 </div>
 
-                <div class="mb-3" data-hs-validation-validate-class>
+                <div class="mb-3">
                     <label class="form-label" for="signup_password2">Confirm password</label>
-                    <input type="password" class="form-control form-control-lg" name="{{ signup_form.password2.name }}" id="signup_password2" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-validation-equal-field="#signup_password1">
+
+                    <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                        <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password2.name }}" id="signup_password2" placeholder="8+ characters required" aria-label="8+ characters required" required
+                               data-hs-validation-equal-field="#signup_password1"
+                               data-hs-toggle-password-options='{
+                               "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                               "defaultClass": "bi-eye-slash",
+                               "showClass": "bi-eye",
+                               "classChangeTarget": ".js-toggle-passowrd-show-icon-2"
+                               }'>
+                        <a class="js-toggle-password-target-2 input-group-append input-group-text" href="javascript:;">
+                            <i class="js-toggle-passowrd-show-icon-2 bi-eye"></i>
+                        </a>
+                    </div>
                     <span class="invalid-feedback">Password does not match.</span>
                 </div>
 
