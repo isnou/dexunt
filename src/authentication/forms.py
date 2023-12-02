@@ -13,11 +13,10 @@ class LoginForm(forms.Form):
 class SignupForm(UserCreationForm):
     username = forms.CharField(max_length=60)
     password1 = forms.CharField(min_length=6, widget=forms.PasswordInput)
-    phone_number = PhoneNumberField(required=False)
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', 'phone_number', 'first_name', 'last_name')
+        fields = ['username']
 
 class UpdateProfileForm(forms.ModelForm):
     first_name = forms.CharField(required=False)
