@@ -23,946 +23,162 @@
 </head>
 
 <body>
-<header id="header" class="navbar navbar-expand-lg navbar-end navbar-light">
-  <div class="container">
-    <nav class="js-mega-menu navbar-nav-wrap">
-      <!-- Default Logo -->
-      <a class="navbar-brand" href="#" aria-label="Front">
-        <img class="navbar-brand-logo" src="{% static 'images/logo/logo.png' %}" alt="Logo">
-      </a>
-      <!-- End Default Logo -->
+<header id="header" class="navbar navbar-expand navbar-light navbar-absolute-top">
+    <div class="container-fluid">
+      <nav class="navbar-nav-wrap">
+        <!-- White Logo -->
+        <a class="navbar-brand d-none d-lg-flex" href="index.html" aria-label="Front">
+          <img class="navbar-brand-logo" src="assets/svg/logos/logo-white.svg" alt="Logo">
+        </a>
+        <!-- End White Logo -->
 
-      <!-- Secondary Content -->
-      <div class="navbar-nav-wrap-secondary-content">
-        <!-- Search -->
-        <div class="dropdown dropdown-course-search d-lg-none d-inline-block">
-          <a class="btn btn-ghost-secondary btn-sm btn-icon" href="index.html#" id="navbarCourseSearchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-magnifying-glass"></i>
+        <!-- Default Logo -->
+        <a class="navbar-brand d-flex d-lg-none" href="index.html" aria-label="Front">
+          <img class="navbar-brand-logo" src="assets/svg/logos/logo.svg" alt="Logo">
+        </a>
+        <!-- End Default Logo -->
+
+        <div class="ms-auto">
+          <a class="link link-sm link-secondary" href="index.html">
+            <i class="bi-chevron-left small ms-1"></i> Go to main
           </a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-          <div class="dropdown-menu dropdown-card" aria-labelledby="navbarCourseSearchDropdown">
-            <!-- Card -->
-            <div class="card card-sm">
-              <div class="card-body">
-                <form class="input-group input-group-merge">
-                  <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
-                  <div class="input-group-append input-group-text">
-                    <i class="fa fa-magnifying-glass"></i>
-                  </div>
-                </form>
+<main id="content" role="main" class="flex-grow-1">
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-5 col-xl-4 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100 position-relative bg-dark" style="background-image: url(assets/svg/components/wave-pattern-light.svg);">
+          <div class="flex-grow-1 p-5">
+            <!-- Blockquote -->
+            <figure class="text-center">
+              <div class="mb-4">
+                <img class="avatar avatar-xl avatar-4x3" src="assets/svg/brands/mailchimp-white.svg" alt="Logo">
               </div>
+
+              <blockquote class="blockquote blockquote-light">“ It has many landing page variations to choose from, which one is always a big advantage. ”</blockquote>
+
+              <figcaption class="blockquote-footer blockquote-light">
+                <div class="mb-3">
+                  <img class="avatar avatar-circle" src="assets/img/160x160/img9.jpg" alt="Image Description">
+                </div>
+
+                Lida Reidy
+                <span class="blockquote-footer-source">Project Manager | Mailchimp</span>
+              </figcaption>
+            </figure>
+            <!-- End Blockquote -->
+
+            <!-- Clients -->
+            <div class="position-absolute start-0 end-0 bottom-0 text-center p-5">
+              <div class="row justify-content-center">
+                <div class="col text-center py-3">
+                  <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/fitbit-white.svg" alt="Logo">
+                </div>
+                <!-- End Col -->
+
+                <div class="col text-center py-3">
+                  <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/business-insider-white.svg" alt="Logo">
+                </div>
+                <!-- End Col -->
+
+                <div class="col text-center py-3">
+                  <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/capsule-white.svg" alt="Logo">
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
             </div>
-            <!-- End Card -->
+            <!-- End Clients -->
           </div>
         </div>
-        <!-- End Search -->
+        <!-- End Col -->
 
-        <!-- Login -->
-        <div class="d-inline-block ml-auto">
-          <button class="btn btn-ghost" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
-            <span class="d-none d-lg-inline-block">{{ login_txt }}</span>
-            <i class="fa fa-user d-lg-none"></i>
-          </button>
-        </div>
-        <!-- End Login -->
-      </div>
-      <!-- End Secondary Content -->
-
-      <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-default">
-          <i class="fa fa-bars"></i>
-        </span>
-        <span class="navbar-toggler-toggled">
-          <i class="fa fa-x"></i>
-        </span>
-      </button>
-      <!-- End Toggler -->
-
-      <!-- Collapse -->
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
-          </li>
-
-          <!-- Courses -->
-          <li class="hs-has-sub-menu nav-item">
-            <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="bi-journals me-2"></i>
-              Courses
-            </a>
-
-            <!-- Mega Menu -->
-            <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu" style="min-width: 17rem;">
-              <!-- Development -->
-              <div class="hs-has-sub-menu nav-item">
-                <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-code-slash dropdown-item-icon"></i> Development</a>
-
-                <div class="hs-sub-menu dropdown-menu" aria-labelledby="developmentMegaMenu" style="min-width: 14rem;">
-                  <a class="dropdown-item" href="index.html#">All Business</a>
-                  <a class="dropdown-item" href="index.html#">Finance</a>
-                  <a class="dropdown-item" href="index.html#">Entrepreneurship</a>
-                  <a class="dropdown-item" href="index.html#">Communications</a>
-                  <a class="dropdown-item" href="index.html#">Management</a>
-                  <a class="dropdown-item" href="index.html#">Sales</a>
-                  <a class="dropdown-item" href="index.html#">Strategy</a>
-                  <a class="dropdown-item" href="index.html#">Operations</a>
-                  <a class="dropdown-item" href="index.html#">Project management</a>
-                  <a class="dropdown-item" href="index.html#">Business law</a>
-                  <a class="dropdown-item" href="index.html#">Data &amp; Analytics</a>
-                  <a class="dropdown-item" href="index.html#">Other</a>
-                </div>
-              </div>
-              <!-- End Development -->
-
-              <!-- Business -->
-              <div class="hs-has-sub-menu nav-item">
-                <a id="businessMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-briefcase dropdown-item-icon"></i> Business</a>
-
-                <div class="hs-sub-menu dropdown-menu" aria-labelledby="businessMegaMenu" style="min-width: 14rem;">
-                  <a class="dropdown-item" href="index.html#">All Finance &amp; Accounting</a>
-                  <a class="dropdown-item" href="index.html#">Accounting &amp; Bookkeeping</a>
-                  <a class="dropdown-item" href="index.html#">Compliance</a>
-                  <a class="dropdown-item" href="index.html#">Economics</a>
-                  <a class="dropdown-item" href="index.html#">Finance</a>
-                  <a class="dropdown-item" href="index.html#">Other</a>
-                </div>
-              </div>
-              <!-- End Business -->
-
-              <!-- Finance & Accounting -->
-              <div class="hs-has-sub-menu nav-item">
-                <a id="financeAccountingMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-graph-up dropdown-item-icon"></i> Finance &amp; Accounting</a>
-
-                <div class="hs-sub-menu dropdown-menu" aria-labelledby="financeAccountingMegaMenu" style="min-width: 14rem;">
-                  <a class="dropdown-item" href="index.html#">All IT &amp; Software</a>
-                  <a class="dropdown-item" href="index.html#">IT Sertification</a>
-                  <a class="dropdown-item" href="index.html#">Network &amp; security</a>
-                  <a class="dropdown-item" href="index.html#">Hardware</a>
-                  <a class="dropdown-item" href="index.html#">Operating systems</a>
-                  <a class="dropdown-item" href="index.html#">Other</a>
-                </div>
-              </div>
-              <!-- End Finance & Accounting -->
-
-              <!-- IT & Software -->
-              <div class="hs-has-sub-menu nav-item">
-                <a id="ITSoftwareMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-laptop dropdown-item-icon"></i> IT &amp; Software</a>
-
-                <div class="hs-sub-menu dropdown-menu" aria-labelledby="ITSoftwareMegaMenu" style="min-width: 14rem;">
-                  <a class="dropdown-item" href="index.html#">All Design</a>
-                  <a class="dropdown-item" href="index.html#">Web design</a>
-                  <a class="dropdown-item" href="index.html#">Graphic design</a>
-                  <a class="dropdown-item" href="index.html#">Design tools</a>
-                  <a class="dropdown-item" href="index.html#">User experience</a>
-                  <a class="dropdown-item" href="index.html#">Game design</a>
-                  <a class="dropdown-item" href="index.html#">Design thinking</a>
-                  <a class="dropdown-item" href="index.html#">3D &amp; animation</a>
-                  <a class="dropdown-item" href="index.html#">Fashion</a>
-                  <a class="dropdown-item" href="index.html#">Architectural design</a>
-                  <a class="dropdown-item" href="index.html#">Interior design</a>
-                  <a class="dropdown-item" href="index.html#">Other</a>
-                </div>
-              </div>
-              <!-- End IT & Software -->
-
-              <!-- Design -->
-              <div class="hs-has-sub-menu nav-item">
-                <a id="designMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-bezier2 dropdown-item-icon"></i> Design</a>
-
-                <div class="hs-sub-menu dropdown-menu" aria-labelledby="designMegaMenu" style="min-width: 14rem;">
-                  <a class="dropdown-item" href="index.html#">All Marketing</a>
-                  <a class="dropdown-item" href="index.html#">Digital marketing</a>
-                  <a class="dropdown-item" href="index.html#">Branding</a>
-                  <a class="dropdown-item" href="index.html#">Advertising</a>
-                  <a class="dropdown-item" href="index.html#">Other</a>
-                </div>
-              </div>
-              <!-- End Design -->
-
-              <!-- Music -->
-              <div class="hs-has-sub-menu nav-item">
-                <a id="musicMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-music-note-list dropdown-item-icon"></i> Music</a>
-
-                <div class="hs-sub-menu dropdown-menu" aria-labelledby="musicMegaMenu" style="min-width: 14rem;">
-                  <a class="dropdown-item" href="index.html#">All Musics</a>
-                  <a class="dropdown-item" href="index.html#">Instrument</a>
-                  <a class="dropdown-item" href="index.html#">Production</a>
-                  <a class="dropdown-item" href="index.html#">Music fundamentals</a>
-                  <a class="dropdown-item" href="index.html#">Vocal</a>
-                  <a class="dropdown-item" href="index.html#">Music techniques</a>
-                  <a class="dropdown-item" href="index.html#">Music software</a>
-                  <a class="dropdown-item" href="index.html#">Other</a>
-                </div>
-              </div>
-              <!-- End Music -->
+        <div class="col-lg-7 col-xl-8 d-flex justify-content-center align-items-center min-vh-lg-100">
+          <div class="flex-grow-1 mx-auto" style="max-width: 28rem;">
+            <!-- Heading -->
+            <div class="text-center mb-5 mb-md-7">
+              <h1 class="h2">Welcome to Front</h1>
+              <p>Fill out the form to get started.</p>
             </div>
-            <!-- End Mega Menu -->
-          </li>
-          <!-- End Courses -->
+            <!-- End Heading -->
 
-          <!-- Search Form -->
-          <li class="nav-item flex-grow-1 d-none d-lg-inline-block ">
-            <form class="input-group input-group-merge">
-              <div class="input-group-prepend input-group-text">
-                <i class="fa fa-magnifying-glass"></i>
+            <!-- Form -->
+            <form class="js-validate needs-validation" novalidate>
+              <!-- Form -->
+              <div class="mb-3">
+                <label class="form-label" for="signupModalFormSignupEmail">Your email</label>
+                <input type="email" class="form-control form-control-lg" name="email" id="signupModalFormSignupEmail" placeholder="email@site.com" aria-label="email@site.com" required>
+                <span class="invalid-feedback">Please enter a valid email address.</span>
               </div>
-              <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+              <!-- End Form -->
+
+              <!-- Form -->
+              <div class="mb-3">
+                <label class="form-label" for="signupModalFormSignupPassword">Password</label>
+
+                <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                  <input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupModalFormSignupPassword" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-toggle-password-options='{
+                             "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                             "defaultClass": "bi-eye-slash",
+                             "showClass": "bi-eye",
+                             "classChangeTarget": ".js-toggle-passowrd-show-icon-1"
+                           }'>
+                  <a class="js-toggle-password-target-1 input-group-append input-group-text" href="javascript:;">
+                    <i class="js-toggle-passowrd-show-icon-1 bi-eye"></i>
+                  </a>
+                </div>
+
+                <span class="invalid-feedback">Your password is invalid. Please try again.</span>
+              </div>
+              <!-- End Form -->
+
+              <!-- Form -->
+              <div class="mb-3">
+                <label class="form-label" for="signupModalFormSignupConfirmPassword">Confirm password</label>
+
+                <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                  <input type="password" class="js-toggle-password form-control form-control-lg" name="confirmPassword" id="signupModalFormSignupConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-validation-equal-field="#signupModalFormSignupPassword" data-hs-toggle-password-options='{
+                           "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                           "defaultClass": "bi-eye-slash",
+                           "showClass": "bi-eye",
+                           "classChangeTarget": ".js-toggle-passowrd-show-icon-2"
+                         }'>
+                  <a class="js-toggle-password-target-2 input-group-append input-group-text" href="javascript:;">
+                    <i class="js-toggle-passowrd-show-icon-2 bi-eye"></i>
+                  </a>
+                </div>
+
+                <span class="invalid-feedback">Password does not match the confirm password.</span>
+              </div>
+              <!-- End Form -->
+
+              <!-- Check -->
+              <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="signupHeroFormPrivacyCheck" name="signupFormPrivacyCheck" required>
+                <label class="form-check-label small" for="signupHeroFormPrivacyCheck"> By submitting this form I have read and acknowledged the <a href="page-privacy.html">Privacy Policy</a></label>
+                <span class="invalid-feedback">Please accept our Privacy Policy.</span>
+              </div>
+              <!-- End Check -->
+
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
+              </div>
+
+              <div class="text-center">
+                <p>Already have an account? <a class="link" href="page-login.html">Log in here</a></p>
+              </div>
             </form>
-          </li>
-          <!-- End Search Form -->
-
-          <!-- Language -->
-          <li class="hs-has-sub-menu nav-item">
-            <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-globe me-2"></i>
-              {{ selected_language.title|title }}
-            </a>
-            <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
-
-              <a class="dropdown-item " href="{% url 'change-language' %}?language={{ second_language.key }}">
-                {{ second_language.title|title }}
-              </a>
-
-              <a class="dropdown-item " href="{% url 'change-language' %}?language={{ third_language.key }}">
-                {{ third_language.title|title }}
-              </a>
-            </div>
-          </li>
-          <!-- End Language -->
-        </ul>
-      </div>
-      <!-- End Collapse -->
-    </nav>
-  </div>
-</header>
-
-<main id="content" role="main">
-
-  <!-- content block -->
-  {% block content %} {% endblock %}
-
-
-
-    <!-- Card Grid -->
-    <div class="container content-space-sm-2">
-      <!-- Title -->
-      <div class="w-md-75 text-center mx-md-auto mb-9">
-        <h2>Featured courses</h2>
-        <p>Discover your perfect program in our courses.</p>
-      </div>
-      <!-- End Title -->
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 mb-5">
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-12.svg" alt="Image Description">
-
-              <div class="card-pinned-top-start">
-                <small class="badge bg-success rounded-pill">Bestseller</small>
-              </div>
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.91</span>
-                    <span class="text-white-70">(1.5k+ reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="course-overview.html">Complete Python Bootcamp: Go from zero to hero in Python</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 10 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 3h 25m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$114.99</del></span>
-                  <h5 class="card-title">$99.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
+            <!-- End Form -->
           </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-13.svg" alt="Image Description">
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.95</span>
-                    <span class="text-white-70">(1k+ reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Design &amp; Illustration</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="course-overview.html">From the Top: Adobe Illustrator for Beginners</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Emily Milda" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img8.jpg" alt="Image Description">
-                    </a>
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 8 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 7h 59m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$129.99</del></span>
-                  <h5 class="card-title">$119.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-6.svg" alt="Image Description">
-
-              <div class="card-pinned-top-start">
-                <small class="badge bg-success rounded-pill">Featured</small>
-              </div>
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.73</span>
-                    <span class="text-white-70">(4.7k+ reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="course-overview.html">Get started with Vue.js</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Aaron Larsson" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
-                    </a>
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 25 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 17h 46m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$169.99</del></span>
-                  <h5 class="card-title">$129.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-15.svg" alt="Image Description">
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.47</span>
-                    <span class="text-white-70">(3.8k+ reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="course-overview.html">The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 42 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 31h 5m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$159.99</del></span>
-                  <h5 class="card-title">$111.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-4.svg" alt="Image Description">
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.64</span>
-                    <span class="text-white-70">(723 reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="course-overview.html">Coding block for WordPress</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                    </a>
-                    <div class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan">
-                      <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
-                    </div>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 5 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 8h 12m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$64.99</del></span>
-                  <h5 class="card-title">$29.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-14.svg" alt="Image Description">
-
-              <div class="card-pinned-top-start">
-                <small class="badge bg-success rounded-pill">Hot</small>
-              </div>
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.9</span>
-                    <span class="text-white-70">(961 reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Design &amp; Illustration</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="course-overview.html">Creative Magazine Layout Design</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="index.html#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 35 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 21h
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$179.99</del></span>
-                  <h5 class="card-title">$129.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Row -->
-
-      <div class="text-center">
-        <a class="btn btn-link" href="courses.html">See all courses <i class="bi-chevron-right small ms-1"></i></a>
-      </div>
-    </div>
-    <!-- End Card Grid -->
-
-    <!-- Testimonials -->
-    <div class="overflow-hidden content-space-2">
-      <div class="position-relative bg-light text-center rounded-2 zi-2 mx-3 mx-md-10">
-        <div class="container content-space-2">
-          <div class="text-center mb-5">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/illustrations/oc-person-2.svg" alt="Illustration">
-          </div>
-
-          <!-- Blockquote -->
-          <figure class="w-md-75 text-center mx-md-auto">
-            <blockquote class="blockquote mb-7">“ The best part about Front Course is the selection. You can find a course for anything you want to learn! Thank you Front Course! You've renewed my passion for learning and my dream of becoming a web developer. ”</blockquote>
-
-            <figcaption class="blockquote-footer mt-2">
-              Martin
-              <span class="blockquote-footer-source">Happy customer</span>
-            </figcaption>
-          </figure>
-          <!-- End Blockquote -->
-        </div>
-
-        <!-- SVG Shape -->
-        <figure class="position-absolute top-0 start-0 mt-10 ms-10">
-          <svg width="70" height="70" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M60.6655 74.9992C80.4557 74.9992 96.4988 58.9561 96.4988 39.1659C96.4988 19.3757 80.4557 3.33252 60.6655 3.33252C40.8753 3.33252 24.8322 19.3757 24.8322 39.1659C24.8322 58.9561 40.8753 74.9992 60.6655 74.9992Z" stroke="#97a4af" stroke-width="5" stroke-miterlimit="10" />
-            <path d="M158.5 197.5C168.165 197.5 176 189.665 176 180C176 170.335 168.165 162.5 158.5 162.5C148.835 162.5 141 170.335 141 180C141 189.665 148.835 197.5 158.5 197.5Z" stroke="#97a4af" stroke-width="5" stroke-miterlimit="10" />
-          </svg>
-        </figure>
-        <!-- End SVG Shape -->
-
-        <!-- SVG Shape -->
-        <figure class="position-absolute bottom-0 end-0 mb-n7 me-n7" style="width: 10rem;">
-          <img class="img-fluid" src="../assets/svg/components/dots.svg" alt="Image Description">
-        </figure>
-        <!-- End SVG Shape -->
-      </div>
-    </div>
-    <!-- End Testimonials -->
-
-    <!-- Clients -->
-    <div class="container content-space-t-1 content-space-t-lg-0">
-      <div class="w-lg-75 mx-lg-auto">
-        <div class="row">
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/capsule-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/fitbit-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/forbes-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/mailchimp-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/layar-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-      </div>
-    </div>
-    <!-- End Clients -->
-
-    <!-- Signup Form -->
-    <div class="container content-space-2 content-space-lg-3">
-      <div class="row justify-content-lg-between align-items-md-center">
-        <div class="col-md-5 mb-7 mb-md-0">
-          <div class="mb-5">
-            <h2>Thousands of experts around the world ready to help you.</h2>
-            <p>See why leading organizations choose Front Course for Business as their destination for employee learning.</p>
-          </div>
-
-          <h4>Learn more about:</h4>
-
-          <!-- List Checked -->
-          <ul class="list-checked list-checked-primary">
-            <li class="list-checked-item">Unlimited access to the top 3,500+ courses</li>
-            <li class="list-checked-item">Fresh content taught by 1,300+ experts – for any learning style</li>
-            <li class="list-checked-item">Actionable learning insights <span class="badge bg-warning text-dark rounded-pill ms-1">Beta</span></li>
-          </ul>
-          <!-- End List Checked -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col-md-7 col-lg-6">
-          <!-- Form -->
-          <form class="js-validate needs-validation" novalidate>
-            <!-- Card -->
-            <div class="card">
-              <div class="card-header bg-primary text-center">
-                <h4 class="card-header-title text-white">Try it free for 7 days <span class="badge bg-warning text-dark rounded-pill ms-1">starting at $59</span></h4>
-              </div>
-
-              <div class="card-body">
-                <div class="row gx-3">
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4">
-                      <label class="form-label" for="signupHeroFormFirstName">First name</label>
-                      <input type="text" class="form-control form-control-lg" name="signupHeroFormNameFirstName" id="signupHeroFormFirstName" placeholder="First name" aria-label="First name" required>
-                      <span class="invalid-feedback">Please enter your first name</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4">
-                      <label class="form-label" for="signupHeroFormLasttName">Last name</label>
-                      <input type="text" class="form-control form-control-lg" name="signupHeroFormNameLastName" id="signupHeroFormLasttName" placeholder="Last name" aria-label="Last name" required>
-                      <span class="invalid-feedback">Please enter your last name</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-                </div>
-                <!-- End Row -->
-
-                <!-- Form -->
-                <div class="mb-4">
-                  <label class="form-label" for="signupHeroFormWorkEmail">Email address</label>
-                  <input type="email" class="form-control form-control-lg" name="signupHeroFormNameWorkEmail" id="signupHeroFormWorkEmail" placeholder="email@site.com" aria-label="email@site.com" required>
-                  <span class="invalid-feedback">Please enter your email address</span>
-                </div>
-                <!-- End Form -->
-
-                <div class="row gx-3">
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4">
-                      <label class="form-label" for="signupHeroFormSignupPassword">Password</label>
-                      <input type="password" class="form-control form-control-lg" name="password" id="signupHeroFormSignupPassword" placeholder="8+ characters required" aria-label="8+ characters required" required>
-                      <span class="invalid-feedback">Your password must include 8+ characters</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4" data-hs-validation-validate-class>
-                      <label class="form-label" for="signupHeroFormSignupConfirmPassword">Confirm password</label>
-                      <input type="password" class="form-control form-control-lg" name="confirmPassword" id="signupHeroFormSignupConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-validation-equal-field="#signupHeroFormSignupPassword">
-                      <span class="invalid-feedback">Password does not match the confirm password</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-                </div>
-                <!-- End Row -->
-
-                <!-- Check -->
-                <div class="form-check mb-4">
-                  <input type="checkbox" class="form-check-input" id="signupHeroFormPrivacyCheck" name="signupFormPrivacyCheck" required>
-                  <label class="form-check-label small" for="signupHeroFormPrivacyCheck"> By submitting this form I have read and acknowledged the <a href="../page-privacy.html">Privacy Policy</a></label>
-                  <span class="invalid-feedback">Please accept our Privacy Policy.</span>
-                </div>
-                <!-- End Check -->
-
-                <div class="row align-items-center">
-                  <div class="col-sm-7 mb-3 mb-sm-0">
-                    <p class="card-text small">Already have an account? <a class="link" href="../page-login.html">Log In</a></p>
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-sm-5 text-sm-end">
-                    <button type="submit" class="btn btn-primary btn-lg">Sign up now</button>
-                  </div>
-                  <!-- End Col -->
-                </div>
-                <!-- End Row -->
-              </div>
-            </div>
-            <!-- End Card -->
-          </form>
-          <!-- End Form -->
         </div>
         <!-- End Col -->
       </div>
       <!-- End Row -->
     </div>
-    <!-- End Signup Form -->
-
-    <!-- CTA -->
-    <div class="container content-space-b-2">
-      <div class="text-center bg-img-start py-6" style="background: url(../assets/svg/components/shape-6.svg) center no-repeat;">
-        <div class="mb-5">
-          <h2>Find the right learning path for you</h2>
-          <p>Answer a few questions and match your goals to our programs.</p>
-        </div>
-
-        <a class="btn btn-primary btn-transition" href="index.html#">Explore by category</a>
-      </div>
-    </div>
-    <!-- End CTA -->
+    <!-- End Form -->
   </main>
 
 <!-- footer -->
