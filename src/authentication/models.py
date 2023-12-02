@@ -71,13 +71,13 @@ class User(AbstractUser):
     def status(self):
         if self.type == 'blank':
             show = text_selector(
-                en_text="Not Complete",
-                fr_text="Non Achevé",
-                ar_text="غير مكتمل",
+                en_text="Blank",
+                fr_text="Vide",
+                ar_text="فارغ",
             )
             return {
                 'show': show,
-                'color': 'danger',
+                'color': 'muted',
             }
         # désactivé/ غير مفعل /disabled
 
