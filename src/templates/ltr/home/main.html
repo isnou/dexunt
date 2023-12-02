@@ -208,13 +208,13 @@
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
                         <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password1.name }}" id="signup_password1" placeholder="8+ characters required" aria-label="8+ characters required" required
                                data-hs-toggle-password-options='{
-                               "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                               "target": [".js-toggle-password1-target", ".js-toggle-password2-target"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
-                               "classChangeTarget": ".js-toggle-passowrd-show-icon-1"
+                               "classChangeTarget": ".js-toggle-password1-show-icon"
                                }'>
-                        <a class="js-toggle-password-target-1 input-group-append input-group-text" href="javascript:;">
-                            <i class="js-toggle-passowrd-show-icon-1 bi-eye"></i>
+                        <a class="js-toggle-password1-target input-group-append input-group-text" href="javascript:;">
+                            <i class="js-toggle-password1-show-icon fa fa-eye"></i>
                         </a>
                     </div>
                     <span class="invalid-feedback">Your password is invalid. Please try again.</span>
@@ -227,13 +227,13 @@
                         <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password2.name }}" id="signup_password2" placeholder="8+ characters required" aria-label="8+ characters required" required
                                data-hs-validation-equal-field="#signup_password1"
                                data-hs-toggle-password-options='{
-                               "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                               "target": [".js-toggle-password2-target", ".js-toggle-password2-target"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
-                               "classChangeTarget": ".js-toggle-passowrd-show-icon-2"
+                               "classChangeTarget": ".js-toggle-password2-show-icon"
                                }'>
-                        <a class="js-toggle-password-target-2 input-group-append input-group-text" href="javascript:;">
-                            <i class="js-toggle-passowrd-show-icon-2 bi-eye"></i>
+                        <a class="js-toggle-password2-target input-group-append input-group-text" href="javascript:;">
+                            <i class="js-toggle-password2-show-icon fa fa-eye"></i>
                         </a>
                     </div>
                     <span class="invalid-feedback">Password does not match.</span>
