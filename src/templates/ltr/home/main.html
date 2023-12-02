@@ -150,7 +150,9 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     <label class="form-label" for="login_username">Your username</label>
-                    <input type="text" class="form-control form-control-lg" name="{{ login_form.username.name }}" id="login_username" placeholder="john.doe" aria-label="john.doe" required>
+                    <input type="text" class="form-control form-control-lg"
+                           name="{{ login_form.username.name }}" id="login_username"
+                           placeholder="john.doe" aria-label="john.doe" required>
                     <span class="invalid-feedback">Please enter your username.</span>
                 </div>
 
@@ -158,14 +160,28 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <label class="form-label" for="login_password">Password</label>
 
-                        <a class="js-animation-link form-label-link" href="javascript:;" data-hs-show-animation-options='{
-                          "targetSelector": "#loginOffcanvasFormResetPassword",
-                          "groupName": "idForm"
-                          }'>Forgot Password?
+                        <a class="js-animation-link form-label-link" href="javascript:;"
+                           data-hs-show-animation-options='{
+                           "targetSelector": "#loginOffcanvasFormResetPassword",
+                           "groupName": "idForm"
+                           }'>Forgot Password?
                         </a>
                     </div>
 
-                    <input type="password" class="form-control form-control-lg" name="{{ login_form.password.name }}" id="login_password" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+                    <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                        <input type="password" class="js-toggle-password form-control form-control-lg"
+                               name="{{ login_form.password.name }}" id="login_password"
+                               placeholder="8+ characters required" aria-label="8+ characters required" minlength="8" required
+                               data-hs-toggle-password-options='{
+                               "target": "#login_password_target",
+                               "defaultClass": "fa fa-eye-slash",
+                               "showClass": "fa fa-eye",
+                               "classChangeTarget": "#login_password_icon"
+                               }'>
+                        <a id="login_password_target" class="input-group-append input-group-text" href="javascript:;">
+                            <i id="login_password_icon" class="fa fa-eye"></i>
+                        </a>
+                    </div>
                     <span class="invalid-feedback">Please enter your password.</span>
                 </div>
 
@@ -175,10 +191,11 @@
                     <span class="divider-center">OR</span>
 
                     <p>Don't have an account yet?
-                        <a class="js-animation-link link" href="javascript:;" role="button" data-hs-show-animation-options='{
-                          "targetSelector": "#loginOffcanvasFormSignup",
-                          "groupName": "idForm"
-                          }'>Sign up
+                        <a class="js-animation-link link" href="javascript:;" role="button"
+                           data-hs-show-animation-options='{
+                           "targetSelector": "#loginOffcanvasFormSignup",
+                           "groupName": "idForm"
+                           }'>Sign up
                         </a>
                     </p>
                 </div>
@@ -206,15 +223,17 @@
                     <label class="form-label" for="signup_password1">Password</label>
 
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                        <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password1.name }}" id="signup_password1" placeholder="8+ characters required" aria-label="8+ characters required" required
+                        <input type="password" class="js-toggle-password form-control form-control-lg"
+                               name="{{ signup_form.password1.name }}" id="signup_password1"
+                               placeholder="8+ characters required" aria-label="8+ characters required" minlength="8" required
                                data-hs-toggle-password-options='{
-                               "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                               "target": ["#signup_password1_target", "#signup_password2_target"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
-                               "classChangeTarget": ".js-toggle-passowrd-show-icon-1"
+                               "classChangeTarget": "#signup_password1_icon"
                                }'>
-                        <a class="js-toggle-password-target-1 input-group-append input-group-text" href="javascript:;">
-                            <i class="js-toggle-passowrd-show-icon-1 fa fa-eye"></i>
+                        <a id="signup_password1_target" class="input-group-append input-group-text" href="javascript:;">
+                            <i id="signup_password1_icon" class="fa fa-eye"></i>
                         </a>
                     </div>
                     <span class="invalid-feedback">Your password is invalid. Please try again.</span>
@@ -224,16 +243,18 @@
                     <label class="form-label" for="signup_password2">Confirm password</label>
 
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                        <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password2.name }}" id="signup_password2" placeholder="8+ characters required" aria-label="8+ characters required" required
+                        <input type="password" class="js-toggle-password form-control form-control-lg"
+                               name="{{ signup_form.password2.name }}" id="signup_password2"
+                               placeholder="8+ characters required" aria-label="8+ characters required" required
                                data-hs-validation-equal-field="#signup_password1"
                                data-hs-toggle-password-options='{
-                               "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+                               "target": ["#signup_password1_target", "#signup_password2_target"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
-                               "classChangeTarget": ".js-toggle-passowrd-show-icon-2"
+                               "classChangeTarget": "#signup_password2_icon"
                                }'>
-                        <a class="js-toggle-password-target-2 input-group-append input-group-text" href="javascript:;">
-                            <i class="js-toggle-passowrd-show-icon-2 fa fa-eye"></i>
+                        <a id="signup_password2_target" class="input-group-append input-group-text" href="javascript:;">
+                            <i id="#signup_password2_icon" class="fa fa-eye"></i>
                         </a>
                     </div>
                     <span class="invalid-feedback">Password does not match.</span>
@@ -247,10 +268,11 @@
                     <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
 
                     <p>Already have an account?
-                        <a class="js-animation-link link" href="javascript:;" role="button" data-hs-show-animation-options='{
-                          "targetSelector": "#loginOffcanvasFormLogin",
-                          "groupName": "idForm"
-                          }'>Log in
+                        <a class="js-animation-link link" href="javascript:;" role="button"
+                           data-hs-show-animation-options='{
+                           "targetSelector": "#loginOffcanvasFormLogin",
+                           "groupName": "idForm"
+                           }'>Log in
                         </a>
                     </p>
                 </div>
@@ -270,10 +292,11 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <label class="form-label" for="reset_email" tabindex="0">Your email</label>
 
-                        <a class="js-animation-link form-label-link" href="javascript:;" data-hs-show-animation-options='{
-                          "targetSelector": "#loginOffcanvasFormLogin",
-                          "groupName": "idForm"
-                          }'>
+                        <a class="js-animation-link form-label-link" href="javascript:;"
+                           data-hs-show-animation-options='{
+                           "targetSelector": "#loginOffcanvasFormLogin",
+                           "groupName": "idForm"
+                           }'>
                             <i class="bi-chevron-left small"></i> Back to Log in
                         </a>
                     </div>
