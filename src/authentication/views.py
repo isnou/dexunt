@@ -52,11 +52,6 @@ def account_signup(request, action):# (signup) #
                 user = signup_form.save()
                 login(request, user)
                 return redirect('router')
-            else:
-                request.session['error_messages'] = signup_form.errors
-                return redirect('home-page')
-        else:
-            return redirect('home-page')
 #                                                                   #
 # ----------------------------------------------------------------- #
 
