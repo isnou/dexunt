@@ -12,6 +12,16 @@ def home_page(request):# (home-page)
 
     context = {
         # [parent template] --------------------------------------- #
+        'login_txt': text_selector(
+            en_text="Login",
+            fr_text="Se connecter",
+            ar_text="تسجيل",
+        ),
+        'connected_txt': text_selector(
+            en_text="Welcom",
+            fr_text="Bienvenue",
+            ar_text="مرحباً",
+        ),
 
         # [child template] ---------------------------------------- #
         # [child template] -> [title block] ----------------------- #
