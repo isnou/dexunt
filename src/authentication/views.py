@@ -53,6 +53,32 @@ def account_signup(request, action):# (signup) #
                 login(request, user)
                 return redirect('router')
 #                                                                   #
+def edit_profile(request, action):# (edit-profile) #
+    session_manager(init=True, source='edit-profile')
+
+    if action == 'page':
+        url = request.session.get('direction') + "/authentication/edit_profile.html"
+
+        context = {
+            # [parent template] --------------------------------------- #
+
+            # [child template] ---------------------------------------- #
+            # [child template] -> [title block] ----------------------- #
+            'page_title_txt': text_selector(
+                en_text="Dexunt | Trusted & Professional Craftsmen Finder | Edit Profile",
+                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
+                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+            ),
+        }
+        return render(request, url, context)
+    if action == 'auth':
+        if request.method == 'POST':
+            signup_form = SignupForm(request.POST)
+            if signup_form.is_valid():
+                user = signup_form.save()
+                login(request, user)
+                return redirect('router')
+#                                                                   #
 # ----------------------------------------------------------------- #
 
 

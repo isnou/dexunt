@@ -91,8 +91,11 @@ def change_language(request):# (change-language) #
     return redirect(request.session.get('source', None))
 #                                                                   #
 def router(request):# (router) #
-    if request.user.is_superuser:
-        return redirect('admin-home')
+    if request.session.get('source', None) == 'login':
+        if request.user.is_superuser:
+            return redirect('admin-home')
+        if request.user.type == 'blank':
+            return redirect('edit-profile', 'page')
 #                                                                   #
 # ----------------------------------------------------------------- #
 

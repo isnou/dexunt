@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2f2c36-49e1-490d-8110-b97686c9637e" name="Changes" comment="Update views.py">
+      <change afterPath="$PROJECT_DIR$/src/templates/ltr/authentication/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/ltr/authentication/edit_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/authentication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/authentication/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/authentication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/authentication/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/ltr/home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/home/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/templates/ltr/home/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/ltr/home/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,16 +44,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/management"
+    "last_opened_file_path": "/Users/mac/Documents/GitHub/dexunt/src/templates/ltr/authentication"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/templates/ltr/authentication" />
       <recent name="$PROJECT_DIR$/src/management" />
       <recent name="$PROJECT_DIR$/src/templates/rtl" />
       <recent name="$PROJECT_DIR$/site/public/static" />
       <recent name="$PROJECT_DIR$/src/home" />
-      <recent name="$PROJECT_DIR$/src/global" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/site/public/static/ltr/assets/css" />

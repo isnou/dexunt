@@ -1137,26 +1137,6 @@
     </div>
   </footer>
 
-<!-- Go To -->
-<a class="js-go-to go-to position-fixed" href="javascript:;" style="visibility: hidden;" data-hs-go-to-options='{
-      "offsetTop": 700,
-      "position": {
-      "init": {
-      "right": "2rem"
-      },
-      "show": {
-      "bottom": "2rem"
-      },
-      "hide": {
-      "bottom": "-2rem"
-      }
-      }
-      }'>
-  <i class="bi-chevron-up"></i>
-</a>
-
-<!-- modals block -->
-{% block modals %} {% endblock %}
 
 <!-- JS Implementing Plugins -->
 <script src="{% static 'HS-assets/js/vendor.min.js' %}"></script>
@@ -1167,87 +1147,14 @@
 <!-- JS Plugins Init. -->
 <script>
     (function() {
-      // INITIALIZATION OF HEADER
-      // =======================================================
-      new HSHeader('#header').init()
-
-
-      // INITIALIZATION OF MEGA MENU
-      // =======================================================
-      new HSMegaMenu('.js-mega-menu', {
-          desktop: {
-            position: 'left'
-          }
-        })
-
-      // INITIALIZATION OF INPUT MASK
-      // =======================================================
-      HSCore.components.HSMask.init('.js-input-mask')
-
-      // INITIALIZATION OF SHOW ANIMATIONS
-      // =======================================================
-      new HSShowAnimation('.js-animation-link')
-
-
       // INITIALIZATION OF BOOTSTRAP VALIDATION
       // =======================================================
       HSBsValidation.init('.js-validate')
 
+
       // INITIALIZATION OF TOGGLE PASSWORD
       // =======================================================
       new HSTogglePassword('.js-toggle-password')
-
-
-      // INITIALIZATION OF BOOTSTRAP DROPDOWN
-      // =======================================================
-      HSBsDropdown.init()
-
-
-      // INITIALIZATION OF GO TO
-      // =======================================================
-      new HSGoTo('.js-go-to')
-
-
-      // INITIALIZATION OF TEXT ANIMATION (TYPING)
-      // =======================================================
-      HSCore.components.HSTyped.init('.js-typedjs')
-
-
-      // INITIALIZATION OF SWIPER
-      // =======================================================
-      var swiper = new Swiper('.js-swiper-course-hero',{
-        preloaderClass: 'custom-swiper-lazy-preloader',
-        navigation: {
-          nextEl: '.js-swiper-course-hero-button-next',
-          prevEl: '.js-swiper-course-hero-button-prev',
-        },
-        slidesPerView: 1,
-        loop: 1,
-        breakpoints: {
-          380: {
-            slidesPerView: 2,
-            spaceBetween: 15,
-          },
-          580: {
-            slidesPerView: 3,
-            spaceBetween: 15,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 15,
-          },
-          1024: {
-            slidesPerView: 6,
-            spaceBetween: 15,
-          },
-        },
-        on: {
-          'imagesReady': function (swiper) {
-            const preloader = swiper.el.querySelector('.js-swiper-course-hero-preloader')
-            preloader.parentNode.removeChild(preloader)
-          }
-        }
-      });
     })()
 </script>
 
