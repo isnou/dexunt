@@ -5,6 +5,224 @@
 <title>{{ page_title_txt }}</title>
 {% endblock %}
 
+{% block header %}
+<header id="header" class="navbar navbar-expand-lg navbar-end navbar-light">
+  <div class="container">
+    <nav class="js-mega-menu navbar-nav-wrap">
+      <!-- Default Logo -->
+      <a class="navbar-brand" href="#" aria-label="Front">
+        <img class="navbar-brand-logo" src="{% static 'images/logo/logo.png' %}" alt="Logo">
+      </a>
+      <!-- End Default Logo -->
+
+      <!-- Secondary Content -->
+      <div class="navbar-nav-wrap-secondary-content">
+        <!-- Search -->
+        <div class="dropdown dropdown-course-search d-lg-none d-inline-block">
+          <a class="btn btn-ghost-secondary btn-sm btn-icon" href="index.html#" id="navbarCourseSearchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-magnifying-glass"></i>
+          </a>
+
+          <div class="dropdown-menu dropdown-card" aria-labelledby="navbarCourseSearchDropdown">
+            <!-- Card -->
+            <div class="card card-sm">
+              <div class="card-body">
+                <form class="input-group input-group-merge">
+                  <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+                  <div class="input-group-append input-group-text">
+                    <i class="fa fa-magnifying-glass"></i>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- End Card -->
+          </div>
+        </div>
+        <!-- End Search -->
+
+        <!-- Login -->
+        <div class="d-inline-block ml-auto">
+          <button class="btn btn-ghost" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
+            <span class="d-none d-lg-inline-block">{{ login_txt }}</span>
+            <i class="fa fa-user d-lg-none"></i>
+          </button>
+        </div>
+        <!-- End Login -->
+      </div>
+      <!-- End Secondary Content -->
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-default">
+          <i class="fa fa-bars"></i>
+        </span>
+        <span class="navbar-toggler-toggled">
+          <i class="fa fa-x"></i>
+        </span>
+      </button>
+      <!-- End Toggler -->
+
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+
+          <!-- Courses -->
+          <li class="hs-has-sub-menu nav-item">
+            <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi-journals me-2"></i>
+              Courses
+            </a>
+
+            <!-- Mega Menu -->
+            <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu" style="min-width: 17rem;">
+              <!-- Development -->
+              <div class="hs-has-sub-menu nav-item">
+                <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-code-slash dropdown-item-icon"></i> Development</a>
+
+                <div class="hs-sub-menu dropdown-menu" aria-labelledby="developmentMegaMenu" style="min-width: 14rem;">
+                  <a class="dropdown-item" href="index.html#">All Business</a>
+                  <a class="dropdown-item" href="index.html#">Finance</a>
+                  <a class="dropdown-item" href="index.html#">Entrepreneurship</a>
+                  <a class="dropdown-item" href="index.html#">Communications</a>
+                  <a class="dropdown-item" href="index.html#">Management</a>
+                  <a class="dropdown-item" href="index.html#">Sales</a>
+                  <a class="dropdown-item" href="index.html#">Strategy</a>
+                  <a class="dropdown-item" href="index.html#">Operations</a>
+                  <a class="dropdown-item" href="index.html#">Project management</a>
+                  <a class="dropdown-item" href="index.html#">Business law</a>
+                  <a class="dropdown-item" href="index.html#">Data &amp; Analytics</a>
+                  <a class="dropdown-item" href="index.html#">Other</a>
+                </div>
+              </div>
+              <!-- End Development -->
+
+              <!-- Business -->
+              <div class="hs-has-sub-menu nav-item">
+                <a id="businessMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-briefcase dropdown-item-icon"></i> Business</a>
+
+                <div class="hs-sub-menu dropdown-menu" aria-labelledby="businessMegaMenu" style="min-width: 14rem;">
+                  <a class="dropdown-item" href="index.html#">All Finance &amp; Accounting</a>
+                  <a class="dropdown-item" href="index.html#">Accounting &amp; Bookkeeping</a>
+                  <a class="dropdown-item" href="index.html#">Compliance</a>
+                  <a class="dropdown-item" href="index.html#">Economics</a>
+                  <a class="dropdown-item" href="index.html#">Finance</a>
+                  <a class="dropdown-item" href="index.html#">Other</a>
+                </div>
+              </div>
+              <!-- End Business -->
+
+              <!-- Finance & Accounting -->
+              <div class="hs-has-sub-menu nav-item">
+                <a id="financeAccountingMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-graph-up dropdown-item-icon"></i> Finance &amp; Accounting</a>
+
+                <div class="hs-sub-menu dropdown-menu" aria-labelledby="financeAccountingMegaMenu" style="min-width: 14rem;">
+                  <a class="dropdown-item" href="index.html#">All IT &amp; Software</a>
+                  <a class="dropdown-item" href="index.html#">IT Sertification</a>
+                  <a class="dropdown-item" href="index.html#">Network &amp; security</a>
+                  <a class="dropdown-item" href="index.html#">Hardware</a>
+                  <a class="dropdown-item" href="index.html#">Operating systems</a>
+                  <a class="dropdown-item" href="index.html#">Other</a>
+                </div>
+              </div>
+              <!-- End Finance & Accounting -->
+
+              <!-- IT & Software -->
+              <div class="hs-has-sub-menu nav-item">
+                <a id="ITSoftwareMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-laptop dropdown-item-icon"></i> IT &amp; Software</a>
+
+                <div class="hs-sub-menu dropdown-menu" aria-labelledby="ITSoftwareMegaMenu" style="min-width: 14rem;">
+                  <a class="dropdown-item" href="index.html#">All Design</a>
+                  <a class="dropdown-item" href="index.html#">Web design</a>
+                  <a class="dropdown-item" href="index.html#">Graphic design</a>
+                  <a class="dropdown-item" href="index.html#">Design tools</a>
+                  <a class="dropdown-item" href="index.html#">User experience</a>
+                  <a class="dropdown-item" href="index.html#">Game design</a>
+                  <a class="dropdown-item" href="index.html#">Design thinking</a>
+                  <a class="dropdown-item" href="index.html#">3D &amp; animation</a>
+                  <a class="dropdown-item" href="index.html#">Fashion</a>
+                  <a class="dropdown-item" href="index.html#">Architectural design</a>
+                  <a class="dropdown-item" href="index.html#">Interior design</a>
+                  <a class="dropdown-item" href="index.html#">Other</a>
+                </div>
+              </div>
+              <!-- End IT & Software -->
+
+              <!-- Design -->
+              <div class="hs-has-sub-menu nav-item">
+                <a id="designMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-bezier2 dropdown-item-icon"></i> Design</a>
+
+                <div class="hs-sub-menu dropdown-menu" aria-labelledby="designMegaMenu" style="min-width: 14rem;">
+                  <a class="dropdown-item" href="index.html#">All Marketing</a>
+                  <a class="dropdown-item" href="index.html#">Digital marketing</a>
+                  <a class="dropdown-item" href="index.html#">Branding</a>
+                  <a class="dropdown-item" href="index.html#">Advertising</a>
+                  <a class="dropdown-item" href="index.html#">Other</a>
+                </div>
+              </div>
+              <!-- End Design -->
+
+              <!-- Music -->
+              <div class="hs-has-sub-menu nav-item">
+                <a id="musicMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-music-note-list dropdown-item-icon"></i> Music</a>
+
+                <div class="hs-sub-menu dropdown-menu" aria-labelledby="musicMegaMenu" style="min-width: 14rem;">
+                  <a class="dropdown-item" href="index.html#">All Musics</a>
+                  <a class="dropdown-item" href="index.html#">Instrument</a>
+                  <a class="dropdown-item" href="index.html#">Production</a>
+                  <a class="dropdown-item" href="index.html#">Music fundamentals</a>
+                  <a class="dropdown-item" href="index.html#">Vocal</a>
+                  <a class="dropdown-item" href="index.html#">Music techniques</a>
+                  <a class="dropdown-item" href="index.html#">Music software</a>
+                  <a class="dropdown-item" href="index.html#">Other</a>
+                </div>
+              </div>
+              <!-- End Music -->
+            </div>
+            <!-- End Mega Menu -->
+          </li>
+          <!-- End Courses -->
+
+          <!-- Search Form -->
+          <li class="nav-item flex-grow-1 d-none d-lg-inline-block ">
+            <form class="input-group input-group-merge">
+              <div class="input-group-prepend input-group-text">
+                <i class="fa fa-magnifying-glass"></i>
+              </div>
+              <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+            </form>
+          </li>
+          <!-- End Search Form -->
+
+          <!-- Language -->
+          <li class="hs-has-sub-menu nav-item">
+            <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-globe me-2"></i>
+              {{ selected_language.title|title }}
+            </a>
+            <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
+
+              <a class="dropdown-item " href="{% url 'change-language' %}?language={{ second_language.key }}">
+                {{ second_language.title|title }}
+              </a>
+
+              <a class="dropdown-item " href="{% url 'change-language' %}?language={{ third_language.key }}">
+                {{ third_language.title|title }}
+              </a>
+            </div>
+          </li>
+          <!-- End Language -->
+        </ul>
+      </div>
+      <!-- End Collapse -->
+    </nav>
+  </div>
+</header>
+{% endblock %}
+
+
 {% block content %}
 <!-- main banner -->
 <div class="container content-space-2">
