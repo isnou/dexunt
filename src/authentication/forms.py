@@ -13,8 +13,6 @@ class LoginForm(forms.Form):
 class SignupForm(UserCreationForm):
     username = forms.CharField(max_length=60)
     password1 = forms.CharField(min_length=6, widget=forms.PasswordInput)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
     phone_number = PhoneNumberField(required=False)
 
     class Meta(UserCreationForm.Meta):

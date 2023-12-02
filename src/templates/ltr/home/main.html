@@ -1,12 +1,12 @@
 {% extends "ltr/home/base.html" %}
 {% load static %}
 
-<!-- title block -->
-{% block title %}<title>{{ page_title_txt }}</title>{% endblock %}
+{% block title %}
+<title>{{ page_title_txt }}</title>
+{% endblock %}
 
-<!-- home page content -->
 {% block content %}
-<!-- head banner -->
+<!-- main banner -->
 <div class="container content-space-2">
     <div class="row justify-content-md-between align-items-sm-center">
         <div class="col-8 col-sm-6 col-md-5 mb-5 mb-sm-0">
@@ -45,7 +45,7 @@
         </div>
     </div>
 </div>
-<!-- end head banner -->
+<!-- end main banner -->
 
 <!-- services -->
 <div class="content-space-b-2 content-space-b-lg-3 bg-img-start" style="background: url(../assets/svg/components/shape-5.svg) center no-repeat;">
@@ -129,4 +129,150 @@
   </div>
 </div>
 <!-- end services -->
+{% endblock %}
+
+{% block modals %}
+<!-- authentication -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarSignup">
+    <div class="offcanvas-header justify-content-end border-0 pb-0">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <!-- Log in -->
+        <div id="loginOffcanvasFormLogin">
+            <div class="text-center mb-7">
+                <h3 class="modal-title">Log in to Dexunt</h3>
+                <p>Login to manage your account</p>
+            </div>
+
+            <form action="{% url 'login' 'auth' %}" class="js-validate needs-validation" novalidate method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label" for="login_username">Your username</label>
+                    <input type="text" class="form-control form-control-lg" name="{{ login_form.username.name }}" id="login_username" placeholder="john.doe" aria-label="john.doe" required>
+                    <span class="invalid-feedback">Please enter your username.</span>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <label class="form-label" for="login_password">Password</label>
+
+                        <a class="js-animation-link form-label-link" href="javascript:;" data-hs-show-animation-options='{
+                          "targetSelector": "#loginOffcanvasFormResetPassword",
+                          "groupName": "idForm"
+                          }'>Forgot Password?
+                        </a>
+                    </div>
+
+                    <input type="password" class="form-control form-control-lg" name="{{ login_form.password.name }}" id="login_password" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+                    <span class="invalid-feedback">Please enter your password.</span>
+                </div>
+
+                <div class="d-grid gap-3 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+
+                    <span class="divider-center">OR</span>
+
+                    <p>Don't have an account yet?
+                        <a class="js-animation-link link" href="javascript:;" role="button" data-hs-show-animation-options='{
+                          "targetSelector": "#loginOffcanvasFormSignup",
+                          "groupName": "idForm"
+                          }'>Sign up
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <!-- End Log in -->
+
+        <!-- Signup -->
+        <div id="loginOffcanvasFormSignup" style="display: none; opacity: 0;">
+            <div class="text-center mb-7">
+                <h3 class="modal-title">Sign up</h3>
+                <p>Fill out the form to get started</p>
+            </div>
+
+            <form action="{% url 'signup' 'auth' %}" class="js-validate needs-validation" novalidate method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label" for="signup_username">Username</label>
+                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.username.name }}" id="signup_username" placeholder="john.doe" aria-label="john.doe" required>
+                    <span class="invalid-feedback">Please enter a valid username.</span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="signup_password1">Password</label>
+                    <input type="password" class="form-control form-control-lg" name="{{ signup_form.password1.name }}" id="signup_password1" placeholder="8+ characters required" aria-label="8+ characters required" required>
+                    <span class="invalid-feedback">Your password is invalid. Please try again.</span>
+                </div>
+
+                <div class="mb-3" data-hs-validation-validate-class>
+                    <label class="form-label" for="signup_password2">Confirm password</label>
+                    <input type="password" class="form-control form-control-lg" name="{{ signup_form.password2.name }}" id="signup_password2" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-validation-equal-field="#signup_password1">
+                    <span class="invalid-feedback">Password does not match.</span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signup_phone_number" class="form-label">Phone number</label>
+                    <input type="text" class="js-input-mask form-control" name="{{ signup_form.phone_number.name }}" id="signup_phone_number" placeholder="0xxx-xx-xx-xx"
+                           data-hs-mask-options='{
+                           "mask": "0000-00-00-00"
+                           }'>
+                </div>
+
+
+                <div class="text-center mb-3">
+                    <p class="small mb-0">By continuing you agree to our <a href="#">Terms and Conditions</a></p>
+                </div>
+
+                <div class="d-grid gap-3 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
+
+                    <p>Already have an account?
+                        <a class="js-animation-link link" href="javascript:;" role="button" data-hs-show-animation-options='{
+                          "targetSelector": "#loginOffcanvasFormLogin",
+                          "groupName": "idForm"
+                          }'>Log in
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <!-- End Signup -->
+
+        <!-- Reset Password -->
+        <div id="loginOffcanvasFormResetPassword" style="display: none; opacity: 0;">
+            <div class="text-center mb-7">
+                <h3 class="modal-title">Forgot password</h3>
+                <p>Instructions will be sent to you</p>
+            </div>
+
+            <form class="js-validate needs-validation" novalidate>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <label class="form-label" for="reset_email" tabindex="0">Your email</label>
+
+                        <a class="js-animation-link form-label-link" href="javascript:;" data-hs-show-animation-options='{
+                          "targetSelector": "#loginOffcanvasFormLogin",
+                          "groupName": "idForm"
+                          }'>
+                            <i class="bi-chevron-left small"></i> Back to Log in
+                        </a>
+                    </div>
+
+                    <input type="email" class="form-control form-control-lg" name="reset_email" id="reset_email" tabindex="1" placeholder="Enter your email address" aria-label="Enter your email address" required>
+                    <span class="invalid-feedback">Please enter a valid email address.</span>
+                </div>
+
+                <div class="d-grid gap-3 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                </div>
+            </form>
+        </div>
+        <!-- End Reset Password -->
+    </div>
+  </div>
+<!-- end authentication -->
 {% endblock %}

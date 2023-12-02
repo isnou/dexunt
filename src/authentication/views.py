@@ -37,43 +37,30 @@ def account_login(request, action):# (login) #
                 if user:
                     login(request, user)
                     return redirect('router')
+#                                                                   #
+def account_signup(request, action):# (signup) #
+    session_manager(init=True, source='signup')
 
-def account_signup(request):# (signup) #
-    if request.method == 'POST':
-        signup_form = SignupForm(request.POST)
-        if signup_form.is_valid():
-            user = signup_form.save()
-            login(request, user)
-            return redirect('router')
+    if action == 'page':
+
+        context = {
+        }
+        return render(request, url, context)
+    if action == 'auth':
+        if request.method == 'POST':
+            signup_form = SignupForm(request.POST)
+            if signup_form.is_valid():
+                user = signup_form.save()
+                login(request, user)
+                return redirect('router')
+            else:
+                request.session['error_messages'] = signup_form.errors
+                return redirect('home-page')
         else:
-            request.session['error_messages'] = signup_form.errors
             return redirect('home-page')
-    else:
-        return redirect('home-page')
+#                                                                   #
+# ----------------------------------------------------------------- #
 
-@login_required
-def wished_products_page(request):
-    if not request.session.get('language', None):
-        request.session['language'] = 'en'
-
-    direction = request.session.get('language')
-    url = direction + "/main-shop/account/wished-products.html"
-
-    wished_products = request.user.wished.all()
-
-    page = request.GET.get('page', 1)
-    paginator = Paginator(wished_products, 2)
-    try:
-        wished_products = paginator.page(page)
-    except PageNotAnInteger:
-        wished_products = paginator.page(1)
-    except EmptyPage:
-        wished_products = paginator.page(paginator.num_pages)
-
-    context = {
-        'wished_products': wished_products,
-    }
-    return render(request, url, context)
 
 @login_required
 def account_profile_page(request):

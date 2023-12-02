@@ -6,19 +6,22 @@ from authentication.models import User
 
 
 # ---------------------------- renders ---------------------------- #
-def home_page(request):# (home-page) #
+def home_page(request):# (home-page)
     session_manager(init=True, source='home-page')
     url = request.session.get('direction') + "/home/main.html"
 
     context = {
+        # [parent template] --------------------------------------- #
 
-        # ------------------------  page title -------------------------- #
+        # [child template] ---------------------------------------- #
+        # [child template] -> [title block] ----------------------- #
         'page_title_txt': text_selector(
             en_text="Dexunt | Trusted & Professional Craftsmen Finder | Home Page",
             fr_text="Dexunt | Recherche d'artisans de confiance et professionnels | Page d'accueil",
             ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | الصفحة الرئيسية",
         ),
-        # ------------------------  head banner ------------------------- #
+
+        # [child template] -> [content block] -> [main banner] ---- #
         'welcome_txt': text_selector(
             en_text="Trusted craftsmen at your service",
             fr_text="Des artisans de confiance à votre service",
@@ -72,18 +75,26 @@ def home_page(request):# (home-page) #
             ar_text="إبدء",
         ),
         'how_it_works_video_link': 'https://www.youtube.com/watch?v=d4eDWc8g0e0',
+
+        # [child template] -> [modals block] -> [authentication] -- #
+        'login_form': LoginForm(),
+        'signup_form': SignupForm(),
     }
     return render(request, url, context)
+#                                                                   #
+# ----------------------------------------------------------------- #
+
 
 # ------------------------- redirections -------------------------- #
 def change_language(request):# (change-language) #
     session_manager(language=request.GET.get('language', None))
     return redirect(request.session.get('source', None))
-#                                                                        #
+#                                                                   #
 def router(request):# (router) #
     if request.user.is_superuser:
         return redirect('admin-home')
-
+#                                                                   #
+# ----------------------------------------------------------------- #
 
 
 
