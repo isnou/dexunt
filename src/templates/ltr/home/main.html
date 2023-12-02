@@ -206,13 +206,15 @@
                     <label class="form-label" for="signup_password1">Password</label>
 
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                        <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password1.name }}" id="signup_password1" placeholder="8+ characters required" aria-label="8+ characters required" required
+                        <input type="password" class="js-toggle-password form-control form-control-lg"
+                               name="{{ signup_form.password1.name }}" id="signup_password1"
+                               placeholder="8+ characters required" aria-label="8+ characters required"
                                data-hs-toggle-password-options='{
-                               "target": [".js-toggle-password1-target", ".js-toggle-password2-target"],
+                               "target": ["#signup_password2", "#signup_password1"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
                                "classChangeTarget": ".js-toggle-password1-show-icon"
-                               }'>
+                               }' required>
                         <a class="js-toggle-password1-target input-group-append input-group-text" href="javascript:;">
                             <i class="js-toggle-password1-show-icon fa fa-eye"></i>
                         </a>
@@ -224,14 +226,16 @@
                     <label class="form-label" for="signup_password2">Confirm password</label>
 
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                        <input type="password" class="js-toggle-password form-control form-control-lg" name="{{ signup_form.password2.name }}" id="signup_password2" placeholder="8+ characters required" aria-label="8+ characters required" required
+                        <input type="password" class="js-toggle-password form-control form-control-lg"
+                               name="{{ signup_form.password2.name }}" id="signup_password2"
+                               placeholder="8+ characters required" aria-label="8+ characters required"
                                data-hs-validation-equal-field="#signup_password1"
                                data-hs-toggle-password-options='{
-                               "target": [".js-toggle-password2-target", ".js-toggle-password2-target"],
+                               "target": ["#signup_password2", "#signup_password1"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
                                "classChangeTarget": ".js-toggle-password2-show-icon"
-                               }'>
+                               }' required>
                         <a class="js-toggle-password2-target input-group-append input-group-text" href="javascript:;">
                             <i class="js-toggle-password2-show-icon fa fa-eye"></i>
                         </a>
