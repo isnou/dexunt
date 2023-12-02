@@ -4,6 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
 #from PIL import Image
 from globals.functions import serial_number_generator
+from globals.functions import text_selector
 
 
 # ------------------------------ Setting ------------------------------- #
@@ -67,6 +68,7 @@ class User(AbstractUser):
                 self.type = 'member'
         super().save()
     # ----- variables ----- #
+
 
 
 # ---------------------------------------------------------------------- #

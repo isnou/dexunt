@@ -24,8 +24,29 @@
 
 <body>
 
-<!-- header block -->
-{% block header %} {% endblock %}
+<header id="header" class="navbar navbar-expand navbar-light navbar-absolute-top">
+  <div class="container-fluid">
+    <nav class="navbar-nav-wrap">
+      <!-- White Logo -->
+      <a class="navbar-brand d-none d-lg-flex" href="index.html" aria-label="Dexunt">
+        <img class="navbar-brand-logo" src="{% static 'images/logo/logo-white.png' %}" alt="Logo">
+      </a>
+      <!-- End White Logo -->
+
+      <!-- Default Logo -->
+      <a class="navbar-brand d-flex d-lg-none" href="index.html" aria-label="Dexunt">
+        <img class="navbar-brand-logo" src="{% static 'images/logo/logo.png' %}" alt="Logo">
+      </a>
+      <!-- End Default Logo -->
+
+      <div class="ms-auto">
+        <a class="link link-sm link-secondary" href="{% url 'home-page' %}">
+          <i class="bi-chevron-left small ms-1"></i> Go to main
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
 
 <main id="content" role="main" class="flex-grow-1">
   <div class="container-fluid">
