@@ -99,7 +99,7 @@ def account_profile_page(request):
     return render(request, url, context)
 
 @login_required
-def edit_profile(request):
+def edit_profile_b(request):
     if not request.session.get('language', None):
         request.session['language'] = 'en'
 
