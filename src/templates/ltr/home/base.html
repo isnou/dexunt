@@ -62,13 +62,13 @@
         <div class="d-inline-block ml-auto">
           {% if not user.is_authenticated %}
           <button class="btn btn-ghost" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
+            <i class="fa-regular fa-user"></i>
             <span class="d-none d-lg-inline-block">{{ login_txt }}</span>
-            <i class="fa-regular fa-user d-lg-none"></i>
           </button>
           {% else %}
           <a class="btn btn-ghost" type="button" href="{% url 'router' %}">
+            <i class="fa-solid fa-user"></i>
             <span class="d-none d-lg-inline-block">{{ connected_txt }}</span>
-            <i class="fa-solid fa-user d-lg-none"></i>
           </a>
           {% endif %}
         </div>
