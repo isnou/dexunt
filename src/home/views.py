@@ -96,6 +96,12 @@ def router(request):# (router) #
             return redirect('admin-home')
         if request.user.type == 'blank':
             return redirect('edit-profile', 'page')
+
+    if request.session.get('source', None) == 'home-page':
+        if request.user.is_superuser:
+            return redirect('admin-home')
+        if request.user.type == 'blank':
+            return redirect('edit-profile', 'page')
 #                                                                   #
 # ----------------------------------------------------------------- #
 

@@ -65,6 +65,11 @@
             <span class="d-none d-lg-inline-block">{{ login_txt }}</span>
             <i class="fa fa-user d-lg-none"></i>
           </button>
+          {% else %}
+          <button class="btn btn-ghost" type="button" href="{% url 'router' %}">
+            <span class="d-none d-lg-inline-block">{{ login_txt }}</span>
+            <i class="fa fa-user d-lg-none"></i>
+          </button>
           {% endif %}
         </div>
         <!-- End Login -->
