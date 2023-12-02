@@ -68,6 +68,18 @@ class User(AbstractUser):
                 self.type = 'member'
         super().save()
     # ----- variables ----- #
+    def status(self):
+        if self.type == 'blank':
+            show = text_selector(
+                en_text="Uncompleted",
+                fr_text="Inachevé",
+                ar_text="غير مكتمل",
+            )
+            return {
+                'show': show,
+                'color': 'danger',
+            }
+
 
 
 

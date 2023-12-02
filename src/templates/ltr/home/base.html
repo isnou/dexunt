@@ -69,9 +69,9 @@
           <button class="btn btn-ghost" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarAccount" aria-controls="offcanvasNavbarAccount">
             <i class="fa-solid fa-user d-lg-none"></i>
             <span class="d-none d-lg-inline-block">
-              <h6 class="text-muted">
-                Connected<br>
-                <small>{{ user.username }}</small>
+              <h6 class="text-{{ user.status.color }}">
+                {{ user.username }}<br>
+                <small>{{ user.status.show }}</small>
               </h6>
             </span>
           </button>
