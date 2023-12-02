@@ -2,10 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, SignupForm, UpdateProfileForm, UpdatePhotoForm
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from . import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from globals.functions import text_selector, session_manager
 
 
 # ---------------------------- renders ---------------------------- #
