@@ -3,7 +3,7 @@ def session_manager(**kwargs):
         if kwargs.get('source') == 'login':
             if kwargs.get('success'):
                 global_request.session['messages'] = None
-            if kwargs.get('user_fail'):
+            if kwargs.get('login_fail'):
                 global_request.session['messages'] = {
                     'color': 'danger',
                     'text':(
@@ -20,32 +20,9 @@ def session_manager(**kwargs):
                             )
                         },
                         text_selector(
-                            en_text="login fail 2",
-                            fr_text="Permission refusée",
-                            ar_text="رفض الإذن",
-                        ),
-                    )
-                }
-            if kwargs.get('login_fail'):
-                global_request.session['messages'] = {
-                    'color': 'danger',
-                    'text':(
-                        {
-                            'title': text_selector(
-                                en_text="Oups !",
-                                fr_text="Permission refusée",
-                                ar_text="رفض الإذن",
-                            ),
-                            'content':text_selector(
-                                en_text="Looks like something wrong happening.",
-                                fr_text="Permission refusée",
-                                ar_text="رفض الإذن",
-                            )
-                        },
-                        text_selector(
-                            en_text="login fail 1",
-                            fr_text="Permission refusée",
-                            ar_text="رفض الإذن",
+                            en_text="password or username incorrect",
+                            fr_text="mot de passe ou nom d'utilisateur incorrect",
+                            ar_text="كلمة المرور أو اسم المستخدم غير صحيح",
                         ),
                     )
                 }

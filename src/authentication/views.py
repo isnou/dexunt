@@ -39,11 +39,8 @@ def account_login(request, action):# (login) #
                     session_manager(message=True, source='login', success=True)
                     return redirect('router')
                 else:
-                    session_manager(message=True, source='login', user_fail=True)
+                    session_manager(message=True, source='login', login_fail=True)
                     return redirect('router')
-            else:
-                session_manager(message=True, source='login', login_fail=True)
-                return redirect('router')
 #                                                                   #
 def account_signup(request, action):# (signup) #
     if action == 'page':
