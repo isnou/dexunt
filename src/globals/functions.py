@@ -30,7 +30,6 @@ def session_manager(**kwargs):
                     ),
                 )
     if kwargs.get('init', None):
-        global_request.session['messages'] = None
         global_request.session['source'] = kwargs.get('source', None)
         if not global_request.session.get('direction', None):
             global_request.session['direction'] = 'ltr'

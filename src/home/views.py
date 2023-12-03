@@ -9,6 +9,9 @@ from authentication.models import User
 def home_page(request):# (home-page)
     session_manager(init=True, source='home-page')
     url = request.session.get('direction') + "/home/main.html"
+    messages = request.session.get('messages', None)
+    if request.session.get('messages', None):
+        request.session['messages'] = None
 
     context = {
         # [parent template] --------------------------------------- #
@@ -82,7 +85,7 @@ def home_page(request):# (home-page)
         'how_it_works_video_link': 'https://www.youtube.com/watch?v=d4eDWc8g0e0',
 
         # [child template] -> [message block] --------------------- #
-        'messages': request.session.get('messages', None),
+        'messages': messages,
 
         # [child template] -> [modals block] -> [authentication] -- #
         'login_form': LoginForm(),
