@@ -1,7 +1,7 @@
 <label class="form-label" for="signup_username">Username</label>
 <input type="text" class="form-control form-control-lg is-valid"
        name="{{ signup_form.username.name }}" id="signup_username"
-       placeholder="john.doe" aria-label="john.doe"
+       value="{{ username }}"
        hx-get="{% url 'signup' 'load_username' %}"
        hx-trigger="keyup delay:10s, change"
        hx-target="#signup_username_section"

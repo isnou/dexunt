@@ -54,6 +54,7 @@ def account_signup(request, action):# (signup) #
         login_form = LoginForm()
         context = {
             'login_form': login_form,
+            'username': username,
         }
         return render(request, url, context)
 
