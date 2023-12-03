@@ -5,13 +5,20 @@ def session_manager(**kwargs):
                 global_request.session['messages'] = None
             if kwargs.get('user_fail'):
                 global_request.session['messages'] = {
-                    'text_color': 'danger',
-                    'text_content':(
-                        text_selector(
-                            en_text="Permission denied",
-                            fr_text="Permission refusée",
-                            ar_text="رفض الإذن",
-                        ),
+                    'color': 'danger',
+                    'text':(
+                        {
+                            'title': text_selector(
+                                en_text="Oups !",
+                                fr_text="Permission refusée",
+                                ar_text="رفض الإذن",
+                            ),
+                            'content':text_selector(
+                                en_text="Looks like something wrong happening.",
+                                fr_text="Permission refusée",
+                                ar_text="رفض الإذن",
+                            )
+                        },
                         text_selector(
                             en_text="login fail 2",
                             fr_text="Permission refusée",
@@ -21,13 +28,20 @@ def session_manager(**kwargs):
                 }
             if kwargs.get('login_fail'):
                 global_request.session['messages'] = {
-                    'text': 'danger',
-                    'content':(
-                        text_selector(
-                            en_text="Permission denied",
-                            fr_text="Permission refusée",
-                            ar_text="رفض الإذن",
-                        ),
+                    'color': 'danger',
+                    'text':(
+                        {
+                            'title': text_selector(
+                                en_text="Oups !",
+                                fr_text="Permission refusée",
+                                ar_text="رفض الإذن",
+                            ),
+                            'content':text_selector(
+                                en_text="Looks like something wrong happening.",
+                                fr_text="Permission refusée",
+                                ar_text="رفض الإذن",
+                            )
+                        },
                         text_selector(
                             en_text="login fail 2",
                             fr_text="Permission refusée",
