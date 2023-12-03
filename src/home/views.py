@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate
 from authentication.models import User
 
 
-# ---------------------------- renders ---------------------------- #
+# ----------------------------------------------------------------- #
 def home_page(request):# (home-page)
     messages = session_manager(init=True, source='home-page')
     url = request.session.get('direction') + "/home/main.html"
@@ -90,10 +90,6 @@ def home_page(request):# (home-page)
     }
     return render(request, url, context)
 #                                                                   #
-# ----------------------------------------------------------------- #
-
-
-# ------------------------- redirections -------------------------- #
 def change_language(request):# (change-language) #
     session_manager(language=request.GET.get('language', None))
     return redirect(request.session.get('source', None))
@@ -107,7 +103,6 @@ def router(request):# (router) #
                 return redirect('edit-profile', 'page')
         else:
             return redirect('login')
-
     if request.session.get('source', None) == 'home-page':
         if request.user.is_authenticated:
             if request.user.is_superuser and request.user.is_staff:
@@ -116,7 +111,6 @@ def router(request):# (router) #
                 return redirect('edit-profile', 'page')
         else:
             return redirect('home-page')
-#                                                                   #
 # ----------------------------------------------------------------- #
 
 

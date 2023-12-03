@@ -232,9 +232,15 @@
             <form action="{% url 'signup' 'auth' %}" class="js-validate needs-validation" novalidate method="post">
                 {% csrf_token %}
 
-                <div class="mb-3">
+                <div class="mb-3" id="signup_username_section">
                     <label class="form-label" for="signup_username">Username</label>
-                    <input type="text" class="form-control form-control-lg" name="{{ signup_form.username.name }}" id="signup_username" placeholder="john.doe" aria-label="john.doe" required>
+                    <input type="text" class="form-control form-control-lg"
+                           name="{{ signup_form.username.name }}" id="signup_username"
+                           placeholder="john.doe" aria-label="john.doe"
+                           hx-get="{% url 'signup' 'load_username' %}"
+                           hx-trigger="load delay:1s, change"
+                           hx-target="#signup_username_section"
+                           required>
                     <span class="invalid-feedback">Please enter a valid username.</span>
                 </div>
 
@@ -244,13 +250,13 @@
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
                         <input type="password" class="js-toggle-password form-control form-control-lg"
                                name="{{ signup_form.password1.name }}" id="signup_password1"
-                               placeholder="8+ characters required" aria-label="8+ characters required" minlength="8" required
+                               placeholder="8+ characters required" aria-label="8+ characters required" minlength="8"
                                data-hs-toggle-password-options='{
                                "target": ["#signup_password1_target", "#signup_password2_target"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
                                "classChangeTarget": "#signup_password1_icon"
-                               }'>
+                               }' required>
                         <a id="signup_password1_target" class="input-group-append input-group-text" href="javascript:;">
                             <i id="signup_password1_icon" class="fa fa-eye"></i>
                         </a>
@@ -264,14 +270,14 @@
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
                         <input type="password" class="js-toggle-password form-control form-control-lg"
                                name="{{ signup_form.password2.name }}" id="signup_password2"
-                               placeholder="8+ characters required" aria-label="8+ characters required" required
+                               placeholder="8+ characters required" aria-label="8+ characters required"
                                data-hs-validation-equal-field="#signup_password1"
                                data-hs-toggle-password-options='{
                                "target": ["#signup_password1_target", "#signup_password2_target"],
                                "defaultClass": "fa fa-eye-slash",
                                "showClass": "fa fa-eye",
                                "classChangeTarget": "#signup_password2_icon"
-                               }'>
+                               }' required>
                         <a id="signup_password2_target" class="input-group-append input-group-text" href="javascript:;">
                             <i id="signup_password2_icon" class="fa fa-eye"></i>
                         </a>

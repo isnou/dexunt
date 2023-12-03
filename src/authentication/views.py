@@ -7,25 +7,17 @@ from django.contrib.auth import update_session_auth_hash
 from globals.functions import text_selector, session_manager
 
 
-# ---------------------------- renders ---------------------------- #
+# ----------------------------------------------------------------- #
 def account_login(request, action):# (login) #
-
     if action == 'page':
         session_manager(init=True, source='login')
         url = request.session.get('direction') + "/authentication/login.html"
-        if request.session.get('error_messages'):
-            errors = request.session.get('error_messages')
-            request.session['error_messages'] = None
-        else:
-            errors = None
         login_form = LoginForm()
 
         context = {
-            'errors': errors,
             'login_form': login_form,
         }
         return render(request, url, context)
-
     if action == 'auth':
         if request.method == 'POST':
             login_form = LoginForm(request.POST)
@@ -55,6 +47,16 @@ def account_signup(request, action):# (signup) #
                 user = signup_form.save()
                 login(request, user)
                 return redirect('router')
+    if action == 'load_username':
+        username = request.GET.get('username')
+
+        url = request.session.get('direction') + "/home/partials/signup_username_section.html"
+        login_form = LoginForm()
+        context = {
+            'login_form': login_form,
+        }
+        return render(request, url, context)
+
 #                                                                   #
 def edit_profile(request, action):# (edit-profile) #
     if action == 'page':
