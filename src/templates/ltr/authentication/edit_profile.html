@@ -8,5 +8,14 @@
 {% block content %}
 {% endblock %}
 
+{% block message %}
+<!-- Popup Message -->
+<div class="alert alert-warning alert-dismissible py-4 fade show text-center" role="alert">
+  <span class="fw-semibold">Holy guacamole!</span> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<!-- End Popup Message -->
+{% endblock %}
+
 {% block modals %}
 {% endblock %}

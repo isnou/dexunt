@@ -252,13 +252,8 @@
 </header>
 
 <main id="content" role="main">
-
-  <!-- Popup Message -->
-  <div class="alert alert-warning alert-dismissible mx-8 py-4 fade show text-center" role="alert">
-    <span class="fw-semibold">Holy guacamole!</span> You should check in on some of those fields below.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  <!-- End Popup Message -->
+  <!-- message block -->
+  {% block message %} {% endblock %}
 
   <!-- content block -->
   {% block content %} {% endblock %}
