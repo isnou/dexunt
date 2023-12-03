@@ -9,14 +9,14 @@ def session_manager(**kwargs):
                     'text':(
                         {
                             'title': text_selector(
-                                en_text="Oups !",
-                                fr_text="Permission refusée",
-                                ar_text="رفض الإذن",
+                                en_text="Oops !",
+                                fr_text="Oups !",
+                                ar_text="عفوًا!",
                             ),
                             'content':text_selector(
                                 en_text="Looks like something wrong happening.",
-                                fr_text="Permission refusée",
-                                ar_text="رفض الإذن",
+                                fr_text="On dirait que quelque chose ne va pas.",
+                                ar_text="يبدو أن شيئًا خاطئًا يحدث.",
                             )
                         },
                         text_selector(
