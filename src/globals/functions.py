@@ -35,6 +35,11 @@ def session_manager(**kwargs):
             global_request.session['direction'] = 'ltr'
         if not global_request.session.get('language', None):
             global_request.session['language'] = 'en-us'
+        if request.session.get('messages', None):
+            messages = request.session.get('messages')
+            request.session['messages'] = None
+            return messages
+
     if kwargs.get('language', None) == 'en-us':
         global_request.session['language'] = 'en-us'
         global_request.session['direction'] = 'ltr'

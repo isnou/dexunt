@@ -7,11 +7,8 @@ from authentication.models import User
 
 # ---------------------------- renders ---------------------------- #
 def home_page(request):# (home-page)
-    session_manager(init=True, source='home-page')
+    messages = session_manager(init=True, source='home-page')
     url = request.session.get('direction') + "/home/main.html"
-    messages = request.session.get('messages', None)
-    if request.session.get('messages', None):
-        request.session['messages'] = None
 
     context = {
         # [parent template] --------------------------------------- #
