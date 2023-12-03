@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, SignupForm, UpdateProfileForm, UpdatePhotoForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from globals.functions import text_selector, session_manager
+from globals.functions import text_selector, session_manager, validation
 
 
 # ----------------------------------------------------------------- #
@@ -49,12 +49,47 @@ def account_signup(request, action):# (signup) #
                 return redirect('router')
     if action == 'load_username':
         username = request.GET.get('username')
+        validation_value = validation(username=username, min_length=6, max_length=10)
 
         url = request.session.get('direction') + "/home/partials/signup_username_section.html"
         login_form = LoginForm()
+
+        if validation_value == 'min_length':
+            content = text_selector(
+                en_text="Username must have at least 6 characters",
+                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
+                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+            )
+            status = 'is-invalid'
+        elif validation_value == 'max_length':
+            content = text_selector(
+                en_text="Username must have 10 characters maximum",
+                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
+                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+            )
+            status = 'is-invalid'
+        elif validation_value == 'exists':
+            content = text_selector(
+                en_text="Username already exist",
+                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
+                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+            )
+            status = 'is-invalid'
+        else:
+            content = text_selector(
+                en_text="Username is valid",
+                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
+                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+            )
+            status = 'is-valid'
+
         context = {
             'login_form': login_form,
             'username': username,
+            'feedback': {
+                'status':status,
+                'content':content,
+            }
         }
         return render(request, url, context)
 

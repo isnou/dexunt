@@ -82,6 +82,20 @@ def session_manager(**kwargs):
             'key': 'fr-fr',
         }
 #                                                            #
+def validation(**kwargs):
+    if kwargs.get('username', None):
+        from authentication.models import User
+
+        username = kwargs.get('username')
+        min_length = kwargs.get('min_length')
+        max_length = kwargs.get('max_length')
+        if len(username) < min_length:
+            return 'min_length'
+        if len(username) > max_length:
+            return 'max_length'
+        if User.objects.filter(username=username).exists():
+            return 'exists'
+#                                                            #
 def text_selector(**kwargs):
     language = global_request.session.get('language')
 
