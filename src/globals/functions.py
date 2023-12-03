@@ -43,7 +43,7 @@ def session_manager(**kwargs):
                             )
                         },
                         text_selector(
-                            en_text="login fail 2",
+                            en_text="login fail 1",
                             fr_text="Permission refusée",
                             ar_text="رفض الإذن",
                         ),
