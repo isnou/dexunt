@@ -81,6 +81,9 @@ def home_page(request):# (home-page)
         ),
         'how_it_works_video_link': 'https://www.youtube.com/watch?v=d4eDWc8g0e0',
 
+        # [child template] -> [message block] --------------------- #
+        'messages': request.session.get('messages', None),
+
         # [child template] -> [modals block] -> [authentication] -- #
         'login_form': LoginForm(),
         'signup_form': SignupForm(),
@@ -97,16 +100,22 @@ def change_language(request):# (change-language) #
 #                                                                   #
 def router(request):# (router) #
     if request.session.get('source', None) == 'login':
-        if request.user.is_superuser:
-            return redirect('admin-home')
-        if request.user.type == 'blank':
-            return redirect('edit-profile', 'page')
+        if request.user.is_authenticated:
+            if request.user.is_superuser:
+                return redirect('admin-home')
+            if request.user.type == 'blank':
+                return redirect('edit-profile', 'page')
+        else:
+            return redirect('login')
 
     if request.session.get('source', None) == 'home-page':
-        if request.user.is_superuser:
-            return redirect('admin-home')
-        if request.user.type == 'blank':
-            return redirect('edit-profile', 'page')
+        if request.user.is_authenticated:
+            if request.user.is_superuser and request.user.is_staff:
+                return redirect('admin-home')
+            if request.user.type == 'blank':
+                return redirect('edit-profile', 'page')
+        else:
+            return redirect('home-page')
 #                                                                   #
 # ----------------------------------------------------------------- #
 

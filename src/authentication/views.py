@@ -9,9 +9,9 @@ from globals.functions import text_selector, session_manager
 
 # ---------------------------- renders ---------------------------- #
 def account_login(request, action):# (login) #
-    session_manager(init=True, source='login')
 
     if action == 'page':
+        session_manager(init=True, source='login')
         url = request.session.get('direction') + "/authentication/login.html"
         if request.session.get('error_messages'):
             errors = request.session.get('error_messages')
@@ -25,6 +25,7 @@ def account_login(request, action):# (login) #
             'login_form': login_form,
         }
         return render(request, url, context)
+
     if action == 'auth':
         if request.method == 'POST':
             login_form = LoginForm(request.POST)
@@ -35,13 +36,18 @@ def account_login(request, action):# (login) #
                 )
                 if user:
                     login(request, user)
+                    session_manager(message=True, source='login', success=True)
                     return redirect('router')
+                else:
+                    session_manager(message=True, source='login', user_fail=True)
+                    return redirect('router')
+            else:
+                session_manager(message=True, source='login', login_fail=True)
+                return redirect('router')
 #                                                                   #
 def account_signup(request, action):# (signup) #
-    session_manager(init=True, source='signup')
-
     if action == 'page':
-
+        session_manager(init=True, source='signup')
         context = {
         }
         return render(request, url, context)
@@ -54,11 +60,9 @@ def account_signup(request, action):# (signup) #
                 return redirect('router')
 #                                                                   #
 def edit_profile(request, action):# (edit-profile) #
-    session_manager(init=True, source='edit-profile')
-
     if action == 'page':
+        session_manager(init=True, source='edit-profile')
         url = request.session.get('direction') + "/authentication/edit_profile.html"
-
         context = {
             # [parent template] --------------------------------------- #
 

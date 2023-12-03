@@ -133,12 +133,17 @@
 {% endblock %}
 
 {% block message %}
+{% if messages %}
 <!-- Popup Message -->
 <div class="alert alert-warning alert-dismissible mx-8 py-4 fade show text-center" role="alert">
     <span class="fw-semibold">Holy guacamole!</span> You should check in on some of those fields below.
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 <!-- End Popup Message -->
+{% endif %}
 {% endblock %}
 
 {% block modals %}

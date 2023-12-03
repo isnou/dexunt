@@ -9,17 +9,18 @@ from authentication.models import User
 # --------------------------- Admin renders ---------------------------- #
 @login_required
 def admin_home(request, action):
-    session_manager(init=True, source='home-page')
-    url = request.session.get('direction') + "/management/admin/main.html"
+    if action == 'page':
+        session_manager(init=True, source='home-page')
+        url = request.session.get('direction') + "/management/admin/main.html"
 
-    context = {
+        context = {
 
-        # ------------------------  page title -------------------------- #
+            # ------------------------  page title -------------------------- #
 
-        # ------------------------  head banner ------------------------- #
+            # ------------------------  head banner ------------------------- #
 
-    }
-    return render(request, url, context)
+        }
+        return render(request, url, context)
 
 
 

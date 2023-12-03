@@ -1,4 +1,29 @@
 def session_manager(**kwargs):
+    if kwargs.get('message', None):
+        if kwargs.get('source') == 'login':
+            if kwargs.get('success'):
+                global_request.session['messages'] = None
+            if kwargs.get('user_fail'):
+                global_request.session['messages'] = text_selector(
+                    en_text="Permission denied",
+                    fr_text="Permission refusée",
+                    ar_text="رفض الإذن",
+                )
+            if kwargs.get('login_fail'):
+                global_request.session['messages'] =(
+                    text_selector(
+                        en_text="login fail 1",
+                        fr_text="Permission refusée",
+                        ar_text="رفض الإذن",
+                    ),
+                    text_selector(
+                        en_text="login fail 2",
+                        fr_text="Permission refusée",
+                        ar_text="رفض الإذن",
+                    ),
+                )
+
+
     if kwargs.get('init', None):
         global_request.session['source'] = kwargs.get('source', None)
         if not global_request.session.get('direction', None):
