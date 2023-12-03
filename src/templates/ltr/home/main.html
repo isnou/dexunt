@@ -238,7 +238,7 @@
                            name="{{ signup_form.username.name }}" id="signup_username"
                            placeholder="john.doe" aria-label="john.doe"
                            hx-get="{% url 'signup' 'load_username' %}"
-                           hx-trigger="keyup delay:20s"
+                           hx-trigger="change"
                            hx-target="#signup_username_section"
                            required>
                     <span class="invalid-feedback">Please enter a valid username.</span>
