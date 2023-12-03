@@ -1,16 +1,17 @@
 <label class="form-label" for="signup_username">Username</label>
 <input type="text" class="form-control form-control-lg is-valid"
        name="{{ signup_form.username.name }}" id="signup_username"
-       
        {% if username %}
        value="{{ username }}"
        {% else %}
        placeholder="john.doe" aria-label="john.doe"
        {% endif %}
-
-
        hx-get="{% url 'signup' 'load_username' %}"
        hx-trigger="keyup delay:10s, change"
        hx-target="#signup_username_section"
        required>
 <span class="invalid-feedback">Please enter a valid username.</span>
+<span class="valid-feedback">
+    <i class="fa-regular fa-circle-check"></i>
+    Correct username.
+</span>
