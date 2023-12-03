@@ -135,9 +135,9 @@
 {% block message %}
 {% if messages %}
 <!-- Popup Message -->
-<div class="alert alert-warning alert-dismissible mx-8 py-4 fade show text-center" role="alert">
+<div class="alert alert-{{ messages.text_color }} alert-dismissible mx-8 py-4 fade show text-center" role="alert">
     <span class="fw-semibold">Oups !</span> Looks like something wrong happening.<br>
-    {% for message in messages %}
+    {% for message in messages.text_content %}
     {{ message }}<br>
     {% endfor %}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
