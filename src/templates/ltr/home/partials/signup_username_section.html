@@ -1,7 +1,7 @@
-<label class="form-label" for="signup_username">Username</label>
+<label class="form-label" for="sub_signup_username">Username</label>
 <input type="text" class="form-control form-control-lg {{ feedback.status }}"
-       name="{{ signup_form.username.name }}" id="signup_username"
-       value="{{ username }}"
+       name="{{ signup_form.username.name }}" id="sub_signup_username"
+       {% if username %} value="{{ username }}" {% else %} placeholder="john.doe" {% endif %}
        hx-get="{% url 'signup' 'load_username' %}"
        hx-trigger="keyup delay:10s, change"
        hx-target="#signup_username_section"
