@@ -52,7 +52,7 @@ def account_signup(request, action):# (signup) #
         validation_value = validation(username=username, min_length=6, max_length=10)
 
         url = request.session.get('direction') + "/home/partials/signup_username_section.html"
-        login_form = LoginForm()
+        signup_form = SignupForm()
 
         if validation_value == 'min_length':
             content = text_selector(
@@ -84,7 +84,7 @@ def account_signup(request, action):# (signup) #
             status = 'is-valid'
 
         context = {
-            'login_form': login_form,
+            'signup_form': signup_form,
             'username': username,
             'feedback': {
                 'status':status,
