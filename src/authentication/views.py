@@ -49,51 +49,15 @@ def account_signup(request, action):# (signup) #
                 return redirect('router')
     if action == 'load_username':
         username = request.GET.get('username')
-        validation_value = validation(
-            username=username,
-            min_length=6,
-            max_length=18,
-        )
+        feedback = validation(username=username,)
 
         url = request.session.get('direction') + "/home/partials/signup_username_section.html"
         signup_form = SignupForm()
 
-        if validation_value == 'min_length':
-            content = text_selector(
-                en_text="must have at least 6 characters",
-                fr_text="doit avoir au moins 6 caractères",
-                ar_text="يجب أن يكون على الأقل 6 أحرف",
-            )
-            status = 'is-invalid'
-        elif validation_value == 'max_length':
-            content = text_selector(
-                en_text="must not exceed 18 characters",
-                fr_text="ne doit pas dépasser 18 caractères",
-                ar_text="يجب ألا يتجاوز 18 حرفًا",
-            )
-            status = 'is-invalid'
-        elif validation_value == 'exists':
-            content = text_selector(
-                en_text="existing username, please try another one",
-                fr_text="nom d'utilisateur existant, veuillez en essayer un autre",
-                ar_text="اسم المستخدم موجود، يرجى تجربة اسم مستخدم آخر",
-            )
-            status = 'is-invalid'
-        else:
-            content = text_selector(
-                en_text="valid username",
-                fr_text="nom d'utilisateur valide",
-                ar_text="اسم مستخدم صالح",
-            )
-            status = 'is-valid'
-
         context = {
             'signup_form': signup_form,
             'username': username,
-            'feedback': {
-                'status':status,
-                'content':content,
-            }
+            'feedback': feedback,
         }
         return render(request, url, context)
 

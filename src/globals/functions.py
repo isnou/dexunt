@@ -87,14 +87,42 @@ def validation(**kwargs):
         from authentication.models import User
 
         username = kwargs.get('username')
-        min_length = kwargs.get('min_length')
-        max_length = kwargs.get('max_length')
-        if len(username) < min_length:
-            return 'min_length'
-        if len(username) > max_length:
-            return 'max_length'
-        if User.objects.filter(username=username).exists():
-            return 'exists'
+        if len(username) < 6:
+            return {
+                'content':text_selector(
+                    en_text="must have at least 6 characters",
+                    fr_text="doit avoir au moins 6 caractères",
+                    ar_text="يجب أن يكون على الأقل 6 أحرف",
+                ),
+                'status':'is-invalid'
+            }
+        elif len(username) > 18:
+            return {
+                'content':text_selector(
+                    en_text="must not exceed 18 characters",
+                    fr_text="ne doit pas dépasser 18 caractères",
+                    ar_text="يجب ألا يتجاوز 18 حرفًا",
+                ),
+                'status':'is-invalid'
+            }
+        elif User.objects.filter(username=username).exists():
+            return {
+                'content':text_selector(
+                    en_text="existing username, please try another one",
+                    fr_text="nom d'utilisateur existant, veuillez en essayer un autre",
+                    ar_text="اسم المستخدم موجود، يرجى تجربة اسم مستخدم آخر",
+                ),
+                'status':'is-invalid'
+            }
+        else:
+            return {
+                'content': text_selector(
+                    en_text="valid username",
+                    fr_text="nom d'utilisateur valide",
+                    ar_text="اسم مستخدم صالح",
+                ),
+                'status': 'is-valid'
+            }
 #                                                            #
 def text_selector(**kwargs):
     language = global_request.session.get('language')
