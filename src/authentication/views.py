@@ -49,37 +49,41 @@ def account_signup(request, action):# (signup) #
                 return redirect('router')
     if action == 'load_username':
         username = request.GET.get('username')
-        validation_value = validation(username=username, min_length=6, max_length=10)
+        validation_value = validation(
+            username=username,
+            min_length=6,
+            max_length=18,
+        )
 
         url = request.session.get('direction') + "/home/partials/signup_username_section.html"
         signup_form = SignupForm()
 
         if validation_value == 'min_length':
             content = text_selector(
-                en_text="Username must have at least 6 characters",
-                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
-                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+                en_text="must have at least 6 characters",
+                fr_text="doit avoir au moins 6 caractères",
+                ar_text="يجب أن يكون على الأقل 6 أحرف",
             )
             status = 'is-invalid'
         elif validation_value == 'max_length':
             content = text_selector(
-                en_text="Username must have 10 characters maximum",
-                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
-                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+                en_text="must not exceed 18 characters",
+                fr_text="ne doit pas dépasser 18 caractères",
+                ar_text="يجب ألا يتجاوز 18 حرفًا",
             )
             status = 'is-invalid'
         elif validation_value == 'exists':
             content = text_selector(
-                en_text="Username already exist",
-                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
-                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+                en_text="existing username, please try another one",
+                fr_text="nom d'utilisateur existant, veuillez en essayer un autre",
+                ar_text="اسم المستخدم موجود، يرجى تجربة اسم مستخدم آخر",
             )
             status = 'is-invalid'
         else:
             content = text_selector(
-                en_text="Username is valid",
-                fr_text="Dexunt | Recherche d'Artisans de Confiance et Professionnels | Editer Profil",
-                ar_text="ديكسونت | الباحث الموثوق والمحترف عن الحرفيين | تعديل الملف الشخصي",
+                en_text="valid username",
+                fr_text="nom d'utilisateur valide",
+                ar_text="اسم مستخدم صالح",
             )
             status = 'is-valid'
 
